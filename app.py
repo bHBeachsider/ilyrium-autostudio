@@ -86,7 +86,7 @@ if st.button("🚀 Generate Marketing Campaign Script", use_container_width=True
             try:
                 # Execution using the new google-genai syntax
                 response = client.models.generate_content(
-                    model='gemini-1.5-pro',
+                    model='gemini-2.5-pro',
                     contents=promo_prompt,
                     config=types.GenerateContentConfig(
                         system_instruction=system_instruction,
