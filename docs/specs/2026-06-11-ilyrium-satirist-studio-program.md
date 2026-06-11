@@ -1,14 +1,21 @@
-# Ilyrium Satirist Studio — Program Spec
+# Ilyrium Persona Studio — Program Spec
 
 **Date:** 2026-06-11
 **Status:** Design (program-level; decomposes into sub-specs)
 **Home:** `ilyrium-autostudio` (all content creation), drawing models from `slm-foundry`
 
 ## 1. Purpose
-An agentic production system that turns a politician or political issue into a finished,
-period-accurate **satirical cartoon** (Thomas Nast first; other personas later), and distributes it.
-It runs as a **production inside the Ilyrium AutoStudio spine**, fed by a **reusable media-intake tool**,
-with a human-gated publish step.
+An agentic **creator-content platform**: any fine-tuned **persona SLM** — its captured *taste/style* —
+drives and guardrails the generation of finished media, which is then **editable downstream** and
+optionally distributed. It runs as a production inside the **Ilyrium AutoStudio spine**, fed by a
+**reusable media-intake tool**, with a recursive self-improving eval loop and human-gated publishing.
+
+**The persona's captured taste is both the creative director and the safety rail** — wide creative
+latitude *within* the captured style.
+
+**First instance:** the Thomas Nast political-cartoon satirist. The *same* platform serves any future
+persona (other satirists, illustrators, writers, designers, domain explainers) as a `slm-foundry`
+domain pack — political satire is one application, not the scope.
 
 ## 2. Core principle (separation of concerns)
 - **`slm-foundry` = model factory.** Trains persona models: the **Brain** (text SLM: event → `{allegory_rationale, image_prompt, labels}`) and **Hand** style LoRAs (SDXL fast, Flux high-fidelity).
@@ -24,6 +31,45 @@ feeds → INTAKE SPINE → signal/topic ──(RAG: live facts)──► BRAIN (
    → QA + HITL GATE (rights/safety/disclosure)                         diffusion can't render them,
    → multi-platform PUBLISH (X, Instagram, …)                          so they are composited in post
 ```
+
+## 3A. Persona as creative director AND guardrail
+The fine-tuned SLM persona encodes a *taste* (Nast's allegorical logic; for others: a visual style, a
+prose voice, an editorial sensibility, a domain methodology). That taste is the platform's organizing
+constraint:
+- **Creative latitude:** the agent freely explores ideas, compositions, and variants — wide latitude.
+- **Guardrail:** every candidate is scored against the persona's captured taste, where the eval rubric is
+  **derived from the persona's own gold exemplars**. Off-taste outputs are rejected or revised. The hard
+  governance rails (§7) apply to every persona on top of this.
+- **Generality:** the platform is persona-agnostic. Swapping the `slm-foundry` domain pack swaps the entire
+  creative identity *and* its guardrails — no platform changes.
+
+## 3B. Recursive self-improving eval loop
+Two nested loops:
+1. **Per-artifact (generate → critique → revise):** the production generates candidate(s); an independent
+   **judge** (different model than the generator, à la Sonnet-4.6) scores each against the persona's taste
+   rubric + governance; the agent revises (re-prompt, re-render, inpaint/composition tweaks) and resubmits,
+   looping until the taste bar is met or an iteration/token budget is hit. (Same loop-until-quality /
+   adversarial-verify pattern as the foundry's eval gate.)
+2. **Model self-improvement (production feedback → retrain):** accepted/rejected verdicts, HITL approvals,
+   and downstream signals (edits made, audience engagement) become **new labeled data** fed back to
+   `slm-foundry` to fine-tune the next version of the persona's Brain/LoRA. The persona gets better at its
+   own taste over rounds.
+
+**Guardrails on the loop (so "recursive self-improvement" cannot drift or reward-hack):**
+- a **fixed, human-curated gold exemplar set** the loop is *always* re-evaluated against (anti-collapse);
+- convergence + iteration/token budgets;
+- **HITL stays non-delegable** at publish and at each model-promotion;
+- **eval-vs-base gate before any new persona model ships** (no regression).
+The loop optimizes quality; it never bypasses human oversight.
+
+## 3C. Downstream adjustability (non-destructive)
+Generated output is a **starting point, not a final**. Every artifact is tweakable without re-running:
+- ComfyUI **img2img / inpaint / regional re-prompt / ControlNet** to adjust composition, fix a figure,
+  restyle a region.
+- The **label/caption layer is a separate composite** → editable independently of the render.
+- **Non-destructive takes** (Ilyrium already supports this): each edit is a new version; nothing is
+  overwritten; the asset graph tracks lineage.
+- The persona/style stays locked while only the `author`-layer specifics change.
 
 ## 4. The reusable Intake Spine (MCP + Plugin + REST)
 Lift PermitHub's A20 / `media-share-intake` **pattern** (url_router → platform adapters → media_items →
@@ -61,9 +107,20 @@ Each gets its own spec → plan → build:
 4. **Studio integration** — wire 2+3 as an Ilyrium production (Style Kernel asset + taxonomy `author` layer + oversight console + HITL gate).
 5. **Distribution** — platform adapters + scheduling behind the publish gate.
 6. **Monetization** — REST API metering + the audience/print/licensing surfaces.
+7. **Recursive eval loop** — built in two stages: the **per-artifact critique→revise** loop ships *inside*
+   the render slice (3); the **production-feedback→retrain** loop is added after studio integration (4),
+   wiring HITL/engagement signals back into `slm-foundry`.
+
+> Everything in 2–7 is **persona-agnostic** — the Nast pack is the first fill-in; a new persona reuses the
+> whole platform by supplying its own `slm-foundry` domain pack (Brain + LoRAs + gold exemplars/rubric).
 
 ## 10. First slice (recommended scope for the first plan)
-**End-to-end manual-publish vertical:** intake one feed → RAG on a chosen politician/issue → Nast Brain concept → SDXL draft + Flux final in ComfyUI → composite labels+caption → **save file for manual posting** (no auto-distribution, no monetization yet). Proves the creative loop before automating publish/money. Governance gate present from day one (manual review = the gate).
+**End-to-end manual-publish vertical:** intake one feed → RAG on a chosen politician/issue → Nast Brain
+concept → SDXL draft + Flux final in ComfyUI → composite labels+caption → **one round of per-artifact
+critique→revise** (judge scores against the Nast gold rubric; agent revises once if below bar) →
+**save file for manual posting** (no auto-distribution, no monetization, no retrain loop yet). Proves the
+creative loop + the minimal eval loop + downstream-editable output before automating publish/money/retrain.
+Governance gate present from day one (manual review = the gate).
 
 ## 11. Open questions
 - Intake Spine home: shared repo vs. inside `ilyrium-autostudio`? (Reusable → leans shared/standalone.)
