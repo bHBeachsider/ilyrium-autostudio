@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "intake-spine": {
+      "command": "python",
+      "args": ["-m", "intake_mcp.server"],
+      "env": {}
+    }
+  }
+}
