@@ -1,0 +1,10 @@
+intake-spine
+Pillow>=10.0.0
+requests>=2.32.0
+# render-only (install on the GPU box, not needed for tests):
+#   diffusers>=0.30.0
+#   torch
+#   transformers
+#   accelerate
+#   safetensors
+#   boto3
