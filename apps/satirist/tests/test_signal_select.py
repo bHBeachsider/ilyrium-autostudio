@@ -36,3 +36,8 @@ def test_select_signal_none_when_no_match(tmp_path):
     db = str(tmp_path / "intake.db")
     _seed(db)
     assert select_signal("NoSuchTopicXYZ", db) is None
+
+
+def test_select_signal_none_when_db_missing(tmp_path):
+    # a fresh CLI run with no store yet must return None, not raise sqlite errors
+    assert select_signal("anything", str(tmp_path / "does_not_exist.db")) is None

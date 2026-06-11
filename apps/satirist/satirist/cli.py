@@ -38,8 +38,10 @@ def main(argv=None):
     args = ap.parse_args(argv)
 
     if args.ingest_feed:
+        import os
         import intake_core.pipeline as ip
         import intake_core.store as store
+        os.makedirs(os.path.dirname(os.path.abspath(args.db)) or ".", exist_ok=True)
         store.init_db(args.db)
         ip.ingest_feed(args.ingest_feed, args.db)
 
