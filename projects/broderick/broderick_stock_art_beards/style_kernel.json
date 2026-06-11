@@ -1,0 +1,33 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Hand-drawn digital grayscale strip built on a deliberate fidelity clash: figures are rendered like photo-referenced stock-illustration portraits — fine hatched beards, modeled faces, flat gray garment fills — while the world around them is barely-there faint gray scrawl (a ghost skyline, hand-scrawled outline signage reading 'ARTISINAL BREWERY', later 'CHIPOTLE'). White paper dominates; no color anywhere. Balloon-less all-caps comic-font dialogue floats in the negative space above each figure; time-skip captions top-left, bold 'END' bottom-right.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "paper_white": "#FFFFFF — dominant field; background, sky, dialogue space",
+    "ink_black": "#1C1C1C — figure linework, beard hatching, lettering, darkest shirt fill",
+    "shirt_mid_gray": "#8C8C8C — flat fill on t-shirts and the suit jacket",
+    "shirt_dark_gray": "#4A4A4A — darker garment fill (black tee, collar) for figure-to-figure contrast",
+    "scrawl_gray": "#D2D2D2 — faint loose strokes for skyline, wall, and the outline-letter signage; environment is always this ghost tier",
+    "signage": "hand-scrawled outline capital letters on the wall — 'ARTISINAL BREWERY' then 'CHIPOTLE' — the strip's clock and punchline device"
+  },
+  "casting_canon": {
+    "bro_1": "lean man aging across panels: early 30s with slicked-back hair, waxed handlebar mustache, long pointed beard, grey t-shirt; 50s gaunt in suit and striped tie, receding grey-streaked hair; 70s frail and bald with white temple wisps, thin white chin beard, baggy light jacket; preening and competitive, souring into bitter resignation",
+    "bro_2_pete": "round-faced soft man in his early 30s, full bushy beard, light tousled hair, light knit sweater; enthusiastic instigator energy; appears only in scene 1",
+    "bro_3": "solid man growing heavy and slumped: early 30s with dark groomed full beard, swept-back dark hair, black t-shirt and chain necklace; 50s bald with drooping thin mustache and long chin goatee, grey t-shirt; mellow agreeable wingman aging into vacant detachment"
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, any color, speech balloon outlines, detailed rendered backgrounds, cartoony exaggerated faces, anime style, clean typeset signage, crowded composition, likeness of any real person",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot.",
+    "strip_rule": "Same camera spot across all three eras; only the men age, the signage changes, and the crowd thins. Lock the wall/skyline scrawl as a reusable plate."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: hand-drawn stock-illustration style, visible hatching and ink line, flat gray fills, no photographic rendering, no 3d.",
+    "drifts_cartoony": "Add: realistic proportioned figures, fine hatched beards, restrained expressions — not bigfoot cartoon style.",
+    "background_overrendered": "Add: background as faint loose gray scrawl only, hand-scrawled outline lettering on the wall, mostly white space.",
+    "lettering_garbled": "Generate art without text; add hand-lettering in post or via dedicated lettering pass."
+  }
+}

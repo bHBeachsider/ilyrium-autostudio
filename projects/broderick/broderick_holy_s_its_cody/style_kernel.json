@@ -1,0 +1,30 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Pure black-and-white pen-and-ink doodle comic on square white panels — no gray washes, no tone. Thin scratchy ballpoint-weight contour line with scribble-hatch for hair and texture; whole figures collapse into solid black silhouettes for distance and drama (the sprint, the smoke columns, back-of-head onlookers). Vast white negative space; props reduced to a few shaky strokes. Dialogue hand-lettered in marker caps floating free at the top; the title set in a gray stencil-serif display face. Maximum crudeness, deliberate and confident.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "paper_white": {"hex": "#FFFFFF", "usage": "dominant negative space; walls, sky, floor all unrendered white"},
+    "pen_ink_black": {"hex": "#1A1A1A", "usage": "scratchy contour lines, scribble hatching, hand-lettered dialogue caps"},
+    "silhouette_black": {"hex": "#000000", "usage": "solid-fill figures and smoke columns — running figures, onlookers, the blaze"},
+    "title_stencil_gray": {"hex": "#8C8C8C", "usage": "typeset stencil-serif title card lettering only"}
+  },
+  "casting_canon": {
+    "cody": "Late teens-20s, scrawny and lanky, hairy armpits when shirtless; stringy shoulder-length dark hair, enormous drooping nose, heavy-lidded eyes; folded paper fast-food hat with sleeveless work top and shorts at the grill, shirtless with waist wrap at the rock show; dopey, slack, easily stoked, phonetic metalhead drawl.",
+    "boss_man": "Middle-aged, angular, hunched, sharp-elbowed; sharp beak-like nose, permanent scowl, hair hidden under folded paper service hat; work shirt and apron, habitually clutching drink cups; volcanic temper, corporate mission-statement ranting laced with profanity.",
+    "friend": "Teens, short and stocky; pale bowl haircut hanging over his eyes; black band t-shirt, baggy shorts, heavy black boots, studded wristband; pumped, conspiratorial, monosyllabic stoke."
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, gray washes, tonal shading, color, clean polished inking, uniform line weight, detailed backgrounds, perspective accuracy, halftone dots, screentone, anime style, speech balloons",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: crude pen-and-ink doodle, scratchy thin black line on white, scribble hatching, no shading, no photographic rendering, no 3d.",
+    "lettering_garbled": "Generate art without text; add hand-lettering in post or via dedicated lettering pass.",
+    "drifts_polished": "Add: deliberately crude scribble cartoon, shaky amateur line, naive proportions — crudeness is the style.",
+    "drifts_gray": "Add: pure black ink on white only, no gray washes, no midtones; use solid black silhouette fills instead of shading."
+  }
+}

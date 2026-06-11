@@ -1,0 +1,32 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Hand-drawn digital comic in full grayscale wash — bold, confident black ink contours over flat mid-gray fills with loose scribbled hatching for foliage and fabric. No color anywhere; tonal separation does all the work (white sky, pale street, mid-gray houses, near-black foreground railing and suit). Locked-off over-the-shoulder porch composition repeated panel after panel like a stage set. All-caps hand lettering in rounded white balloons with thick black borders; giant freehand sound-effect letterforms sprawl across the sky.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "ink_black": {"hex": "#1a1a1a", "usage": "contour lines, porch railing bars, suit jacket, lettering, END card"},
+    "house_gray": {"hex": "#7d7d7d", "usage": "flat fills on background ranch houses, parked cars, distant trees"},
+    "street_pale": {"hex": "#d8d8d8", "usage": "road surface and sidewalk; pale stage on which the street man performs"},
+    "paper_white": {"hex": "#ffffff", "usage": "blank sky, speech balloon interiors, picked-out highlights"},
+    "scribble_shrub": {"hex": "#9e9e9e", "usage": "loose looping scribble texture on foreground shrubs flanking the railing"},
+    "smoke_curl": {"hex": "#b5b5b5", "usage": "thin wavering cigarette-smoke line rising from the smoker's right hand, present in nearly every panel"}
+  },
+  "casting_canon": {
+    "porch_smoker": "Elderly man, 70s, heavyset, rounded shoulders; bald scalp with a few sparse wiry strands; dark suit jacket; seen from behind in a high-backed chair, cigarette in right hand, glass sometimes in left; motionless deadpan affect.",
+    "street_man": "Wiry middle-aged man, thin build, spiky thinning hair, hooked nose, manic bared-teeth grin; plain long-sleeve crew-neck shirt, dark belt, slacks; alternates a deep fists-raised lunge with a smug hands-behind-back hip-wiggle stroll; gleeful, oblivious.",
+    "car_driver": "Adult man, slicked dark hair, sharp snarling features; leans out the window of a dark sedan with fist raised; explosive road-rage affect.",
+    "truck_driver": "Burly man, heavy dark beard, thick bare arms; glares down from the high cab window of a large truck; silent looming menace."
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, color, saturated hues, colored fills, painterly rendering, soft focus, camera angle change from the porch POV, crosshatching density drift, typeset fonts in balloons",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: flat hand-drawn grayscale comic illustration, visible ink line, no photographic rendering, no 3d.",
+    "drifts_color": "Add: strict grayscale, monochrome ink and gray wash only, no color.",
+    "lettering_garbled": "Generate art without text; add hand-lettering in post or via dedicated lettering pass."
+  }
+}

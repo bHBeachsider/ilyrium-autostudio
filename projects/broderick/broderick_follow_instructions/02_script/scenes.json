@@ -1,0 +1,72 @@
+[
+  {
+    "scene_number": 1,
+    "location": "blank white instruction-manual void",
+    "characters": ["passerby", "manual_reader"],
+    "action": "A rounded faceless figure strolls in from the left whistling a tune while a second figure stands frowning over an open instruction booklet, an unassembled box with its lid ajar on the ground between them.",
+    "visual_prompt": "Minimal line-figure tableau on a pure white empty field. On the left a smooth featureless humanoid with a rounded bald head and soft pudgy build walks rightward mid-stride, a single musical note floating above its head. On the right a similar smooth humanoid with a slightly taller rounded build stands frowning down at an open fold-out instruction booklet held in both hands. Between them on the ground sits a small open flat-pack box with its lid tipped open. Wide flat shot, eye level, generous negative space.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "deadpan everyday calm, one figure content, the other quietly frustrated",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 2,
+    "location": "blank white instruction-manual void",
+    "characters": ["passerby", "manual_reader"],
+    "action": "The frustrated figure looks up from the booklet and asks the passing figure a wordless question, a speech balloon containing only a question mark hanging between them.",
+    "visual_prompt": "Two smooth featureless line-figure humanoids facing each other across a small open flat-pack box on a pure white field. The right figure, slightly taller with a rounded build, clutches an open instruction booklet to its chest and frowns. The left figure, soft pudgy build, has stopped and turned to listen. A large speech balloon between them contains a single question mark, its tail pointing to the right figure. Wide flat shot, eye level, symmetrical staging.",
+    "dialogue": [
+      {"speaker": "manual_reader", "line": "?", "delivery": "wordless pictogram plea for help, sheepish confusion"}
+    ],
+    "voiceover": "",
+    "performance": "awkward, hesitant ask for help",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 3,
+    "location": "blank white instruction-manual void",
+    "characters": ["passerby", "manual_reader"],
+    "action": "The helpful passerby bends over the box and fits the lid panel into place while the manual reader stands by, still hugging the booklet and watching.",
+    "visual_prompt": "On a pure white field, a smooth featureless line-figure humanoid with a soft pudgy build bends deeply at the waist, both hands guiding a flat rectangular panel onto a small open box on the ground. To the right a slightly taller rounded featureless humanoid stands upright, open instruction booklet held to its chest, head tilted slightly as it watches. Wide flat shot, eye level, the action centered low in frame.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "quiet competence versus passive bystanding",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 4,
+    "location": "blank white instruction-manual void",
+    "characters": ["passerby", "manual_reader"],
+    "action": "The job is done. The two figures stand on either side of the now neatly assembled closed box, regarding each other in silence.",
+    "visual_prompt": "Two smooth featureless line-figure humanoids standing and facing one another on a pure white field, a small neatly closed box with a finished lid seam sitting on the ground exactly between them. The left figure has a soft pudgy build with one hand resting on its belly; the right figure, slightly taller, still holds the open instruction booklet. Wide flat symmetrical shot, eye level, a beat of stillness.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "pregnant pause, the silence before an insult",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 5,
+    "location": "blank white instruction-manual void",
+    "characters": ["passerby", "manual_reader"],
+    "action": "The passerby delivers a wordless verdict: a speech balloon showing a dunce cap labeled DUNCE, aimed squarely at the manual reader.",
+    "visual_prompt": "Two smooth featureless line-figure humanoids facing each other over a small closed box on a pure white field. From the mouth of the left pudgy figure rises a large speech balloon containing a tall conical dunce cap with the word DUNCE written up its side. The right, slightly taller figure clutches its instruction booklet and stares back. Wide flat shot, eye level, the balloon dominating the upper frame.",
+    "dialogue": [
+      {"speaker": "passerby", "line": "DUNCE", "delivery": "pictogram insult, smug and matter-of-fact: a dunce cap shown in the speech balloon"}
+    ],
+    "voiceover": "",
+    "performance": "smug condescension landing like a slap",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 6,
+    "location": "blank white instruction-manual void",
+    "characters": ["passerby", "manual_reader"],
+    "action": "Enraged, the manual reader swats the passerby's head clean off its body; the head and the flung booklet sail through the air above the headless body as the strip ends.",
+    "visual_prompt": "On a pure white field, a slightly taller smooth featureless line-figure humanoid with an angry scowl stands right of frame, both arms fully extended after a violent swat. The left figure's soft pudgy body stands headless, hands on its belly, while its detached rounded head and a crumpled fold-out booklet tumble through the air along curved motion lines. A small closed box sits between them. In the lower right corner a blue oval badge with bold yellow lettering reads END. Wide flat shot, eye level, frozen at peak absurdity.",
+    "dialogue": [],
+    "voiceover": "END",
+    "performance": "sudden deadpan cartoon violence as punchline",
+    "duration_target_s": 5
+  }
+]

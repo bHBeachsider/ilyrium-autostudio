@@ -1,0 +1,29 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Hand-drawn digital gag cartoon in pure black-and-white on a stark white void — confident single-weight ink contour with quick scratchy hatching for body hair and strain lines, plus soft pale-gray brush accents dabbed inside forms for volume. No environments at all: figure, label card, and a thick vertical black divider bar splitting BEFORE from AFTER. Mirror-image diptych composition; the two halves must match pose and framing exactly so the (non-)difference reads. Hand-lettered all-caps labels in white outlined boxes.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "ink_black": {"hex": "#0f0f0f", "usage": "contour line, divider bar, polka dots, lips, label lettering"},
+    "void_white": {"hex": "#ffffff", "usage": "entire background — no floor, no wall, no shadow; label card fields"},
+    "soft_gray_dab": {"hex": "#d4d4d4", "usage": "loose pale brush accents inside bodies and garments suggesting volume without shading"},
+    "garment_gray": {"hex": "#a9a9a9", "usage": "flat fill on the woman's high-collar top"},
+    "divider_bar": {"hex": "#000000", "usage": "thick vertical rule separating BEFORE and AFTER panels; structural motif of the strip"}
+  },
+  "casting_canon": {
+    "dieting_man": "Middle-aged man, 50s, balding with short top tuft, rectangular glasses on a large hooked nose, bushy mustache, scrawny arms and legs, enormous round hairy potbelly, sparse chest hair, black polka-dot boxer shorts only; full side profile on a low labeled pedestal; blank uncomplaining affect.",
+    "facelift_woman": "Older woman, 60s. BEFORE: limp combed-down grey hair, deeply sagging cheeks and eye pouches, drooping nose, thin downturned lips, drop earrings in stretched lobes. AFTER: skin pulled drum-tight upward, neck strain lines, eyebrows hoisted, fixed strained smile, excess skin bunched into a tied topknot. Both: dark high-collar top, white chest label card, raised hand holding smoldering cigarette, long dark nails."
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, color, backgrounds, floor or wall, cast shadows, pose drift between before and after panels, flattering anatomy, smooth idealized faces, screentone, crosshatch fills",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt. BEFORE/AFTER pairs must be generated from the same locked pose and framing; only the joke delta changes.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: hand-drawn black and white gag cartoon, single ink line, blank white background, no photographic rendering, no 3d.",
+    "pair_mismatch": "Regenerate AFTER from the BEFORE as init/reference image; pose, scale, framing identical; change only the gag element.",
+    "lettering_garbled": "Generate art without text; add hand-lettering in post or via dedicated lettering pass."
+  }
+}

@@ -1,0 +1,24 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Dream beach at dusk, wide empty shoreline",
+    "characters": [],
+    "action": "The classic 'Footprints' poem plays out over a wide dream-beach: two parallel sets of footprints recede across the sand toward the distant surf as the narrator recounts the dream and asks the Lord why, at the saddest times, there was only one set of footprints.",
+    "visual_prompt": "Very wide shot, high eye level looking down the shoreline. An open expanse of pale sand fills the lower frame, crossed by two parallel trails of footprints that grow larger toward the foreground and recede toward a calm dark band of sea at the upper right; a soft empty sky takes up the top half of the frame, with faint distant clouds near the horizon.",
+    "dialogue": [],
+    "voiceover": "One night I dreamt I was walking along the beach with my Lord. Across the dark sky flashed scenes from my life. For each scene, I noticed two sets of footprints in the sand, One belonging to me and one to my Lord. After the last scene of my life flashed before me, I looked back at the footprints in the sand. I noticed that at many times along the path of life, especially at the very lowest and saddest times, there was only one set of footprints. This really troubled me, so I asked the Lord about it. \"Lord, you said once I decided to follow you, You'd walk with me all the way. But I noticed during the saddest times of my life, there was only one set of footprints. Where were you Lord when I needed you most?\"",
+    "performance": "Hushed, reverent setup played straight",
+    "duration_target_s": 8
+  },
+  {
+    "scene_number": 2,
+    "location": "Sunny beach, volleyball net at the waterline",
+    "characters": ["the_lord", "volleyball_player_left", "volleyball_player_center"],
+    "action": "Wordless punchline answering the narrator's question: the Lord is at a beach volleyball net, robe and all, leaping to block as a ball hangs above the net; two women in bikinis on the other side react — one mid-jump with arms raised, one bracing with hands up. Sun shines in the corner. An END plate sits at the lower right.",
+    "visual_prompt": "Wide shot, eye level at a beach volleyball net strung between poles at the shoreline. Center-right: a long-haired, full-bearded man in a draped ankle-length robe, barefoot, leaping at the net with one arm raised toward a volleyball suspended above it. Left of the net: two athletic women in bikinis, one jumping with both arms up, one crouched with hands raised in alarm. Waves roll behind, a radiating sun in the upper right sky, bold END lettering in the lower right sand.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Silent absurd reveal undercutting the devotional setup — He was playing volleyball",
+    "duration_target_s": 6
+  }
+]

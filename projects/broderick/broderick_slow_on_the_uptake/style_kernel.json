@@ -1,0 +1,33 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Grayscale hand-drawn digital doodle-comic, looser and sparser than a finished strip. Wobbly thin-to-medium ink line with visible hesitation and overshoot; figures are simple noodle-limbed cartoons with oversized egg or wedge heads. Solid flat black fills on trousers, ties and hair against mostly open white; quick gray marker swipes for shading and sweat shadows; backgrounds reduced to faint pale-gray architectural scribbles. Single borderless panels, lots of white air. Bold all-caps hand lettering floats free or sits as a caption block at top, with underlines for emphasis.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "ink_black": {"hex": "#1F1F1F", "usage": "contour linework, lettering, facial features"},
+    "fill_black": {"hex": "#111111", "usage": "solid trousers, neckties, hair masses, END lettering"},
+    "swipe_gray": {"hex": "#BFBFBF", "usage": "loose marker shading on shirts, faces, sweat shadows, desk hatch"},
+    "sketch_gray": {"hex": "#D8D8D8", "usage": "ghosted background buildings, courthouse facade, waiting-line figures"},
+    "paper_white": {"hex": "#FFFFFF", "usage": "dominant negative space; shirts and skin left unfilled"}
+  },
+  "casting_canon": {
+    "clerk": "short soft hunched man in his 40s-50s, oversized egg-shaped bald head with one small front tuft, white dress shirt, loose solid-black tie, black slacks, sneakers, vacant earnest squint, perpetual flying sweat beads; flat cap and vest in final scene",
+    "boss": "lean angular man in his 50s, balding with messy side hair, long sharp wedge nose, dress shirt and striped tie, behind an office desk, explosive finger-snapping abuser",
+    "afro_david": "slim man in his 30s-40s, enormous round afro, rectangular glasses, plain t-shirt, light trousers, small handbag, flat wary baffled affect",
+    "thin_passerby": "very tall very thin man in his 30s, short dark hair, plain gray t-shirt, light trousers, baffled",
+    "suit_passerby": "average-build man in his 40s, neat dark hair, heavy brows, light suit, irritated and dismissive",
+    "unemployment_clerk": "slim seated woman in her 30s-40s, dark shoulder-length hair, office attire behind a small desk, bored procedural affect"
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, any color, polished clean linework, detailed rendered backgrounds, crosshatching density, speech balloon outlines, realistic anatomy, panel border boxes, anime style",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: loose wobbly hand-drawn grayscale doodle comic, thin sketchy ink line, no photographic rendering, no 3d.",
+    "drifts_polished": "Add: rough quick-sketch quality, naive proportions, unfinished white background, do not clean up the line.",
+    "lettering_garbled": "Generate art without text; add hand-lettering in post or via dedicated lettering pass."
+  }
+}

@@ -1,0 +1,81 @@
+[
+  {
+    "scene_number": 1,
+    "location": "couple's home, dinner table",
+    "characters": ["husband", "wife"],
+    "action": "Wife sips tea and gently asks her husband, who is eating with a spoon, to confirm he will not karate kick anyone tonight. He cheerfully reassures her that the webinars worked.",
+    "visual_prompt": "Two-shot at a set dinner table with flowers, teacups and a stemmed glass. A woman in her 30s, slim build, short curled dark hair, sleeveless dark dress with ruffled collar, warm but wary expression, holds a teacup on the left. A man in his 30s, lean build, short neat side-parted hair, light suit jacket with dark tie, relaxed smiling expression, lifts a spoon to his mouth on the right. Domestic mid-century dining setting, medium shot, eye level.",
+    "dialogue": [
+      {"speaker": "wife", "line": "NOW YOU'RE NOT GOING TO KARATE KICK ANYONE TONIGHT, RIGHT HONEY?", "delivery": "sweetly cautious, half-pleading"},
+      {"speaker": "husband", "line": "NO WAY, THOSE WEBINARS MADE A DIFFERENCE!", "delivery": "breezy, overconfident reassurance"}
+    ],
+    "voiceover": "",
+    "performance": "cozy domestic calm with an undertone of dread",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 2,
+    "location": "upscale restaurant, table for four",
+    "characters": ["husband", "wife", "mr_johnson", "mrs_johnson"],
+    "action": "The two couples share tea around a restaurant table while the husband holds court with a golf anecdote; everyone laughs along.",
+    "visual_prompt": "Four adults seated around a white-clothed restaurant table with a teapot and cups. At center a man in his 30s, lean build, neat dark hair, suit and tie with pocket square, gestures mid-story with a big grin. To his left a woman with short curled dark hair in a dark dress seen from behind, and a smiling man in his 30s in a light suit raising a teacup. On the right a woman in her 30s, slim, wavy light hair, elegant blouse, smiling and holding a cup. Warm dinner-party energy, medium-wide shot, slightly high angle taking in the whole table.",
+    "dialogue": [
+      {"speaker": "husband", "line": "SO I SAID 'WATCH OUT FOR THAT SAND TRAP, IT'S A DOOZY!'", "delivery": "loud, jovial punchline of a golf story"}
+    ],
+    "voiceover": "LATER, AT THE RESTAURANT WITH THE JOHNSONS...",
+    "performance": "convivial small-talk warmth",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 3,
+    "location": "upscale restaurant, table for four",
+    "characters": ["husband", "mr_johnson"],
+    "action": "Mr. Johnson points teasingly at the husband, ribbing him for dodging their golf games and offering him a big handicap.",
+    "visual_prompt": "Two men in close conversation. On the left a man in his 30s, lean, dark side-parted hair, light suit and dark tie, smiles in profile while sipping from a steaming teacup. On the right an older man in his 40s, broad-faced, slicked-back hair, suit and patterned tie, laughs heartily and points a finger straight at the first man. Restaurant table setting implied, medium close two-shot, eye level.",
+    "dialogue": [
+      {"speaker": "mr_johnson", "line": "I'VE BEEN TRYING TO GET THIS NUT OUT ON THE LINKS WITH ME.  WHAT ARE YOU, AFRAID?  I'LL GIVE YOU A BIG HANDICAP, HAHAHA.", "delivery": "boisterous good-natured ribbing, big laugh"}
+    ],
+    "voiceover": "",
+    "performance": "jocular needling that tips the husband over the edge",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 4,
+    "location": "upscale restaurant, beside the dinner table",
+    "characters": ["husband", "wife", "mr_johnson"],
+    "action": "The husband snaps and delivers a flying roundhouse karate kick to Mr. Johnson's face as his wife screams for him to stop.",
+    "visual_prompt": "Dynamic action tableau beside a round white-clothed table with a wine glass. A man rendered as a full black silhouette executes a high spinning roundhouse kick, leg fully extended, his foot connecting with the jaw of a man in his 40s in a suit who reels backward with impact burst and stars around his head. In the foreground a seated woman in silhouette, short curled hair, watches in alarm. Wide shot, low angle emphasizing the height of the kick.",
+    "dialogue": [
+      {"speaker": "wife", "line": "HONEY! STOP!", "delivery": "shrieked, mortified panic"}
+    ],
+    "voiceover": "",
+    "performance": "sudden explosive slapstick violence",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 5,
+    "location": "upscale restaurant, dining floor",
+    "characters": ["husband", "wife", "waiter"],
+    "action": "Still rampaging, the husband leaps and karate kicks the waiter, who staggers with a covered serving dish, while the wife keeps screaming for him to stop.",
+    "visual_prompt": "A man rendered as a full black silhouette mid-air, executing a high side kick to the head of a young waiter in his 20s, slim, dark hair, vest and bow tie over white shirt, who recoils with an impact burst above his head while balancing a domed serving tray. In the foreground a seated woman in silhouette with short curled hair, table edge and wine glass visible. Wide shot, eye level, action sweeping right to left.",
+    "dialogue": [
+      {"speaker": "wife", "line": "HONEY! STOP!", "delivery": "screamed again, desperate"}
+    ],
+    "voiceover": "",
+    "performance": "escalating chaotic slapstick",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 6,
+    "location": "upscale restaurant, beside the dinner table",
+    "characters": ["husband", "wife", "mrs_johnson"],
+    "action": "The husband's rampage continues as he karate kicks Mrs. Johnson in the face; the wife screams for him to stop as the episode cuts off.",
+    "visual_prompt": "A man rendered as a full black silhouette executes a high spinning roundhouse kick, foot connecting with the chin of a woman in her 30s, slim, dark updo hair, smart buttoned skirt suit, head snapped back with impact burst and stars. In the foreground a seated woman in silhouette, short curled hair, beside a table with a wine glass. Wide shot, low angle, freeze-frame energy on the moment of impact.",
+    "dialogue": [
+      {"speaker": "wife", "line": "HONEY! STOP!", "delivery": "hoarse final scream"}
+    ],
+    "voiceover": "TO BE CONTINUED...",
+    "performance": "absurd cliffhanger mayhem",
+    "duration_target_s": 5
+  }
+]

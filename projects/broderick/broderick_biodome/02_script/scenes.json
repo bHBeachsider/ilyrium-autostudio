@@ -1,0 +1,296 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Mountain valley outside the Bio-Dome, exterior",
+    "characters": [],
+    "action": "Title card. A huge geodesic dome sits in a pine-dotted mountain valley beneath jagged peaks. Title text reads 'THE BIO-DOME BRIGADE PART 1'.",
+    "visual_prompt": "Wide establishing shot, eye level. A massive white latticed dome structure with a tiny door sits centered on a sloping valley floor scattered with scraggly pine trees, jagged mountain ridges rising behind it under a pale sky. Bold title lettering fills the upper portion of the frame.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Grand, deadpan-epic opening",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 2,
+    "location": "Biodome control center, white corridor interior",
+    "characters": ["dr_spanker", "silhouette_man"],
+    "action": "An agitated scientist berates a man seen in silhouette about an unauthorized crew sealed into the biodome; the silhouette man raises a hand and admits the crew was intentionally chosen for low IQs.",
+    "visual_prompt": "Two-shot, eye level, in a stark white corridor with a doorway receding behind them. Left: a middle-aged balding scientist with a thick black walrus mustache, wiry build, gray suit, white shirt and dark tie, gesturing with both hands raised and fingers crooked, face twisted in indignation. Right: a stocky man rendered as a featureless black silhouette with a prominent nose, facing him, one flat hand raised in a calming gesture.",
+    "dialogue": [
+      {
+        "speaker": "dr_spanker",
+        "line": "THE X5000 GEODESIC* BIODOME IS A LEAP FORWARD FOR MANKIND, COSTING BILLIONS OF DOLLARS! INVOLVING THOUSANDS OF MANPOWER HOURS! WE HAVE GRAVE CONCERNS ABOUT THE \"CREW\" YOU SEALED IN FOR TWO YEARS -- WITHOUT APPROVAL!",
+        "delivery": "indignant, escalating outrage"
+      },
+      {
+        "speaker": "silhouette_man",
+        "line": "HOLD UP, HERES THE THING - THIS INITIAL EXPERIMENT INTENTIONALLY PLACED INDIVIDUALS WITH LOWER IQS INTO THE BIODOME TO TEST HOW EASY AND INTUITIVE THE SYSTEM IS!",
+        "delivery": "smooth, defensive spin-doctoring"
+      }
+    ],
+    "voiceover": "AT THE BIODOME CONTROL CENTER ...\n*NOTE HOW THE OUTSIDE SHOT OF THE BIODOME IS NOT GEODISIC AT ALL.  IT'S 4AM AND I DON'T GIVE A FU--",
+    "performance": "Bureaucratic confrontation, comedic tension",
+    "duration_target_s": 8
+  },
+  {
+    "scene_number": 3,
+    "location": "Biodome control center, white corridor interior",
+    "characters": ["dr_spanker", "silhouette_man"],
+    "action": "The scientist explodes, holding up a phone showing a no-signal icon, revealing the sealed crew broke the communication system within five minutes; the silhouette man gulps, an exclamation point over his head.",
+    "visual_prompt": "Two-shot, eye level. Left: the balding mustached scientist in the gray suit, anger lines radiating from his head, brandishing a smartphone displaying a crossed-out signal icon, other hand pressed to his chest. Right: profile of the stocky silhouette man recoiling, a large exclamation mark hanging above his head. White corridor background.",
+    "dialogue": [
+      {
+        "speaker": "dr_spanker",
+        "line": "EASY?! INTUITIVE?! THOSE RETARDS BROKE THE COMMUNICATION SYSTEM FIVE MINUTES AFTER BEING SEALED IN! THEY CAN'T SEE US, AND ALL WE CAN DO IS WATCH!",
+        "delivery": "furious, sputtering disbelief"
+      },
+      {
+        "speaker": "silhouette_man",
+        "line": "ULP...",
+        "delivery": "nervous gulp"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Explosive anger meeting dawning panic",
+    "duration_target_s": 7
+  },
+  {
+    "scene_number": 4,
+    "location": "Biodome control center, white corridor interior",
+    "characters": ["dr_spanker", "silhouette_man"],
+    "action": "The scientist keeps ranting, sweat flying, comparing the experiment to a bad movie; the silhouette man raises a slowly waving hand and begins hypnotizing him.",
+    "visual_prompt": "Two-shot, eye level. Left: the balding mustached scientist in the gray suit, sweat drops flying from his brow, both hands raised with fingers crooked mid-rant. Right: the stocky silhouette man holds up one hand, fingers together, with small motion arcs around it suggesting a slow hypnotic wave. White corridor with doorway behind.",
+    "dialogue": [
+      {
+        "speaker": "dr_spanker",
+        "line": "I CAN'T HELP BUT FEEL THIS \"EXPERIMENT\" IS SOME TIRED RETREAD OF THAT SHITTY MOVIE WITH PAULIE THE WEASEL SHORE AND ONE OF THE BALDWIN ASSHOLES!",
+        "delivery": "exasperated, contemptuous"
+      },
+      {
+        "speaker": "silhouette_man",
+        "line": "SIMMER IT DOWN. YOU JUST SETTLE, YOU CALM DOWN ... SOON YOU'LL BE GETTING SLEEPY...",
+        "delivery": "low, soothing, hypnotic"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Rant dissolving into eerie calm",
+    "duration_target_s": 7
+  },
+  {
+    "scene_number": 5,
+    "location": "Biodome control center, white corridor interior",
+    "characters": ["dr_spanker", "silhouette_man"],
+    "action": "Fully hypnotized, the scientist stands slack with eyes closed while the silhouette man counts him toward a post-hypnotic command to flee the building as fast as he can.",
+    "visual_prompt": "Two-shot, eye level. Left: the balding mustached scientist in the gray suit standing slack and serene, eyes closed, arms hanging. Right: the stocky silhouette man in profile, raised hand still waving slowly with motion arcs. Stark white corridor, doorway receding behind them.",
+    "dialogue": [
+      {
+        "speaker": "silhouette_man",
+        "line": "YOU ARE IN A DEEP, RELAXING SLEEP.  SLEEPY ... SLEEPY ... AT THE COUNT OF THREE YOURE GOING TO REMOVE YOURSELF FROM HERE AS FAST AS YOU CAN. ONE... TWO...",
+        "delivery": "slow, measured, sinister lull"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Hypnotic stillness with menace underneath",
+    "duration_target_s": 8
+  },
+  {
+    "scene_number": 6,
+    "location": "High-rise office tower exterior, city skyline below",
+    "characters": ["dr_spanker"],
+    "action": "The hypnotized scientist hurls himself through a high-rise window, arms and legs splayed, glass shards exploding outward as the city sprawls far below.",
+    "visual_prompt": "Dramatic wide shot from outside a glass office tower, slight low angle. A middle-aged balding man with a thick black walrus mustache in a gray suit and dark tie is mid-air, limbs flung wide, necktie flying, having just burst through a jagged shattered window; glass fragments scatter around him. A gray city skyline stretches far below.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Shocking slapstick violence, played silent",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 7,
+    "location": "Mountain valley outside the Bio-Dome, exterior",
+    "characters": [],
+    "action": "Scene transition back to the dome in its mountain valley.",
+    "visual_prompt": "Wide establishing shot, eye level. The massive white latticed dome with its tiny door centered in a sloping pine-dotted mountain valley, jagged peaks behind, long shadow cast across the ground.",
+    "dialogue": [],
+    "voiceover": "MEANWHILE, BACK AT THE BIODOME ...",
+    "performance": "Calm scene-setting beat",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 8,
+    "location": "Inside the biodome, cafeteria counter",
+    "characters": ["resident_grunt", "resident_lanky"],
+    "action": "A squat brutish resident slurps noodles from a bowl at a counter and loudly insults the food while a taller resident stands beside him watching sourly.",
+    "visual_prompt": "Medium two-shot, eye level, inside a dome interior with faint triangular lattice panels on the far wall. At a gray counter, a squat thick-necked man with a heavy brow, stubbled jowls and short messy hair, in a plain tee, lifts noodles to his stuffed mouth with a fork over a large bowl. To the right stands a taller gaunt man with a long pointed nose, spiky receding hair and an apron over his shirt, watching with a flat unimpressed stare.",
+    "dialogue": [
+      {
+        "speaker": "resident_grunt",
+        "line": "THIS BEEF-A-RONI SUCKS DONKEY DICK!",
+        "delivery": "loud, mouth full, disgusted"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Crude lowbrow comedy",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 9,
+    "location": "Inside the biodome, cafeteria counter",
+    "characters": ["resident_grunt", "resident_lanky"],
+    "action": "The squat resident hurls the bowl of food across the dome, splattering it against the lattice wall, while the taller resident doubles over laughing with his tongue out, tears flying.",
+    "visual_prompt": "Medium two-shot, eye level. The squat heavy-browed man is mid-throw at the counter, arm extended and palm open, with a splattering bowl of noodles smashing against the faint triangular lattice wall in the upper left, droplets flying. Beside him the gaunt long-nosed man in the apron convulses with laughter, eyes squeezed shut, tongue lolling out, sweat and tears scattering.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Anarchic slapstick glee",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 10,
+    "location": "Inside the biodome, cafeteria counter",
+    "characters": ["resident_grunt", "resident_lanky"],
+    "action": "The squat resident points in delight at the food sliding down the dome wall while the taller resident keeps howling with laughter.",
+    "visual_prompt": "Medium two-shot, eye level. The squat heavy-browed man grins and points up toward the upper left, where a glob of noodles and the bowl ooze down the faint triangular lattice wall. The gaunt long-nosed man in the apron is still doubled over laughing, tongue out, tears flying from his face.",
+    "dialogue": [
+      {
+        "speaker": "resident_grunt",
+        "line": "IT'S STICKING!",
+        "delivery": "delighted, childish triumph"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Idiotic celebration",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 11,
+    "location": "Inside the biodome, sustainable vegetation sector",
+    "characters": ["resident_grunt", "resident_lanky", "resident_bald"],
+    "action": "Three residents stand in silhouette beneath a large warning placard reading 'SUSTAINABLE VEGETATION SECTOR - THIS SECTOR MUST BE SUPERVISED 24 HOURS A DAY. YOU MUST REPORT ALL TECHNICAL ISSUES IMMEDIATELY. NO UNAUTHORIZED PERSONNEL. NO EXCEPTIONS!', clueless about what they are supposed to do.",
+    "visual_prompt": "Medium shot, slight low angle. Three men seen as black back-lit silhouettes from the shoulders up, each with distinct messy tufts of hair, facing a wall of tilted glass panels. Above them dominates a large dark rectangular placard with bold warning text. Bright sterile light behind the figures.",
+    "dialogue": [
+      {
+        "speaker": "resident_grunt",
+        "line": "WERE WE S'POSED TO DO SOMETHING HERE?",
+        "delivery": "slow, genuinely confused"
+      },
+      {
+        "speaker": "resident_lanky",
+        "line": "WATER THE PLANTS? IS THERE A HOSE?",
+        "delivery": "vague guessing"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Dim-witted confusion under official warning",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 12,
+    "location": "Inside the biodome, sustainable vegetation sector",
+    "characters": ["resident_grunt", "resident_lanky", "resident_bald"],
+    "action": "Still in silhouette beneath the same warning placard, the three residents admit none of them paid attention during orientation.",
+    "visual_prompt": "Medium shot, slight low angle, same composition as before. Three black back-lit silhouettes of men with messy tufted hair from the shoulders up, beneath the large dark warning placard, tilted glass panels glowing behind them.",
+    "dialogue": [
+      {
+        "speaker": "resident_grunt",
+        "line": "DID THEY EXPLAIN THIS IN ORIENTATION?",
+        "delivery": "dull, searching his memory"
+      },
+      {
+        "speaker": "resident_lanky",
+        "line": "DUNNO, I JUST KEPT RUNNING TO THE BATHROOM TO JACK OFF.",
+        "delivery": "casual, shameless"
+      },
+      {
+        "speaker": "resident_bald",
+        "line": "THEY EXPLAINED A LOT IN ORIENTATION. I FORGOT MOST OF IT.",
+        "delivery": "matter-of-fact resignation"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Deadpan confession of total incompetence",
+    "duration_target_s": 7
+  },
+  {
+    "scene_number": 13,
+    "location": "Inside the biodome, by a planter of dead vegetation",
+    "characters": ["resident_lanky", "resident_bald"],
+    "action": "Two residents stare at a planter box of withered dead plants, wondering what to do now and whether they can eat any of it.",
+    "visual_prompt": "Medium two-shot, eye level, inside the dome with faint triangular lattice on the wall. Left: a gaunt man with a long pointed nose and a single sprouting hair, in a plain shirt, frowning down. Center: a shorter round-headed bald man with a squashed worried face, in a plain shirt. Right: a dark planter box crowded with bare twisted dead branches and drooping stalks.",
+    "dialogue": [
+      {
+        "speaker": "resident_lanky",
+        "line": "UM, WHAT DO WE DO NOW?",
+        "delivery": "lost, mildly worried"
+      },
+      {
+        "speaker": "resident_bald",
+        "line": "I GUESS LEAVE IT HERE? CAN WE EAT SOME OF THIS?",
+        "delivery": "hopeful idiocy"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Bleak comedy of failure",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 14,
+    "location": "Boardroom, interrogation across a table",
+    "characters": ["board_chairman", "silhouette_man"],
+    "action": "A heavyset board chairman, hands folded at a table, grills the silhouette man about the death of Dr. Spanker, father of the X5000 biodome.",
+    "visual_prompt": "Over-the-shoulder two-shot at a white table, eye level. Facing camera: a heavyset glowering man with a flat-top brush cut, thick black mustache, heavy bags under his eyes, in a white dress shirt and wide black tie, seated in a dark chair with fingers interlaced. Foreground right: the back and profile of the stocky featureless black silhouette man with a prominent nose.",
+    "dialogue": [
+      {
+        "speaker": "board_chairman",
+        "line": "DR. SPANKER WAS THE FATHER OF THE X5000 BIODOME. YOU WERE THE ONLY WITNESS TO HIS TRAGIC DOWNFALL.  WE DEMAND ANSWERS, AND DEMAND THEM NOW!",
+        "delivery": "grim, prosecutorial"
+      }
+    ],
+    "voiceover": "THE FALLOUT WAS SWIFT.  AND BRUTAL.",
+    "performance": "Heavy institutional menace",
+    "duration_target_s": 7
+  },
+  {
+    "scene_number": 15,
+    "location": "Boardroom, interrogation across a table",
+    "characters": ["board_chairman", "silhouette_man"],
+    "action": "The silhouette man answers the interrogation with a tasteless pun about Dr. Spanker's fall, capping it with a Stooges-style chuckle, while the chairman sits stone-faced.",
+    "visual_prompt": "Same over-the-shoulder two-shot at the white table, eye level. The heavyset brush-cut man with the thick black mustache, white shirt and black tie sits unmoved, fingers interlaced, eyes hooded. Foreground right: the stocky black silhouette man in profile, mid-speech.",
+    "dialogue": [
+      {
+        "speaker": "silhouette_man",
+        "line": "I DONT KNOW ABOUT HIS DOWNFALL, BUT HE SURE-AS-HELL FELL DOWN! NYUK-NYUK...",
+        "delivery": "flippant wisecrack, nervous chuckle"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Gallows humor against a stone wall",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 16,
+    "location": "Boardroom, interrogation across a table",
+    "characters": ["board_chairman", "silhouette_man"],
+    "action": "Silent beat. The chairman stares at the silhouette man without a word; the joke hangs dead in the air.",
+    "visual_prompt": "Same over-the-shoulder two-shot at the white table, eye level. The heavyset brush-cut man with the thick black mustache sits motionless with interlaced fingers, glaring flatly. The stocky black silhouette man in profile waits in the foreground right. Empty white background, total stillness.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Excruciating silent pause",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 17,
+    "location": "Boardroom, interrogation across a table",
+    "characters": ["board_chairman", "silhouette_man"],
+    "action": "The chairman finally cracks, letting out a chuckle of his own as the strip ends; 'END' is printed across the silhouette man's back.",
+    "visual_prompt": "Same over-the-shoulder two-shot at the white table, eye level. The heavyset brush-cut man with the thick black mustache now smirks slightly, tongue tip showing, fingers still interlaced. Foreground right: the stocky black silhouette man in profile, large white letters reading END across his dark shoulder.",
+    "dialogue": [
+      {
+        "speaker": "board_chairman",
+        "line": "NYUK NYUK...",
+        "delivery": "reluctant deadpan chuckle"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Absurd tension release, punchline",
+    "duration_target_s": 4
+  }
+]

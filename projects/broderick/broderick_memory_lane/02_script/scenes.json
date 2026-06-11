@@ -1,0 +1,35 @@
+[
+  {
+    "scene_number": 1,
+    "location": "High school classroom, rows of desks",
+    "characters": ["gary", "classmate_gawker", "classmate_girl"],
+    "action": "Under the series title 'Where Are They Now?', a smirking teenage class clown mugs at his desk mid-prank, gesturing with both hands, while a buck-toothed kid behind him gawks in delight and a girl at the next desk keeps writing, unimpressed. The caption reveals his adult fate.",
+    "visual_prompt": "High school classroom: at center, a teenage boy, about 16, lean with dark mussed hair, heavy brow, lopsided smirk, wearing a t-shirt and a wristband, twisted sideways at his one-piece desk gesturing theatrically with both hands over a doodled-on worksheet; behind him to the left a scrawny buck-toothed boy leans over his desk gawking with delight; to the right a teenage girl with shoulder-length hair and bangs sits at her desk writing, eyes down, unimpressed. Black title banner across the top, caption band across the bottom. Medium shot, eye level.",
+    "dialogue": [],
+    "voiceover": "Where Are They Now? GARY FANCIED HIMSELF QUITE THE CLASS FOOL. HE IS NOW A LOADING DOCK ASSOCIATE AT A MAJOR CHEMICAL COMPANY.",
+    "performance": "Wry yearbook nostalgia deflated by a mundane fate",
+    "duration_target_s": 7
+  },
+  {
+    "scene_number": 2,
+    "location": "High school hallway",
+    "characters": ["doreen", "admiring_student"],
+    "action": "A curvaceous teenage girl stands with arms crossed, chin raised, soaking in attention, while a scrawny student walking past with books gapes at her, tongue out. The caption recounts her reign and her adult job.",
+    "visual_prompt": "Two figures against a plain background: at center-right a teenage girl, about 17, curvy build, dark voluminous wavy hair, heavy-lidded eyes, large glossy lips, hoop earrings and bracelets, wearing a cropped fitted top baring her midriff and a short dark skirt, arms crossed and chin raised in self-assured display; at left a scrawny student with long straight hair, slack jaw and tongue lolling, shuffles past clutching books to their hip. Caption text block fills the upper right. Full shot, eye level.",
+    "dialogue": [],
+    "voiceover": "DOREEN CAPTURED THE HEARTS OF MANY, INCLUDING SOME OF THE SHOP TEACHERS. SHE IS CURRENTLY A COMMUNICATIONS ASSOCIATE FOR A CAR DEALERSHIP.",
+    "performance": "Smug teenage glamour undercut by deadpan biography",
+    "duration_target_s": 7
+  },
+  {
+    "scene_number": 3,
+    "location": "High school, sports portrait",
+    "characters": ["flapjacks"],
+    "action": "A grinning acne-covered jock in a letterman sweater palms a football aloft in one hand. The caption lists his year-round athletic resume, names him a bully, and reveals his corporate pet-food career. End card.",
+    "visual_prompt": "Portrait of a teenage jock, about 17, thick-necked and broad, face and neck covered in acne pustules, gap-toothed ecstatic grin, short side-parted hair, wearing a dark letterman sweater with a large letter D over a collared shirt, one hand triumphantly palming a football overhead. Caption text band across the top, black end card strip along the right edge. Medium close-up, slight low angle to inflate his swagger.",
+    "dialogue": [],
+    "voiceover": "\"FLAPJACKS\" (REAL NAME DICK JACKSON) PLAYED HIGH SCHOOL FOOTBALL, BASEBALL, WRESTLING, BASKETBALL, SOCCER AND LACROSSE. A YEAR-ROUND JOCK--AND A BULLY--FLAPJACKS IS NOW AN ASSOCIATE DEVELOPMENT DIRECTOR AT A MAJOR PET FOOD COMPANY.",
+    "performance": "Triumphant jock energy met with flat biographical irony",
+    "duration_target_s": 8
+  }
+]

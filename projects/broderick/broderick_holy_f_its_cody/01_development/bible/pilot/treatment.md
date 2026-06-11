@@ -1,0 +1,6 @@
+# Pilot Treatment — Holy F* It's Cody
+
+**Logline:** A broke Uber driver's first shift is hijacked when her stoner friend hotboxes the car, and the entitled businessman she picks up rages himself straight into a contact high.
+
+## Treatment
+A short film told entirely from one locked camera position: head-on through the windshield of a slow-moving sedan with a hand-scrawled "uber" placard on the dash. Cody, a smug stoner in white-framed sunglasses, offers his friend — a weary woman white-knuckling her first day driving for Uber — a joint. She begs him to be cool; he lights up anyway and within five minutes is catatonic and drooling while smoke fills the cabin. Her pick-up, a suited businessman with a flight to catch, wedges into the middle seat and detonates: the car is doing ten in a 45, he'll call the cops, he'll leave a crap rating "and some other things." The driver absorbs every escalation with the same serene mantra — "REMAIN CALM SIR" — until the thickening smoke turns the tables: the businessman realizes he's caught a contact high, panics, and wails that he's having a heart attack. She doesn't even turn her head. "REMAIN CALM SIR." A mock mail-order coda offers more stale-ass pot comedy for $9.99 cash, sent to a P.O. box in Chinatown. The comedy lives in the static frame, the escalating haze, and the immovable deadpan at the wheel.

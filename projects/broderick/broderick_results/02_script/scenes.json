@@ -1,0 +1,46 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Blank white backdrop with a labeled pedestal",
+    "characters": ["dieting_man"],
+    "action": "BEFORE shot: a middle-aged man in polka-dot boxers stands in profile on a low pedestal labeled 'BEFORE', arms hanging, enormous hairy potbelly sagging forward.",
+    "visual_prompt": "Side profile of a middle-aged man, 50s, standing on a low labeled pedestal against a blank white background: balding with a short tuft of hair, rectangular glasses on a large hooked nose, bushy mustache, scrawny arms and chicken legs, massive round hairy potbelly sagging low, sparse chest hair, wearing only black polka-dot boxer shorts, expression blankly neutral. Full shot, side-on, eye level.",
+    "dialogue": [],
+    "voiceover": "BEFORE",
+    "performance": "Clinical, unflattering deadpan display",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 2,
+    "location": "Blank white backdrop with a labeled pedestal",
+    "characters": ["dieting_man"],
+    "action": "AFTER shot: the same man stands in the identical pose on a pedestal labeled 'AFTER' — his belly just as enormous, merely riding slightly higher and rounder. Nothing has meaningfully changed.",
+    "visual_prompt": "Side profile of the same middle-aged man, 50s, on an identical low labeled pedestal against blank white: balding tuft, rectangular glasses, hooked nose, bushy mustache, scrawny arms, polka-dot boxer shorts, and a belly every bit as enormous as before, now jutting rounder and higher, sparse body hair. Identical framing to the previous shot: full shot, side-on, eye level.",
+    "dialogue": [],
+    "voiceover": "AFTER",
+    "performance": "The non-punchline lands: zero results, total deadpan",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 3,
+    "location": "Blank white backdrop, portrait with name-tag style label",
+    "characters": ["facelift_woman"],
+    "action": "BEFORE shot: a haggard older woman with a sagging deeply-lined face, drop earrings and a cigarette between her fingers stares dully ahead, a 'BEFORE' label pinned to her dark top.",
+    "visual_prompt": "Bust portrait of an older woman, 60s, against blank white: limp combed-down grey hair, deeply sagging cheeks and under-eye pouches, drooping nose, thin downturned dark lips, drop earrings in long stretched lobes, dark high-collar top with a white label card on the chest, one veiny hand raised holding a smoldering cigarette with long dark nails. Medium close-up, straight-on, eye level.",
+    "dialogue": [],
+    "voiceover": "BEFORE",
+    "performance": "Weary, deflated, mid-drag stillness",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 4,
+    "location": "Blank white backdrop, portrait with name-tag style label",
+    "characters": ["facelift_woman"],
+    "action": "AFTER shot: the same woman post-facelift — her skin yanked drum-tight into a topknot of bunched excess flesh, eyebrows hoisted into permanent surprise, a strained smile carved on — still holding the same cigarette, 'AFTER' label on her chest.",
+    "visual_prompt": "Bust portrait of the same older woman, 60s, against blank white: facial skin stretched drum-tight upward, vertical strain lines down the neck and chin, eyebrows hoisted high over wide startled eyes, nose pulled taut, a fixed strained smile, all the gathered excess skin cinched into a bunched topknot like a tied sack atop her head, ears bare, dark high-collar top with a white label card on the chest, one hand raised holding a smoldering cigarette with long dark nails. Identical framing to the previous shot: medium close-up, straight-on, eye level.",
+    "dialogue": [],
+    "voiceover": "AFTER",
+    "performance": "Grotesque transformation presented as triumph; horror played deadpan",
+    "duration_target_s": 5
+  }
+]

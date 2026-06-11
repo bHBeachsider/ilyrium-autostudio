@@ -1,0 +1,58 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Title card, white void with a parked sedan",
+    "characters": [],
+    "action": "Title card. Huge slanted lettering reads 'The cruuuuzing dood' across a white field, with a boxy blue four-door sedan sitting small in the lower right corner.",
+    "visual_prompt": "Graphic title frame on a clean white background. Oversized bold italic lettering dominates the upper two-thirds of the frame; in the lower right, a small boxy 1970s-era blue four-door sedan with chrome bumpers faces right, viewed in three-quarter front profile. Flat, poster-like composition.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Cocky, laid-back title beat",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 2,
+    "location": "Inside the sedan, driver's seat",
+    "characters": ["cruuuuzing_dood"],
+    "action": "A grinning driver with a cigarette between his fingers lounges behind the wheel and rap-chants a sing-song string of rhymes about being a cruising dude.",
+    "visual_prompt": "Medium close-up from the front passenger side, eye level. A man in his thirties with spiky black hair, heavy-lidded half-closed eyes, a wide grin of stained gold-tinged teeth and a doughy face lounges behind a gray steering wheel, one hand draped on the wheel holding a lit cigarette, wearing a red polo shirt. White void background, smoke curling up past his face.",
+    "dialogue": [
+      {
+        "speaker": "cruuuuzing_dood",
+        "line": "I'M A CRUUUUZING DOOOOD, IN A MELLOW MOOD, I EAT A FOOD, THE MEAT I CHOOO-ED THE PRUNES ARE STOO-ED THE CLUB WAS NOOD, I POPPED A LOOD THEY SAY I'M ROOD THE LAWYER SOOED A COW JUST MOOO-ED A BIRD JUST POO-ED",
+        "delivery": "lazy sing-song rap, self-satisfied, drawn-out vowels"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Stoned swagger, hypnotic nonsense flow",
+    "duration_target_s": 8
+  },
+  {
+    "scene_number": 3,
+    "location": "Inside the sedan, driver's seat",
+    "characters": ["cruuuuzing_dood"],
+    "action": "The driver, now visibly wasted, slurs that he is high; his head doubles in a woozy ghosted blur as the cigarette smoke thickens.",
+    "visual_prompt": "Medium close-up from the front passenger side, eye level. The spiky-haired man in the red polo grins with eyes nearly shut, gold-tinged teeth bared, hand with lit cigarette resting on the gray steering wheel; a translucent ghost duplicate of his head and shoulders drifts offset to the left, conveying double vision. White void background, heavy smoke trail.",
+    "dialogue": [
+      {
+        "speaker": "cruuuuzing_dood",
+        "line": "I'M HIIIIIIIGHH...",
+        "delivery": "long slurred drawl, blissed out"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Woozy, dissociated euphoria",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 4,
+    "location": "Cliff edge over a forested valley, exterior day",
+    "characters": [],
+    "action": "The blue sedan sails off the edge of a rocky cliff, airborne over a green forest canopy, debris kicking off the cliff lip. 'END' is lettered in the lower right.",
+    "visual_prompt": "Wide shot, slight low angle. A boxy 1970s-era blue four-door sedan flies fully airborne off a dark craggy cliff edge on the left, nose tipped up, pebbles and dirt scattering behind it, motion streaks tracing its launch arc. Below stretches a layered green forest canopy under a white sky. Bold END lettering sits in the lower right corner.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Deadpan catastrophic punchline",
+    "duration_target_s": 4
+  }
+]

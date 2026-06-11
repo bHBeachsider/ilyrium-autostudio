@@ -1,0 +1,33 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Grayscale hand-drawn digital memoir comic with two deliberate spot-color breaks: ornate green script on the title card and bright red blood accents in the final panel. Caricature faces are the most rendered element — dense pen texture in the beard, tonal gray washes, heavy black glasses — over looser gray-washed bodies and sketchy environments (scribbled weeds, pegboard, silhouetted industrial skyline). Bordered panels with white rounded caption boxes top-anchored, bold italic hand caps with size/weight shifts for emphasis. Ghosted pale figures used for remembered presences.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery — here applied to rueful autobiographical memory",
+  "palette_motifs": {
+    "paper_white": {"hex": "#FFFFFF", "usage": "backgrounds, caption boxes, classroom walls"},
+    "ink_black": {"hex": "#1A1A1A", "usage": "contours, lettering, glasses frames, caption box borders"},
+    "wash_light_gray": {"hex": "#DCDCDC", "usage": "garments, sky band, ghosted memory figure of the teacher"},
+    "wash_mid_gray": {"hex": "#A9A9A9", "usage": "work shirt, road sign plate, road surface, shadows"},
+    "silhouette_black": {"hex": "#111111", "usage": "industrial skyline, smoke columns, evolution-of-man title figures"},
+    "title_green": {"hex": "#2F9E2F", "usage": "ornate curling script of the series title only"},
+    "blood_red": {"hex": "#CC2222", "usage": "final-panel spot accent — bleeding fingertip, smeared roller, bench drips; the only color in the scene"}
+  },
+  "casting_canon": {
+    "schpiegler": "50s, heavyset with thick neck and slabby shoulders; bald on top, full graying beard, thick black rectangular glasses, perpetual sweat droplets; gray button-up work shirt with pen and pencil in breast pocket; permanently enraged hard-ass, bellowed ultimatums and mocking impressions; appears ghosted pale-gray as a remembered glowering bust.",
+    "narrator": "12-13, 7th grade, skinny; long straight hair past the shoulders, pointed nose; hand-lettered JETHRO TULL t-shirt in class, plain crew-neck sweater on project day; faint smirk under fire, dismay at his own bleeding finger; wry retrospective caption voice.",
+    "classmate": "12-13, slight; dark rounded bob; plain light shirt; wary frown, hands kept flat on the bench."
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, full-color scenes, saturated color, halftone dots, screentone, anime style, chibi proportions, speech balloons, clean vector linework, painted backgrounds, real hate-group insignia or symbols",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: grayscale hand-drawn comic illustration, pen-textured caricature face, gray wash body, sketchy background, no photographic rendering, no 3d.",
+    "lettering_garbled": "Generate art without text; add hand-lettering and caption boxes in post or via dedicated lettering pass.",
+    "drifts_color": "Add: strictly grayscale except the designated spot accent (red blood in the final panel, green title script); no other color anywhere.",
+    "spot_color_spreads": "If red or green leaks into other elements, regenerate; spot color is one motif per designated panel only."
+  }
+}

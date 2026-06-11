@@ -1,0 +1,136 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Abstract portrait panel, plain yellow backdrop",
+    "characters": [],
+    "action": "An open hand holds up a misshapen grey lump of putty, presented like a museum piece under the title 'NUTTY PUTTY'.",
+    "visual_prompt": "Extreme close-up of a single open adult hand, palm up, fingers spread, holding a lumpy grey blob of putty with faint thumbprint marks. Flat warm yellow background, title lettering in the upper left corner. Tight insert shot, straight-on angle.",
+    "dialogue": [],
+    "voiceover": "NUTTY PUTTY",
+    "performance": "Absurd deadpan presentation, like a commercial product shot",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 2,
+    "location": "Abstract portrait panel, flat blue backdrop",
+    "characters": ["fuddy_duddy"],
+    "action": "A scowling wrinkled old man in a green cardigan raises one finger in priggish admonishment beneath the arced title 'FUDDY DUDDY'.",
+    "visual_prompt": "Bust portrait of an old man, 70s, gaunt and wrinkled with heavy eye bags, balding with wild side tufts of grey hair, stubble, one gold tooth in a sour open mouth, wearing a green cardigan over a yellow collared shirt, one bony finger raised in rebuke. Flat blue background, arced title lettering above his head. Medium close-up, straight-on angle.",
+    "dialogue": [],
+    "voiceover": "FUDDY DUDDY",
+    "performance": "Sour, scolding, comically joyless",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 3,
+    "location": "Abstract portrait panel, sky backdrop with sandwich foreground",
+    "characters": ["sub_man"],
+    "action": "A beaming muscular man in a tank top spreads both arms wide behind an enormous six-foot submarine sandwich under the title 'SIX-FOOT SUB'.",
+    "visual_prompt": "A muscular man, 30s, broad shoulders, short dark hair and mustache, wearing a dark blue tank top, arms spread wide in proud presentation behind a gigantic submarine sandwich stuffed with lettuce, tomato and meats that spans the whole frame. Blue sky behind him, bold title lettering on a yellow field below. Medium shot, slightly low angle to exaggerate the sandwich's length.",
+    "dialogue": [],
+    "voiceover": "SIX-FOOT SUB",
+    "performance": "Triumphant salesman pride",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 4,
+    "location": "Abstract romance panel, sunset gradient backdrop",
+    "characters": ["kissing_couple"],
+    "action": "Two faces in profile press together in a sloppy open-lipped kiss against a glowing sunset, under the title 'HANKY-PANKY'.",
+    "visual_prompt": "Two adult faces in tight profile filling the frame, noses mashed, exaggerated full red lips meeting in a sloppy kiss, one with short dark hair, one with fuller hair. Behind them a vivid sunset gradient of purple, magenta and orange over dark water. Title lettering on a black band in the upper left. Extreme close-up, side-on angle.",
+    "dialogue": [],
+    "voiceover": "HANKY-PANKY",
+    "performance": "Overwrought lurid romance played for laughs",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 5,
+    "location": "Abstract portrait panel, pale blue backdrop",
+    "characters": ["capn_stanky"],
+    "action": "A grizzled sea captain with a bulbous pockmarked nose laughs open-mouthed, gold and missing teeth on display, under the title 'CAP'N STANKY'.",
+    "visual_prompt": "Bust portrait of a weathered sailor, 60s, ruddy pocked bulbous nose, scraggly grey-brown beard, squinting eyes, mouth open in a wheezing laugh revealing a gold tooth and gaps, wearing a white captain's hat with an anchor emblem and a red shirt. Flat pale blue background, bold title lettering across his chest. Medium close-up, straight-on angle.",
+    "dialogue": [],
+    "voiceover": "CAP'N STANKY",
+    "performance": "Wheezing, rank, overly familiar jollity",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 6,
+    "location": "Abstract portrait panel, grey backdrop",
+    "characters": ["pencil_club_man"],
+    "action": "A sly-faced young man holds a yellow pencil up beside his smirking face under the title 'PENCIL CLUB'.",
+    "visual_prompt": "Bust portrait of a young man, 20s, neat dark swept hair, narrow sly eyes and a small knowing smirk, mauve shirt, holding a yellow pencil upright between his fingers beside his face. Flat grey background, stacked title lettering in the upper left. Medium close-up, straight-on angle.",
+    "dialogue": [],
+    "voiceover": "PENCIL CLUB",
+    "performance": "Smug insider secrecy over something utterly mundane",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 7,
+    "location": "Abstract portrait panel, purple bokeh backdrop",
+    "characters": ["mellow_yellow"],
+    "action": "A blissed-out figure with a blond bowl cut and round tinted glasses grins dopily under the title 'MELLOW YELLOW'.",
+    "visual_prompt": "Bust portrait of a languid figure, indeterminate age, straight blond bowl-cut hair with a stray sprig on top, round yellow-green tinted glasses over heavy-lidded eyes, droopy grin with bucked front teeth, bulbous nose. Background of glowing purple-magenta bokeh circles. Title lettering on a black band at top. Medium close-up, straight-on angle.",
+    "dialogue": [],
+    "voiceover": "MELLOW YELLOW",
+    "performance": "Dazed, narcotic serenity",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 8,
+    "location": "Abstract panel, lavender backdrop",
+    "characters": ["cello_man"],
+    "action": "A distressed bald man's frowning face floats beside a cello whose neck is bent and broken, under the plea 'FIX THE CELLO'.",
+    "visual_prompt": "Split composition on a flat lavender background: left, a brown cello with its neck snapped and scroll dangling by the strings; right, the disembodied head of a heavy-jowled bald man, 50s, deep frown, downturned mouth, distressed eyes. Title lettering across the bottom. Flat graphic insert shot, straight-on angle.",
+    "dialogue": [],
+    "voiceover": "FIX THE CELLO",
+    "performance": "Mournful, pleading despair over a broken instrument",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 9,
+    "location": "Abstract full-figure panel, pale yellow backdrop",
+    "characters": ["wiggly_arm_man"],
+    "action": "A gangly pale man in a striped shirt raises one impossibly long, wavy, rubbery arm overhead under the title 'WIGGLY ARM'.",
+    "visual_prompt": "Full-figure portrait of a thin pale man, 30s, sparse short hair, weary half-lidded eyes, wearing a red-and-white striped long-sleeve shirt and green polka-dot pants; his right arm stretches upward impossibly long, undulating in rubbery S-curves with the stripes following the waves, hand splayed at the top. Flat pale yellow background, title lettering at top. Full shot, straight-on angle.",
+    "dialogue": [],
+    "voiceover": "WIGGLY ARM",
+    "performance": "Listless body-horror whimsy",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 10,
+    "location": "Abstract performance panel, white backdrop",
+    "characters": ["here_and_there_man"],
+    "action": "A grinning showman in a purple suit points up at the word 'HERE' and gestures down toward 'THERE', joined by a large ampersand.",
+    "visual_prompt": "Full-length figure of a showman, 30s, curly brown hair, broad toothy grin, wearing a shiny purple suit with wide lapels over a white shirt, left hand pointing up, right hand flourishing downward at his hip. Plain white background with large title words in opposite corners and an oversized ampersand beside his head. Three-quarter shot, straight-on angle.",
+    "dialogue": [],
+    "voiceover": "HERE & THERE",
+    "performance": "Game-show host razzle-dazzle about nothing",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 11,
+    "location": "Classroom with chalkboard",
+    "characters": ["mr_drozdoff", "student_silhouette"],
+    "action": "A rumpled teacher grins at his desk in front of a chalkboard bearing his name 'MR. DROZDOFF', while a silhouetted student in the foreground mutters 'WOT DAT DAYAR'.",
+    "visual_prompt": "Classroom scene: behind a desk, a rumpled teacher, 60s, grey frizzy hair, deep facial creases, wide eager grin, wearing a bright green jacket over a grey shirt, standing before a dark chalkboard with his name chalked at the top. Foreground: the solid black silhouette of a student's head and shoulders facing him. Medium shot from over the student's shoulder, slight low angle.",
+    "dialogue": [
+      {"speaker": "student_silhouette", "line": "WOT DAT DAYAR", "delivery": "Slack-jawed muttered drawl"}
+    ],
+    "voiceover": "",
+    "performance": "Mutual incomprehension between teacher and student",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 12,
+    "location": "Dinner table with red checkered tablecloth",
+    "characters": ["chicken_parm_man"],
+    "action": "A massive bald jowly man glowers down in disgust at a plate of chicken parmesan on a checkered tablecloth, under the title 'CHICKEN PARM'.",
+    "visual_prompt": "A hulking man, 50s, completely bald with an enormous head, heavy drooping jowls, tiny scowling mouth and knitted brow, wearing a dark navy sweater, looming over a white plate of breaded chicken in red sauce on a red-and-white checkered tablecloth. Title lettering in the upper right. Medium close-up, slight high angle on the plate, low headroom on the man.",
+    "dialogue": [],
+    "voiceover": "CHICKEN PARM",
+    "performance": "Seething disappointment at dinner",
+    "duration_target_s": 3
+  }
+]

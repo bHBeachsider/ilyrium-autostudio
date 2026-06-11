@@ -1,0 +1,53 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Dim room with band posters, late-night conversation",
+    "characters": ["rock_critic", "silhouette_listener"],
+    "action": "An aging punk-scene critic with wild thinning hair gestures grandly as he lectures a listener, declaring Darby Crash historically more important than the Beatles and reducing punk politics to absurd arithmetic.",
+    "visual_prompt": "Medium two-shot, eye level. Left: a scrawny middle-aged man with frizzy unkempt thinning hair, sunken cheeks and stubble, in a dark band tee with a faded light graphic, seated and gesturing with one raised hand, mouth running. Right foreground: the head and shoulder of a listener rendered as a featureless solid black silhouette, back partly to camera, framing the shot. Dim cluttered room behind them.",
+    "dialogue": [
+      {
+        "speaker": "rock_critic",
+        "line": "HISTORICALLY DARBY CRASH WILL PROVE TO BE MORE IMPORTANT THAN THE BEATLES. I TOLD VIV ALBERTINE THE POLITICS OF THE SLITS IS INVERSE TO THE SUM OF IGGY POP MINUS THE DEAD BOYS... NO, IGGY POP DIVIDED BY THE DEAD BOYS...",
+        "delivery": "pompous, self-correcting pseudo-academic drone"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Insufferable expertise, escalating absurdity",
+    "duration_target_s": 8
+  },
+  {
+    "scene_number": 2,
+    "location": "Dim room with a framed punk club poster on the wall",
+    "characters": ["rock_critic"],
+    "action": "The critic, arm flung up toward a framed club poster, works himself into a frenzy about a legendary Dead Boys gig, his boast collapsing into a chain of repeated profanity.",
+    "visual_prompt": "Medium shot, slight low angle. The scrawny middle-aged man with frizzy thinning hair and stubble, in a black tee with a light club logo, mouth wide mid-shout, one arm thrust upward with finger extended toward a framed poster of dense show lettering hanging on the wall upper right. Dim room, cluttered counter along the bottom.",
+    "dialogue": [
+      {
+        "speaker": "rock_critic",
+        "line": "THE DEAD BOYS' GIG AT THE PYRAMID CHANGED WESTERN CIVILIZATION! WE GAVE FASCIST SCUM REAGAN A BIG 'FUCK YOU!' FUCK YOU! FUCK ALL OF YOU! FUCKITTY FUCK FUCK FUCK...",
+        "delivery": "ranting crescendo, spittle-flecked fervor"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Nostalgic rage boiling over",
+    "duration_target_s": 7
+  },
+  {
+    "scene_number": 3,
+    "location": "Dim room, alone at a table",
+    "characters": ["rock_critic"],
+    "action": "Hunched alone at a table, the critic insists you had to be at that show or you're a poser, repeating 'that was the show' until language disintegrates into an endless loop of the word 'show'. The strip ends.",
+    "visual_prompt": "Medium shot, eye level. The scrawny middle-aged man with frizzy thinning hair, stubbled hollow face and a black tee with a light club logo sits hunched at a small table with a drink, eyes wide and fixed on nothing, mouth still moving. Dim empty room around him, the wall of text pressing down from the top of the frame.",
+    "dialogue": [
+      {
+        "speaker": "rock_critic",
+        "line": "YOU HAD TO BE AT THAT SHOW OR ELSE YOU'RE A POSER. THAT WAS THE SHOW. A LOT OF PEOPLE HAVE CLAIMED THEY WERE AT THAT SHOW, BUT THEY WERE NOT AT THAT SHOW! I KNOW BECAUSE I WAS AT THAT SHOW! THAT WAS THE SHOW. THAT WAS THE SHOW. THAT WAS THE SHOW. THAT WAS THE SHOW! THIS SHOW WAS SHOW! SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW SHOW...",
+        "delivery": "obsessive loop, fading into glassy-eyed mantra"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Gatekeeping mania dissolving into semantic breakdown",
+    "duration_target_s": 8
+  }
+]

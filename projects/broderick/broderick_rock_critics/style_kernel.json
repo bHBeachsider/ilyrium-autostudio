@@ -1,0 +1,44 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Hand-drawn digital sketch-comic in grayscale on square panels. Raw, scratchy, expressive pen line — grotesque caricature with sagging stubbled faces, nervous contour wobble, and dense scribble texture — anchored by heavy solid-black masses (band tee, boots, silhouette listener) against white and flat light-gray washes. Dim-room staging with minimal props (couch, window grille, cigarette smoke squiggle). Typeset all-caps comic-font caption blocks press down from the top edge, with underline emphasis; the punchline panel lets the text wall physically crush the art.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "paper_white": {
+      "hex": "#FFFFFF",
+      "usage": "Background field and caption zones; walls of the dim room read as white with line accents"
+    },
+    "ink_black": {
+      "hex": "#111111",
+      "usage": "Solid-mass anchors — the black club tee, the silhouette listener's head, boots, window grille bars, lettering"
+    },
+    "wash_gray_light": {
+      "hex": "#C9C9C9",
+      "usage": "Couch, cardigan/jacket, table surfaces — broad flat washes under the pen work"
+    },
+    "wash_gray_mid": {
+      "hex": "#9A9A9A",
+      "usage": "Secondary shadow planes, hair mass, room corners and floor"
+    },
+    "tee_logo_white": {
+      "hex": "#F2F2F2",
+      "usage": "Faded white club lettering knocked out of the black band tee — the critic's wardrobe signature"
+    }
+  },
+  "casting_canon": {
+    "rock_critic": "Scrawny middle-aged man; frizzy unkempt thinning hair, sunken stubbled cheeks, wide manic eyes, long drooping nose, wiry gesturing hands; black punk-club band tee with faded light logo; pompous obsessive gatekeeping affect escalating from pseudo-academic drone to profane rant to glassy-eyed verbal loop",
+    "silhouette_listener": "Head and shoulder of a stocky figure rendered as featureless solid black silhouette with short tufted hair, seen from behind in the foreground; mute captive audience"
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, color, colored fills, clean vector linework, smooth pretty faces, youthful handsome features, manga style, real band logos, readable trademark logos, detailed poster art, polished backgrounds",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt. The source strip drifts off-model panel-to-panel — the model sheet must override the source variance.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: raw scratchy grayscale pen sketch, grotesque caricature, visible nervous line, no photographic rendering, no 3d.",
+    "drifts_pretty": "Add: sunken stubbled cheeks, sagging grotesque caricature — never clean, young, or attractive.",
+    "lettering_garbled": "Generate art without text; add lettering in post or via dedicated lettering pass."
+  }
+}

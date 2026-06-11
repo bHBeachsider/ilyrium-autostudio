@@ -1,0 +1,44 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Hand-drawn digital sketch-comic in pure grayscale. Loose, scratchy pen linework with visible scribbled hatching — energetic crowquill-style strokes building muscle mass, matted hair, and beard texture — over white paper with sparse flat light-gray washes. No color. One static eye-level two-shot composition held across the entire strip for deadpan timing; the only motion is in mouths and captions. Lettering is a clean typeset all-caps comic font in borderless caption blocks, with a rounded-corner narration box and a bordered rectangular END plate.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "paper_white": {
+      "hex": "#FFFFFF",
+      "usage": "Entire background — the media room is rendered as pure white void plus a monitor"
+    },
+    "ink_black": {
+      "hex": "#1A1A1A",
+      "usage": "All linework, hatching, monitor frame, END plate border, lettering"
+    },
+    "wash_gray": {
+      "hex": "#D6D6D6",
+      "usage": "Sparse flat washes — Torg's shadowed flank, hair mass, instructor's sleeve, monitor screen tint"
+    },
+    "hatch_gray": {
+      "hex": "#8F8F8F",
+      "usage": "Optical mid-tone produced by scribbled hatching on muscles, beard, and spear shaft"
+    },
+    "screen_thumbnails": {
+      "hex": "#EFEFEF",
+      "usage": "Social feed mock-up on the monitor — small line-sketch post cards with stick-figure images; recurring prop"
+    }
+  },
+  "casting_canon": {
+    "torg": "Massive hulking adult male Neanderthal; bare-chested slab muscle, thick neck, heavy protruding brow, broad flat nose, jutting lower jaw with crooked teeth, scraggly beard and mustache, wild matted hair; shaggy fur garment implied at shoulder line; always gripping a tall wooden spear with leaf-shaped knapped stone point; squinting slack-jawed incomprehension, earnest but mute",
+    "instructor_woman": "Slender adult woman; long straight hair past shoulders, bright upturned smile, small pointed nose; plain long-sleeved top; relentlessly cheerful over-enunciating teacher affect that never flags"
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, color, colored fills, clean smooth vector lines, flat untextured fills, manga screentone, cute cartoon proportions, furry-suit caveman, club instead of spear, detailed room background, office furniture",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: loose scratchy grayscale pen sketch, visible scribbled hatching, white background, no photographic rendering, no 3d.",
+    "drifts_clean": "Add: rough sketchy crowquill linework, energetic hatching — never smooth vector or flat-fill cartoon.",
+    "lettering_garbled": "Generate art without text; add lettering in post or via dedicated lettering pass."
+  }
+}

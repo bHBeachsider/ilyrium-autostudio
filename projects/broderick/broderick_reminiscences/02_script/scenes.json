@@ -1,0 +1,41 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Plain white interior, tight portrait setting under a 'Reminiscences' title bar",
+    "characters": ["old_man"],
+    "action": "An old man, eyes nearly closed, rambles a fond memory of a childhood friend nicknamed Davy Dovetail, building to the punchline that Davy urinated in a priest's soup.",
+    "visual_prompt": "Tight head-and-shoulders portrait of a heavyset man in his 80s against a blank white background: balding with wisps of combed-over hair, deep forehead creases, drooping nearly-shut eyes, bulbous wrinkled nose, fleshy jowls, sparse stubble, an open-collared rumpled button-down shirt. He speaks mid-thought, mouth slightly open. Three-quarter angle, eye level, plain studio framing.",
+    "dialogue": [
+      {"speaker": "old_man", "line": "DAVY DOVETAIL WE USED TO CALL HIM. HE HAD RICKETS AS A KID. HE WAS A FUNNY GUY, REAL PRACTICAL JOKER. ONE DAY HE DID A... UH...PISS IN FATHER MCLANAGHAHAN'S SOUP! WE WAS LAUGHING!", "delivery": "rambling, wheezy nostalgia, chuckling at the memory"}
+    ],
+    "voiceover": "",
+    "performance": "Warm, meandering geriatric storytelling with a crude payoff",
+    "duration_target_s": 8
+  },
+  {
+    "scene_number": 2,
+    "location": "Plain white interior, same tight portrait setting under the 'Reminiscences' title bar",
+    "characters": ["old_man"],
+    "action": "The old man reminisces about cheap nights out in his youth — two cents for aftershave and a dance hall — and his signature party trick of popping a golf ball out of his belly button for the girls.",
+    "visual_prompt": "Identical tight head-and-shoulders portrait of the heavyset man in his 80s on a blank white background: combed-over wisps, drooping nearly-shut eyes, bulbous nose, jowls, rumpled open-collared shirt, mouth moving mid-story. Three-quarter angle, eye level, static framing.",
+    "dialogue": [
+      {"speaker": "old_man", "line": "TWO CENTS WOULD GET YA A SPRITZ OF AFTER SHAVE AND INTO THE SHOW FER DRINKS AND DANCING.  WE WAS ALWAYS TRYING TO MEET THE GIRLS SO WE COULD DANCE WITH THEM. I HAD A TRICK WHERE I'D POP A GOLF BAL OUTTA MY BELLY BUTTON AND THE GIRLS WOULD LAUGH!", "delivery": "wistful, proud of the bit, voice brightening at the trick"}
+    ],
+    "voiceover": "",
+    "performance": "Sepia-toned nostalgia sliding into absurdity",
+    "duration_target_s": 8
+  },
+  {
+    "scene_number": 3,
+    "location": "Plain white interior, same tight portrait setting under the 'Reminiscences' title bar",
+    "characters": ["old_man"],
+    "action": "The old man recounts a gruesome workplace accident — Tommy Egan scalped by a fan blade at the plant — told with the same cheerful affection, down to the cruel Frankenstein teasing that followed. A closing caption shrugs about a sequel.",
+    "visual_prompt": "Identical tight head-and-shoulders portrait of the heavyset man in his 80s on a blank white background: combed-over wisps, drooping nearly-shut eyes, bulbous nose, jowls, rumpled open-collared shirt, lips parted mid-anecdote. Three-quarter angle, eye level, static framing.",
+    "dialogue": [
+      {"speaker": "old_man", "line": "TOMMY EGAN GOT HIT WITH A FAN BLADE AT THE PLANT AND IT SLICED THE TOP OF HIS HEAD OFF LIKE FRANKENSTEIN! HE LIVED TOO! WE'D SAY HEY TOMMY WHERE ARE YOUR NECK BOLTS, AND HE'D GET STEAMED!", "delivery": "delighted, oblivious to the horror, laughing at the teasing"}
+    ],
+    "voiceover": "(TO BE CONTINUED. OR NOT.)",
+    "performance": "Horrifying anecdote delivered as cozy nostalgia; deadpan sign-off",
+    "duration_target_s": 8
+  }
+]

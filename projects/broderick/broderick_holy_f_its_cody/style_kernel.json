@@ -1,0 +1,31 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Hand-drawn digital monochrome gag strip, iPad/Procreate texture. Loose, scratchy single-pass ink line — wobbly contours, scribbled crosshatch on headlights and grille, no cleanup. Strictly grayscale: flat mid-gray car body, lighter gray glass and smoke wash, white paper background, zero color. No painted shading beyond flat gray fills and a soft smoke haze. One locked head-on windshield composition repeated every panel, characters as bust-level talking heads. Dialogue set in bold all-caps comic font floating balloon-less in the white sky above the car.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "paper_white": "#FFFFFF — open background sky and negative space; dialogue floats directly on it",
+    "ink_black": "#1A1A1A — all linework, lettering, hair masses, sunglasses lenses, suit fills",
+    "car_body_gray": "#B5B5B5 — flat fill of the sedan hood, frame, and headrests; the strip's anchor mid-tone",
+    "cabin_smoke_gray": "#D8D8D8 — soft hazy wash inside the cabin that thickens panel-to-panel as the hotbox gag escalates",
+    "uber_placard": "#FFFFFF box with hand-scrawled lowercase 'uber' at lower-left of windshield — recurring location anchor in every car panel"
+  },
+  "casting_canon": {
+    "cody": "scrawny mid-20s man, narrow shoulders, messy spiky dark hair with long sideburns, sparse chin stubble, white-framed sunglasses always on, dark band t-shirt; smug breezy stoner who collapses into slack-jawed drooling catatonia",
+    "uber_driver": "lean woman in her 40s, chin-length dark bob with bangs, large nose, heavy-lidded deadpan eyes, sleeveless top; weary, unflappable customer-service serenity, never raises her voice",
+    "businessman": "average-build man in his 40s, squared shoulders, short dark hair, sharp heavy brows, dark suit with white shirt and striped tie; entitled volcanic temper that curdles into stammering panic",
+    "hippie_mascot": "weathered ageless mascot head only: long stringy hair under a headband, bushy beard and mustache, huge round dark sunglasses, beatific grin, jagged starburst outline around the head"
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, full color, saturated palette, colored fills, speech balloon outlines, clean vector linework, anime style, detailed car interior, scenery or street background, painted rendering, soft pencil shading",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: flat hand-drawn comic illustration, visible ink line, no photographic rendering, no 3d.",
+    "drifts_color": "Add: strictly black-and-white grayscale comic, flat gray fills only, no color.",
+    "lettering_garbled": "Generate art without text; add hand-lettering in post or via dedicated lettering pass."
+  }
+}

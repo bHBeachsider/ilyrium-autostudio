@@ -1,0 +1,57 @@
+[
+  {
+    "scene_number": 1,
+    "location": "sunny suburban front yard with grass, a two-story house and trees in the background",
+    "characters": ["otis"],
+    "action": "Otis the hound dog trots happily across a sunny yard, tongue lolling, as the theme-song narration introduces him; musical notes float in the air.",
+    "visual_prompt": "A floppy-eared hound dog with a white body, black patches on his ears and tail, a big black nose, goofy wide eyes and a long lolling tongue trots energetically left across a grassy suburban yard wearing a collar. A bright sun blazes in the sky, a faint two-story house, tree and picket fence sit in the background, musical notes drift overhead. Wide shot, low grass-level angle, springy motion with a drop shadow under the dog.",
+    "dialogue": [],
+    "voiceover": "OTIS THE HOUND DOG! THE NEIGHBORHOOD'S FAVORITE PET!",
+    "performance": "bouncy sunny theme-song cheer",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 2,
+    "location": "sunny suburban front yard, house and tree in the background",
+    "characters": ["otis", "billy"],
+    "action": "Otis bounds toward little Billy, who laughs with delight and throws an arm up in the air as the jingle continues.",
+    "visual_prompt": "The floppy-eared white hound dog with black ear and tail patches trots forward across sunny grass, tongue out, collar jingling. On the right a small boy around 8 years old, skinny build, backwards baseball cap, t-shirt and shorts, laughs with his whole face and points one arm joyfully skyward. Suburban house, tree and fence faint in the background, sun and musical notes above. Wide two-shot, eye level with the boy.",
+    "dialogue": [],
+    "voiceover": "OTIS THE HOUND DOG! WACKY AS YOU CAN GET!",
+    "performance": "giddy kid-and-dog joy, jingle bounce",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 3,
+    "location": "sunny suburban front yard, house and tree in the background",
+    "characters": ["otis", "billy"],
+    "action": "Billy waves happily from the left as Otis trots past, the jingle swelling about him being the best hound around — with an ominous trailing ellipsis.",
+    "visual_prompt": "On the left a small skinny boy around 8 in a t-shirt and shorts, short hair, waves with a beaming squinty-eyed grin. The floppy-eared white hound dog with black patches trots rightward through the sunny grass at center, tongue lolling, collar on. Sun overhead, musical notes in the sky, faint house and tree in the background. Wide two-shot, eye level, warm and idyllic.",
+    "dialogue": [],
+    "voiceover": "OTIS THE HOUND DOG! HE WAS THE BEST HOUND AROUND...",
+    "performance": "peak wholesome warmth with a faint shadow of foreboding",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 4,
+    "location": "sunny suburban front yard, fence and house faint in the background",
+    "characters": ["otis", "billy"],
+    "action": "The jingle turns dark: Otis lunges unprovoked at little Billy's throat, fangs bared, while the terrified boy shoves back against him.",
+    "visual_prompt": "Violent close action in a sunny yard. The white hound dog with black ear patches rears up huge in the frame, eyes narrowed and feral, jaws wide open showing double rows of jagged fangs, lunging leftward at a small skinny boy around 8 in a t-shirt, whose freckled face is twisted in terror as his hands push against the dog's chest, sweat drops flying. Musical notes still hang incongruously in the sky, faint house and tree behind. Tight medium shot, slight low angle, frozen mid-lunge.",
+    "dialogue": [],
+    "voiceover": "TIL ONE DAY OTIS LUNGED--UNPROVOKED--AT LITTLE BILLY'S THROAT...",
+    "performance": "whiplash from wholesome to horror, jingle still playing",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 5,
+    "location": "veterinary clinic, examination table",
+    "characters": ["otis", "vet"],
+    "action": "On the exam table, a placid Otis lies with his tongue out as the vet calmly presses a syringe into his back and the jingle delivers its final line.",
+    "visual_prompt": "Veterinary exam room with a framed dog diagram on the wall and a window behind. The floppy-eared white hound dog with black patches lies belly-down on a high exam table, head up, tongue lolling, looking content and oblivious. A slim middle-aged veterinarian with a receding hairline, scrub top and stethoscope stands behind him, one hand steadying the dog, the other pressing a large syringe into the dog's back, face neutral. Medium-wide shot, eye level with the tabletop, clinical stillness.",
+    "dialogue": [],
+    "voiceover": "AND THEY HAD TO PUT HIM DOWN!",
+    "performance": "chipper jingle delivering a gut-punch ending, deadpan",
+    "duration_target_s": 6
+  }
+]

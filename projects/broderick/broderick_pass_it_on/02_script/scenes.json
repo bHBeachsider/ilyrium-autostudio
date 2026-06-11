@@ -1,0 +1,121 @@
+[
+  {
+    "scene_number": 1,
+    "location": "POW camp barracks, barred window and guard tower visible",
+    "characters": ["prisoner_english", "prisoner_french"],
+    "action": "A spiky-haired prisoner with sergeant chevrons cups his hand and whispers the escape plan into the ear of a seated prisoner in a beret and striped shirt, who stares ahead with a question mark hanging over his head.",
+    "visual_prompt": "Two seated men in a stark prison barracks: at left, a wiry young man with spiky upswept hair, freckles, and a drab uniform shirt bearing sergeant chevrons leans in, hand cupped to whisper; at right, a lean man in a dark beret and horizontally striped shirt with gray trousers sits with knees apart, eyebrows raised in confusion, a floating question mark over his head. Behind them a barred window, a distant watchtower, and a wall poster reading ACHTUNG. Medium two-shot, eye level.",
+    "dialogue": [
+      {
+        "speaker": "prisoner_english",
+        "line": "PASS IT ON.  WE'RE A GO FOR ESCAPE. COMMENCE AT 0600 HOURS BY THE SECRET TUNNEL ENTRANCE.",
+        "delivery": "Urgent conspiratorial whisper"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Tense secrecy meeting blank incomprehension",
+    "duration_target_s": 7
+  },
+  {
+    "scene_number": 2,
+    "location": "POW camp barracks, barred window and ACHTUNG poster",
+    "characters": ["prisoner_french", "prisoner_russian"],
+    "action": "The beret prisoner, now wearing a floppy white cap, whispers a garbled French version of the plan to a mustached prisoner in a star-badged military cap, who frowns with a question mark over his head.",
+    "visual_prompt": "Two seated men in a bare barracks: at left, a lean man in a soft white cap and horizontally striped shirt leans in whispering behind his hand; at right, a stocky man with a thick mustache wearing a military cap with a star badge and a plain gray tunic sits frowning, a question mark floating beside his head. A crumpled ACHTUNG poster on the wall at left, a barred window at right. Medium two-shot, eye level.",
+    "dialogue": [
+      {
+        "speaker": "prisoner_french",
+        "line": "PASSE-LE. QUELQUE CHOSE À PROPOS DE PARTIR D'ICI VERS 06H00 MAIS SOYEZ SUR VOS GARDES.",
+        "delivery": "Hushed, uncertain whisper in French"
+      }
+    ],
+    "voiceover": "",
+    "performance": "The message already drifting; wary confusion",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 3,
+    "location": "POW camp barracks, Fuhrer portrait poster on wall",
+    "characters": ["prisoner_russian", "prisoner_sikh"],
+    "action": "The mustached prisoner, now in a light flat cap, whispers a further-degraded Russian version to a bearded prisoner in a dark turban, who stares forward with a question mark over his head.",
+    "visual_prompt": "Two seated men in a bare barracks: at left, a man with a thick mustache in a light flat cap and pale fatigues leans in whispering behind his cupped hand; at right, a broad man with a full dark beard wearing a dark turban and a gray work shirt sits with knees apart, blank confusion on his face, a question mark floating above. A barred window at far left and a crude portrait poster labeled Fuhrer on the right wall. Medium two-shot, eye level.",
+    "dialogue": [
+      {
+        "speaker": "prisoner_russian",
+        "line": "передать это дальше. мы должны что–то искать в 06:00, там уходит охранник.",
+        "delivery": "Low gravelly whisper in Russian"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Half-remembered orders passed with misplaced confidence",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 4,
+    "location": "POW camp barracks, plain wall and locker",
+    "characters": ["prisoner_sikh", "prisoner_african"],
+    "action": "The bearded turbaned prisoner whispers a mangled Hindi version to a dark-skinned prisoner in a soft uniform cap and button-pocket tunic, whose face knots in confusion under a floating question mark.",
+    "visual_prompt": "Two seated men in a bare barracks: at left, a broad man with a full dark beard in a dark beret-style turban and gray fatigues leans over whispering behind his hand; at right, a dark-skinned man in a soft crumpled uniform cap and a button-pocketed tunic sits with knees apart, brow furrowed, question mark floating beside his head. A tall plain locker stands against the wall at right. Medium two-shot, eye level.",
+    "dialogue": [
+      {
+        "speaker": "prisoner_sikh",
+        "line": "आगे बढ़ाओ। हम उन सभी छह रक्षकों की तलाश कर रहे हैं जो हवा पास करना चाहते हैं",
+        "delivery": "Earnest rapid whisper in Hindi"
+      }
+    ],
+    "voiceover": "",
+    "performance": "The plan is now about guards passing wind; nobody knows",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 5,
+    "location": "POW camp barracks, plain wall and locker",
+    "characters": ["prisoner_african", "prisoner_chinese"],
+    "action": "The dark-skinned prisoner in the soft cap whispers a Swahili version to a prisoner in a high-collared utility uniform, who sits stone-faced with a question mark over his head.",
+    "visual_prompt": "Two seated men in a bare barracks: at left, a dark-skinned man in a soft gray cap and loose fatigues leans in close, hand cupped to the other man's ear; at right, a man with short dark hair and a faint mustache in a high-collared utility tunic with chest pockets sits squinting in puzzlement, a question mark floating above. A tall plain locker against the right wall. Medium two-shot, eye level.",
+    "dialogue": [
+      {
+        "speaker": "prisoner_african",
+        "line": "IPITISHE. TUNATAFUTA WATETEZI WOTE SITA AMBAO WANATAKA KUPITISHA UPEPO",
+        "delivery": "Brisk confident whisper in Swahili"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Total garble delivered with conviction",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 6,
+    "location": "POW camp barracks, ACHTUNG notice on wall",
+    "characters": ["prisoner_chinese", "prisoner_mohawk"],
+    "action": "The high-collared prisoner whispers a Chinese version — now about urine seeking six guards — to a fair-haired prisoner with an upswept tuft, who gazes vacantly ahead.",
+    "visual_prompt": "Two seated men in a bare barracks: at left, a man with short dark hair in a buttoned high-collar tunic leans in whispering behind his hand; at right, a pale gangly man with a tall upswept tuft of fair hair in a rumpled pale uniform shirt sits with knees apart and a hairy shin showing, utterly vacant expression. A notice poster reading ACHTUNG on the right wall, a faint door outline at left. Medium two-shot, eye level.",
+    "dialogue": [
+      {
+        "speaker": "prisoner_chinese",
+        "line": "尿液尋找所有六名想過風的後衛",
+        "delivery": "Flat measured whisper in Chinese"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Solemn relay of complete nonsense",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 7,
+    "location": "POW camp yard by the barracks wall, ACHTUNG poster",
+    "characters": ["prisoner_mohawk", "german_guard"],
+    "action": "The tufted prisoner, standing in a t-shirt and shorts, whispers the final gibberish version directly into the ear of a helmeted camp guard holding a rifle, who stares ahead bewildered with a question mark over his helmet. END card in the corner.",
+    "visual_prompt": "Standing two-shot against a barracks wall: at left, a gangly pale man with a tall mohawk-like tuft of hair, in a baggy t-shirt and knee-length shorts, leans forward whispering behind his hand; at right, a uniformed camp guard in a steel helmet and round glasses, chevron on his sleeve, ammunition pouches on his belt, rifle slung at his shoulder, stares straight ahead in baffled alarm, a question mark floating above his helmet. A poster reading ACHTUNG hangs on the wall at left. Medium two-shot, eye level.",
+    "dialogue": [
+      {
+        "speaker": "prisoner_mohawk",
+        "line": "I AM WOO-WOO SHIT DING DONGS, DADDY GRAPES.",
+        "delivery": "Earnest deadpan whisper, fully sincere"
+      }
+    ],
+    "voiceover": "END",
+    "performance": "Punchline absurdity; the secret reaches the enemy as pure gibberish",
+    "duration_target_s": 7
+  }
+]

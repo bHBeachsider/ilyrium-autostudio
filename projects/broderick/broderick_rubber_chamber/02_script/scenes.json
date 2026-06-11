@@ -1,0 +1,107 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Blank white void, title card",
+    "characters": ["yabo"],
+    "action": "Title card. Yabo, a bald scowling man, leans into frame from the right and glares sideways at the large hand-lettered title filling the left side of the frame.",
+    "visual_prompt": "A bald middle-aged man with a heavy build, large protruding ears, deep frown lines, and a stubbled scalp, wearing a dark crew-neck t-shirt with a ribbed collar, leans into frame from the right and glares sideways with suspicious contempt at large bold lettering occupying the left two-thirds of the frame, against a plain white background. Medium close-up, slight low angle.",
+    "dialogue": [],
+    "voiceover": "INTO THE RUBBER CHAMBER AREA THAT LEADS TO THE TOILET!",
+    "performance": "Deadpan menace; the title glares back",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 2,
+    "location": "Blank white void, introduction",
+    "characters": ["yabo"],
+    "action": "Introductory beat. A tight close-up of Yabo's furious snarling face floats at lower left while a full-body view of Yabo stands at right, fists half-clenched, glowering, as a caption introduces him and his threat.",
+    "visual_prompt": "Two views of the same man against a plain white background: lower left, an extreme close-up of a bald heavy-jowled face with a bulbous nose, bared gritted teeth and furious knitted brows; right, the same man full-figure — middle-aged, thick-set with a paunch, bald with large ears, wearing a dark crew-neck t-shirt with ribbed collar and dark track pants with side stripes — standing with arms tense at his sides and a simmering glare. Caption lettering across the top. Medium full shot, eye level.",
+    "dialogue": [],
+    "voiceover": "LIFE CONFOUNDS YABO. IF YOU DON'T WATCH OUT HE'LL \"THROW YOU INTO THE RUBBER CHAMBER AREA THAT LEADS TO THE TOILET.\"",
+    "performance": "Ominous narration over barely contained rage",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 3,
+    "location": "Inside Yabo's front door",
+    "characters": ["yabo", "census_taker"],
+    "action": "Three knocks sound on the front door. Yabo, standing inside, whips toward the door and bellows. From behind the closed door, an unseen census taker meekly announces himself.",
+    "visual_prompt": "Interior by a plain paneled front door, white background: a heavy-set bald middle-aged man with large ears, in a dark crew-neck t-shirt with ribbed collar and dark track pants, stands at right glaring toward the door at left, jaw clenched mid-shout; a speech balloon emerges from behind the closed door. Medium full shot, eye level, door dominating frame left.",
+    "dialogue": [
+      {
+        "speaker": "yabo",
+        "line": "WHO THE HELL IS IT!",
+        "delivery": "Bellowed, instantly enraged"
+      },
+      {
+        "speaker": "census_taker",
+        "line": "CENSUS TAKER SIR.  I WAS WONDERING IF YOU HAD A MOMENT-",
+        "delivery": "Meek, polite, cut off"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Hair-trigger hostility versus oblivious politeness",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 4,
+    "location": "Yabo's doorway / hallway",
+    "characters": ["yabo", "census_taker"],
+    "action": "Yabo seizes the census taker bodily and hurls him through the air with both arms, roaring his catchphrase as the victim's legs and outstretched arm fly across the frame with speed lines.",
+    "visual_prompt": "A heavy-set bald middle-aged man with large ears, gritted teeth and furious eyes, in a dark crew-neck t-shirt with ribbed collar and dark striped track pants, mid-throw with both arms extended, launching a slender man in pale shirt and gray trousers whose body flies horizontally out of frame right, one shoe and splayed hand trailing, speed lines beneath; plain white background, bold lettering filling frame left. Dynamic medium shot, slight low angle, strong diagonal motion.",
+    "dialogue": [
+      {
+        "speaker": "yabo",
+        "line": "INTO THE RUBBER CHAMBER AREA THAT LEADS TO THE TOILET!",
+        "delivery": "Roared at full volume, triumphant fury"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Explosive cartoonish violence",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 5,
+    "location": "The rubber chamber",
+    "characters": ["census_taker"],
+    "action": "The census taker ricochets helplessly around a bouncy rubber-walled chamber, shown in three overlapping motion positions with bounce arcs, mouth open in a yell, as BOING sound effects stack down the right side.",
+    "visual_prompt": "A slender man in a pale button-up shirt, dark belt and gray trousers bounces limply through a white rubbery chamber of curved springy walls, his body shown in three overlapping ghosted positions along arcing bounce trajectories, hair flying, mouth open mid-yell, arms flailing; repeated bold sound-effect lettering stacked along the right edge. Wide shot, eye level, chaotic arcs filling the frame.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Slapstick helplessness, ragdoll physics",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 6,
+    "location": "The toilet at the end of the rubber chamber",
+    "characters": ["census_taker"],
+    "action": "The census taker is flushed headfirst down a giant toilet — only his gray-trousered legs and dark shoes stick up out of the bowl, water droplets flying, as a long FLUSHH sound effect fills the right side.",
+    "visual_prompt": "A large white toilet with its lid up dominates frame left; a man's two legs in gray trousers, white socks and dark shoes protrude upside-down from the bowl, headfirst inside, droplets of water splashing out; plain white background, huge bold sound-effect lettering cascading down the right side. Medium shot, eye level, absurd and clinical.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Deadpan absurd payoff",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 7,
+    "location": "Inside Yabo's front door",
+    "characters": ["yabo", "meter_reader"],
+    "action": "Three more knocks at the door. Yabo turns back toward it, livid all over again, as an unseen meter reader announces himself from behind the door. A TO BE CONTINUED sign slants across the bottom of the frame.",
+    "visual_prompt": "Interior by the same plain paneled front door, white background: the heavy-set bald middle-aged man with large ears, in a dark crew-neck t-shirt with ribbed collar, stands at right snarling toward the door at left; a speech balloon emerges from behind the closed door; a slanted rectangular sign cuts across the lower frame. Medium full shot, eye level, mirroring the earlier door composition.",
+    "dialogue": [
+      {
+        "speaker": "yabo",
+        "line": "NOW WHAT THE FUCK!",
+        "delivery": "Exasperated bellow, rage reloading"
+      },
+      {
+        "speaker": "meter_reader",
+        "line": "I'M HERE TO CHECK THE METER.",
+        "delivery": "Flat, oblivious, doomed"
+      }
+    ],
+    "voiceover": "TO BE CONTINUED...",
+    "performance": "Comic dread; the cycle is about to repeat",
+    "duration_target_s": 6
+  }
+]

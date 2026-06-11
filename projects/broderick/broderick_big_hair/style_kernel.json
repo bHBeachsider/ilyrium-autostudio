@@ -1,0 +1,29 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Original hand-drawn digital gag cartoon in scratchy New-Yorker-style pen line: loose, energetic, deliberately wobbly contours with sketchy hatching left visible. Grayscale only — white ground, dark ink, and flat light-gray wash blocks for skin shadow, shirts, the city skyline, and the bar counter. Faces are caricatured (droopy noses, heavy lids, gap teeth). Lettering is typeset bold italic comic caps, free-floating or in simple bordered caption boxes, with key words blown up larger for emphasis. Action panels explode into starbursts, flying teeth, droplets, and speed lines.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "paper_white": {"hex": "#FFFFFF", "usage": "background field of every panel; rooms implied by a few lines, not filled"},
+    "sketch_ink": {"hex": "#2A2A2A", "usage": "all linework and lettering; scratchy multi-stroke pen quality"},
+    "wash_gray_light": {"hex": "#D9D9D9", "usage": "flat fills — city skyline silhouette, loudmouth's t-shirt, mirrored BAR sign, counter shading"},
+    "wash_gray_mid": {"hex": "#BDBDBD", "usage": "secondary shading on skin, beer mug glass, debris shadows"},
+    "impact_burst": {"hex": "#1F1F1F", "usage": "jagged starburst outline, flying teeth/glass/droplets, speed lines in the mug-smash panel"}
+  },
+  "casting_canon": {
+    "big_hair_man": "Gaunt middle-aged man, thin build, long droopy nose, heavy-lidded weary eyes; enormous tangled mass of abnormally thick rope-like hair strands piled on his head; rumpled suit, shirt, loose tie. Affect: exhausted long-suffering patience with a hard limit.",
+    "interviewer": "Balding lanky middle-aged man in glasses, office shirt, behind a laptop at a large angular desk before a gray city-skyline window. Affect: bland corporate politeness.",
+    "bar_loudmouth": "Stocky man, 30s, spiky short hair, big nose, gap teeth, baggy gray t-shirt, beer glass perpetually in hand. Affect: loud, braying, zero boundaries."
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, color, clean uniform vector linework, smooth anime style, heavy solid black fills, crosshatch engraving style, detailed realistic backgrounds, speech balloons with tails, photoreal faces",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: loose scratchy hand-drawn pen cartoon, grayscale with flat light-gray wash, sketchy gag-cartoon caricature, no photographic rendering, no 3d, no color.",
+    "lettering_garbled": "Generate art without text; add typeset bold italic comic caps in post or via dedicated lettering pass."
+  }
+}

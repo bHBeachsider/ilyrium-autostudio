@@ -1,0 +1,27 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Hand-drawn digital single-figure cartoon on a pure white void: a lean bobblehead dancer — oversized caricatured head on a small wiry body — drawn in thin scratchy pen line. The black turtleneck is a solid ink fill; trousers and shoes carry a pale gray wash; a loose gray scribble underfoot is the only floor. One full-body pose per panel, dead-center with huge negative space. Lettering is thin letterspaced caps in a casual handwriting-style font, not bold comic type. Color appears exactly once: bloodshot red eyes and red tears in the final panel, flagged by a small black arrow.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "void_white": {"hex": "#FFFFFF", "usage": "entire field; no set, no horizon"},
+    "pen_ink": {"hex": "#1E1E1E", "usage": "figure linework, facial features, narration lettering, callout arrow, END"},
+    "turtleneck_black": {"hex": "#161616", "usage": "solid fill on the turtleneck and hair mass — the figure's graphic anchor"},
+    "trouser_gray": {"hex": "#CFCFCF", "usage": "pale wash on pleated trousers, shoes, and the scribbled floor shadow"},
+    "tear_red": {"hex": "#D62718", "usage": "final panel only — bloodshot eye rims and streaming tears; the sole color event"}
+  },
+  "casting_canon": {
+    "dancer": "Lean man with a comically oversized head; slick dark side-parted hair (solid ink), heavy brows, smug serene smile. Black turtleneck (solid fill), light pleated trousers, flat dark shoes. Total straight-faced showman commitment to every pose; in the final panel his eyes go bloodshot red and stream red tears while the grin and the dancing continue."
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, color anywhere except the final red tears, background scenery, floor or horizon line, bold comic lettering, speech balloons, normal head-to-body proportions, smooth vector linework, anime style",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: thin scratchy hand-drawn pen cartoon, oversized-head caricature on small body, solid black turtleneck fill, pure white void, no photographic rendering, no 3d, monochrome except final red tears.",
+    "lettering_garbled": "Generate art without text; add thin letterspaced handwriting-style caps in post or via dedicated lettering pass."
+  }
+}

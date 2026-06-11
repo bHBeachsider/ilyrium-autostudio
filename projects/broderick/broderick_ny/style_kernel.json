@@ -1,0 +1,33 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Grayscale hand-drawn digital comic mixing two rendering registers in one frame: landmarks and environments stay pure contour line (Statue of Liberty, Empire State Building drawn outline-only, no fill), while faces get heavy soft-gray tonal modeling pushed into grotesque caricature — pitted skin, gap teeth, bulging eyes. Flat mid-gray washes on station ceilings and counters; solid black silhouettes for anonymous figures. Bordered rectangular caption boxes for narration, free-floating hand caps for dialogue, enormous black italic display caps for screams, and an elegant typeset serif only on the title card.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "ink_black": {"hex": "#1A1A1A", "usage": "contour line, scream lettering, mascot's cap and jersey stripes"},
+    "silhouette_black": {"hex": "#0D0D0D", "usage": "solid anonymous-bystander silhouettes, shirt masses, exclamation marks"},
+    "face_model_gray": {"hex": "#AFAFAF", "usage": "soft tonal modeling on caricatured faces, hands, pizza slice"},
+    "environment_gray": {"hex": "#D6D6D6", "usage": "station ceiling panels, NYPD counter, flag and eagle ghost layer"},
+    "paper_white": {"hex": "#FFFFFF", "usage": "landmark line art left unfilled, caption box interiors, negative space"}
+  },
+  "casting_canon": {
+    "ny_mascot": "stout barrel-chested man in his 40s-50s, scruffy dark hair under a dark baseball cap worn askew, thick mustache, gap-toothed grin, pinstriped baseball jersey (title) or rumpled shirt (close), drooping pizza slice in one hand and a giant thumbs-up in the other",
+    "shouting_man": "broad heavyset man in his 40s-50s, wild spiky unkempt hair in every direction, stained dark t-shirt, sweatpants, worn bag and plastic water bottle, blank placid stare that detonates into a cavernous open-mouthed bellow",
+    "atm_businessman": "gaunt stooped man in his 60s, balding with white side hair, wire glasses, hooked nose, dark suit, white shirt, striped tie, prim concentration shattered into chest-clutching terror",
+    "phone_man": "heavyset round-shouldered man in his 30s-40s, dark bowl haircut, plain t-shirt, wristwatch, phone-absorbed then screaming panic",
+    "nypd_officer": "wiry man in his 40s, slicked dark hair, thick mustache, protruding teeth, collared police uniform shirt with shoulder patches and dark tie, jaded shrugging affect",
+    "bystander": "adult seen only as a solid dark head-and-shoulders silhouette with a bold exclamation mark beside it"
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, any color, filled or shaded landmark buildings, cute cartoon proportions, clean vector line, smooth attractive faces, anime style, photo-collage backgrounds",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: hand-drawn grayscale comic illustration, visible ink contour, grotesque caricature faces, no photographic rendering, no 3d.",
+    "drifts_pretty": "Add: ugly exaggerated caricature, gap teeth, pitted skin texture, asymmetric features — do not beautify faces.",
+    "lettering_garbled": "Generate art without text; add hand-lettering and serif title typography in post or via dedicated lettering pass."
+  }
+}

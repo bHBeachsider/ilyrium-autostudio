@@ -1,0 +1,80 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Blank white title card",
+    "characters": [],
+    "action": "Title card. Ornate flourished script reads the series title above the issue number, over a march-of-progress evolution silhouette: ape to upright spear-carrier, ending with a heavyset slouching man tipping a bottle to his mouth.",
+    "visual_prompt": "A plain white title card: ornate curling script lettering across the top, a bold serif issue number beneath it at left, and along the bottom a classic ascent-of-man silhouette sequence — a knuckle-walking ape, two progressively upright hominids, a striding figure carrying a spear over its shoulder, and finally a heavyset slouching modern man in baggy pants tipping a bottle to his lips. Flat graphic composition, eye level.",
+    "dialogue": [],
+    "voiceover": "Snapshots of Life No.707B",
+    "performance": "Wry mock-grandeur",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 2,
+    "location": "Junior high industrial arts classroom (memory)",
+    "characters": ["schpiegler"],
+    "action": "The metals teacher — a heavy bald bearded man in thick black glasses, sweat flying — points a raised finger at the door and bellows his standing threat about lazy students, while the narrator's caption introduces him and a footnote disclaims the fake name.",
+    "visual_prompt": "A heavyset bald man with a full graying beard, thick black rectangular glasses, sweat droplets springing from his brow, in a gray work shirt with a pen and pencil in the breast pocket, fills the left half of the frame snarling, his right arm thrust high pointing toward an unseen door upper right; plain white background, bold lettering of his shouted words at right and a caption box across the top with a small footnote at lower right. Medium close-up, slight low angle, dynamic pointing diagonal.",
+    "dialogue": [
+      {
+        "speaker": "schpiegler",
+        "line": "IF YOU ARE TOO LAZY TO BEND DOWN AND PICK UP A PIECE OF TYPE--THERE'S THE DOOR!",
+        "delivery": "Bellowed ultimatum, spittle and sweat"
+      }
+    ],
+    "voiceover": "IN 7TH GRADE, WE HAD TO TAKE INDUSTRIAL ARTS ELECTIVES. ONE SUCH CLASS WAS METALS, TAUGHT BY A GUY NAMED JOSH SCHPIEGLER* (PRONOUNCED SHPEE-GLUR). SCHPLIEGLER ALSO TAUGHT GRAPHIC ARTS, SO THE FOLLOWING SEMESTER I GOT STUCK WITH HIM AGAIN!. *FAKE NAME. ANY RESEMBLANCE TO THE REAL METALS TEACHER IS PURELY COINCIDENTAL. JUST KIDDING HE WAS AN ASSHOLE",
+    "performance": "Remembered tyranny played for laughs",
+    "duration_target_s": 8
+  },
+  {
+    "scene_number": 3,
+    "location": "Inside a car, rumored Deep South past (imagined flashback)",
+    "characters": ["schpiegler"],
+    "action": "Imagined rumor flashback: the teacher drives a car wearing a white pointed full-head hood, sweat droplets flying off it, both hands gripping the wheel, glancing nervously through the eyehole.",
+    "visual_prompt": "View through a car's open side window: a man in a buttoned work shirt sits at the steering wheel, his entire head covered by a tall white pointed fabric hood with a single dark eyehole, small sweat droplets flying from the hood's peak; gray car interior, door panel and side mirror framing him, a sliver of pale sky behind. Medium shot from outside the driver's window, eye level. Caption box across the top.",
+    "dialogue": [],
+    "voiceover": "RUMOR HAD IT OL' JOSH GOT IN A LITTLE HOT WATER WHEN HE USED TO LIVE IN THE DEEP SOUTH...",
+    "performance": "Damning rumor delivered deadpan",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 4,
+    "location": "Highway entering New Jersey, industrial skyline",
+    "characters": ["schpiegler"],
+    "action": "The teacher's pickup truck rumbles north up a weedy highway, exhaust puffing, past a big road sign welcoming drivers to New Jersey, smokestacks and cooling towers belching on the horizon. A bumper sticker on the tailgate reads its blunt slogan.",
+    "visual_prompt": "Rear view of a pickup truck driving away up a straight highway flanked by scribbled weeds, a silhouetted driver's head visible through the cab's rear window, exhaust puffs at the wheel; on the right shoulder a large dark road sign reads WELCOME TO NEW JERSEY \"THE GAWDEN STATE\"; on the horizon, factory smokestacks and a cooling tower pour black smoke over a low gray skyline; a bumper sticker on the tailgate reads USA - LOVE IT OR GET THE HELL OUT! Wide shot from low behind the truck, one-point perspective down the road. Caption box top left.",
+    "dialogue": [],
+    "voiceover": "...SO HE FLED UP NORTH TO START OVER.",
+    "performance": "Sardonic travelogue beat",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 5,
+    "location": "Industrial arts classroom, workbench",
+    "characters": ["schpiegler", "narrator", "classmate"],
+    "action": "The teacher leans over the bench jabbing a pointed finger and screeching a mocking hen impression at the narrator — a long-haired kid in a Jethro Tull t-shirt holding a hammer — and the round-faced classmate beside him, ordering them to focus or get out.",
+    "visual_prompt": "A shop classroom with pegboard and cabinet doors behind: at left, a heavyset bald man with a graying beard, thick black rectangular glasses and sweat droplets, in a gray work shirt, squeezes his eyes shut and jabs an index finger across a workbench; at center, a skinny teen with long straight hair, a pointed nose and a faint smirk, wearing a t-shirt hand-lettered JETHRO TULL, holds a small hammer over a metal piece on the bench; at right, a teen with a dark rounded bob and a wary frown sits with hands flat on the bench. Bold shouted lettering fills the upper right. Medium three-shot across the bench, eye level. Caption box across the top.",
+    "dialogue": [
+      {
+        "speaker": "schpiegler",
+        "line": "CLUCK CLUCK CLUCK! THAT'S ALL I HEAR OVER HERE!  COUPLE OF GOSSIPY OLD HENS IN A SEWING CIRCLE! FOCUS ON THE TASK AT HAND OR GET OUT OF MY CLASSROOM!!",
+        "delivery": "Screeched mockery building to a roar"
+      }
+    ],
+    "voiceover": "JACK SPIEGLER WAS A HARD-ASS WHO HATED EVERYONE, BUT HE ESPECIALLY HATED ME AND THE GUY WHO SAT NEXT TO ME.",
+    "performance": "Targeted classroom humiliation, kids barely reacting",
+    "duration_target_s": 7
+  },
+  {
+    "scene_number": 6,
+    "location": "Industrial arts classroom, workbench (project day)",
+    "characters": ["narrator", "schpiegler"],
+    "action": "The narrator stands at the bench clutching a finger bloodied red, his botched metal pad holder and a blood-smeared roller lying on the bench, while the teacher glowers as a pale ghosted figure in the upper corner. END card at lower right.",
+    "visual_prompt": "A shop classroom corner: at left, a skinny teen with long straight hair and a pointed nose, in a plain crew-neck sweater, looks down dismayed at his raised hand where a fingertip is stained bright red; on the bench before him sit a crooked sheet-metal pad holder, a small cylindrical part smeared red, and red drips on the bench top; in the upper right corner, a pale ghosted bust of a heavyset bald bearded man in thick black glasses glowers with folded arms. The red stains are the only color accents in a gray scene. Medium shot, eye level. Caption box across the top, small END card at lower right.",
+    "dialogue": [],
+    "voiceover": "SCHPIEGLER KEPT PUSHING A METAL PAD HOLDER AS A PROJECT.  MINE WASNT SO GOOD. SCHPIEGLER GAVE ME A \"C\" AND KEPT ME OFF HONOR ROLL. END",
+    "performance": "Rueful injury-to-insult punchline",
+    "duration_target_s": 7
+  }
+]

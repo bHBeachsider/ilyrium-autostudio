@@ -1,0 +1,96 @@
+[
+  {
+    "scene_number": 1,
+    "location": "New York City postcard montage",
+    "characters": ["ny_mascot"],
+    "action": "Title card. A grinning gap-toothed New Yorker in a crooked ball cap holds up a pizza slice and a giant thumbs-up between the Statue of Liberty and the Empire State Building under serif title lettering.",
+    "visual_prompt": "A stout middle-aged man with a thick mustache, gap-toothed grin and a dark baseball cap worn askew, in a pinstriped baseball jersey, holding a drooping pizza slice in one hand and giving an oversized thumbs-up with the other; the Statue of Liberty rises on the left and the Empire State Building on the right; elegant serif title text across the top; centered medium shot, eye level.",
+    "dialogue": [],
+    "voiceover": "NEW YORK, NEW YORK ...it's a helluva town!",
+    "performance": "Brash tourist-postcard cheer",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 2,
+    "location": "Penn Station concourse, underground",
+    "characters": ["shouting_man"],
+    "action": "A homeless man with wild hair wanders the station concourse carrying a bag and a water bottle as a caption introduces him; a distant commuter checks his phone near a TRAINS sign.",
+    "visual_prompt": "A middle-aged man with wild unkempt spiky hair, broad build, stained dark t-shirt and sweatpants, carrying a worn bag in one hand and a plastic water bottle in the other, walking through a low-ceilinged station concourse with fluorescent ceiling panels and a large 'TRAINS' directional sign; a small distant figure looks at a phone in the background corridor; medium-wide shot, eye level.",
+    "dialogue": [],
+    "voiceover": "A FEW YEARS AGO THERE WAS A HOMELESS MAN WHO SEEMED TO LIVE IN PENN STATION.  HE WOULD JUST WALK AROUND.",
+    "performance": "Observational documentary calm",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 3,
+    "location": "Penn Station concourse, at an ATM",
+    "characters": ["shouting_man", "atm_businessman"],
+    "action": "The man drifts to a stop directly behind a balding businessman using an ATM and just stands there as the caption explains his habit.",
+    "visual_prompt": "A wild-haired broad-built man in a stained dark t-shirt stands silently close behind a gaunt balding older businessman with wire glasses, hooked nose, dark suit and striped tie who is using an ATM machine labeled 'ATM'; low fluorescent station ceiling and distant commuter behind; tight two-shot, eye level, uncomfortable proximity.",
+    "dialogue": [],
+    "voiceover": "HE DIDN'T BOTHER ANYBODY. SOMETIMES HE WOULD STOP WALKING NEAR SOMEONE, STAND THERE FOR A WHILE...",
+    "performance": "Quiet looming tension",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 4,
+    "location": "Penn Station concourse, at an ATM",
+    "characters": ["shouting_man", "atm_businessman"],
+    "action": "The man erupts in a deafening nonsense bellow inches from the businessman, who spasms in terror at the ATM, hair standing on end.",
+    "visual_prompt": "A wild-haired broad-built man in a stained dark t-shirt roars with his mouth stretched enormously wide, gap teeth showing, while beside him a gaunt balding businessman in a dark suit and striped tie convulses in shock, eyes bulging, clutching his chest at an ATM; jagged shock lines radiate around the businessman's head; giant bold scream lettering across the top; tight two-shot, eye level.",
+    "dialogue": [
+      {"speaker": "shouting_man", "line": "MMMAAOUUUB!! MMMAAOUUUB!!", "delivery": "deafening unintelligible bellow"}
+    ],
+    "voiceover": "",
+    "performance": "Sudden cartoonish terror",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 5,
+    "location": "Penn Station concourse",
+    "characters": ["phone_man", "shouting_man"],
+    "action": "The man sidles up beside a heavyset commuter absorbed in his phone, while the caption describes the supernatural volume of his voice.",
+    "visual_prompt": "A heavyset man with a dark bowl haircut and a wristwatch, in a t-shirt, squints down at the phone in his hands, unaware of the wild-haired broad-built man in a stained dark t-shirt standing just behind his shoulder with a blank stare; low fluorescent station ceiling; tight two-shot, eye level, dread building.",
+    "dialogue": [],
+    "voiceover": "HE SEEMED UNAWARE OF THE MASSIVE, ALMOST SUPERNATURAL VOLUME OF HIS SHOUTING VOICE.  IT COULD BE HEARD BY JACKHAMMER CREWS ABOVE AT STREET LEVEL",
+    "performance": "Deadpan setup for the next blast",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 6,
+    "location": "Penn Station concourse",
+    "characters": ["shouting_man", "phone_man"],
+    "action": "The man unleashes the bellow again; the commuter shrieks, eyes popping, fumbling his phone into the air.",
+    "visual_prompt": "A wild-haired broad-built man in a stained dark t-shirt roars with a cavernous open mouth while a heavyset man with a dark bowl haircut recoils in wide-eyed screaming panic, hands flung up, his dark phone tumbling midair; sweat drops flying; giant bold scream lettering across the top; tight two-shot, eye level.",
+    "dialogue": [
+      {"speaker": "shouting_man", "line": "MMMAAOUUUB!! MMMAAOUUUB!!", "delivery": "deafening unintelligible bellow"}
+    ],
+    "voiceover": "",
+    "performance": "Repeat detonation, pure slapstick shock",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 7,
+    "location": "Penn Station, NYPD information booth",
+    "characters": ["nypd_officer", "bystander"],
+    "action": "A silhouetted bystander reports the distressed man to a mustached officer at the NYPD information desk, who shrugs that they keep throwing him out but he keeps coming back.",
+    "visual_prompt": "A wiry police officer with slicked dark hair, a thick mustache and protruding teeth, in a collared uniform shirt with shoulder patches, gestures with open palms behind a tall counter marked 'NYPD INFORMATION'; in the right foreground the dark silhouette of a bystander's head and shoulders with a bold exclamation mark beside it; station ceiling and TRAINS sign faint behind; over-the-shoulder medium shot, slight low angle.",
+    "dialogue": [
+      {"speaker": "nypd_officer", "line": "WE KEEP THROWING HIM OUT BUT HE KEEPS COMING BACK.  GOT A HARD-ON FOR THIS PLACE.", "delivery": "jaded shrug, matter-of-fact"}
+    ],
+    "voiceover": "A BYSTANDER INFORMED THE POLICE THAT THERE WAS A DISTRESSED MAN WHO COULD USE MEDICAL ASSISTANCE.",
+    "performance": "World-weary institutional indifference",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 8,
+    "location": "New York City patriotic montage",
+    "characters": ["ny_mascot"],
+    "action": "Closing card. The gap-toothed mascot returns with pizza slice and giant thumbs-up between the Statue of Liberty and the Empire State Building, now backed by a waving flag, a bald eagle head and a colonial fife-and-drum trio.",
+    "visual_prompt": "A stout middle-aged man with a thick mustache and a dark baseball cap worn askew, in a rumpled shirt, holding a drooping pizza slice and giving an oversized thumbs-up; the Statue of Liberty on the left, the Empire State Building on the right, and behind them a faint waving flag with a star, a bald eagle head outline, and three colonial musicians marching with fife and drums; centered medium shot, eye level.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Ironic patriotic fanfare button",
+    "duration_target_s": 4
+  }
+]

@@ -1,0 +1,94 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Title card, sky",
+    "characters": [],
+    "action": "Title card. A gray news helicopter with a big numeral 4, station logo and tail number hovers mid-frame between the show title above and slogan below; a red warning banner runs along the bottom.",
+    "visual_prompt": "A gray news helicopter in side profile with spinning blurred rotor, a large white numeral 4 on the fuselage, small station lettering on the tail boom and a registration code on the body, floating against a clean white sky; bold title lettering above, slogan lettering below, and a red banner strip across the bottom edge; centered side view, eye level.",
+    "dialogue": [],
+    "voiceover": "NEWS COPTER 4 ... ON YOUR SIDE! WARNING: CONTAINS NUDITY AND VULGAR LANGUAGE",
+    "performance": "Mock local-news bombast with a content warning",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 2,
+    "location": "TV news studio, anchor desk",
+    "characters": ["anchor"],
+    "action": "The grinning anchor introduces the traffic and transit segment, with a helicopter inset graphic over his shoulder and the noon-news bug in the corner.",
+    "visual_prompt": "A square-jawed man in his 40s with neatly coiffed light hair, in a light suit, shirt and tie, smiling broadly behind a news desk while fiddling with a pen; an inset rectangle screen on the left shows a gray helicopter with a numeral 4; a gray broadcast graphic block in the top right corner; medium shot, straight-on broadcast framing.",
+    "dialogue": [
+      {"speaker": "anchor", "line": "TIME FOR A CHECK ON TRAFFIC AND TRANSIT. NEWS COPTER 4 IS ON THE SCENE.", "delivery": "polished anchorman cadence"}
+    ],
+    "voiceover": "NEWS 4 AT NOON",
+    "performance": "Glossy daytime-news routine",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 3,
+    "location": "TV news studio, anchor desk",
+    "characters": ["anchor"],
+    "action": "The anchor tosses to the helicopter pilot, asking about the expressway, same smiling pose behind the desk.",
+    "visual_prompt": "A square-jawed man in his 40s with neatly coiffed light hair, in a light suit and tie, smiling behind a news desk with a pen in his hands; helicopter inset screen on the left and gray broadcast graphic block top right; medium shot, straight-on broadcast framing.",
+    "dialogue": [
+      {"speaker": "anchor", "line": "HOW'S THE EXPRESSWAY LOOKING FOR COMMUTERS THIS MORNING BRUCE?", "delivery": "chipper handoff to the field"}
+    ],
+    "voiceover": "",
+    "performance": "Routine toss, nothing suspected yet",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 4,
+    "location": "Sky over the city skyline",
+    "characters": ["bruce"],
+    "action": "The helicopter cruises over a silhouetted skyline while pilot Bruce trashes the commuters on air, then spots something on the west side.",
+    "visual_prompt": "A gray news helicopter with a large white numeral 4, small tail lettering and a registration code on the fuselage, flying in side profile with blurred rotor above a layered gray city skyline of towers and water tanks; bold lettering fills the sky above; wide shot, slight low angle.",
+    "dialogue": [
+      {"speaker": "bruce", "line": "SAME AS ALWAYS.  BUNCHA LOSERS GOING TO THEIR SHITTY JOBS.", "delivery": "bored contempt over the radio"},
+      {"speaker": "bruce", "line": "BUT... SOMETHING'S HEATIN' UP ON THE WEST SIDE!", "delivery": "suddenly leering, excited"}
+    ],
+    "voiceover": "",
+    "performance": "On-air professionalism collapsing into sleaze",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 5,
+    "location": "Outside an apartment building, upper floors",
+    "characters": ["bruce", "copilot"],
+    "action": "The unseen helicopter crew hovers at the corner of an apartment block, joking about the 'weather' while Bruce orders the camera to zoom in on a window where a small figure is visible.",
+    "visual_prompt": "The corner of a tall gray apartment building seen from the air, rows of dark windows on two faces of the block, one lit window holding a small dark silhouette of a person; two large speech balloons enter from the top of frame from an unseen aircraft; aerial three-quarter view, looking slightly down the facade.",
+    "dialogue": [
+      {"speaker": "copilot", "line": "HEH HEH, THIS IS SUPPOSED TO BE TRAFFIC BRUCE, NOT WEATHER!", "delivery": "snickering aside"},
+      {"speaker": "bruce", "line": "ZOOM IN! CLOSER... CLOSER...", "delivery": "fixated, commanding"}
+    ],
+    "voiceover": "",
+    "performance": "Voyeuristic escalation played as banter",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 6,
+    "location": "Apartment window, seen from outside",
+    "characters": ["window_woman", "bruce"],
+    "action": "Through the window, a nude woman caught mid-undress, top pulled over her head, yells that the hovering copter is about to hit the building; Bruce snarls back over the loudspeaker.",
+    "visual_prompt": "Seen from outside through a large window frame, a nude woman with long dark curly hair stands with her back to the viewer, arms raised pulling a dark top over her head, bare back and buttocks in shadow against the dim room; two speech balloons flank the window, one from her and one from an unseen aircraft outside; voyeuristic straight-on framing through the glass, slight high angle.",
+    "dialogue": [
+      {"speaker": "window_woman", "line": "YOU'RE GOING TO HIT THE BUILDING! HELLO NEWS COPTER 4! HELLO NEWS COPTER 4!", "delivery": "alarmed shouting through the glass"},
+      {"speaker": "bruce", "line": "SHUT UP BITCH. NEWS COPTER 4 IS ON THE SCENE.", "delivery": "flat menacing drawl"}
+    ],
+    "voiceover": "",
+    "performance": "The sleaze tips into open hostility",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 7,
+    "location": "TV news studio, anchor desk",
+    "characters": ["anchor"],
+    "action": "End card. One minute later, the still-smiling anchor reads a full corporate apology disavowing the copter crew while idly fiddling with his pen over a desk sheet bearing a crude doodle.",
+    "visual_prompt": "A square-jawed man in his 40s with neatly coiffed light hair, in a light suit, shirt and tie, smiling obliviously behind a news desk as he clicks a pen; a sheet of paper on the desk carries a small crude scribbled doodle; dense statement text fills the right half of the frame and a black angled end-title badge sits in the lower right corner; medium shot, straight-on broadcast framing.",
+    "dialogue": [
+      {"speaker": "anchor", "line": "THE PILOTS OF NEWS COPTER 4 ENGAGED IN BEHAVIOR THAT IS NOT ONLY DISGRACEFUL, BUT TOTALLY UNACCEPTABLE. NEWS COPTER 4 ENGAGED IN ILLEGAL SURVEILLANCE, ALL THE WHILE MAKING VULGAR AND HATEFUL COMMENTS.  THIS CONDUCT IS IN COMPLETE CONTRADICTION TO THE VALUES WE HOLD AS A FAMILY AT NEWS 4 AT NOON,  AND AS MEMBERS OF A COMMUNITY THAT EXPECTS AND DESERVES BETTER.", "delivery": "smooth unbroken PR sincerity"}
+    ],
+    "voiceover": "ONE MINUTE LATER... END",
+    "performance": "Instant corporate damage control, zero self-awareness",
+    "duration_target_s": 8
+  }
+]

@@ -1,0 +1,12 @@
+# Ilyrium project manifest — the one file the scaffolder, graph_sync, the
+# console, and the release gate all read. externalId is the canonical asset-graph key.
+title: "broderick big hair"
+slug: broderick_big_hair
+externalId: broderick_big_hair
+type: SHORT
+genre_packs: [narrative]
+kernel: broderick
+status: DRAFT
+created: 2026-06-11
+rights:
+  likeness_flags: []   # e.g. {character: pengold, note: "...", release: 00_admin/rights_releases/<file>}

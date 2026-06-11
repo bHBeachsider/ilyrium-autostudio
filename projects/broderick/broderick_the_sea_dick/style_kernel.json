@@ -1,0 +1,35 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Hand-drawn digital grayscale strip in landscape panels, iPad/Procreate texture. Loose confident ink line with squiggle-stroke waves; large flat tonal fields — white sky, mid-gray sea, darker gray lecture-hall walls — and bold solid-black silhouettes (boat hull, audience heads). The title creature's face gets denser caricature crosshatch and modeling than anything around it, a deliberate fidelity jump. No balloons: bold all-caps comic-font dialogue floats on the background, black on white outdoors, white on gray indoors, tied to speakers by thin straight pointer lines.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "paper_white": "#FFFFFF — sky, negative space, dialogue field in sea scenes, video-player frame border",
+    "ink_black": "#111111 — boat hull silhouette, audience silhouettes, linework, lettering on white",
+    "sea_gray": "#9E9E9E — flat mid-gray ocean field with darker squiggle wave strokes",
+    "hall_gray": "#7A7A7A — lecture-hall wall field; white lettering sits directly on it",
+    "wake_gray": "#D6D6D6 — light gray boat wake and water spray accents",
+    "video_inset": "white-bordered video-player rectangle (scrub bar, play controls) looping the creature's double-bird clip — recurring upper-right motif in all lecture panels"
+  },
+  "casting_canon": {
+    "sea_dick": "pale humanoid sea creature reading as a middle-aged man; lean torso surfacing chest-high, slicked-back wet pale hair, pointed ears, squinting gleeful grin with deep smile creases, barnacle and scale patches across bare chest and shoulders; signature pose is both middle fingers raised while announcing his own name",
+    "cap_bro": "lanky long-necked man in his 30s, backwards white baseball cap, tank top, gold chain, drink in hand; loud braying party hype-man",
+    "spike_bro": "thick-necked muscular man in his 30s, tall spiky black hair, heavy jaw, prominent front teeth, shirtless in board shorts; dim, enthusiastic, easily confused",
+    "fisherman": "wiry man in his 40s, short neat hair, t-shirt and shorts; giddy hobbyist bravado, instantly humiliated",
+    "professor": "stocky round-shouldered man in his 50s, bald on top, grey-flecked mustache, glasses, dark turtleneck sweater; ponderous academic gravity tipping into sudden bloodthirsty zeal",
+    "audience": "assorted lecture attendees seen only as solid black head-and-shoulder silhouettes from behind; opinionated, bickering, prone to tangents"
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, full color, colored fills, speech balloon outlines, likeness of any real public figure, photoreal water or ocean waves, anime style, detailed audience faces, portrait orientation panels",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: flat hand-drawn comic illustration, visible ink line, no photographic rendering, no 3d.",
+    "drifts_color": "Add: strictly grayscale comic, flat gray tonal fields, no color.",
+    "creature_resembles_real_person": "Regenerate the creature from attribute description only: pale slicked-back hair, pointed ears, squinting grin, barnacled chest — no real-person reference.",
+    "lettering_garbled": "Generate art without text; add hand-lettering in post or via dedicated lettering pass."
+  }
+}

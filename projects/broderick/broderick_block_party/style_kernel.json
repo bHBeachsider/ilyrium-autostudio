@@ -1,0 +1,34 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Grayscale hand-drawn digital comic illustration, no color anywhere. Confident variable-weight ink line over loose sketchy underdrawing; faces heavily caricatured with scribbled crosshatch texture on skin, brows, and knees. Clothing filled with flat mid-gray tones; backgrounds are faint light-gray suburban line sketches that fade toward white. Soft gray wash shading, never gradients into black. Single-panel compositions with strong foreground figure and mid-ground reactors. All-caps hand lettering floats free in white space with no balloon borders; titles in giant bold brush-marker capitals.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "ink_black": {"hex": "#1A1A1A", "usage": "primary linework, glasses frames, hair spikes, title lettering"},
+    "shirt_gray": {"hex": "#8C8C8C", "usage": "flat fill on Dennis's camp shirt and dark polos; the darkest tonal mass in frame"},
+    "wash_gray": {"hex": "#C4C4C4", "usage": "soft shading on skin, slacks, grill metal, shorts"},
+    "sketch_gray": {"hex": "#DBDBDB", "usage": "faded background houses, trees, shrubs — barely-there suburb"},
+    "paper_white": {"hex": "#FFFFFF", "usage": "open negative space, lettering field, light polos; panels have no border, art bleeds into white"}
+  },
+  "casting_canon": {
+    "dennis": "man in his 60s, gaunt wiry build, hunched, short spiky gray hair, thick black rectangular glasses, deep frown lines, gritted teeth, dark short-sleeved camp shirt open at collar, shorts with tube socks and chunky sneakers, permanent scowl erupting into rage",
+    "dan_obrien": "heavyset broad man in his 50s, short dark hair, light polo tucked into belted slacks, wristwatch, genial crushed-puppy affect, spatula in hand",
+    "neighbor_bro_1": "athletic average-build man in his 40s, short dark hair, dark polo and light shorts, paper food tray and beer bottle, loud grinning sports-bro energy",
+    "neighbor_bro_2": "stocky thick-necked man in his 40s, short dark hair, white polo and dark shorts, beer bottle raised, boisterous hype-man gone blank",
+    "mustache_neighbor": "heavyset balding man in his 50s, dark side hair, thick mustache, glasses, light polo tucked into belted slacks, self-satisfied small-talker",
+    "blonde_neighbor": "slim woman in her 30s-40s, long straight blonde hair, fitted light t-shirt and dark skirt, chipper agreeable affect",
+    "bent_over_onlooker": "lanky bearded adult, white shirt, shorts and sneakers, bent fully forward gawking upside-down from between his own legs"
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, saturated color, any color fill, colored background, bordered oval speech balloons, clean uniform vector line, cute rounded cartoon proportions, anime style, panel border boxes",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: flat hand-drawn grayscale comic illustration, visible scratchy ink line, no photographic rendering, no 3d.",
+    "drifts_color": "Add: strictly black-and-white grayscale artwork, no color, monochrome ink and gray wash only.",
+    "lettering_garbled": "Generate art without text; add hand-lettering in post or via dedicated lettering pass."
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Original hand-drawn digital cartoon in a scratchy Sunday-funnies pen style: bouncy cartoon hound and kid drawn in confident wobbly contour, grayscale only. Foreground figures carry the dark ink; the suburban world behind them (house, picket fence, tree, sun, exam-room fixtures) is sketched in faint pale ghost-gray line, giving a jingle-storyboard airiness. Solid black fills mark the dog's ear and tail patches, nose, and musical notes; flat light-gray washes handle tongue, collar, and drop shadows. Typeset bold italic caps carry the sung narration with floating note glyphs.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "paper_white": {"hex": "#FFFFFF", "usage": "sky, dog's body, table tops — the dominant field"},
+    "sketch_ink": {"hex": "#2A2A2A", "usage": "foreground figure linework and narration lettering"},
+    "solid_black_patch": {"hex": "#111111", "usage": "Otis's ear and tail patches, big nose, fanged mouth interior, musical notes"},
+    "ghost_gray_bg": {"hex": "#C9C9C9", "usage": "faint background line drawing — house, fence, tree, sun rays, clinic wall chart and window"},
+    "wash_gray": {"hex": "#DEDEDE", "usage": "drop shadows under figures, tongue, collar, grass shading"}
+  },
+  "casting_canon": {
+    "otis": "Floppy-eared cartoon hound; white body, solid-black patches on ears and tail, big black nose, goofy wide eyes, long lolling tongue, simple collar. Affect: boundless wacky cheer; in the lunge panel his eyes narrow and his jaws sprout double rows of jagged fangs; placidly content again on the vet table.",
+    "billy": "Small skinny boy, about 8, short hair (sometimes backwards baseball cap), t-shirt and shorts, freckles. Affect: pure delighted kid-joy flipping to raw terror.",
+    "vet": "Slim middle-aged man, receding hairline, scrub top, stethoscope around neck, holds a large syringe. Affect: calm, neutral, professionally detached."
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, color, realistic dog anatomy, fur texture rendering, detailed filled backgrounds, clean uniform vector linework, smooth anime style, speech balloons, gore, visible blood",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: scratchy hand-drawn pen cartoon, grayscale, cartoon hound with solid black patches, faint ghost-gray background line, no photographic rendering, no 3d, no fur texture, no color.",
+    "lettering_garbled": "Generate art without text; add typeset bold italic comic caps and note glyphs in post or via dedicated lettering pass."
+  }
+}

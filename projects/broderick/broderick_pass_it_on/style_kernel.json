@@ -1,0 +1,37 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Grayscale hand-drawn digital comic with a loose, wobbly sketch line — quick gestural contours, no inking polish. Figures filled with flat light-to-mid gray washes; skin tones carried as gray values. Set dressing is minimal and ghosted: barred window, ACHTUNG poster, locker drawn in faint pale-gray scribble. Every panel repeats the same seated whisper two-shot, eye level, with a floating question mark over the listener. English dialogue hand-lettered in caps; foreign-language lines set in typeset system fonts — a deliberate gag texture.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "paper_white": {"hex": "#FFFFFF", "usage": "background void and barracks walls; negative space is the set"},
+    "sketch_line_gray": {"hex": "#2A2A2A", "usage": "loose contour lines, hand-lettered English caps, question marks"},
+    "garment_light_gray": {"hex": "#D6D6D6", "usage": "uniform shirts, caps, flat fills on most clothing"},
+    "trouser_mid_gray": {"hex": "#9E9E9E", "usage": "trousers, tunics, darker garment fills, guard uniform"},
+    "ghost_prop_gray": {"hex": "#C9C9C9", "usage": "ACHTUNG posters, barred window, watchtower, locker — barely-there props"},
+    "skin_value_gray": {"hex": "#7A7A7A", "usage": "darker gray skin value distinguishing prisoner_african; lighter values for others"}
+  },
+  "casting_canon": {
+    "prisoner_english": "20s-30s, wiry and lean; spiky upswept hair, freckled cheeks; drab POW uniform shirt with sergeant chevrons; urgent, conspiratorial, all business.",
+    "prisoner_french": "30s-40s, lean; narrow mustachioed face; dark beret (later a soft white cap), horizontally striped shirt, gray trousers; puzzled listener turned uncertain whisperer.",
+    "prisoner_russian": "40s, stocky; thick dark mustache; military cap with star badge (later light flat cap), plain gray tunic; frowning, gruff, confidently wrong.",
+    "prisoner_sikh": "30s-40s, broad; full dark beard, dark turban; gray work shirt; blank confusion turning to earnest urgency.",
+    "prisoner_african": "30s, lean; dark-skinned, soft crumpled uniform cap; button-pocketed tunic, loose fatigues; furrowed concentration, brisk delivery.",
+    "prisoner_chinese": "30s-40s, medium build; short dark hair, faint mustache; high-collared utility tunic with chest pockets; stone-faced, measured, solemn.",
+    "prisoner_mohawk": "20s, gangly and pale; tall upswept fair tuft, near-mohawk; rumpled pale uniform shirt, later baggy t-shirt and knee-length shorts; vacant, utterly sincere.",
+    "german_guard": "30s-40s, solid and upright; steel helmet, round glasses; camp guard uniform with sleeve chevron, ammunition pouches, slung rifle; rigid, then baffled alarm."
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, color, saturated hues, clean polished inking, uniform line weight, detailed realistic backgrounds, halftone dots, screentone, anime style, swastika, nazi insignia, navigation arrows, UI chrome",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: loose grayscale sketch illustration, wobbly hand-drawn line, flat gray washes, white background, no photographic rendering, no 3d.",
+    "lettering_garbled": "Generate art without text; add hand-lettering (English) or typeset foreign-language lines in post.",
+    "drifts_color": "Add: strictly grayscale, gray wash on white paper, no color.",
+    "drifts_too_clean": "Add: rough sketchy linework, unpolished gestural contours — the wobble is canonical."
+  }
+}

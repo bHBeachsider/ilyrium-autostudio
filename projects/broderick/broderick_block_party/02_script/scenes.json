@@ -1,0 +1,117 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Suburban neighborhood street, daytime",
+    "characters": ["dennis"],
+    "action": "Title card. Dennis scowls in the lower-left foreground while large title lettering fills the right side of the frame over a backdrop of suburban houses and trees.",
+    "visual_prompt": "A gaunt man in his 60s with short spiky gray hair, thick black rectangular glasses, deep frown lines and gritted teeth, wearing a short-sleeved button-up camp shirt, glaring at the viewer from the lower-left foreground; behind him a leafy suburban street with two-story houses and rounded shrubs; bold title text dominates the upper right; medium close-up, eye level.",
+    "dialogue": [],
+    "voiceover": "NEIGHBORHOOD BLOCK PARTY. ©COPYRIGHT 2024 CHANCRE PRODUCTIONS.",
+    "performance": "Sour, simmering irritation under a cheery suburban banner",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 2,
+    "location": "Backyard block party, at the gas grill",
+    "characters": ["dan_obrien", "dennis"],
+    "action": "Dan flips burgers at a stainless gas grill and greets Dennis warmly; Dennis turns toward him with a hostile squint, not recognizing him at all.",
+    "visual_prompt": "A heavyset friendly man in his 50s with short dark hair, wearing a light polo shirt tucked into belted slacks, holding a spatula over a stainless steel gas grill with burgers and smoke rising, smiling at a gaunt spiky-haired man in his 60s with thick black glasses and a dark camp shirt who scowls back from the right foreground; suburban houses sketched in the background; medium two-shot, eye level.",
+    "dialogue": [
+      {"speaker": "dan_obrien", "line": "I'D RATHER BE WATCHING GOLF BUT I GOT PUT ON GRILL PATROL, HEH.  HOW YOU DOING DENNIS?", "delivery": "genial small-talk chuckle"},
+      {"speaker": "dennis", "line": "DO I KNOW YOU??", "delivery": "suspicious, sharp"}
+    ],
+    "voiceover": "",
+    "performance": "Friendly overture meets instant hostility",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 3,
+    "location": "Backyard block party, at the gas grill",
+    "characters": ["dan_obrien", "dennis"],
+    "action": "Dan, deflating, reminds Dennis they had him over for dinner last week; Dennis responds by questioning his food safety in graphic terms.",
+    "visual_prompt": "A heavyset man in his 50s in a light polo and belted slacks looks down sadly while holding a spatula over a smoking stainless gas grill with burgers; to the right a gaunt spiky-haired man in his 60s with thick black glasses and a dark camp shirt glares with bared teeth; sketched suburban houses behind; medium two-shot, eye level.",
+    "dialogue": [
+      {"speaker": "dan_obrien", "line": "DAN O'BRIEN.  WE HAD YOU OVER FOR DINNER LAST WEEK...", "delivery": "wounded, trailing off"},
+      {"speaker": "dennis", "line": "I DONT KNOW HOW YOU PREPARE MEAT PRODUCTS, I DONT WANT NAUSEA, CRAMPS AND FLAMING DIARRHEA.", "delivery": "blunt, accusatory rant"}
+    ],
+    "voiceover": "",
+    "performance": "Escalating social cruelty played deadpan",
+    "duration_target_s": 7
+  },
+  {
+    "scene_number": 4,
+    "location": "Backyard block party, at the gas grill",
+    "characters": ["dan_obrien", "dennis"],
+    "action": "Silent beat. Dan stares down at the grill, crushed, spatula in hand, as Dennis's shoulder exits frame right.",
+    "visual_prompt": "A heavyset man in his 50s in a light polo and belted slacks stands alone at a smoking stainless gas grill with burgers, eyes downcast, shoulders slumped, spatula held limp; the dark-shirted shoulder of a departing man edges into the right foreground; faint suburban houses behind; medium shot, eye level, melancholic stillness.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Awkward defeated silence after the insult",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 5,
+    "location": "Block party lawn, among the crowd",
+    "characters": ["dennis", "neighbor_bro_1", "neighbor_bro_2"],
+    "action": "Two beer-holding neighbors call out to Dennis to settle a college sports argument; Dennis fumes in the foreground without turning around.",
+    "visual_prompt": "A gaunt man in his 60s with spiky gray hair, thick black glasses and an open-collar dark camp shirt scowls in the left foreground; behind him two grinning men in their 40s — one in a dark polo and shorts holding a paper food tray and beer bottle, one stockier in a white polo and dark shorts raising a beer bottle — banter at him; trees and houses behind; foreground close-up with two mid-ground figures, eye level.",
+    "dialogue": [
+      {"speaker": "neighbor_bro_1", "line": "HEY DENNIS, BREAK THE TIE BRO. IS IT SAN DIEGO STATE OR UCONN?", "delivery": "loud bro-banter"},
+      {"speaker": "neighbor_bro_2", "line": "GO HUSKIES! AM I RIGHT?", "delivery": "boisterous, beer raised"}
+    ],
+    "voiceover": "",
+    "performance": "Jock cheer crashing against grumpy stonewall",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 6,
+    "location": "Block party lawn, among the crowd",
+    "characters": ["dennis", "neighbor_bro_1", "neighbor_bro_2"],
+    "action": "Dennis dismisses the two bros' sports talk as primate gibberish and announces he only wants a hot dog; the bros sag, stunned.",
+    "visual_prompt": "A gaunt man in his 60s with spiky gray hair, thick black glasses and a dark camp shirt snarls in the left foreground; behind him two deflated men in their 40s — one in a dark polo with a paper food tray and beer, one stockier in a white polo with a beer — stare blankly, smiles gone; suburban lawn and trees behind; foreground close-up with two mid-ground figures, eye level.",
+    "dialogue": [
+      {"speaker": "dennis", "line": "I CAN'T DECIPHER YOUR PRIMATE-LIKE BONDING GIBBERISH. I SIMPLY WANT A FRANKFURTER...", "delivery": "contemptuous, clinical"}
+    ],
+    "voiceover": "",
+    "performance": "Withering put-down and stunned silence",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 7,
+    "location": "Block party lawn, conversation circle",
+    "characters": ["mustache_neighbor", "dennis", "blonde_neighbor"],
+    "action": "Two neighbors chat across Dennis about home drainage; Dennis stands between them holding a hot dog as wasps begin circling his food and head.",
+    "visual_prompt": "A balding mustached man in his 50s with glasses and a tucked polo shirt chats past a gaunt wide-eyed man in his 60s with spiky gray hair, thick black glasses and a dark camp shirt who clutches a hot dog in a bun while several wasps loop around him in dotted flight paths; on the right a long-haired blonde woman in a fitted t-shirt and dark skirt replies brightly; three-figure medium shot, eye level.",
+    "dialogue": [
+      {"speaker": "mustache_neighbor", "line": "GETTING A FRENCH DRAIN WAS THE BEST THING WE DID.", "delivery": "self-satisfied homeowner pride"},
+      {"speaker": "blonde_neighbor", "line": "I HEARD IT'S MONEY WELL-SPENT!", "delivery": "chipper agreement"}
+    ],
+    "voiceover": "",
+    "performance": "Banal small talk while menace literally circles",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 8,
+    "location": "Block party lawn, conversation circle",
+    "characters": ["dennis", "mustache_neighbor", "blonde_neighbor"],
+    "action": "Dennis erupts, swinging his hot dog overhead at the swarming wasps and screaming an obscenity; the two neighbors recoil in shock.",
+    "visual_prompt": "A gaunt man in his 60s with spiky gray hair and thick black glasses, mouth wide in a scream, swings a hot dog in a bun overhead with one raised arm as wasps swarm around his head in jagged motion lines; behind him a balding mustached man in his 50s with glasses and a polo, and a blonde long-haired woman in a fitted t-shirt and dark skirt, both frozen in alarm; huge bold scream lettering across the top; dynamic medium shot, slight low angle.",
+    "dialogue": [
+      {"speaker": "dennis", "line": "F**KING C**K WASPS!", "delivery": "full-volume enraged scream"}
+    ],
+    "voiceover": "",
+    "performance": "Explosive public meltdown",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 9,
+    "location": "Block party lawn",
+    "characters": ["dennis", "bent_over_onlooker"],
+    "action": "End card. Dennis, hunched and spent, watches his dropped hot dog splat onto the ground with a burst; in the background a man bends fully forward to gawk at him from between his own legs.",
+    "visual_prompt": "A gaunt man in his 60s with spiky gray hair, thick black glasses, dark camp shirt, shorts, tube socks and chunky sneakers hunches forward with limp arms, staring at a hot dog and bun splattering on the ground in a burst shape at his feet; in the background a bearded man in a white shirt and shorts bends completely forward, peering back upside-down between his own legs; giant end-title lettering fills the right side; full-body shot, eye level.",
+    "dialogue": [],
+    "voiceover": "THE END",
+    "performance": "Pathetic deflated aftermath, absurd button",
+    "duration_target_s": 4
+  }
+]

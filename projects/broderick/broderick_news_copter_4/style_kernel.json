@@ -1,0 +1,32 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Hand-drawn digital comic in grayscale with a single flat brick-red accent reserved for the warning banner. Cleaner and more produced than sibling strips: confident even-weight ink line, flat gray tonal fills in layered planes (gray helicopter, stepped gray skyline silhouettes, gray broadcast set), digital motion-smear on rotor blades. Dialogue sits in white rectangular speech balloons and caption boxes with black borders and tails, set in a consistent bold-italic comic typeface rather than loose hand lettering. Nudity handled as dark silhouette against dim interiors. END badge: white type on an angled black slab.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "ink_black": {"hex": "#161616", "usage": "linework, balloon borders, lettering, END slab, window mullions"},
+    "copter_gray": {"hex": "#7E7E7E", "usage": "helicopter fuselage flat fill, anchor's set shadows"},
+    "skyline_gray": {"hex": "#9E9E9E", "usage": "layered city silhouettes, apartment facade, window-scene midtones"},
+    "panel_gray": {"hex": "#C9C9C9", "usage": "background field gray behind window scene, broadcast graphic blocks"},
+    "warning_red": {"hex": "#B5391F", "usage": "title-card warning banner only — the strip's single color accent"},
+    "paper_white": {"hex": "#FFFFFF", "usage": "sky, studio white, balloon interiors, END lettering"}
+  },
+  "casting_canon": {
+    "anchor": "square-jawed broad-shouldered trim man in his 40s, neatly coiffed light hair, light suit, white shirt and tie, permanent toothy broadcast smile, always behind the news desk fiddling with a pen",
+    "bruce": "unseen adult male voice from the helicopter — pilot; bored contempt curdling into leering hostile sleaze; represented only by balloons entering frame from the aircraft",
+    "copilot": "unseen adult male voice from the helicopter — crew; snickering enabler; balloons only",
+    "window_woman": "slim woman in her 20s-30s, long dark curly hair, caught mid-undress pulling a dark top over her head, rendered strictly as a dark back-view silhouette against a dim room, alarmed and indignant"
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, any color other than the flat brick-red banner accent, detailed or photoreal nudity, visible faces inside the helicopter, scratchy sketch line, anime style, cute rounded proportions, balloon-free floating dialogue",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: flat hand-drawn grayscale comic illustration, even ink line, flat gray fills, no photographic rendering, no 3d.",
+    "drifts_explicit": "Add: figure as dark featureless silhouette only, no anatomical detail, shadow against dim interior.",
+    "lettering_garbled": "Generate art without text; add comic-typeface balloons and captions in post or via dedicated lettering pass."
+  }
+}

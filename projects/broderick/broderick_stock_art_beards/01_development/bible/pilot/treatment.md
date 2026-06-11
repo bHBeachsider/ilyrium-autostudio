@@ -1,0 +1,6 @@
+# Pilot Treatment — Stock Art Beards
+
+**Logline:** Three bearded bros vow to meet in front of their favorite brewery every 20 years no matter what — and the pact outlives the friendship, the bros, and the brewery itself.
+
+## Treatment
+A three-beat time-lapse comedy shot from one fixed camera position on a sidewalk. Beat one: peak friendship — three stock-art-handsome hipsters clink craft beers in front of the "ARTISINAL BREWERY" wall and Pete, the instigator, proposes the pact: meet here every 20 years, no matter what. Everyone is totally down. Beat two, 20 years later: only two return. A gaunt, suited bro_1 greets the now-bald bro_3 with a backhanded "I aged better than you" and asks where the fuck Pete is; the answer arrives with devastating indifference — "HE DIED I THINK. SOMEONE TOLD ME THAT." Beat three, 20 years after that: one shrunken old man stands alone in a widening field of white, the wall behind him now scrawled "CHIPOTLE." He surveys forty years of fidelity to a drunken promise and delivers the eulogy: "GUESS THOSE FUCKERS DIED ON ME. THIS WAS A SHIT IDEA ANYHOW." END. The film's engine is the unmoving frame — same wall, same spot — while time strips away friends, hair, and finally the premise itself.

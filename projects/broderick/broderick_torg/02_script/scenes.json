@@ -1,0 +1,64 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Institute media room, in front of a large monitor",
+    "characters": ["torg", "instructor_woman"],
+    "action": "A cheerful instructor points at a social media feed on a large monitor and explains 'likes' to Torg, a hulking defrosted Neanderthal clutching a spear, who squints at the screen.",
+    "visual_prompt": "Medium two-shot, eye level. Left: a large dark-framed monitor angled toward camera showing a feed of small post thumbnails. Center: a slender woman with long straight hair, bright smile, in a long-sleeved top, leaning forward and pointing at the screen. Right: a massive bare-chested Neanderthal man with a heavy brow, broad flat nose, scraggly beard, wild matted hair and jutting lower teeth, gripping a tall wooden spear with a leaf-shaped stone point, squinting at the monitor.",
+    "dialogue": [
+      {
+        "speaker": "instructor_woman",
+        "line": "LOOK TORG! SEE THOSE LITTLE HANDS WITH THUMBS POINTING UP?  THOSE ARE LIKES, TO SHOW THAT YOU LIKE THINGS, MUCH LIKE YOU MIGHT LIKE A FIRE, OR FRESH MEAT FROM A HUNT!",
+        "delivery": "bright, patient, over-enunciated teaching voice"
+      }
+    ],
+    "voiceover": "TORG THE NEANDERTHAL LEARNS OF SOCIAL MEDIA...",
+    "performance": "Earnest pedagogy meets stone-age bafflement",
+    "duration_target_s": 8
+  },
+  {
+    "scene_number": 2,
+    "location": "Institute media room, in front of a large monitor",
+    "characters": ["torg", "instructor_woman"],
+    "action": "The instructor keeps pointing at the feed, elaborating on what people click 'like' on; Torg stares at the screen, unmoved.",
+    "visual_prompt": "Medium two-shot, eye level, same composition. The slender long-haired woman in the long-sleeved top points at the dark-framed monitor full of post thumbnails, smiling encouragingly. Beside her the massive bare-chested Neanderthal with heavy brow, scraggly beard and matted hair grips his stone-tipped spear and squints blankly at the screen.",
+    "dialogue": [
+      {
+        "speaker": "instructor_woman",
+        "line": "IN TODAY'S TIMES, WE CLICK 'LIKE' ON THINGS WE LIKE, LIKE FUNNY PHOTOS, OR COMMENTS, OR VIDEOS THAT MAKE US LAUGH!",
+        "delivery": "chirpy, persistent, slightly strained"
+      }
+    ],
+    "voiceover": "",
+    "performance": "One-sided enthusiasm, comic patience",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 3,
+    "location": "Institute media room, in front of a large monitor",
+    "characters": ["torg", "instructor_woman"],
+    "action": "Silent beat. The instructor's pointing finger hangs at the screen; Torg just stares. Nobody says anything.",
+    "visual_prompt": "Medium two-shot, eye level, identical composition held in silence. The slender long-haired woman still points at the monitor of post thumbnails with a fixed smile; the massive bare-chested Neanderthal with his stone-tipped spear squints at the screen, jaw slack, utterly unresponsive.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Dead-air comedic pause",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 4,
+    "location": "Institute media room, in front of a large monitor",
+    "characters": ["torg", "instructor_woman"],
+    "action": "The instructor taps the screen as Torg finally responds with gibberish syllables; a narration caption defends Torg's intelligence and explains the institute's 14-hour-a-day social media instruction. An END plate sits over the corner.",
+    "visual_prompt": "Medium two-shot, eye level. The slender long-haired woman in the long-sleeved top touches the large monitor of post thumbnails with one extended finger, smiling gently. The massive bare-chested Neanderthal with heavy brow, scraggly mustache-beard and matted hair grips his tall stone-tipped spear with both hands, mouth open showing crooked lower teeth as he vocalizes. A bordered rectangular END plate occupies the lower right.",
+    "dialogue": [
+      {
+        "speaker": "torg",
+        "line": "KAAA... BAAAA...",
+        "delivery": "halting guttural gibberish, earnest effort"
+      }
+    ],
+    "voiceover": "TORG'S GIBBERISH RESPONSE MIGHT GIVE VIEWERS THE IMPRESSION HE IS STUPID, BUT HE IS FAR FROM IT. UPON DEFROSTING TORG, SCIENTISTS FOUND BERRIES, HERBS AND A MOUSE SKULL IN HIS STOMACH, INDICATING HE DIDN'T EAT JUST ANY OLD THING!\n\nTORG WAS A SOCIAL CREATURE.  HE HAD TO BE IN ORDER TO SURVIVE. HOWEVER HE IS NOT \"SOCIAL\" AS WE KNOW IT. TORG STILL NEEDS TO LEARN ABOUT SOCIAL MEDIA AND MEMES AND THINGS, AND THE INSTITUTE IS ON IT, INSTRUCTING HIM 14 HRS. A DAY.",
+    "performance": "Mock-documentary sincerity over absurd punchline",
+    "duration_target_s": 8
+  }
+]

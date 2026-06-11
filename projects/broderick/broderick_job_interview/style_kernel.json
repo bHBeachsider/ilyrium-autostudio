@@ -1,0 +1,30 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Original hand-drawn digital gag cartoon: loose scratchy pen contours with caricatured faces, grayscale only. White void backgrounds with a single big desk and swivel chair anchoring the office set; flat light-gray washes for shading plus solid black fills on beard, hair, and chair upholstery. Lettering is typeset bold italic comic caps floating at panel top, with an oversized serif drop-cap for the screamed line; the infomercial epilogue adds a hand-drawn UI button and a strip of dense legal fine print along the bottom edge.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "paper_white": {"hex": "#FFFFFF", "usage": "background and most surfaces; office implied by desk + chair only"},
+    "sketch_ink": {"hex": "#2A2A2A", "usage": "all linework and lettering, scratchy variable pen"},
+    "solid_black_fill": {"hex": "#111111", "usage": "interviewer's beard, hosts' hair, swivel-chair back, drop-cap I"},
+    "wash_gray": {"hex": "#DCDCDC", "usage": "flat shading on desk side, suits, skin shadow, t-shirt folds"},
+    "fine_print_gray": {"hex": "#333333", "usage": "tiny dense legal disclaimer line and UI button text in the infomercial panel"}
+  },
+  "casting_canon": {
+    "interviewer": "Heavyset balding middle-aged man, scruffy gray-flecked beard (solid dark fill), bow tie, behind a big clean desk with a laptop. Affect swings from genial distraction to spittle-flying volcanic rage.",
+    "jason": "Thin man, late 20s, neatly combed hair, rectangular glasses, slim suit and tie, perched upright on a black swivel office chair, hands folded. Affect: polite, eager, desperately agreeable under abuse.",
+    "host_man": "Muscular man, 30s, thick curly dark hair (solid fill), broad shoulders, tight t-shirt, huge grin with a winking eye. Affect: manic salesman charisma.",
+    "host_woman": "Woman, 30s, blunt blonde bob, enormous fixed smile, leaning into frame at the host's shoulder. Affect: unblinking advertising cheer."
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, color, clean uniform vector linework, smooth anime style, detailed office backgrounds, crosshatch engraving style, speech balloons with tails, photoreal faces, realistic UI chrome",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: loose scratchy hand-drawn pen cartoon, grayscale with flat gray wash and solid black fills, gag-cartoon caricature, no photographic rendering, no 3d, no color.",
+    "lettering_garbled": "Generate art without text; add typeset bold italic comic caps in post or via dedicated lettering pass."
+  }
+}

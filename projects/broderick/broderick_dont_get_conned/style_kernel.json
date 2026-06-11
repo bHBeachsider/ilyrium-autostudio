@@ -1,0 +1,32 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Hand-drawn digital grayscale single-panel gag on pure white void — no environment at all. Two-tier figure rendering as the joke's visual grammar: the con man is drawn large and handsome with modeled face, hatched leather jacket, and confident contour; the schlubby mark is smaller, cruder, and lumpier. Flat gray fills (charcoal jacket, pale denim, dark trousers) with light hatching, no gradients. Bold underlined hand-styled title 'FONZI SCHEME' top-left; balloon-less all-caps comic-font dialogue floating beside each speaker, with underline emphasis for key words.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "paper_white": "#FFFFFF — entire background void plus the mark's t-shirt; the panel is mostly empty space",
+    "ink_black": "#1B1B1B — linework, lettering, title, hair masses (pompadour, hair fringe)",
+    "jacket_charcoal": "#3A3A3A — the con man's leather jacket body, anchor dark mass of the composition",
+    "denim_gray": "#C4C4C4 — con man's faded jeans and light shirt; knit collar/cuff ribbing detail",
+    "trouser_gray": "#5A5A5A — mark's dark trousers",
+    "title_device": "underlined bold capitals top-left ('FONZI SCHEME') as an in-panel pun title card"
+  },
+  "casting_canon": {
+    "fonzi_conman": "tall broad-shouldered man in his 40s, confident stance; black slicked-back pompadour, square jaw, big toothy grin; dark leather jacket with knit collar and cuffs over a light shirt, faded jeans; retro greaser cool, answers everything with double thumbs-up and catchphrases",
+    "mark": "doughy hunched man in his 50s, sagging belly, balding with a fringe of dark hair, heavy-lidded slack expression; tight white t-shirt, dark trousers; hesitant but hopeful, wants to believe"
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, any color, speech balloon outlines, background scenery or props, equalized rendering quality between the two figures, anime style, likeness of any real actor or TV character, additional characters",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot.",
+    "strip_rule": "Size and polish asymmetry between con man (large, handsome, refined) and mark (small, crude, lumpy) is canon — preserve the gap in every regeneration."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: flat hand-drawn comic illustration, visible ink line, no photographic rendering, no 3d.",
+    "drifts_color": "Add: strictly grayscale, flat gray fills on white, no color.",
+    "conman_resembles_tv_character": "Regenerate from attributes only — generic 1950s greaser archetype: pompadour, leather jacket, thumbs up; no specific actor or show likeness.",
+    "lettering_garbled": "Generate art without text; add hand-lettering in post or via dedicated lettering pass."
+  }
+}

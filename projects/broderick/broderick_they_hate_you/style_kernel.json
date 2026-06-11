@@ -1,0 +1,30 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Hand-drawn digital memoir comic in black-and-white sketch ink — scratchy, energetic pen linework with dense scribbled hatching on hair and clothing, left rough and unpolished. White paper grounds; background figures and clutter fade to pale ghost-gray line while the subject stays full black. Solid black silhouettes used as menace (the looming teacher) and as graphic device (evolution title card, the strip's lone blue accent). Hand-lettered all-caps caption strips run along the top as adult narration; black END card closes.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "ink_black": {"hex": "#111111", "usage": "primary linework, silhouettes (teacher, evolution figures), striped shirt bands, END card"},
+    "paper_white": {"hex": "#ffffff", "usage": "untouched page ground in every panel; negative space does the staging"},
+    "ghost_gray": {"hex": "#c4c4c4", "usage": "faded background linework — classmate, classroom clutter, alphabet wall strip; depth via line fade not tone"},
+    "mid_gray": {"hex": "#8a8a8a", "usage": "sparse flat fills: globe, sweater stripes, shadow accents"},
+    "title_blue": {"hex": "#4a7fd1", "usage": "single color accent — the AUTOBIOGRAPHY title-card lettering with drop shadow; appears nowhere else"}
+  },
+  "casting_canon": {
+    "young_broderick": "Boy, about 6, slight build, shaggy mop of hair over his forehead, freckles, striped short-sleeve shirt, at a one-piece school desk; absorbed and content drawing, then hollow-eyed shock.",
+    "teacher": "Elderly schoolteacher, stout, severe tight hair bun, cat-eye glasses over heavy-lidded contemptuous eyes, deep frown lines, jowls, small drop earrings, dark striped sweater, wooden pointer stick; first seen as a looming solid-black silhouette; cold droning authoritarian.",
+    "classmate": "Skinny boy, about 6, short hair, large wide eyes, gawky posture, at a background desk; alarmed wincing bystander rendered in faded ghost-gray line."
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, color except title-card blue, clean smooth vector linework, polished even line weight, full-tone backgrounds, gray wash fills on background figures, screentone, crosshatch density on the paper-white ground",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: rough hand-drawn pen sketch comic, scratchy ink line, white paper background, no photographic rendering, no 3d.",
+    "drifts_polished": "Add: loose scribbled hatching, unpolished sketch energy, visible rough strokes.",
+    "lettering_garbled": "Generate art without text; add hand-lettering in post or via dedicated lettering pass."
+  }
+}

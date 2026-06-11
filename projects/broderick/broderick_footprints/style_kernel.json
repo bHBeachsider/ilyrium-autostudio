@@ -1,0 +1,44 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Hand-drawn digital grayscale strip in a faux-devotional register. Loose, confident ink contours over white paper with flat gray bands for sea, mountains, and sky props; sand rendered as white space with sparse squiggle texture; solid-black footprint trails as graphic anchors. Panel one is dominated by calligraphic serif italic narration with an illuminated drop-cap O — greeting-card typography played straight. Panel two drops all text for a wide sight-gag tableau with loose scribble-hatched figures and a hand-scrawled END. Very wide landscape frames, horizon high and flat.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "paper_white": {
+      "hex": "#FFFFFF",
+      "usage": "Sky and sand — the beach is mostly untouched white paper with sparse line texture"
+    },
+    "ink_black": {
+      "hex": "#111111",
+      "usage": "Footprint trails (solid graphic stamps), figure hair/beard, swimsuits, drop-cap, END lettering"
+    },
+    "sea_gray": {
+      "hex": "#9C9C9C",
+      "usage": "Flat dark horizontal band of ocean behind the sand in both panels"
+    },
+    "mountain_gray": {
+      "hex": "#B5B5B5",
+      "usage": "Distant mountain range band, panel one; mid-distance value step"
+    },
+    "robe_pale": {
+      "hex": "#E6E6E6",
+      "usage": "The Lord's long robe and net shadows — lightest wash with scribble-hatch texture"
+    }
+  },
+  "casting_canon": {
+    "dreamer": "Never shown directly; off-screen narrating voice and one set of solid-black footprints in the sand; earnest wounded questioning affect, recites the devotional poem sincerely",
+    "the_lord": "Adult man with long dark hair and full dark beard, medium build, wearing a long pale ankle-length robe, barefoot; appears only in the wordless punchline panel mid-volleyball-spike at a beach net; serene, absorbed in the game, silent"
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, color, colored fills, painterly sand texture, detailed water rendering, golden-hour sky, halo or glow effects, photoreal anatomy, manga style, dense backgrounds",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: flat hand-drawn grayscale comic illustration, visible ink line, white-paper sand, no photographic rendering, no 3d.",
+    "drifts_reverent": "Add: deadpan flat staging, no halo, no glow, no dramatic sky — the gag depends on mundane rendering.",
+    "lettering_garbled": "Generate art without text; add calligraphic narration and lettering in post or via dedicated lettering pass."
+  }
+}

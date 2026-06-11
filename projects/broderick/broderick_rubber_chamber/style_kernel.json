@@ -1,0 +1,31 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Grayscale hand-drawn digital comic. Heads rendered with near-photographic caricature realism — smooth soft gray tonal modeling on scalp, jowls, ears — sitting on looser, sketchier ink bodies and hands. No backgrounds beyond a white void and a faint light-gray contour door. Mid-gray flat fill on the t-shirt with hatched ribbing at the collar. Bold black hand-lettered italic caps for titles and shouts, floating free without balloons; oval balloons with long curved tails for unseen off-panel voices. A microtype mock-legalese copyright strip runs across the bottom of every panel.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "paper_white": {"hex": "#FFFFFF", "usage": "background void in every panel; negative space is the set"},
+    "ink_black": {"hex": "#141414", "usage": "hand-lettering, figure contours, track-pant fills, knock strokes"},
+    "shirt_mid_gray": {"hex": "#8A8A8A", "usage": "flat fill on Yabo's crew-neck t-shirt, TO BE CONTINUED placard"},
+    "flesh_shade_gray": {"hex": "#C4C4C4", "usage": "soft tonal modeling on scalp, face, ears, arms"},
+    "ghost_line_gray": {"hex": "#D9D9D9", "usage": "faint contour door, panel furniture drawn barely-there"},
+    "microtype_strip": {"hex": "#EFEFEF", "usage": "bottom-edge mock-copyright legalese band, recurring gag motif"}
+  },
+  "casting_canon": {
+    "yabo": "Middle-aged (late 40s-50s), heavy-set with thick neck and paunch; bald stubbled scalp, large protruding ears, bulbous nose, heavy jowls; dark crew-neck t-shirt with ribbed collar, dark track pants with light side stripes; permanently enraged, hair-trigger glare and bellow.",
+    "census_taker": "Adult 30s-40s, slender and lanky; short light flyaway hair; pale button-up shirt, dark belt, gray trousers, white socks, dark shoes; meek and polite at the door, flailing ragdoll terror once airborne.",
+    "meter_reader": "Adult, never shown on panel — voice from behind the closed door only; flat, oblivious, businesslike delivery; represented solely by a speech balloon emerging from the door."
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, color, saturated hues, halftone dots, screentone, crosshatch texture, anime style, chibi proportions, detailed interior backgrounds, painted backgrounds, drop shadows, rectangular panel borders",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: grayscale hand-drawn comic illustration, caricature head with soft gray tonal modeling, sketchy ink body, white void background, no photographic rendering, no 3d. Note: head shading IS soft-tonal in this strip — flatten the body, not the face.",
+    "lettering_garbled": "Generate art without text; add hand-lettering in post or via dedicated lettering pass.",
+    "drifts_color": "Add: strictly grayscale, black ink on white paper, mid-gray fills only, no color."
+  }
+}

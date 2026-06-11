@@ -1,0 +1,16 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Plain white space, two figures facing each other under the underlined title 'FONZI SCHEME'",
+    "characters": ["mark", "fonzi_conman"],
+    "action": "A schlubby mark, hands spread in cautious disbelief, asks whether handing over $1000 can really become $5000 today, risk-free. The slick greaser con man answers with a double thumbs-up and a single word.",
+    "visual_prompt": "Two men on a blank white background. Left, smaller in frame: a doughy balding man in his 50s, fringe of dark hair, hunched posture, sagging belly under a tight white t-shirt, dark trousers, hands spread palms-up in hesitant inquiry. Right, larger in frame: a tall grinning man in his 40s, pompadour of slicked black hair, square jaw, dark leather jacket with knit collar and cuffs over a light shirt, faded jeans, both thumbs up at his sides. Medium two-shot, eye level, the con man dominating the right half of frame.",
+    "dialogue": [
+      {"speaker": "mark", "line": "SO, IF I GIVE YOU $1000, YOU CAN TURN IT INTO $5000 TODAY-- RISK-FREE?", "delivery": "hesitant, wanting to believe"},
+      {"speaker": "fonzi_conman", "line": "CORRECTOMUNDO!", "delivery": "booming retro-cool confidence, all charm"}
+    ],
+    "voiceover": "FONZI SCHEME",
+    "performance": "Single-panel pun gag; gullibility meets weaponized 1950s cool",
+    "duration_target_s": 6
+  }
+]

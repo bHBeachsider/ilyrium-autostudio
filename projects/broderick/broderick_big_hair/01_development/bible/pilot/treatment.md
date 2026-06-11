@@ -1,0 +1,5 @@
+# Pilot Treatment — Big Hair
+
+**Logline:** A weary man with a medical condition that gives him enormous rope-like hair endures one rejection and one bar pest too many — and enforces his single rule: hands off the big hair.
+
+**Treatment:** In a gray corporate office, a job interviewer peers over his laptop and delivers the verdict with HR-grade politeness: impressive credentials, but those big hair follicles "aren't an optimal fit at this juncture." Unwinding after a day of rejection, our gaunt, heavy-lidded hero nurses a beer beneath his enormous tangle of noodle-thick hair when a braying bar loudmouth latches on — mocking the hair, announcing it to the whole room ("GUY HAS BIG HAIR!"), and finally reaching out to prod it, marveling that it's "like big noodles." The fuse burns out. In one explosive close-up the beer mug meets the loudmouth's face — starburst, flying tooth, glass everywhere. Then stillness: the man sits serenely over his shattered mug beside an emptied barstool and states, to no one, "Hands off the big hair." END. ~35 seconds, scratchy grayscale gag-cartoon throughout.

@@ -1,0 +1,31 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Monochrome collage comic built from repurposed 1950s advertising clip-art: crisp vintage pen-and-ink figures with crosshatch and feathered shading, pasted onto stark white backgrounds alongside flat solid-black silhouette figures for action beats. No color anywhere — pure black, white, and a soft photographic gray wash on some collaged figures. Hand-scrawled impact bursts and stars mark hits. Lettering is bold italic all-caps digital comic font, free-floating with no balloons. Single square panels, lots of negative space, deadpan mid-century stock-pose staging.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "paper_white": {"hex": "#FFFFFF", "usage": "entire background field; panels float on raw white with no borders"},
+    "ink_black": {"hex": "#1A1A1A", "usage": "vintage linework, lettering, and the solid silhouette of the kicking husband and seated wife"},
+    "halftone_gray": {"hex": "#B5B5B5", "usage": "soft tonal wash on some collaged figures (Mrs. Johnson's suit, shadows under figures)"},
+    "watermark_ghost": {"hex": "#E8E8E8", "usage": "faint residual stock-image watermarks on source art — an artifact, not a motif; remove in regeneration"},
+    "impact_scrawl": {"hex": "#202020", "usage": "loose hand-drawn starburst and asterisk-star impact marks around kicked heads"}
+  },
+  "casting_canon": {
+    "husband": "Man, 30s, lean athletic build, short neat side-parted dark hair, light suit jacket with dark tie; breezy affable affect at table. In every action panel he becomes a featureless solid-black silhouette frozen in a high extended roundhouse kick.",
+    "wife": "Woman, 30s, slim, short curled dark hair, sleeveless dark dress with ruffled collar; warm but wary affect. During the rampage she is a seated foreground black silhouette at the table edge.",
+    "mr_johnson": "Man, 40s, stocky, broad-faced, slicked-back hair, suit with patterned tie and pocket square; boisterous pointing-and-laughing affect. Rendered in vintage clip-art linework.",
+    "mrs_johnson": "Woman, 30s, slim, dark updo (wavy light hair in dialogue scenes), smart buttoned skirt suit rendered with gray tonal wash; pleasant sociable affect until kicked.",
+    "waiter": "Man, 20s, slim, dark hair, vest and bow tie over white shirt, carries a domed serving tray; professional cheer snapping to shock."
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, full color, saturated color fills, modern flat vector cartoon, anime, manga, speech balloons with outlines and tails, panel borders, stock-photo watermark text, soft pencil sketch, painterly texture",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: monochrome vintage 1950s clip-art line illustration, crisp pen-and-ink crosshatch, flat black silhouettes, pure white background, no photographic rendering, no 3d, no color.",
+    "lettering_garbled": "Generate art without text; add bold italic all-caps comic lettering in post or via dedicated lettering pass."
+  }
+}

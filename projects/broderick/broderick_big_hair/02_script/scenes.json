@@ -1,0 +1,79 @@
+[
+  {
+    "scene_number": 1,
+    "location": "corporate office, interview desk by a window with a city skyline",
+    "characters": ["big_hair_man", "interviewer"],
+    "action": "A job interviewer behind a laptop politely rejects the candidate, blaming his enormous hair follicles; the candidate sits slumped and resigned in the guest chair.",
+    "visual_prompt": "Office interview scene. On the left a gaunt middle-aged man with a long droopy nose and an enormous tangled mass of thick rope-like hair strands piled on his head, wearing a rumpled suit, shirt and loose tie, sits slouched in a soft chair with hands folded on his knee, expression weary and resigned. On the right behind a large angular desk a balding man in glasses with a lanky build leans over a laptop, mouth open mid-sentence, one hand gesturing with a pen. A wide window behind them shows a gray city skyline. Medium-wide two-shot, eye level.",
+    "dialogue": [
+      {"speaker": "interviewer", "line": "YOUR CREDENTIALS ARE IMPRESSIVE, BUT I THINK YOUR BIG HAIR FOLLICLES AREN'T AN OPTIMAL FIT FOR US AT THIS JUNCTURE.", "delivery": "corporate-euphemism politeness masking blunt discrimination"}
+    ],
+    "voiceover": "",
+    "performance": "deflating, politely cruel rejection",
+    "duration_target_s": 7
+  },
+  {
+    "scene_number": 2,
+    "location": "dive bar, counter by the front window with a reversed BAR sign",
+    "characters": ["big_hair_man", "bar_loudmouth"],
+    "action": "Nursing a beer at the bar, the big-haired man is accosted by a loud stranger who mocks his hair; he wearily explains his medical condition.",
+    "visual_prompt": "Bar interior with a large front window showing the word BAR in reverse. On the left a gaunt middle-aged man with an enormous tangle of thick rope-like hair strands, rumpled suit and loose tie, sits hunched over a beer mug with heavy-lidded exhausted eyes. On the right a stocky loudmouth in his 30s with spiky short hair, big nose, gap teeth and a baggy t-shirt leans in pointing a finger, beer glass in his other hand, mouth wide open. Medium two-shot along the bar counter, eye level.",
+    "dialogue": [
+      {"speaker": "bar_loudmouth", "line": "AYYYY--WHAT'S DAT? SOME KINDA DREADLOCKS, OR DEADHEAD LOCKS?", "delivery": "loud, braying, obnoxious mockery"},
+      {"speaker": "big_hair_man", "line": "I HAVE A CONDITION THAT MAKES MY HAIR FOLLICLES ABNORMALLY HUGE.  THEY CALL IT BIG HAIR", "delivery": "flat, weary, rehearsed explanation given a thousand times"}
+    ],
+    "voiceover": "UNWINDING AFTER A DAY OF REJECTION...",
+    "performance": "exhausted patience meeting barroom obnoxiousness",
+    "duration_target_s": 8
+  },
+  {
+    "scene_number": 3,
+    "location": "dive bar, counter by the front window",
+    "characters": ["big_hair_man", "bar_loudmouth"],
+    "action": "The loudmouth turns to the rest of the bar, jerking a thumb at the big-haired man and announcing his condition to everyone.",
+    "visual_prompt": "Bar interior, reversed BAR window sign behind. On the left a gaunt middle-aged man with an enormous tangle of rope-like hair sits at the counter gripping his beer mug, eyes closed in long-suffering stillness. On the right a stocky spiky-haired loudmouth in a baggy t-shirt twists away toward off-screen patrons, beer glass in hand, thumb jabbing back at the seated man, mouth wide in a shout. Medium two-shot, eye level, the shout dominating the frame.",
+    "dialogue": [
+      {"speaker": "bar_loudmouth", "line": "AYYYY--GET A LOAD OF THIS! GUY HAS BIG HAIR!", "delivery": "bellowed to the whole bar, delighted with himself"}
+    ],
+    "voiceover": "",
+    "performance": "public humiliation escalating",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 4,
+    "location": "dive bar, counter by the front window",
+    "characters": ["big_hair_man", "bar_loudmouth"],
+    "action": "The loudmouth crosses the line, reaching out and poking at the big hair while marveling at its texture; the big-haired man's eyes narrow.",
+    "visual_prompt": "Bar interior, reversed BAR window sign behind. A stocky spiky-haired loudmouth in a baggy t-shirt leans far across the counter, arm fully extended, fingers prodding the enormous tangle of thick rope-like hair on the head of a gaunt middle-aged man in a rumpled suit, who sits rigid over his beer mug with narrowed simmering eyes. Beer glass still in the loudmouth's other hand. Medium two-shot, eye level, tension in the touch.",
+    "dialogue": [
+      {"speaker": "bar_loudmouth", "line": "IT'S LIKE BIG NOODLES AND SHIT--", "delivery": "crass fascination, mid-sentence, oblivious to danger"}
+    ],
+    "voiceover": "",
+    "performance": "the last straw, fuse burning down",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 5,
+    "location": "dive bar, at the counter",
+    "characters": ["big_hair_man", "bar_loudmouth"],
+    "action": "The big-haired man smashes his beer mug square into the loudmouth's face in a single explosive blow, glass and spit and stars flying everywhere.",
+    "visual_prompt": "Extreme close action shot at a bar counter. A fist gripping a glass beer mug drives in from the left along speed lines, connecting dead-center with the face of a stocky spiky-haired man in a t-shirt, a jagged impact starburst exploding at the point of contact. His eyes bulge in opposite directions, mouth gaping with a tooth flying loose, beer droplets, glass shards and stars scattering across the frame. Tight close-up, slight low angle, frozen at maximum impact.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "sudden cathartic explosion of violence",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 6,
+    "location": "dive bar, counter by the front window",
+    "characters": ["big_hair_man"],
+    "action": "Calm restored, the big-haired man sits alone over his shattered mug, the counter strewn with glass and debris where the loudmouth used to be, and states his rule.",
+    "visual_prompt": "Bar interior, reversed BAR window sign behind. A gaunt middle-aged man with an enormous tangle of thick rope-like hair, rumpled suit and tie, sits serenely at the counter, hands folded around the broken stub of his beer mug, face perfectly composed. The counter to his right is empty except for scattered glass shards, droplets and debris, a faint dazed squiggle hanging in the air where a man once stood. Medium-wide shot, eye level, deadpan aftermath stillness.",
+    "dialogue": [
+      {"speaker": "big_hair_man", "line": "HANDS OFF THE BIG HAIR", "delivery": "quiet, level, final warning delivered to no one"}
+    ],
+    "voiceover": "END",
+    "performance": "deadpan triumphant calm after the storm",
+    "duration_target_s": 6
+  }
+]

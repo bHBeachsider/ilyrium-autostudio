@@ -1,0 +1,146 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Open sea on a sunny day, a sleek custom powerboat cutting through the water",
+    "characters": ["cap_bro", "spike_bro"],
+    "action": "A gleaming black custom powerboat speeds across the open sea under a bright sun, two men visible at the stern, wake churning behind.",
+    "visual_prompt": "Wide shot of a sleek dark-hulled luxury powerboat planing across open water, bow lifted, wake fanning out behind, bright sun high in the corner sky. Two small figures at the stern rail: a man in a backwards baseball cap and a broad-shouldered man with spiky hair. Low three-quarter angle from the water, boat crossing the frame diagonally.",
+    "dialogue": [],
+    "voiceover": "A BEAUTIFUL DAY FOR THE WELL-TO-DO TO ENJOY THE SEA IN THEIR CUSTOM BOATS...",
+    "performance": "Idyllic, faintly smug establishing beat — wealth at play",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 2,
+    "location": "Aft deck of the powerboat, anchored on calm water",
+    "characters": ["cap_bro", "spike_bro"],
+    "action": "The two bros toast with drinks on deck. Cap Bro crows about the party his posse is bringing; Spike Bro whoops along, then freezes — he hears a scraping noise from below.",
+    "visual_prompt": "Two-shot on the curved aft deck of a powerboat, calm sea and sun behind. Left: a lanky man in his 30s, backwards white baseball cap, long neck, gold chain, tank top, mid-laugh with a drink in hand. Right: a thick-necked muscular man in his 30s, tall spiky black hair, heavy jaw, prominent front teeth, shirtless in board shorts, holding a cup, his grin tilting into puzzlement. Medium two-shot, eye level, deck rail curving between them.",
+    "dialogue": [
+      {"speaker": "cap_bro", "line": "HAW! THIS IS GONNA BE A HELLA BANGING PAWTY! MY POSSE'S COMING OVER ON JET SKIS! HOT BABES, WOO-HOO PAWTY!", "delivery": "braying, hyped-up party bark"},
+      {"speaker": "spike_bro", "line": "WOOO!  WAIT--WHAT'S THAT SCRAPING NOISE?", "delivery": "whoop collapsing into confusion"}
+    ],
+    "voiceover": "",
+    "performance": "Party hype interrupted; the first prickle of something wrong",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 3,
+    "location": "Side rail of the powerboat, looking down at the waterline",
+    "characters": ["cap_bro", "spike_bro"],
+    "action": "Both bros lean over the rail, question marks of confusion over their heads, staring at long scratch marks raked across the black hull at the waterline. Spike Bro holds up his phone to film it.",
+    "visual_prompt": "Two men leaning over a boat's side rail, viewed from off the port side at water level. Left: lanky man in backwards cap and tank top, mouth slack with confusion. Right: muscular spiky-haired man, brow furrowed, gripping a smartphone. Below them, the glossy dark hull bears long pale scratch gouges just above the lapping waterline. Medium shot, low angle from the water looking up.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Silent baffled investigation; comic dread building",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 4,
+    "location": "Open water beside the boat",
+    "characters": ["sea_dick"],
+    "action": "A grinning humanoid sea creature surfaces in a ring of ripples, throws up both middle fingers, and takes credit for barnacling the hull.",
+    "visual_prompt": "A pale humanoid sea creature breaching chest-high from grey water inside a ring of ripples: middle-aged-looking face with slicked-back wet hair, pointed ears, gleeful squinting grin, scattered barnacles and scale patches across his bare chest and shoulders, water droplets flying as both arms raise defiant middle fingers. Medium shot, slight low angle from the water surface, waves choppy around him.",
+    "dialogue": [
+      {"speaker": "sea_dick", "line": "BARNACLES ALL OVER THE BOTTOM OF YOUR SHIP! COURTESY OF THE SEA DICK!", "delivery": "gleeful, self-announcing taunt"}
+    ],
+    "voiceover": "",
+    "performance": "Triumphant petty villain reveal; pure troll energy",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 5,
+    "location": "Stern fishing deck of a large sport-fishing yacht at sea",
+    "characters": ["fisherman"],
+    "action": "Days later, a fisherman on the low stern deck of a big sport-fishing yacht strains against a violently bent rod, thrilled, his line taut into a rising swell.",
+    "visual_prompt": "A wiry man in his 40s, short neat hair, t-shirt and shorts, braced on the low stern platform of a large white sport-fishing yacht with tall outrigger rigging, hauling back on a fishing rod bent into a deep arc, line vanishing into a humped swell of water. Wide shot from off the stern, water churning in the foreground, yacht filling the right side of frame.",
+    "dialogue": [
+      {"speaker": "fisherman", "line": "WAIT'LL THE GUYS IN THE FISHING CLUB SEE THIS!", "delivery": "strained, giddy anticipation"}
+    ],
+    "voiceover": "SOON REPORTS BEGIN SURFACING ABOUT A WEIRD SEA CREATURE...",
+    "performance": "Hooked-the-big-one excitement, set up for a pratfall",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 6,
+    "location": "Water surface beside the yacht, close on the fishing line",
+    "characters": ["sea_dick"],
+    "action": "A hand thrusts up out of the choppy water gripping a pair of scissors and snips the taut fishing line, pinky extended in a mocking rock-on gesture, spray flying.",
+    "visual_prompt": "Close-up at the waterline: a single pale arm bursting up from churning waves, hand clutching open black-handled scissors against a taut diagonal fishing line, little finger extended in a jaunty horns gesture, droplets scattering. Tight shot, water surface low in frame, line cutting the composition diagonally.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Surgical petty sabotage; deadpan visual gag",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 7,
+    "location": "Stern fishing deck of the sport-fishing yacht",
+    "characters": ["fisherman"],
+    "action": "The line snaps with a huge SNAPP! and the fisherman is flung backwards off balance against the yacht, rod whipping skyward, feet skidding off the stern platform.",
+    "visual_prompt": "The wiry fisherman in t-shirt and shorts hurled backward against the white hull of the sport-fishing yacht, body horizontal, hair shocked upright, rod and severed line whipping above him, motion lines and a huge jagged burst shape exploding on the left of frame. Wide shot from off the stern, low over the water, kinetic diagonal composition.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Slapstick payoff; the big one got away violently",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 8,
+    "location": "Open water near the yacht",
+    "characters": ["sea_dick"],
+    "action": "The Sea-Dick surfaces again in his ring of ripples, double middle fingers high, cackling and claiming the stolen catch.",
+    "visual_prompt": "The pale humanoid sea creature chest-high in grey choppy water: slicked wet hair, pointed ears, barnacled scaly chest, head thrown back in a delighted squint-eyed laugh, both middle fingers raised, spray flicking off his arms. Medium shot, eye level with the water, ripple ring spreading around him.",
+    "dialogue": [
+      {"speaker": "sea_dick", "line": "THE ONE THAT GOT AWAY! COURTESY OF THE SEA-DICK!", "delivery": "crowing, signature catchphrase taunt"}
+    ],
+    "voiceover": "",
+    "performance": "Recurring-villain victory lap",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 9,
+    "location": "Lecture hall at the prestigious Marine Research Academy",
+    "characters": ["professor", "audience"],
+    "action": "A professor at a podium briefs a darkened lecture hall, gesturing at a screen looping the viral video of the creature flipping double birds, and explains its name and origin before opening for questions.",
+    "visual_prompt": "Dim lecture hall: a bald, bespectacled man in his 50s with a grey-flecked mustache and dark turtleneck sweater stands at a podium gesturing, silhouetted heads of seated audience members in the foreground bottom of frame. Upper right, a bright projection screen with video scrub bar shows a pale pointy-eared sea creature in water raising both middle fingers. Medium-wide shot from the back of the hall, over-the-audience angle.",
+    "dialogue": [
+      {"speaker": "professor", "line": "...THIS RECENT VIDEO IS THE STRONGEST EVIDENCE WE HAVE OF THE EXISTENCE OF THIS CREATURE. NEW JERSEY WATERCRAFT ENTHUSIASTS HAVE NAMED HIM THE \"SEA DICK...\"", "delivery": "measured academic gravity over absurd material"},
+      {"speaker": "professor", "line": "...ITS NAME IS APPARENTLY INSPIRED BY THE CLASSIC AMERICAN NOVEL MOBY DICK. QUESTIONS BEFORE WE BEGIN?", "delivery": "dry, scholarly, oblivious to the joke"}
+    ],
+    "voiceover": "AT THE PRESTIGIOUS MARINE RESEARCH ACADEMY...",
+    "performance": "Deadpan institutional seriousness applied to a vulgar legend",
+    "duration_target_s": 8
+  },
+  {
+    "scene_number": 10,
+    "location": "Lecture hall at the Marine Research Academy, Q&A in progress",
+    "characters": ["professor", "audience"],
+    "action": "The audience pelts the lecture with theories: why he's called Sea Dick, that he named himself, whether he's dangerous, and that he looks like Eric Trump. The professor stands silent at the podium under the looping video.",
+    "visual_prompt": "Dim lecture hall, the bald mustached professor in dark turtleneck standing mute at the podium, projection screen upper right looping the pale sea creature flipping double middle fingers. Four silhouetted audience heads across the bottom foreground, speech rising from each. Medium-wide shot from the back of the hall, eye level over the seats.",
+    "dialogue": [
+      {"speaker": "audience", "line": "I BELIEVE THEY CALL HIM 'SEA DICK' BECAUSE HE ALWAYS DOES SOMETHING MEAN AND PETTY TO IRRITATE PEOPLE.", "delivery": "earnest amateur-expert speculation"},
+      {"speaker": "audience", "line": "HE ACTUALLY CALLS HIMSELF 'THE SEA-DICK', A COUPLE PANELS BACK. DO YOUR HOMEWORK.", "delivery": "smug fourth-wall-breaking correction"},
+      {"speaker": "audience", "line": "SO, HE'S NOT REALLY DANGEROUS. HE JUST 'DICKS' PEOPLE OVER?", "delivery": "genuine clarifying question"},
+      {"speaker": "audience", "line": "HE LOOKS LIKE ERIC TRUMP--AS IF HIS FACE WAS TRACED OFF A PHOTO OF ERIC TRUMP.", "delivery": "deadpan observational aside"}
+    ],
+    "voiceover": "",
+    "performance": "Overlapping crowd riff; the lecture loses control of its own premise",
+    "duration_target_s": 8
+  },
+  {
+    "scene_number": 11,
+    "location": "Lecture hall at the Marine Research Academy",
+    "characters": ["professor", "audience"],
+    "action": "The professor abruptly declares consensus to capture and vivisect the Sea Dick; the audience recoils and argues while one attendee keeps litigating the resemblance theory. Part one ends.",
+    "visual_prompt": "Dim lecture hall, the bald mustached professor in dark turtleneck and glasses leaning forward at the podium mid-proclamation, projection screen upper right still looping the grinning sea creature with raised middle fingers. Four silhouetted audience heads in the bottom foreground turning to each other in protest. Medium-wide shot from the back of the hall, slightly low angle on the podium.",
+    "dialogue": [
+      {"speaker": "professor", "line": "SO WE'RE ALL IN AGREEMENT: CAPTURE AND VIVISECT THE SEA DICK!", "delivery": "booming, wildly premature consensus"},
+      {"speaker": "audience", "line": "WAIT, WHAT?", "delivery": "startled objection"},
+      {"speaker": "audience", "line": "CAPTURE PERHAPS...BUT VIVISECT?", "delivery": "appalled, hedging"},
+      {"speaker": "audience", "line": "TOO IMPORTANT A FIND", "delivery": "muttered protest"},
+      {"speaker": "audience", "line": "IF NOT ERIC, ONE OF TRUMP'S KIDS. LOOK AT THE SLICKED-BACK HAIR.", "delivery": "still on his own tangent, oblivious"}
+    ],
+    "voiceover": "END OF PART ONE",
+    "performance": "Escalating absurd cliffhanger; institutional bloodlust vs crowd bickering",
+    "duration_target_s": 8
+  }
+]

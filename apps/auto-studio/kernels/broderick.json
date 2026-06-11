@@ -1,19 +1,34 @@
 {
   "name": "broderick",
-  "status": "PROVISIONAL \u2014 look to be locked after review of the whyarewealive.com reference images in projects/broderick/",
-  "look": "hand-drawn indie comic illustration, bold confident ink linework, flat color fills, iPad/Procreate texture, single-pane and multi-pane comic composition, hand-lettered speech balloons",
-  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
-  "palette_motifs": {},
+  "status": "SEED v0.2 — synthesized 2026-06-11 from per-strip extrapolation of all 30 source strips; per-project style_kernel.json files carry strip-specific looks and take precedence; refine before render",
+  "look": "hand-drawn digital comic illustration, stylus-drawn scratchy ink line with visible wobble, GRAYSCALE by default: flat gray washes over paper-white void backgrounds, solid black anchor fills, minimal or absent scenery, deadpan static staging with locked repeated compositions, floating typeset or hand-lettered dialogue often without balloons (pointer lines), occasional surgical spot-color accent (most often red) reserved for a single joke element",
+  "register": "absurdist deadpan comedy register; the joke is in the timing, the flatness of the delivery, and the held static frame",
+  "style_families": {
+    "scratchy_gag_cartoon": "crosshatched grotesque caricature, heavy line, tonal gray faces (block_party, ny, big_hair, job_interview, rock_critics)",
+    "minimal_line_doodle": "thin wobbly naive line, zero midtones or sparse flat grays (holy_s_its_cody, slow_on_the_uptake, pass_it_on, he_goes_like_this)",
+    "fidelity_clash": "recurring device — one rendered/photoreal caricature head against crude sketch bodies and scenery; the polish asymmetry IS the joke (rubber_chamber, stock_art_beards, dont_get_conned, autobiography_707b)",
+    "exceptions": "full/limited color strips (poetry, tcd, cool_daddy_smooth, follow_instructions) and vintage clip-art collage (karate_kicks) override the grayscale default in their own kernels"
+  },
+  "palette_motifs": {
+    "ink_black": "#1A1A1A — line work and solid anchor fills, never pure #000 except silhouettes",
+    "gray_wash": "#8C8C8C to #D6D6D6 — flat midtone washes, no gradients",
+    "paper_white": "#FFFFFF — dominant void background; panels frequently borderless",
+    "surgical_red": "#C9302A — the house spot-color accent, one element per strip maximum (news copter, red tears, spot-color gags)"
+  },
   "casting_canon": {},
-  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers",
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, color (unless the project kernel explicitly allows it), watermark, signature, garbled text, malformed lettering, extra fingers, clean vector line, corporate flat illustration style",
   "engine_tails": {},
   "continuity": {
-    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
-    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+    "comics": "Source art is often off-model panel-to-panel; lock each recurring character with a model sheet (front/side/expression strip) and let the model sheet override source variance. Restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot.",
+    "kernel_precedence": "projects/broderick/<strip>/style_kernel.json is the enforced kernel per strip; this file is the client default for NEW broderick projects and the synthesis reference."
   },
-  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only \u2014 never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate. karate_kicks repurposes vintage stock art with residual watermarks — clear rights before render.",
   "failure_fixes": {
-    "drifts_photoreal": "Add: flat hand-drawn comic illustration, visible ink line, no photographic rendering, no 3d.",
-    "lettering_garbled": "Generate art without text; add hand-lettering in post or via dedicated lettering pass."
+    "drifts_photoreal": "Add: flat hand-drawn comic illustration, visible scratchy ink line, no photographic rendering, no 3d (exception: deliberate fidelity-clash head).",
+    "color_creep": "Add: strict grayscale, black ink and flat gray washes only, no color — unless this project's kernel allows color or names a spot accent.",
+    "too_clean": "Add: rough stylus line with visible wobble and scratch, hand-drawn imperfection, no vector smoothness.",
+    "lettering_garbled": "Generate art without text; add lettering in post or via dedicated lettering pass.",
+    "scenery_overgrowth": "Add: minimal background, figures floating on paper-white void, no environmental detail beyond a single contour landmark."
   }
 }

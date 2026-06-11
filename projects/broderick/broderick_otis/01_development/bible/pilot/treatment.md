@@ -1,0 +1,5 @@
+# Pilot Treatment — Otis the Hound Dog
+
+**Logline:** A bouncy cartoon theme song introduces the neighborhood's favorite hound dog — and keeps right on jingling through the day he lunges at little Billy's throat and has to be put down.
+
+**Treatment:** A sunny suburban yard, floating musical notes, and a chipper jingle: "OTIS THE HOUND DOG! THE NEIGHBORHOOD'S FAVORITE PET!" The floppy-eared hound trots across the grass, tongue lolling, while little Billy laughs, points, and waves through three verses of escalating wholesomeness — "wacky as you can get," "the best hound around..." — that last ellipsis doing a lot of work. On the fourth line the jingle keeps its bounce but the picture turns: Otis rears up, eyes feral, jaws full of jagged fangs, lunging unprovoked at Billy's throat as the terrified boy pushes back — sun still shining, notes still floating. Final verse: a quiet veterinary exam room, Otis belly-down and obliviously content on the table, tongue out, as a neutral-faced vet presses the syringe home. "AND THEY HAD TO PUT HIM DOWN!" END. ~26 seconds; the comedy is the jingle never once changing tone.

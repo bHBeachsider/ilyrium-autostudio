@@ -1,0 +1,124 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Office, near the desks",
+    "characters": ["boss", "clerk"],
+    "action": "The boss snaps his fingers and berates the clerk for being slow with his coffee, then orders him to fetch the affidavit from the courthouse.",
+    "visual_prompt": "A balding sharp-nosed man in his 50s in a shirt and tie snaps his fingers impatiently at a dazed egg-headed bald man in a white shirt, black tie and dark slacks who holds a coffee mug; sparse office interior with a desk edge behind them; medium two-shot, eye level.",
+    "dialogue": [
+      {"speaker": "boss", "line": "HEY--YOU! LOOK SHARP! FIRSTLY, YOU TOOK WAY TOO LONG TO GET ME A FUCKING CUP OF COFFEE, I HAD TO BREW MY OWN!  SECONDLY I NEED YOU TO GO DOWN TO THE COURTHOUSE AND PICK UP THE AFFIDAVIT. ASAP! CHOP CHOP!", "delivery": "barking, impatient, finger-snapping"}
+    ],
+    "voiceover": "",
+    "performance": "Workplace abuse, rapid-fire orders",
+    "duration_target_s": 8
+  },
+  {
+    "scene_number": 2,
+    "location": "Office hallway",
+    "characters": ["clerk"],
+    "action": "The clerk shuffles off, already mangling the word 'affidavit' into nonsense as sweat beads fly off his head.",
+    "visual_prompt": "An egg-headed bald man with a single small tuft of hair, in a white shirt and loose black tie, hunches forward with a vacant worried squint, sweat drops popping off his scalp; ceiling lights and a wall edge sketched behind; close-up from chest height, slight high angle.",
+    "dialogue": [
+      {"speaker": "clerk", "line": "AFTER DOVE IT! AFFER DIVIT! AFFER DAVID!", "delivery": "muttered, increasingly garbled"}
+    ],
+    "voiceover": "",
+    "performance": "Dim confusion compounding in real time",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 3,
+    "location": "City street outside tall buildings",
+    "characters": ["clerk"],
+    "action": "The clerk strides down the sidewalk past office buildings, the word now fully transformed into a man's name in his head.",
+    "visual_prompt": "An egg-headed bald man with a small hair tuft, white shirt, black tie flapping, dark slacks and sneakers, marching determinedly along a sidewalk in front of tall sketched office buildings, sweat drops above his head; full-body profile shot, eye level.",
+    "dialogue": [
+      {"speaker": "clerk", "line": "AFFER DAVID! AFTER DAVID! ACTOR DAVID! AFRO DAVID!", "delivery": "chanted to himself, settling on the wrong answer"}
+    ],
+    "voiceover": "",
+    "performance": "Confident momentum in exactly the wrong direction",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 4,
+    "location": "Courthouse steps, exterior",
+    "characters": ["clerk", "thin_passerby"],
+    "action": "Outside the courthouse, the clerk stops a baffled thin stranger and asks if he is David.",
+    "visual_prompt": "An egg-headed bald man with a hair tuft, white shirt, black tie and dark slacks addresses a tall thin man with short hair in a plain gray t-shirt and light trousers in front of a columned courthouse facade with 'COURTHOUSE' carved on the pediment; medium two-shot, eye level.",
+    "dialogue": [
+      {"speaker": "clerk", "line": "ARE YOU DAVID?", "delivery": "earnest, flat"},
+      {"speaker": "thin_passerby", "line": "HUH?", "delivery": "baffled"}
+    ],
+    "voiceover": "",
+    "performance": "Polite absurdity meets confusion",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 5,
+    "location": "Courthouse steps, exterior",
+    "characters": ["clerk", "suit_passerby"],
+    "action": "The clerk asks a second stranger, a scowling man in a suit, who brushes him off and keeps walking.",
+    "visual_prompt": "An egg-headed bald man with a hair tuft, white shirt, black tie and dark slacks calls after a dark-haired scowling man in a light suit who strides away to the left; columned courthouse facade with carved 'COURTHOUSE' lettering behind them; medium two-shot, eye level.",
+    "dialogue": [
+      {"speaker": "clerk", "line": "ARE YOU DAVID?", "delivery": "earnest, undeterred"},
+      {"speaker": "suit_passerby", "line": "BUZZ OFF!", "delivery": "irritated snap over the shoulder"}
+    ],
+    "voiceover": "",
+    "performance": "Rejection bouncing off oblivious persistence",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 6,
+    "location": "Courthouse steps, exterior",
+    "characters": ["clerk", "afro_david"],
+    "action": "The clerk asks a third man, who has a huge round afro and carries a small bag, and finally gets a yes.",
+    "visual_prompt": "An egg-headed bald man with a hair tuft, white shirt, black tie and dark slacks faces a slim man with an enormous round afro, glasses and a t-shirt holding a small handbag; columned courthouse facade with carved 'COURTHOUSE' lettering behind; medium two-shot, eye level.",
+    "dialogue": [
+      {"speaker": "clerk", "line": "ARE YOU DAVID?", "delivery": "earnest, hopeful"},
+      {"speaker": "afro_david", "line": "YES. WHY?", "delivery": "flat, mildly wary"}
+    ],
+    "voiceover": "",
+    "performance": "The wrong jackpot — mission falsely accomplished",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 7,
+    "location": "Office, at the boss's desk",
+    "characters": ["boss", "clerk", "afro_david"],
+    "action": "Back at the office, the sweating clerk presents Afro-David to the incredulous boss, who demands to know who the stranger is.",
+    "visual_prompt": "A sweating egg-headed bald man with a hair tuft, white shirt and black tie stands beside a slim man with a huge round afro, glasses and a t-shirt carrying a small handbag, facing a balding sharp-nosed man in shirt and tie who gestures in disbelief from behind his desk; office interior; three-figure medium shot, eye level.",
+    "dialogue": [
+      {"speaker": "boss", "line": "WHO THE HELL IS THIS?", "delivery": "incredulous bark"},
+      {"speaker": "clerk", "line": "AFRO-DAVID, FROM COURTHOUSE.", "delivery": "proud, sweaty, matter-of-fact"}
+    ],
+    "voiceover": "BACK AT THE OFFICE...",
+    "performance": "Proud idiocy colliding with disbelief",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 8,
+    "location": "Office, at the boss's desk",
+    "characters": ["boss", "clerk", "afro_david"],
+    "action": "The boss explodes, firing the clerk on the spot while the clerk sweats and Afro-David stands baffled with a question mark over his head.",
+    "visual_prompt": "A balding sharp-nosed man in a shirt and striped tie leans over his desk yelling with both hands raised; facing him, a drenched-in-sweat egg-headed bald man in a white shirt and black tie droops beside a slim baffled man with a huge round afro, glasses, t-shirt and small handbag; office desk in foreground; three-figure medium shot, eye level.",
+    "dialogue": [
+      {"speaker": "boss", "line": "I NEEDED THE AFFIDAVIT IN MY HAND-- YESTERDAY! YOU TWO THINK YOU'RE A GOD-DAMN COMEDY DUO? GET THE HELL OUTTA HERE AND DON'T COME BACK!", "delivery": "full-volume firing tirade"}
+    ],
+    "voiceover": "",
+    "performance": "Explosive comeuppance",
+    "duration_target_s": 7
+  },
+  {
+    "scene_number": 9,
+    "location": "Unemployment office",
+    "characters": ["unemployment_clerk", "clerk"],
+    "action": "End card. At the unemployment office, the attendant calls the next person in line; the fired clerk, now in a flat cap and vest, mangles even that word while two gawky people wait behind him.",
+    "visual_prompt": "A dark-haired woman seated behind a small desk calls out toward a short egg-headed man now wearing a flat cap, vest, shirt, tie and sneakers who stands hands-in-pockets at the head of a line; two tall gawky figures wait behind him; sparse interior, bold end-title lettering in the lower right; wide shot, eye level.",
+    "dialogue": [
+      {"speaker": "unemployment_clerk", "line": "NEXT!", "delivery": "bored call"},
+      {"speaker": "clerk", "line": "I'M NEXT. IMMA NEXT. I'M AN X. MNX. HAM AND EX.", "delivery": "garbling spiral into nonsense"}
+    ],
+    "voiceover": "AT THE UNEMPLOYMENT OFFICE... END",
+    "performance": "Deadpan tragicomic loop closing the joke",
+    "duration_target_s": 6
+  }
+]

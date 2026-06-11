@@ -1,0 +1,5 @@
+# Pilot Treatment — He Goes Like This
+
+**Logline:** A smug bobblehead dancer demonstrates his moves, pose by immaculate pose — "he goes like this... and he goes like that..." — until the last pose reveals he has been silently weeping the whole time.
+
+**Treatment:** On a featureless white void, a lean man with a comically oversized head, slick side-parted hair, and a black turtleneck strikes his first dance pose — arms flung wide, fingers like blades — as the narration begins: "HE GOES LIKE THIS..." Pose follows pose with total straight-faced showman commitment: the head lolled languidly to one shoulder, the torso pitched fully horizontal with a leg kicked high, a low split-kick flourish with one bladed hand spiking skyward, each frozen position floating over a scribbled shadow while the narration alternates its hypnotic "...and he goes like that..." For the final move he crouches into a skulking strut, grin intact — but his eyes are now bloodshot red and streaming tears, a small black arrow helpfully pointing them out as the narration delivers one last "AND HE GOES LIKE THIS..." END. ~22 seconds; the mask never drops, which is exactly the tragedy and the joke.

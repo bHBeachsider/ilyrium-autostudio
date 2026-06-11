@@ -1,0 +1,6 @@
+# Pilot Treatment — Reminiscences
+
+**Logline:** An old man fondly reminisces direct to camera, and his cozy wheezy delivery never flinches as the memories slide from crude pranks to industrial decapitation.
+
+## Treatment
+A single locked shot, played as a fake public-access interview segment under a newspaper-style "Reminiscences" masthead: a heavyset man in his 80s — combed-over wisps, drooping nearly-shut eyes, rumpled open-collared shirt — fills the frame against a blank white void and simply talks. First memory: his childhood pal Davy Dovetail, "a real practical joker," who urinated in Father McLanaghahan's soup — "we was laughing!" Second: nights when two cents bought a spritz of aftershave and entry to the dance hall, where his signature move was popping a golf ball out of his belly button for the girls. Third, with the exact same warm chuckle: Tommy Egan, who got hit by a fan blade at the plant that sliced the top of his head off like Frankenstein — "he lived too!" — and whom the boys teased about his missing neck bolts until he got steamed. The camera never moves, the man never changes, and the horror never registers; the comedy is the widening gap between content and delivery. A dry caption shrugs it closed: "(TO BE CONTINUED. OR NOT.)"

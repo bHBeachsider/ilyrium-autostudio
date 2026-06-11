@@ -1,0 +1,30 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Hand-drawn digital pen sketch, strict black ink on white — no gray fills, no color. One head-and-shoulders portrait of an old man, drawn once and reused identically across every panel; only the text changes. Loose scribbly contour line with sketchy crosshatch shading massed on the brow creases, jowls, stubble, and shirt folds. A newspaper-style masthead — bold black sans-serif 'Reminiscences' over a thin horizontal rule — caps each square panel. Monologue set in all-caps comic font, center-justified in a column beside the head, balloon-less.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "paper_white": "#FFFFFF — entire background; no environment, no props, pure void portrait setting",
+    "ink_black": "#1A1A1A — all contour linework, lettering, and the masthead title bar",
+    "hatch_tone": "#BFBFBF optical gray — built only from sparse pen hatch strokes on face, neck, and shirt; never a flat fill",
+    "masthead": "bold black sans-serif 'Reminiscences' top-left over a full-width thin rule — repeats identically every panel",
+    "text_column": "center-justified all-caps monologue block occupying the right half of the panel, mirroring the head on the left"
+  },
+  "casting_canon": {
+    "old_man": "heavyset man in his 80s; fleshy jowls, thick neck, balding with wisps of combed-over hair, sparse stubble, deep forehead creases, drooping nearly-shut eyes, bulbous wrinkled nose; rumpled open-collared button-down shirt; wheezy, warm, meandering affect — chuckles at every memory no matter how crude or horrifying"
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, any color, flat gray fills, speech balloon outlines, background scenery or props, changing pose between panels, smooth clean vector line, cute or softened character design, multiple characters",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot.",
+    "strip_rule": "The portrait is a fixed plate — regenerate it once, then reuse the identical drawing in all panels; only the dialogue column changes."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: flat hand-drawn comic illustration, visible ink line, no photographic rendering, no 3d.",
+    "drifts_tonal": "Add: pure black pen line on white, sketchy crosshatch shading only, no gray washes or fills.",
+    "portrait_drifts_between_panels": "Reuse the locked portrait plate verbatim; never re-render the head per panel.",
+    "lettering_garbled": "Generate art without text; add hand-lettering in post or via dedicated lettering pass."
+  }
+}

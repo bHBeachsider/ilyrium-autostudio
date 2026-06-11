@@ -1,0 +1,48 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Title card on white backdrop",
+    "characters": [],
+    "action": "Title card: the word 'AUTOBIOGRAPHY' in big block letters over 'Scene: 748-A', above a march-of-progress silhouette sequence — ape rising through upright human — that ends with a slouched modern man tipping a bottle into his mouth.",
+    "visual_prompt": "Graphic title card on a plain white field: large bold block lettering across the top, a smaller scene label at left, and along the bottom a left-to-right evolution silhouette sequence of five black figures — knuckle-walking ape, crouched hominid, striding upright hominid, spear-carrying human, and finally a heavyset slouched modern man in baggy clothes tilting his head back to drink from a bottle. Flat graphic composition, straight-on.",
+    "dialogue": [],
+    "voiceover": "AUTOBIOGRAPHY\nScene: 748-A",
+    "performance": "Mock-grandiose self-deprecating prologue",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 2,
+    "location": "Elementary school classroom, 1st grade",
+    "characters": ["young_broderick", "teacher", "classmate"],
+    "action": "A shaggy-haired boy hunches over his school desk happily drawing a cartoon cat while the dark silhouette of his teacher looms in the foreground, droning 'BLAH BLAH BLAH BLAH BLAH...'. A wide-eyed classmate watches nervously from the back of the room.",
+    "visual_prompt": "Classroom interior: a freckled boy, about 6, with a shaggy mop of hair, striped short-sleeve shirt, hunched over a one-piece school desk, pencil in hand, absorbed in drawing a cartoon cat face on his paper. Foreground right: the solid black silhouette of a stout teacher with glasses and a hair bun, holding a pointer stick, facing into the room with floating word lettering beside her head. Background left: a skinny wide-eyed boy at his desk looking alarmed; a globe on a shelf and classroom clutter behind. Medium shot from over the teacher's shoulder, eye level.",
+    "dialogue": [
+      {"speaker": "teacher", "line": "BLAH BLAH BLAH BLAH BLAH...", "delivery": "Droning, scolding adult noise as heard by a child"}
+    ],
+    "voiceover": "MY TEACHER CAUGHT ME DRAWING IN 1ST GRADE...",
+    "performance": "Innocent absorption about to be crushed; dread building",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 3,
+    "location": "Elementary school classroom, beneath the alphabet wall strip",
+    "characters": ["teacher"],
+    "action": "Close-up on the teacher's face: a stern old woman with a tight hair bun, cat-eye glasses and a deep scowl, pointer stick at her shoulder, in front of the classroom's cursive alphabet wall strip.",
+    "visual_prompt": "Tight portrait of a stern elderly schoolteacher: hair pulled into a severe bun, heavy-lidded contemptuous eyes behind cat-eye glasses, deep frown lines, jowled chin, small drop earrings, wearing a dark striped sweater, a wooden pointer stick angled at her shoulder. Behind her, a faint alphabet penmanship strip runs along the top of the classroom wall. Close-up, straight-on, slightly below eye level so she looms.",
+    "dialogue": [],
+    "voiceover": "SHE COULD HAVE JUST SAID \"STOP IT\"--",
+    "performance": "Cold authoritarian menace, held beat",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 4,
+    "location": "Elementary school classroom, at the boy's desk",
+    "characters": ["young_broderick", "teacher", "classmate"],
+    "action": "The teacher's arm thrusts into frame and crumples the boy's cat drawing in her fist. The boy recoils, stunned, mouth open; the classmate grimaces in the background. End card.",
+    "visual_prompt": "Classroom scene at a school desk: a shaggy-haired freckled boy, about 6, in a striped shirt, frozen mid-recoil with wide hollow eyes and mouth agape, hands gripping the desk edge; from the right a thick adult arm in a dark sleeve thrusts in, fist crushing a crumpled drawing of a cat, speed lines radiating from the impact. Background left: a skinny boy grimacing in alarm. Black end card in the lower right corner. Medium close-up, eye level, diagonal action from the right.",
+    "dialogue": [],
+    "voiceover": "...BUT SHE CRUMPLED THE SHIT UP AND THREW IT AWAY!",
+    "performance": "The trauma lands; shock, injustice, formative grievance",
+    "duration_target_s": 6
+  }
+]

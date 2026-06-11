@@ -1,0 +1,28 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Hand-drawn IKEA-instruction-manual parody: two smooth featureless humanoids rendered in a single thin, slightly wobbly black line on a vast pure-white void. No color, no shading, no backgrounds, no ground line — only the figures, a small flat-pack box, and pictogram props. Communication is wordless: musical notes, a question-mark balloon, a dunce-cap pictogram. The lone color event is the closing END badge, a blue-and-yellow flat-pack-logo parody. Composition lives low in the frame with enormous negative space above.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "void_white": {"hex": "#FFFFFF", "usage": "entire field; no ground line, no environment"},
+    "manual_ink": {"hex": "#1F1F1F", "usage": "all figure and prop linework, thin near-uniform weight, hand-drawn wobble"},
+    "solid_fill_accent": {"hex": "#111111", "usage": "rare solid black fills — musical note, dunce-cap opening"},
+    "flatpack_blue": {"hex": "#0051BA", "usage": "END badge rectangle and lettering, IKEA-logo parody, final panel only"},
+    "flatpack_yellow": {"hex": "#FFDB00", "usage": "END badge oval, final panel only"}
+  },
+  "casting_canon": {
+    "passerby": "Smooth featureless instruction-manual humanoid; rounded bald head, soft pudgy build, no clothes, single dot eye and simple line mouth. Breezy self-satisfied affect — strolls whistling, helps unasked, turns smug. Ends headless.",
+    "manual_reader": "Smooth featureless instruction-manual humanoid; slightly taller rounded build, bald head, perpetual frown, single dot eye. Clutches an open fold-out instruction booklet to his chest in every panel. Affect: frustrated confusion escalating to volcanic rage."
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, color fills on figures, facial detail, noses, ears, hair, clothing, background scenery, ground line, shadows, thick variable brush strokes, crosshatching, panel borders",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: minimal instruction-manual line drawing, single thin black line on pure white, featureless humanoid figures, no shading, no color, no photographic rendering, no 3d.",
+    "lettering_garbled": "Generate art without text; add hand-lettering in post or via dedicated lettering pass."
+  }
+}

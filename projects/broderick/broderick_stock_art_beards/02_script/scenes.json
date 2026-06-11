@@ -1,0 +1,44 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Sidewalk in front of a brewery with a hand-lettered 'ARTISINAL BREWERY' sign, city skyline sketched behind",
+    "characters": ["bro_1", "bro_2_pete", "bro_3"],
+    "action": "Three bearded hipster bros clink craft beers outside the brewery and solemnly vow to meet in front of it every 20 years no matter what.",
+    "visual_prompt": "Three men in their early 30s shoulder to shoulder holding craft beer glasses in front of a wall lettered 'ARTISINAL BREWERY', faint skyline behind. Left: slicked-back hair, waxed handlebar mustache and long pointed beard, grey t-shirt. Center: round face, full bushy beard, light knit sweater. Right: dark groomed full beard, swept-back dark hair, black t-shirt and chain necklace. All grinning, mid-toast. Medium three-shot, eye level, slight upward tilt of camaraderie.",
+    "dialogue": [
+      {"speaker": "bro_1", "line": "BROS, IT'S GREAT BEING BROS!", "delivery": "beaming, earnest toast"},
+      {"speaker": "bro_2_pete", "line": "TOTES! WE SHOULD, LIKE MEET IN FRONT OF THIS BREWERY EVERY 20 YEARS NO MATTER WHAT!", "delivery": "excited, impulsive pact-making"},
+      {"speaker": "bro_3", "line": "I AM TOTALLY DOWN WITH THAT.", "delivery": "mellow, sincere agreement"}
+    ],
+    "voiceover": "",
+    "performance": "Peak-friendship optimism; the pact that ages badly",
+    "duration_target_s": 7
+  },
+  {
+    "scene_number": 2,
+    "location": "Same spot in front of the 'ARTISINAL BREWERY' sign, 20 years later",
+    "characters": ["bro_1", "bro_3"],
+    "action": "Twenty years on, only two have shown. A greyer Bro 1, now in a suit, greets the bald Bro 3 and asks where Pete is; Bro 3 flatly reports that he thinks Pete died.",
+    "visual_prompt": "Two middle-aged men in their 50s facing each other in front of the same wall lettered 'ARTISINAL BREWERY', faint skyline behind. Left: gaunt man in a suit and striped tie, receding slicked hair, grey-streaked waxed mustache and long pointed beard, smugly upright. Right: heavier bald man with a drooping thin mustache and long chin goatee, grey t-shirt, slumped and vacant. Medium two-shot, eye level, awkward gap between them.",
+    "dialogue": [
+      {"speaker": "bro_1", "line": "HEY BRO, YOU MADE IT! I AGED BETTER THAN YOU. WHERE THE FUCK IS PETE?", "delivery": "backhanded cheer, casually insulting"},
+      {"speaker": "bro_3", "line": "HE DIED I THINK. SOMEONE TOLD ME THAT.", "delivery": "flat, detached shrug"}
+    ],
+    "voiceover": "20 YEARS LATER...",
+    "performance": "Bleak deadpan reunion; friendship curdled into indifference",
+    "duration_target_s": 7
+  },
+  {
+    "scene_number": 3,
+    "location": "Same spot 20 more years on, the sign now reading 'CHIPOTLE'",
+    "characters": ["bro_1"],
+    "action": "Forty years after the pact, one shrunken old man stands alone where the brewery used to be — it is now a Chipotle. He concludes the others died on him and that the whole idea was bad. End.",
+    "visual_prompt": "A single frail elderly man in his 70s, bald with wisps of white hair at the temples and a thin white chin beard, wearing a baggy light jacket over a dark collar, standing small in the lower left of frame before a wall now lettered 'CHIPOTLE', faint skyline behind. He gazes off, hollow-cheeked and resigned. Medium-wide shot, eye level, empty space pressing in around him.",
+    "dialogue": [
+      {"speaker": "bro_1", "line": "GUESS THOSE FUCKERS DIED ON ME.  THIS WAS A SHIT IDEA ANYHOW.", "delivery": "weary, bitter mutter to himself"}
+    ],
+    "voiceover": "20 YEARS AFTER THAT...",
+    "performance": "Gallows-humor finale; the pact outlives the friendship and the brewery",
+    "duration_target_s": 7
+  }
+]

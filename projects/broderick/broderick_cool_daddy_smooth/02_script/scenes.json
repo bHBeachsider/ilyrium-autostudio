@@ -1,0 +1,119 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Blank white void, title card",
+    "characters": ["cool_daddy_smooth"],
+    "action": "Title card. Cool Daddy Smooth struts across the frame mid-stride, one hand extended palm-up, chin tilted, while the big blocky logo fills the upper right.",
+    "visual_prompt": "A lanky man with long straight black hair, oversized white-framed sunglasses, a small soul-patch mouth, wearing a tall crinkled cone-shaped hat, a black leather jacket over a low-cut top with layered necklaces, striped bell-bottom trousers and heeled boots, strides confidently across a plain white background with one hand extended palm-up in a smooth gesture; large dimensional block lettering fills the upper right of the frame. Full shot, eye level, jaunty walking pose.",
+    "dialogue": [],
+    "voiceover": "COOL DADDY SMOOTH",
+    "performance": "Effortless unearned swagger",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 2,
+    "location": "Office, job interview across a desk",
+    "characters": ["interviewer", "cool_daddy_smooth"],
+    "action": "An interviewer behind a desk with a computer monitor asks Cool Daddy Smooth — seated cross-legged in his cone hat and shades — whether he has party-clown experience. He answers with absurd bluster, claiming it's literally his nickname.",
+    "visual_prompt": "A tidy office: at left, a man with tousled dark hair, a long pointed nose, white shirt and dark tie sits behind a desk typing at a monitor, smiling pleasantly; at right, a lanky man with long black hair, oversized white-framed sunglasses and a tall crinkled cone hat lounges cross-legged in an office chair, leather jacket open over necklaces, striped bell-bottoms and heeled boots. A spindly potted plant and a sketched window frame the background. Two-shot, eye level, desk between them.",
+    "dialogue": [
+      {
+        "speaker": "interviewer",
+        "line": "SO HAVE YOU EVER WORKED AS A PARTY CLOWN BEFORE?",
+        "delivery": "Polite, routine"
+      },
+      {
+        "speaker": "cool_daddy_smooth",
+        "line": "ARE YOU KIDDIN? THAT'S MY NICKNAME, P.C., PARTY CLOWN, LAUGH IT UP CLOWN! LET'S MAKE IT HAPPEN CHIEF!",
+        "delivery": "Rapid-fire con-man bravado"
+      }
+    ],
+    "voiceover": "",
+    "performance": "A man lying his way into a job with total confidence",
+    "duration_target_s": 7
+  },
+  {
+    "scene_number": 3,
+    "location": "Children's birthday party, living room with HAPPY banner",
+    "characters": ["cool_daddy_smooth", "party_kids"],
+    "action": "At the party, Cool Daddy Smooth — now in a polka-dot clown suit with a ruffled collar lettered FLAPPY, cone hat and sunglasses still on — half-heartedly waves a magic wand at four seated children, muddling every magic word and announcing the trick is supposed to produce flowers.",
+    "visual_prompt": "A party room: at left, a lanky man in a baggy polka-dotted clown suit with a big scalloped ruffle collar bearing small letters spelling FLAPPY, giant floppy shoes, a tall crinkled cone hat and oversized sunglasses over long black hair, raises a thin magic wand with a limp flick; at right, four small children sit on the floor watching — a grinning kid, a pigtailed girl with her tongue out, a worried boy with a side-swept fringe, and a placid toddler; a partial banner and gift table sketch in the background. Wide shot, eye level. Caption lettering tilted in the top left corner.",
+    "dialogue": [
+      {
+        "speaker": "cool_daddy_smooth",
+        "line": "SO...OK KIDDIES, UH, PRESTO CHANGE-O, ALAKAZAM, HOCUS POCUS AND ALL THAT SHIT, THIS IS SUPPOSED TO TURN INTO FLOWERS!",
+        "delivery": "Bored mumble escalating to annoyance, profanity in front of children"
+      }
+    ],
+    "voiceover": "AT THE PAR-TAY",
+    "performance": "Zero-effort showmanship curdling immediately",
+    "duration_target_s": 7
+  },
+  {
+    "scene_number": 4,
+    "location": "Children's birthday party, living room",
+    "characters": ["cool_daddy_smooth", "party_kids"],
+    "action": "The trick wand flops over, bent and dangling its sad cloth flowers. Cool Daddy Smooth holds it up and blames the equipment out loud while the four children keep staring.",
+    "visual_prompt": "Same party room: the man in the polka-dotted clown suit with FLAPPY-lettered ruffle collar, cone hat and oversized sunglasses scowls down at a bent, drooping trick wand flopped over in his gloved hands, limp cloth flowers dangling from its tip with a small motion flick; four children sit on the floor at right watching blankly — grinning kid, pigtailed girl with tongue out, worried fringe boy, placid toddler. Wide shot, eye level.",
+    "dialogue": [
+      {
+        "speaker": "cool_daddy_smooth",
+        "line": "LOOKS LIKE THEY GAVE FLAPPY SOME CHEAP-ASS SHIT TO WORK WITH!",
+        "delivery": "Loud aggrieved complaint, zero self-awareness"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Blame-shifting in clown makeup",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 5,
+    "location": "Children's birthday party, living room",
+    "characters": ["cool_daddy_smooth", "party_kids", "mother"],
+    "action": "The children burst into tears, sweat and tear droplets flying, as a furious mother storms in from the right, arm thrust out pointing at the door, screaming at the clown to get out before she calls the police. Cool Daddy Smooth stands holding his bent wand.",
+    "visual_prompt": "Same party room: at left, the man in the polka-dotted clown suit with FLAPPY ruffle collar, cone hat and oversized sunglasses stands frozen holding a bent drooping trick wand; at center, four small children sit on the floor wailing, tears spraying from their faces; at right, a tall sharp-featured woman with a swept blonde bob, earring, beaded necklace, cardigan over a dark skirt, leans in screaming with her mouth wide and one arm thrust out pointing at the door. Wide shot, eye level, strong diagonal from her pointing arm.",
+    "dialogue": [
+      {
+        "speaker": "mother",
+        "line": "YOU'RE FRIGHTENING THE CHILDREN!  GET OUT OR I'LL CALL THE POLICE!!",
+        "delivery": "Shrieked, full fury"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Total party collapse; the gig is over",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 6,
+    "location": "Back alley with trash basket and empty bottle",
+    "characters": ["punk_friend", "cool_daddy_smooth"],
+    "action": "Later, in an alley, Cool Daddy Smooth — back in his leather jacket and striped bell-bottoms — recounts the story to his mohawked punk friend, fists clenched in triumphant indignation, claiming he quit because the job wasn't cool enough for him. END card at lower right.",
+    "visual_prompt": "A scruffy alley with a brick wall, a wire trash basket and an empty bottle on the ground: at left, a stocky young man with a tall black mohawk on a shaved head, a marker-scrawled circled symbol on his scalp, chain necklace with a pendant, black leather jacket and skinny black trousers listens with a skeptical underbite; at right, a lanky man with long black hair, oversized sunglasses, tall crinkled cone hat, leather jacket over necklaces and striped bell-bottoms clenches both fists chest-high, chin raised in self-satisfied defiance. Two-shot, eye level. Caption box top left.",
+    "dialogue": [
+      {
+        "speaker": "punk_friend",
+        "line": "DAT'S MESSED UP! WHAT HAPPENED NEXT?",
+        "delivery": "Eager, credulous"
+      },
+      {
+        "speaker": "cool_daddy_smooth",
+        "line": "I SAID \"THIS JOB AIN'T COOL ENOUGH FOR COOL DADDY SMOOTH!\"",
+        "delivery": "Chest-puffed revisionist bravado"
+      }
+    ],
+    "voiceover": "LATER...",
+    "performance": "Face-saving mythology among friends",
+    "duration_target_s": 7
+  },
+  {
+    "scene_number": 7,
+    "location": "Blank white void, standalone gag panel",
+    "characters": ["burger_flipper", "burgher"],
+    "action": "Standalone gag: a heavyset bald man in casual clothes throws both arms up, having just flipped a Renaissance-era burgher — robed, capped, clutching a staff — spinning through the air above him. A framed checklist at lower right asks the reader to grade the cartoon.",
+    "visual_prompt": "Against a plain white background: at left, a heavyset bald man with a fringe of hair, in a pale t-shirt stretched over a round belly, baggy cargo shorts, hairy legs and red sneakers, stands with both arms flung upward; above right, a dignified bearded man in a flat dark cap, black doublet and a long flowing red robe, black hose and shoes, gripping a long wooden staff, tumbles horizontally in mid-air mid-flip; a soft shadow pools beneath. A hand-drawn framed checklist with three empty checkboxes sits at lower right. Wide shot, eye level, strong diagonal between thrower and flying figure.",
+    "dialogue": [],
+    "voiceover": "FLIPPING BURGHERS — THIS CARTOON IS: A. TOO OBSCURE TO GET B.  OFFENSIVE C. DEAD-ON SATIRE",
+    "performance": "Deadpan literalist pun, fourth-wall poll",
+    "duration_target_s": 5
+  }
+]

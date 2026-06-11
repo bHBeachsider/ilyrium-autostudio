@@ -1,0 +1,48 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Hand-drawn digital comic in pure grayscale — no color anywhere. Bold, confident variable-weight ink outlines over flat white and mid-gray fills, with sparse loose hatching only on mountains and fabric folds. Characters are big-nosed caricatures with exaggerated mugging expressions; the antagonist is a solid black featureless silhouette. Compositions are single widescreen panels, eye-level two-shots with vast empty white negative space. Lettering is bold all-caps hand-style, floating free or in solid black caption banners with white text; sweat drops and motion lines carry the slapstick.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "paper_white": {
+      "hex": "#FFFFFF",
+      "usage": "Dominant field — corridors, sky, dome interior, boardroom; negative space is a compositional tool"
+    },
+    "silhouette_black": {
+      "hex": "#0A0A0A",
+      "usage": "The silhouette man's entire body, caption banner boxes, heavy ink outlines, neckties"
+    },
+    "suit_gray": {
+      "hex": "#ABABAB",
+      "usage": "Dr. Spanker's suit, counters, tabletops, mountain mid-tones"
+    },
+    "wash_gray_light": {
+      "hex": "#D9D9D9",
+      "usage": "Dome lattice glass, soft background washes, ground planes, drop shadows"
+    },
+    "lattice_line": {
+      "hex": "#C7C7C7",
+      "usage": "Faint triangular geodesic lattice lines on dome interior walls — recurring location motif"
+    }
+  },
+  "casting_canon": {
+    "silhouette_man": "Middle-aged stocky man, rounded shoulders, slight paunch; rendered always as featureless solid black silhouette with prominent hooked nose and stray flyaway hairs; rumpled suit-and-collar shape; slippery glib affect, gulps when cornered",
+    "dr_spanker": "Middle-aged wiry scientist; balding crown, dark side hair, enormous thick black walrus mustache, sharp angry brows; gray two-piece suit, white shirt, dark tie; sputtering moral outrage, goes slack-serene under hypnosis",
+    "board_chairman": "Heavyset bull-necked older man; flat-top brush cut, thick black mustache, heavy eye bags, large folded hands; white dress shirt, wide black tie, dark executive chair; grim immovable prosecutorial affect",
+    "resident_grunt": "Squat thick-necked ape-like man; heavy brow, stubbled jowls, smashed nose, short messy hair; plain short-sleeved tee; loud crude zero-impulse-control delight",
+    "resident_lanky": "Tall gaunt man; long pointed nose, spiky receding hair with stray sprouting strands, tongue lolls when laughing; plain shirt, sometimes dark work apron; sour onlooker flipping to hysterics",
+    "resident_bald": "Short soft doughy man; round bald head, squashed worried face; plain shirt; resigned, forgetful, food-motivated"
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, full color, saturated colors, colored fills, manga screentone, dense crosshatching, painterly rendering, soft pencil texture, detailed realistic faces, small noses, chibi proportions",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: flat hand-drawn grayscale comic illustration, visible ink line, no photographic rendering, no 3d.",
+    "drifts_color": "Add: strict black-white-gray palette only, no hue anywhere.",
+    "lettering_garbled": "Generate art without text; add hand-lettering in post or via dedicated lettering pass."
+  }
+}

@@ -1,0 +1,140 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Golden Fry fast-food kitchen, grill station",
+    "characters": ["cody", "boss_man"],
+    "action": "Cody, flipping burger patties at the grill under a vent hood, asks his boss for a half day off to attend the Gods of Metal rock show. The boss stands nearby holding two drink cups, glowering.",
+    "visual_prompt": "A fast-food kitchen with a vent hood over a flat grill: at center, a droopy-eyed young man with a huge nose, stringy shoulder-length hair under a folded paper service hat, in a sleeveless work top and shorts, extends a spatula with a burger patty over the grill; at right, an older angular man with a sharp beak-like nose and a sour scowl, also in a folded paper hat and work shirt, holds a drink cup in each hand. Title lettering across the top. Medium two-shot, eye level.",
+    "dialogue": [
+      {
+        "speaker": "cody",
+        "line": "BOSS MAN, I WAS THINKIN OF TAKING A HALF DAY.  THE 'GODS OF METAL' ROCK SHEOW IS HAPPENIN TODAY. IM TEWTOLLY STEWKED!",
+        "delivery": "Slack, dopey enthusiasm"
+      }
+    ],
+    "voiceover": "HOLY S*** IT'S CODY",
+    "performance": "Oblivious slacker optimism versus simmering managerial contempt",
+    "duration_target_s": 7
+  },
+  {
+    "scene_number": 2,
+    "location": "Golden Fry fast-food kitchen",
+    "characters": ["boss_man", "cody"],
+    "action": "The boss erupts at Cody face-to-face, jabbing a drink cup toward him while delivering a furious tirade about the restaurant's mission and Cody's burned burgers, ending with a threat to his job.",
+    "visual_prompt": "Tight two-shot in a fast-food kitchen: at right, an older angular man with a sharp beak-like nose, folded paper hat, and a sleeveless work top leans in shouting, thrusting a drink cup with a straw toward the other man while clutching a second cup; at left, a droopy young man with a huge nose and stringy dark hair under a paper hat recoils slightly, deflated and hangdog. Dense angry lettering fills the upper half of the frame. Close two-shot, eye level.",
+    "dialogue": [
+      {
+        "speaker": "boss_man",
+        "line": "NO NOTICE AND YOU WANT A HALF DAY??! WELL OUR CUSTOMERS' HUNGER DOESNT TAKE A HALF DAY! OUR MISSION IS TO SERVE HOT DELICIOUS AND FRESH FOOD, AND YOU'VE ALREADY BURNED AND RUINED BURGERS! LONG STORY SHORT, YOU'RE NOT GOING ANYWHERE IF YOU WANT TO STAY EMPLOYED AT GOLDEN FRY! YOU'RE ON THIN ICE, SHITHEAD!",
+        "delivery": "Spittle-flecked escalating rant"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Full managerial meltdown; Cody wilts",
+    "duration_target_s": 8
+  },
+  {
+    "scene_number": 3,
+    "location": "Golden Fry fast-food kitchen, grill smoking",
+    "characters": ["cody", "friend"],
+    "action": "Later, Cody sulks at the grill — flames and smoke rising off the patties — as his short bowl-cut friend appears at the door, thumbing over his shoulder and urging him to sneak out during his lunch break for the rock show. Cody brightens at the idea.",
+    "visual_prompt": "A fast-food kitchen: at center, a long-nosed young man with stringy dark hair under a folded paper hat pokes a spatula at a flat grill where patties smolder with rising flames and smoke curls; at far right, a short stocky kid with a pale bowl haircut covering his eyes, in a black band t-shirt, baggy shorts and heavy black boots, jerks a thumb over his shoulder. Caption box upper left, dialogue lettering across the top. Medium two-shot, eye level.",
+    "dialogue": [
+      {
+        "speaker": "friend",
+        "line": "DUDE! THE RAWK SHEW!",
+        "delivery": "Pumped, insistent"
+      },
+      {
+        "speaker": "cody",
+        "line": "CANT GO. NEED THE DINERO.",
+        "delivery": "Glum, resigned"
+      },
+      {
+        "speaker": "friend",
+        "line": "YOU GAWT A LONCH BREAK, RIGHT? SNEAK OUT FOR A HOUR!",
+        "delivery": "Conspiratorial, wheedling"
+      },
+      {
+        "speaker": "cody",
+        "line": "A HOUR HUH? I CAN GET SOME RAWK IN!",
+        "delivery": "Dawning dopey excitement"
+      }
+    ],
+    "voiceover": "LATER...",
+    "performance": "Temptation winning over duty in about four seconds",
+    "duration_target_s": 8
+  },
+  {
+    "scene_number": 4,
+    "location": "Street outside the Golden Fry restaurant",
+    "characters": ["friend", "cody"],
+    "action": "Cody and his friend sprint away from the Golden Fry storefront in silhouette, whooping about how stoked they are, leaving the restaurant — and the grill — behind.",
+    "visual_prompt": "Daytime street scene: two silhouetted figures sprint left away from a fast-food restaurant at right whose big hand-lettered sign reads GOLDEN FRY with a cheerful dancing fry-cup mascot; the leading runner is stocky with flying hair, the trailing runner lanky in a paper hat with a long apron flapping; low skyline and a single cloud behind. Wide shot, eye level, strong left-to-right motion away from the building.",
+    "dialogue": [
+      {
+        "speaker": "friend",
+        "line": "DUDE IM STEWKED!",
+        "delivery": "Breathless whoop mid-sprint"
+      },
+      {
+        "speaker": "cody",
+        "line": "MAN I AM TEWTALLY STEWKED!",
+        "delivery": "Gleeful holler, fully committed"
+      }
+    ],
+    "voiceover": "",
+    "performance": "Jailbreak euphoria",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 5,
+    "location": "Gods of Metal rock show, inside the crowd",
+    "characters": ["cody", "friend"],
+    "action": "At the rock show, a shirtless Cody throws both arms up flashing devil-horn hand signs, blissed out, while his friend pumps a fist overhead, head bowed and rocking, a studded bracelet on his wrist, amid a sea of bobbing crowd heads.",
+    "visual_prompt": "Packed concert crowd suggested by rows of bobbing head outlines: at left, a scrawny shirtless young man with a huge nose, stringy dark hair and hairy armpits raises both arms high making horned hand gestures, eyes half-lidded in bliss, wearing a sarong-like wrap at the waist; at right, a short stocky kid with a pale bowl haircut covering his eyes, black band t-shirt, baggy shorts, black boots and a studded wristband punches one fist into the air, mouth open mid-shout, hand on his chest. Caption box upper left, stage-light zigzags at frame left. Medium two-shot, slightly low angle.",
+    "dialogue": [],
+    "voiceover": "AT THE ROCK SHOW...",
+    "performance": "Pure headbanging rapture",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 6,
+    "location": "Venue exit, rope line outside the rock show",
+    "characters": ["cody", "friend"],
+    "action": "Three hours later, a sweat-drenched shirtless Cody staggers out past the rope line with his friend, suddenly remembering — out loud — that he left burgers on the grill and has to get back to work.",
+    "visual_prompt": "Outside a concert venue with a riveted wall and a single rope stanchion barrier: a short stocky kid with a pale bowl haircut, black t-shirt, shorts and heavy black boots strides ahead at left; behind him a scrawny shirtless young man with a huge nose and stringy soaked hair staggers forward dripping sweat, a wisp of smoke curling from the cigarette in his hand, wearing knee-length shorts and sneakers. Caption box upper left, dialogue lettering at right. Full shot, eye level, walking left.",
+    "dialogue": [
+      {
+        "speaker": "cody",
+        "line": "THAT WAS A HAWT RAWK SHEW! I GOTTA BAIL THOUGH!  GOTTA GET BACK TO WORK!  THINK I LEFT SOME BURGERS ON THE GRILL N' WHATNOT!",
+        "delivery": "Wrung-out and happy, with a dawning oh-no undertone"
+      }
+    ],
+    "voiceover": "3 HRS LATER",
+    "performance": "Post-show afterglow colliding with delayed panic",
+    "duration_target_s": 7
+  },
+  {
+    "scene_number": 7,
+    "location": "Street outside the Golden Fry restaurant, now on fire",
+    "characters": ["cody", "friend", "boss_man"],
+    "action": "Cody and his friend, seen in silhouette from behind, arrive to find the Golden Fry engulfed — two massive columns of black smoke and flames pour from the building while the tiny figure of the boss stands at the door swearing. END card in the corner.",
+    "visual_prompt": "Street scene of a burning fast-food restaurant: the GOLDEN FRY signage is half-swallowed by two enormous billowing black smoke columns and jagged flames rising from the roof and a shattered window; at the door a small distraught man in a paper hat and apron stands rigid; in the near foreground, the dark back-of-head silhouettes of a stocky bowl-cut kid and a lanky long-haired figure watch. Wide shot from behind the onlookers, eye level, smoke dominating the sky.",
+    "dialogue": [
+      {
+        "speaker": "friend",
+        "line": "WHOA DUDE!",
+        "delivery": "Stunned awe"
+      },
+      {
+        "speaker": "boss_man",
+        "line": "FOCK!",
+        "delivery": "Strangled scream of despair"
+      }
+    ],
+    "voiceover": "END",
+    "performance": "Catastrophic punchline played absolutely deadpan",
+    "duration_target_s": 6
+  }
+]

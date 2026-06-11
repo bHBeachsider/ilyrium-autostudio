@@ -1,0 +1,195 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Suburban front porch overlooking a quiet residential street",
+    "characters": ["porch_smoker"],
+    "action": "An elderly man sits on his porch behind a wrought-iron railing, seen from behind, smoking a cigarette and gazing at the empty street and ranch houses across the way.",
+    "visual_prompt": "Over-the-shoulder view from a front porch: an elderly bald man with sparse strands of hair, heavyset, in a dark suit jacket, seated in a high-backed chair, cigarette raised in his right hand with smoke curling up. Foreground: black iron porch railing and leafy shrubs. Background: a quiet suburban street, ranch-style houses with carports, parked cars, bare winter trees, empty sidewalk. Medium-wide shot, eye level from behind the seated man.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Still, contemplative calm; the quiet before absurdity",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 2,
+    "location": "Suburban front porch overlooking a quiet residential street",
+    "characters": ["porch_smoker", "street_man"],
+    "action": "A wiry, spiky-haired man suddenly appears at the right edge of the street, grinning and lunging forward with both fists raised in a strange prancing pose. The old man keeps smoking and watching.",
+    "visual_prompt": "Same over-the-shoulder porch view: elderly bald heavyset man in a dark suit seated with cigarette in hand. On the right side of the street a wiry middle-aged man with spiky thinning hair, long-sleeve shirt and slacks, lunges forward on one bent leg, both fists raised to chest height, grinning manically. Suburban ranch houses and bare trees behind. Medium-wide shot, eye level.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Sudden oddity intruding on calm; deadpan observation",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 3,
+    "location": "Suburban front porch overlooking a quiet residential street",
+    "characters": ["porch_smoker", "street_man"],
+    "action": "The wiry man now stands mid-street with his hands clasped behind his back, hips wiggling, smirking back over his shoulder as he saunters. The old man watches, smoking.",
+    "visual_prompt": "Over-the-shoulder porch view: elderly bald man in dark suit seated with cigarette. In the street, the wiry spiky-haired man in long-sleeve shirt and slacks stands with hands clasped behind his back, hips mid-wiggle with small motion lines, smirking over his shoulder. Suburban houses, carports and bare trees in background. Medium-wide shot, eye level.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Smug, strutting absurdity; quiet bewilderment from the watcher",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 4,
+    "location": "Suburban front porch overlooking a quiet residential street",
+    "characters": ["porch_smoker", "street_man"],
+    "action": "The wiry man prances to the middle of the street, fists raised again in his lunging dance, grinning wide. The old man keeps watching from the porch.",
+    "visual_prompt": "Over-the-shoulder porch view: elderly bald man in dark suit seated, cigarette hand raised. Center-street, the wiry spiky-haired man lunges on a bent front leg, rear leg kicked back, both fists raised, grinning ecstatically. Suburban houses and bare trees behind. Medium-wide shot, eye level.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Manic glee versus deadpan stillness",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 5,
+    "location": "Suburban front porch overlooking a quiet residential street",
+    "characters": ["porch_smoker", "street_man"],
+    "action": "The wiry man saunters left across the street, hands behind his back, hips wiggling, now closer to the porch. The old man smokes, unmoving.",
+    "visual_prompt": "Over-the-shoulder porch view: elderly bald man in dark suit seated with cigarette, smoke curling. The wiry spiky-haired man walks leftward in the near lane of the street, hands clasped behind his back, hips swaying with motion lines, self-satisfied expression. Suburban houses and bare trees behind. Medium-wide shot, eye level.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Strutting self-satisfaction; patient observation",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 6,
+    "location": "Suburban front porch overlooking a quiet residential street",
+    "characters": ["porch_smoker", "street_man"],
+    "action": "The wiry man does his fists-up lunging dance again on the left side of the street, grinning. The old man watches from his chair.",
+    "visual_prompt": "Over-the-shoulder porch view: elderly bald man in dark suit seated with cigarette. Left of center in the street, the wiry spiky-haired man lunges deeply, fists raised, beaming with manic delight, small dust scuffs at his feet. Suburban houses, parked cars, bare trees behind. Medium-wide shot, eye level.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Escalating mania, unexplained ritual",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 7,
+    "location": "Suburban front porch overlooking a quiet residential street",
+    "characters": ["porch_smoker", "street_man"],
+    "action": "The wiry man walks off toward the far left edge of the street, hands behind his back, hips wiggling. The old man keeps smoking.",
+    "visual_prompt": "Over-the-shoulder porch view: elderly bald man in dark suit seated with cigarette. At the far left edge of frame the wiry spiky-haired man walks away, hands clasped behind his back, hips swaying with motion lines, smug grin. The rest of the street empty, suburban houses and bare trees behind. Medium-wide shot, eye level.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "A lull; the oddity drifts offstage",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 8,
+    "location": "Suburban front porch overlooking a quiet residential street",
+    "characters": ["porch_smoker"],
+    "action": "The street is empty. The old man takes a drink from a glass in his left hand, cigarette still in his right.",
+    "visual_prompt": "Over-the-shoulder porch view: elderly bald heavyset man in dark suit seated, raising a drinking glass to his mouth with his left hand, cigarette smoking in his right, small motion marks around the glass. Empty quiet suburban street, ranch houses, carports, bare trees. Medium-wide shot, eye level.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "A beat of weary refreshment; processing what he just saw",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 9,
+    "location": "Suburban front porch overlooking a quiet residential street",
+    "characters": ["porch_smoker", "street_man"],
+    "action": "The wiry man is back at the left side of the street, fists raised in his lunging dance, grinning toward the right.",
+    "visual_prompt": "Over-the-shoulder porch view: elderly bald man in dark suit seated with cigarette. On the left side of the street the wiry spiky-haired man lunges forward facing right, both fists raised, gleeful bared-teeth grin. Suburban houses, carport with parked cars, bare trees behind. Medium-wide shot, eye level.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "The ritual resumes; absurd persistence",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 10,
+    "location": "Suburban front porch overlooking a quiet residential street",
+    "characters": ["porch_smoker", "street_man"],
+    "action": "The wiry man walks left along the street, hands behind his back, hips wiggling, smirking.",
+    "visual_prompt": "Over-the-shoulder porch view: elderly bald man in dark suit seated with cigarette. The wiry spiky-haired man strolls leftward in the street, hands clasped behind his back, hips swaying with motion lines, contented smirk. Suburban ranch houses and bare trees behind. Medium-wide shot, eye level.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Hypnotic, repetitive strangeness",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 11,
+    "location": "Suburban street in front of the porch",
+    "characters": ["porch_smoker", "street_man", "car_driver"],
+    "action": "A sedan bears down on the wiry man, horn blaring 'HONNNKKK'. The driver leans out with his fist raised and screams at him. The wiry man keeps dancing, fists up. The old man watches from the porch.",
+    "visual_prompt": "Over-the-shoulder porch view, now dominated by a sedan sweeping in from the right, its driver leaning out the window with raised fist, furious snarling face, slicked hair. Ahead of the car the wiry spiky-haired man lunges with fists raised, oblivious. Large jagged sound lettering across the sky. Elderly bald man in dark suit seated in foreground. Medium-wide shot, eye level, sudden diagonal energy.",
+    "dialogue": [
+      {"speaker": "car_driver", "line": "GET OUT OF ROAD ASS-CLOWN! WANT TO GET RUN OVER??", "delivery": "Screamed in road rage over a blaring horn"}
+    ],
+    "voiceover": "",
+    "performance": "Sudden violence of traffic against oblivious mania",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 12,
+    "location": "Suburban street in front of the porch",
+    "characters": ["porch_smoker", "street_man"],
+    "action": "The car screeches away to the left in a cloud of smoke ('SCREEEEEEEECHH!'), leaving black tire marks looping across the street. The wiry man stands calmly, hands behind his back, unbothered.",
+    "visual_prompt": "Over-the-shoulder porch view: a dark sedan speeds out of frame to the left, rear wheel spinning, thick smoke cloud billowing behind it, long looping tire marks scrawled across the pavement. The wiry spiky-haired man stands to the right, hands clasped behind his back, hips mid-wiggle, serenely unbothered. Elderly bald man seated in foreground. Medium-wide shot, eye level.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Chaos exits; the madman remains untouched",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 13,
+    "location": "Suburban street marked with tire tracks",
+    "characters": ["porch_smoker", "street_man"],
+    "action": "Amid the fresh looping tire marks, the wiry man resumes his fists-up lunging dance on the right side of the street.",
+    "visual_prompt": "Over-the-shoulder porch view: looping black tire marks snake across the pale street. On the right the wiry spiky-haired man lunges with both fists raised, gleeful grin. Elderly bald man in dark suit seated in foreground with cigarette. Suburban houses and bare trees behind. Medium-wide shot, eye level.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Undeterred mania; near-death changes nothing",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 14,
+    "location": "Suburban street marked with tire tracks",
+    "characters": ["porch_smoker", "street_man"],
+    "action": "The wiry man strolls away to the right past the tire marks, hands behind his back, hips wiggling.",
+    "visual_prompt": "Over-the-shoulder porch view: looping tire marks across the street. At the right edge the wiry spiky-haired man walks away, hands clasped behind his back, hips swaying with motion lines, smug expression. Elderly bald man in dark suit seated in foreground with cigarette. Medium-wide shot, eye level.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "The loop continues; weary repetition",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 15,
+    "location": "Suburban front porch, street empty",
+    "characters": ["porch_smoker"],
+    "action": "Alone on his porch facing the now-empty street, the old man finally speaks, despairing aloud about comprehension itself.",
+    "visual_prompt": "Over-the-shoulder porch view: elderly bald heavyset man in dark suit seated with cigarette raised, smoke curling, facing an empty suburban street with a large speech balloon filling the upper left of frame. Ranch house, bare trees, sidewalk behind. Medium shot, eye level.",
+    "dialogue": [
+      {"speaker": "porch_smoker", "line": "I NO LONGER UNDERSTAND ANYTHING. AT ALL. WHAT DOES IT ALL MEAN? WHAT ARE THE MEANINGS BEHIND THE CONCEPTS BEHIND THE PURPOSE?", "delivery": "Flat, hollow existential despair, spoken to no one"}
+    ],
+    "voiceover": "",
+    "performance": "Existential collapse delivered deadpan",
+    "duration_target_s": 7
+  },
+  {
+    "scene_number": 16,
+    "location": "Suburban street marked with tire tracks",
+    "characters": ["porch_smoker", "street_man"],
+    "action": "The wiry man is back yet again on the right side of the street, lunging with fists raised among the tire marks, mouth open in a manic howl.",
+    "visual_prompt": "Over-the-shoulder porch view: looping tire marks on the street. On the right the wiry spiky-haired man lunges deeply with both fists raised, mouth wide in a manic shout. Elderly bald man in dark suit seated in foreground with cigarette. Suburban houses and bare trees behind. Medium-wide shot, eye level.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "The absurdity peaks; no resolution coming",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 17,
+    "location": "Suburban street in front of the porch",
+    "characters": ["porch_smoker", "street_man", "truck_driver"],
+    "action": "A huge truck looms in from the right, horn blasting 'HONK HONK HONK', its burly driver glaring out the window. The wiry man strolls obliviously in its path, hips wiggling. The old man delivers his verdict.",
+    "visual_prompt": "Over-the-shoulder porch view: the massive cab of a truck fills the right third of frame, a burly bearded driver glaring from the window, large sound lettering across the sky. Center, the wiry spiky-haired man strolls in the truck's path, hands behind his back, hips swaying, oblivious. Elderly bald man in dark suit seated in foreground, speech balloon at left, black end card in lower right corner. Medium-wide shot, eye level, oppressive scale from the truck.",
+    "dialogue": [
+      {"speaker": "porch_smoker", "line": "THIS SILLY SON-OF-A-BITCH IS GONNA DIE.", "delivery": "Flat, resigned deadpan prophecy"}
+    ],
+    "voiceover": "",
+    "performance": "Grim deadpan punchline as doom approaches",
+    "duration_target_s": 6
+  }
+]

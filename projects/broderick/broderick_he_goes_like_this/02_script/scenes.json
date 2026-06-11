@@ -1,0 +1,57 @@
+[
+  {
+    "scene_number": 1,
+    "location": "blank white void, bare floor suggested by a scribbled shadow",
+    "characters": ["dancer"],
+    "action": "A man with an oversized head strikes his first dance pose: mid-strut, both arms flung wide, fingers extended, head cocked toward the viewer as the narration begins.",
+    "visual_prompt": "A lone man on an empty white field: oversized head with slick dark side-parted hair, smug serene face, lean body in a black turtleneck, light pleated trousers and flat dark shoes. He struts in profile with both arms thrown out wide to either side, fingers splayed like blades, knees bent mid-step, a scribbled shadow under his feet. Full-body shot, eye level, dead-center framing with generous negative space.",
+    "dialogue": [],
+    "voiceover": "HE GOES LIKE THIS...",
+    "performance": "cocky, self-serious dance demonstration",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 2,
+    "location": "blank white void, bare floor suggested by a scribbled shadow",
+    "characters": ["dancer"],
+    "action": "Next move: he tilts his huge head far over to one shoulder, body swaying, one pointed hand swept out flat in front and the other trailing low behind.",
+    "visual_prompt": "The same man — oversized head, slick dark side-parted hair, black turtleneck, light trousers, flat shoes — stands with his head lolled dramatically toward his right shoulder, eyes calm and lips pursed in concentration. One arm reaches across his front with the hand flattened into a point, the other arm hangs behind with fingers dangling. Feet planted together over a scribbled shadow. Full-body shot, eye level, lots of white space around the pose.",
+    "dialogue": [],
+    "voiceover": "AND HE GOES LIKE THAT...",
+    "performance": "languid, hypnotic pose-to-pose commitment",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 3,
+    "location": "blank white void, bare floor suggested by a scribbled shadow",
+    "characters": ["dancer"],
+    "action": "The moves escalate: he pitches his whole torso forward horizontally, one leg kicked up high behind him, arms dangling toward the floor with loose hands.",
+    "visual_prompt": "The same man — oversized head with slick dark side-parted hair, black turtleneck, light trousers — bends his torso fully horizontal, face turned up to grin at the viewer, one leg planted and the other kicked up high behind him with the shoe flexed. Both arms dangle down with limp spread fingers brushing toward the floor. Scribbled shadow streaks beneath him. Full-body shot, eye level, the diagonal of the lifted leg dominating the frame.",
+    "dialogue": [],
+    "voiceover": "AND HE GOES LIKE THIS...",
+    "performance": "absurd athletic commitment, straight-faced",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 4,
+    "location": "blank white void, bare floor suggested by a scribbled shadow",
+    "characters": ["dancer"],
+    "action": "He drops into a low split-kick, one leg shooting straight out along the floor, one arm cocked high overhead with a flat-bladed hand and the other fist tucked with a thumb out.",
+    "visual_prompt": "The same man — oversized head, slick dark side-parted hair, beaming open-mouthed smile, black turtleneck, light trousers — sinks onto one bent knee with his other leg extended straight out low across the frame, shoe pointed. One arm spikes high above his head, hand flattened, the other arm tucks in with a closed fist and raised thumb. Scribbled shadow scuffs beneath the pose. Full-body shot, slightly low angle, frozen at the bottom of the move.",
+    "dialogue": [],
+    "voiceover": "AND HE GOES LIKE THAT...",
+    "performance": "showstopper flourish, peak confidence",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 5,
+    "location": "blank white void, bare floor suggested by a scribbled shadow",
+    "characters": ["dancer"],
+    "action": "Final move: hunched low with knees bent and arms flared behind him, he keeps grinning and dancing — but his eyes are now red and streaming tears, a small arrow pointing them out, as the strip ends.",
+    "visual_prompt": "The same man — oversized head, slick dark side-parted hair, black turtleneck, light trousers — crouches in a skulking dance pose, knees deeply bent, torso pitched forward, both arms swept out behind him with fingers splayed. His grin holds, but his eyes are bloodshot red with bright red tears streaking down both cheeks, a small black arrow floating beside his face pointing at the tears. Scribbled shadow underfoot; the word END sits in the lower right corner. Full-body shot, eye level, stillness amid motion.",
+    "dialogue": [],
+    "voiceover": "AND HE GOES LIKE THIS... END",
+    "performance": "the mask cracks — manic dancing through silent weeping",
+    "duration_target_s": 6
+  }
+]

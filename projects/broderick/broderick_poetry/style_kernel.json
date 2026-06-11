@@ -1,0 +1,40 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Hand-drawn digital comic in loud saturated full color — wobbly confident black ink contours over flat, slightly streaky marker-style fills. Each vignette is a single portrait panel on its own flat color field (mustard, periwinkle, lavender, magenta bokeh), three panels to a row. Grotesque caricature faces: bulbous noses, gold teeth, heavy lids, exaggerated jowls. Chunky hand-drawn all-caps title lettering in a different bold color per panel, arced or stacked to fit. No backgrounds beyond the color field except minimal props.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "mustard_field": {"hex": "#e9b62c", "usage": "title fields and backdrops (Nutty Putty, Six-Foot Sub banner, Wiggly Arm bg); the strip's signature ground"},
+    "flat_periwinkle": {"hex": "#6b86d6", "usage": "portrait backdrops (Fuddy Duddy, Cap'n Stanky); calm foil to grotesque faces"},
+    "magenta_bokeh": {"hex": "#a83a9b", "usage": "Mellow Yellow glowing bokeh backdrop; Hanky-Panky sunset gradient"},
+    "lavender_panel": {"hex": "#9e93c8", "usage": "Fix the Cello backdrop; muted cool vignette ground"},
+    "showman_purple": {"hex": "#8e44ad", "usage": "Here & There suit and title lettering; punchy accent garment color"},
+    "ruddy_flesh": {"hex": "#e0a58e", "usage": "exaggerated caricature skin with pink-red blotching on noses, cheeks, jowls"}
+  },
+  "casting_canon": {
+    "fuddy_duddy": "Old man, 70s, gaunt, deeply wrinkled, balding with wild grey side tufts, heavy eye bags, stubble, one gold tooth; green cardigan over yellow collared shirt; sour scolding affect, finger raised.",
+    "sub_man": "Muscular man, 30s, broad shoulders, short dark hair and mustache, dark blue tank top; beaming salesman pride, arms spread wide.",
+    "kissing_couple": "Two adults in tight profile, exaggerated full red lips, noses mashed; one short dark hair, one fuller hair; overwrought lurid passion.",
+    "capn_stanky": "Weathered sailor, 60s, ruddy pockmarked bulbous nose, scraggly grey-brown beard, gold tooth and gaps, white captain's hat with anchor emblem, red shirt; wheezing over-familiar jollity.",
+    "pencil_club_man": "Young man, 20s, neat dark swept hair, narrow sly eyes, small smirk, mauve shirt, yellow pencil held upright; smug insider secrecy.",
+    "mellow_yellow": "Languid figure, indeterminate age, straight blond bowl cut, round yellow-green tinted glasses, heavy-lidded eyes, bucked front teeth, bulbous nose; dazed narcotic serenity.",
+    "cello_man": "Heavy-jowled bald man, 50s, disembodied frowning head beside a cello with a snapped neck; mournful pleading despair.",
+    "wiggly_arm_man": "Thin pale man, 30s, sparse short hair, weary half-lidded eyes, red-and-white striped shirt, green polka-dot pants; right arm impossibly long and rubbery in S-curves; listless whimsy.",
+    "here_and_there_man": "Showman, 30s, curly brown hair, broad toothy grin, shiny purple suit with wide lapels over white shirt; game-show razzle-dazzle.",
+    "mr_drozdoff": "Rumpled teacher, 60s, grey frizzy hair, deeply creased face, wide eager grin, bright green jacket over grey shirt, at a chalkboard bearing his name; oblivious enthusiasm.",
+    "student_silhouette": "Solid black silhouette of a student's head and shoulders seen from behind; slack-jawed incomprehension.",
+    "chicken_parm_man": "Hulking man, 50s, completely bald, enormous head with heavy drooping jowls, tiny scowling mouth, dark navy sweater; seething dinner-table disappointment."
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, grayscale, monochrome, desaturated muted palette, realistic facial proportions, subtle understated caricature, detailed environment backgrounds, typeset fonts, soft pastel rendering",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: flat hand-drawn comic illustration, visible ink line, loud flat marker color, no photographic rendering, no 3d.",
+    "drifts_subtle": "Add: grotesque exaggerated caricature, bulbous nose, heavy jowls, oversized features.",
+    "lettering_garbled": "Generate art without text; add hand-lettering in post or via dedicated lettering pass."
+  }
+}

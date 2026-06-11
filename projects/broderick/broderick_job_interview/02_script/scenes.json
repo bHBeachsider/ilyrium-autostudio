@@ -1,0 +1,68 @@
+[
+  {
+    "scene_number": 1,
+    "location": "corporate office, interviewer's desk",
+    "characters": ["interviewer", "jason"],
+    "action": "The interviewer, typing at his laptop without looking up, asks the candidate his name again; Jason answers politely from the guest chair.",
+    "visual_prompt": "Office interview two-shot. Behind a large clean desk on the left, a heavyset balding man with a scruffy gray-flecked beard and a bow tie hunches over a laptop, smiling vaguely at the screen as he types. On the right a thin polite man in his late 20s with neatly combed hair, rectangular glasses, slim suit and tie sits upright in a swivel office chair, hands folded in his lap, eager smile. Medium-wide shot, eye level, the desk dividing the frame.",
+    "dialogue": [
+      {"speaker": "interviewer", "line": "WHAT'S YOUR NAME AGAIN?", "delivery": "distracted, not looking up from the laptop"},
+      {"speaker": "jason", "line": "UH, JASON. JASON ANDREWS.", "delivery": "polite, slightly thrown but accommodating"}
+    ],
+    "voiceover": "",
+    "performance": "stilted interview small talk, mild unease",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 2,
+    "location": "corporate office, interviewer's desk",
+    "characters": ["interviewer", "jason"],
+    "action": "The interviewer lobs the standard why-do-you-want-to-work-here question; Jason fires back a perfect string of corporate buzzwords.",
+    "visual_prompt": "Same office interview two-shot. The heavyset bearded man with the bow tie keeps typing at his laptop behind the big desk, genial and disengaged. The thin bespectacled candidate in the slim suit sits forward slightly in the swivel chair, hands folded, delivering his answer with practiced enthusiasm. Medium-wide shot, eye level, static staging emphasizing the ritual.",
+    "dialogue": [
+      {"speaker": "interviewer", "line": "SO WHY DO YOU WANT TO WORK AT XJHK INDUSTRIES INCORPORATED?", "delivery": "rote, going through the motions"},
+      {"speaker": "jason", "line": "WELL I'M A RESULTS-DRIVEN TEAM PLAYER WHO WANTS TO MOVE THE NEEDLE.", "delivery": "rehearsed buzzword salad, hopeful"}
+    ],
+    "voiceover": "",
+    "performance": "hollow corporate ritual played straight",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 3,
+    "location": "corporate office, interviewer's desk",
+    "characters": ["interviewer", "jason"],
+    "action": "Without warning the interviewer announces he will be calling Jason a deranged nickname from now on; Jason, desperate, just asks if that means he got the job.",
+    "visual_prompt": "Same office interview two-shot. The heavyset bearded man with the bow tie smiles pleasantly at his laptop behind the desk as he speaks, utterly casual. The thin bespectacled candidate in the slim suit keeps his composed posture and polite smile in the swivel chair, betraying only a flicker of confusion. Medium-wide shot, eye level, the calm staging at odds with the words.",
+    "dialogue": [
+      {"speaker": "interviewer", "line": "FROM NOW ON I'M CALLING YOU PERVY-PEEPING-TOM-THE-PERVERT.", "delivery": "breezy and matter-of-fact, like reading a calendar item"},
+      {"speaker": "jason", "line": "UH, OK. DOES THAT MEAN I HAVE THE JOB?", "delivery": "bewildered but still desperately agreeable"}
+    ],
+    "voiceover": "",
+    "performance": "absurdist left turn delivered deadpan",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 4,
+    "location": "corporate office, interviewer's desk",
+    "characters": ["interviewer", "jason"],
+    "action": "The interviewer erupts, lunging across the desk and screaming threats in Jason's face; Jason sits frozen, hair blown back by the blast.",
+    "visual_prompt": "Explosive office moment. The heavyset bearded man lunges bodily across his desk from the left, face contorted in fury, finger jabbing inches from the candidate, spittle lines blasting rightward. The thin bespectacled man in the slim suit sits rigid in the swivel chair, eyes wide and blank, hair blown straight back by the force of the shout. A tiny paper tent card sits oddly under the front of the desk. Medium-wide shot, slight low angle, kinetic diagonal across the frame.",
+    "dialogue": [
+      {"speaker": "interviewer", "line": "I ASK THE QUESTIONS, FUCKPANTS! THE NEXT THING YOU'RE GONNA FEEL IS A FLORSHEIM SHOE UP YOUR ASS!", "delivery": "full-throated unhinged screaming"}
+    ],
+    "voiceover": "",
+    "performance": "sudden volcanic rage, terror in the chair",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 5,
+    "location": "infomercial studio limbo, direct-to-camera",
+    "characters": ["host_man", "host_woman"],
+    "action": "Cut to a grinning infomercial duo addressing the audience, recapping the lesson of Jason's interview beside a subscription button whose fine print reads: 'Click here for permanent subscription!*' and '*By clicking I authorize Trireme Careers to access my bank account and password to collect monthly $299.99 subscription fee.  This offer cannot be cancelled and upon death will transfer onto descendants in perpetuity.'",
+    "visual_prompt": "Bright direct-to-camera hosting shot against a blank backdrop. A muscular man in his 30s with thick curly dark hair, broad shoulders and a tight t-shirt spreads his arms in a welcoming gesture, grinning hugely with an unsettling wink. Beside him a woman in her 30s with a blunt blonde bob and an enormous fixed smile leans into frame. To the left floats a rectangular on-screen button reading Click here for permanent subscription!* with a line of dense legal fine print along the bottom edge of the frame. Medium close two-shot, straight-on angle, advertisement framing.",
+    "dialogue": [],
+    "voiceover": "WHAT DID WE LEARN HERE? DID JASON MAKE THE RIGHT MOVES?  ONE WRONG MOVE CAN MAKE THE DIFFERENCE BETWEEN A NICE JOB AND NO JOB!",
+    "performance": "manic predatory infomercial cheer",
+    "duration_target_s": 7
+  }
+]

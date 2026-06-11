@@ -1,0 +1,47 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Hand-drawn digital comic in limited flat color over a white void. Loose confident ink contours with soft digital-brush tonal shading on faces and the car — more rendered than flat-fill, but unmistakably drawn, not photoreal. Backgrounds are absent (pure white) or reduced to flat layered silhouette bands (green forest, gray cliff). Title cards use oversized slanted typeset italic display lettering; dialogue is regular bold all-caps stacked in white space without balloons. One character, one car, maximum negative space.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "void_white": {
+      "hex": "#FFFFFF",
+      "usage": "Dominant background — interior driving shots float in pure white; sky on the cliff shot"
+    },
+    "sedan_blue": {
+      "hex": "#5B7FA5",
+      "usage": "The boxy 1970s four-door sedan, the strip's second character; slate steel-blue with chrome accents"
+    },
+    "polo_red": {
+      "hex": "#CC2A22",
+      "usage": "The dood's red polo shirt — the only hot color, anchors every driver shot"
+    },
+    "forest_green": {
+      "hex": "#2E9148",
+      "usage": "Layered flat silhouette bands of forest canopy in the finale; darker band #1F6B35 behind"
+    },
+    "cliff_gray": {
+      "hex": "#6E6E6E",
+      "usage": "Craggy cliff rock with darker #3A3A3A shadow planes; debris flecks"
+    },
+    "skin_tan": {
+      "hex": "#D9A06B",
+      "usage": "The dood's doughy face and hands, soft-shaded with darker #B0784A; gold-tinged teeth ~#C9B458"
+    }
+  },
+  "casting_canon": {
+    "cruuuuzing_dood": "Man in his thirties; doughy wide-jawed face, spiky unkempt black hair, heavy-lidded half-closed eyes, broad grin of stained gold-tinged teeth; red polo shirt, lit cigarette habitually between fingers on the steering wheel; supremely mellow self-satisfied affect, increasingly intoxicated, lazy sing-song delivery"
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, watermark, signature, garbled text, malformed lettering, extra fingers, detailed realistic backgrounds, busy environments, crosshatching, manga style, anime eyes, open alert eyes, clean white teeth, speech balloons with outlines, photoreal car rendering",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: flat hand-drawn comic illustration, visible ink line, soft digital brush shading only, no photographic rendering, no 3d.",
+    "eyes_open": "Add: heavy-lidded nearly-shut eyes, stoned squint — never alert wide eyes.",
+    "lettering_garbled": "Generate art without text; add hand-lettering in post or via dedicated lettering pass."
+  }
+}

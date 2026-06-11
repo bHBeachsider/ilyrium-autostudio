@@ -1,0 +1,158 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Interior of a moving Uber car, seen head-on through the windshield",
+    "characters": ["cody", "uber_driver"],
+    "action": "Cody, riding front passenger, holds up a joint and offers it to the driver. The driver, hands on the wheel, refuses and pleads with him to behave because she needs the job.",
+    "visual_prompt": "Head-on shot through the windshield of a sedan with a small 'uber' placard on the dash. Front passenger: a scrawny man in his 20s, messy spiky hair, long sideburns, white-framed sunglasses, sparse stubble, dark band t-shirt, smug grin, holding up a thin hand-rolled cigarette between two fingers. Driver: a weary woman in her 40s, lean, chin-length dark bob with bangs, large nose, heavy-lidded deadpan eyes, sleeveless top, both hands resting on the wheel. Medium two-shot, eye level, symmetrical framing across the windshield.",
+    "dialogue": [
+      {"speaker": "cody", "line": "WANNA PARTAKE?", "delivery": "breezy, stoner-friendly offer"},
+      {"speaker": "uber_driver", "line": "DUDE JUST BE COOL I NEED THIS UBER JOB!", "delivery": "tense, pleading"}
+    ],
+    "voiceover": "",
+    "performance": "Awkward comedy setup; mismatched energy between carefree passenger and anxious driver",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 2,
+    "location": "Interior of the moving Uber car, head-on through the windshield",
+    "characters": ["cody", "uber_driver"],
+    "action": "Cody shrugs off the request and lights up anyway, puffing on the joint as smoke starts to drift through the cabin. The driver stares ahead, resigned.",
+    "visual_prompt": "Head-on windshield framing of the sedan with the 'uber' dash placard. The scrawny man in his 20s with white-framed sunglasses and dark band t-shirt has the hand-rolled cigarette at his lips, one hand raised in a casual no-worries gesture, a puff of smoke curling behind him in the cabin. The weary woman driver in her 40s, dark bob and heavy-lidded eyes, keeps both hands on the wheel, expression flat. Medium two-shot, eye level.",
+    "dialogue": [
+      {"speaker": "cody", "line": "NO PROBLEMO!", "delivery": "cheerfully oblivious, talking around the joint"}
+    ],
+    "voiceover": "",
+    "performance": "Deadpan escalation; the worst possible interpretation of 'be cool'",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 3,
+    "location": "Interior of the Uber car, cabin now hazy with smoke",
+    "characters": ["cody", "uber_driver"],
+    "action": "Five minutes on, the cabin is filled with smoke. Cody is completely zonked, mouth open and drooling. The driver tells him she has a passenger pick-up coming.",
+    "visual_prompt": "Head-on windshield shot of the sedan, 'uber' placard on dash, interior hazed with drifting smoke. The scrawny man in white-framed sunglasses is slack-jawed and catatonic, a line of drool running from his open mouth. The weary woman driver in her 40s, dark bob, heavy-lidded eyes, glances toward him while steering, mildly concerned. Medium two-shot, eye level, smoke softening the cabin.",
+    "dialogue": [
+      {"speaker": "uber_driver", "line": "DUDE I HAVE A PICK-UP.", "delivery": "flat, worried, trying to rouse him"}
+    ],
+    "voiceover": "FIVE MINUTES LATER...",
+    "performance": "Quiet dread; the situation is now unfixable and a customer is imminent",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 4,
+    "location": "Interior of the smoky Uber car, a businessman now seated in the middle",
+    "characters": ["cody", "uber_driver", "businessman"],
+    "action": "The businessman has climbed in and sits wedged between the zonked Cody and the driver. He demands speed; the driver answers with chipper, maddening politeness.",
+    "visual_prompt": "Head-on windshield three-shot of the sedan, 'uber' dash placard, cabin hazy with smoke. Center: an irate businessman in his 40s, short dark hair, sharp brows, dark suit, white shirt, striped tie, scowling. Left: the scrawny man in white-framed sunglasses, slack-jawed and drooling, motionless. Right: the weary woman driver in her 40s, dark bob, heavy-lidded calm, hands on the wheel. Medium three-shot, eye level, symmetrical.",
+    "dialogue": [
+      {"speaker": "uber_driver", "line": "HOW ARE YOU DOING THIS FINE DAY SIR?", "delivery": "sing-song customer-service cheer"},
+      {"speaker": "businessman", "line": "JUST PLEASE HURRY!! SOME PEOPLE HAVE LIVES!", "delivery": "exasperated, entitled urgency"},
+      {"speaker": "uber_driver", "line": "SAFETY FIRST SIR.", "delivery": "serene, immovable deadpan"}
+    ],
+    "voiceover": "",
+    "performance": "Comedy of friction; coiled rage meets unbothered calm",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 5,
+    "location": "Interior of the smoky Uber car",
+    "characters": ["cody", "uber_driver", "businessman"],
+    "action": "A silent beat. The car crawls along. The businessman stews in the middle seat, the smoke thickening around all three.",
+    "visual_prompt": "Head-on windshield three-shot of the sedan, 'uber' dash placard, smoke haze filling the cabin. The businessman in his 40s in dark suit and striped tie glowers straight ahead in tight-lipped silence. The scrawny sunglasses-wearing man stays slack-jawed and drooling on the left. The woman driver, dark bob and heavy-lidded eyes, drives placidly on the right. Medium three-shot, eye level, still and airless.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "Pressure-cooker silence; a held comedic beat before the explosion",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 6,
+    "location": "Interior of the smoky Uber car",
+    "characters": ["cody", "uber_driver", "businessman"],
+    "action": "The businessman erupts, screaming that the car is going ten miles an hour in a 45 zone. The driver tells him to remain calm.",
+    "visual_prompt": "Head-on windshield three-shot of the sedan, 'uber' dash placard, smoky cabin. The businessman in dark suit and striped tie is mid-shout, mouth wide, eyes bulging. The scrawny sunglasses-wearing man remains catatonic and drooling at left. The woman driver, dark bob, heavy-lidded and unmoved, keeps hands on the wheel at right. Medium three-shot, eye level, energy concentrated on the center figure.",
+    "dialogue": [
+      {"speaker": "businessman", "line": "YOU'RE GOING TEN MILES AN HOUR! THE SPEED LIMIT IS 45!", "delivery": "shouted, incredulous"},
+      {"speaker": "businessman", "line": "GO!!", "delivery": "explosive bark"},
+      {"speaker": "uber_driver", "line": "REMAIN CALM SIR.", "delivery": "flat, infuriatingly serene"}
+    ],
+    "voiceover": "",
+    "performance": "Full eruption against an immovable wall of stoned calm",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 7,
+    "location": "Interior of the smoky Uber car",
+    "characters": ["cody", "uber_driver", "businessman"],
+    "action": "The businessman unloads a furious tirade about being told to remain calm, threatens to call the cops on both of them, and reminds everyone he has a flight.",
+    "visual_prompt": "Head-on windshield three-shot of the sedan, 'uber' dash placard, smoke-filled cabin. The businessman in dark suit and striped tie rants, mouth open, brows knotted in fury. The scrawny sunglasses-wearing man drools obliviously at left. The woman driver with dark bob stays heavy-lidded and impassive at right. Medium three-shot, eye level.",
+    "dialogue": [
+      {"speaker": "businessman", "line": "HOW DARE YOU TELL ME TO REMAIN CALM! HOW DARE YOU SPEAK TO ME IN THAT TONE! YOU'RE LUCKY I DON'T CALL THE COPS ON YOU TWO! YOU'RE NOT EVEN DRIVING THE SPEED LIMIT AND I HAVE A FLIGHT!", "delivery": "machine-gun indignant tirade, rising pitch"}
+    ],
+    "voiceover": "",
+    "performance": "Peak entitled meltdown; the other two are statues",
+    "duration_target_s": 8
+  },
+  {
+    "scene_number": 8,
+    "location": "Interior of the smoky Uber car",
+    "characters": ["cody", "uber_driver", "businessman"],
+    "action": "Still raging, the businessman threatens the driver with a bad rating and vaguely menaces 'other things'.",
+    "visual_prompt": "Head-on windshield three-shot of the sedan, 'uber' dash placard, hazy cabin. The businessman in dark suit and striped tie jabs out his threat, face twisted. The scrawny sunglasses-wearing man at left stays slack and drooling. The woman driver at right, dark bob, registers nothing. Medium three-shot, eye level.",
+    "dialogue": [
+      {"speaker": "businessman", "line": "YOU'RE GETTING A CRAP RATING OUT OF THIS! I'M PREPARED TO DO THAT, AND SOME OTHER THINGS...", "delivery": "spiteful, trailing into vague menace"}
+    ],
+    "voiceover": "",
+    "performance": "Impotent threat comedy; the rating is his only weapon",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 9,
+    "location": "Interior of the smoky Uber car",
+    "characters": ["cody", "uber_driver", "businessman"],
+    "action": "Another silent beat. The businessman's eyes slide sideways with an uneasy frown — something is starting to feel different as the smoke keeps swirling around him.",
+    "visual_prompt": "Head-on windshield three-shot of the sedan, 'uber' dash placard, cabin thick with smoke. The businessman in dark suit and striped tie glances sideways with an uneasy, distracted frown, anger draining. The scrawny sunglasses-wearing man drools at left; the woman driver with dark bob drives evenly at right. Medium three-shot, eye level, hushed.",
+    "dialogue": [],
+    "voiceover": "",
+    "performance": "The turn; a silent beat as the smoke does its work",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 10,
+    "location": "Interior of the smoky Uber car",
+    "characters": ["cody", "uber_driver", "businessman"],
+    "action": "The businessman realizes with horror that he has gotten a contact high from the smoke — his eyes spiral as panic sets in.",
+    "visual_prompt": "Head-on windshield three-shot of the sedan, 'uber' dash placard, dense smoke haze. The businessman in dark suit and striped tie stares with huge swirling pinwheel eyes, mouth agape mid-realization. The scrawny sunglasses-wearing man stays zonked at left; the woman driver with dark bob remains heavy-lidded at right. Medium three-shot, eye level, focus on the center face.",
+    "dialogue": [
+      {"speaker": "businessman", "line": "I-I ... OH NO, I'VE GOTTEN A CONTACT HIGH FROM THE SMOKE!", "delivery": "stammering, dawning panic"}
+    ],
+    "voiceover": "",
+    "performance": "Karmic payoff; rage curdles into chemical panic",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 11,
+    "location": "Interior of the smoky Uber car",
+    "characters": ["cody", "uber_driver", "businessman"],
+    "action": "Sweating and clutching his chest, the businessman wails that he is having a heart attack. The driver repeats her mantra without turning. The story ends on her deadpan.",
+    "visual_prompt": "Head-on windshield three-shot of the sedan, 'uber' dash placard, smoky cabin. The businessman in dark suit and striped tie is wide-eyed and sweating, beads of sweat flying, one hand clutching his chest, teeth bared in terror. The scrawny sunglasses-wearing man drools serenely at left. The woman driver with dark bob and heavy-lidded calm speaks without turning, hands on the wheel. Medium three-shot, eye level.",
+    "dialogue": [
+      {"speaker": "businessman", "line": "I THINK I'M HAVING A HEART ATTACK!", "delivery": "panicked wail"},
+      {"speaker": "uber_driver", "line": "REMAIN CALM SIR.", "delivery": "identical flat serenity, perfect callback"}
+    ],
+    "voiceover": "",
+    "performance": "Punchline; the mantra lands one last time over total chaos",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 12,
+    "location": "Mail-order advertisement page, plain white background",
+    "characters": ["hippie_mascot"],
+    "action": "A mock mail-order coda: a grinning long-haired mascot beams beside a dashed-line order form with crudely misspelled fields ('NAIM', 'ADRESS', 'CITY - STATE - ZIP'), while two tiny doodled blob figures sit in the corner. A caption pitches more of the same comedy for cash.",
+    "visual_prompt": "Flat graphic advertisement layout on a white page. Right of center: the head of a grinning man with long stringy hair, headband, huge round dark sunglasses, bushy beard and mustache, surrounded by a jagged starburst outline. Left: a dashed-border mail-in coupon with hand-scrawled blank fields. Bottom right corner: two tiny crude blob-bodied doodle figures side by side. Straight-on flat composition, poster-style framing.",
+    "dialogue": [],
+    "voiceover": "FOR MORE STALE-ASS POT COMEDY, SEND THE FORM BELOW WITH 9.99 CASH TO: P.O. BOX 5859392 CHINATOWN STATION NY",
+    "performance": "Self-deprecating fourth-wall gag; cheap infomercial sincerity",
+    "duration_target_s": 6
+  }
+]

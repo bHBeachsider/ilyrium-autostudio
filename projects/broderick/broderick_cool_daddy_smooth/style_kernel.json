@@ -1,0 +1,49 @@
+{
+  "name": "broderick",
+  "status": "SEED v0.1 — corrected 2026-06-11: agent originally extrapolated from panel 7 only (the standalone color gag); main strip panels 1-6 verified grayscale scratchy gag-cartoon; refine before render",
+  "look": "Hand-drawn digital cartoon, GRAYSCALE for the main strip: scratchy confident ink contour, flat gray washes and soft gray cast shadows on a paper-white void, hand-lettered black caps titles (AT THE PAR-TAY) and balloon-less dialogue blocks, squat-to-lanky exaggerated bodies with small detailed faces. The standalone Flipping Burghers gag (panel 7) is the lone full-color polished outlier and keeps its own flat-color treatment.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "paper_white": {
+      "hex": "#FFFFFF",
+      "usage": "void background; the set is white space"
+    },
+    "ink_black": {
+      "hex": "#1A1A1A",
+      "usage": "contour line, hand-lettered caps, solid fills (clown suit polka dots)"
+    },
+    "gray_wash": {
+      "hex": "#B5B5B5",
+      "usage": "flat midtone washes — clown shoes, shadows, clothing"
+    },
+    "shadow_gray": {
+      "hex": "#DCDCDC",
+      "usage": "soft cast shadows pooling beneath figures"
+    },
+    "outlier_color": {
+      "hex": "#B5453A",
+      "usage": "panel-7 standalone gag only: robe red + khaki + flesh flat fills; never in the main strip"
+    }
+  },
+  "casting_canon": {
+    "cool_daddy_smooth": "30s-40s, lanky, narrow-shouldered; long straight black hair to the chest, small soul-patch mouth, oversized white-framed sunglasses never removed; tall crinkled cone hat (never removed), black leather jacket over layered necklaces, striped bell-bottoms, heeled boots; at the gig a polka-dot clown suit with scalloped ruffle collar lettered FLAPPY and giant floppy shoes, hat and shades kept on; unshakeable unearned swagger.",
+    "interviewer": "30s-40s, slim; tousled dark hair, long pointed nose; white shirt, dark tie, behind an office desk with computer; pleasant, credulous, routine.",
+    "party_kids": "Toddler to ~8, small round sketchy bodies; varied — grinning short-haired kid, pigtailed girl with tongue out, worried boy with side-swept fringe, placid toddler; plain t-shirts and play clothes; blank staring that flips to mass wailing.",
+    "mother": "30s-40s, tall, sharp-featured; swept blonde bob, earring, beaded necklace; cardigan over dark skirt, flats; instant maximum fury.",
+    "punk_friend": "20s, stocky; tall black mohawk on shaved head with a scrawled circled symbol on the scalp, heavy underbite; black leather jacket, chain necklace with pendant, skinny black trousers, boots; eager, credulous audience for tall tales.",
+    "burger_flipper": "Middle-aged, heavyset with round belly; bald with a fringe, hairy legs; pale t-shirt, baggy cargo shorts, red sneakers; triumphant exertion (standalone gag panel only).",
+    "burgher": "Older, dignified, robed; gray beard under a flat dark cap; black doublet, long flowing red robe, black hose and shoes, long wooden staff; stoic even while airborne (standalone gag panel only)."
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, color (main strip is grayscale; panel-7 gag excepted), watermark, signature, garbled text, malformed lettering, extra fingers, halftone dots, screentone, anime style, detailed realistic backgrounds, photographic skin texture",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: flat hand-drawn grayscale cartoon, scratchy ink contour, flat gray washes, white void background, no photographic rendering, no 3d.",
+    "lettering_garbled": "Generate art without text; add hand-lettering in post or via dedicated lettering pass.",
+    "color_creep": "Add: strict grayscale, black ink and flat gray washes only, no color — except the standalone Flipping Burghers gag panel."
+  }
+}

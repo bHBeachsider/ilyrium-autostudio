@@ -1,0 +1,5 @@
+# Pilot Treatment — Follow Instructions
+
+**Logline:** In a blank instruction-manual world, a struggling assembler accepts a stranger's help with his flat-pack box — and answers the stranger's smug pictogram insult by swatting his head clean off.
+
+**Treatment:** On an empty white void, a featureless instruction-manual man frowns at a fold-out booklet, an unassembled box at his feet, while a second figure strolls in whistling. A wordless question mark passes between them; the helpful passerby bends down and competently fits the lid into place. The two stand in silence on either side of the finished box — a pregnant, diagram-still beat — until the helper's verdict rises in a speech balloon: a dunce cap, labeled DUNCE. The manual reader's frown becomes a scowl, his arms swing, and the passerby's head and the crumpled booklet sail through the air over a now-headless body. A blue-and-yellow flat-pack-logo badge stamps the corner: END. Roughly 25 seconds of deadpan pictogram silence, snapped shut by one perfect act of cartoon violence.

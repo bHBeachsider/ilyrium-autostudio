@@ -1,0 +1,5 @@
+# Pilot Treatment — Karate Kicks
+
+**Logline:** A reformed husband swears the self-help webinars cured his karate-kicking compulsion — right before a dinner with the Johnsons proves, three roundhouse kicks later, that they absolutely did not.
+
+**Treatment:** Over a cozy home dinner, a wife sweetly extracts a promise from her breezy husband: no karate kicking anyone tonight ("No way, those webinars made a difference!"). Cut to an upscale restaurant with the Johnsons, where the husband holds court with a golf anecdote until Mr. Johnson good-naturedly ribs him about ducking their golf games — "What are you, afraid?" Something snaps. The husband transforms into a pure black silhouette of martial perfection and roundhouse-kicks Mr. Johnson square in the jaw, then the innocent waiter mid-tray-service, then Mrs. Johnson, each impact identically staged while his mortified wife screams "HONEY! STOP!" from the foreground in escalating despair. The film freezes on the third kick — TO BE CONTINUED — the deadpan repetition of the violence, and of the scream, carrying the whole joke. Runtime ~30 seconds, monochrome vintage-collage look throughout.

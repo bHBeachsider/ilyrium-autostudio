@@ -1,0 +1,33 @@
+{
+  "name": "broderick",
+  "status": "SEED v0 — extrapolated from source panels 2026-06-11; refine before render",
+  "look": "Hand-drawn digital yearbook-parody comic in black-and-white — scratchy caricature pen line with flat gray wash fills on the featured subject while background witnesses fade to pale ghost-gray outline. White paper grounds, no environments beyond a desk or prop. Faces are gleefully ugly: heavy brows, buck teeth, acne pustules, oversized lips. An elegant white script title on a black banner frames the series; deadpan biographies are hand-lettered in all-caps caption bands; a vertical black END bar closes.",
+  "register": "absurdist deadpan comedy register; the joke is in the timing and the flatness of the delivery",
+  "palette_motifs": {
+    "ink_black": {"hex": "#151515", "usage": "subject linework, title banner, END bar, letterman sweater body"},
+    "paper_white": {"hex": "#ffffff", "usage": "page ground; banner script and caption fields; negative space instead of sets"},
+    "ghost_gray": {"hex": "#c0c0c0", "usage": "faded outline rendering of background witnesses (gawker, writing girl, smitten student)"},
+    "wash_gray": {"hex": "#9a9a9a", "usage": "flat clothing fills on subjects — Doreen's skirt and top, sweater sleeves, football"},
+    "shadow_gray": {"hex": "#6e6e6e", "usage": "darker accents: hair masses, skirt shadow, football panels"}
+  },
+  "casting_canon": {
+    "gary": "Teenage boy, about 16, lean, dark mussed hair, heavy brow, lopsided smirk, t-shirt and wristband, twisted sideways at a one-piece school desk mid-performance; mugging attention-hungry class clown.",
+    "classmate_gawker": "Scrawny teenage boy, buck teeth, bulging delighted eyes, leaning over the desk behind Gary; easily entertained audience; rendered in pale ghost-gray line.",
+    "classmate_girl": "Teenage girl, shoulder-length hair with bangs, seated writing, eyes down; unimpressed and diligent; rendered in pale ghost-gray line.",
+    "doreen": "Teenage girl, about 17, curvy build, dark voluminous wavy hair, heavy-lidded eyes, large glossy lips, hoop earrings and bracelets, cropped midriff-baring top, short dark skirt, arms crossed, chin raised; self-assured, soaking in attention.",
+    "admiring_student": "Scrawny student, long straight hair, slack jaw, tongue lolling, clutching books while shuffling past; helplessly smitten.",
+    "flapjacks": "Teenage jock, about 17, thick-necked and broad, face and neck covered in acne pustules, gap-toothed ecstatic grin, short side-parted hair, dark letterman sweater with large letter D, palming a football overhead; triumphant swagger."
+  },
+  "negatives": "photorealistic, photograph, 3d render, cgi, cinematic lighting, lens flare, gradient shading, airbrush, watermark, signature, garbled text, malformed lettering, extra fingers, color, saturated hues, attractive idealized faces, smooth clean vector line, detailed classroom backgrounds, full-weight background figures, screentone, soft shading",
+  "engine_tails": {},
+  "continuity": {
+    "comics": "Lock each recurring character with a model sheet (front/side/expression strip) before generating strips; restate the full character description in every panel prompt.",
+    "video": "Use the locked panel art as the first frame; restate the full character description in every shot."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "drifts_photoreal": "Add: rough hand-drawn pen caricature, black and white comic, flat gray wash, white paper background, no photographic rendering, no 3d.",
+    "drifts_pretty": "Add: ugly comic caricature, exaggerated unflattering features, heavy brow, acne, buck teeth.",
+    "lettering_garbled": "Generate art without text; add hand-lettering in post or via dedicated lettering pass."
+  }
+}
