@@ -71,6 +71,31 @@ Generated output is a **starting point, not a final**. Every artifact is tweakab
   overwritten; the asset graph tracks lineage.
 - The persona/style stays locked while only the `author`-layer specifics change.
 
+## 3D. Output formats: single-panel, comic-strip, film (taste != format)
+A creator's *taste* (voice/style/logic) is **format-independent**; single-panel / multi-panel strip / film
+is a structural *mode*. A persona that worked across formats is trained as **one taste + format
+conditioning**, not separate models:
+- **Hand style LoRA — format-agnostic.** Train on ALL the creator's visual output flattened to single
+  images: single panels as-is, **strips cropped into panels**, **film/animation sampled into frames**. The
+  LoRA learns the *look*, independent of layout — one LoRA covers every format.
+- **Brain — format-aware.** Train on the union of works, each example **tagged with its format**, so it emits
+  the right STRUCTURE per request under one voice:
+  - `single_panel` -> `{rationale, image_prompt, labels}`
+  - `strip` -> `{beats, panels:[{image_prompt, dialogue, label}], layout}`
+  - `film` -> `{logline, shots:[{image_prompt, action, dialogue, duration}], style_notes}`
+  Format is a **generation parameter** ("single panel" / "3-panel strip" / "15s film"), same persona voice.
+- **Mixed-format corpus is an asset** — it reinforces the unified voice; the format field handles the
+  structural difference. **Per-format gold eval sets** keep each mode honest.
+- **Character anchors** (shared) carry recurring characters across panels/frames (Ilyrium consistency engine).
+
+**Film dimension:** film = shots over *time*. The Brain emits a **shot list / storyboard** (the `artboard`
+skill's 4x4 grid is the bridge to text-to-video); the Hand renders **keyframes** in the persona style;
+**Ilyrium's keyframe->image-to-video + non-destructive takes** animate them with character consistency —
+this is exactly what the AutoStudio film pipeline already does. The persona supplies style + storyboard voice.
+
+**Persona packs declare supported formats** (`formats: [single_panel, strip, film]`); the render slice
+(sub-project 3) branches accordingly: single image | per-panel + composite | keyframes -> image-to-video.
+
 ## 4. The reusable Intake Spine (MCP + Plugin + REST)
 Lift PermitHub's A20 / `media-share-intake` **pattern** (url_router → platform adapters → media_items →
 classify → segment → signals → HITL) into a standalone, reusable component. Layered exposure:
