@@ -73,16 +73,24 @@ def sha256(path):
     return h.hexdigest()
 
 
+_KEY_NAMES = ("ELEVEN_LABS_API_2", "ELEVENLABS_API_KEY")  # first match wins
+
+
 def env_key():
-    if os.environ.get("ELEVENLABS_API_KEY"):
-        return os.environ["ELEVENLABS_API_KEY"]
+    for name in _KEY_NAMES:
+        if os.environ.get(name):
+            return os.environ[name]
     here = os.path.dirname(os.path.abspath(__file__))
     env_path = os.path.join(os.path.dirname(here), ".env")
     if os.path.isfile(env_path):
+        found = {}
         for line in open(env_path, encoding="utf-8"):
-            m = re.match(r"\s*ELEVENLABS_API_KEY\s*=\s*(.+)\s*$", line)
+            m = re.match(r"\s*(ELEVEN_LABS_API_2|ELEVENLABS_API_KEY)\s*=\s*(.+?)\s*$", line)
             if m:
-                return m.group(1).strip().strip('"').strip("'")
+                found[m.group(1)] = m.group(2).strip().strip('"').strip("'")
+        for name in _KEY_NAMES:
+            if found.get(name):
+                return found[name]
     return None
 
 
