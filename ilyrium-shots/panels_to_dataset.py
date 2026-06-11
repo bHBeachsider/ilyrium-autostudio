@@ -41,8 +41,13 @@ import shutil
 import struct
 import sys
 
-EXCLUDE = {
-    "broderick_karate_kicks": "vintage stock-art collage with residual watermarks; rights unclear",
+EXCLUDE = {}
+# karate_kicks (vintage stock-art collage, residual watermarks) was excluded in
+# v0; inclusion ratified 2026-06-11 by the operator at the artist's (Broderick's)
+# request. Provenance note retained per-row via RIGHTS_NOTES.
+RIGHTS_NOTES = {
+    "broderick_karate_kicks": "vintage stock-art collage w/ residual watermarks; "
+                              "inclusion artist-ratified 2026-06-11",
 }
 IMAGE_EXTS = (".png", ".jpg", ".jpeg", ".webp")
 
@@ -184,6 +189,7 @@ def main():
                 "scene_numbers": [c.get("scene_number") for c in group],
                 "excluded": bool(excluded),
                 "exclude_reason": EXCLUDE.get(slug, "") if excluded else "",
+                "rights_note": RIGHTS_NOTES.get(slug, ""),
             }
             manifest.append(row)
             if excluded:
