@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ilyrium Voice Recorder</title>
+<style>
+  body{font-family:system-ui,sans-serif;max-width:680px;margin:2rem auto;padding:0 1rem;background:#161616;color:#eee}
+  h1{font-size:1.3rem} .card{background:#222;border-radius:10px;padding:1rem 1.2rem;margin:.8rem 0}
+  button{font-size:1rem;padding:.6rem 1.4rem;border-radius:8px;border:0;cursor:pointer;margin-right:.5rem}
+  #rec{background:#c9302a;color:#fff} #stop{background:#555;color:#fff} button:disabled{opacity:.4;cursor:default}
+  #level{height:10px;background:#333;border-radius:5px;overflow:hidden;margin:.6rem 0}
+  #bar{height:100%;width:0;background:#3fa34d;transition:width .05s}
+  .take{display:flex;align-items:center;gap:.6rem;margin:.4rem 0}
+  .take audio{flex:1;height:32px} a.dl{color:#7ab8ff}
+  .script{white-space:pre-wrap;background:#1b1b1b;border-left:3px solid #c9302a;padding:.6rem .8rem;font-size:.95rem}
+  input,select{background:#1b1b1b;color:#eee;border:1px solid #444;border-radius:6px;padding:.4rem}
+  .warn{color:#e8b339;font-size:.9rem}
+</style>
+</head>
+<body>
+<h1>Ilyrium Voice Recorder</h1>
+<div class="card">
+  <p>Records locally in your browser — nothing is uploaded. After recording, download each take and send the files back. <b>Use headphones off, in a quiet, soft-furnished room, 15–20&nbsp;cm from the mic.</b></p>
+  <label>Your name (used in filenames): <input id="who" placeholder="e.g. brendan"></label>
+</div>
+
+<div class="card">
+  <b>Read this set (one take per section, natural pace):</b>
+  <div class="script" id="scriptBox">1) NEUTRAL (45–60s): Describe what you did yesterday, start to finish, as if telling a friend. Keep it flowing — don't stop on stumbles.
+
+2) EXPRESSIVE (30–45s): Tell the most absurd thing that ever happened to you. Let your voice actually react — laugh, pause, emphasize.
+
+3) DEADPAN READ (30s): "I noticed the dome was on fire around noon. Nobody panicked, which I felt was the real problem. The committee scheduled a meeting to discuss whether panicking was warranted. It was set for Thursday."
+
+4) RANGE (20s): Count from one to ten — whisper 1-3, normal 4-6, project loudly 7-10.</div>
+</div>
+
+<div class="card">
+  <button id="rec">● Record</button>
+  <button id="stop" disabled>■ Stop</button>
+  <span id="timer">0:00</span>
+  <div id="level"><div id="bar"></div></div>
+  <div class="warn" id="clipWarn" hidden>⚠ Too loud — back off the mic a little.</div>
+  <div id="takes"></div>
+</div>
+
+<script>
+let ctx, analyser, mediaRecorder, chunks=[], t0, timerInt, takeN=0;
+const $=id=>document.getElementById(id);
+async function init(){
+  const stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false,channelCount:1}});
+  ctx=new AudioContext({sampleRate:48000});
+  const src=ctx.createMediaStreamSource(stream);
+  analyser=ctx.createAnalyser(); analyser.fftSize=2048; src.connect(analyser);
+  const mime=MediaRecorder.isTypeSupported('audio/webm;codecs=opus')?'audio/webm;codecs=opus':'';
+  mediaRecorder=new MediaRecorder(stream, mime?{mimeType:mime,audioBitsPerSecond:256000}:{});
+  mediaRecorder.ondataavailable=e=>chunks.push(e.data);
+  mediaRecorder.onstop=saveTake;
+  meter();
+}
+function meter(){
+  const data=new Uint8Array(analyser.fftSize);
+  (function loop(){
+    analyser.getByteTimeDomainData(data);
+    let peak=0; for(const v of data) peak=Math.max(peak,Math.abs(v-128)/128);
+    $('bar').style.width=(peak*100)+'%';
+    $('bar').style.background=peak>.9?'#c9302a':peak>.6?'#e8b339':'#3fa34d';
+    $('clipWarn').hidden=peak<=.95;
+    requestAnimationFrame(loop);
+  })();
+}
+$('rec').onclick=async()=>{
+  if(!mediaRecorder) await init();
+  chunks=[]; mediaRecorder.start(); t0=Date.now();
+  timerInt=setInterval(()=>{const s=Math.floor((Date.now()-t0)/1000);$('timer').textContent=`${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`},250);
+  $('rec').disabled=true; $('stop').disabled=false;
+};
+$('stop').onclick=()=>{mediaRecorder.stop(); clearInterval(timerInt); $('rec').disabled=false; $('stop').disabled=true;};
+function saveTake(){
+  takeN++;
+  const who=($('who').value||'speaker').trim().toLowerCase().replace(/[^a-z0-9]+/g,'_');
+  const blob=new Blob(chunks,{type:mediaRecorder.mimeType||'audio/webm'});
+  const url=URL.createObjectURL(blob);
+  const name=`${who}_take${String(takeN).padStart(2,'0')}.webm`;
+  const div=document.createElement('div'); div.className='take';
+  div.innerHTML=`<span>#${takeN}</span><audio controls src="${url}"></audio><a class="dl" href="${url}" download="${name}">⬇ ${name}</a>`;
+  $('takes').appendChild(div);
+}
+</script>
+</body>
+</html>
