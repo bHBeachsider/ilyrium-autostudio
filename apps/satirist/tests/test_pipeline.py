@@ -67,3 +67,14 @@ def test_run_no_signal_returns_error(tmp_path):
     res = run("NoSuchTopic", render_fn=_fake_render, brain_fn=lambda e, revise_hint="": {},
               judge_fn=None, db_path=db, out_dir=str(tmp_path / "out"))
     assert res["status"] == "no_signal"
+
+
+from satirist.cli import placeholder_render
+from PIL import Image
+
+
+def test_placeholder_render_writes_png(tmp_path):
+    out = str(tmp_path / "p.png")
+    placeholder_render("a tiger labeled TAMMANY, thomas_nast_style", out)
+    img = Image.open(out)
+    assert img.size[0] > 0 and img.size[1] > 0
