@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "loras": [
+    {
+      "name": "lincoln_satirical_v2",
+      "filename": "lincoln_satirical_v2.safetensors",
+      "trigger_word": "lincoln_satirical_v2",
+      "strength": 0.85,
+      "base_model": "TENSORART_BASE_MODEL_ID_TBD",
+      "sha256": null,
+      "tensorart_job_id": null,
+      "trained_at": null,
+      "status": "pending",
+      "notes": "NH-S03 primary. Seed entry placeholder; train via train_lora.py on the EC2 box, then backfill sha256/job_id/trained_at and set status='trained'. base_model TBD pending open-question #1 (Tensor.art base model mapping to Wan 2.2 14B style)."
+    },
+    {
+      "name": "brdmc",
+      "filename": "broderick_char.safetensors",
+      "trigger_word": "brdmc",
+      "strength": 0.9,
+      "base_model": "black-forest-labs/FLUX.1-dev",
+      "sha256": null,
+      "tensorart_job_id": null,
+      "trained_at": null,
+      "status": "training",
+      "notes": "Broderick recurring AUTHOR-AVATAR character-consistency LoRA (heavyset bald man, full gray beard, thick black rectangular glasses). Trained on 17 isolated avatar crops mined from his own strips with SHORT trigger-focused captions ('brdmc, <pose>') so the trigger binds identity. Layer with brdrck for same-character-any-pose in his ink look. Artifact: s3://ilyrium-slm-foundry/models/broderick/hand/char/broderick_char.safetensors. On first fetch: aws s3 cp into ComfyUI/models/loras/, backfill sha256+trained_at, set status='trained'."
+    },
+    {
+      "name": "brdrck",
+      "filename": "broderick_flux_v2.safetensors",
+      "trigger_word": "brdrck",
+      "strength": 0.85,
+      "base_model": "black-forest-labs/FLUX.1-dev",
+      "sha256": null,
+      "tensorart_job_id": null,
+      "trained_at": null,
+      "status": "training",
+      "notes": "Broderick ink/look STYLE LoRA v2. Retrained on 173 panels with SHORT trigger-only captions ('brdrck style') to fix the proven caption-binding defect in v1 (s3 .../hand/flux/broderick_flux.safetensors), whose trigger was inert because long content+style captions bound the style to description words. SUPERSEDES broderick_flux — do not register v1. Artifact: s3://ilyrium-slm-foundry/models/broderick/hand/flux_v2/broderick_flux_v2.safetensors. On first fetch: aws s3 cp into ComfyUI/models/loras/, backfill sha256+trained_at, set status='trained'."
+    }
+  ]
+}
