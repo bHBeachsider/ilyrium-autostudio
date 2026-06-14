@@ -1,0 +1,33 @@
+#!/usr/bin/env python3
+"""Stripe character-reference SEEDS — 4 canonical views to seed a Stripe character LoRA.
+Sparse Broderick-hand style, white background, explicit skid-mark on the rear view so the
+LoRA can learn the signature feature. One Flux load (render_flux_panels)."""
+import os, sys
+sys.path.insert(0, "/home/ec2-user/pkg")
+from satirist import render
+
+OUT = "/home/ec2-user/seeds_out"; os.makedirs(OUT, exist_ok=True)
+STYLE = ("clean confident black ink outlines, sparse minimal linework, simple stylized cartoon "
+         "figure, flat gray tone shading, lots of white space, minimal detail, black and white, "
+         "white background, hand-drawn comic, full body character reference")
+DESC = ("Stripe, a fat vulgar man, a completely bald shiny dome with NO hair on top, only a "
+        "horseshoe rim of hair at the back and sides (Norwood type VII), a VERY hairy body covered "
+        "in thick dark hair on his chest belly back arms and legs, dark sunglasses, a white speedo, "
+        "a thick gold chain, smug expression")
+SKID = ("a brown vertical stain running straight down the exact centerline of the white speedo seat "
+        "following the butt crack, darkest in the center fading at the edges, on the speedo fabric")
+LORA = [("/home/ec2-user/loras/broderick_flux_v2.safetensors", 0.8)]
+
+views = {
+    "seed1_front": "standing facing forward, full body, arms relaxed at sides, neutral pose",
+    "seed2_threequarter": "standing in a three-quarter front view, full body, one hand on hip",
+    "seed3_side": "standing in side profile view, full body, belly in profile",
+    "seed4_rear": f"{SKID}, standing with his back to the viewer, full body rear view, hands at sides",
+}
+jobs = []
+for i, (name, scene) in enumerate(views.items()):
+    p = render.compose_prompt(scene, style_block=STYLE, avatar_desc=DESC, trigger="brdrck")
+    print(f"{name}: {p}", flush=True)
+    jobs.append((p, f"{OUT}/{name}.png", 70 + i))
+render.render_flux_panels(jobs, loras=LORA)
+print("SEEDS_DONE", flush=True)
