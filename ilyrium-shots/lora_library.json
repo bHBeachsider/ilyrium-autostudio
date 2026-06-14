@@ -23,7 +23,7 @@
       "tensorart_job_id": null,
       "trained_at": "2026-06-13T23:28:21+00:00",
       "status": "trained",
-      "notes": "Broderick recurring AUTHOR-AVATAR character-consistency LoRA (heavyset bald man, full gray beard, thick black rectangular glasses). Trained on 17 isolated avatar crops mined from his own strips with SHORT trigger-focused captions ('brdmc, <pose>') so the trigger binds identity. Layer with brdrck for same-character-any-pose in his ink look. Artifact: s3://ilyrium-slm-foundry/models/broderick/hand/char/broderick_char.safetensors. On first fetch: aws s3 cp into ComfyUI/models/loras/, backfill sha256+trained_at, set status='trained'."
+      "notes": "Broderick recurring AUTHOR-AVATAR character-consistency LoRA (heavyset bald man, full gray beard, thick black rectangular glasses), trained on 17 isolated ink avatar crops. VALIDATED 2026-06-14: the bare 'brdmc, <pose>' trigger does NOT bind on Flux (yields inconsistent photoreal people, no ink). It WORKS when the prompt includes the ink style block + the avatar described + brdmc -> renders a CONSISTENT avatar in Broderick B&W ink across poses (see _training/samples/char/). USE: style-block + 'a heavyset bald man with a full gray beard and thick black rectangular glasses' + brdmc; scale ~0.9-1.0. Artifact: s3://ilyrium-slm-foundry/models/broderick/hand/char/broderick_char.safetensors -> aws s3 cp into ComfyUI/models/loras/."
     },
     {
       "name": "brdrck",
@@ -35,7 +35,7 @@
       "tensorart_job_id": null,
       "trained_at": "2026-06-14T01:42:56+00:00",
       "status": "trained",
-      "notes": "Broderick ink/look STYLE LoRA v2. Retrained on 173 panels with SHORT trigger-only captions ('brdrck style') to fix the proven caption-binding defect in v1 (s3 .../hand/flux/broderick_flux.safetensors), whose trigger was inert because long content+style captions bound the style to description words. SUPERSEDES broderick_flux — do not register v1. Artifact: s3://ilyrium-slm-foundry/models/broderick/hand/flux_v2/broderick_flux_v2.safetensors. On first fetch: aws s3 cp into ComfyUI/models/loras/, backfill sha256+trained_at, set status='trained'."
+      "notes": "Broderick ink/look STYLE LoRA v2 (173 panels, short trigger-only captions). GOAL was to make the bare 'brdrck' trigger fire the style; VALIDATED 2026-06-14 that it did NOT — bare trigger still inert on Flux (generic cartoon), same class of failure as v1. NOT an improvement over v1 for the trigger problem. BUT produces strong Broderick B&W ink when the style is DESCRIBED in the prompt (e.g. 'black and white hand-drawn ink comic, bold confident linework, loose cross-hatching, white background') — see _training/samples/flux_v2/. USE via style-block prepend (projects/broderick/style_kernel.json 'look'), NOT the bare trigger; scale ~0.85-1.0. Flux lesson: a rare trigger token does not bind a style the way SDXL does. Artifact: s3://ilyrium-slm-foundry/models/broderick/hand/flux_v2/broderick_flux_v2.safetensors -> aws s3 cp into ComfyUI/models/loras/."
     }
   ]
 }
