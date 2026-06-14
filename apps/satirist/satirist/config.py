@@ -22,3 +22,21 @@ LORA_S3_URI = os.environ.get(
     "NAST_LORA_S3", "s3://ilyrium-slm-foundry/models/nast/hand/sdxl/nast_sdxl.safetensors")
 SDXL_BASE = os.environ.get("SDXL_BASE", "stabilityai/stable-diffusion-xl-base-1.0")
 STYLE_TRIGGER = os.environ.get("NAST_STYLE_TRIGGER", "thomas_nast_style")
+
+# Descriptive style block PREPENDED to every render. On Flux/SDXL a described style is
+# load-bearing; a bare trigger is not (validated 2026-06-14). Override via env, or load a
+# persona's block from its style_kernel.json "look" field via load_style_block().
+STYLE_BLOCK = os.environ.get(
+    "SATIRIST_STYLE_BLOCK",
+    "black and white 19th-century wood engraving, dense cross-hatching, "
+    "Harper's Weekly editorial cartoon style, heavy ink")
+# Recurring-character avatar description, injected only for character panels (empty = off).
+# e.g. Broderick: "a heavyset bald man with a full gray beard and thick black rectangular glasses".
+AVATAR_DESC = os.environ.get("SATIRIST_AVATAR_DESC", "")
+
+
+def load_style_block(kernel_path: str) -> str:
+    """Return the 'look' string from a persona style_kernel.json (the documented style-block source)."""
+    import json
+    with open(kernel_path, encoding="utf-8") as f:
+        return json.load(f).get("look", "")

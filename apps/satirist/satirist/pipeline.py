@@ -4,6 +4,7 @@ import re
 
 from . import caption as cap_mod
 from . import config
+from . import render
 from .signal_select import select_signal
 
 _SLUG = re.compile(r"[^a-z0-9]+")
@@ -14,12 +15,14 @@ def slugify(text: str) -> str:
 
 
 def run(topic, *, render_fn, brain_fn, judge_fn=None, db_path=None, out_dir=None,
-        threshold=None):
+        threshold=None, avatar_desc=None):
     """Run signal -> ideate -> (judge -> one revise) -> render -> caption -> save.
 
     render_fn(image_prompt, out_path) -> out_path   (writes a PNG; GPU in prod)
     brain_fn(event_summary, revise_hint="") -> {"allegory_rationale","image_prompt"[, "caption"]}
     judge_fn(concept) -> {"score","rationale"} or None to skip the judge.
+    avatar_desc: pass the recurring-character description (e.g. config.AVATAR_DESC) for a
+        CHARACTER panel so it's injected after the style block; None for a general cartoon.
 
     Returns {"status": "ok"|"no_signal", ...}.
     """
@@ -46,7 +49,9 @@ def run(topic, *, render_fn, brain_fn, judge_fn=None, db_path=None, out_dir=None
 
     os.makedirs(out_dir, exist_ok=True)
     raw_png = os.path.join(out_dir, f"{slug}_raw.png")
-    render_fn(concept["image_prompt"] + ", " + config.STYLE_TRIGGER, raw_png)
+    prompt = render.compose_prompt(concept["image_prompt"], style_block=config.STYLE_BLOCK,
+                                   avatar_desc=avatar_desc, trigger=config.STYLE_TRIGGER)
+    render_fn(prompt, raw_png)
 
     from PIL import Image
     final = cap_mod.compose_caption_banner(Image.open(raw_png), caption)

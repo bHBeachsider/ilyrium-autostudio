@@ -6,6 +6,24 @@ import subprocess
 from . import config
 
 
+def compose_prompt(image_prompt: str, *, style_block: str, avatar_desc: str = None,
+                   trigger: str = None) -> str:
+    """Build the final render prompt: PREPEND the descriptive style block (and, for
+    character panels, the avatar description) ahead of the brain's raw image_prompt.
+
+    On Flux/SDXL a *described* style is load-bearing while a bare trigger token is not
+    (validated 2026-06-14 on the Broderick hands: bare `brdrck`/`brdmc` produced generic
+    cartoon/photoreal, but the same LoRAs rendered strong Broderick ink once the style —
+    and, for characters, the avatar — was described). So the style leads the prompt and
+    `trigger` is only a harmless tail for the LoRA's trained token. Empty parts are skipped.
+    """
+    parts = [p.strip() for p in (style_block, avatar_desc, image_prompt) if p and p.strip()]
+    composed = ", ".join(parts)
+    if trigger and trigger.strip():
+        composed = f"{composed}, {trigger.strip()}" if composed else trigger.strip()
+    return composed
+
+
 def fetch_lora(s3_uri: str = None, dest: str = None) -> str:
     """Download the LoRA safetensors from S3 to `dest` (skips if already present). Returns dest."""
     s3_uri = s3_uri or config.LORA_S3_URI
