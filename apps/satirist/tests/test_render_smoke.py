@@ -10,3 +10,11 @@ def test_render_exposes_callables_with_expected_signatures():
     assert params[:2] == ["image_prompt", "out_path"]
     fp = list(inspect.signature(render.fetch_lora).parameters)
     assert fp[:2] == ["s3_uri", "dest"]
+
+
+def test_render_flux_exposed_with_expected_signature():
+    assert callable(render.render_flux)
+    # render_flux(image_prompt, out_path, *, loras, ...)
+    params = list(inspect.signature(render.render_flux).parameters)
+    assert params[:2] == ["image_prompt", "out_path"]
+    assert "loras" in params

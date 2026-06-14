@@ -33,6 +33,10 @@ def main(argv=None):
     ap.add_argument("--ingest-feed", default=None, help="RSS/Atom URL to ingest before selecting")
     ap.add_argument("--no-judge", action="store_true")
     ap.add_argument("--dry-run", action="store_true", help="placeholder render (no GPU)")
+    ap.add_argument("--backend", choices=["sdxl", "flux"], default=config.RENDER_BACKEND,
+                    help="render backend: sdxl (Nast) or flux (Broderick)")
+    ap.add_argument("--character", action="store_true",
+                    help="character panel: add the char LoRA + inject the avatar description")
     ap.add_argument("--db", default=config.DB_PATH)
     ap.add_argument("--out", default=config.OUT_DIR)
     args = ap.parse_args(argv)
@@ -45,15 +49,22 @@ def main(argv=None):
         store.init_db(args.db)
         ip.ingest_feed(args.ingest_feed, args.db)
 
+    avatar_desc = config.AVATAR_DESC if args.character else None
     if args.dry_run:
         render_fn = placeholder_render
+    elif args.backend == "flux":
+        from .render import render_flux, fetch_lora
+        loras = [(fetch_lora(config.FLUX_STYLE_LORA_S3), config.FLUX_STYLE_SCALE)]
+        if args.character:
+            loras.append((fetch_lora(config.FLUX_CHAR_LORA_S3), config.FLUX_CHAR_SCALE))
+        render_fn = lambda prompt, out_path: render_flux(prompt, out_path, loras=loras)
     else:
         from .render import render_sdxl
         render_fn = lambda prompt, out_path: render_sdxl(prompt, out_path)
 
     judge_fn = None if args.no_judge else score_concept
     res = run(args.topic, render_fn=render_fn, brain_fn=ideate,
-              judge_fn=judge_fn, db_path=args.db, out_dir=args.out)
+              judge_fn=judge_fn, db_path=args.db, out_dir=args.out, avatar_desc=avatar_desc)
     print(json.dumps({k: v for k, v in res.items() if k != "signal"}, indent=2, default=str))
     return 0 if res["status"] == "ok" else 1
 

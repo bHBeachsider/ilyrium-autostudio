@@ -40,3 +40,17 @@ def load_style_block(kernel_path: str) -> str:
     import json
     with open(kernel_path, encoding="utf-8") as f:
         return json.load(f).get("look", "")
+
+
+# ---- Flux render backend (Broderick hand). SDXL (Nast) stays the default. ----
+RENDER_BACKEND = os.environ.get("SATIRIST_RENDER_BACKEND", "sdxl")  # "sdxl" | "flux"
+FLUX_BASE = os.environ.get("FLUX_BASE", "black-forest-labs/FLUX.1-dev")
+# Broderick hands (the only trained Flux LoRAs). scales match lora_library.json (brdrck/brdmc).
+FLUX_STYLE_LORA_S3 = os.environ.get(
+    "FLUX_STYLE_LORA_S3",
+    "s3://ilyrium-slm-foundry/models/broderick/hand/flux_v2/broderick_flux_v2.safetensors")
+FLUX_CHAR_LORA_S3 = os.environ.get(
+    "FLUX_CHAR_LORA_S3",
+    "s3://ilyrium-slm-foundry/models/broderick/hand/char/broderick_char.safetensors")
+FLUX_STYLE_SCALE = float(os.environ.get("FLUX_STYLE_SCALE", "0.85"))
+FLUX_CHAR_SCALE = float(os.environ.get("FLUX_CHAR_SCALE", "0.9"))
