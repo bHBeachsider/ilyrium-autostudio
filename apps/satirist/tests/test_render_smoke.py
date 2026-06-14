@@ -18,3 +18,11 @@ def test_render_flux_exposed_with_expected_signature():
     params = list(inspect.signature(render.render_flux).parameters)
     assert params[:2] == ["image_prompt", "out_path"]
     assert "loras" in params
+
+
+def test_render_flux_panels_exposed_for_strips():
+    # render_flux_panels(jobs, *, loras, ...) — one pipeline load for many panels
+    assert callable(render.render_flux_panels)
+    params = list(inspect.signature(render.render_flux_panels).parameters)
+    assert params[0] == "jobs"
+    assert "loras" in params

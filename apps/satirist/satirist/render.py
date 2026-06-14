@@ -60,15 +60,16 @@ def render_sdxl(image_prompt: str, out_path: str, lora_path: str = None,
     return out_path
 
 
-def render_flux(image_prompt: str, out_path: str, *, loras, base: str = None,
-                steps: int = 28, guidance: float = 3.5, seed: int = 0) -> str:
-    """Load FLUX.1-dev + one or more LoRAs and render one image from image_prompt. GPU only.
+def render_flux_panels(jobs, *, loras, base: str = None, steps: int = 28,
+                       guidance: float = 3.5):
+    """Render MANY panels with ONE pipeline load (the strip path). GPU only.
 
-    `loras` is a list of (lora_path, scale). For a GENERAL panel pass just the style LoRA;
-    for a CHARACTER panel pass [style, char] so the avatar identity is reinforced. The look
-    is carried by the PROMPT (compose_prompt prepends the style block + avatar description) —
-    the LoRA reinforces it; a bare trigger does not fire on Flux (validated 2026-06-14).
-    Scales applied via set_adapters (validated path: bf16 base, 28 steps, guidance 3.5).
+    `jobs` = list of (prompt, out_path, seed); `loras` = list of (lora_path, scale).
+    Loading FLUX.1-dev once and reusing it is essential for strips: a fresh
+    from_pretrained per panel accumulates ~14GB of VRAM and OOMs by the 3rd-4th panel.
+    Look is carried by the PROMPT (compose_prompt prepends the style block + avatar); the
+    LoRA reinforces it — a bare trigger does not fire on Flux (validated 2026-06-14).
+    Returns the list of written paths.
     """
     import torch
     from diffusers import FluxPipeline
@@ -83,9 +84,25 @@ def render_flux(image_prompt: str, out_path: str, *, loras, base: str = None,
         weights.append(float(scale))
     if names:
         pipe.set_adapters(names, adapter_weights=weights)
-    gen = torch.Generator(device="cuda").manual_seed(seed)
-    image = pipe(prompt=image_prompt, num_inference_steps=steps, guidance_scale=guidance,
-                 height=1024, width=1024, generator=gen).images[0]
-    os.makedirs(os.path.dirname(os.path.abspath(out_path)), exist_ok=True)
-    image.save(out_path)
-    return out_path
+    written = []
+    for prompt, out_path, seed in jobs:
+        gen = torch.Generator(device="cuda").manual_seed(int(seed))
+        image = pipe(prompt=prompt, num_inference_steps=steps, guidance_scale=guidance,
+                     height=1024, width=1024, generator=gen).images[0]
+        os.makedirs(os.path.dirname(os.path.abspath(out_path)), exist_ok=True)
+        image.save(out_path)
+        written.append(out_path)
+    return written
+
+
+def render_flux(image_prompt: str, out_path: str, *, loras, base: str = None,
+                steps: int = 28, guidance: float = 3.5, seed: int = 0) -> str:
+    """Render ONE image (loads FLUX.1-dev + LoRAs, renders, saves). GPU only.
+
+    Thin wrapper over render_flux_panels for the single-render path (pipeline.run). For a
+    multi-panel strip use render_flux_panels directly — one load for all panels, no OOM.
+    `loras` = list of (lora_path, scale): [style] for a general panel, [style, char] for a
+    character panel. Look comes from the PROMPT; the bare trigger does not fire on Flux.
+    """
+    return render_flux_panels([(image_prompt, out_path, seed)], loras=loras, base=base,
+                              steps=steps, guidance=guidance)[0]
