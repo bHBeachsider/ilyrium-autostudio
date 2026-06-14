@@ -1,0 +1,8 @@
+# tools.yaml — stage ideation agent (read context, write own-stage drafts)
+tools:
+  - name: read_project_file
+    description: Read any file in the project for context.
+  - name: list_project_files
+    description: List files that exist in the project.
+  - name: write_stage_file
+    description: Persist a draft into THIS stage's folder (on human approval only).

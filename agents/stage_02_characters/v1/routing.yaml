@@ -1,0 +1,10 @@
+# routing.yaml — 02_characters stage ideation agent
+task_type: stage_ideate        # -> policies/routing.yaml T2_mid
+model: claude-sonnet-4-6
+stage_key: "02_characters"
+admission:
+  required: false              # L0: prose ideation agent; no deterministic
+  reason: >                    # shot-spec golden set yet (signal-volume gate,
+    Prose ideation agent. Its outputs are stage drafts, not shot-specs, so the
+    NH-S03 chain_ok golden batch and studio_rubric do not score it at L0.
+    Deferred per Blueprint B §0.2 until an evaluable golden set exists.

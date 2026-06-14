@@ -1,0 +1,55 @@
+{
+  "case_id": "NH-S03-SH003",
+  "agent": "shot_renderer",
+  "source": "NH-S03 chain_ok batch — bible_to_shotspecs over projects/upham/new_harnomy_usa/02_script/scenes.json",
+  "input": {
+    "shot_spec": {
+      "shot_id": "NH-S03-SH003",
+      "song_id": "NH-S03",
+      "duration_s": 8,
+      "camera": {
+        "shot_size": "close-up",
+        "movement": "static",
+        "lens_mm": 85
+      },
+      "subjects": [
+        "pengold"
+      ],
+      "setting": "Pengold's municipal office, pre-dawn",
+      "mood": "full dignity, sincere, no irony, no smile",
+      "action": "Pengold lowers the book to the desk and speaks one line with the dignity of a man naming a calling",
+      "prompt": "Eye-level medium close-up of the same American man, late 40s, dark jacket, lowering a brownish-mauve book to a mahogany desk; warm tungsten side-light on one cheek, the far side of his face in shadow; he looks just past the lens, never into it, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+      "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame",
+      "keyframe": {
+        "source": "t2i",
+        "ref_lora": "pengold",
+        "seed": 100003
+      },
+      "seed": 100003,
+      "continuity": {
+        "prev_shot": "NH-S03-SH002",
+        "flf2v": false
+      },
+      "render": {
+        "width": 640,
+        "height": 640,
+        "fps": 16,
+        "steps": 4,
+        "duration_s": 8
+      }
+    },
+    "engine": "comfyui",
+    "dry_run": true
+  },
+  "reference_output": {
+    "status": "rendered",
+    "shot_id": "NH-S03-SH003",
+    "content_hash_stable": true
+  },
+  "expected": {
+    "schema_valid": true,
+    "chain_ok": true,
+    "hard_fail": false,
+    "max_cost_per_shot_usd": 1.0
+  }
+}

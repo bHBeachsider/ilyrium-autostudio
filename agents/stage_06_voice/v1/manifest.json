@@ -1,0 +1,17 @@
+{
+  "agent": "stage_06_voice",
+  "version": "v1",
+  "parent_version": null,
+  "model": "claude-sonnet-4-6",
+  "agent_version_id": "sha256:017b7f67841fe734e5c1cca38550e7947bd1f71adf1708a77cffd76f7cb9994d",
+  "config_hash": "sha256:5e8af517b149bc6ad6da9e192620545aa4ffd26fdbadb42a8206a3bb1bd80716",
+  "files": {
+    "permissions.yaml": "sha256:f4ecb3d6e6f47e523a9b8e8a233a802d1123f74364ab40e7a55031dc338d193d",
+    "prompt.md": "sha256:3f1beb6c5c10a54561817d160d15966f8abadf002a2f62ee58941e1d891e09be",
+    "routing.yaml": "sha256:0aee3aab638d51e40ffbfc6447ab182256b0c8defdbf8d55633de2c594d1aa12",
+    "tools.yaml": "sha256:1ddeda8b0353058e3f7e5d531d77923f1c655a24934d61c30d2e115810ad32b3"
+  },
+  "rubric": "evals/rubrics/studio_rubric.yaml",
+  "golden_set": "evals/golden/stage_06_voice",
+  "created_at": "2026-06-14T02:59:08Z"
+}

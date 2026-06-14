@@ -1,0 +1,12 @@
+# tools.yaml — shot-spec generator
+tools:
+  - name: read_scene_cards
+    description: Read 02_script/scenes.json (the Stage-2 scene cards).
+  - name: read_style_kernel
+    description: Read the project's style_kernel.json (look / register / canon / negatives).
+  - name: read_lora_library
+    description: Read lora_library.json to resolve keyframe.ref_lora.
+  - name: validate_shot_spec
+    description: Validate an emitted spec against ilyrium-shots/shot_spec.schema.json (T0 deterministic).
+  - name: write_shot_spec
+    description: Persist a validated shot spec + song manifest.

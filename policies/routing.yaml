@@ -1,0 +1,127 @@
+# Studio router policy — the tier ladder (ILY-203 task 8; Blueprint B §4 rule 5).
+#
+# The model router is a versioned policy file plus a <100-line selection
+# function (harness/run.py: routing_for / load_routing), NOT a service. Promote
+# to a service only when policy hot-reload latency actually matters.
+#
+# Tier ladder T0 deterministic -> T5 human. The harness resolves a task_type to
+# its tier here, stamps tier+model onto the trace, and enforces the budget caps
+# and escalation triggers below. This file is CONTROL-PLANE: immutable to
+# optimizer agents, mutable only through the Release path (a PR + human
+# approval). Credentials are referenced by env-var NAME only — never values.
+
+version: "1.0"
+domain: studio
+
+# --------------------------------------------------------------------------- #
+# Tier ladder. Each task_type maps to exactly one tier.
+# --------------------------------------------------------------------------- #
+tiers:
+  T0_deterministic:
+    description: >
+      No model. Schema validation, provenance chain verification, config
+      hashing, style-validator deterministic heuristics. Always run first;
+      never pay a model for what a regex/schema/diff can decide.
+    engine: deterministic
+    requires_env: null
+    estimated_cost_usd: 0.0
+    task_types:
+      - schema_check          # shot_spec.schema.json validity
+      - provenance_check      # ledger chain_ok verification
+      - config_hash           # agent_version_id computation
+      - style_validate        # style_validator deterministic pass
+
+  T1_small:
+    description: Small/cheap model for high-volume tagging and triage.
+    model: claude-haiku-4-5
+    requires_env: ANTHROPIC_API_KEY
+    estimated_cost_usd: 0.01
+    task_types:
+      - shot_tagging          # camera/size/movement inference triage
+      - triage
+      - classify
+
+  T2_mid:
+    description: Mid model for spec drafting and routine stage ideation.
+    model: claude-sonnet-4-6
+    requires_env: ANTHROPIC_API_KEY
+    estimated_cost_usd: 0.05
+    task_types:
+      - spec_draft            # shot-spec drafting
+      - stage_ideate          # per-stage ideation collaborator
+      - copywrite
+
+  T3_reasoning:
+    description: >
+      Reasoning model for the bible-to-shotspec bridge and other tasks where
+      cross-scene continuity and structured judgement matter.
+    model: claude-opus-4-8
+    requires_env: ANTHROPIC_API_KEY
+    estimated_cost_usd: 0.20
+    task_types:
+      - bible_to_shotspec     # the bible -> render-spec bridge
+      - continuity_reason
+      - shot_breakdown
+
+  T4_specialist:
+    description: >
+      Specialist generation engines (video/image). The concrete engine is
+      chosen per-project by model_select against the kernel; the ladder records
+      the default render engine and its credential.
+    engine: comfyui
+    default_engine: comfyui
+    requires_env: null
+    estimated_cost_usd: 0.50
+    task_types:
+      - video_render          # i2v/t2v render submission (batch_render)
+      - comfy_submit          # shot_to_comfy bridge
+      - image_generate
+      - keyframe_generate
+
+  T5_human:
+    description: Human approval. The release/QA gate; no model substitutes.
+    engine: human
+    requires_env: null
+    estimated_cost_usd: 0.0
+    task_types:
+      - release_approval      # approvedForRelease gate
+      - qa_signoff
+
+# --------------------------------------------------------------------------- #
+# Per-song budget caps. The harness sums trace estimated_cost_usd per song and
+# escalates / blocks per these. L0: advisory + logged; enforcement promotes with
+# the spend report.
+# --------------------------------------------------------------------------- #
+budgets:
+  per_song_usd: 25.00
+  per_shot_usd: 1.00
+  warn_at_fraction: 0.80      # log a budget warning at 80% of the per-song cap
+  hard_stop_at_fraction: 1.00 # T5 human approval required to exceed
+
+# --------------------------------------------------------------------------- #
+# Escalation triggers — when a task moves UP the ladder (cheapest-adequate
+# routing with an escalation ladder, per §2.3 invariant 2 + §4 rule 5).
+# --------------------------------------------------------------------------- #
+escalation:
+  triggers:
+    - on: validation_failure   # deterministic gate (T0) failed
+      action: escalate_one_tier
+      max_escalations: 2
+    - on: low_confidence       # model self-reported low confidence
+      action: escalate_one_tier
+      max_escalations: 1
+    - on: prior_failure_rate   # this task_type's recent failure rate is high
+      threshold: 0.30
+      action: escalate_one_tier
+    - on: budget_exceeded      # per-song hard cap hit
+      action: require_human     # -> T5
+
+# --------------------------------------------------------------------------- #
+# High-risk actions require human approval; the DEFINITION of high-risk lives
+# here (versioned policy), not in agent prompts (§2.3 invariant 7).
+# --------------------------------------------------------------------------- #
+high_risk_actions:
+  - release_approval          # approving a render for release
+  - external_publish          # pushing a cut to a platform
+  - permission_expansion      # widening an agent's permissions.yaml scope
+  - budget_expansion          # raising a budget cap

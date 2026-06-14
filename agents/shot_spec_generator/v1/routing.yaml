@@ -1,0 +1,5 @@
+# routing.yaml — shot-spec generator (active, eval-gated)
+task_type: bible_to_shotspec   # -> policies/routing.yaml T3_reasoning
+model: claude-opus-4-8
+admission:
+  required: true               # ACTIVE: needs manifest + >=5 golden + rubric

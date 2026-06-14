@@ -1,0 +1,10 @@
+# tools.yaml — shot renderer (harness transports only)
+tools:
+  - name: comfy_upload_image
+    description: Upload a keyframe into ComfyUI/input (harness.run.comfy_upload_image).
+  - name: comfy_submit_prompt
+    description: POST a workflow graph to ComfyUI /prompt (harness.run.comfy_submit_prompt).
+  - name: comfy_history
+    description: Poll ComfyUI /history for outputs (harness.run.comfy_history).
+  - name: write_provenance
+    description: Append the render's provenance record to the song ledger.

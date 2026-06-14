@@ -1,0 +1,55 @@
+{
+  "case_id": "NH-S03-SH002",
+  "agent": "shot_renderer",
+  "source": "NH-S03 chain_ok batch — bible_to_shotspecs over projects/upham/new_harnomy_usa/02_script/scenes.json",
+  "input": {
+    "shot_spec": {
+      "shot_id": "NH-S03-SH002",
+      "song_id": "NH-S03",
+      "duration_s": 8,
+      "camera": {
+        "shot_size": "medium",
+        "movement": "locked-off",
+        "lens_mm": 50
+      },
+      "subjects": [
+        "pengold"
+      ],
+      "setting": "Pengold's municipal office, pre-dawn",
+      "mood": "settled, absorbed, unhurried",
+      "action": "Pengold reads the mauve Framework book at his desk in stillness and does not look up",
+      "prompt": "Eye-level medium shot of an American man, Northeast working-class origin, late 40s, solid build, dark jacket, seated at a mahogany desk reading a brownish-mauve hardcover book; a single warm tungsten side-light rakes across one side of his face while the rest of the room falls into half-shadow, filing cabinets and a framed portrait dim behind him; locked-off, no camera movement, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+      "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame",
+      "keyframe": {
+        "source": "t2i",
+        "ref_lora": "pengold",
+        "seed": 100002
+      },
+      "seed": 100002,
+      "continuity": {
+        "prev_shot": "NH-S03-SH001",
+        "flf2v": false
+      },
+      "render": {
+        "width": 640,
+        "height": 640,
+        "fps": 16,
+        "steps": 4,
+        "duration_s": 8
+      }
+    },
+    "engine": "comfyui",
+    "dry_run": true
+  },
+  "reference_output": {
+    "status": "rendered",
+    "shot_id": "NH-S03-SH002",
+    "content_hash_stable": true
+  },
+  "expected": {
+    "schema_valid": true,
+    "chain_ok": true,
+    "hard_fail": false,
+    "max_cost_per_shot_usd": 1.0
+  }
+}

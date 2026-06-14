@@ -1,0 +1,249 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ilyrium.studio/schemas/provenance_record.schema.json",
+  "title": "Ilyrium Provenance Record",
+  "description": "Stage 8 ledger entry. One record per render attempt of one shot. Self-contained and reproducible: embeds the exact shot_spec, the generation parameters, model fingerprints, engine environment, output fingerprints, and HITL approval state. Lifecycle fields (status, approval, updated_at) mutate in place; the reproducibility-determining fields are frozen and summarised by content_hash.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_id",
+    "created_at",
+    "updated_at",
+    "status",
+    "shot",
+    "shot_spec",
+    "shot_spec_hash",
+    "generation",
+    "models",
+    "engine",
+    "content_hash"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+
+    "record_id": {
+      "type": "string",
+      "description": "ULID (Crockford base32, 26 chars). Monotonic, so it doubles as the ledger ordering key.",
+      "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+
+    "status": {
+      "description": "Lifecycle state of this render attempt.",
+      "enum": ["queued", "rendering", "rendered", "approved", "rejected", "failed", "superseded"]
+    },
+    "attempt": {
+      "type": "integer",
+      "minimum": 1,
+      "default": 1,
+      "description": "Attempt number for this shot. Re-renders increment and set 'supersedes'."
+    },
+    "supersedes": {
+      "type": ["string", "null"],
+      "description": "record_id of the prior attempt this one replaces, or null for the first attempt.",
+      "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+
+    "shot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["song_id", "shot_id"],
+      "properties": {
+        "song_id": { "type": "string", "description": "e.g. 'NH-07' (New Harmony song 7)." },
+        "shot_id": { "type": "string", "description": "Unique within the song." },
+        "scene_id": { "type": ["string", "null"] },
+        "sequence_index": { "type": ["integer", "null"], "minimum": 0 }
+      }
+    },
+
+    "shot_spec": {
+      "description": "The exact Stage 2 shot-spec used, embedded verbatim for self-containment. Shape is defined by shot_spec.schema.json (sibling file).",
+      "$ref": "shot_spec.schema.json"
+    },
+    "shot_spec_hash": {
+      "type": "string",
+      "description": "sha256 of canonical-JSON(shot_spec). See DESIGN doc for the canonicalisation rule.",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+
+    "generation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["seed", "width", "height", "frames", "fps", "workflow_template"],
+      "properties": {
+        "seed": { "type": "integer", "minimum": 0 },
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 },
+        "frames": { "type": "integer", "minimum": 1 },
+        "fps": { "type": "number", "minimum": 1 },
+        "steps": { "type": ["integer", "null"], "description": "e.g. 4 for the lightx2v fast workflow." },
+        "cfg": { "type": ["number", "null"] },
+        "sampler": { "type": ["string", "null"] },
+        "scheduler": { "type": ["string", "null"] },
+        "keyframe": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["path", "sha256"],
+          "description": "Stage 3 output image that seeded the i2v render. When the keyframe was produced autonomously by the t2i bridge (keyframe_to_comfy.py), the t2i_* fields record that generation's provenance. Older records that supplied the keyframe by hand omit them, so all t2i_* fields are optional.",
+          "properties": {
+            "path": { "type": "string" },
+            "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+            "width": { "type": ["integer", "null"] },
+            "height": { "type": ["integer", "null"] },
+            "t2i_prompt_id": {
+              "type": ["string", "null"],
+              "description": "ComfyUI /prompt id from the t2i keyframe render. Runtime handle; outside content_hash."
+            },
+            "t2i_seed": {
+              "type": ["integer", "null"],
+              "minimum": 0,
+              "description": "Seed used for the t2i keyframe generation."
+            },
+            "t2i_model_hash": {
+              "type": ["string", "null"],
+              "pattern": "^[0-9a-f]{64}$",
+              "description": "sha256 of the t2i checkpoint/base model used to synthesise the keyframe."
+            },
+            "ref_lora": {
+              "type": ["string", "null"],
+              "description": "lora_library.json entry name injected into the t2i graph, or null if none."
+            }
+          }
+        },
+        "workflow_template": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "sha256"],
+          "description": "The Export (API) ComfyUI graph driven by shot_to_comfy.py.",
+          "properties": {
+            "name": { "type": "string", "description": "e.g. 'wan_i2v.api.json'." },
+            "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+            "node_map_version": { "type": ["string", "null"] }
+          }
+        }
+      }
+    },
+
+    "models": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Every weight file that materially affects the output, each fingerprinted.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["role", "filename", "sha256"],
+        "properties": {
+          "role": {
+            "enum": [
+              "diffusion_high_noise",
+              "diffusion_low_noise",
+              "text_encoder",
+              "vae",
+              "lora_speed",
+              "lora_character",
+              "lora_other"
+            ]
+          },
+          "filename": { "type": "string" },
+          "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+          "source": {
+            "type": ["object", "null"],
+            "additionalProperties": false,
+            "properties": {
+              "hf_repo": { "type": "string" },
+              "hf_revision": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+
+    "engine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["comfyui_version", "gpu"],
+      "properties": {
+        "comfyui_version": { "type": "string" },
+        "comfyui_commit": { "type": ["string", "null"] },
+        "python": { "type": ["string", "null"] },
+        "torch": { "type": ["string", "null"] },
+        "cuda": { "type": ["string", "null"] },
+        "gpu": { "type": "string", "description": "e.g. 'NVIDIA L4 24GB'." },
+        "instance_id": { "type": ["string", "null"], "description": "e.g. 'i-030994c5371ee5de9'." }
+      }
+    },
+
+    "render": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "description": "Populated once the render runs. Null while queued.",
+      "properties": {
+        "comfy_prompt_id": {
+          "type": ["string", "null"],
+          "description": "The prompt id ComfyUI returns from /prompt at submit. A runtime handle, deliberately outside the content_hash domain."
+        },
+        "started_at": { "type": ["string", "null"], "format": "date-time" },
+        "finished_at": { "type": ["string", "null"], "format": "date-time" },
+        "wall_seconds": { "type": ["number", "null"] },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "path", "sha256"],
+            "properties": {
+              "kind": { "enum": ["video", "preview_frame", "thumbnail", "log"] },
+              "path": { "type": "string" },
+              "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+              "bytes": { "type": ["integer", "null"] },
+              "container": { "type": ["string", "null"], "description": "e.g. 'mp4', 'webm'." },
+              "duration_s": { "type": ["number", "null"] }
+            }
+          }
+        },
+        "error": { "type": ["string", "null"] }
+      }
+    },
+
+    "approval": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "description": "HITL gate decision. Null until a reviewer acts.",
+      "properties": {
+        "state": { "enum": ["pending", "approved", "rejected"] },
+        "reviewer": { "type": ["string", "null"] },
+        "decided_at": { "type": ["string", "null"], "format": "date-time" },
+        "note": { "type": ["string", "null"] }
+      }
+    },
+
+    "content_hash": {
+      "type": "string",
+      "description": "Reproducibility fingerprint: sha256 of canonical-JSON({shot_spec, generation, models, engine}). Two records with the same content_hash should produce the same render. Excludes lifecycle fields by construction.",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+
+    "agent_version_id": {
+      "type": ["string", "null"],
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "description": "RSI L0 (ILY-203): identity of the agent config version that drove this render — sha256(prompt.md + tools.yaml + routing.yaml + model id), computed by harness/config_hash.py. Inside the chained snapshot, so chain verification covers agent identity. Null on pre-harness legacy records."
+    },
+
+    "chain": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "description": "Append-only tamper-evidence. record_hash = sha256(prev_record_hash + snapshot_hash), where snapshot_hash = sha256(canonical(record without its 'chain' field)). Hashing the whole snapshot (not just content_hash) means the chain also attests status/approval, so tampering with any past line breaks the chain. Enables the 'ledger is hash-linked and append-only' invariant.",
+      "required": ["record_hash"],
+      "properties": {
+        "prev_record_hash": {
+          "type": ["string", "null"],
+          "pattern": "^sha256:[0-9a-f]{64}$",
+          "description": "record_hash of the previous ledger entry, or null for the genesis entry."
+        },
+        "record_hash": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" }
+      }
+    }
+  }
+}

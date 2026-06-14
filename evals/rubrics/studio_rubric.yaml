@@ -1,0 +1,67 @@
+# Studio evaluation rubric (ILY-203 task 11).
+#
+# The deterministic evaluator for studio shot-specs. It does NOT reimplement
+# scoring — it WRAPS the existing Style-Bible validator
+# (apps/auto-studio/style_validator.py) as its scoring engine, and adds the
+# deterministic gates the QA checklist names. Deterministic checks run before
+# any model judgment (§2.3 invariant 2); an LLM judge is a deferred secondary
+# signal only.
+#
+# This rubric is CONTROL-PLANE: immutable to optimizer agents, changeable only
+# through the Release path with human approval. harness/admission_gate.py loads
+# it as the scoring engine; harness/replay.py scores champion vs challenger
+# against it.
+
+rubric_id: studio_rubric
+version: "1.0"
+scoring_engine: apps/auto-studio/style_validator.py   # wrapped, not reimplemented
+
+# Hard gates — any failure caps the score at 0 regardless of other dimensions.
+hard_gates:
+  - id: schema_valid
+    description: Spec validates against ilyrium-shots/shot_spec.schema.json.
+    layer: T0_deterministic
+  - id: provenance_chain_ok
+    description: The song ledger verifies end-to-end (provenance.verify_chain).
+    layer: T0_deterministic
+  - id: no_likeness
+    description: >
+      No real-person likeness phrasing (the legal gate). Sourced from the
+      style_validator no_likeness dimension (hard=True).
+    layer: T0_deterministic
+
+# Scored dimensions — taken from the style_validator checks. Each contributes
+# to the mean; the validator returns floats in [0,1].
+dimensions:
+  - id: negatives
+    description: Kernel negative-prompt tokens absent from the shot text.
+    weight: 1.0
+  - id: casting_canon
+    description: Named canon characters have their attributes restated.
+    weight: 1.0
+  - id: motif
+    description: Palette/motif used correctly; forbidden synonyms absent.
+    weight: 1.0
+  - id: register
+    description: Performance register held (no smile-at-camera / winking).
+    weight: 1.0
+  - id: kernel_look
+    description: A non-empty visual prompt carries the kernel look.
+    weight: 1.0
+
+# Thresholds the admission gate and replay enforce.
+thresholds:
+  min_style_score: 0.75          # ILYRIUM_STYLE_THRESHOLD default
+  max_cost_per_shot_usd: 1.00    # cost-per-shot ceiling (from routing budgets)
+  pass_requires:
+    - all_hard_gates_pass
+    - style_score_ge_min
+    - cost_per_shot_le_max
+
+# Field adapter: shot_spec field -> the shape style_validator.validate_shot
+# expects (it reads visual_prompt / action / characters / performance).
+spec_field_map:
+  visual_prompt: prompt
+  action: action
+  characters: subjects
+  performance: mood

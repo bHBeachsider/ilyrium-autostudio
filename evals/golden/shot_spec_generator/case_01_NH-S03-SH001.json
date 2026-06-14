@@ -1,0 +1,47 @@
+{
+  "case_id": "NH-S03-SH001",
+  "agent": "shot_spec_generator",
+  "source": "NH-S03 chain_ok batch — bible_to_shotspecs over projects/upham/new_harnomy_usa/02_script/scenes.json",
+  "input": {
+    "song_id": "NH-S03",
+    "scene_ref": "projects/upham/new_harnomy_usa/02_script/scenes.json#scene_1"
+  },
+  "reference_output": {
+    "shot_id": "NH-S03-SH001",
+    "song_id": "NH-S03",
+    "duration_s": 4,
+    "camera": {
+      "shot_size": "wide",
+      "movement": "static",
+      "lens_mm": 24
+    },
+    "subjects": [],
+    "setting": "An empty theatrical proscenium, curtains parted on darkness",
+    "mood": "stillness",
+    "action": "A cold wash holds on the bare stage; nothing moves; silence sits over the house",
+    "prompt": "Wide establishing shot of an empty theatrical proscenium, a single cold wash across the bare boards, deep shadow at the edges, no figures, no movement, total stillness held long, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+    "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame",
+    "keyframe": {
+      "source": "t2i",
+      "ref_lora": "",
+      "seed": 100001
+    },
+    "seed": 100001,
+    "continuity": {
+      "prev_shot": "",
+      "flf2v": false
+    },
+    "render": {
+      "width": 640,
+      "height": 640,
+      "fps": 16,
+      "steps": 4,
+      "duration_s": 4
+    }
+  },
+  "expected": {
+    "schema_valid": true,
+    "hard_fail": false,
+    "min_style_score": 0.75
+  }
+}

@@ -1,0 +1,12 @@
+# permissions.yaml — shot-spec generator scope
+read:
+  - project_files
+  - lora_library
+write:
+  - shot_specs                 # ilyrium-shots/shots/ + song manifest
+deny:
+  - delete_files
+  - approve_for_release
+  - modify_style_kernel
+credentials:
+  - ANTHROPIC_API_KEY

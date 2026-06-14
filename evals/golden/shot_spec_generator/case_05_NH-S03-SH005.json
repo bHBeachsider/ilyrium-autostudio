@@ -1,0 +1,49 @@
+{
+  "case_id": "NH-S03-SH005",
+  "agent": "shot_spec_generator",
+  "source": "NH-S03 chain_ok batch — bible_to_shotspecs over projects/upham/new_harnomy_usa/02_script/scenes.json",
+  "input": {
+    "song_id": "NH-S03",
+    "scene_ref": "projects/upham/new_harnomy_usa/02_script/scenes.json#scene_5"
+  },
+  "reference_output": {
+    "shot_id": "NH-S03-SH005",
+    "song_id": "NH-S03",
+    "duration_s": 8,
+    "camera": {
+      "shot_size": "medium",
+      "movement": "static",
+      "lens_mm": 50
+    },
+    "subjects": [
+      "valencia"
+    ],
+    "setting": "A plain back room, real working light",
+    "mood": "truthful, direct to camera, documentary plainness",
+    "action": "Hard cut to Valencia alone, holding an unopened mauve book; she addresses the audience plainly, the only person who speaks to us directly",
+    "prompt": "Documentary-style medium shot of a European woman, late 40s, working build, plain dark dress, standing in flat honest even light against a bare wall, holding a closed brownish-mauve book at her side; she looks directly into the lens, calm and truthful; the image is plain and un-stylised, deliberately outside the look of every other shot, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+    "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame",
+    "keyframe": {
+      "source": "t2i",
+      "ref_lora": "valencia",
+      "seed": 100005
+    },
+    "seed": 100005,
+    "continuity": {
+      "prev_shot": "NH-S03-SH004",
+      "flf2v": false
+    },
+    "render": {
+      "width": 640,
+      "height": 640,
+      "fps": 16,
+      "steps": 4,
+      "duration_s": 8
+    }
+  },
+  "expected": {
+    "schema_valid": true,
+    "hard_fail": false,
+    "min_style_score": 0.75
+  }
+}

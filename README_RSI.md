@@ -1,0 +1,149 @@
+# Auto-Studio RSI Loop — L0 (Blueprint B)
+
+This repository runs the **RSI agentic loop at maturity L0** per
+`RSI_LOOP_BLUEPRINTS.md` §4 (greenfield) and §5 (solo-operator). The loop's five
+primitives — Trace, Evaluation, Finding, Candidate, Release — live as files, not
+tables, by design; promotion to a database is deferred until JSONL queries
+become limiting.
+
+This file is the **repo-local registry**. This repo carries no PermitHub
+governance tooling (no `AGENT_REGISTRY`, no A15 auditor, no Notion hooks), so the
+harness contract, agent layout, gate list, and candidate flow are documented and
+enforced here, in-repo.
+
+> **Governing principle (greenfield):** make untraced execution *structurally
+> impossible*, then make everything else boring. No model runs except through
+> the harness; no agent is admitted without an eval; no artifact changes except
+> through a reviewed PR.
+
+---
+
+## 1. The harness contract — `harness/`
+
+`harness/run.py` is the **single execution entrypoint**. Every model invocation
+and every ComfyUI render submission goes through it; in exchange each invocation
+gets, structurally:
+
+- a computed **`agent_version_id`** = `sha256(prompt.md + tools.yaml +
+  routing.yaml + model id)` (`harness/config_hash.py`),
+- **credentials injected from the environment** — agent config dirs never hold
+  secrets,
+- **tool calls + responses recorded** for offline champion/challenger replay,
+- one **JSONL trace row** per invocation appended to
+  `projects/<project_id>/traces/traces.jsonl` (reasoning *summaries* only — no
+  raw chain-of-thought at rest).
+
+| Module | Role |
+|---|---|
+| `harness/run.py` | executor, tracer, credential injector, ComfyUI transports, `run_model()` (the only raw-SDK call site) |
+| `harness/config_hash.py` | deterministic config hashing + manifest writer; BOM/CRLF-canonical |
+| `harness/lint_no_raw_sdk.py` | gate: no raw model SDK / direct ComfyUI API outside `harness/` |
+| `harness/admission_gate.py` | gate: eval-driven agent admission; also the wrapped rubric scorer |
+| `harness/replay.py` | champion/challenger replay of recorded traces against a candidate |
+
+**Trace substrate.** `provenance.py` (the hash-chained render ledger) is the
+trace substrate and is *extended*, not duplicated: `new_record(...)` now carries
+`agent_version_id` inside the chained snapshot, so `verify_chain` attests agent
+identity. Traces (invocation/cost/version) and provenance (artifact lineage) are
+complementary, not competing stores.
+
+## 2. Agents are data — `agents/<name>/<version>/`
+
+An agent version is a **directory of config**, not code:
+
+```
+agents/<name>/<version>/
+  prompt.md         system prompt / persona + stage contract
+  tools.yaml        tool surface
+  routing.yaml      task_type, model, admission.required
+  permissions.yaml  read/write/deny scope + credential NAMES (never values)
+  manifest.json     name, version, parent_version, agent_version_id, config_hash
+```
+
+The generic executor is `harness/run.py`; behaviour is versioned config. This
+makes Candidates diffable, releases auditable, and rollback a pointer move.
+
+- **Active eval-gated agents** (`admission.required: true`):
+  `shot_spec_generator` (the bible→render bridge), `shot_renderer` (i2v submit).
+- **Stage ideation agents** (`stage_00_bible` … `stage_10_keyart`,
+  `admission.required: false`): prose collaborators, derived from the canonical
+  stage contract in `scaffold.CORE_STAGES`. They have no deterministic
+  shot-spec golden set at L0, so admission is deferred (signal-volume gate,
+  §0.2) — the gate *skips* them with a logged reason, never silently.
+
+Bootstrap / restamp: `python agents/_bootstrap.py [--manifests-only]`.
+
+## 3. Routing policy — `policies/routing.yaml`
+
+The router is a versioned policy file + a thin selection function
+(`harness/run.py: routing_for`), not a service. Tier ladder:
+
+| Tier | Use | Model / engine |
+|---|---|---|
+| T0 deterministic | schema / provenance / config-hash / style checks | — |
+| T1 small | shot tagging, triage | `claude-haiku-4-5` |
+| T2 mid | spec drafting, stage ideation | `claude-sonnet-4-6` |
+| T3 reasoning | bible→shotspec bridge | `claude-opus-4-8` |
+| T4 specialist | video/image generation | `comfyui` (per-project via `model_select`) |
+| T5 human | release approval | — |
+
+Plus per-song budget caps, escalation triggers (validation failure, low
+confidence, prior-failure-rate, budget), and the versioned definition of
+high-risk actions.
+
+## 4. Evals — `evals/`
+
+- `evals/rubrics/studio_rubric.yaml` — the deterministic evaluator. It **wraps**
+  `apps/auto-studio/style_validator.py` (the Style-Bible validator) as its
+  scoring engine; it does not reimplement scoring. Gates: schema validity,
+  provenance `chain_ok`, no-likeness (hard), style-score threshold (0.75),
+  cost-per-shot ceiling ($1.00).
+- `evals/golden/<agent>/` — ≥5 golden shot-spec cases per active agent, drawn
+  from the NH-S03 batch (generated by `bible_to_shotspecs` over the
+  `new_harnomy_usa` scene cards; the chain_ok ledger itself held only one
+  distinct spec, so the reference outputs are sourced from the same NH-S03
+  scene cards).
+
+**Eval-driven admission (the highest-leverage greenfield practice):** an active
+agent's golden set + rubric exist *before* it is admitted. The admission gate
+refuses any active agent lacking a manifest, ≥5 golden cases, or a resolvable
+rubric reference.
+
+## 5. Gates
+
+| Gate | Trigger | Refuses |
+|---|---|---|
+| `lint_no_raw_sdk` | pre-commit (python files) | NEW raw-SDK import / direct ComfyUI API outside `harness/` |
+| `admission_gate` | pre-commit (`agents/`,`evals/`) | active agent missing manifest / ≥5 golden / rubric |
+
+Both are wired in `.pre-commit-config.yaml`. The lint gate carries a frozen
+**legacy baseline** (13 pre-harness violators, all `FINDINGS.md` F-0004) that
+only shrinks — each migration retires its baseline entry in the same PR (the
+strangler rule). A file may opt out with a `lint-no-raw-sdk: allow` pragma
+(audited, e.g. test fixtures).
+
+## 6. The loop — Finding → Candidate → Release
+
+1. **Finding.** A classified failure lands in `FINDINGS.md` (repo root, shared
+   classes) or a project's `FINDINGS.md`, with the
+   `detected_at_layer` / `should_have_been_prevented_at_layer` pair. Every
+   recurring finding (freq ≥ 3) must terminate in a durable artifact or an
+   explicit accepted-risk record — no third state.
+2. **Candidate.** A PR following `.github/PULL_REQUEST_TEMPLATE.md` (source
+   findings, target artifact, expected improvement, evidence, regression risk,
+   rollback reference).
+3. **Release.** Merge after gates + human approval. Rollback = revert (for
+   agents-as-data, a pointer to the prior version directory).
+
+**Champion/challenger replay** (`harness/replay.py`) re-executes recorded
+traces against a candidate agent version using the *recorded* tool responses
+(no live render) and reports rubric-score deltas vs the champion — the
+loop-closure mechanism in place of production-traffic canaries.
+
+## 7. Health metrics (quarterly, RSI_LOOP_BLUEPRINTS §6)
+
+Prevention shift (median `detected_at_layer` moving left), loop closure rate
+(≥80% of recurring findings terminated durably), cost per durable fix, proposer
+precision, cost-per-successful-task by tier. The meta-system is subject to its
+own kill criteria: if cost-per-durable-fix exceeds manual fixing for two
+quarters, freeze module expansion and shrink to the spine.

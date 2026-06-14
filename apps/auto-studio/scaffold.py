@@ -49,7 +49,11 @@ def _load_kernel(kernel) -> dict:
     if os.path.exists(path):
         with open(path, encoding="utf-8") as f:
             return json.load(f)
-    return {"name": kernel or "default", "look": "", "register": "", "negatives": "", "casting_canon": {}}
+    return {"name": kernel or "default", "look": "", "register": "", "negatives": "",
+            "palette_motifs": {}, "casting_canon": {},
+            "legal_rule": "Specify every person by age / origin / build / wardrobe / affect ONLY; "
+                          "never by likeness to a real public figure.",
+            "engine_tails": {}, "continuity": {}}
 
 
 # --------------------------------------------------------------------------- #
@@ -74,6 +78,9 @@ CORE_DIRS = [
     "09_delivery/captions", "09_delivery/c2pa_manifests",
     "10_marketing", "10_marketing/keyart", "10_marketing/trailers",
     "99_archive",
+    # RSI L0 (ILY-203): every project is trace/eval-ready from creation.
+    "traces",                       # projects/<id>/traces/traces.jsonl (harness)
+    "evals", "evals/golden", "evals/rubrics",   # per-project golden cases + rubric refs
 ]
 
 # Stage agents: (KEY, canonical_path, title, purpose, produce, template, gate).
@@ -310,10 +317,19 @@ def scaffold_project(name: str, base_dir: str = None, kernel="new_harnomy",
         f.write(_QA_CHECKLIST)
     with open(os.path.join(root, "PROJECT.yaml"), "w", encoding="utf-8") as f:
         f.write(_project_yaml(name, slug, ptype, kdict, packs))
+    # RSI L0 (ILY-203): per-project findings registry, so every project is
+    # loop-compliant from creation (the repo-root FINDINGS.md holds shared
+    # classes; this one holds project-local ones).
+    with open(os.path.join(root, "FINDINGS.md"), "w", encoding="utf-8") as f:
+        f.write(_FINDINGS_STUB.format(name=name))
 
     # Core directory tree.
     for d in CORE_DIRS:
         os.makedirs(os.path.join(root, d), exist_ok=True)
+    # Keep the empty trace/eval dirs in git so the harness can write into them
+    # on first run without a missing-dir error.
+    for keep in ("traces", "evals/golden", "evals/rubrics"):
+        open(os.path.join(root, keep, ".gitkeep"), "w").close()
 
     # Stage READMEs at their canonical homes.
     for stage in CORE_STAGES:
@@ -429,6 +445,21 @@ home; `models.lock.json` is the RENDER pin — no duplication.
 """
 
 
+_FINDINGS_STUB = """# FINDINGS — {name} (project-local)
+
+Append-only registry of failure classes specific to THIS project — the Finding
+primitive of the RSI loop (see the repo-root `FINDINGS.md` and `README_RSI.md`
+for the shared classes and the full contract). Every recurring finding
+(frequency >= 3) must terminate in a durable artifact (test / gate / validator /
+prompt patch / policy) or an explicit accepted-risk record.
+
+Fields: finding_id, severity, frequency, root_cause, detected_at_layer,
+should_have_been_prevented_at_layer, remediation_type, status.
+
+_(no project-local findings yet)_
+"""
+
+
 _QA_CHECKLIST = """# QA / Continuity / Governance checklist
 
 Run on EVERY render before it is approved for release.
@@ -510,6 +541,4 @@ if __name__ == "__main__":
     if "--genre" in args:
         i = args.index("--genre") + 1
         while i < len(args) and not args[i].startswith("--"):
-            genres.append(args[i]); i += 1
-    out = scaffold_project(name, base_dir=base, kernel=kernel, genre_packs=genres, ptype=ptype)
-    print(f"Scaffolded: {out}  (type={ptype}, packs={resolve_packs(genres)})")
+            genres.appe

@@ -1,0 +1,17 @@
+{
+  "agent": "stage_09_qa",
+  "version": "v1",
+  "parent_version": null,
+  "model": "claude-sonnet-4-6",
+  "agent_version_id": "sha256:39ea2e95cdb9050193a2dc24e2e079414464e5b6e03608a7f4cb4a4163920608",
+  "config_hash": "sha256:f48abf70ff6b1f2ad447660cf747c7e560bc262cd591912ab09ec0903aedfc67",
+  "files": {
+    "permissions.yaml": "sha256:f4ecb3d6e6f47e523a9b8e8a233a802d1123f74364ab40e7a55031dc338d193d",
+    "prompt.md": "sha256:0d20588c38ffb266c94631d274d34068983586e4c7ba34f8814aeba2cb45d5ef",
+    "routing.yaml": "sha256:7a3541af5cf4c445d5467921b5b09e447fa6c657b13f86557592954d139409c2",
+    "tools.yaml": "sha256:1ddeda8b0353058e3f7e5d531d77923f1c655a24934d61c30d2e115810ad32b3"
+  },
+  "rubric": "evals/rubrics/studio_rubric.yaml",
+  "golden_set": "evals/golden/stage_09_qa",
+  "created_at": "2026-06-14T02:59:08Z"
+}

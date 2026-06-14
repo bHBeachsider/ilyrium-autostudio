@@ -1,0 +1,12 @@
+# permissions.yaml — shot renderer scope
+read:
+  - shot_specs
+  - models_lock
+write:
+  - provenance_ledger
+  - render_outputs
+deny:
+  - delete_files
+  - approve_for_release
+credentials:
+  - COMFY_URL                  # env-var NAME only; injected by the harness

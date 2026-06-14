@@ -1,0 +1,12 @@
+# permissions.yaml — stage ideation agent scope (A1)
+read:
+  - project_files              # any file in the project, for context
+write:
+  - own_stage_folder           # drafts into this stage's canonical home only
+deny:
+  - delete_files
+  - approve_for_release
+  - modify_style_kernel
+  - modify_casting_canon
+credentials:
+  - ANTHROPIC_API_KEY          # env-var NAME only; injected by the harness

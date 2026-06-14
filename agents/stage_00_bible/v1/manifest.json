@@ -1,0 +1,17 @@
+{
+  "agent": "stage_00_bible",
+  "version": "v1",
+  "parent_version": null,
+  "model": "claude-sonnet-4-6",
+  "agent_version_id": "sha256:9b74a1166527ad27fafa8569d9dfa96493ca07ce24c3f0c5765b356a844d5721",
+  "config_hash": "sha256:46f235c18d039d4d42d25422c3f2c2feca48cfd59816d8f8cb09b518d91902b0",
+  "files": {
+    "permissions.yaml": "sha256:f4ecb3d6e6f47e523a9b8e8a233a802d1123f74364ab40e7a55031dc338d193d",
+    "prompt.md": "sha256:273400d70387aa4e0ff85df4413c4553be453964efb89fda2eac39bdeede0352",
+    "routing.yaml": "sha256:77f44f77c419d876a84cc4d91d0467580672b06c842aaf17d100347d8c8286c6",
+    "tools.yaml": "sha256:1ddeda8b0353058e3f7e5d531d77923f1c655a24934d61c30d2e115810ad32b3"
+  },
+  "rubric": "evals/rubrics/studio_rubric.yaml",
+  "golden_set": "evals/golden/stage_00_bible",
+  "created_at": "2026-06-14T02:59:08Z"
+}

@@ -1,0 +1,50 @@
+{
+  "case_id": "NH-S03-SH004",
+  "agent": "shot_spec_generator",
+  "source": "NH-S03 chain_ok batch — bible_to_shotspecs over projects/upham/new_harnomy_usa/02_script/scenes.json",
+  "input": {
+    "song_id": "NH-S03",
+    "scene_ref": "projects/upham/new_harnomy_usa/02_script/scenes.json#scene_4"
+  },
+  "reference_output": {
+    "shot_id": "NH-S03-SH004",
+    "song_id": "NH-S03",
+    "duration_s": 8,
+    "camera": {
+      "shot_size": "two-shot",
+      "movement": "static",
+      "lens_mm": 35
+    },
+    "subjects": [
+      "pengold",
+      "summer"
+    ],
+    "setting": "Pengold's municipal office, pre-dawn",
+    "mood": "composure that hides cost",
+    "action": "Summer enters and stands at the edge of the lamplight; a brief exchange passes; she does not raise her voice",
+    "prompt": "Two-shot in a half-shadowed office: the American man, late 40s, seated at the mahogany desk; a European woman, English-Italian patrician, early 40s, slim, in understated dark tailoring, standing just inside a warm tungsten pool of light; both composed and still, the room beyond them in darkness, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+    "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame",
+    "keyframe": {
+      "source": "t2i",
+      "ref_lora": "pengold",
+      "seed": 100004
+    },
+    "seed": 100004,
+    "continuity": {
+      "prev_shot": "NH-S03-SH003",
+      "flf2v": false
+    },
+    "render": {
+      "width": 640,
+      "height": 640,
+      "fps": 16,
+      "steps": 4,
+      "duration_s": 8
+    }
+  },
+  "expected": {
+    "schema_valid": true,
+    "hard_fail": false,
+    "min_style_score": 0.75
+  }
+}

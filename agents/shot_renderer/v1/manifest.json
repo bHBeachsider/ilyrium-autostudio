@@ -1,0 +1,17 @@
+{
+  "agent": "shot_renderer",
+  "version": "v1",
+  "parent_version": null,
+  "model": "comfyui/wan2.2-i2v-14b",
+  "agent_version_id": "sha256:13b39e7db3984d6797facfb15440247054a26d2c35c926fd2fdd68c5d0df2540",
+  "config_hash": "sha256:62e00ce59620fa433b2f8f719b8997e6c4c2fda7797e02f7e9595b4f50328be7",
+  "files": {
+    "permissions.yaml": "sha256:361134b1de76e34bb2460ec22f09ded54574979ff588b53a45a87c99cfc0a663",
+    "prompt.md": "sha256:c523e24f29489d87732f02715fca3c4285ed85593059943490ed22b93c4756d6",
+    "routing.yaml": "sha256:1819e1138dc4309414353bc25483bf9c65f37e2c3f030889c337690d948b9dd3",
+    "tools.yaml": "sha256:d88e45edb0c4fe221eddec82c1c45f3f2bb0fbfd5b7684eda1c0a39530a89ef5"
+  },
+  "rubric": "evals/rubrics/studio_rubric.yaml",
+  "golden_set": "evals/golden/shot_renderer",
+  "created_at": "2026-06-14T02:59:08Z"
+}

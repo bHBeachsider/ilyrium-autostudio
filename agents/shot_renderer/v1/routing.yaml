@@ -1,0 +1,6 @@
+# routing.yaml — shot renderer (active, eval-gated)
+task_type: video_render        # -> policies/routing.yaml T4_specialist
+engine: comfyui
+model: comfyui/wan2.2-i2v-14b
+admission:
+  required: true               # ACTIVE: needs manifest + >=5 golden + rubric
