@@ -1,0 +1,65 @@
+---
+# Stripe CHARACTER LoRA on FLUX.1-dev. Trained on ~18 reference shots of the locked design
+# (fat bald man, gold chain, stained white speedo, skid-mark on the rear) with SHORT trigger
+# captions ("strp, <pose>") — identity binding, same recipe as brdmc. Layer at inference with
+# the brdrck style LoRA + a described style block (bare trigger is inert on Flux).
+job: extension
+config:
+  name: "stripe_char_v2"
+  process:
+    - type: 'sd_trainer'
+      training_folder: "/home/ec2-user/ai-toolkit/output"
+      device: cuda:0
+      trigger_word: "strp"
+      network:
+        type: "lora"
+        linear: 16
+        linear_alpha: 16
+      save:
+        dtype: float16
+        save_every: 500
+        max_step_saves_to_keep: 3
+        push_to_hub: false
+      datasets:
+        - folder_path: "/home/ec2-user/stripe_train_v2"
+          caption_ext: "txt"
+          caption_dropout_rate: 0.0
+          shuffle_tokens: false
+          cache_latents_to_disk: true
+          resolution: [ 512, 768, 1024 ]
+      train:
+        batch_size: 1
+        steps: 2000
+        gradient_accumulation_steps: 1
+        train_unet: true
+        train_text_encoder: false
+        gradient_checkpointing: true
+        noise_scheduler: "flowmatch"
+        optimizer: "adamw8bit"
+        lr: 1e-4
+        lr_scheduler: "cosine"
+        ema_config:
+          use_ema: true
+          ema_decay: 0.99
+        dtype: bf16
+      model:
+        name_or_path: "black-forest-labs/FLUX.1-dev"
+        is_flux: true
+        quantize: true
+      sample:
+        sampler: "flowmatch"
+        sample_every: 500
+        width: 1024
+        height: 1024
+        guidance_scale: 3.5
+        sample_steps: 25
+        walk_seed: true
+        seed: 42
+        neg: ""
+        prompts:
+          - "strp, a fat bald man in a stained white speedo with a gold chain, standing facing forward"
+          - "strp, rear view, a brown skid-mark stripe on the speedo seat"
+          - "strp, three-quarter view, one hand on hip"
+meta:
+  name: "[name]"
+  version: '1.0'
