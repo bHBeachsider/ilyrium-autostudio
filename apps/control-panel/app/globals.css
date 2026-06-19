@@ -1,0 +1,36 @@
+/* Tailwind CSS v4 — single import pulls in base, components, and utilities.
+   v4 auto-detects content (app/**), so no tailwind.config.js content paths needed. */
+@import "tailwindcss";
+
+/* ───────────────────────────────────────────────────────────────────────────
+   Ilyrium Studio OS — premium film-console design tokens (v4 @theme).
+   High-contrast DEEP MATTE dark (no pure black — avoids OLED smear), low-sat
+   "traffic-light" state colors used ONLY for system state, and a mono accent for
+   metadata. Generates utilities: bg-ink/panel/raised, text-fg/dim, border-edge,
+   text-good/warn/bad/amber/mauve/accent, font-mono.
+   ─────────────────────────────────────────────────────────────────────────── */
+@theme {
+  --color-ink: #0b0d10;       /* obsidian base — pushes UI back, footage forward */
+  --color-panel: #14171c;     /* matte charcoal container */
+  --color-raised: #1b2027;    /* raised panel / card */
+  --color-edge: #272d36;      /* hairline borders */
+  --color-fg: #e8edf2;        /* primary text */
+  --color-dim: #97a1ad;       /* secondary / metadata text */
+  --color-accent: #5b9dff;    /* electric blue — interactive accent */
+  --color-amber: #f0a73d;     /* PROCESSING / RENDERING (pulse) */
+  --color-good: #57c97a;      /* COMPLETED (low-sat green) */
+  --color-warn: #e0a13a;      /* attention */
+  --color-bad: #ef6f6c;       /* FAILED / timeout (de-saturated coral) */
+  --color-mauve: #b98cff;     /* master / brand accent */
+
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+/* Subtle pulse for active background processing (characteristic #4). */
+@keyframes ilyriumPulse { 0%,100% { opacity: 1 } 50% { opacity: .45 } }
+.state-pulse { animation: ilyriumPulse 1.2s ease-in-out infinite; }
+
+/* Industrial scrollbars — thin, dark, unobtrusive. */
+* { scrollbar-width: thin; scrollbar-color: #272d36 transparent; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb { background: #272d36; border-radius: 4px; }
