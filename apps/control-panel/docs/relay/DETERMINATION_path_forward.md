@@ -6,6 +6,16 @@
 > This document supersedes Section 0 of `PLAN_schema_reconciliation.md` and adds
 > a premise correction (Section 0 below) that the plan did not account for.
 
+> **ENDPOINT RECORD CORRECTION (2026-06-20):** The Neon endpoint-id blocklist in this doc
+> is STALE. `ep-...` compute ids drift; `br-...` branch ids are stable — so safety must key
+> on BRANCH identity + console status, NOT endpoint-id strings. Production = branch
+> **`br-spring-rain-ap81nd7m`**, whose CURRENT primary compute is **`ep-young-voice-apndapaf`**
+> (console: production (Default) / Primary / Idle — normal, NOT archived). The old
+> "never-connect `ep-young-voice`/`ep-purple-shape`" rule is superseded. `ep-purple-shape` =
+> the separate **`ilyrium_memory`** (pgvector) DB — out of scope regardless (different
+> database, do not touch). Full corrected map + gate logic + the Step-9 promotion plan:
+> see `RUNBOOK_phase1.md` → "Endpoint record correction + Step-9 promotion plan."
+
 ---
 
 ## 0. PREMISE CORRECTION (read this first) -- there are TWO control-panels

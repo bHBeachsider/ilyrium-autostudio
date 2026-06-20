@@ -165,3 +165,75 @@ Prisma reads the real `ilyrium`; `assets.rating` present; `/api/studio/*` govern
 real risk-based tables (`rights_records` + `gate_approvals` + `releases`); Campaign retired.
 Open gates handed to Brad: (1) Step-9 production promotion (credential path TBD — prefer a
 one-time Vercel MCP pull); (2) start of Phase 2.
+
+---
+
+# Endpoint record correction + Step-9 promotion plan (2026-06-20)
+
+## Endpoint record CORRECTION
+The earlier "never-connect endpoint" blocklist was STALE. Root cause: Neon **`ep-...`
+compute ids drift** (a branch's primary compute can change id), while **`br-...` branch ids
+are stable**. Safety must key on branch identity + console status, never on endpoint-id
+strings — keying on `ep-...` is what produced the false "ep-young-voice is archived" alarm.
+
+### Branch → endpoint → status map
+| branch id | branch name | current primary compute | status | database | source |
+|---|---|---|---|---|---|
+| `br-spring-rain-ap81nd7m` | `production` (Default) | **`ep-young-voice-apndapaf`** | Idle/active (normal) | `ilyrium` | Brad's Neon console (Connect panel) |
+| `studio_os_branch1` | `studio_os_branch1` | `ep-morning-frost-apbgxh31` | active | `ilyrium` | this session's `.env` |
+| (memory branch) | — | `ep-purple-shape` | not re-verified | **`ilyrium_memory`** (pgvector) | prior determination evidence |
+
+- `ep-young-voice-apndapaf` is **production's current primary compute** (Idle = normal, not
+  archived). The read-only gate that connected to it woke production-idle normally (not an
+  archival/billing event).
+- `ep-purple-shape` = the **`ilyrium_memory`** pgvector DB's endpoint — a SEPARATE, unrelated
+  database. Out of scope regardless of its status; do NOT touch (wrong database, not because
+  archived). Its live status was NOT re-verified this pass (no Neon console/API access here,
+  and connecting-to-identify is prohibited) — identify from the console if ever needed.
+
+### Corrected gate logic (replaces the endpoint-id blocklist)
+Before connecting to any Neon endpoint:
+1. Resolve the intended **branch id** (`br-...`) and confirm it is the one you mean
+   (production = `br-spring-rain-ap81nd7m`).
+2. Confirm the console shows that branch **active/idle** (not archived). Never wake a
+   **console-archived** branch (keyed on STATUS, not endpoint name).
+3. Verify the live connection with `SELECT current_database()` = `ilyrium` (never `/neondb`,
+   never `patient-resonance`). Endpoint-id strings are descriptive only, never the safety key.
+
+## Vercel `DATABASE_URL` (advisory — Brad's dashboard action, not a CC write)
+Vercel production `DATABASE_URL` was found **empty** (write-only/Sensitive or unset). For
+serverless it should be the **POOLED** production string:
+`postgresql://neondb_owner:<pw>@ep-young-voice-apndapaf-pooler.c-7.us-east-1.aws.neon.tech/ilyrium?sslmode=require`
+— Branch `production`, DB `ilyrium`, **connection pooling ON** (the `-pooler` host),
+`sslmode=require`, and **drop `channel_binding=require`**. (The screenshot showed pooling OFF
+/ the direct host — wrong for Vercel; the direct host is for the Prisma CLI only.) Brad sets
+this in the Vercel dashboard; the credential is never entered to Claude Code.
+
+## Step-9 promotion plan (read-only preflight DONE; production write AWAITING Brad's explicit go)
+Mechanism (additive, non-destructive) against production (`br-spring-rain` / `ilyrium`,
+**direct** host `ep-young-voice` with `channel_binding` dropped):
+1. `prisma migrate resolve --applied 0_init` — creates `_prisma_migrations` on production and
+   marks `0_init` applied **without running it** (the 19 tables already exist; metadata only).
+2. `prisma migrate deploy` — applies only `add_asset_rating`.
+
+### Read-only preflight result (2026-06-20, against production)
+- `current_database()` = `ilyrium`; host `ep-young-voice-apndapaf`; **`_prisma_migrations`
+  NULL, `assets.rating` absent, 19 base tables** — the exact state `resolve --applied 0_init`
+  expects. `assets=7`, `projects=2`.
+- **Drift check** (`migrate diff --from-config-datasource --to-schema ilyrium.prisma`) =
+  **exactly one change**: `ALTER TABLE "assets" ADD COLUMN "rating" TEXT NOT NULL DEFAULT
+  'clean';` — no other drift, destructive scan clean. Production = canonical minus `rating`.
+
+### Exact production deploy SQL (`add_asset_rating`)
+```sql
+ALTER TABLE "public"."assets" ADD COLUMN "rating" TEXT NOT NULL DEFAULT 'clean'
+  CHECK ("rating" IN ('clean', 'mature', 'uncensored'));
+```
+Additive; safe on the populated table (7 rows backfill to `'clean'`). No `DROP`/data-loss.
+
+### STATUS: ⛔ AWAITING Brad's explicit in-session approval before any production write.
+On approval only: point `.env` at the production direct string, re-verify `current_database()`
+= `ilyrium` + branch = production, run `resolve --applied 0_init` then `migrate deploy`, STOP
+on anything beyond the metadata mark + the additive `rating` column, verify
+(`_prisma_migrations` 2 rows, `rating` + CHECK present, row counts unchanged), then **repoint
+`.env` off production** back to `studio_os_branch1`.
