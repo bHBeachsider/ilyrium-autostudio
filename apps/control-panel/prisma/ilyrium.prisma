@@ -76,6 +76,7 @@ model Asset {
   promptId      String?        @map("prompt_id") @db.Uuid
   uri           String
   version       Int?           @default(1)
+  rating        String         @default("clean")
   createdAt     DateTime       @default(now()) @map("created_at") @db.Timestamptz(6)
   project       Project?       @relation(fields: [projectId], references: [id], onUpdate: NoAction)
   prompt        Prompt?        @relation(fields: [promptId], references: [id], onUpdate: NoAction)
