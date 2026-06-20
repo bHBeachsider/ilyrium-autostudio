@@ -93,3 +93,75 @@ and every previously-broken route was HTTP-verified.
 ## Promotion (NOT done — separate human gate)
 Open a PR from `feat/relay-schema-reconcile`. Promoting the verified branch migrations
 (`0_init` + `add_asset_rating`) to production `ilyrium` is a separate, explicit STOP.
+
+---
+
+# Phase 1 CLOSE — retroactive reconciliation + close-out
+
+> Branch `feat/relay-schema-reconcile`, **merged via PR #2 → `feat/creative-loop-v1`**
+> (merge `2780bc24`). All DB work on the Neon branch `studio_os_branch1`
+> (`ep-morning-frost-apbgxh31`). Production `ilyrium` untouched. Step 9 deferred.
+
+## Status: ✅ Phase 1 CLOSED at the branch
+Steps 0–8 done, committed, and merged: `0d59f70` (baseline) · `dafcb52` (Campaign retire) ·
+`8ca4fec` (schema adopt) · `4879fb1` (rating) · `24792f5` (route/console/adapter rewrite +
+verify) → merge `2780bc24`. **Step 9 (production promotion) is a separate human gate**, not
+done here.
+
+## Premise reconciliation (account error in an interim brief, not an execution divergence)
+An interim corrective brief stated Steps 5–8 were skipped and the two migrations applied
+without being surfaced. The session record contradicts that and it was classified as a
+history mis-statement (nothing was redone). Evidence:
+- The `0_init` baseline (DROP-scan + empty drift) was surfaced before `migrate resolve`
+  ("go run the baseline resolve"); the exact `rating` ALTER was surfaced before
+  `migrate deploy` ("yes. go.").
+- The Step-1 preflight reads were surfaced and the three forks decided (baseline-first;
+  fail-closed defer subtitle; Brad pastes the prod string).
+- Steps 5–8 (asset_type normalization, route/console rewrite, Campaign retire, verification)
+  are committed at `24792f5`/`dafcb52` and merged at `2780bc24`; HTTP smoke passed
+  (release-gate 200 / asset 422 / queue 200 / c2pa 501).
+
+## Step A — applied migrations re-verified (read-only)
+- `0_init`: pure adopt baseline — **0** DROP/TRUNCATE/ALTER..DROP/DELETE; **0** CHECK clauses
+  (live CHECKs stay in the DB); 19 CREATE / 31 INDEX / 23 FK; `prompts.text_embedding`
+  emitted as raw `vector` (a baseline marker, never executed).
+- `add_asset_rating`: exactly `ALTER TABLE assets ADD COLUMN rating text NOT NULL DEFAULT
+  'clean' CHECK (rating IN ('clean','mature','uncensored'))` and nothing else.
+- `migrate status`: both applied on the branch, no drift.
+
+## Step B — preflight reads (read-only, branch)
+- **asset_type vocab:** `reference`(3), `master`(3), `image`(1) — all lowercase, no UPPERCASE
+  rows, no `subtitle` in real data (no normalization UPDATE needed).
+- **20 domain CHECKs** surfaced, incl. `assets_asset_type_check` =
+  `image|video|voice|music|still|master|reference|board` (no `subtitle`) and
+  `assets_rating_check` = `clean|mature|uncensored`. The route rewrites validate against
+  these exact sets.
+- **pgvector:** `vector` 0.8.0 installed.
+- **non-real tables:** `takes`/`provenance_records`/`archive_packages`/`sequences`/
+  `audio_elements`/`cuts` all absent — confirming Take/ProvenanceRecord/ArchivePackage are
+  rewrites, not `@map`s.
+
+## Decisions recorded
+- **subtitle → DEFER (Option 1).** Do NOT widen the `asset_type` CHECK; no `DROP CONSTRAINT
+  assets_asset_type_check`; no DDL beyond the applied `rating` column. The asset route's 422
+  on `subtitle` stands; the Python `SUBTITLE` line stays deferred (not normalized).
+  Rationale: no product reason to admit `subtitle` has surfaced; widening is a
+  destructive-shaped (DROP + re-add) second schema change on a production-bound migration;
+  fail-closed is reversible later on its own merits, admitting bad data now is not.
+  Reaffirms "add only what Relay needs."
+- **pgvector extension declaration → DEFERRED.** The canonical schema does not declare
+  `extensions = [vector]`; drift is empty only because Prisma does not track extensions
+  without the `postgresqlExtensions` preview. Do NOT enable extension tracking now (it would
+  change future diffs and could complicate the Phase 2 `relay.prisma` migrations). Decide on
+  its own merits later.
+
+## Credential hygiene
+`apps/control-panel/.env` confirmed **never committed** across all history
+(`git log --all --full-history -- apps/control-panel/.env` empty; `*.env` sweep empty). The
+branch credential (`ep-morning-frost-apbgxh31` role) is not exposed in git.
+
+## Phase 2 precondition (satisfied — Phase 2 is a separate session, not started here)
+Prisma reads the real `ilyrium`; `assets.rating` present; `/api/studio/*` governance on the
+real risk-based tables (`rights_records` + `gate_approvals` + `releases`); Campaign retired.
+Open gates handed to Brad: (1) Step-9 production promotion (credential path TBD — prefer a
+one-time Vercel MCP pull); (2) start of Phase 2.
