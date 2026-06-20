@@ -36,6 +36,18 @@
       "trained_at": "2026-06-14T01:42:56+00:00",
       "status": "trained",
       "notes": "Broderick ink/look STYLE LoRA v2 (173 panels, short trigger-only captions). GOAL was to make the bare 'brdrck' trigger fire the style; VALIDATED 2026-06-14 that it did NOT — bare trigger still inert on Flux (generic cartoon), same class of failure as v1. NOT an improvement over v1 for the trigger problem. BUT produces strong Broderick B&W ink when the style is DESCRIBED in the prompt (e.g. 'black and white hand-drawn ink comic, bold confident linework, loose cross-hatching, white background') — see _training/samples/flux_v2/. USE via style-block prepend (projects/broderick/style_kernel.json 'look'), NOT the bare trigger; scale ~0.85-1.0. Flux lesson: a rare trigger token does not bind a style the way SDXL does. Artifact: s3://ilyrium-slm-foundry/models/broderick/hand/flux_v2/broderick_flux_v2.safetensors -> aws s3 cp into ComfyUI/models/loras/."
+    },
+    {
+      "name": "strp",
+      "filename": "stripe_char_v2.safetensors",
+      "trigger_word": "strp",
+      "strength": 0.9,
+      "base_model": "black-forest-labs/FLUX.1-dev",
+      "sha256": "73d45a490106fc1a60c2e8227415fb6c98a680f8776e45db8de2792ca15ae552",
+      "tensorart_job_id": null,
+      "trained_at": "2026-06-15T06:16:03+00:00",
+      "status": "trained",
+      "notes": "Stripe CHARACTER LoRA v2 — recurring lead of the STRIPE series. Retrained on a CLEAN 19-image speedo set anchored to the user's canonical refs: IP-Adapter@0.6+brdrck poses with the bottom fixed shorts->speedo via expose-thighs Flux Fill inpaint, + brdrck-only speedo rears with the crack-stripe, + the user front ref. All attributes baked: bald Norwood-VII dome, light body hair, sunglasses, gold chain, gold bracelet (right wrist), brown sneakers, white speedo, rear crack-stripe. Supersedes v1 (stripe_char.safetensors, weak attributes). USE: stack with brdrck (strp@0.9 + brdrck@~0.8) + describe the scene; for rear/stripe panels use brdrck-only (the char LoRA over-fits front). Locked design: projects/stripe/lora_seeds/v6/ + refs/. Artifact: s3://ilyrium-slm-foundry/models/stripe/hand/char/stripe_char_v2.safetensors -> aws s3 cp into ComfyUI/models/loras/."
     }
   ]
 }

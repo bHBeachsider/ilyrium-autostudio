@@ -1,0 +1,375 @@
+// Ilyrium Studio OS — canonical asset graph (Phase A).
+//
+// The system-of-record for the whole studio: Project → Sequence → Scene → Shot →
+// Take, plus Asset / AudioElement / Cut / RightsRecord / ProvenanceRecord / Run /
+// ArchivePackage. Entity design adopted from the Studio OS PRD.
+//
+// Isolated in its own Postgres schema ("studio") so it never collides with the
+// live campaign tables in "public" (Campaign/Scene). Apply with db push (no
+// migration-history collision with the campaign schema):
+//
+//   npx prisma generate --schema prisma/studio.prisma
+//   npx prisma db push   --schema prisma/studio.prisma
+//
+// (Ensure this shell's DATABASE_URL points at studio-os / ep-gentle-fire, not the
+//  stale PermitHub var. See docs/PHASE_A_ASSET_GRAPH.md.)
+
+generator studioClient {
+  provider = "prisma-client-js"
+  output   = "./generated/studio-client"
+}
+
+datasource db {
+  provider = "postgresql"
+  schemas  = ["studio"]
+}
+
+// ---------------------------------------------------------------------------
+// Enums
+// ---------------------------------------------------------------------------
+enum ProjectType {
+  AD
+  SHORT
+  PILOT
+  TRAILER
+  SCENE
+  MUSIC_VIDEO
+  PITCH
+  EXPLAINER
+
+  @@schema("studio")
+}
+
+enum LifecycleStatus {
+  DRAFT
+  IN_PROGRESS
+  REVIEW
+  BLOCKED
+  APPROVED
+  ARCHIVED
+  FAILED
+
+  @@schema("studio")
+}
+
+enum ApprovalState {
+  PENDING
+  APPROVED
+  REJECTED
+
+  @@schema("studio")
+}
+
+enum AssetType {
+  VIDEO
+  IMAGE
+  AUDIO
+  SUBTITLE
+  PROJECT_FILE
+  MASTER
+  ARCHIVE
+
+  @@schema("studio")
+}
+
+enum AudioKind {
+  NATIVE
+  NARRATOR
+  CHARACTER
+  MUSIC
+  SFX
+  AMBIENT
+
+  @@schema("studio")
+}
+
+enum RunStatus {
+  QUEUED
+  RUNNING
+  SUCCEEDED
+  FAILED
+
+  @@schema("studio")
+}
+
+enum RightsState {
+  UNREVIEWED
+  PENDING
+  CLEARED
+  BLOCKED
+  NOT_APPLICABLE
+
+  @@schema("studio")
+}
+
+// ---------------------------------------------------------------------------
+// Work graph
+// ---------------------------------------------------------------------------
+model Project {
+  id              String          @id @default(cuid())
+  externalId      String?         @unique  // stable key from source (campaign_id / scaffold slug) for idempotent sync
+  title           String
+  type            ProjectType     @default(AD)
+  ownerId         String?
+  status          LifecycleStatus @default(DRAFT)
+  briefVersionId  String?
+  styleKernel     Json?
+  // Resumable 8-stage pipeline engine (full build): current stage index, autonomy
+  // mode (manual|assisted|auto_draft), and the serialized run state so a project
+  // can be driven stage-by-stage and resumed/fine-tuned per stage.
+  pipelineStage   Int?
+  autonomyMode    String?
+  pipelineState   Json?
+  rightsStatus    RightsState     @default(UNREVIEWED)
+  approval        ApprovalState   @default(PENDING)
+  scaffoldPath    String?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  sequences       Sequence[]
+  scenes          Scene[]
+  shots           Shot[]
+  cuts            Cut[]
+  assets          Asset[]
+  runs            Run[]
+  archivePackages ArchivePackage[]
+
+  @@schema("studio")
+}
+
+model Sequence {
+  id         String          @id @default(cuid())
+  projectId  String
+  project    Project         @relation(fields: [projectId], references: [id])
+  title      String
+  orderIndex Int             @default(0)
+  status     LifecycleStatus @default(DRAFT)
+  scenes     Scene[]
+
+  @@schema("studio")
+}
+
+model Scene {
+  id             String          @id @default(cuid())
+  projectId      String
+  project        Project         @relation(fields: [projectId], references: [id])
+  sequenceId     String?
+  sequence       Sequence?       @relation(fields: [sequenceId], references: [id])
+  title          String?
+  synopsis       String?
+  orderIndex     Int             @default(0)
+  targetDuration Float?
+  status         LifecycleStatus @default(DRAFT)
+  shots          Shot[]
+  audioElements  AudioElement[]
+
+  @@schema("studio")
+}
+
+model Shot {
+  id                 String          @id @default(cuid())
+  projectId          String
+  project            Project         @relation(fields: [projectId], references: [id])
+  sceneId            String
+  scene              Scene           @relation(fields: [sceneId], references: [id])
+  shotNumber         Int
+  prompt             String?
+  negativePrompt     String?
+  visualSpec         Json?
+  cameraSpec         Json?
+  duration           Float?
+  aspectRatio        String?
+  costCeilingCents   Int?
+  styleKernelVersion String?
+  selectedTakeId     String?         @unique
+  selectedTake       Take?           @relation("SelectedTake", fields: [selectedTakeId], references: [id])
+  status             LifecycleStatus @default(DRAFT)
+  takes              Take[]          @relation("ShotTakes")
+  audioElements      AudioElement[]
+
+  @@schema("studio")
+}
+
+model Take {
+  id              String          @id @default(cuid())
+  shotId          String
+  shot            Shot            @relation("ShotTakes", fields: [shotId], references: [id])
+  selectedForShot Shot?           @relation("SelectedTake")
+  runId           String?
+  run             Run?            @relation(fields: [runId], references: [id])
+  assetId         String?
+  asset           Asset?          @relation(fields: [assetId], references: [id])
+  modelProvider   String?
+  modelName       String?
+  promptVersion   String?
+  seed            String?
+  duration        Float?
+  costCents       Int?
+  status          LifecycleStatus @default(DRAFT)
+  styleScore      Float?
+  qaStatus        ApprovalState   @default(PENDING)
+  rightsStatus    RightsState     @default(UNREVIEWED)
+  createdAt       DateTime        @default(now())
+
+  @@schema("studio")
+}
+
+model Asset {
+  id              String   @id @default(cuid())
+  projectId       String?
+  project         Project? @relation(fields: [projectId], references: [id])
+  type            AssetType
+  uri             String
+  storageProvider String?  @default("r2")
+  checksum        String?
+  mimeType        String?
+  sizeBytes       BigInt?
+  duration        Float?
+  width           Int?
+  height          Int?
+  frameRate       Float?
+  audioChannels   Int?
+  ownerId         String?
+  createdAt       DateTime @default(now())
+
+  takes         Take[]
+  audioElements AudioElement[]
+  rightsRecord  RightsRecord?
+  provenance    ProvenanceRecord?
+
+  @@schema("studio")
+}
+
+model AudioElement {
+  id                 String      @id @default(cuid())
+  sceneId            String?
+  scene              Scene?      @relation(fields: [sceneId], references: [id])
+  shotId             String?
+  shot               Shot?       @relation(fields: [shotId], references: [id])
+  type               AudioKind
+  assetId            String?
+  asset              Asset?      @relation(fields: [assetId], references: [id])
+  startTime          Float?
+  endTime            Float?
+  volume             Float?      @default(1.0)
+  duckingRules       Json?
+  voiceId            String?
+  speakerCharacterId String?
+  transcript         String?
+  rightsStatus       RightsState @default(UNREVIEWED)
+
+  @@schema("studio")
+}
+
+model Cut {
+  id              String          @id @default(cuid())
+  projectId       String
+  project         Project         @relation(fields: [projectId], references: [id])
+  title           String?
+  version         Int             @default(1)
+  shotOrder       Json?
+  selectedTakeMap Json?
+  audioMixConfig  Json?
+  renderAssetId   String?
+  approval        ApprovalState   @default(PENDING)
+  status          LifecycleStatus @default(DRAFT)
+  createdAt       DateTime        @default(now())
+
+  @@schema("studio")
+}
+
+// ---------------------------------------------------------------------------
+// Governance: rights, provenance, runs/traces, archive
+// ---------------------------------------------------------------------------
+model RightsRecord {
+  id                  String      @id @default(cuid())
+  assetId             String      @unique
+  asset               Asset       @relation(fields: [assetId], references: [id])
+  subjectType         String?
+  rightsType          String?
+  sourceMaterialState RightsState @default(UNREVIEWED)
+  likenessState       RightsState @default(UNREVIEWED)
+  voiceState          RightsState @default(UNREVIEWED)
+  musicLicenseState   RightsState @default(UNREVIEWED)
+  vendorTermsState    RightsState @default(UNREVIEWED)
+  consentDocumentUri  String?
+  // Enforced release gate (Phase A step 5). approvedForRelease is the single
+  // blocking flag the export/publish path checks; it only becomes true via the
+  // /api/studio/approve HITL path when QA + the no-likeness legal gate pass, or
+  // via an explicit, logged human override (overrideReason).
+  qaPassed            Boolean     @default(false)
+  qaReport            Json?       // checklist evaluation detail (per-item status)
+  noLikenessConfirmed Boolean     @default(false)  // the legal no-likeness gate
+  overrideReason      String?     // set only on an explicit logged human override
+  gateEvaluatedAt     DateTime?
+  approvedForRelease  Boolean     @default(false)
+  reviewerId          String?
+  reviewedAt          DateTime?
+  notes               String?
+
+  @@schema("studio")
+}
+
+model ProvenanceRecord {
+  id               String   @id @default(cuid())
+  assetId          String   @unique
+  asset            Asset    @relation(fields: [assetId], references: [id])
+  upstreamAssetIds String[]
+  promptId         String?
+  modelProvider    String?
+  modelName        String?
+  modelVersion     String?
+  seed             String?
+  generationParams Json?
+  runId            String?
+  humanApproverId  String?
+  c2paManifestUri  String?
+  createdAt        DateTime @default(now())
+
+  @@schema("studio")
+}
+
+model Run {
+  id               String    @id @default(cuid())
+  projectId        String?
+  project          Project?  @relation(fields: [projectId], references: [id])
+  entityType       String?
+  entityId         String?
+  agentName        String?
+  toolCalls        Json?
+  inputs           Json?
+  outputs          Json?
+  costCents        Int?
+  latencyMs        Int?
+  status           RunStatus @default(QUEUED)
+  error            String?
+  approvalRequired Boolean   @default(false)
+  approvedBy       String?
+  createdAt        DateTime  @default(now())
+
+  takes            Take[]
+
+  @@schema("studio")
+}
+
+model ArchivePackage {
+  id                   String          @id @default(cuid())
+  projectId            String
+  project              Project         @relation(fields: [projectId], references: [id])
+  masterAssetId        String?
+  includedAssetIds     String[]
+  rightsLedgerSnapshot Json?
+  provenanceSnapshot   Json?
+  checksumsUri         String?
+  c2paManifestUri      String?
+  captionsUri          String?
+  stemsUri             String?
+  otioUri              String?
+  retentionPolicy      String?
+  completenessScore    Float?
+  approval             ApprovalState   @default(PENDING)
+  status               LifecycleStatus @default(DRAFT)
+  createdAt            DateTime        @default(now())
+
+  @@schema("studio")
+}

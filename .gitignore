@@ -1,1 +1,4 @@
 ﻿venv/
+outputs/
+# Broderick LoRA weights (canonical in S3)
+projects/broderick/_training/local_artifacts/loras/

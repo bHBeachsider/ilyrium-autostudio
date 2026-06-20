@@ -1,0 +1,389 @@
+// Canonical Prisma schema for the REAL studio-os `ilyrium` database (public schema).
+//
+// Introspected from the live 19 snake_case tables that the Ilyrium raw-SQL writers
+// own (Ilyrium/apps/control-panel/db/migrations/*.sql), then mapped to idiomatic
+// PascalCase models + camelCase fields via @map/@@map (DB names preserved exactly).
+// Replaces the never-deployed prisma/studio.prisma (archived →
+// docs/relay/reference/studio.prisma.idealized).
+//
+// The datasource URL is supplied by prisma.config.ts (process.env.DATABASE_URL via
+// dotenv/config). Generator output stays ./generated/studio-client so lib/studio-db.ts
+// (`import { PrismaClient } from '../prisma/generated/studio-client'`) is unchanged.
+//
+// CHECK constraints (asset_type, plane, role, *_risk, greenlight_level, …) and the
+// pgvector extension are NOT modeled by Prisma and are intentionally left to the DB;
+// they are enforced live and in the TS layer. `rating` is added by a later migration.
+//
+// Prisma CLI: run with a CLEAN shell (`unset DATABASE_URL`; venv deactivated) so the
+// .env branch string wins over the stale PermitHub var. Use the DIRECT (non-pooler)
+// host for the CLI native connector.
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/studio-client"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model AdapterCall {
+  id            BigInt    @id @default(autoincrement())
+  agentRunId    String?   @map("agent_run_id") @db.Uuid
+  capability    String
+  vendor        String
+  costCents     Int?      @map("cost_cents")
+  latencyMs     Int?      @map("latency_ms")
+  status        String?
+  attempt       Int?      @default(1)
+  fallbackChain String[]  @map("fallback_chain")
+  occurredAt    DateTime? @default(now()) @map("occurred_at") @db.Timestamptz(6)
+  agentRun      Run?      @relation(fields: [agentRunId], references: [id], onUpdate: NoAction)
+
+  @@index([capability, occurredAt(sort: Desc)], map: "adapter_calls_capability_idx")
+  @@index([vendor, occurredAt(sort: Desc)], map: "adapter_calls_vendor_idx")
+  @@map("adapter_calls")
+}
+
+model Run {
+  id              String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  agentName       String         @map("agent_name")
+  plane           String
+  inputRef        String?        @map("input_ref")
+  outputRef       String?        @map("output_ref")
+  modelUsed       String?        @map("model_used")
+  tokensIn        Int?           @map("tokens_in")
+  tokensOut       Int?           @map("tokens_out")
+  latencyMs       Int?           @map("latency_ms")
+  costCents       Int?           @map("cost_cents")
+  humanGateStatus String?        @map("human_gate_status")
+  startedAt       DateTime?      @default(now()) @map("started_at") @db.Timestamptz(6)
+  completedAt     DateTime?      @map("completed_at") @db.Timestamptz(6)
+  adapterCalls    AdapterCall[]
+  gateApprovals   GateApproval[]
+
+  @@index([agentName, startedAt(sort: Desc)], map: "agent_runs_agent_idx")
+  @@index([humanGateStatus, startedAt(sort: Desc)], map: "agent_runs_status_idx")
+  @@map("agent_runs")
+}
+
+model Asset {
+  id            String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  projectId     String?        @map("project_id") @db.Uuid
+  shotId        String?        @map("shot_id") @db.Uuid
+  assetType     String?        @map("asset_type")
+  modelId       String?        @map("model_id")
+  promptId      String?        @map("prompt_id") @db.Uuid
+  uri           String
+  version       Int?           @default(1)
+  rating        String         @default("clean")
+  createdAt     DateTime       @default(now()) @map("created_at") @db.Timestamptz(6)
+  project       Project?       @relation(fields: [projectId], references: [id], onUpdate: NoAction)
+  prompt        Prompt?        @relation(fields: [promptId], references: [id], onUpdate: NoAction)
+  shot          Shot?          @relation(fields: [shotId], references: [id], onUpdate: NoAction)
+  releases      Release[]
+  rightsRecords RightsRecord[]
+
+  @@index([projectId], map: "assets_project_idx")
+  @@index([shotId], map: "assets_shot_idx")
+  @@map("assets")
+}
+
+model AuditLog {
+  id         BigInt    @id @default(autoincrement())
+  actor      String
+  action     String
+  entityType String    @map("entity_type")
+  entityId   String?   @map("entity_id") @db.Uuid
+  beforeJson Json?     @map("before_json")
+  afterJson  Json?     @map("after_json")
+  occurredAt DateTime? @default(now()) @map("occurred_at") @db.Timestamptz(6)
+
+  @@index([actor, occurredAt(sort: Desc)], map: "audit_log_actor_idx")
+  @@index([entityType, entityId, occurredAt(sort: Desc)], map: "audit_log_entity_idx")
+  @@map("audit_log")
+}
+
+model Character {
+  id               String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  projectId        String?  @map("project_id") @db.Uuid
+  name             String
+  bibleMd          String?  @map("bible_md")
+  voiceRefAssetId  String?  @map("voice_ref_asset_id") @db.Uuid
+  visualRefs       String[] @map("visual_refs") @db.Uuid
+  canonRulesMd     String?  @map("canon_rules_md")
+  prohibitedUsesMd String?  @map("prohibited_uses_md")
+  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  project          Project? @relation(fields: [projectId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([projectId], map: "characters_project_idx")
+  @@map("characters")
+}
+
+model Concept {
+  id               String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  projectId        String?           @map("project_id") @db.Uuid
+  logline          String
+  treatmentMd      String?           @map("treatment_md")
+  genre            String[]
+  audience         String[]
+  hookEmotional    String?           @map("hook_emotional")
+  hookVisual       String?           @map("hook_visual")
+  ipRiskScore      Int?              @map("ip_risk_score")
+  personaScore     Json?             @map("persona_score")
+  greenlightLevel  String?           @default("G0") @map("greenlight_level")
+  createdBy        String?           @map("created_by") @db.Uuid
+  createdAt        DateTime          @default(now()) @map("created_at") @db.Timestamptz(6)
+  createdByUser    User?             @relation(fields: [createdBy], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  project          Project?          @relation(fields: [projectId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  greenlightScores GreenlightScore[]
+
+  @@index([greenlightLevel], map: "concepts_greenlight_idx")
+  @@index([projectId], map: "concepts_project_idx")
+  @@map("concepts")
+}
+
+model CostCap {
+  id                String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  scopeType         String    @map("scope_type")
+  scopeId           String    @map("scope_id")
+  period            String
+  capCents          Int       @map("cap_cents")
+  currentCents      Int       @default(0) @map("current_cents")
+  alertThresholdPct Int?      @default(80) @map("alert_threshold_pct")
+  createdAt         DateTime? @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@index([scopeType, scopeId], map: "cost_caps_scope_idx")
+  @@map("cost_caps")
+}
+
+model EventLog {
+  id             BigInt    @id @default(autoincrement())
+  eventType      String    @map("event_type")
+  eventVersion   Int       @default(1) @map("event_version")
+  producerPlane  String    @map("producer_plane")
+  idempotencyKey String?   @unique @map("idempotency_key")
+  payload        Json
+  occurredAt     DateTime? @default(now()) @map("occurred_at") @db.Timestamptz(6)
+
+  @@index([eventType, occurredAt(sort: Desc)], map: "event_log_type_time_idx")
+  @@map("event_log")
+}
+
+model GateApproval {
+  id                String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  agentRunId        String?   @map("agent_run_id") @db.Uuid
+  gateType          String    @map("gate_type")
+  entityType        String    @map("entity_type")
+  entityId          String    @map("entity_id") @db.Uuid
+  requiredRole      String    @map("required_role")
+  requiredCosigners String[]  @map("required_cosigners")
+  state             String    @default("pending")
+  slaHours          Int       @default(24) @map("sla_hours")
+  requestedAt       DateTime  @default(now()) @map("requested_at") @db.Timestamptz(6)
+  resolvedAt        DateTime? @map("resolved_at") @db.Timestamptz(6)
+  resolvedBy        String?   @map("resolved_by") @db.Uuid
+  resolutionNote    String?   @map("resolution_note")
+  traceReviewed     Boolean?  @default(false) @map("trace_reviewed")
+  agentRun          Run?      @relation(fields: [agentRunId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  resolvedByUser    User?     @relation(fields: [resolvedBy], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([entityType, entityId], map: "gate_entity_idx")
+  @@index([state, requestedAt], map: "gate_state_idx")
+  @@map("gate_approvals")
+}
+
+model GreenlightScore {
+  id            String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  conceptId     String?   @map("concept_id") @db.Uuid
+  level         String
+  scoredBy      String?   @map("scored_by") @db.Uuid
+  scoredAt      DateTime? @default(now()) @map("scored_at") @db.Timestamptz(6)
+  creativeScore Int?      @map("creative_score")
+  audienceScore Int?      @map("audience_score")
+  riskScore     Int?      @map("risk_score")
+  businessScore Int?      @map("business_score")
+  decision      String
+  notes         String?
+  concept       Concept?  @relation(fields: [conceptId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  scoredByUser  User?     @relation(fields: [scoredBy], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([conceptId, scoredAt(sort: Desc)], map: "greenlight_concept_idx")
+  @@map("greenlight_scores")
+}
+
+model Location {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  projectId   String?  @map("project_id") @db.Uuid
+  name        String
+  description String?
+  visualRefs  String[] @map("visual_refs") @db.Uuid
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  project     Project? @relation(fields: [projectId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  shots       Shot[]
+
+  @@map("locations")
+}
+
+model PerformanceMetric {
+  id                 BigInt   @id @default(autoincrement())
+  releaseId          String?  @map("release_id") @db.Uuid
+  capturedAt         DateTime @default(now()) @map("captured_at") @db.Timestamptz(6)
+  retentionCurveJson Json?    @map("retention_curve_json")
+  sentimentScore     Float?   @map("sentiment_score") @db.Real
+  shareRate          Float?   @map("share_rate") @db.Real
+  saveRate           Float?   @map("save_rate") @db.Real
+  completionRate     Float?   @map("completion_rate") @db.Real
+  cpm                Float?   @db.Real
+  release            Release? @relation(fields: [releaseId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([releaseId, capturedAt(sort: Desc)], map: "perf_release_idx")
+  @@map("performance_metrics")
+}
+
+model Project {
+  id              String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title           String
+  type            String
+  status          String      @default("active")
+  ownerId         String?     @map("owner_id") @db.Uuid
+  budgetCents     Int         @default(0) @map("budget_cents")
+  greenlightLevel String?     @default("G0") @map("greenlight_level")
+  createdAt       DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
+  assets          Asset[]
+  characters      Character[]
+  concepts        Concept[]
+  locations       Location[]
+  owner           User?       @relation(fields: [ownerId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  prompts         Prompt[]
+  releases        Release[]
+  scenes          Scene[]
+  shots           Shot[]
+
+  @@index([greenlightLevel], map: "projects_greenlight_idx")
+  @@index([status])
+  @@map("projects")
+}
+
+model Prompt {
+  id              String                 @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  projectId       String?                @map("project_id") @db.Uuid
+  text            String
+  negativeText    String?                @map("negative_text")
+  referenceAssets String[]               @map("reference_assets") @db.Uuid
+  modelId         String?                @map("model_id")
+  settingsJson    Json?                  @map("settings_json")
+  successScore    Float?                 @map("success_score") @db.Real
+  reuseTag        String?                @map("reuse_tag")
+  textEmbedding   Unsupported("vector")? @map("text_embedding")
+  createdAt       DateTime               @default(now()) @map("created_at") @db.Timestamptz(6)
+  assets          Asset[]
+  project         Project?               @relation(fields: [projectId], references: [id], onUpdate: NoAction)
+
+  @@index([projectId], map: "prompts_project_idx")
+  @@index([reuseTag])
+  @@map("prompts")
+}
+
+model Release {
+  id                 String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  projectId          String?             @map("project_id") @db.Uuid
+  masterAssetId      String?             @map("master_asset_id") @db.Uuid
+  platform           String?
+  versionVariant     String?             @map("version_variant")
+  hookVariant        String?             @map("hook_variant")
+  scheduledAt        DateTime?           @map("scheduled_at") @db.Timestamptz(6)
+  publishedAt        DateTime?           @map("published_at") @db.Timestamptz(6)
+  status             String?             @default("scheduled")
+  createdAt          DateTime            @default(now()) @map("created_at") @db.Timestamptz(6)
+  performanceMetrics PerformanceMetric[]
+  masterAsset        Asset?              @relation(fields: [masterAssetId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  project            Project?            @relation(fields: [projectId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([platform])
+  @@index([projectId], map: "releases_project_idx")
+  @@index([publishedAt(sort: Desc)], map: "releases_published_idx")
+  @@map("releases")
+}
+
+model RightsRecord {
+  id                       String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  assetId                  String?   @map("asset_id") @db.Uuid
+  sourceType               String?   @map("source_type")
+  creator                  String?
+  modelUsed                String?   @map("model_used")
+  licenseType              String?   @map("license_type")
+  commercialUseAllowed     Boolean?  @map("commercial_use_allowed")
+  thirdPartyRefs           String[]  @map("third_party_refs")
+  likenessRisk             String?   @default("none") @map("likeness_risk")
+  musicRisk                String?   @default("none") @map("music_risk")
+  trademarkRisk            String?   @default("none") @map("trademark_risk")
+  syntheticPerformerFlag   Boolean?  @default(false) @map("synthetic_performer_flag")
+  digitalReplicaFlag       Boolean?  @default(false) @map("digital_replica_flag")
+  trainingDataOutboundFlag Boolean?  @default(false) @map("training_data_outbound_flag")
+  sagAftraNoticeFiledAt    DateTime? @map("sag_aftra_notice_filed_at") @db.Timestamptz(6)
+  riskLevel                String?   @default("low") @map("risk_level")
+  releaseRequired          Boolean?  @default(false) @map("release_required")
+  releaseStatus            String?   @default("pending") @map("release_status")
+  legalNotes               String?   @map("legal_notes")
+  approvedForRelease       Boolean?  @default(false) @map("approved_for_release")
+  approvedBy               String?   @map("approved_by") @db.Uuid
+  approvedAt               DateTime? @map("approved_at") @db.Timestamptz(6)
+  approvedByUser           User?     @relation(fields: [approvedBy], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  asset                    Asset?    @relation(fields: [assetId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([assetId], map: "rights_records_asset_idx")
+  @@index([approvedForRelease], map: "rights_records_release_idx")
+  @@map("rights_records")
+}
+
+model Scene {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  projectId   String?  @map("project_id") @db.Uuid
+  sceneNumber Int?     @map("scene_number")
+  description String?
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  project     Project? @relation(fields: [projectId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  shots       Shot[]
+
+  @@map("scenes")
+}
+
+model Shot {
+  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  projectId      String?   @map("project_id") @db.Uuid
+  sceneId        String?   @map("scene_id") @db.Uuid
+  shotNumber     Int       @map("shot_number")
+  description    String
+  camera         String?
+  characters     String[]  @db.Uuid
+  locationId     String?   @map("location_id") @db.Uuid
+  status         String    @default("pending")
+  approvedTakeId String?   @map("approved_take_id") @db.Uuid
+  costCents      Int?      @default(0) @map("cost_cents")
+  createdAt      DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  assets         Asset[]
+  location       Location? @relation(fields: [locationId], references: [id], onUpdate: NoAction)
+  project        Project?  @relation(fields: [projectId], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  scene          Scene?    @relation(fields: [sceneId], references: [id], onUpdate: NoAction)
+
+  @@index([projectId], map: "shots_project_idx")
+  @@index([status])
+  @@map("shots")
+}
+
+model User {
+  id               String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email            String            @unique
+  displayName      String?           @map("display_name")
+  role             String
+  clerkId          String?           @unique @map("clerk_id")
+  createdAt        DateTime          @default(now()) @map("created_at") @db.Timestamptz(6)
+  concepts         Concept[]
+  gateApprovals    GateApproval[]
+  greenlightScores GreenlightScore[]
+  projects         Project[]
+  rightsRecords    RightsRecord[]
+
+  @@map("users")
+}

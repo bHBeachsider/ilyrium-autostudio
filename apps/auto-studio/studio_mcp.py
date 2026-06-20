@@ -118,6 +118,23 @@ def edit_shot(scene_number: int, edit_prompt: str) -> str:
 
 
 @mcp.tool()
+def edit_image_text(prompt: str, images: list, output_path: str,
+                    resolution: str = "2K", aspect_ratio: str = "auto",
+                    seed: int = None, num_images: int = 1) -> str:
+    """Maskless text-driven STILL-image edit via fal nano-banana-pro/edit (Gemini 3
+    Pro Image). Describe the change in plain text ('add a black horseshoe fringe',
+    'swap the background to a newsroom', 'put a gold bracelet on the left wrist') and
+    pass one or more reference image paths/URLs. Preserves identity + style far better
+    than mask inpainting; great for character-design tweaks and trainset prep. No GPU.
+    images = list of paths/URLs; output_path = where to save (index appended if
+    num_images>1); resolution = 1K|2K|4K. Returns the saved path(s)."""
+    from media.fal_image_edit import edit_image_fal
+    saved = edit_image_fal(prompt, images, output_path, resolution=resolution,
+                           aspect_ratio=aspect_ratio, seed=seed, num_images=num_images)
+    return "Saved:\n" + "\n".join(saved)
+
+
+@mcp.tool()
 def select_take(scene_number: int, take_id: str) -> str:
     """Choose which existing take of a shot is in the cut (e.g. 'take_1')."""
     return _run("select_take", scene_number=scene_number, take_id=take_id)
