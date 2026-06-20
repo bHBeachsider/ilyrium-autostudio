@@ -231,9 +231,20 @@ ALTER TABLE "public"."assets" ADD COLUMN "rating" TEXT NOT NULL DEFAULT 'clean'
 ```
 Additive; safe on the populated table (7 rows backfill to `'clean'`). No `DROP`/data-loss.
 
-### STATUS: ⛔ AWAITING Brad's explicit in-session approval before any production write.
-On approval only: point `.env` at the production direct string, re-verify `current_database()`
-= `ilyrium` + branch = production, run `resolve --applied 0_init` then `migrate deploy`, STOP
-on anything beyond the metadata mark + the additive `rating` column, verify
-(`_prisma_migrations` 2 rows, `rating` + CHECK present, row counts unchanged), then **repoint
-`.env` off production** back to `studio_os_branch1`.
+### STATUS: ✅ PROMOTED TO PRODUCTION (2026-06-20, Brad-approved)
+Executed against production (`ilyrium` @ `ep-young-voice-apndapaf`, direct host,
+`channel_binding` dropped), via a transient shell `export` — `.env` was **never** pointed at
+production (it stayed on `studio_os_branch1`).
+1. `migrate resolve --applied 0_init` → "Migration 0_init marked as applied" (metadata only;
+   the 19 tables were NOT recreated).
+2. `migrate deploy` → applied **only** `add_asset_rating`.
+
+**Verified on production:** `_prisma_migrations` = 2 rows (`0_init` + `add_asset_rating`, both
+finished, not rolled back); `assets.rating` = `text NOT NULL DEFAULT 'clean'`; CHECK
+`rating IN ('clean','mature','uncensored')` present; **`assets` count 7, all 7 rows
+backfilled to `'clean'`** (no data added/lost); final drift check **IN SYNC (empty)**.
+**Post-write hygiene:** temp prod credential file deleted; `.env` confirmed still on the
+branch; prod string never persisted to disk or the shell profile.
+
+**Phase 1 is now FULLY complete — branch AND production.** Remaining handoff: Phase 2 (Relay
+build) — a separate effort.
