@@ -1,33 +1,28 @@
 import { NextResponse } from "next/server";
-import studioDb from "../../../../lib/studio-db";
+import { getOrCreateProject, findProject } from "../../../../lib/studio-writes";
 
-// /api/studio/pipeline — persist & read the resumable 8-stage pipeline run state
-// (full build). The Python engine (studio_pipeline.py) owns the state object; this
-// route just stores it on the Project so runs survive restarts and the console can
-// read current stage / autonomy / per-stage status.
+// /api/studio/pipeline — the real projects table has NO pipeline_state/pipeline_stage/
+// autonomy_mode columns (those were idealized). Fork: dropped; a JSON side-table is future
+// work. Phase 1 keeps the route functional for project resolution but does NOT persist
+// pipeline state (persisted:false), rather than inventing a column outside the locked
+// "add only rating" scope.
 //
-// POST { externalId, pipelineState, pipelineStage?, autonomyMode? }  -> save
-// GET  ?externalId=...                                               -> read
+// POST { externalId|title } -> get-or-create project; ack (state not stored)
+// GET  ?externalId=...      -> project basics + persisted:false
 export async function POST(request: Request) {
   try {
-    const { externalId, pipelineState, pipelineStage, autonomyMode } = await request.json();
-    if (!externalId) return NextResponse.json({ error: "externalId is required." }, { status: 400 });
-
-    const project = await studioDb.project.upsert({
-      where: { externalId },
-      update: {
-        pipelineState: pipelineState ?? undefined,
-        pipelineStage: pipelineStage ?? undefined,
-        autonomyMode: autonomyMode ?? undefined,
+    const { externalId, title } = await request.json();
+    const project = await getOrCreateProject({ title: title ?? externalId });
+    if (!project) return NextResponse.json({ error: "externalId or title is required." }, { status: 400 });
+    return NextResponse.json(
+      {
+        ok: true,
+        projectId: project.id,
+        persisted: false,
+        note: "Pipeline state is not persisted in Phase 1 (no projects column).",
       },
-      create: {
-        externalId, title: externalId, type: "AD",
-        pipelineState: pipelineState ?? undefined,
-        pipelineStage: pipelineStage ?? undefined,
-        autonomyMode: autonomyMode ?? undefined,
-      },
-    });
-    return NextResponse.json({ ok: true, projectId: project.id }, { status: 200 });
+      { status: 200 },
+    );
   } catch (error) {
     console.error("studio/pipeline POST failed:", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
@@ -36,14 +31,13 @@ export async function POST(request: Request) {
 
 export async function GET(request: Request) {
   try {
-    const externalId = new URL(request.url).searchParams.get("externalId");
-    if (!externalId) return NextResponse.json({ error: "externalId is required." }, { status: 400 });
-    const p = await studioDb.project.findUnique({
-      where: { externalId },
-      select: { pipelineState: true, pipelineStage: true, autonomyMode: true, title: true, type: true },
-    });
-    if (!p) return NextResponse.json({ error: "Project not found." }, { status: 404 });
-    return NextResponse.json({ ok: true, ...p }, { status: 200 });
+    const sp = new URL(request.url).searchParams;
+    const project = await findProject({ title: sp.get("externalId") ?? sp.get("title") });
+    if (!project) return NextResponse.json({ error: "Project not found." }, { status: 404 });
+    return NextResponse.json(
+      { ok: true, projectId: project.id, title: project.title, type: project.type, persisted: false, pipelineState: null },
+      { status: 200 },
+    );
   } catch (error) {
     console.error("studio/pipeline GET failed:", error);
     return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });

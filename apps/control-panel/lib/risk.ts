@@ -1,39 +1,43 @@
-// Risk scoring for the approval queue (Phase B). Publication of a master is a
-// non-delegable A4 gate (per the policy pack autonomy ladder), so every master
-// decision is tier A4; the score orders the queue within it and explains WHY a
+// Risk scoring for the approval queue (Phase B), rewritten onto the REAL risk-based
+// rights_records model. Publication of a master is a non-delegable A4 gate, so every
+// master decision is tier A4; the score orders the queue within it and explains WHY a
 // decision is risky. Kept in lib/ so routes can share it.
-
-export const BLOCKING = new Set(["UNREVIEWED", "PENDING", "BLOCKED"]);
 
 export interface RiskResult {
   score: number;
   tier: "A4" | "A3";
-  severity: "high" | "medium" | "low" | "override";
+  severity: "high" | "medium" | "low";
   factors: string[];
 }
 
-// Higher score = more outstanding/risky. A likeness or no-likeness gap is the
-// dominant factor (the legal front line); QA + other consents follow.
+// Higher score = more outstanding/risky. A high likeness or overall risk, or an
+// unfiled SAG-AFTRA notice for a synthetic performer, dominates.
 export function scoreRights(r: any): RiskResult {
-  if (!r) return { score: 99, tier: "A4", severity: "high", factors: ["no RightsRecord (rights unreviewed)"] };
-  if (r.overrideReason)
-    return { score: 0, tier: "A4", severity: "override", factors: [`logged override: ${r.overrideReason}`] };
+  if (!r) return { score: 99, tier: "A4", severity: "high", factors: ["no rights record (rights unreviewed)"] };
 
   const factors: string[] = [];
   let score = 0;
-  const add = (cond: boolean, w: number, label: string) => { if (cond) { score += w; factors.push(label); } };
+  const add = (cond: boolean, w: number, label: string) => {
+    if (cond) {
+      score += w;
+      factors.push(label);
+    }
+  };
 
-  add(!r.noLikenessConfirmed, 3, "no-likeness legal gate not confirmed");
-  add(BLOCKING.has(r.likenessState), 3, `likeness consent ${r.likenessState}`);
-  add(BLOCKING.has(r.voiceState), 2, `voice consent ${r.voiceState}`);
-  add(BLOCKING.has(r.sourceMaterialState), 2, `source-material rights ${r.sourceMaterialState}`);
-  add(BLOCKING.has(r.musicLicenseState), 1, `music license ${r.musicLicenseState}`);
-  add(BLOCKING.has(r.vendorTermsState), 1, `vendor/model terms ${r.vendorTermsState}`);
-  add(!r.qaPassed, 2, "QA checklist not passed");
+  add(r.likenessRisk === "high", 3, "likeness risk high");
+  add(r.riskLevel === "high", 3, "overall risk level high");
+  add(r.musicRisk === "high", 2, "music risk high");
+  add(r.trademarkRisk === "high", 2, "trademark risk high");
+  add(!!r.syntheticPerformerFlag && !r.sagAftraNoticeFiledAt, 2, "synthetic performer, SAG-AFTRA notice unfiled");
+  add(r.releaseRequired && !["approved", "released"].includes(r.releaseStatus), 1, `release status ${r.releaseStatus ?? "pending"}`);
+  add(!r.approvedForRelease, 1, "not yet approved for release");
 
-  const highRisk = !r.noLikenessConfirmed || BLOCKING.has(r.likenessState) || BLOCKING.has(r.voiceState);
-  const severity: RiskResult["severity"] = highRisk ? "high" : score >= 3 ? "medium" : score > 0 ? "low" : "low";
-  // Publication is always non-delegable; tier stays A4. (A3 is reserved for the
-  // reversible, non-publication actions the queue may surface later.)
+  const high =
+    r.likenessRisk === "high" ||
+    r.riskLevel === "high" ||
+    (!!r.syntheticPerformerFlag && !r.sagAftraNoticeFiledAt);
+  const severity: RiskResult["severity"] = high ? "high" : score >= 3 ? "medium" : "low";
+
+  // Publication is always non-delegable; tier stays A4.
   return { score, tier: "A4", severity, factors };
 }

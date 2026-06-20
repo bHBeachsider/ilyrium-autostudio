@@ -8,21 +8,26 @@ import Pipeline from "./Pipeline";
    rail swaps the active functional domain (Scripting · Generation · Assembly ·
    Analytics), mirroring DaVinci/Blender "pages". Premium deep-matte look, traffic-
    light state colors, aspect-locked previews, persistent prompt metadata, visible
-   diagnostics, and manual override affordances throughout. */
+   diagnostics, and manual override affordances throughout.
+
+   Phase 1 reconcile: projects are id/title-keyed (no externalId); assets are
+   uri-addressed with a lowercase assetType + rating (no checksum/provenance/C2PA);
+   rights are the risk-based model. */
 
 type Risk = { score: number; tier: string; severity: string; factors: string[] };
 type Shot = { shotNumber: number; prompt: string | null };
 type Scene = { number: number; title: string | null; shots: Shot[] };
-type Project = { id: string; externalId: string | null; title: string; type: string; status: string; rightsStatus: string; approval: string; kernel: string | null; counts: { scenes: number; shots: number; assets: number }; scenes: Scene[] };
-type AssetRow = { id: string; type: string; checksum: string | null; projectExternalId: string | null; projectTitle: string; model: string | null; provider: string | null; seed: string | null; prompt: string | null; sceneNumber: number | null; upstreamIds: string[]; c2pa: boolean; createdAt: string };
-type QueueRow = { rightsId: string; assetChecksum: string | null; projectExternalId: string | null; projectTitle: string; approvedForRelease: boolean; reviewerId: string | null; qaPassed: boolean; noLikenessConfirmed: boolean; risk: Risk };
-type RunRow = { id: string; when: string; status: string; agentName: string | null; entityType: string | null; approvedBy: string | null; costCents: number | null; projectExternalId: string | null };
-type Kpis = { totalAssets: number; provCount: number; c2paCount: number; masterCount: number; pendingCount: number; projects: number; estCostCents: number; runOk: number; runFail: number; renderRuns: number; costPerRenderSecCents: number };
+type Project = { id: string; title: string; type: string; status: string; greenlightLevel: string | null; counts: { scenes: number; shots: number; assets: number }; scenes: Scene[] };
+type AssetRow = { id: string; assetType: string | null; uri: string; rating: string; projectId: string | null; projectTitle: string; model: string | null; sceneNumber: number | null; createdAt: string };
+type QueueRow = { rightsId: string; assetId: string | null; assetUri: string | null; projectId: string | null; projectTitle: string; approvedForRelease: boolean; releaseStatus: string | null; riskLevel: string | null; risk: Risk };
+type RunRow = { id: string; when: string; humanGateStatus: string | null; agentName: string | null; plane: string | null; costCents: number | null };
+type Kpis = { totalAssets: number; masterCount: number; pendingCount: number; projects: number; estCostCents: number; runOk: number; runFail: number; renderRuns: number; costPerRenderSecCents: number };
 type EngineMix = { model: string; count: number; cost: number }[];
-type AssetMap = Record<string, { checksum: string | null; type: string; model: string | null }>;
+type AssetMap = Record<string, { uri: string; assetType: string | null; model: string | null }>;
 
 const SEV: Record<string, string> = { high: "#ef6f6c", medium: "#e0a13a", low: "#57c97a", override: "#b98cff" };
 const short = (s?: string | null, n = 8) => (s ? s.slice(0, n) + "…" : "—");
+const uriTail = (u?: string | null, n = 18) => (u ? (u.length > n ? "…" + u.slice(-n) : u) : "—");
 const fmt = (iso: string) => new Date(iso).toLocaleString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
 const pct = (n: number, d: number) => (d ? Math.round((100 * n) / d) : 0) + "%";
 
@@ -63,12 +68,12 @@ function shotState(hasVideo: boolean, hasMaster: boolean) {
   return { label: "DRAFT", color: "#97a1ad", cls: "text-dim" };
 }
 
-export default function Workspace({ projects, assets, queue, runs, assetMap, kpis, engineMix, archiveByProject }:
-  { projects: Project[]; assets: AssetRow[]; queue: QueueRow[]; runs: RunRow[]; assetMap: AssetMap; kpis: Kpis; engineMix: EngineMix; archiveByProject: Record<string, number> }) {
+export default function Workspace({ projects, assets, queue, runs, assetMap, kpis, engineMix }:
+  { projects: Project[]; assets: AssetRow[]; queue: QueueRow[]; runs: RunRow[]; assetMap: AssetMap; kpis: Kpis; engineMix: EngineMix }) {
   const router = useRouter();
   const [domain, setDomain] = useState("pipeline");
   const [pipeTarget, setPipeTarget] = useState<{ externalId: string | null; stage: number } | null>(null);
-  const [projExt, setProjExt] = useState<string>(projects[0]?.externalId ?? "all");
+  const [projId, setProjId] = useState<string>(projects[0]?.id ?? "all");
   const [expanded, setExpanded] = useState<string | null>(null);
   const [openApprove, setOpenApprove] = useState<string | null>(null);
   const [reviewer, setReviewer] = useState("brad");
@@ -76,20 +81,22 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
   const [busy, setBusy] = useState<string | null>(null);
   const [msg, setMsg] = useState<{ id: string; text: string; ok: boolean } | null>(null);
 
-  const inProj = (ext: string | null) => projExt === "all" || ext === projExt;
-  const proj = projects.find((p) => p.externalId === projExt) || null;
-  const projAssets = assets.filter((a) => inProj(a.projectExternalId));
-  const hasMaster = projAssets.some((a) => a.type === "MASTER");
-  const videoScenes = new Set(projAssets.filter((a) => a.type === "VIDEO" && a.sceneNumber != null).map((a) => a.sceneNumber));
+  const inProj = (id: string | null) => projId === "all" || id === projId;
+  const proj = projects.find((p) => p.id === projId) || null;
+  const projAssets = assets.filter((a) => inProj(a.projectId));
+  const hasMaster = projAssets.some((a) => a.assetType === "master");
+  const videoScenes = new Set(projAssets.filter((a) => a.assetType === "video" && a.sceneNumber != null).map((a) => a.sceneNumber));
 
   async function approve(item: QueueRow, mode: "clear" | "override") {
     if (!reviewer.trim()) return setMsg({ id: item.rightsId, text: "Reviewer required.", ok: false });
     if (mode === "override" && !overrideReason.trim()) return setMsg({ id: item.rightsId, text: "Override reason required.", ok: false });
-    if (!item.projectExternalId) return setMsg({ id: item.rightsId, text: "Master has no project externalId.", ok: false });
+    if (!item.projectId) return setMsg({ id: item.rightsId, text: "Master has no project id.", ok: false });
     setBusy(item.rightsId); setMsg(null);
-    const body: any = { externalId: item.projectExternalId, checksum: item.assetChecksum, reviewerId: reviewer.trim() };
+    // Risk-based approve: clear the substantive risks to none/low so the gate can flip
+    // approvedForRelease, or log an explicit override. uri pins the specific master.
+    const body: any = { projectId: item.projectId, uri: item.assetUri ?? undefined, reviewerId: reviewer.trim() };
     if (mode === "override") { body.override = true; body.overrideReason = overrideReason.trim(); }
-    else Object.assign(body, { qaPassed: true, noLikenessConfirmed: true, sourceMaterialState: "NOT_APPLICABLE", likenessState: "NOT_APPLICABLE", voiceState: "NOT_APPLICABLE", musicLicenseState: "NOT_APPLICABLE", vendorTermsState: "NOT_APPLICABLE" });
+    else Object.assign(body, { likenessRisk: "none", musicRisk: "none", trademarkRisk: "none", riskLevel: "low" });
     try {
       const res = await fetch("/api/studio/approve", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
       const data = await res.json();
@@ -101,35 +108,20 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
     finally { setBusy(null); }
   }
 
-  const [archiveMsg, setArchiveMsg] = useState<string | null>(null);
-  async function buildArchive() {
-    if (projExt === "all") return setArchiveMsg("Pick a project first.");
-    setBusy("archive"); setArchiveMsg(null);
-    try {
-      const res = await fetch("/api/studio/archive", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ externalId: projExt }) });
-      const d = await res.json();
-      if (res.ok && d.ok) { setArchiveMsg(`Archive ${Math.round(d.completenessScore * 100)}% · ${d.status}${d.missing?.length ? " · missing: " + d.missing.join(", ") : ""}`); router.refresh(); }
-      else setArchiveMsg(`Failed: ${d.error || res.status}`);
-    } catch (e: any) { setArchiveMsg(`Error: ${e?.message || e}`); }
-    finally { setBusy(null); }
-  }
-
-  const projectOpts = projects.filter((p) => p.externalId);
+  const projectOpts = projects;
 
   // Per-stage HITL control points for the selected project (✓ settled / ▢ open).
-  const projQueue = queue.filter((q) => q.projectExternalId === projExt);
+  const projQueue = queue.filter((q) => q.projectId === projId);
   const released = projQueue.some((q) => q.approvedForRelease);
-  const masterC2pa = projAssets.some((a) => a.type === "MASTER" && a.c2pa);
-  const archiveScore = projExt !== "all" ? (archiveByProject[projExt] ?? 0) : 0;
   const stageState: Record<number, boolean> = !proj ? {} : {
     1: true,
     2: (proj.counts.scenes ?? 0) > 0,
     3: (proj.counts.shots ?? 0) > 0,
-    4: projAssets.some((a) => a.type === "VIDEO"),
-    5: projAssets.filter((a) => a.type === "VIDEO").length > 0, // takes exist to review
+    4: projAssets.some((a) => a.assetType === "video"),
+    5: projAssets.filter((a) => a.assetType === "video").length > 0, // takes exist to review
     6: hasMaster,
     7: released,
-    8: masterC2pa || archiveScore >= 0.95,
+    8: released, // delivery/archive packaging is deferred in Phase 1 (release is the gate)
   };
 
   return (
@@ -155,7 +147,7 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
           );
         })}
         <div className="mt-auto text-[12px] text-dim px-2 pt-3 border-t border-edge">
-          Phase C · live from Neon
+          Phase 1 · live from Neon
         </div>
       </nav>
 
@@ -163,18 +155,18 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
       <div className="flex-1 min-w-0 flex flex-col">
         <header className="border-b border-edge bg-panel px-5 py-3 flex items-center justify-between gap-4 flex-wrap">
           <div className="flex items-center gap-3">
-            <select value={projExt} onChange={(e) => setProjExt(e.target.value)}
+            <select value={projId} onChange={(e) => setProjId(e.target.value)}
               className="bg-raised border border-edge rounded-md text-fg text-sm px-2.5 py-1.5 font-mono">
               <option value="all">All projects ({projectOpts.length})</option>
-              {projectOpts.map((p) => <option key={p.id} value={p.externalId as string}>{p.title}</option>)}
+              {projectOpts.map((p) => <option key={p.id} value={p.id}>{p.title}</option>)}
             </select>
-            {proj && <span className="text-[13px] text-dim font-mono">{proj.type} · {proj.status} · kernel:{proj.kernel ?? "—"}</span>}
+            {proj && <span className="text-[13px] text-dim font-mono">{proj.type} · {proj.status} · {proj.greenlightLevel ?? "—"}</span>}
           </div>
           <div className="flex gap-2 flex-wrap">
             <Chip label="Assets" value={String(kpis.totalAssets)} />
-            <Chip label="Provenance" value={pct(kpis.provCount, kpis.totalAssets)} tone="#57c97a" />
-            <Chip label="C2PA/masters" value={pct(kpis.c2paCount, kpis.masterCount)} tone={kpis.c2paCount >= kpis.masterCount && kpis.masterCount ? "#57c97a" : "#e0a13a"} />
+            <Chip label="Masters" value={String(kpis.masterCount)} tone="#b98cff" />
             <Chip label="Pending" value={String(kpis.pendingCount)} tone={kpis.pendingCount ? "#e0a13a" : "#57c97a"} />
+            <Chip label="Runs ok" value={pct(kpis.runOk, kpis.runOk + kpis.runFail)} tone={kpis.runFail ? "#e0a13a" : "#57c97a"} />
           </div>
         </header>
 
@@ -189,7 +181,7 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
                 const ok = stageState[s.n];
                 return (
                   <button key={s.n} title={`Open the ${s.name} workspace`}
-                    onClick={() => { setPipeTarget({ externalId: projExt, stage: s.n }); setDomain("pipeline"); }}
+                    onClick={() => { setPipeTarget({ externalId: proj.title, stage: s.n }); setDomain("pipeline"); }}
                     className="flex-1 flex flex-col items-center justify-center gap-1 px-2 py-3 rounded-lg border text-center cursor-pointer hover:brightness-125 transition"
                     style={{ borderColor: ok ? "#57c97a55" : "#272d36", background: ok ? "rgba(87,201,122,0.08)" : "rgba(255,255,255,0.012)", color: ok ? "#57c97a" : "#97a1ad" }}>
                     <span className="text-[18px] font-semibold">{ok ? "✓" : "▢"} {s.n}</span>
@@ -222,10 +214,10 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
                   <dl className="text-[14px] space-y-1.5 font-mono">
                     <div className="flex justify-between"><dt className="text-dim">type</dt><dd>{proj.type}</dd></div>
                     <div className="flex justify-between"><dt className="text-dim">status</dt><dd>{proj.status}</dd></div>
-                    <div className="flex justify-between"><dt className="text-dim">kernel</dt><dd>{proj.kernel ?? "—"}</dd></div>
+                    <div className="flex justify-between"><dt className="text-dim">greenlight</dt><dd>{proj.greenlightLevel ?? "—"}</dd></div>
                     <div className="flex justify-between"><dt className="text-dim">scenes</dt><dd>{proj.counts.scenes}</dd></div>
                     <div className="flex justify-between"><dt className="text-dim">shots</dt><dd>{proj.counts.shots}</dd></div>
-                    <div className="flex justify-between"><dt className="text-dim">rights</dt><dd>{proj.rightsStatus}</dd></div>
+                    <div className="flex justify-between"><dt className="text-dim">assets</dt><dd>{proj.counts.assets}</dd></div>
                   </dl>
                 ) : <div className="text-dim text-sm">—</div>}
                 <div className="mt-3 pt-3 border-t border-edge text-[12px] text-dim">Edit raw script in the Ad Studio (Streamlit). This view is the canonical read from Neon.</div>
@@ -244,7 +236,7 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
                 {(proj?.scenes ?? []).flatMap((s) => s.shots.map((sh) => {
                   const done = videoScenes.has(s.number);
                   const st = shotState(done, hasMaster);
-                  const asset = projAssets.find((a) => a.type === "VIDEO" && a.sceneNumber === s.number);
+                  const asset = projAssets.find((a) => a.assetType === "video" && a.sceneNumber === s.number);
                   return (
                     <div key={`${s.number}-${sh.shotNumber}`} className="bg-panel border border-edge rounded-lg overflow-hidden">
                       <div className="aspect-video bg-ink flex items-center justify-center text-dim text-[13px] font-mono relative">
@@ -258,7 +250,7 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
                         <div className="text-[13px] text-dim font-mono mb-1">SCENE {s.number}</div>
                         <p className="text-[14px] text-fg/90 line-clamp-3" title={sh.prompt || ""}>{sh.prompt || <span className="text-dim italic">empty prompt</span>}</p>
                         <div className="mt-2 flex items-center justify-between text-[12px] font-mono text-dim">
-                          <span>{asset?.model ?? "—"}{asset?.seed ? ` · seed ${short(asset.seed, 6)}` : ""}</span>
+                          <span>{asset?.model ?? "—"}{asset?.rating ? ` · ${asset.rating}` : ""}</span>
                           <span className="text-accent cursor-default" title="Regenerate / edit raw in the Ad Studio">⟳ re-render</span>
                         </div>
                       </div>
@@ -296,11 +288,11 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
               </section>
               <aside className="bg-panel border border-edge rounded-xl p-4 h-fit">
                 <div className="text-[13px] text-dim uppercase tracking-wide mb-2">Master render node</div>
-                {projAssets.filter((a) => a.type === "MASTER").slice(0, 1).map((m) => (
+                {projAssets.filter((a) => a.assetType === "master").slice(0, 1).map((m) => (
                   <dl key={m.id} className="text-[14px] space-y-1.5 font-mono">
-                    <div className="flex justify-between"><dt className="text-dim">checksum</dt><dd>{short(m.checksum)}</dd></div>
+                    <div className="flex justify-between"><dt className="text-dim">uri</dt><dd>{uriTail(m.uri)}</dd></div>
                     <div className="flex justify-between"><dt className="text-dim">engine</dt><dd>{m.model ?? "—"}</dd></div>
-                    <div className="flex justify-between"><dt className="text-dim">C2PA</dt><dd className={m.c2pa ? "text-good" : "text-dim"}>{m.c2pa ? "signed" : "—"}</dd></div>
+                    <div className="flex justify-between"><dt className="text-dim">rating</dt><dd>{m.rating}</dd></div>
                   </dl>
                 ))}
                 {!hasMaster && <div className="text-dim text-sm">Assemble a cut in the Ad Studio (gate-enforced before publish).</div>}
@@ -335,20 +327,11 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
                     <div className="text-xl font-bold font-mono">{kpis.renderRuns}</div>
                     <div className="text-[12px] text-dim uppercase tracking-wide">render runs</div>
                   </div>
-                  {projExt !== "all" && (
-                    <div className="bg-ink border border-edge rounded-lg px-3.5 py-2 flex items-center gap-3">
-                      <div>
-                        <div className="text-xl font-bold font-mono" style={{ color: archiveScore >= 0.95 ? "#57c97a" : "#e0a13a" }}>{Math.round(archiveScore * 100)}%</div>
-                        <div className="text-[12px] text-dim uppercase tracking-wide">archive complete</div>
-                      </div>
-                      <button disabled={busy === "archive"} onClick={buildArchive}
-                        className="text-accent border border-accent/40 rounded px-2.5 py-1 text-[12px] disabled:opacity-50" style={{ background: "rgba(91,157,255,0.12)" }}>
-                        {busy === "archive" ? "…" : "Build"}
-                      </button>
-                    </div>
-                  )}
+                  <div className="bg-ink border border-edge rounded-lg px-3.5 py-2 opacity-70">
+                    <div className="text-xl font-bold font-mono text-dim">—</div>
+                    <div className="text-[12px] text-dim uppercase tracking-wide">archive · deferred (Phase 1)</div>
+                  </div>
                 </div>
-                {archiveMsg && <div className="text-[12px] mb-2" style={{ color: archiveMsg.startsWith("Archive") ? "#97a1ad" : "#ef6f6c" }}>{archiveMsg}</div>}
                 {/* Engine / provider mix */}
                 <div className="text-[12px] text-dim uppercase tracking-wide mb-1.5">Engine mix (est. cost)</div>
                 {engineMix.length === 0 ? <div className="text-dim text-[14px]">No render runs recorded yet.</div> : (
@@ -373,7 +356,7 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
               <section className="bg-panel border border-edge rounded-xl p-4">
                 <h3 className="text-[16px] font-semibold mb-3">Lanes <span className="text-[13px] text-dim font-normal">· projects by status</span></h3>
                 <div className="flex flex-wrap gap-2">
-                  {["DRAFT", "IN_PROGRESS", "REVIEW", "BLOCKED", "APPROVED", "ARCHIVED", "FAILED"].map((s) => {
+                  {["draft", "active", "review", "blocked", "approved", "archived", "failed"].map((s) => {
                     const ps = projects.filter((p) => p.status === s);
                     if (!ps.length) return null;
                     return (
@@ -398,22 +381,22 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
                   <span className="text-[13px] text-dim flex items-center gap-1">reviewer
                     <input value={reviewer} onChange={(e) => setReviewer(e.target.value)} className="bg-ink border border-edge rounded text-fg px-2 py-0.5 w-24 font-mono" /></span>
                 </div>
-                {queue.filter((q) => inProj(q.projectExternalId)).length === 0 && <div className="text-dim text-[15px]">No release candidates.</div>}
-                {queue.filter((q) => inProj(q.projectExternalId)).map((item) => (
+                {queue.filter((q) => inProj(q.projectId)).length === 0 && <div className="text-dim text-[15px]">No release candidates.</div>}
+                {queue.filter((q) => inProj(q.projectId)).map((item) => (
                   <div key={item.rightsId} className="bg-ink border border-edge rounded-md p-2.5 mb-2 border-l-[3px]"
                     style={{ borderLeftColor: item.approvedForRelease ? "#57c97a" : SEV[item.risk.severity] }}>
                     <div className="flex justify-between items-center">
                       <span className="text-[15px] font-medium">{item.projectTitle}</span>
                       <span className="text-[13px] font-mono" style={{ color: item.approvedForRelease ? "#57c97a" : SEV[item.risk.severity] }}>
-                        {item.approvedForRelease ? `RELEASED · ${item.reviewerId ?? ""}` : `${item.risk.tier} · risk ${item.risk.score}`}
+                        {item.approvedForRelease ? `RELEASED · ${item.releaseStatus ?? ""}` : `${item.risk.tier} · risk ${item.risk.score}`}
                       </span>
                     </div>
                     <div className="text-[13px] text-dim mt-1">{item.approvedForRelease ? "approved for release" : (item.risk.factors.join(" · ") || "ready — confirm + approve")}</div>
                     {!item.approvedForRelease && (openApprove === item.rightsId ? (
                       <div className="mt-2 border border-edge rounded p-2 bg-panel">
-                        <div className="text-[13px] text-dim mb-2">Confirm <b className="text-fg">no real-person likeness</b> + accept QA (non-delegable A4).</div>
+                        <div className="text-[13px] text-dim mb-2">Clear the substantive risks (likeness / music / trademark) and accept the A4 release decision — non-delegable.</div>
                         <div className="flex gap-2 flex-wrap items-center">
-                          <button disabled={busy === item.rightsId} onClick={() => approve(item, "clear")} className="text-good border border-good/40 rounded px-3 py-1 text-sm disabled:opacity-50" style={{ background: "rgba(87,201,122,0.12)" }}>{busy === item.rightsId ? "…" : "✓ Confirm & approve"}</button>
+                          <button disabled={busy === item.rightsId} onClick={() => approve(item, "clear")} className="text-good border border-good/40 rounded px-3 py-1 text-sm disabled:opacity-50" style={{ background: "rgba(87,201,122,0.12)" }}>{busy === item.rightsId ? "…" : "✓ Clear & approve"}</button>
                           <button onClick={() => setOpenApprove(null)} className="border border-edge text-dim rounded px-3 py-1 text-sm">Cancel</button>
                           <input placeholder="override reason" value={overrideReason} onChange={(e) => setOverrideReason(e.target.value)} className="bg-ink border border-edge rounded text-fg px-2 py-1 text-[13px] flex-1 min-w-[120px]" />
                           <button disabled={busy === item.rightsId} onClick={() => approve(item, "override")} className="text-mauve border border-mauve/40 rounded px-3 py-1 text-[13px] disabled:opacity-50" style={{ background: "rgba(185,140,255,0.12)" }}>Override</button>
@@ -429,26 +412,23 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
 
               {/* Lineage */}
               <section className="bg-panel border border-edge rounded-xl p-4">
-                <h3 className="text-[16px] font-semibold mb-2">Workspace + lineage <span className="text-[13px] text-dim font-normal">· click for upstream</span></h3>
+                <h3 className="text-[16px] font-semibold mb-2">Workspace + assets <span className="text-[13px] text-dim font-normal">· click for detail</span></h3>
                 <table className="w-full border-collapse text-sm">
-                  <thead><tr className="text-dim text-left"><th className="py-1">Project</th><th>Type</th><th>Checksum</th><th>Model</th><th>↑</th><th>C2PA</th></tr></thead>
+                  <thead><tr className="text-dim text-left"><th className="py-1">Project</th><th>Type</th><th>URI</th><th>Model</th><th>Rating</th></tr></thead>
                   <tbody>
                     {projAssets.slice(0, 30).map((a) => (
                       <Fragment key={a.id}>
                         <tr onClick={() => setExpanded(expanded === a.id ? null : a.id)} className="border-t border-edge cursor-pointer hover:bg-ink">
                           <td className="py-1 pr-2">{a.projectTitle}</td>
-                          <td><span className={a.type === "MASTER" ? "text-mauve" : "text-dim"}>{a.type}</span></td>
-                          <td className="font-mono text-dim">{short(a.checksum)}</td>
+                          <td><span className={a.assetType === "master" ? "text-mauve" : "text-dim"}>{a.assetType ?? "—"}</span></td>
+                          <td className="font-mono text-dim">{uriTail(a.uri, 14)}</td>
                           <td className="font-mono">{a.model ?? "—"}</td>
-                          <td>{a.upstreamIds.length}</td>
-                          <td>{a.c2pa ? <span className="text-good">✓</span> : <span className="text-dim">—</span>}</td>
+                          <td><span className={a.rating === "clean" ? "text-dim" : "text-amber"}>{a.rating}</span></td>
                         </tr>
                         {expanded === a.id && (
-                          <tr className="bg-ink"><td colSpan={6} className="px-3 py-2 text-[13px] text-dim font-mono">
-                            {a.prompt && <div className="text-fg/80 mb-1 normal-case">“{a.prompt.slice(0, 140)}”</div>}
-                            {a.seed && <div>seed: {a.seed}</div>}
-                            {a.upstreamIds.length === 0 && <div>no upstream ingredients</div>}
-                            {a.upstreamIds.map((id) => { const u = assetMap[id]; return <div key={id}>↑ {u ? `${u.type} ${short(u.checksum)} (${u.model ?? "?"})` : id.slice(0, 12)}</div>; })}
+                          <tr className="bg-ink"><td colSpan={5} className="px-3 py-2 text-[13px] text-dim font-mono">
+                            <div className="text-fg/80 mb-1 break-all">{a.uri}</div>
+                            <div>asset {short(a.id, 12)} · {a.assetType ?? "—"} · {a.rating}{a.model ? ` · ${a.model}` : ""}</div>
                           </td></tr>
                         )}
                       </Fragment>
@@ -460,14 +440,18 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
               {/* Trace */}
               <section className="bg-panel border border-edge rounded-xl p-4">
                 <h3 className="text-[16px] font-semibold mb-2">Trace timeline <span className="text-[13px] text-dim font-normal">· agent · render · approval</span></h3>
-                {runs.filter((r) => inProj(r.projectExternalId)).length === 0 && <div className="text-dim text-[15px]">No runs recorded yet.</div>}
-                {runs.filter((r) => inProj(r.projectExternalId)).map((run) => (
-                  <div key={run.id} className="flex gap-2.5 text-sm py-1.5 border-t border-edge">
-                    <span className="text-dim min-w-24 font-mono">{fmt(run.when)}</span>
-                    <span className="min-w-16 font-mono" style={{ color: run.status === "SUCCEEDED" ? "#57c97a" : run.status === "FAILED" ? "#ef6f6c" : "#e0a13a" }}>{run.status}</span>
-                    <span className="flex-1"><b>{run.agentName ?? run.entityType ?? "run"}</b>{run.approvedBy && <span className="text-mauve"> · {run.approvedBy}</span>}{run.projectExternalId && <span className="text-dim font-mono"> · {run.projectExternalId}</span>}</span>
-                  </div>
-                ))}
+                {runs.length === 0 && <div className="text-dim text-[15px]">No runs recorded yet.</div>}
+                {runs.map((run) => {
+                  const gs = run.humanGateStatus;
+                  const color = gs === "approved" || gs === "auto_approved" ? "#57c97a" : gs === "rejected" ? "#ef6f6c" : "#e0a13a";
+                  return (
+                    <div key={run.id} className="flex gap-2.5 text-sm py-1.5 border-t border-edge">
+                      <span className="text-dim min-w-24 font-mono">{fmt(run.when)}</span>
+                      <span className="min-w-20 font-mono" style={{ color }}>{gs ?? "—"}</span>
+                      <span className="flex-1"><b>{run.agentName ?? "run"}</b>{run.plane && <span className="text-dim font-mono"> · {run.plane}</span>}{run.costCents != null && <span className="text-dim"> · ${(run.costCents / 100).toFixed(2)}</span>}</span>
+                    </div>
+                  );
+                })}
               </section>
             </div>
           )}

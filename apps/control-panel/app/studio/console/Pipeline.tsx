@@ -575,17 +575,14 @@ function RightsPanel({ state, pipe, runId }: { state: any; pipe: string; runId: 
 }
 
 // Stage 8 — Delivery / Archive.
-function DeliveryPanel({ pipe, runId, externalId }: { pipe: string; runId: string; externalId?: string }) {
+function DeliveryPanel({ pipe, runId }: { pipe: string; runId: string; externalId?: string }) {
   const [c, setC] = useState<any>(null);
-  const [arch, setArch] = useState<string>("");
   const [busy, setBusy] = useState("");
   async function load() { try { const r = await fetch(`${pipe}/pipeline/${runId}/cut`); setC(await r.json()); } catch {} }
   useEffect(() => { load(); }, [runId]);
-  async function buildArchive() {
-    if (!externalId) { setArch("no project yet"); return; }
-    setBusy("archive"); setArch("");
-    try { const r = await fetch(`/api/studio/archive`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ externalId }) }); const d = await r.json(); setArch(d.ok ? `Archive ${Math.round(d.completenessScore * 100)}% · ${d.status}${d.missing?.length ? " · missing: " + d.missing.join(", ") : ""}` : (d.error || "failed")); } catch { setArch("control-panel route unreachable"); } finally { setBusy(""); }
-  }
+  // Archive / preservation packaging is deferred in Phase 1 — the archive_packages table
+  // does not exist in the real schema and /api/studio/archive returns 501. The "build
+  // archive" action is replaced with a deferred note below rather than calling the route.
   const [deliverMsg, setDeliverMsg] = useState("");
   async function deliver(op: string, extra: any = {}) {
     setBusy(op); setDeliverMsg("");
@@ -600,9 +597,8 @@ function DeliveryPanel({ pipe, runId, externalId }: { pipe: string; runId: strin
         {src ? <video src={src} controls className="w-full h-full object-contain" /> : "no master yet — assemble + approve first"}
       </div>
       <div className="flex flex-wrap items-center gap-3 mb-2">
-        <span className="text-[13px]" style={{ color: published ? "#57c97a" : "#97a1ad" }}>{published ? "✓ published to R2 (C2PA attached)" : "not yet published — approve at the rights gate"}</span>
-        <button disabled={!!busy} onClick={buildArchive} className="text-accent border border-accent/40 rounded-md px-3 py-1 text-[13px] disabled:opacity-50" style={{ background: "rgba(91,157,255,0.12)" }}>{busy === "archive" ? "checking…" : "Build / check archive"}</button>
-        {arch && <span className="text-[12px] text-dim">{arch}</span>}
+        <span className="text-[13px]" style={{ color: published ? "#57c97a" : "#97a1ad" }}>{published ? "✓ published to R2" : "not yet published — approve at the rights gate"}</span>
+        <span className="text-[12px] text-dim border border-edge rounded-md px-3 py-1" title="No archive_packages table in the real schema; /api/studio/archive returns 501.">Archive · deferred in Phase 1</span>
       </div>
       <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-edge">
         <span className="text-[12px] text-dim uppercase tracking-wide mr-1">deliver</span>

@@ -1,107 +1,113 @@
 import { NextResponse } from "next/server";
 import studioDb from "../../../../lib/studio-db";
-import { deriveBlockers } from "../../../../lib/release-gate";
+import { findProject, findMaster, rightsOf, validUserId } from "../../../../lib/studio-writes";
+import { deriveBlockers, riskBlockers } from "../../../../lib/release-gate";
 
 // POST /api/studio/approve
-// The non-delegable HITL release approval (Phase A step 5). Records the QA
-// result + the no-likeness legal confirmation + rights states against the
-// master asset's RightsRecord, then sets approvedForRelease ONLY if the gate
-// rule is satisfied — or via an explicit, logged override. Writes a Run row so
-// every release decision is traceable (KPI: approvals with stored trace).
+// The non-delegable HITL release approval, rewritten onto the REAL governance tables.
+// Updates the master's rights_records risk fields from the submitted review, sets
+// approvedForRelease ONLY if the substantive risk blockers are clear (or via an explicit,
+// logged override), and writes a gate_approvals row (gate_type='release') + an agent_runs
+// trace row. Drops the project-level approval/rightsStatus writes (no such columns).
 //
 // Body: {
-//   externalId, checksum?,
-//   reviewerId,
-//   qaPassed?, qaReport?,            // from run_release_qa
-//   noLikenessConfirmed?,            // the legal gate (human-confirmed)
-//   sourceMaterialState?, likenessState?, voiceState?, musicLicenseState?, vendorTermsState?,
-//   consentDocumentUri?, notes?,
-//   override?, overrideReason?       // explicit human override (logged)
+//   externalId|title|projectId, uri?, reviewerId?,
+//   likenessRisk?, musicRisk?, trademarkRisk?,   // none|low|medium|high
+//   riskLevel?,                                  // low|medium|high
+//   releaseRequired?, syntheticPerformerFlag?, sagAftraNoticeFiledAt?, legalNotes?,
+//   override?, overrideReason?
 // }
+const RISK = new Set(["none", "low", "medium", "high"]);
+const LEVEL = new Set(["low", "medium", "high"]);
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const {
-      externalId, checksum, reviewerId,
-      qaPassed, qaReport, noLikenessConfirmed,
-      sourceMaterialState, likenessState, voiceState, musicLicenseState, vendorTermsState,
-      consentDocumentUri, notes, override, overrideReason,
-    } = body;
-
-    if (!externalId) return NextResponse.json({ error: "externalId is required." }, { status: 400 });
-    if (!reviewerId) return NextResponse.json({ error: "reviewerId is required (non-delegable HITL gate)." }, { status: 400 });
+    const { externalId, title, projectId, uri, reviewerId, override, overrideReason } = body;
     if (override && !overrideReason) {
       return NextResponse.json({ error: "overrideReason is required when override=true." }, { status: 400 });
     }
 
-    const project = await studioDb.project.findUnique({ where: { externalId } });
+    const project = await findProject({ id: projectId, title: title ?? externalId });
     if (!project) return NextResponse.json({ error: "Project not found." }, { status: 404 });
 
-    const asset = await studioDb.asset.findFirst({
-      where: { projectId: project.id, type: "MASTER", ...(checksum ? { checksum } : {}) },
-      orderBy: { createdAt: "desc" },
-      include: { rightsRecord: true },
-    });
+    const asset = await findMaster(project.id, uri);
     if (!asset) return NextResponse.json({ error: "No master (release-candidate) asset to approve." }, { status: 404 });
 
-    // Merge the submitted review onto the existing record (only set provided fields).
-    const set = (v: any, cur: any) => (v !== undefined && v !== null ? v : cur);
-    const cur = asset.rightsRecord;
-    const merged = {
-      qaPassed: set(qaPassed, cur?.qaPassed ?? false),
-      qaReport: set(qaReport, cur?.qaReport ?? undefined),
-      noLikenessConfirmed: set(noLikenessConfirmed, cur?.noLikenessConfirmed ?? false),
-      sourceMaterialState: set(sourceMaterialState, cur?.sourceMaterialState ?? "UNREVIEWED"),
-      likenessState: set(likenessState, cur?.likenessState ?? "UNREVIEWED"),
-      voiceState: set(voiceState, cur?.voiceState ?? "UNREVIEWED"),
-      musicLicenseState: set(musicLicenseState, cur?.musicLicenseState ?? "UNREVIEWED"),
-      vendorTermsState: set(vendorTermsState, cur?.vendorTermsState ?? "UNREVIEWED"),
-      consentDocumentUri: set(consentDocumentUri, cur?.consentDocumentUri ?? undefined),
-      overrideReason: override ? overrideReason : (cur?.overrideReason ?? null),
-      notes: set(notes, cur?.notes ?? undefined),
+    const cur = rightsOf(asset);
+
+    // Merge submitted risk fields onto the current record (only set provided + CHECK-valid).
+    const pick = (v: any, valid: Set<string> | null, fallback: any) =>
+      v !== undefined && v !== null && (!valid || valid.has(v)) ? v : fallback;
+    const merged: Record<string, any> = {
+      likenessRisk: pick(body.likenessRisk, RISK, cur?.likenessRisk ?? "none"),
+      musicRisk: pick(body.musicRisk, RISK, cur?.musicRisk ?? "none"),
+      trademarkRisk: pick(body.trademarkRisk, RISK, cur?.trademarkRisk ?? "none"),
+      riskLevel: pick(body.riskLevel, LEVEL, cur?.riskLevel ?? "low"),
+      releaseRequired: body.releaseRequired ?? cur?.releaseRequired ?? true,
+      syntheticPerformerFlag: body.syntheticPerformerFlag ?? cur?.syntheticPerformerFlag ?? false,
+      sagAftraNoticeFiledAt:
+        body.sagAftraNoticeFiledAt !== undefined
+          ? body.sagAftraNoticeFiledAt
+            ? new Date(body.sagAftraNoticeFiledAt)
+            : null
+          : cur?.sagAftraNoticeFiledAt ?? null,
+      legalNotes: body.legalNotes ?? cur?.legalNotes ?? null,
     };
 
-    // Re-derive blockers from the MERGED state; approve only if clear (or override).
-    const blockers = deriveBlockers(merged);
-    const approvedForRelease = override === true ? true : blockers.length === 0;
+    // Approve only if the substantive (non-flag) risk blockers are clear — or explicit override.
+    const pre = riskBlockers(merged);
+    const approvedForRelease = override === true ? true : pre.length === 0;
+    const approvedBy = await validUserId(reviewerId);
 
-    const rights = await studioDb.rightsRecord.upsert({
-      where: { assetId: asset.id },
-      update: {
-        ...merged, approvedForRelease, reviewerId, reviewedAt: new Date(), gateEvaluatedAt: new Date(),
-      },
-      create: {
-        asset: { connect: { id: asset.id } },
-        ...merged, approvedForRelease, reviewerId, reviewedAt: new Date(), gateEvaluatedAt: new Date(),
-      },
-    });
+    const persisted = {
+      ...merged,
+      approvedForRelease,
+      releaseStatus: approvedForRelease ? "approved" : "pending",
+      approvedBy,
+      approvedAt: approvedForRelease ? new Date() : null,
+    };
 
-    // Trace the decision.
-    await studioDb.run.create({
+    // rights_records.asset_id is NOT unique (1:many) — update the existing row, else create one.
+    const rights = cur
+      ? await studioDb.rightsRecord.update({ where: { id: cur.id }, data: persisted })
+      : await studioDb.rightsRecord.create({
+          data: { assetId: asset.id, sourceType: "generated", licenseType: "pending-review", ...persisted },
+        });
+
+    // Trace the decision: agent_runs row + gate_approvals row (gate_type='release').
+    const run = await studioDb.run.create({
       data: {
-        project: { connect: { id: project.id } },
-        entityType: "release_gate",
-        entityId: asset.id,
         agentName: "release-gate",
-        status: "SUCCEEDED",
-        approvalRequired: true,
-        approvedBy: reviewerId,
-        inputs: { checksum: asset.checksum, override: !!override, overrideReason: overrideReason ?? null },
-        outputs: { approvedForRelease, blockers },
+        plane: "rights",
+        humanGateStatus: approvedForRelease ? "approved" : "pending",
+        completedAt: new Date(),
       },
     });
-
-    // Reflect onto the project for console at-a-glance status.
-    await studioDb.project.update({
-      where: { id: project.id },
+    await studioDb.gateApproval.create({
       data: {
-        approval: approvedForRelease ? "APPROVED" : "PENDING",
-        rightsStatus: approvedForRelease ? "CLEARED" : "PENDING",
+        agentRunId: run.id,
+        gateType: "release",
+        entityType: "asset",
+        entityId: asset.id,
+        requiredRole: "rights_advisor",
+        state: approvedForRelease ? "approved" : "pending",
+        resolvedBy: approvedBy,
+        resolvedAt: approvedForRelease ? new Date() : null,
+        resolutionNote: override ? `override: ${overrideReason}` : null,
+        traceReviewed: true,
       },
     });
 
     return NextResponse.json(
-      { ok: true, approvedForRelease, blockers, overridden: !!override, rightsId: rights.id },
+      {
+        ok: true,
+        approvedForRelease,
+        blockers: deriveBlockers(rights),
+        overridden: !!override,
+        rightsId: rights.id,
+        runId: run.id,
+      },
       { status: 200 },
     );
   } catch (error) {

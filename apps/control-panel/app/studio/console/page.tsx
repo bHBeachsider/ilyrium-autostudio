@@ -2,50 +2,50 @@ import studioDb from "../../../lib/studio-db";
 import { scoreRights } from "../../../lib/risk";
 import Workspace from "./Workspace";
 
-// Ilyrium Studio OS — premium film-production console (Phase C+). Server component:
-// queries the canonical asset graph once, serializes it (plain JSON — no Date/BigInt/
-// Prisma objects), and hands it to the client Workspace, which presents four
-// functional domains (Scripting · Generation · Assembly · Analytics) in a fixed,
-// workspace-driven layout. Always renders fresh.
+// Ilyrium Studio OS — premium film-production console (Phase 1 reconcile). Server
+// component: queries the REAL canonical asset graph once (projects/assets/rights_records/
+// agent_runs/scenes/shots — no provenance_records/archive_packages, which don't exist),
+// serializes it (plain JSON — no Date/BigInt/Prisma objects), and hands it to the client
+// Workspace. Assets are addressed by uri (no checksum); asset_type is the lowercase CHECK
+// vocab; rights are the risk-based model. Always renders fresh.
 export const dynamic = "force-dynamic";
 
 export default async function ConsolePage() {
   const [projects, assetsRecent, rights, runs,
-    totalAssets, provCount, c2paCount, masterCount, pendingCount, allAssets,
-    renderRuns, archivesRaw] = await Promise.all([
+    totalAssets, masterCount, pendingCount, allAssets, renderRuns] = await Promise.all([
     studioDb.project.findMany({
-      orderBy: { updatedAt: "desc" }, take: 60,
+      orderBy: { createdAt: "desc" }, take: 60,
       include: {
         _count: { select: { scenes: true, shots: true, assets: true } },
-        scenes: { orderBy: { orderIndex: "asc" }, include: { shots: { orderBy: { shotNumber: "asc" } } } },
+        scenes: { orderBy: { sceneNumber: "asc" }, include: { shots: { orderBy: { shotNumber: "asc" } } } },
       },
     }),
     studioDb.asset.findMany({ orderBy: { createdAt: "desc" }, take: 120,
-      include: { provenance: true, project: { select: { externalId: true, title: true } } } }),
+      include: { project: { select: { id: true, title: true } } } }),
     studioDb.rightsRecord.findMany({ take: 80,
-      include: { asset: { include: { project: { select: { externalId: true, title: true } } } } } }),
-    studioDb.run.findMany({ orderBy: { createdAt: "desc" }, take: 40, include: { project: { select: { externalId: true } } } }),
+      include: { asset: { include: { project: { select: { id: true, title: true } } } } } }),
+    studioDb.run.findMany({ orderBy: { startedAt: "desc" }, take: 40 }),
     studioDb.asset.count(),
-    studioDb.provenanceRecord.count(),
-    studioDb.provenanceRecord.count({ where: { c2paManifestUri: { not: null } } }),
-    studioDb.asset.count({ where: { type: "MASTER" } }),
+    studioDb.asset.count({ where: { assetType: "master" } }),
     studioDb.rightsRecord.count({ where: { approvedForRelease: false } }),
-    studioDb.asset.findMany({ take: 2000, select: { id: true, checksum: true, type: true, provenance: { select: { modelName: true } } } }),
-    studioDb.run.findMany({ where: { entityType: { in: ["render", "assemble"] } }, take: 5000,
-      select: { entityType: true, agentName: true, status: true, costCents: true, latencyMs: true,
-                project: { select: { externalId: true } } } }),
-    studioDb.archivePackage.findMany({ orderBy: { createdAt: "desc" }, take: 80,
-      select: { completenessScore: true, status: true, approval: true, project: { select: { externalId: true } } } }),
+    studioDb.asset.findMany({ take: 2000, select: { id: true, uri: true, assetType: true, modelId: true } }),
+    studioDb.run.findMany({ take: 5000,
+      select: { agentName: true, plane: true, humanGateStatus: true, costCents: true, latencyMs: true } }),
   ]);
 
-  // Cost telemetry / Control Plane aggregates (matrix §8).
+  // Cost telemetry / Control Plane aggregates (matrix §8). agent_runs is a flat trace row
+  // — no entity_type/status/project linkage. Treat completed render/assembly agents as
+  // render runs by agentName; humanGateStatus stands in for run health.
   const engine: Record<string, { count: number; cost: number }> = {};
-  let estCost = 0, runOk = 0, runFail = 0, renderSeconds = 0;
+  let estCost = 0, runOk = 0, runFail = 0, renderSeconds = 0, renderCount = 0;
   const SEC = Number(process.env.ILYRIUM_SHOT_DURATION_SEC ?? 8);
+  const isRender = (name: string | null) => !!name && /render|assemble|i2v|t2v|video|master/i.test(name);
   for (const r of renderRuns) {
     estCost += r.costCents ?? 0;
-    if (r.status === "SUCCEEDED") runOk++; else if (r.status === "FAILED") runFail++;
-    if (r.entityType === "render") {
+    if (r.humanGateStatus === "rejected") runFail++;
+    else if (r.humanGateStatus === "approved" || r.humanGateStatus === "auto_approved") runOk++;
+    if (isRender(r.agentName)) {
+      renderCount++;
       renderSeconds += SEC;
       const k = r.agentName ?? "—";
       engine[k] = engine[k] || { count: 0, cost: 0 };
@@ -54,34 +54,27 @@ export default async function ConsolePage() {
   }
   const engineMix = Object.entries(engine).map(([model, v]) => ({ model, ...v })).sort((a, b) => b.cost - a.cost);
   const costPerRenderSec = renderSeconds ? estCost / renderSeconds : 0;
-  // Archive completeness by project externalId (latest package wins; list is newest-first).
-  const archiveByProject: Record<string, number> = {};
-  for (const a of archivesRaw) { const e = a.project?.externalId; if (e && !(e in archiveByProject)) archiveByProject[e] = a.completenessScore ?? 0; }
 
-  const assetMap: Record<string, { checksum: string | null; type: string; model: string | null }> = {};
-  for (const a of allAssets) assetMap[a.id] = { checksum: a.checksum, type: a.type, model: a.provenance?.modelName ?? null };
+  // uri-addressed asset map for lineage drill-down (no checksum/provenance graph).
+  const assetMap: Record<string, { uri: string; assetType: string | null; model: string | null }> = {};
+  for (const a of allAssets) assetMap[a.id] = { uri: a.uri, assetType: a.assetType, model: a.modelId ?? null };
 
   const projectsOut = projects.map((p) => ({
-    id: p.id, externalId: p.externalId, title: p.title, type: p.type, status: p.status,
-    rightsStatus: p.rightsStatus, approval: p.approval,
+    id: p.id, title: p.title, type: p.type, status: p.status,
+    greenlightLevel: p.greenlightLevel ?? null,
     counts: { scenes: p._count.scenes, shots: p._count.shots, assets: p._count.assets },
-    kernel: (p.styleKernel as any)?.name ?? null,
     scenes: p.scenes.map((s) => ({
-      number: s.orderIndex, title: s.title,
-      shots: s.shots.map((sh) => ({ shotNumber: sh.shotNumber, prompt: sh.prompt })),
+      number: s.sceneNumber ?? 0, title: s.description,
+      shots: s.shots.map((sh) => ({ shotNumber: sh.shotNumber, prompt: sh.description })),
     })),
   }));
 
   const assets = assetsRecent.map((a) => ({
-    id: a.id, type: a.type, checksum: a.checksum,
-    projectExternalId: a.project?.externalId ?? null,
-    projectTitle: a.project?.title ?? a.project?.externalId ?? "—",
-    model: a.provenance?.modelName ?? null, provider: a.provenance?.modelProvider ?? null,
-    seed: a.provenance?.seed ?? null,
-    prompt: (a.provenance?.generationParams as any)?.prompt ?? null,
-    sceneNumber: (a.provenance?.generationParams as any)?.sceneNumber ?? null,
-    upstreamIds: a.provenance?.upstreamAssetIds ?? [],
-    c2pa: !!a.provenance?.c2paManifestUri,
+    id: a.id, assetType: a.assetType, uri: a.uri, rating: a.rating,
+    projectId: a.project?.id ?? null,
+    projectTitle: a.project?.title ?? "—",
+    model: a.modelId ?? null,
+    sceneNumber: null as number | null,
     createdAt: a.createdAt.toISOString(),
   }));
 
@@ -89,27 +82,33 @@ export default async function ConsolePage() {
     .map((r) => ({ r, risk: scoreRights(r) }))
     .sort((a, b) => Number(a.r.approvedForRelease) - Number(b.r.approvedForRelease) || b.risk.score - a.risk.score)
     .map(({ r, risk }) => ({
-      rightsId: r.id, assetChecksum: r.asset?.checksum ?? null,
-      projectExternalId: r.asset?.project?.externalId ?? null,
+      rightsId: r.id,
+      assetId: r.asset?.id ?? null,
+      assetUri: r.asset?.uri ?? null,
+      projectId: r.asset?.project?.id ?? null,
       projectTitle: r.asset?.project?.title ?? "—",
-      approvedForRelease: r.approvedForRelease, reviewerId: r.reviewerId,
-      qaPassed: r.qaPassed, noLikenessConfirmed: r.noLikenessConfirmed, risk,
+      approvedForRelease: !!r.approvedForRelease,
+      releaseStatus: r.releaseStatus ?? null,
+      riskLevel: r.riskLevel ?? null,
+      risk,
     }));
 
   const runRows = runs.map((run) => ({
-    id: run.id, when: run.createdAt.toISOString(), status: run.status,
-    agentName: run.agentName, entityType: run.entityType, approvedBy: run.approvedBy,
-    costCents: run.costCents ?? null, projectExternalId: run.project?.externalId ?? null,
+    id: run.id,
+    when: (run.startedAt ?? run.completedAt ?? new Date()).toISOString(),
+    humanGateStatus: run.humanGateStatus ?? null,
+    agentName: run.agentName, plane: run.plane,
+    costCents: run.costCents ?? null,
   }));
 
   const kpis = {
-    totalAssets, provCount, c2paCount, masterCount, pendingCount, projects: projects.length,
-    estCostCents: estCost, runOk, runFail, renderRuns: renderRuns.length,
+    totalAssets, masterCount, pendingCount, projects: projects.length,
+    estCostCents: estCost, runOk, runFail, renderRuns: renderCount,
     costPerRenderSecCents: Math.round(costPerRenderSec * 100) / 100,
   };
 
   return (
     <Workspace projects={projectsOut} assets={assets} queue={queue} runs={runRows} assetMap={assetMap}
-      kpis={kpis} engineMix={engineMix} archiveByProject={archiveByProject} />
+      kpis={kpis} engineMix={engineMix} />
   );
 }

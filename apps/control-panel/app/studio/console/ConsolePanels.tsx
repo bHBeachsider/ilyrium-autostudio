@@ -3,19 +3,21 @@
 import { Fragment, useState } from "react";
 import { useRouter } from "next/navigation";
 
-// Interactive panes for the Oversight Console (Phase C): project filter, the
-// risk-scored rights queue with approve/override actions (→ /api/studio/approve),
-// and a lineage drill-down that resolves provenance.upstreamAssetIds. Receives
-// serialized data from the server component; mutates via the API then refreshes.
+// Interactive panes for the Oversight Console (Phase 1 reconcile): project filter, the
+// risk-scored rights queue with approve/override actions (→ /api/studio/approve), and an
+// asset detail drill-down. Receives serialized data from the server component; mutates via
+// the API then refreshes. Assets are uri-addressed with a lowercase assetType + rating
+// (no checksum/provenance/C2PA); rights are the risk-based model.
 
 type Risk = { score: number; tier: string; severity: string; factors: string[] };
-type AssetRow = { id: string; type: string; checksum: string | null; projectTitle: string; model: string | null; upstreamIds: string[]; c2pa: boolean; seed: string | null };
-type QueueRow = { rightsId: string; assetChecksum: string | null; projectExternalId: string | null; projectTitle: string; approvedForRelease: boolean; reviewerId: string | null; qaPassed: boolean; noLikenessConfirmed: boolean; risk: Risk };
-type RunRow = { id: string; when: string; status: string; agentName: string | null; entityType: string | null; approvedBy: string | null; projectExternalId: string | null };
-type AssetMap = Record<string, { checksum: string | null; type: string; model: string | null }>;
+type AssetRow = { id: string; assetType: string | null; uri: string; rating: string; projectId: string | null; projectTitle: string; model: string | null };
+type QueueRow = { rightsId: string; assetId: string | null; assetUri: string | null; projectId: string | null; projectTitle: string; approvedForRelease: boolean; releaseStatus: string | null; riskLevel: string | null; risk: Risk };
+type RunRow = { id: string; when: string; humanGateStatus: string | null; agentName: string | null; plane: string | null; projectId: string | null };
+type AssetMap = Record<string, { uri: string; assetType: string | null; model: string | null }>;
 
 const SEV: Record<string, string> = { high: "#f85149", medium: "#d29922", low: "#3fb950", override: "#bc8cff" };
 const short = (s?: string | null, n = 8) => (s ? s.slice(0, n) + "…" : "—");
+const uriTail = (u?: string | null, n = 18) => (u ? (u.length > n ? "…" + u.slice(-n) : u) : "—");
 const fmt = (iso: string) => new Date(iso).toLocaleString("en-US", { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" });
 
 function Pane({ title, hint, children }: { title: string; hint?: string; children: React.ReactNode }) {
@@ -31,7 +33,7 @@ function Pane({ title, hint, children }: { title: string; hint?: string; childre
 }
 
 export default function ConsolePanels({ assets, queue, runs, projectOpts, assetMap }:
-  { assets: AssetRow[]; queue: QueueRow[]; runs: RunRow[]; projectOpts: { externalId: string; title: string }[]; assetMap: AssetMap }) {
+  { assets: AssetRow[]; queue: QueueRow[]; runs: RunRow[]; projectOpts: { id: string; title: string }[]; assetMap: AssetMap }) {
   const router = useRouter();
   const [project, setProject] = useState<string>("all");
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -41,35 +43,21 @@ export default function ConsolePanels({ assets, queue, runs, projectOpts, assetM
   const [busy, setBusy] = useState<string | null>(null);
   const [msg, setMsg] = useState<{ id: string; text: string; ok: boolean } | null>(null);
 
-  const inProject = (extId: string | null) => project === "all" || extId === project;
-  const fAssets = assets.filter((a) => inProject(projectExtForAsset(a)));
-  const fQueue = queue.filter((q) => inProject(q.projectExternalId));
-  const fRuns = runs.filter((r) => inProject(r.projectExternalId));
-
-  // assets carry projectTitle not externalId; map title→ext is lossy, so filter
-  // assets by title match when a project is selected (titles are unique enough here).
-  function projectExtForAsset(a: AssetRow): string | null {
-    const hit = projectOpts.find((p) => p.title === a.projectTitle);
-    return hit?.externalId ?? null;
-  }
+  const inProject = (id: string | null) => project === "all" || id === project;
+  const fAssets = assets.filter((a) => inProject(a.projectId));
+  const fQueue = queue.filter((q) => inProject(q.projectId));
+  const fRuns = runs.filter((r) => inProject(r.projectId));
 
   async function approve(item: QueueRow, mode: "clear" | "override") {
     if (!reviewer.trim()) { setMsg({ id: item.rightsId, text: "Reviewer required.", ok: false }); return; }
     if (mode === "override" && !overrideReason.trim()) { setMsg({ id: item.rightsId, text: "Override reason required.", ok: false }); return; }
-    if (!item.projectExternalId) { setMsg({ id: item.rightsId, text: "Master has no project externalId.", ok: false }); return; }
+    if (!item.projectId) { setMsg({ id: item.rightsId, text: "Master has no project id.", ok: false }); return; }
     setBusy(item.rightsId); setMsg(null);
-    const body: any = { externalId: item.projectExternalId, checksum: item.assetChecksum, reviewerId: reviewer.trim() };
+    // Risk-based approve: clear the substantive risks to none/low so the gate can flip
+    // approvedForRelease, or log an explicit override. uri pins the specific master.
+    const body: any = { projectId: item.projectId, uri: item.assetUri ?? undefined, reviewerId: reviewer.trim() };
     if (mode === "override") { body.override = true; body.overrideReason = overrideReason.trim(); }
-    else {
-      // "Clear & approve": the A4 reviewer signs off QA + the no-likeness legal gate
-      // and marks rights N/A (fully-synthetic, no licensed inputs). Server re-derives
-      // blockers and only flips approvedForRelease if truly clear.
-      Object.assign(body, {
-        qaPassed: true, noLikenessConfirmed: true,
-        sourceMaterialState: "NOT_APPLICABLE", likenessState: "NOT_APPLICABLE",
-        voiceState: "NOT_APPLICABLE", musicLicenseState: "NOT_APPLICABLE", vendorTermsState: "NOT_APPLICABLE",
-      });
-    }
+    else Object.assign(body, { likenessRisk: "none", musicRisk: "none", trademarkRisk: "none", riskLevel: "low" });
     try {
       const res = await fetch("/api/studio/approve", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
       const data = await res.json();
@@ -89,18 +77,18 @@ export default function ConsolePanels({ assets, queue, runs, projectOpts, assetM
 
   return (
     <>
-      {/* PANE 2 — Workspace + lineage (drill-down) */}
-      <Pane title="② Workspace + lineage" hint="click a row → upstream lineage">
+      {/* PANE 2 — Workspace + assets (drill-down) */}
+      <Pane title="② Workspace + assets" hint="click a row → asset detail">
         <div className="mb-2">
           <select value={project} onChange={(e) => setProject(e.target.value)}
             className="bg-ink border border-edge rounded-md text-fg text-xs px-2 py-1">
             <option value="all">All projects</option>
-            {projectOpts.map((p) => <option key={p.externalId} value={p.externalId}>{p.title}</option>)}
+            {projectOpts.map((p) => <option key={p.id} value={p.id}>{p.title}</option>)}
           </select>
         </div>
         <table className="w-full border-collapse text-xs">
           <thead><tr className="text-dim text-left">
-            <th className="py-1 px-1.5">Project</th><th>Type</th><th>Checksum</th><th>Model</th><th>↑</th><th>C2PA</th>
+            <th className="py-1 px-1.5">Project</th><th>Type</th><th>URI</th><th>Model</th><th>Rating</th>
           </tr></thead>
           <tbody>
             {fAssets.map((a) => (
@@ -108,22 +96,18 @@ export default function ConsolePanels({ assets, queue, runs, projectOpts, assetM
                 <tr onClick={() => setExpanded(expanded === a.id ? null : a.id)}
                   className="border-t border-edge cursor-pointer hover:bg-ink">
                   <td className="py-1 px-1.5">{a.projectTitle}</td>
-                  <td><span className={a.type === "MASTER" ? "text-mauve" : "text-dim"}>{a.type}</span></td>
-                  <td className="font-mono text-dim">{short(a.checksum)}</td>
+                  <td><span className={a.assetType === "master" ? "text-mauve" : "text-dim"}>{a.assetType ?? "—"}</span></td>
+                  <td className="font-mono text-dim">{uriTail(a.uri, 14)}</td>
                   <td>{a.model ?? "—"}</td>
-                  <td>{a.upstreamIds.length}</td>
-                  <td>{a.c2pa ? <span className="text-good">✓</span> : <span className="text-dim">—</span>}</td>
+                  <td><span className={a.rating === "clean" ? "text-dim" : "text-amber"}>{a.rating}</span></td>
                 </tr>
                 {expanded === a.id && (
                   <tr className="bg-ink">
-                    <td colSpan={6} className="px-3 py-2 text-[11px] text-dim">
-                      <div className="mb-1 text-fg">Lineage for {a.type} {short(a.checksum)}</div>
-                      {a.seed && <div>seed: <span className="font-mono">{a.seed}</span></div>}
-                      {a.upstreamIds.length === 0 && <div>No upstream ingredients recorded.</div>}
-                      {a.upstreamIds.map((id) => {
-                        const up = assetMap[id];
-                        return <div key={id} className="font-mono">↑ {up ? `${up.type} ${short(up.checksum)} (${up.model ?? "?"})` : id.slice(0, 12)}</div>;
-                      })}
+                    <td colSpan={5} className="px-3 py-2 text-[11px] text-dim">
+                      <div className="mb-1 text-fg">Detail for {a.assetType ?? "asset"} {short(a.id)}</div>
+                      <div className="break-all font-mono">{a.uri}</div>
+                      <div>rating: {a.rating}{a.model ? ` · model: ${a.model}` : ""}</div>
+                      {assetMap[a.id] && <div className="font-mono">graph: {assetMap[a.id].assetType ?? "—"} ({assetMap[a.id].model ?? "?"})</div>}
                     </td>
                   </tr>
                 )}
@@ -147,7 +131,7 @@ export default function ConsolePanels({ assets, queue, runs, projectOpts, assetM
             <div className="flex justify-between items-center">
               <span className="font-semibold text-[13px]">{item.projectTitle}</span>
               <span className="text-[11px]" style={{ color: item.approvedForRelease ? "#3fb950" : SEV[item.risk.severity] }}>
-                {item.approvedForRelease ? `RELEASED · ${item.reviewerId ?? ""}` : `${item.risk.tier} · risk ${item.risk.score} · ${item.risk.severity}`}
+                {item.approvedForRelease ? `RELEASED · ${item.releaseStatus ?? ""}` : `${item.risk.tier} · risk ${item.risk.score} · ${item.risk.severity}`}
               </span>
             </div>
             <div className="text-[11px] text-dim mt-1">
@@ -159,12 +143,12 @@ export default function ConsolePanels({ assets, queue, runs, projectOpts, assetM
                 {openApprove === item.rightsId ? (
                   <div className="border border-edge rounded-md p-2 bg-panel">
                     <div className="text-[11px] text-dim mb-2">
-                      Confirm you have verified <b className="text-fg">no real-person likeness</b> and accept QA. This is the non-delegable A4 release decision.
+                      Clear the substantive risks (<b className="text-fg">likeness / music / trademark</b>) and accept the A4 release decision. This is non-delegable.
                     </div>
                     <div className="flex gap-2 flex-wrap">
                       <button disabled={busy === item.rightsId} onClick={() => approve(item, "clear")}
                         className="bg-good/20 text-good border border-good/40 rounded-md px-3 py-1 text-xs disabled:opacity-50">
-                        {busy === item.rightsId ? "…" : "✓ Confirm & approve"}
+                        {busy === item.rightsId ? "…" : "✓ Clear & approve"}
                       </button>
                       <button disabled={busy === item.rightsId} onClick={() => setOpenApprove(null)}
                         className="border border-edge text-dim rounded-md px-3 py-1 text-xs">Cancel</button>
@@ -196,17 +180,20 @@ export default function ConsolePanels({ assets, queue, runs, projectOpts, assetM
       {/* PANE 4 — Trace timeline */}
       <Pane title="④ Trace timeline" hint="agent · render · approval runs">
         {fRuns.length === 0 && <div className="text-dim text-[13px]">No runs recorded yet.</div>}
-        {fRuns.map((run) => (
-          <div key={run.id} className="flex gap-2.5 text-xs py-1.5 border-t border-edge">
-            <span className="text-dim min-w-24">{fmt(run.when)}</span>
-            <span className="min-w-20" style={{ color: run.status === "SUCCEEDED" ? "#3fb950" : run.status === "FAILED" ? "#f85149" : "#d29922" }}>{run.status}</span>
-            <span className="flex-1">
-              <b>{run.agentName ?? run.entityType ?? "run"}</b>
-              {run.approvedBy && <span className="text-mauve"> · approved by {run.approvedBy}</span>}
-              {run.projectExternalId && <span className="text-dim"> · {run.projectExternalId}</span>}
-            </span>
-          </div>
-        ))}
+        {fRuns.map((run) => {
+          const gs = run.humanGateStatus;
+          const color = gs === "approved" || gs === "auto_approved" ? "#3fb950" : gs === "rejected" ? "#f85149" : "#d29922";
+          return (
+            <div key={run.id} className="flex gap-2.5 text-xs py-1.5 border-t border-edge">
+              <span className="text-dim min-w-24">{fmt(run.when)}</span>
+              <span className="min-w-20" style={{ color }}>{gs ?? "—"}</span>
+              <span className="flex-1">
+                <b>{run.agentName ?? "run"}</b>
+                {run.plane && <span className="text-mauve"> · {run.plane}</span>}
+              </span>
+            </div>
+          );
+        })}
       </Pane>
     </>
   );

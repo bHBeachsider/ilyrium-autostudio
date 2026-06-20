@@ -1,39 +1,36 @@
 import { NextResponse } from "next/server";
 import studioDb from "../../../../lib/studio-db";
+import { validPlane } from "../../../../lib/studio-writes";
 
 // POST /api/studio/run
-// Records a Run/Trace row for a render, assembly, or agent action (matrix P1:
-// render-time trace rows). Feeds the Control Plane (cost-per-finished-second,
-// provider mix, run health) and the trace timeline. Self-sufficient: upserts the
-// project so it works alongside /api/studio/asset.
+// Records an agent_runs trace row for a render/assembly/agent action. Maps onto the REAL
+// agent_runs columns (agent_name, plane, model_used, tokens, cost/latency,
+// human_gate_status, started/completed). The idealized project_id/entity/inputs/outputs
+// are dropped — agent_runs is a flat trace row; entity linkage lives in gate_approvals.
 //
-// Body: { externalId, entityType, entityId?, agentName?, provider?, model?, seed?,
-//         status?, costCents?, latencyMs?, durationSec?, inputs?, outputs? }
+// Body: { agentName|model, plane?, model?, tokensIn?, tokensOut?, costCents?, latencyMs?,
+//         humanGateStatus?, inputRef?, outputRef? }
+const GATE = new Set(["pending", "approved", "rejected", "auto_approved", "timeout", "revision_requested"]);
+
 export async function POST(request: Request) {
   try {
     const b = await request.json();
-    const { externalId, entityType, entityId, agentName, provider, model, seed,
-      status, costCents, latencyMs, durationSec, inputs, outputs } = b;
-    if (!externalId || !entityType) {
-      return NextResponse.json({ error: "externalId and entityType are required." }, { status: 400 });
-    }
-    const project = await studioDb.project.upsert({
-      where: { externalId }, update: {},
-      create: { externalId, title: externalId, type: "AD" },
-    });
+    const agentName = b.agentName ?? b.model ?? b.agent;
+    if (!agentName) return NextResponse.json({ error: "agentName is required." }, { status: 400 });
 
-    const STATUS = new Set(["QUEUED", "RUNNING", "SUCCEEDED", "FAILED"]);
     const run = await studioDb.run.create({
       data: {
-        project: { connect: { id: project.id } },
-        entityType, entityId: entityId ?? null,
-        agentName: agentName ?? model ?? null,
-        status: STATUS.has(status) ? status : "SUCCEEDED",
-        costCents: costCents != null ? Math.round(costCents) : null,
-        latencyMs: latencyMs != null ? Math.round(latencyMs) : null,
-        inputs: { provider: provider ?? null, model: model ?? null, seed: seed ?? null,
-                  durationSec: durationSec ?? null, ...(inputs ?? {}) },
-        outputs: outputs ?? null,
+        agentName,
+        plane: validPlane(b.plane),
+        modelUsed: b.model ?? null,
+        inputRef: b.inputRef ?? null,
+        outputRef: b.outputRef ?? null,
+        tokensIn: b.tokensIn != null ? Math.round(b.tokensIn) : null,
+        tokensOut: b.tokensOut != null ? Math.round(b.tokensOut) : null,
+        costCents: b.costCents != null ? Math.round(b.costCents) : null,
+        latencyMs: b.latencyMs != null ? Math.round(b.latencyMs) : null,
+        humanGateStatus: GATE.has(b.humanGateStatus) ? b.humanGateStatus : null,
+        completedAt: new Date(),
       },
     });
     return NextResponse.json({ ok: true, runId: run.id }, { status: 201 });
