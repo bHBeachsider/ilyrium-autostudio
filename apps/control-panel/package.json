@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "vitest run"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",
@@ -25,6 +26,7 @@
     "postcss": "^8.5.15",
     "prisma": "^7.8.0",
     "tailwindcss": "^4.3.0",
-    "typescript": "6.0.3"
+    "typescript": "6.0.3",
+    "vitest": "^4.1.9"
   }
 }
