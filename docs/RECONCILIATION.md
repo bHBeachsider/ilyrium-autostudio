@@ -45,9 +45,25 @@ converge.
 | `neondb` @ `ep-gentle-fire` | nothing | — | — | **ORPHANED** (no `.env`/code reference) → delete via Neon console |
 | `neondb` @ `ep-plain-haze` | **PermitHub** (different product) | — | c-2 | **DO NOT TOUCH** |
 
-- **`ilyrium` is ONE logical DB with two Neon branches** (dev `studio_os_branch1` /
-  `ep-morning-frost`; prod `production`=`br-spring-rain-ap81nd7m` / current primary compute
-  `ep-young-voice`). Endpoint ids drift; **branch ids are the stable identity.**
+### Definitive Neon project topology (via `neonctl`, 2026-06-20) — ⚠️ names are INVERTED
+There are **three** Ilyrium.io projects; the project NAMES do not match their contents.
+**Identify projects by ID, never by name.**
+| Project ID | project **name** | endpoint(s) | databases | verdict |
+|---|---|---|---|---|
+| `patient-star-32154915` | **`studio-os`** | `ep-young-voice-apndapaf` (+ `ep-morning-frost` dev) | **`ilyrium`** (the real studio DB, `rating` promoted, 7 assets) + neondb | **CANONICAL — NEVER delete** |
+| `summer-forest-00092208` | `ilyrium-studio-db` | (`ep-purple-shape`, c-8) | **`ilyrium_memory`** (pgvector) + neondb | **keep** |
+| `patient-resonance-78640326` | **`ilyrium`** | `ep-gentle-fire-ap8c0f9o` | **`neondb` only** (no real data) | **ORPHAN → delete this project** |
+
+- **The real `ilyrium` lives in the project NAMED `studio-os`** (`patient-star-32154915`),
+  two branches: `production` (`br-odd-surf-ap2vfh9b`) + `studio_os_branch1`
+  (`br-rough-river-apoi1602`), endpoint `ep-young-voice-apndapaf` (the prior
+  `br-spring-rain` on record was stale). The dev `.env` host `ep-morning-frost` is a compute
+  of this same project/DB.
+- **The orphan to delete is the project NAMED `ilyrium`** (`patient-resonance-78640326`,
+  endpoint `ep-gentle-fire`, only an empty `neondb`). Do NOT confuse it with the real DB —
+  delete strictly **by project ID `patient-resonance-78640326`**.
+- Identify by **project ID + database content**, not by name or `ep-…` endpoint (endpoint
+  ids drift; project names here are actively misleading).
 - **Distribution question — RESOLVED:** "distribution" is a **`plane` enum value**
   (`agent_runs.plane`, `event_log.producer_plane` ∈
   `concept|production|rights|distribution|studio_os`) within the single `ilyrium` DB. There
