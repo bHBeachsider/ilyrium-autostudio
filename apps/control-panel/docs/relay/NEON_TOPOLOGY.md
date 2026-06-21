@@ -11,7 +11,7 @@
 |---|---|---|---|---|
 | **`patient-star-32154915`** | `studio-os` | `ep-young-voice-apndapaf` (prod) · `ep-morning-frost-apbgxh31` (dev) | **`ilyrium`** (REAL — `rating` live, 7 assets/2 projects) + `neondb` | **KEEP — production** |
 | **`summer-forest-00092208`** | `ilyrium-studio-db` | `ep-purple-shape-aqhd4whp` (c-8) | **`ilyrium_memory`** (pgvector/LangChain) + `neondb` | **KEEP — separate memory store** |
-| **`patient-resonance-78640326`** | `ilyrium` | `ep-gentle-fire-ap8c0f9o` | **`neondb` only** (dead Campaign/Scene/Prisma scaffold; no real data) | **ORPHAN — delete candidate** |
+| **`patient-resonance-78640326`** | `ilyrium` | `ep-gentle-fire-ap8c0f9o` | `neondb`: **public** Campaign(10)/Scene(34) + **studio** schema **POPULATED** (5 projects, 21 assets, 24 runs, 21 provenance, 18 scenes/shots, 4 rights, 3 archive) | **ORPHAN but NOT empty** — backed up; **SUSPEND, do not delete without review** |
 
 ## Canonical production = `studio-os` (`patient-star-32154915`) / `ilyrium`
 - Branches: `production` (`br-odd-surf-ap2vfh9b`, primary compute `ep-young-voice-apndapaf`) +
@@ -25,11 +25,22 @@
 - pgvector/LangChain long-term memory; used by `apps/auto-studio/memory/vector_store.py`
   (`NEON_DATABASE_URL` in the repo-root `.env`). Region c-8. **Do not touch.**
 
-## Orphan = `patient-resonance-78640326` (display name `ilyrium`) / `neondb`
-- Endpoint `ep-gentle-fire` (the "struck" endpoint from earlier). Contains only `neondb` with
-  the dead Campaign/Scene/`_prisma_migrations` scaffold — no real data, referenced by nothing
-  in the repo. **Delete (or suspend) strictly by project ID `patient-resonance-78640326`.**
-  Never delete by the display name `ilyrium` — that risks confusion with the real DB.
+## Orphan = `patient-resonance-78640326` (display name `ilyrium`) / `neondb` — NOT empty
+- Endpoint `ep-gentle-fire` (the "struck" endpoint). Referenced by **no** `.env`/code/`$PROFILE`
+  (only docs). BUT it is **not empty scaffold** — `neondb` holds REAL early data:
+  - `public`: `Campaign` (10 DRAFT — incl. "Test"/"Test 2" + restaurant-ad drafts), `Scene` (34),
+    `_prisma_migrations` (the `20260531182246_init` Campaign migration — it WAS applied here,
+    contra the determination's "never applied").
+  - `studio`: the idealized `studio.prisma` graph DEPLOYED + populated — `Project` 5, `Asset` 21,
+    `Run` 24, `Scene` 18, `Shot` 18, `ProvenanceRecord` 21, `RightsRecord` 4, `ArchivePackage` 3
+    (provenance/archive have **no equivalent** in the real `ilyrium` model). This is the early
+    "Cowork" Phase-A data, *separate* from the real `ilyrium` (7 assets/2 projects).
+- **Full backup taken:** `C:\Users\bradu\patient-resonance-neondb-backup-20260621.sql`
+  (pg_dump, public+studio, 108 KB) — so nothing is at risk.
+- **Recommendation: SUSPEND, do NOT delete** until Brad reviews the actual `studio.*` data
+  (are the 21 assets real renders worth keeping?). Suspend is reversible and ~free for this
+  little data. If/when deletion is chosen, do it **strictly by project ID
+  `patient-resonance-78640326`** (never by the display name `ilyrium`).
 
 ## Connection / CLI hygiene (carry forward)
 - Prisma CLI: set `DATABASE_URL` explicitly; **direct (non-pooler)** host for DDL; drop

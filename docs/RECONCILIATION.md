@@ -52,16 +52,19 @@ There are **three** Ilyrium.io projects; the project NAMES do not match their co
 |---|---|---|---|---|
 | `patient-star-32154915` | **`studio-os`** | `ep-young-voice-apndapaf` (+ `ep-morning-frost` dev) | **`ilyrium`** (the real studio DB, `rating` promoted, 7 assets) + neondb | **CANONICAL — NEVER delete** |
 | `summer-forest-00092208` | `ilyrium-studio-db` | (`ep-purple-shape`, c-8) | **`ilyrium_memory`** (pgvector) + neondb | **keep** |
-| `patient-resonance-78640326` | **`ilyrium`** | `ep-gentle-fire-ap8c0f9o` | **`neondb` only** (no real data) | **ORPHAN → delete this project** |
+| `patient-resonance-78640326` | **`ilyrium`** | `ep-gentle-fire-ap8c0f9o` | `neondb`: Campaign(10)/Scene(34) + a **POPULATED `studio` schema** (5 proj/21 assets/24 runs/21 provenance/3 archive) | **ORPHAN but NOT empty — backed up; SUSPEND, do not delete without review** |
 
 - **The real `ilyrium` lives in the project NAMED `studio-os`** (`patient-star-32154915`),
   two branches: `production` (`br-odd-surf-ap2vfh9b`) + `studio_os_branch1`
   (`br-rough-river-apoi1602`), endpoint `ep-young-voice-apndapaf` (the prior
   `br-spring-rain` on record was stale). The dev `.env` host `ep-morning-frost` is a compute
   of this same project/DB.
-- **The orphan to delete is the project NAMED `ilyrium`** (`patient-resonance-78640326`,
-  endpoint `ep-gentle-fire`, only an empty `neondb`). Do NOT confuse it with the real DB —
-  delete strictly **by project ID `patient-resonance-78640326`**.
+- **The orphan is the project NAMED `ilyrium`** (`patient-resonance-78640326`, endpoint
+  `ep-gentle-fire`) — but it is **NOT empty**: it holds the early "Cowork" data (Campaign
+  drafts + a populated `studio` schema, incl. provenance/archive with no real-`ilyrium`
+  equivalent). **Backed up** to `C:\Users\bradu\patient-resonance-neondb-backup-20260621.sql`.
+  **Recommendation: SUSPEND, do NOT delete** until reviewed. If ever deleted, strictly by
+  project ID `patient-resonance-78640326` (never by the display name `ilyrium`).
 - Identify by **project ID + database content**, not by name or `ep-…` endpoint (endpoint
   ids drift; project names here are actively misleading).
 - **Distribution question — RESOLVED:** "distribution" is a **`plane` enum value**
@@ -138,7 +141,7 @@ secure it.)
 | Push the 4 doc-only commits → `origin/feat/relay-schema-reconcile` | CC (on Brad's go) | **pending approval** |
 | Forward doc commits into `feat/creative-loop-v1` (optional) | CC (on Brad's go) | pending |
 | Final branch-strategy sign-off | Brad | pending |
-| Delete orphaned `ep-gentle-fire`/`neondb` Neon project | **Brad (Neon console)** | repo confirms nothing references it |
+| **SUSPEND** (not delete) `patient-resonance-78640326` — it has real early data (backed up); review the `studio.*` assets before any irreversible delete | **Brad (Neon console)** | nothing references it; data preserved |
 | Back up `Blue_Angels_Kathy_Flyby` (45 GB, unbacked) | **Brad** | recommended |
 | Do NOT delete `film_projects` | — | corrected (premise was wrong) |
 | Phase 2 (Relay) design | CC, fresh session | brainstorm-gated; off `creative-loop-v1` |
