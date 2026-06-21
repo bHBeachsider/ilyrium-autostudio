@@ -1,8 +1,8 @@
-# Relay `decide()` — Slice 1 design (APPROVED; DESIGN ONLY)
+# Relay `decide()` — Slice 1 design (APPROVED + CONFIRMED; DESIGN ONLY)
 
-> **Status:** approved slice-1 design. **No implementation in this slice** — no TypeScript,
-> no tests. Implementation is a SEPARATE, later slice gated on this doc. Some mapping VALUES
-> are marked **PROVISIONAL** pending Brad's final confirm (the structure is settled).
+> **Status:** approved, fully confirmed slice-1 design (mapping values signed off by Brad
+> 2026-06-21). **No implementation in this slice** — no TypeScript, no tests. Implementation is
+> a SEPARATE, later slice gated on this doc.
 
 ## Scope
 `decide()` is Relay's single governed gate, as a **pure, deterministic function**. It runs
@@ -52,14 +52,14 @@ Decision = {
 ## 2. Fail-closed semantics (settled — rating-only)
 `decide()` branches solely on `rating`, so the **sole** fail-closed trigger is an
 **unrecognized `rating`** (any value not `clean`/`mature`/`uncensored`) → the **most-restrictive**
-decision: **no targets, most-gated tier**, `reasons: ['unrecognized rating → fail-closed (deny)']`.
+decision: **no targets, `gated` tier**, `reasons: ['unrecognized rating → fail-closed (deny)']`.
 - There are **no** rights/ambiguous-state clauses — `decide()` doesn't take those inputs, so such
   rules would be dead. (`allowed === false` is a thrown contract error, not a fail-closed return.)
 - This branch is a **runtime safety net, not an expected path**: the `Rating` type prevents a
   valid caller from reaching it. The implementation slice's test matrix must cover it explicitly
   by forcing an invalid `rating`.
 
-## 3. Mapping table — DEFAULTS (⚠️ PROVISIONAL — Brad to confirm; structure fixed, values are a product call)
+## 3. Mapping table (CONFIRMED 2026-06-21 — values signed off; structure + values settled)
 Table-driven: changing this is a **data edit**, not a logic change.
 
 | `rating` | `targets` | `tier` |
@@ -69,13 +69,12 @@ Table-driven: changing this is a **data edit**, not a logic change.
 | `uncensored` | `republic_archive` | `gated` |
 | (unrecognized) | — (none) | `gated` |
 
-- **Tiers (default = 2):** `public` (free/open) and `gated` (membership/entitlement required).
-  `premium` is an easy future extension if a third tier is wanted.
-- **`Target` ids** (`public_web` / `discord` / `republic_archive`) are **PROVISIONAL** identifiers
-  drawn from the brand architecture (Republic Archive = membership). Concrete pushing to them is
-  the distribution slice's job, not this one.
-- ⚠️ **This default makes `uncensored` MORE restricted than `mature`** (members-only
-  `republic_archive` vs. `discord` + members). **Brad to confirm or change.**
+- **Tiers (2):** `public` (free/open) and `gated` (membership/entitlement required). `premium`
+  remains an easy future extension if a third tier is ever wanted.
+- **`Target` ids** (`public_web` / `discord` / `republic_archive`) are **CONFIRMED** identifiers
+  (Republic Archive = membership). Concrete pushing to them is the distribution slice's job.
+- ✅ **`uncensored` is intentionally MORE restricted than `mature`** — members-only
+  `republic_archive` vs. `discord` + members (confirmed by Brad).
 
 ## 4. Implementation structure (design note — NOT code)
 `decide()` = assert `allowed` (throw `DecideContractError` if false) → look up `rating` in
