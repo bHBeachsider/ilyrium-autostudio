@@ -15,6 +15,9 @@
 > the separate **`ilyrium_memory`** (pgvector) DB — out of scope regardless (different
 > database, do not touch). Full corrected map + gate logic + the Step-9 promotion plan:
 > see `RUNBOOK_phase1.md` → "Endpoint record correction + Step-9 promotion plan."
+> **Definitive, load-bearing Neon map (project/branch ids + re-verify commands + anti-patterns):
+> `docs/relay/NEON_TOPOLOGY.md`.** (NB: this doc's `br-spring-rain-ap81nd7m` is STALE — the real
+> production branch is `br-odd-surf-ap2vfh9b`, project `patient-star-32154915`.)
 
 ---
 
