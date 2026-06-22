@@ -7,11 +7,27 @@ import os
 from films.woods_of_west import script
 
 
-def _generate_still(prompt: str, out_path: str, aspect_ratio: str = "16:9",
-                    resolution: str = "2K") -> str:
+def _subscribe_with_retry(endpoint: str, arguments: dict, attempts: int = 3):
+    """fal_client.subscribe with backoff retry on transient errors (ECONNRESET,
+    timeouts, 5xx). Re-raises the last error if all attempts fail."""
+    import time
+    import fal_client
+    last = None
+    for i in range(attempts):
+        try:
+            return fal_client.subscribe(endpoint, arguments=arguments, with_logs=False)
+        except Exception as e:  # transport resets / transient queue errors
+            last = e
+            if i < attempts - 1:
+                wait = 2 ** (i + 1)
+                print(f"⚠️  fal {endpoint} attempt {i+1}/{attempts} failed ({type(e).__name__}); retry in {wait}s")
+                time.sleep(wait)
+    raise last
+
+
+def _generate_still(prompt: str, out_path: str, aspect_ratio: str = "16:9") -> str:
     """Text-to-image via Fal nano-banana-pro (Gemini 3 Pro Image). Endpoint is
-    overridable via ILYRIUM_T2I_ENDPOINT; the result shape matches the studio's
-    other fal calls (result["images"][i]["url"])."""
+    overridable via ILYRIUM_T2I_ENDPOINT; result shape is result["images"][i]["url"]."""
     if not os.getenv("FAL_KEY"):
         try:
             from dotenv import load_dotenv
@@ -20,14 +36,11 @@ def _generate_still(prompt: str, out_path: str, aspect_ratio: str = "16:9",
             pass
     if not os.getenv("FAL_KEY"):
         raise RuntimeError("FAL_KEY is not set — cannot generate character sheets.")
-    import fal_client
     import requests
-    endpoint = os.getenv("ILYRIUM_T2I_ENDPOINT", "fal-ai/nano-banana-pro/text-to-image")
-    result = fal_client.subscribe(
+    endpoint = os.getenv("ILYRIUM_T2I_ENDPOINT", "fal-ai/nano-banana-pro")
+    result = _subscribe_with_retry(
         endpoint,
-        arguments={"prompt": prompt, "aspect_ratio": aspect_ratio,
-                   "resolution": resolution, "num_images": 1},
-        with_logs=True,
+        {"prompt": prompt, "aspect_ratio": aspect_ratio, "num_images": 1},
     )
     images = result.get("images") or []
     first = images[0] if images else None
