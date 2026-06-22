@@ -46,6 +46,17 @@ def build_media_list(shots, keyframe_dir, clip_dir, audio_dir, render_clip, rend
     return media
 
 
+def render_shot_audio(shot, audio_dir):
+    """ElevenLabs dialogue for one shot. Returns the mp3 path, None for silent
+    shots, and None (with a warning) on TTS failure — audio is optional and must
+    NEVER abort an expensive video render."""
+    try:
+        return voices.render_shot_dialogue(shot, audio_dir)
+    except Exception as e:
+        print(f"⚠️  shot {shot['id']} dialogue failed ({type(e).__name__}: {e}); continuing silent")
+        return None
+
+
 def render_shot_clip(shot, style, char_refs, keyframe_dir, clip_dir):
     """Keyframe (Fal) + Wan i2v (ComfyUI) for one shot. Returns the clip path, or
     None if EITHER step fails — a single flaky shot is skipped, never fatal to the
@@ -75,7 +86,7 @@ def _render_one_style(shots, style, out_root, music_path=None):
         return render_shot_clip(sh, style, char_refs, kf_dir, clip_dir)
 
     def render_audio(sh):
-        return voices.render_shot_dialogue(sh, aud_dir)
+        return render_shot_audio(sh, aud_dir)
 
     media = build_media_list(shots, kf_dir, clip_dir, aud_dir, render_clip, render_audio)
     master = os.path.join(style_root, f"woods_of_west_{style}.mp4")

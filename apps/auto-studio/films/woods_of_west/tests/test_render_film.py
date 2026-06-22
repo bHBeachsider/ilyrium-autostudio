@@ -64,3 +64,17 @@ def test_render_shot_clip_returns_path_on_success(monkeypatch):
     out = render_film.render_shot_clip({"id": 7, "motion": "pan"}, "cartoon",
                                        {"cal": "c.png"}, "/tmp/kf", "/tmp/clip")
     assert out == "clip7.mp4"
+
+
+def test_render_shot_audio_swallows_tts_failure(monkeypatch):
+    # An ElevenLabs error (e.g. 401) must NOT abort the render — degrade to silent.
+    monkeypatch.setattr(render_film.voices, "render_shot_dialogue", _boom)
+    out = render_film.render_shot_audio({"id": 13, "line": "x"}, "/tmp/aud")
+    assert out is None
+
+
+def test_render_shot_audio_passes_through_path(monkeypatch):
+    monkeypatch.setattr(render_film.voices, "render_shot_dialogue",
+                        lambda shot, d: f"{d}/shot{shot['id']}.mp3")
+    out = render_film.render_shot_audio({"id": 13, "line": "x"}, "/tmp/aud")
+    assert out == "/tmp/aud/shot13.mp3"
