@@ -19,6 +19,10 @@ if _AUTOSTUDIO not in sys.path:
 
 try:
     from dotenv import load_dotenv
+    # Keys (FAL_KEY, ELEVENLABS_API_KEY) live in the repo-root .env; load it first,
+    # then let an auto-studio/.env override if present.
+    _REPO_ROOT = os.path.dirname(os.path.dirname(_AUTOSTUDIO))
+    load_dotenv(os.path.join(_REPO_ROOT, ".env"), override=True)
     load_dotenv(os.path.join(_AUTOSTUDIO, ".env"), override=True)
 except Exception:
     pass
