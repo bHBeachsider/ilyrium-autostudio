@@ -1,138 +1,112 @@
-# Relay Distribution — Slice 2 v1 "governed spine" (design; APPROVED)
+# Relay Distribution — Slice 2 v1 "governed spine" (design; DESIGN ONLY)
 
-> **Status:** approved slice-2 v1 design (Brad, 2026-06-22). **Implementation is a
-> separate step gated on this doc** — TDD, failing test first; no code before the
-> tests. Builds on `DECIDE_DESIGN.md` (slice 1). Scope deliberately **excludes** real
-> connectors, the Graphile Worker, scheduling, retries, and the paywall — those are
-> later slices that *consume* this spine.
+> **Status:** v1 design — **DESIGN ONLY** (no code, no migration, no tests authored here).
+> Implementation is a separate, approval-gated slice that builds from this doc (design →
+> failing test → code). **This doc's approval is the gate to writing code.** Builds on
+> `DECIDE_DESIGN.md` (slice 1, not re-opened).
+>
+> **Revision note (2026-06-22):** the `releases` column set below was reconciled against the
+> **live `ilyrium` DB via `information_schema`** (dev branch), not assumed. This revision sets
+> three decisions explicitly — **`scheduled` is v1-terminal** (no `scheduled→published`),
+> **idempotency via `UNIQUE (master_asset_id, platform)` + upsert-or-skip** (the one v1
+> migration, applied later), and **`tier` deferred / not stored** — superseding an earlier
+> draft that had the stub connector drive rows to `published` and treated the UNIQUE as a
+> post-v1 fast-follow.
 
-## Scope
-v1 wires the **governed distribution spine**: for a release-approved asset, compose
-release-gate → `decide()` → persist `releases` rows → dispatch through a `Connector`
-boundary (a stub in v1) → drive the row status machine. **No external platform APIs,
-no worker, no scheduling.**
+## Scope (v1)
+Wire the governed spine ONLY: `release-gate (allowed===true) → decide() → write `releases` rows
+→ stub connector`. **No Graphile Worker, no external/platform APIs, no publishing.** v1 writes
+governed *intent* (scheduled rows); it does not publish.
 
-Why this first: it settles the two previously-undecided pieces — the **target →
-`releases` mapping** and the **connector contract** — turns the currently-orphaned
-`decide()` into a wired path, and makes the `releases` table (today dead schema, never
-read/written) live. Real delivery is a drop-in afterward.
+`decide()` is the upstream gate — pure, returns a `Decision` (eligible `targets[]` + `tier`), runs
+only when release-gate returned `allowed===true`, already designed in `DECIDE_DESIGN.md`. Not
+re-opened here.
 
-## 1. Contract
-```ts
-distribute(assetId: string, deps: DistributeDeps): Promise<DistributeResult>
+## 1. The write contract (`decide()` → `releases`)
+A design (not code) for the write function:
+- **Input:** a release-approved asset (`id`) + the `Decision` returned by `decide()`.
+- **Output:** N `releases` rows — one per `target` in `Decision.targets` — each with
+  `platform = <target>` (verbatim), `status = "scheduled"`, and `master_asset_id` / `project_id`
+  wired from the asset.
+- **Return (in-memory):** a per-target summary (created vs. skipped). v1 returns governed *intent*,
+  not a publish result.
 
-DistributeDeps = {
-  db: StudioDb                          // Prisma client (lib/studio-db.ts)
-  policy: Policy                        // RELAY_POLICY_V1 (lib/relay/policy.ts)
-  connectors: Record<Target, Connector> // v1: stub for all three targets
-  now: () => Date                       // injected → deterministic tests
-}
+## 2. Persistence model (settled) + verified column map
+**One `releases` row per target; `platform = target` verbatim** — no translation layer (`platform`
+is a free-text column with no vocabulary; storing the target id verbatim is the honest choice, and a
+`target→platform` map is cheap to add later if values ever need to diverge). Each target is
+independently schedulable (its own `published_at`/`status`) — for the deferred worker.
 
-DistributeResult =
-  | { distributed: false; allowed: false; blockers: string[] }            // gate denied
-  | { distributed: true;  allowed: true; tier: Tier; policyVersion: string;
-      results: TargetResult[] }
+`public.releases` columns (live `information_schema`, `ilyrium`, 2026-06-22) and the v1 disposition
+of each:
 
-TargetResult = {
-  target: Target; platform: string;     // platform === target (verbatim)
-  status: 'published' | 'failed' | 'scheduled';
-  action: 'created' | 'skipped';        // skipped = idempotent no-op
-  externalRef?: string; error?: string;
-}
-```
+| column | type | nullable | v1 write |
+|---|---|---|---|
+| `id` | uuid | NO | DB default `gen_random_uuid()` |
+| `project_id` | uuid | yes | **set** = `asset.project_id` |
+| `master_asset_id` | uuid | yes | **set** = `asset.id` |
+| `platform` | text | yes | **set** = `<target>` verbatim |
+| `version_variant` | text | yes | null in v1 |
+| `hook_variant` | text | yes | null in v1 |
+| `scheduled_at` | timestamptz | yes | null in v1 (future-dating is the worker's slice) |
+| `published_at` | timestamptz | yes | **null in v1** (the worker sets it on publish) |
+| `status` | text | yes (default `'scheduled'`) | **set** = `"scheduled"` |
+| `created_at` | timestamptz | NO | DB default `now()` |
 
-## 2. Flow (deterministic; routing table lives in `decide()`, not here)
-1. **Load** the asset `assetId` (the release-candidate **master**) + its `rating` +
-   first rights record (reuse `release-gate.ts` `rightsOf` / `deriveBlockers`; the
-   asset's `project_id` is reused for the `releases` rows).
-2. **Gate:** `allowed = deriveBlockers(rights).length === 0`. If not allowed → return
-   `{ distributed:false, allowed:false, blockers }`. **`decide()` is NOT called** — it
-   throws on `allowed !== true` by contract (`DECIDE_DESIGN` §1), so the spine guards it.
-3. **Decide:** `decide({ assetId, rating, allowed:true }, policy) → { targets, tier, policyVersion }`.
-4. **Per target** (in `decide()` order):
-   - **Idempotency:** if **any** `releases` row already exists for
-     `(master_asset_id, platform=target)` → `action:'skipped'`, leave it untouched (a
-     non-`failed` row is already distributed; a `failed` row is **not retried in v1** —
-     retry belongs to the worker slice).
-   - else **persist** `{ masterAssetId, projectId, platform:target, status:'scheduled' }`,
-     then **dispatch** `connectors[target].publish(row)`:
-     - `ok` → update `status='published'`, `published_at=now()` → `action:'created'`.
-     - `!ok` → update `status='failed'` → `action:'created', error`.
-5. **Return** the summary. **Partial failure is a valid outcome** (per-target status),
-   never a thrown error.
+Existing constraints (live): `PK(id)`, `FK project_id→projects`, `FK master_asset_id→assets`.
+**No unique on `(master_asset_id, platform)`** — see §4.
 
-`decide()` and `RELAY_POLICY_V1` are reused **unchanged** — the mapping
-(`clean`→3 targets/`public`, `mature`→2/`gated`, `uncensored`→1/`gated`, unrecognized→
-`[]`/`gated`) stays there.
+## 3. `tier` — deferred, NOT stored in v1
+`decide()` returns `tier` (`public`/`gated`), but **`releases` has no `tier` column** (confirmed via
+`information_schema`) and `tier` governs the **paywall** — a later slice. v1 **does not persist
+`tier`** and **adds no column for it** (no schema change for `tier`). The write function may surface
+`tier` in its in-memory return for the caller; nothing is written. The paywall slice decides where
+`tier` ultimately lives.
 
-## 3. Persistence model (settled)
-- **One `releases` row per target**, `platform` = the `Target` id **verbatim**
-  (`public_web` / `discord` / `republic_archive`). The `platform` column is a free-form
-  string (no enum/vocabulary), so storing the target id directly is the honest, YAGNI
-  choice — **no translation layer**. Each target is independently schedulable/publishable
-  (its own `published_at` / `status`).
-- Columns written: `master_asset_id`, `project_id`, `platform`, `status`
-  (`scheduled` → `published`/`failed`). `scheduled_at` / `hook_variant` /
-  `version_variant` left null in v1 (future-dating is a later slice).
+## 4. Idempotency — `UNIQUE (master_asset_id, platform)` + upsert-or-skip (the one v1 migration)
+The write path WILL be re-invoked (retry / re-run). `releases` has no unique beyond `id`, so without
+a guard a second run accumulates duplicate `discord` rows. **Rule:** "one release per asset per
+platform" is a DB-level guarantee via **`UNIQUE (master_asset_id, platform)`**, and the write is
+**upsert-or-skip** — on conflict, do nothing; the existing row stands (v1 neither re-publishes nor
+mutates it).
+- Column name confirmed **`master_asset_id`** (not `asset_id`) via `information_schema`.
+- `master_asset_id` is nullable, so prefer a **partial** unique index
+  `UNIQUE (master_asset_id, platform) WHERE master_asset_id IS NOT NULL` (our writes always set it).
+- **This is the ONE schema change v1 implies.** It is **documented here and applied in the
+  implementation slice** under the normal discipline (branch-first, paired down-migration,
+  approval-gate). **NOT applied now.**
 
-## 4. Connector boundary (the contract this slice freezes)
-```ts
-type PublishResult = { ok: true; externalRef?: string } | { ok: false; error: string };
-interface Connector {
-  readonly target: Target;
-  publish(release: ReleaseRow): Promise<PublishResult>;
-}
-```
-- v1 ships **one stub/log connector**, used for all three targets: logs
-  `"would publish <assetId> → <platform>"`, returns `{ ok: true }`. No network.
-- A real connector (web / discord / archive) drops into the `connectors` registry later
-  with **zero changes to `distribute()`** — fixing this contract now is the point of the
-  slice.
+## 5. Connector boundary — defined seam, no publish in v1
+v1 defines the `Connector` interface (the seam real connectors implement in a later slice) + a stub.
+**The stub does not publish and does not transition status** — it exists to freeze the contract for
+the deferred worker. The write path's structure includes the dispatch seam, but in v1 the observable
+outcome is `scheduled` rows.
 
-## 5. Idempotency (settled — advisory in v1)
-- Re-running `distribute()` is safe: **any** existing row for
-  `(master_asset_id, platform)` is **skipped** (no duplicate, no re-publish) — a
-  non-`failed` row is already distributed, and a `failed` row is **not retried in v1**
-  (retry belongs to the worker slice).
-- **Known limitation:** the check-then-insert is **advisory** — two concurrent
-  `distribute()` calls for the same `(asset, platform)` could double-insert.
-- **Fast-follow (NOT v1):** add a `UNIQUE (master_asset_id, platform)` index to make
-  idempotency atomic. v1 deliberately ships **no schema change**.
+## 6. `scheduled` is v1-terminal (explicit boundary)
+v1 writes `status="scheduled"` and **stops**. **Nothing transitions `scheduled → published`**, and
+**`published_at` stays null.** That transition (and calling a real connector) is the deferred
+**distribution-worker** slice. Naming this boundary keeps v1 honest: it writes governed *intent*, it
+does not publish — a future reader must not read `scheduled` rows as "broken."
 
-## 6. Entry point (settled)
-- v1 delivers the **library function `distribute()` only** — it is the testable unit and
-  the spine's logic. **No API route in v1.** Wiring `POST /api/studio/distribute`, or
-  calling `distribute()` from the approve flow, is a later integration step.
+## 7. Entry point (settled)
+**Library function only** in v1 — the testable unit and the spine's logic. No API route, no
+approve-flow wiring (later integration steps).
 
-## 7. Error handling
-- Not-allowed → graceful blocked result (no `decide()` call).
-- Per-target connector failure → that row `failed`; other targets unaffected;
-  `distribute()` does **not** throw.
-- Unrecognized rating → `decide()` fail-closes to `targets:[]` → zero rows.
-- DB errors propagate to the caller (no swallowing).
+## 8. Error handling (design-level)
+- Not allowed (`deriveBlockers` non-empty) → return a blocked result; **`decide()` is not called**
+  (it throws on `allowed!==true` by contract).
+- Unrecognized `rating` → `decide()` fail-closes to `targets:[]` → zero rows.
+- Idempotency conflict → on-conflict-do-nothing (skip) → never a duplicate, never a throw.
+- DB errors propagate to the caller.
 
-## 8. Module layout (new files in `apps/control-panel/lib/relay/`)
-- `connector.ts` — `Connector` interface + `stubConnector(target)` + the registry. One
-  purpose: how a target receives content.
-- `distribute.ts` — `distribute()` orchestration only; depends on `decide` (pure),
-  `deriveBlockers` (gate), `db`, `connectors`. No I/O beyond `db` + connector.
-- `distribute.test.ts` — the TDD matrix (§9).
-- Reused **unchanged:** `decide.ts`, `policy.ts`, `release-gate.ts`, `studio-db.ts`.
+## 9. Test sketch (for the implementation slice — NOT authored here)
+- `clean` / `mature` / `uncensored` → 3 / 2 / 1 `scheduled` rows; `platform` = the eligible targets;
+  `published_at` null.
+- not-allowed → 0 rows, blocked result.
+- idempotent re-run → 0 new rows (on-conflict skip).
+- unrecognized rating → 0 rows.
 
-## 9. Test matrix (TDD — write first; injected fake `db` + stub connectors + fixed `now`)
-- `clean` → 3 rows (`public_web`, `discord`, `republic_archive`) all `published`,
-  `tier:'public'`, all `action:'created'`.
-- `mature` → 2 rows (`discord`, `republic_archive`), `tier:'gated'`.
-  `uncensored` → 1 (`republic_archive`), `gated`.
-- not-allowed (non-empty blockers) → `{ distributed:false }`, **0 rows**, `decide()` not called.
-- **idempotent:** run twice → 2nd run writes 0 rows, all `action:'skipped'`.
-- connector failure on one target → that row `status:'failed'`, others `published`, **no throw**.
-- re-run after a `failed` target → still 0 new rows (the `failed` row is `skipped`, not retried in v1).
-- unrecognized rating (forced invalid) → 0 rows (fail-closed).
-- `published_at` set from the injected `now` on success; absent on `failed`.
-
-## Out of scope (later slices that consume this spine)
-Real connectors (web / discord / republic_archive); the **Graphile Worker** (direct,
-non-pooler Neon host — see `NEON_TOPOLOGY.md`); future-dated scheduling (`scheduled_at`);
-retries; the **paywall** (`tier → entitlement → Stripe`); the
-`UNIQUE (master_asset_id, platform)` index; an API route / approve-flow integration.
+## Out of scope (deferred, each its own brainstorm-gated slice)
+Graphile Worker (DIRECT non-pooled Neon host for LISTEN/NOTIFY); real platform/connector APIs; the
+`scheduled → published` transition (and `published_at`); future-dated `scheduled_at`; the
+paywall / entitlement / Stripe slice (where `tier` lands).
