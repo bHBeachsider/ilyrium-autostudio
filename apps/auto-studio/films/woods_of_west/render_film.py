@@ -42,6 +42,19 @@ def build_media_list(shots, keyframe_dir, clip_dir, audio_dir, render_clip, rend
     return media
 
 
+def render_shot_clip(shot, style, char_refs, keyframe_dir, clip_dir):
+    """Keyframe (Fal) + Wan i2v (ComfyUI) for one shot. Returns the clip path, or
+    None if EITHER step fails — a single flaky shot is skipped, never fatal to the
+    whole (long, expensive) render run."""
+    try:
+        kf = keyframes.generate_shot_keyframe(shot, style, char_refs, keyframe_dir)
+        return render_i2v_comfyui(kf, shot["motion"], shot["id"], output_dir=clip_dir,
+                                  output_name=f"shot{shot['id']}.mp4")
+    except Exception as e:
+        print(f"❌ shot {shot['id']} clip failed: {e}")
+        return None
+
+
 def _render_one_style(shots, style, out_root, music_path=None):
     style_root = os.path.join(out_root, style)
     kf_dir = os.path.join(style_root, "keyframes")
@@ -55,13 +68,7 @@ def _render_one_style(shots, style, out_root, music_path=None):
     char_refs = characters.build_character_sheets(style, char_dir)
 
     def render_clip(sh):
-        kf = keyframes.generate_shot_keyframe(sh, style, char_refs, kf_dir)
-        try:
-            return render_i2v_comfyui(kf, sh["motion"], sh["id"], output_dir=clip_dir,
-                                      output_name=f"shot{sh['id']}.mp4")
-        except Exception as e:
-            print(f"❌ shot {sh['id']} i2v failed: {e}")
-            return None
+        return render_shot_clip(sh, style, char_refs, kf_dir, clip_dir)
 
     def render_audio(sh):
         return voices.render_shot_dialogue(sh, aud_dir)

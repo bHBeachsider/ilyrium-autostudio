@@ -30,10 +30,12 @@ def _generate_still(prompt: str, out_path: str, aspect_ratio: str = "16:9",
         with_logs=True,
     )
     images = result.get("images") or []
-    if not images:
-        raise RuntimeError(f"text-to-image returned no image for {out_path}")
+    first = images[0] if images else None
+    url = first.get("url") if isinstance(first, dict) else None
+    if not url:
+        raise RuntimeError(f"text-to-image returned no usable image url for {out_path}: {first!r}")
     os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
-    d = requests.get(images[0]["url"], timeout=300)
+    d = requests.get(url, timeout=300)
     d.raise_for_status()
     with open(out_path, "wb") as f:
         f.write(d.content)

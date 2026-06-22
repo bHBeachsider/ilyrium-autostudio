@@ -32,3 +32,35 @@ def test_build_media_list_skips_audio_call_when_clip_fails(tmp_path):
         render_audio=lambda sh: audio_calls.append(sh["id"]),
     )
     assert audio_calls == []   # no clip -> don't waste a TTS call
+
+
+def _boom(*a, **k):
+    raise RuntimeError("provider down")
+
+
+def test_render_shot_clip_skips_on_keyframe_failure(monkeypatch):
+    # A Fal keyframe failure must NOT abort the run — it returns None (shot skipped).
+    monkeypatch.setattr(render_film.keyframes, "generate_shot_keyframe", _boom)
+    out = render_film.render_shot_clip({"id": 5, "motion": "x"}, "cartoon",
+                                       {"cal": "c.png"}, "/tmp/kf", "/tmp/clip")
+    assert out is None
+
+
+def test_render_shot_clip_skips_on_i2v_failure(monkeypatch):
+    # Keyframe succeeds, i2v fails -> still None, not an exception.
+    monkeypatch.setattr(render_film.keyframes, "generate_shot_keyframe",
+                        lambda *a, **k: "kf.png")
+    monkeypatch.setattr(render_film, "render_i2v_comfyui", _boom)
+    out = render_film.render_shot_clip({"id": 5, "motion": "x"}, "cartoon",
+                                       {"cal": "c.png"}, "/tmp/kf", "/tmp/clip")
+    assert out is None
+
+
+def test_render_shot_clip_returns_path_on_success(monkeypatch):
+    monkeypatch.setattr(render_film.keyframes, "generate_shot_keyframe",
+                        lambda *a, **k: "kf.png")
+    monkeypatch.setattr(render_film, "render_i2v_comfyui",
+                        lambda image_path, motion, sid, **k: f"clip{sid}.mp4")
+    out = render_film.render_shot_clip({"id": 7, "motion": "pan"}, "cartoon",
+                                       {"cal": "c.png"}, "/tmp/kf", "/tmp/clip")
+    assert out == "clip7.mp4"
