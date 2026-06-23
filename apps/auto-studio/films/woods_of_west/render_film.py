@@ -60,7 +60,11 @@ def render_shot_audio(shot, audio_dir):
 def render_shot_clip(shot, style, char_refs, keyframe_dir, clip_dir):
     """Keyframe (Fal) + Wan i2v (ComfyUI) for one shot. Returns the clip path, or
     None if EITHER step fails — a single flaky shot is skipped, never fatal to the
-    whole (long, expensive) render run."""
+    whole (long, expensive) render run. An already-rendered clip is reused (resume)."""
+    clip_path = os.path.join(clip_dir, f"shot{shot['id']}.mp4")
+    if os.path.exists(clip_path):
+        print(f"↩︎  shot {shot['id']} clip exists, reusing")
+        return clip_path
     try:
         kf = keyframes.generate_shot_keyframe(shot, style, char_refs, keyframe_dir)
         timeout = int(os.getenv("COMFYUI_I2V_TIMEOUT", "1500"))

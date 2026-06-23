@@ -66,6 +66,16 @@ def test_render_shot_clip_returns_path_on_success(monkeypatch):
     assert out == "clip7.mp4"
 
 
+def test_render_shot_clip_reuses_existing_clip(monkeypatch, tmp_path):
+    # An already-rendered clip is reused (resume) — no keyframe or i2v call.
+    (tmp_path / "shot7.mp4").write_bytes(b"x")
+    monkeypatch.setattr(render_film.keyframes, "generate_shot_keyframe", _boom)
+    monkeypatch.setattr(render_film, "render_i2v_comfyui", _boom)
+    out = render_film.render_shot_clip({"id": 7, "motion": "x"}, "cartoon",
+                                       {"cal": "c.png"}, str(tmp_path), str(tmp_path))
+    assert out == str(tmp_path / "shot7.mp4")
+
+
 def test_render_shot_audio_swallows_tts_failure(monkeypatch):
     # An ElevenLabs error (e.g. 401) must NOT abort the render — degrade to silent.
     monkeypatch.setattr(render_film.voices, "render_shot_dialogue", _boom)
