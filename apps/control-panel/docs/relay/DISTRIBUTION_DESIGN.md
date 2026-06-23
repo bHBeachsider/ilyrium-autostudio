@@ -70,8 +70,12 @@ platform" is a DB-level guarantee via **`UNIQUE (master_asset_id, platform)`**, 
 **upsert-or-skip** — on conflict, do nothing; the existing row stands (v1 neither re-publishes nor
 mutates it).
 - Column name confirmed **`master_asset_id`** (not `asset_id`) via `information_schema`.
-- `master_asset_id` is nullable, so prefer a **partial** unique index
-  `UNIQUE (master_asset_id, platform) WHERE master_asset_id IS NOT NULL` (our writes always set it).
+- **`master_asset_id` is nullable, but the spine always writes a non-null `master_asset_id`** —
+  `distribute()` runs only on a release-approved asset that has a real master (the `decide()`
+  precondition), so every row it writes sets `master_asset_id`. A plain `UNIQUE (master_asset_id,
+  platform)` would not constrain null rows (Postgres treats NULLs as distinct), so use a **partial**
+  index `UNIQUE (master_asset_id, platform) WHERE master_asset_id IS NOT NULL`: it constrains exactly
+  the rows the spine produces, and the nullable column is therefore **not a silent duplicate-row gap**.
 - **This is the ONE schema change v1 implies.** It is **documented here and applied in the
   implementation slice** under the normal discipline (branch-first, paired down-migration,
   approval-gate). **NOT applied now.**
