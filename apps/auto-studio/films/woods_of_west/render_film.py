@@ -63,8 +63,9 @@ def render_shot_clip(shot, style, char_refs, keyframe_dir, clip_dir):
     whole (long, expensive) render run."""
     try:
         kf = keyframes.generate_shot_keyframe(shot, style, char_refs, keyframe_dir)
+        timeout = int(os.getenv("COMFYUI_I2V_TIMEOUT", "1500"))
         return render_i2v_comfyui(kf, shot["motion"], shot["id"], output_dir=clip_dir,
-                                  output_name=f"shot{shot['id']}.mp4")
+                                  output_name=f"shot{shot['id']}.mp4", timeout=timeout)
     except Exception as e:
         print(f"❌ shot {shot['id']} clip failed: {e}")
         return None

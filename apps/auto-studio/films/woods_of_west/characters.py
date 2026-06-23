@@ -61,6 +61,9 @@ def build_character_sheets(style: str, out_dir: str) -> dict:
     refs = {}
     for cid, look in script.CHARACTERS.items():
         out_path = os.path.join(out_dir, f"{cid}_sheet.png")
+        if os.path.exists(out_path):
+            refs[cid] = out_path  # reuse an approved/cached sheet — consistency + cost
+            continue
         prompt = (f"{script.style_prefix(style)}, 16:9, full-body and face character "
                   f"reference sheet on a plain background: {look}")
         refs[cid] = _generate_still(prompt, out_path)

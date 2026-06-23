@@ -54,3 +54,15 @@ def test_build_character_sheets_generates_all_three(monkeypatch):
     assert set(refs) == {"shakes", "pringle", "cal"}
     # each sheet prompt carries the style and that character's look text
     assert any("ballpoint" in p and "Cal Dalton" in p for p in seen.values())
+
+
+def test_build_character_sheets_reuses_existing(monkeypatch, tmp_path):
+    # A pre-existing sheet must be reused (not regenerated) for consistency + cost.
+    (tmp_path / "cal_sheet.png").write_bytes(b"x")
+    gen_calls = []
+    monkeypatch.setattr(characters, "_generate_still",
+                        lambda prompt, out_path, **k: gen_calls.append(out_path) or out_path)
+    refs = characters.build_character_sheets("cartoon", str(tmp_path))
+    assert refs["cal"].endswith("cal_sheet.png")
+    assert not any("cal_sheet" in c for c in gen_calls)      # cal reused, not regenerated
+    assert any("shakes_sheet" in c for c in gen_calls)        # others still generated

@@ -73,7 +73,8 @@ SHOTS = [
      "characters": ["cal", "pringle"], "visual": "the faithful comic reveal — a lumpy cartoon outline at the sheriff's trousers, framed exactly like the strip; Cal recoils",
      "motion": "Cal's eyes bulge, he flinches back; Pringle stands proud"},
     {"id": 15, "beat": "punchline", "phase": "bakeoff", "speaker": None, "line": None,
-     "characters": ["cal"], "visual": "Cal Dalton flabbergasted, slowly lowering his pistol, defeated",
+     "characters": ["cal"], "visual": "wide shot of Cal Dalton alone in the dusty street, flabbergasted and "
+     "defeated, slowly lowering his pistol — a full scene in the town, NOT a character sheet, no labels or text",
      "motion": "gun hand droops, shoulders slump"},
     {"id": 16, "beat": "end", "phase": "film", "speaker": None, "line": None,
      "characters": [], "visual": "freeze on the dusty street, hand-lettered 'END' card over the frame",
