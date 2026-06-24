@@ -1,0 +1,5 @@
+
+# film build artifacts
+films/**/__pycache__/
+films/woods_of_west/_smoke.py
+films/woods_of_west/_phase2.py
