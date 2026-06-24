@@ -27,9 +27,47 @@ try:
 except Exception:
     pass
 
-from films.woods_of_west import script, keyframes, characters, voices
+from films.woods_of_west import script, keyframes, characters, voices, sfx
 from media.comfyui_renderer import render_i2v_comfyui
 from media.post_production import compile_final_video
+
+
+def make_still_clip(image_path, out_path, duration=5.0, fps=16, size=(768, 432)):
+    """Render a static image as a held video clip (the punchline is a still, not an
+    animation — avoids the i2v morphing that gave BOTH characters the gag)."""
+    from moviepy import ImageClip
+    clip = ImageClip(image_path).resized(size).with_duration(duration).with_fps(fps)
+    clip.write_videofile(out_path, fps=fps, codec="libx264", audio=False, logger=None)
+    clip.close()
+    return out_path
+
+
+def pick_shot_audio(shot, dialogue_dir, sfx_map):
+    """The audio track for a shot: its dialogue mp3 if it has a spoken line,
+    otherwise an SFX bed for that shot (cold-open train, spurs, the reveal sting),
+    otherwise None (truly silent)."""
+    if shot.get("line"):
+        p = os.path.join(dialogue_dir, f"shot{shot['id']}.mp3")
+        return p if os.path.exists(p) else None
+    return (sfx_map or {}).get(shot["id"])
+
+
+def compose_master(style, out_root, sfx_map=None, music_path=None):
+    """Rebuild a style's master from already-rendered clips, laying dialogue OR an
+    SFX bed under each shot and freezing (not looping) when audio outlasts a clip."""
+    base = os.path.join(out_root, "final", style)
+    clip_dir = os.path.join(base, "clips")
+    aud_dir = os.path.join(base, "audio")
+    media = []
+    for sh in script.shots_for_phase("film"):
+        clip = os.path.join(clip_dir, f"shot{sh['id']}.mp4")
+        if not os.path.exists(clip):
+            continue
+        media.append({"scene_number": sh["id"], "video": clip,
+                      "audio": pick_shot_audio(sh, aud_dir, sfx_map)})
+    master = os.path.join(base, f"woods_of_west_{style}.mp4")
+    return compile_final_video(media, output_filename=master, music_path=music_path,
+                               extend_mode="freeze")
 
 
 def build_media_list(shots, keyframe_dir, clip_dir, audio_dir, render_clip, render_audio):
