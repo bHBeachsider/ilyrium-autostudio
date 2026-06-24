@@ -13,6 +13,7 @@ SFX_CUES = {
     6:  "dry desert wind gusting, a tumbleweed rolling past, a loose wooden shutter banging",
     7:  "metal spurs jingling with footsteps and an old wall clock ticking",
     14: "a comedic cartoon boing with a shocked vaudeville gasp and a brass sting",
+    15: "a comedic spring sproing boing followed by an awkward record-scratch and a rimshot",
     16: "lonely desert wind, sparse western ambience, a final note",
 }
 

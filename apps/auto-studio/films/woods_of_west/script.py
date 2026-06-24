@@ -50,7 +50,9 @@ SHOTS = [
      "motion": "Cal walks slowly forward, coat shifting in the wind"},
     {"id": 9, "beat": "walk", "phase": "film", "speaker": "pringle",
      "line": "H'lo, Cal...",
-     "characters": ["pringle"], "visual": "medium of Sheriff Pringle, hand resting near his holster, calm",
+     "characters": ["pringle"], "visual": "medium shot of Sheriff Pringle standing in the dusty western street, "
+     "hand resting near his holster, calm and deadpan — a single full character in a real scene, NOT a character "
+     "model sheet, no duplicate heads, no floating heads, no labels or text",
      "motion": "slight nod, eyes narrowing"},
     {"id": 10, "beat": "faceoff", "phase": "film", "speaker": "cal",
      "line": "It's been a while, but now it's payback time...",
@@ -70,12 +72,15 @@ SHOTS = [
      "characters": ["cal", "pringle"], "visual": "two-shot standoff, Sheriff Pringle smug and confident facing Cal",
      "motion": "Pringle's smug grin widens, slight hip shift"},
     {"id": 14, "beat": "punchline", "phase": "bakeoff", "speaker": None, "line": None,
-     "characters": ["cal", "pringle"], "visual": "the faithful comic reveal — a lumpy cartoon outline at the sheriff's trousers, framed exactly like the strip; Cal recoils",
-     "motion": "Cal's eyes bulge, he flinches back; Pringle stands proud"},
+     "characters": ["cal", "pringle"], "visual": "comedy reveal: Sheriff Pringle stands deadpan with a long rigid "
+     "wooden pole comically tenting the front of his trousers and pointing straight out horizontally like a flagpole; "
+     "outlaw Cal Dalton recoils in wide-eyed shock",
+     "motion": "still hold on the reveal"},
     {"id": 15, "beat": "punchline", "phase": "bakeoff", "speaker": None, "line": None,
-     "characters": ["cal"], "visual": "wide shot of Cal Dalton alone in the dusty street, flabbergasted and "
-     "defeated, slowly lowering his pistol — a full scene in the town, NOT a character sheet, no labels or text",
-     "motion": "gun hand droops, shoulders slump"},
+     "characters": ["cal", "pringle"], "visual": "the twist: Cal Dalton and Sheriff Pringle stand facing each other, "
+     "EACH now with an identical long rigid wooden pole comically tenting the front of their trousers and pointing "
+     "straight out horizontally, both looking down at each other's poles in stunned surprise; dusty western street",
+     "motion": "still hold on both poles"},
     {"id": 16, "beat": "end", "phase": "film", "speaker": None, "line": None,
      "characters": [], "visual": "freeze on the dusty street, hand-lettered 'END' card over the frame",
      "motion": "gentle freeze, slight film-grain flicker"},
