@@ -2,3 +2,8 @@
 outputs/
 # Broderick LoRA weights (canonical in S3)
 projects/broderick/_training/local_artifacts/loras/
+# Secrets / local env — never commit
+.env
+.env.local
+.env.*.local
+.env.bak-*
