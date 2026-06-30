@@ -133,8 +133,9 @@ if (auth !== `Bearer ${secret}`) return new Response("Unauthorized", { status: 4
 
 ## 5. ilyrium side — `site_box_client`
 
-**Location:** `apps/auto-studio/delivery/site_box_client.py` (co-located with `delivery.py`). It does
-**not** render; rendering is the existing pipeline. Single responsibility: POST a released cut to site-box.
+**Location:** `apps/auto-studio/site_box_client.py` (flat sibling of `delivery.py` — `delivery.py` is a
+module file, so a `delivery/` package would shadow it). It does **not** render; rendering is the existing
+pipeline. Single responsibility: POST a released cut to site-box. **Built P3 (2026-06-30).**
 
 **How a cluster gets rendered (existing pipeline, unchanged):**
 - `POST /pipeline/start` (`studio_pipeline_service.py`, ~L193-220) with `{prompt: <cluster brief>, mode: "auto_draft", images: [...]}`.
@@ -256,4 +257,4 @@ Bridge-specific P0-P4 ≈ **16-24 h**. Per-cluster cost unchanged (~$0.36; Veo 3
 ## 13. Source files (all verified to exist)
 
 - **site-box:** `lib/types.ts`, `lib/articles.ts`, `lib/pipeline/map.ts`, `lib/pipeline/ingest.ts`, `db/migrations/`, `db/seed-articles.mjs`, `app/api/cron/ingest/route.ts`, `app/article/[slug]/page.tsx`, `news-sitemap.xml` route, `vercel.json`, `.env.local`.
-- **ilyrium:** `apps/auto-studio/producer.py` (`assemble_cut`), `…/project_store.py` (`add_cut`), `…/utils/storage_manager.py` (`finalize_and_upload_campaign`), `…/delivery.py` (`build_captions`/`export_preset`/`make_cutdown`/`ai_cutdown`), `…/studio_pipeline_service.py` (`POST /pipeline/start`), **proposed** `…/delivery/site_box_client.py`.
+- **ilyrium:** `apps/auto-studio/producer.py` (`assemble_cut`), `…/project_store.py` (`add_cut`), `…/utils/storage_manager.py` (`finalize_and_upload_campaign`), `…/delivery.py` (`build_captions`/`export_preset`/`make_cutdown`/`ai_cutdown`), `…/studio_pipeline_service.py` (`POST /pipeline/start`), `…/site_box_client.py` (P3, built).
