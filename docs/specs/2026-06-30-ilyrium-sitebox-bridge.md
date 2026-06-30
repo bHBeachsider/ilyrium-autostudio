@@ -1,6 +1,6 @@
 # Spec — ilyrium ↔ site-box Video Bridge
 
-**Date:** 2026-06-30 · **Status:** Design (no code in this pass) · **Owner:** ilyrium AutoStudio
+**Date:** 2026-06-30 · **Status:** Design — decisions D1–D7 resolved; one enabling code change landed (`storage_manager` → `R2_PUBLIC_HOST`); bridge code itself unbuilt. · **Owner:** ilyrium AutoStudio
 **Related:** [`docs/strategy/2026-06-30-content-distribution-plan.md`](../strategy/2026-06-30-content-distribution-plan.md) §7-B/§8.2 ·
 `C:\Users\bradu\Documents\site-box\docs\superpowers\research\2026-06-27-sitebox-marketing-plan.md`
 
@@ -46,7 +46,7 @@ Names follow the existing snake_case + `*_url` convention (`origin_url`, `image_
 | `video_poster_url` | `text` | yes | — | Poster still (keyframe or reuse `image_url`) |
 | `video_duration_sec` | `integer` | yes | — | Runtime; drives `VideoObject.duration` |
 | `video_captions_url` | `text` | yes | — | R2 URL of the `.vtt` from `delivery.build_captions()` |
-| `video_meta` | `jsonb` | no | `'{}'::jsonb` | Provenance bag: `{campaign_id, cut_id, manifest_url, c2pa_signed, ai_disclosure, checksum, release{}, idempotency_key, generated_at}` |
+| `video_meta` | `jsonb` | no | `'{}'::jsonb` | Provenance bag: `{campaign_id, cut_id, manifest_url, c2pa_signed, ai_disclosure, checksum, release{}, idempotency_key, generated_at}` + a `cuts[]` history array (D4) |
 
 One `video_meta` jsonb (rather than many scalars) keeps the migration small, mirrors the existing
 `sources jsonb` pattern, and absorbs C2PA / disclosure / release provenance without schema churn.
@@ -142,9 +142,9 @@ if (auth !== `Bearer ${secret}`) return new Response("Unauthorized", { status: 4
 - On human approval, stage 8 runs `producer.assemble_cut(project, project_dir, upload_to_r2=True)` →
   `{cut_id, final_video, public_url, published, release_allowed, blockers, qa}` (`producer.py` ~L328+).
   *(The "nothing-to-assemble" early return at ~L351 yields a 3-key form — the client must treat that as failure.)*
-- R2 (`utils/storage_manager.py` ~L27-63): keys `campaigns/{campaign_id}/final_commercial.mp4` and
-  `…/manifest.json`; `public_url = {R2_ENDPOINT}/{bucket}/{video_key}` *(the code itself flags "adjust per your
-  Cloudflare custom domain" — see D1)*.
+- R2 (`utils/storage_manager.py`, **patched 2026-06-30**): keys `campaigns/{campaign_id}/final_commercial.mp4`
+  and `…/manifest.json`; `public_url = {R2_PUBLIC_HOST}/{video_key}` when `R2_PUBLIC_HOST` is set (browser-public
+  custom domain), else the legacy non-public `{R2_ENDPOINT}/{bucket}/{video_key}` fallback (D1).
 - Variants/captions from `delivery.py`: `export_preset()`→`{base}_9x16.mp4`, `ai_cutdown()`/`make_cutdown()`→15s short, `build_captions()`→`{srt,vtt,cues}`.
 
 **Proposed signature**
@@ -159,7 +159,7 @@ def attach_video_to_article(*, article_id: str, cut: dict,
 **Behavior**
 - **Guard first:** if `cut["release_allowed"] is not True` or not `cut.get("public_url")` → error WITHOUT POSTing (mirrors site-box's 422; defense in depth).
 - Build the body (§4) sourcing `meta` from the cut's `release{}` + `campaign_id`/`cut_id`/`manifest_url`; `idempotencyKey=f"{campaign_id}:{cut_id}"`.
-- Headers: `Authorization: Bearer {SITE_BOX_INGEST_SECRET}`. New ilyrium env: `SITE_BOX_BASE_URL`, `SITE_BOX_INGEST_SECRET` (== site-box `VIDEO_INGEST_SECRET`).
+- Headers: `Authorization: Bearer {SITE_BOX_INGEST_SECRET}`. New ilyrium env: `SITE_BOX_BASE_URL`, `SITE_BOX_INGEST_SECRET` (== site-box `VIDEO_INGEST_SECRET`), and `R2_PUBLIC_HOST` (browser-public video host, D1).
 - If `build_captions()` produced a `.vtt`, upload to R2 (`storage_manager.get_r2_client()`) at `campaigns/{campaign_id}/captions.vtt` and pass its public URL as `captionsUrl`.
 - Retry policy per §7.
 
@@ -182,7 +182,7 @@ def attach_video_to_article(*, article_id: str, cut: dict,
 
 ## 7. Article-page rendering — `app/article/[slug]/page.tsx`
 
-`revalidate=3600` unchanged. Render only when `article.videoUrl` is non-null (video-less pages are byte-identical to today).
+`revalidate=3600` stays as the background refresh, but the **attach endpoint triggers on-demand `revalidatePath('/article/{slug}')` (D6/P2)** so a newly attached video goes live immediately, not within the hour. Render only when `article.videoUrl` is non-null (video-less pages are byte-identical to today).
 
 - **Player:** an `<ArticleVideo>` between `<ArticleHeader>` and `<ArticleBody>`; native
   `<video controls preload="metadata" poster={videoPosterUrl ?? imageUrl}>` + `<source type="video/mp4">` + optional `<track kind="captions" … default>`.
@@ -219,9 +219,9 @@ def attach_video_to_article(*, article_id: str, cut: dict,
 
 | Phase | Window | Scope | Effort |
 |---|---|---|---|
-| **P0 — Schema + types** | Days 0-30 wk1 | migration `0006_article_video.sql`; extend `types.ts`, `ArticleRow`/`rowToArticle`, `ArticleInsert`, seed defaults | 2-3 h |
+| **P0 — Schema + types + R2 host** | Days 0-30 wk1 | migration `0006_article_video.sql`; extend `types.ts`, `ArticleRow`/`rowToArticle`, `ArticleInsert`, seed defaults; **bind R2 custom domain + set `R2_PUBLIC_HOST` (D1)** | 2-3 h |
 | **P1 — Render (read path)** | Days 0-30 wk1-2 | `<ArticleVideo>` + conditional `VideoObject` + AI-disclosure badge; vitest render test (hand-seeded row) | 3-4 h |
-| **P2 — Attach endpoint (write path)** | Days 0-30 wk1-2 | `POST /api/video/attach`: auth, validation, 422 gate, idempotent `update`; vitest route tests | 4-6 h |
+| **P2 — Attach endpoint (write path)** | Days 0-30 wk1-2 | `POST /api/video/attach`: auth, validation, 422 gate, idempotent `update`, **on-demand `revalidatePath` (D6)**; vitest route tests | 4-6 h |
 | **P3 — `site_box_client` (Option A)** | Days 0-30 wk2-4 | `delivery/site_box_client.py` + CLI; guard, body build, caption/poster R2 upload, retries; manual E2E | 4-6 h |
 | **P4 — Webhook (Option B)** | Days 31-60 | auto-invoke on stage-8; on-demand ISR; `news-sitemap` `<video:video>` | 3-5 h |
 | **P5 — Scheduler tie-in** | Days 61-90 | hook the daily scheduler; human cluster-select + release-gate retained | folds into scheduler |
@@ -232,20 +232,26 @@ Bridge-specific P0-P4 ≈ **16-24 h**. Per-cluster cost unchanged (~$0.36; Veo 3
 
 - **C1 GET vs POST:** cron is GET (Vercel constraint); attach is an external mutation → **POST** (first POST route in site-box; new test scaffolding).
 - **C2 upsert vs update:** RSS ingest upserts on `origin_url`; attach must **`update`** the existing `id`/`slug` row — upsert here would create a phantom row.
-- **C3 R2 public URL:** `public_url = {R2_ENDPOINT}/{bucket}/{key}` may be the private S3 endpoint; `<video>` needs a browser-public URL or it 403s → **D1**.
-- **C4 per-cluster vs per-cut:** cluster↔campaign↔article 1:1; ilyrium can emit `cut_2` → **last-cut-wins** (single `video_url`); multi-cut would make `video_meta` an array → **D4**.
+- **C3 R2 public URL → fixed:** the S3-endpoint `public_url` 403s in a browser; `storage_manager` now emits `{R2_PUBLIC_HOST}/{key}` (D1).
+- **C4 per-cluster vs per-cut → fixed:** last-cut-wins in scalar columns + a `video_meta.cuts[]` history array (D4).
 - **C5 cluster shape:** ilyrium example used generic topic/county; the real contract uses site-box's `Topic` enum (8 construction values) + Florida counties.
 - **C6 HITL placement:** all inputs agree (human cluster-select + non-delegable stage-7) — confirmed, do not "optimize" away.
 
-## 12. Open decisions for the human
+## 12. Decisions (resolved 2026-06-30)
 
-- **D1 (blocks P1/P3) — R2 public delivery:** is `R2_ENDPOINT` browser-public, or is there a Cloudflare custom domain / `R2_PUBLIC_HOST`? Confirm the exact base URL ilyrium sends as `videoUrl`.
-- **D2 — secret strategy:** reuse `CRON_SECRET` or mint `VIDEO_INGEST_SECRET` (recommended)?
-- **D3 — key on `id` vs `slug`:** does ilyrium reliably have the article `id` at render, or only a pasted slug?
-- **D4 — multiple cuts per article:** last-cut-wins (default) vs. array of cuts.
-- **D5 — sitemap video entries** at launch vs. P4.
-- **D6 — ISR latency:** `revalidate=3600` (≤1h) acceptable, or add on-demand revalidation?
-- **D7 — captions hosting:** R2 (default, reuses `get_r2_client`) vs. inline.
+- **D1 — R2 public delivery → RESOLVED.** Serve from a **browser-public Cloudflare custom domain**
+  (recommended `https://media.ilyrium.io`), not the S3 endpoint. `storage_manager.py` now builds
+  `public_url` from `R2_PUBLIC_HOST` (falls back to the S3 form if unset). **Remaining manual infra step:**
+  bind the domain to the `ilyrium-assets` bucket in Cloudflare R2 → Settings → Public access → Custom
+  domains, then uncomment `R2_PUBLIC_HOST` in `.env`. (`r2.dev` only for the first smoke test — uncached/rate-limited.)
+- **D2 — secret → RESOLVED:** mint a **separate `VIDEO_INGEST_SECRET`** (don't share `CRON_SECRET`).
+- **D3 — key → RESOLVED:** `id` primary + `slug` fallback; the cluster payload carries **both**. Option A
+  (manual) may paste the URL slug; Option B (webhook) must pass `id`.
+- **D4 — multiple cuts → RESOLVED:** **last-cut-wins** in the scalar columns **plus** a `video_meta.cuts[]`
+  history array, so multi-cut later is a UI change, not a migration.
+- **D5 — sitemap video → RESOLVED:** **defer to P4** (the in-article `VideoObject` already gives video rich-result eligibility).
+- **D6 — ISR latency → RESOLVED:** add **on-demand `revalidatePath('/article/{slug}')` in P2** (from the attach endpoint) — freshly attached videos go live immediately.
+- **D7 — captions → RESOLVED:** host the `.vtt` on **R2, same public host** as the video (`campaigns/{id}/captions.vtt`) to keep `<track>` same-origin.
 
 ## 13. Source files (all verified to exist)
 
