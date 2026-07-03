@@ -151,6 +151,15 @@ export type ContentSourceRow = {
   created_at: string
 }
 
+export type AgentRunRow = {
+  id: string
+  agent: string
+  counts: Record<string, unknown>
+  error: string | null
+  started_at: string
+  finished_at: string | null
+}
+
 // Lazy, idempotent migration. Runs once per server process on the first DB call so there's
 // no separate migrate step. Neon is PG15+, so gen_random_uuid() is built in.
 let schemaReady = false
@@ -273,6 +282,15 @@ export async function ensureSchema(): Promise<void> {
     payload jsonb NOT NULL DEFAULT '{}'::jsonb,
     created_at timestamptz NOT NULL DEFAULT now(),
     UNIQUE (source_id, external_id)
+  )`
+  // Observability for autonomous runs: what each agent/loop tick did.
+  await client`CREATE TABLE IF NOT EXISTS podcast_agent_runs (
+    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+    agent text NOT NULL,
+    counts jsonb NOT NULL DEFAULT '{}'::jsonb,
+    error text,
+    started_at timestamptz NOT NULL DEFAULT now(),
+    finished_at timestamptz
   )`
   schemaReady = true
 }
