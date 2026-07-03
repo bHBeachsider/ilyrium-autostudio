@@ -4,8 +4,14 @@ This document is a handoff guide for incorporating the **podcast / episode gener
 (currently living in this repo, mounted at `/sandbox`) onto an existing project spine.
 
 The console is a **Next.js 16 App Router** feature. It is self-contained: a set of API routes
-(the generation pipeline) plus a `/sandbox` page and its React components. It currently has **no
-database and no auth** — projects, ideas, and the video playlist are session-only React state.
+(the generation pipeline) plus a `/sandbox` page and its React components. It has **no auth**;
+persistence is **Neon Postgres via `lib/db.ts`** (episodes, ideas queue, jobs, distributions —
+gated on `DATABASE_URL`, routes return 503 `{dbUnconfigured:true}` without it), while sandbox
+projects and the video playlist remain session-only React state.
+
+> **This document covers the original sandbox generator.** The agentic studio built on top of it
+> (ingest → idea agent → approval queue → production jobs → distribution → loop) is documented in
+> [`docs/STUDIO.md`](docs/STUDIO.md).
 
 ---
 
@@ -16,7 +22,8 @@ A 4-step pipeline turns a topic into a narrated, illustrated video episode:
 1. **Script** — `POST /api/generate-episode` → two-host dialogue script (AI Gateway, `openai/gpt-5-mini`).
 2. **Scene visuals** — `POST /api/generate-images` → per-scene images anchored to the script
    (AI Gateway, `google/imagen-4.0-fast-generate-001`) + narration weights for timing.
-3. **Voices** — `POST /api/synthesize` → narration audio (key-free Google Translate TTS, US/UK voices).
+3. **Voices** — `POST /api/synthesize` → narration audio (ElevenLabs, `ELEVENLABS_API_KEY`
+   required; Host A/Host B voices configurable via `ELEVENLABS_VOICE_A/B`).
 4. **Compose** — `POST /api/render-video` → Ken Burns slideshow synced to narration via `ffmpeg`.
 
 There is also `POST /api/ingest` — pulls source material via Perplexity (`sonar`) and summarizes it.
@@ -85,8 +92,11 @@ keep the override only if a transitive resolution problem appears.
 | --- | --- | --- |
 | `AI_GATEWAY_API_KEY` | episode, images, ingest | Auto-present on Vercel. The Gateway routes OpenAI + Imagen with zero extra config. |
 | `PERPLEXITY_API_KEY` | `ingest` only | Required only if you keep the data-ingest feature. |
+| `ELEVENLABS_API_KEY` | `synthesize` | Required for voice synthesis (plus optional `ELEVENLABS_VOICE_A/B`, `ELEVENLABS_MODEL_ID`). |
+| `DATABASE_URL` | persistence | Neon connection string; without it DB routes 503 and the archive shows a banner. |
 
-No DB/auth vars today. `synthesize` needs no key (free TTS endpoint).
+The full studio adds more (R2 storage, ingest sources, Telegram, distribution channels, loop) —
+see `.env.example`, which is the authoritative list.
 
 ### Pulling env into a local checkout (Vercel CLI)
 ```bash
@@ -129,10 +139,10 @@ on lower tiers, image+render steps may need to be split or queued.
 
 ---
 
-## 7. Persistence (deferred — future work)
+## 7. Persistence
 
-Projects/ideas/episodes are in-memory today. When you wire the spine's database (Neon is the
-default here), persist: project (id, name), ideas (per project), and generated-episode metadata
-(script, scene prompts, captions, narration weights). Re-render the MP4 on demand rather than
-storing large blobs; uploaded videos can stay session-only or move to Blob storage. Auth/user
+Implemented via `lib/db.ts` (Neon HTTP driver, lazy idempotent `ensureSchema()`): episodes
+(with durable R2 `audio_url`/`video_url`), the ideas approval queue, draft scripts, production
+jobs, content sources/items, distributions, and agent-run logs. Sandbox projects/playlists are
+still session-only. Media blobs live on Cloudflare R2 (`lib/blob.ts`), not in the DB. Auth/user
 scoping is undecided — add it when the spine's account model is settled.

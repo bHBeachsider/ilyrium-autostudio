@@ -6,6 +6,7 @@ import {
   Mic,
   LayoutDashboard,
   Archive,
+  ListChecks,
   Workflow,
   BarChart3,
   DollarSign,
@@ -17,6 +18,7 @@ import { cn } from "@/lib/utils"
 const navItems = [
   { label: "Dashboard", icon: LayoutDashboard, href: "/" },
   { label: "Idea Sandbox", icon: FlaskConical, href: "/sandbox" },
+  { label: "Review Queue", icon: ListChecks, href: "/review" },
   // Not built yet in this export — shown as disabled "Soon" rather than dead links.
   { label: "Episode Archive", icon: Archive, href: "/episode-archive" },
   { label: "Production Pipeline", icon: Workflow, href: "#", soon: true },
