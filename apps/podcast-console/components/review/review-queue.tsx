@@ -69,10 +69,10 @@ export function ReviewQueue() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ count: 5 }),
       })
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}))
-        throw new Error(body.error ?? `HTTP ${res.status}`)
-      }
+      const body = await res.json().catch(() => ({}))
+      if (!res.ok) throw new Error(body.error ?? `HTTP ${res.status}`)
+      // Grounding gate: the agent refuses to pitch without synced source material.
+      if (body.skipped) throw new Error(body.skipped)
       await load()
     } catch (err) {
       setError(err instanceof Error ? err.message : "Generation failed.")

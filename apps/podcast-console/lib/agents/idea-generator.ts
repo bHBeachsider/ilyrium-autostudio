@@ -52,6 +52,8 @@ export type GenerateIdeasResult = {
   generated: number
   deduped: number
   contextItems: number
+  /** Set when the agent refused to run (e.g. no source material to ground in). */
+  skipped?: string
 }
 
 export async function generateIdeas(opts: { count?: number; prompt?: string } = {}): Promise<GenerateIdeasResult> {
@@ -70,6 +72,16 @@ export async function generateIdeas(opts: { count?: number; prompt?: string } = 
       (it, i) => `S${i + 1}. ${it.title}${it.summary ? ` — ${it.summary}` : ""}`,
     ),
   ]
+
+  // Grounding is mandatory: without real source material the agent would pitch
+  // plausible-sounding but unreported "evergreen" episodes. Refuse instead.
+  if (sourceLines.length === 0) {
+    const skipped =
+      "No synced content items to ground ideas in — register a source (POST /api/sources) and sync it (loop tick) before generating."
+    console.warn(`[${AGENT_NAME}] skipped: ${skipped}`)
+    return { proposed: [], generated: 0, deduped: 0, contextItems: 0, skipped }
+  }
+
   const episodeTitles = (episodes as { title: string }[]).map((e) => e.title)
   const ideaTitles = (recentIdeas as { title: string }[]).map((i) => i.title)
   const avoid = [...episodeTitles, ...ideaTitles]
@@ -80,17 +92,17 @@ export async function generateIdeas(opts: { count?: number; prompt?: string } = 
     system:
       "You are the story editor for 'Palm Beach County Weekly', a podcast covering construction, " +
       "real estate, and local government in Palm Beach County, Florida. You pitch specific, " +
-      "reportable episode ideas grounded in the provided source material. Each idea must be " +
-      "clearly distinct from the others and from the avoid-list of already-covered titles.",
+      "reportable episode ideas grounded ONLY in the provided source material — every idea's " +
+      "sourceRefs must cite the source items (their S-numbers and titles) it is based on, and you " +
+      "must not invent ideas that no source item supports. Each idea must be clearly distinct " +
+      "from the others and from the avoid-list of already-covered titles.",
     messages: [
       {
         role: "user",
         content:
-          `Propose exactly ${count} distinct episode ideas.` +
+          `Propose up to ${count} distinct episode ideas — fewer is fine if the source material only supports fewer.` +
           (opts.prompt ? `\n\nEditorial direction from the producer: ${opts.prompt}` : "") +
-          (sourceLines.length > 0
-            ? `\n\nRecent source material:\n${sourceLines.join("\n")}`
-            : "\n\nNo synced source items are available — draw on evergreen Palm Beach County construction/real-estate/government themes and say so in the rationale.") +
+          `\n\nRecent source material:\n${sourceLines.join("\n")}` +
           (episodeTitles.length > 0 ? `\n\nRecent episodes (context):\n${episodeTitles.join("\n")}` : "") +
           (avoid.length > 0 ? `\n\nAVOID duplicating any of these existing titles/ideas:\n${avoid.join("\n")}` : ""),
       },
@@ -99,8 +111,14 @@ export async function generateIdeas(opts: { count?: number; prompt?: string } = 
 
   const proposed: IdeaRow[] = []
   let deduped = 0
+  let ungrounded = 0
   const seen = [...avoid]
   for (const idea of output.ideas.slice(0, count)) {
+    // Belt-and-braces on the grounding contract: an idea that cites nothing is dropped.
+    if (idea.sourceRefs.length === 0) {
+      ungrounded++
+      continue
+    }
     if (isDuplicateTitle(idea.title, seen)) {
       deduped++
       continue
@@ -116,7 +134,7 @@ export async function generateIdeas(opts: { count?: number; prompt?: string } = 
   }
 
   console.log(
-    `[${AGENT_NAME}] generated=${output.ideas.length} proposed=${proposed.length} deduped=${deduped} contextItems=${sourceLines.length}`,
+    `[${AGENT_NAME}] generated=${output.ideas.length} proposed=${proposed.length} deduped=${deduped} ungrounded=${ungrounded} contextItems=${sourceLines.length}`,
   )
   return { proposed, generated: output.ideas.length, deduped, contextItems: sourceLines.length }
 }

@@ -126,7 +126,9 @@ export async function runLoopTick(): Promise<TickSummary> {
     }
 
     const result = await generateIdeas({ count: maxIdeasPerRun() })
-    summary.ideas = { generated: result.generated, proposed: result.proposed.length, deduped: result.deduped }
+    summary.ideas = result.skipped
+      ? { skipped: result.skipped }
+      : { generated: result.generated, proposed: result.proposed.length, deduped: result.deduped }
     if (telegramEnabled()) {
       await Promise.allSettled(result.proposed.map((idea) => notifyIdeaProposed(idea)))
     }
