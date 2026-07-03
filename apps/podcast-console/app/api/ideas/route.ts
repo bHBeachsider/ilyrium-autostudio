@@ -19,14 +19,21 @@ export async function GET(req: Request) {
       : await sql`SELECT * FROM podcast_ideas ORDER BY created_at DESC LIMIT 100`
     const twoGate = twoGateEnabled()
     let scripts: unknown[] = []
-    if (twoGate && rows.length > 0) {
+    let jobs: unknown[] = []
+    if (rows.length > 0) {
       const ids = (rows as { id: string }[]).map((r) => r.id)
-      scripts = await sql`
-        SELECT DISTINCT ON (idea_id) * FROM podcast_scripts
+      if (twoGate) {
+        scripts = await sql`
+          SELECT DISTINCT ON (idea_id) * FROM podcast_scripts
+          WHERE idea_id = ANY(${ids})
+          ORDER BY idea_id, version DESC`
+      }
+      jobs = await sql`
+        SELECT DISTINCT ON (idea_id) * FROM podcast_jobs
         WHERE idea_id = ANY(${ids})
-        ORDER BY idea_id, version DESC`
+        ORDER BY idea_id, created_at DESC`
     }
-    return NextResponse.json({ ideas: rows, scripts, twoGate })
+    return NextResponse.json({ ideas: rows, scripts, jobs, twoGate })
   } catch (err) {
     if (err instanceof DbNotConfiguredError) {
       return NextResponse.json({ error: err.message, dbUnconfigured: true }, { status: 503 })

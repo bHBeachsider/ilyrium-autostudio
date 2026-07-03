@@ -99,6 +99,32 @@ export type ScriptRow = {
   decided_at: string | null
 }
 
+export type JobStep = "script" | "audio" | "images" | "video" | "finalize" | "done"
+export type JobStatus = "queued" | "running" | "failed" | "done"
+
+export type JobArtifacts = {
+  script?: { title: string; description: string; estimatedMinutes: number; segments: Segment[] }
+  audioKey?: string
+  audioUrl?: string
+  imageKeys?: string[]
+  weights?: number[]
+  imagesSkipped?: string
+  videoKey?: string
+  videoUrl?: string
+}
+
+export type JobRow = {
+  id: string
+  idea_id: string
+  episode_id: string | null
+  step: JobStep
+  status: JobStatus
+  artifacts: JobArtifacts
+  error: string | null
+  created_at: string
+  updated_at: string
+}
+
 export type ContentSourceRow = {
   id: string
   kind: "local" | "permithub_api" | "rss" | "manual"
@@ -191,6 +217,20 @@ export async function ensureSchema(): Promise<void> {
     review_note text,
     created_at timestamptz NOT NULL DEFAULT now(),
     decided_at timestamptz
+  )`
+  // Production jobs: a step-advance state machine so each HTTP request runs one
+  // bounded step (script -> audio -> images -> video -> finalize) instead of one
+  // request exceeding serverless time limits.
+  await client`CREATE TABLE IF NOT EXISTS podcast_jobs (
+    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+    idea_id uuid NOT NULL REFERENCES podcast_ideas(id),
+    episode_id uuid,
+    step text NOT NULL DEFAULT 'script',
+    status text NOT NULL DEFAULT 'queued',
+    artifacts jsonb NOT NULL DEFAULT '{}'::jsonb,
+    error text,
+    created_at timestamptz NOT NULL DEFAULT now(),
+    updated_at timestamptz NOT NULL DEFAULT now()
   )`
   await client`CREATE TABLE IF NOT EXISTS podcast_content_items (
     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),

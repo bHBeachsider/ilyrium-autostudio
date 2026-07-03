@@ -1,12 +1,21 @@
 "use client"
 
 import * as React from "react"
-import { Check, Loader2, MessageCircleWarning, Sparkles, X } from "lucide-react"
+import { Check, Clapperboard, Loader2, MessageCircleWarning, Sparkles, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
-import type { IdeaRow, ScriptRow } from "@/lib/db"
+import type { IdeaRow, JobRow, ScriptRow } from "@/lib/db"
 
-type IdeasResponse = { ideas: IdeaRow[]; scripts: ScriptRow[]; twoGate: boolean; error?: string }
+type IdeasResponse = { ideas: IdeaRow[]; scripts: ScriptRow[]; jobs: JobRow[]; twoGate: boolean; error?: string }
+
+const STEP_LABELS: Record<string, string> = {
+  script: "writing script",
+  audio: "synthesizing voices",
+  images: "generating scenes",
+  video: "rendering video",
+  finalize: "publishing to archive",
+  done: "done",
+}
 
 const STATUS_CHIPS: Record<string, string> = {
   proposed: "bg-sky-500/15 text-sky-300",
@@ -34,6 +43,7 @@ export function ReviewQueue() {
   const [generating, setGenerating] = React.useState(false)
   const [busyId, setBusyId] = React.useState<string | null>(null)
   const [notes, setNotes] = React.useState<Record<string, string>>({})
+  const [producing, setProducing] = React.useState<Record<string, JobRow>>({})
 
   const load = React.useCallback(async () => {
     try {
@@ -111,10 +121,39 @@ export function ReviewQueue() {
     }
   }
 
+  // Drive a job to completion: call /step until done or failed, refreshing the list.
+  async function produce(ideaId: string) {
+    setBusyId(ideaId)
+    try {
+      const startRes = await fetch(`/api/ideas/${ideaId}/produce`, { method: "POST" })
+      const startBody = await startRes.json().catch(() => ({}))
+      if (!startRes.ok) throw new Error(startBody.error ?? `HTTP ${startRes.status}`)
+      let job: JobRow = startBody.job
+      setProducing((p) => ({ ...p, [ideaId]: job }))
+      while (job.step !== "done" && job.status !== "failed") {
+        const res = await fetch(`/api/jobs/${job.id}/step`, { method: "POST" })
+        const body = await res.json().catch(() => ({}))
+        if (!res.ok) {
+          setProducing((p) => ({ ...p, [ideaId]: body.job ?? job }))
+          throw new Error(body.error ?? `HTTP ${res.status}`)
+        }
+        job = body.job
+        setProducing((p) => ({ ...p, [ideaId]: job }))
+      }
+      await load()
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Production failed.")
+      await load()
+    } finally {
+      setBusyId(null)
+    }
+  }
+
   const ideas = data?.ideas ?? []
   const queue = ideas.filter((i) => i.status === "proposed" || i.status === "needs_changes")
   const decided = ideas.filter((i) => i.status !== "proposed" && i.status !== "needs_changes").slice(0, 12)
   const scriptByIdea = new Map((data?.scripts ?? []).map((s) => [s.idea_id, s]))
+  const jobByIdea = new Map((data?.jobs ?? []).map((j) => [j.idea_id, j]))
 
   return (
     <div className="flex flex-col gap-6">
@@ -223,6 +262,11 @@ export function ReviewQueue() {
           <ul className="flex flex-col gap-2">
             {decided.map((idea) => {
               const script = scriptByIdea.get(idea.id)
+              const job = producing[idea.id] ?? jobByIdea.get(idea.id)
+              const busy = busyId === idea.id
+              const scriptGateOpen = !data?.twoGate || script?.status === "approved"
+              const canProduce =
+                (idea.status === "approved" && scriptGateOpen) || (idea.status === "producing" && job?.status === "failed")
               return (
                 <li
                   key={idea.id}
@@ -232,6 +276,27 @@ export function ReviewQueue() {
                   <span className="flex items-center gap-2">
                     {script && data?.twoGate && (
                       <span className="text-xs text-slate-500">script: {script.status}</span>
+                    )}
+                    {busy && job && job.status !== "failed" ? (
+                      <span className="flex items-center gap-1.5 text-xs text-violet-300">
+                        <Loader2 className="size-3.5 animate-spin" aria-hidden="true" />
+                        {STEP_LABELS[job.step] ?? job.step}…
+                      </span>
+                    ) : job?.status === "failed" ? (
+                      <span className="max-w-64 truncate text-xs text-rose-300" title={job.error ?? ""}>
+                        failed at {STEP_LABELS[job.step] ?? job.step}
+                      </span>
+                    ) : null}
+                    {canProduce && !busy && (
+                      <Button size="sm" onClick={() => produce(idea.id)} className="gap-1">
+                        <Clapperboard className="size-3.5" aria-hidden="true" />
+                        {job?.status === "failed" ? "Retry production" : "Produce"}
+                      </Button>
+                    )}
+                    {idea.status === "produced" && idea.episode_id && (
+                      <a href="/episode-archive" className="text-xs text-emerald-300 underline underline-offset-2">
+                        view in archive
+                      </a>
                     )}
                     {idea.reviewer && <span className="text-xs text-slate-500">by {idea.reviewer}</span>}
                     <Chip value={idea.status} />
