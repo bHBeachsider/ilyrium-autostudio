@@ -21,9 +21,10 @@ import { twoGateEnabled } from "@/lib/ideas"
 // to R2 between requests, so no single request outgrows serverless limits and
 // failed steps can be retried without redoing earlier work.
 
-/** A running step that stops heartbeating for this long is considered crashed
- * and may be taken over by a retry. */
-const STALE_RUNNING_MS = 10 * 60 * 1000
+/** A 'running' row older than this is provably dead — the step route's
+ * maxDuration is 300s, so nothing can legally still be executing — and may be
+ * reclaimed by a retry. 60s of slack over the route limit. */
+const STALE_RUNNING_SECONDS = 360
 
 export type CreateJobResult =
   | { ok: true; job: JobRow; existing: boolean }
@@ -61,8 +62,19 @@ export async function createProductionJob(ideaId: string): Promise<CreateJobResu
     }
   }
 
+  // The partial unique index (one non-done job per idea) makes this atomic:
+  // a concurrent produce loses the race here and resumes the winner's job.
   const jobs = (await sql`
-    INSERT INTO podcast_jobs (idea_id) VALUES (${ideaId}) RETURNING *`) as JobRow[]
+    INSERT INTO podcast_jobs (idea_id) VALUES (${ideaId})
+    ON CONFLICT (idea_id) WHERE status != 'done' DO NOTHING
+    RETURNING *`) as JobRow[]
+  if (jobs.length === 0) {
+    const winner = (await sql`
+      SELECT * FROM podcast_jobs WHERE idea_id = ${ideaId} AND status != 'done'
+      ORDER BY created_at DESC LIMIT 1`) as JobRow[]
+    if (winner.length > 0) return { ok: true, job: winner[0], existing: true }
+    return { ok: false, status: 409, error: "Concurrent production start — retry." }
+  }
   await sql`UPDATE podcast_ideas SET status = 'producing' WHERE id = ${ideaId} AND status = 'approved'`
   return { ok: true, job: jobs[0], existing: false }
 }
@@ -81,7 +93,7 @@ export async function advanceJobStep(jobId: string): Promise<StepResult> {
     UPDATE podcast_jobs SET status = 'running', error = NULL, updated_at = now()
     WHERE id = ${jobId}
       AND status != 'done'
-      AND (status != 'running' OR updated_at < now() - interval '10 minutes')
+      AND (status != 'running' OR updated_at < now() - make_interval(secs => ${STALE_RUNNING_SECONDS}))
     RETURNING *`) as JobRow[]
   if (claimed.length === 0) {
     const rows = (await sql`SELECT * FROM podcast_jobs WHERE id = ${jobId}`) as JobRow[]

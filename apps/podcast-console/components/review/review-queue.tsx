@@ -130,7 +130,9 @@ export function ReviewQueue() {
       if (!startRes.ok) throw new Error(startBody.error ?? `HTTP ${startRes.status}`)
       let job: JobRow = startBody.job
       setProducing((p) => ({ ...p, [ideaId]: job }))
-      while (job.step !== "done" && job.status !== "failed") {
+      // Loop on step, not on the job's current status: a resumed FAILED job must
+      // still get a step call — advanceJobStep re-claims failed jobs (that's the retry).
+      while (job.step !== "done") {
         const res = await fetch(`/api/jobs/${job.id}/step`, { method: "POST" })
         const body = await res.json().catch(() => ({}))
         if (!res.ok) {
@@ -270,8 +272,9 @@ export function ReviewQueue() {
               return (
                 <li
                   key={idea.id}
-                  className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-slate-800/70 bg-slate-900/60 px-4 py-2.5"
+                  className="flex flex-col gap-2 rounded-lg border border-slate-800/70 bg-slate-900/60 px-4 py-2.5"
                 >
+                  <div className="flex flex-wrap items-center justify-between gap-2">
                   <span className="text-sm text-slate-300">{idea.title}</span>
                   <span className="flex items-center gap-2">
                     {script && data?.twoGate && (
@@ -301,6 +304,12 @@ export function ReviewQueue() {
                     {idea.reviewer && <span className="text-xs text-slate-500">by {idea.reviewer}</span>}
                     <Chip value={idea.status} />
                   </span>
+                  </div>
+                  {/* Two-gate: approved ideas carry their draft script here — this is where
+                      the second gate is cleared (the queue above only holds undecided ideas). */}
+                  {data?.twoGate && idea.status === "approved" && script && script.status !== "approved" && (
+                    <ScriptPanel script={script} onDecide={decideScript} busy={busyId === script.id} />
+                  )}
                 </li>
               )
             })}

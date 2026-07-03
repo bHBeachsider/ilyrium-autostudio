@@ -36,6 +36,18 @@ const DIST_CHIP: Record<string, string> = {
   failed: "bg-rose-500/15 text-rose-300",
 }
 
+// week_of is a Postgres `date`; the Neon driver decodes it to a JS Date at LOCAL
+// midnight, so format from local date parts (String(date).slice would garble it,
+// toISOString could shift a day in positive-UTC-offset zones).
+function fmtWeekOf(value: unknown): string {
+  if (value instanceof Date) {
+    const m = String(value.getMonth() + 1).padStart(2, "0")
+    const d = String(value.getDate()).padStart(2, "0")
+    return `${value.getFullYear()}-${m}-${d}`
+  }
+  return String(value).slice(0, 10)
+}
+
 function fmtDate(iso: string): string {
   const d = new Date(iso)
   return Number.isNaN(d.getTime())
@@ -175,7 +187,7 @@ export default async function EpisodeArchivePage() {
                             <span className="inline-flex items-center gap-1">
                               <Gavel className="size-3.5" aria-hidden="true" />
                               {ep.jurisdiction}
-                              {ep.week_of ? ` · week of ${String(ep.week_of).slice(0, 10)}` : ""}
+                              {ep.week_of ? ` · week of ${fmtWeekOf(ep.week_of)}` : ""}
                             </span>
                           )}
                           <span className="inline-flex items-center gap-1">

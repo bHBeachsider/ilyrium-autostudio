@@ -58,3 +58,29 @@ export async function getObject(key: string): Promise<Buffer> {
   if (!res.Body) throw new Error(`R2 object ${key} has no body`)
   return Buffer.from(await res.Body.transformToByteArray())
 }
+
+/** Reverse of publicUrl(): the R2 key for a URL this module could have minted, else null. */
+export function keyFromUrl(url: string): string | null {
+  const prefixes: string[] = []
+  const host = process.env.R2_PUBLIC_HOST
+  if (host) {
+    const base = host.startsWith("http") ? host : `https://${host}`
+    prefixes.push(`${base.replace(/\/+$/, "")}/`)
+  }
+  if (endpoint) prefixes.push(`${endpoint.replace(/\/+$/, "")}/${bucket}/`)
+  for (const prefix of prefixes) {
+    if (url.startsWith(prefix)) return url.slice(prefix.length)
+  }
+  return null
+}
+
+/** Fetch media by URL, going through credentialed R2 reads for our own storage.
+ * Without R2_PUBLIC_HOST, stored URLs are the S3-endpoint form that 403s on
+ * anonymous GETs — so publishers must never plain-fetch their own media. */
+export async function fetchMedia(url: string): Promise<Buffer> {
+  const key = client ? keyFromUrl(url) : null
+  if (key) return getObject(key)
+  const res = await fetch(url)
+  if (!res.ok) throw new Error(`Could not fetch media (${res.status}) from ${url}`)
+  return Buffer.from(await res.arrayBuffer())
+}

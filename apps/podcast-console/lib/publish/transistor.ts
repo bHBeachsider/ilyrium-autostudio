@@ -1,4 +1,5 @@
 import type { EpisodeRow } from "@/lib/db"
+import { fetchMedia } from "@/lib/blob"
 import { envFlag, type Publisher, type PublishResult } from "./types"
 
 // Transistor.fm publisher — mirrors PermitHub's proven TransistorPublisher flow:
@@ -37,9 +38,7 @@ async function resolveShow(): Promise<TransistorResource> {
 }
 
 async function uploadAudio(audioUrl: string): Promise<string> {
-  const source = await fetch(audioUrl)
-  if (!source.ok) throw new Error(`Could not fetch episode audio (${source.status}) from ${audioUrl}`)
-  const audio = Buffer.from(await source.arrayBuffer())
+  const audio = await fetchMedia(audioUrl)
 
   const auth = await api(`/episodes/authorize_upload?filename=episode.mp3`)
   const attrs = (auth.data as TransistorResource).attributes as { upload_url: string; audio_url: string }

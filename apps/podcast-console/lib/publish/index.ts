@@ -59,10 +59,13 @@ export async function distributeEpisode(
       results.push({ channel: publisher.id, distribution: saved[0] })
     } catch (err) {
       const message = err instanceof Error ? err.message.slice(0, 500) : "publish failed"
+      // Keep url/external_id (the channel object may still exist for the update
+      // path) but clear published_at — a failed row must not claim success.
       const saved = (await sql`
         INSERT INTO podcast_distributions (episode_id, channel, status, error)
         VALUES (${episode.id}, ${publisher.id}, 'failed', ${message})
-        ON CONFLICT (episode_id, channel) DO UPDATE SET status = 'failed', error = EXCLUDED.error
+        ON CONFLICT (episode_id, channel)
+        DO UPDATE SET status = 'failed', error = EXCLUDED.error, published_at = NULL
         RETURNING *`) as DistributionRow[]
       results.push({ channel: publisher.id, distribution: saved[0], error: message })
       console.error(`[publish] ${publisher.id} failed for ${episode.id}:`, message)

@@ -257,6 +257,10 @@ export async function ensureSchema(): Promise<void> {
     created_at timestamptz NOT NULL DEFAULT now(),
     updated_at timestamptz NOT NULL DEFAULT now()
   )`
+  // At most one unfinished job per idea — concurrent produce requests race on
+  // this index instead of duplicating pipelines (createProductionJob).
+  await client`CREATE UNIQUE INDEX IF NOT EXISTS podcast_jobs_active_idea_key
+    ON podcast_jobs (idea_id) WHERE status != 'done'`
   // Distribution results: one row per (episode, channel); re-publishing updates
   // the row rather than duplicating it.
   await client`CREATE TABLE IF NOT EXISTS podcast_distributions (

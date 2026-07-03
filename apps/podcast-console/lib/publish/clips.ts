@@ -7,7 +7,7 @@ import ffmpegPath from "ffmpeg-static"
 import { generateText, Output } from "ai"
 import * as z from "zod"
 import type { EpisodeRow, Segment } from "@/lib/db"
-import { blobReady, putObject } from "@/lib/blob"
+import { blobReady, fetchMedia, putObject } from "@/lib/blob"
 import { getAudioDurationSeconds } from "@/lib/generation/video"
 import { envFlag, type Publisher, type PublishResult } from "./types"
 
@@ -79,9 +79,7 @@ export const clipsPublisher: Publisher = {
       ],
     })
 
-    const videoRes = await fetch(episode.video_url)
-    if (!videoRes.ok) throw new Error(`Could not fetch episode video (${videoRes.status}).`)
-    const video = Buffer.from(await videoRes.arrayBuffer())
+    const video = await fetchMedia(episode.video_url)
 
     const workDir = await mkdtemp(join(tmpdir(), "pbcw-clips-"))
     try {
