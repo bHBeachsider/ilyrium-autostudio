@@ -125,6 +125,22 @@ export type JobRow = {
   updated_at: string
 }
 
+export type DistributionChannel = "transistor" | "sitebox" | "youtube" | "clips"
+export type DistributionStatus = "pending" | "draft" | "published" | "assets_ready" | "manual" | "failed"
+
+export type DistributionRow = {
+  id: string
+  episode_id: string
+  channel: DistributionChannel
+  external_id: string | null
+  url: string | null
+  status: DistributionStatus
+  detail: Record<string, unknown>
+  error: string | null
+  published_at: string | null
+  created_at: string
+}
+
 export type ContentSourceRow = {
   id: string
   kind: "local" | "permithub_api" | "rss" | "manual"
@@ -231,6 +247,21 @@ export async function ensureSchema(): Promise<void> {
     error text,
     created_at timestamptz NOT NULL DEFAULT now(),
     updated_at timestamptz NOT NULL DEFAULT now()
+  )`
+  // Distribution results: one row per (episode, channel); re-publishing updates
+  // the row rather than duplicating it.
+  await client`CREATE TABLE IF NOT EXISTS podcast_distributions (
+    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+    episode_id uuid NOT NULL REFERENCES podcast_episodes(id) ON DELETE CASCADE,
+    channel text NOT NULL,
+    external_id text,
+    url text,
+    status text NOT NULL DEFAULT 'pending',
+    detail jsonb NOT NULL DEFAULT '{}'::jsonb,
+    error text,
+    published_at timestamptz,
+    created_at timestamptz NOT NULL DEFAULT now(),
+    UNIQUE (episode_id, channel)
   )`
   await client`CREATE TABLE IF NOT EXISTS podcast_content_items (
     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),

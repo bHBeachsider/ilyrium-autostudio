@@ -1,22 +1,39 @@
 import { Sidebar } from "@/components/dashboard/sidebar"
 import { Header } from "@/components/dashboard/header"
 import { ImportDialog } from "@/components/archive/import-dialog"
-import { dbReady, ensureSchema, requireSql, type EpisodeRow, type EpisodeSource } from "@/lib/db"
+import { DistributeButton } from "@/components/archive/distribute-button"
+import { dbReady, ensureSchema, requireSql, type DistributionRow, type EpisodeRow, type EpisodeSource } from "@/lib/db"
 import { Archive, AudioLines, CalendarDays, FolderOpen, Gavel, MessageSquare, Database } from "lucide-react"
 
 // Always read fresh from the DB.
 export const dynamic = "force-dynamic"
 
-async function loadEpisodes(): Promise<EpisodeRow[]> {
-  if (!dbReady()) return []
+async function loadEpisodes(): Promise<{ episodes: EpisodeRow[]; distributions: Map<string, DistributionRow[]> }> {
+  if (!dbReady()) return { episodes: [], distributions: new Map() }
   try {
     const sql = requireSql()
     await ensureSchema()
-    const rows = await sql`SELECT * FROM podcast_episodes ORDER BY created_at DESC`
-    return rows as unknown as EpisodeRow[]
+    const rows = (await sql`SELECT * FROM podcast_episodes ORDER BY created_at DESC`) as unknown as EpisodeRow[]
+    const dists = (await sql`SELECT * FROM podcast_distributions ORDER BY created_at`) as unknown as DistributionRow[]
+    const byEpisode = new Map<string, DistributionRow[]>()
+    for (const d of dists) {
+      const list = byEpisode.get(d.episode_id) ?? []
+      list.push(d)
+      byEpisode.set(d.episode_id, list)
+    }
+    return { episodes: rows, distributions: byEpisode }
   } catch {
-    return []
+    return { episodes: [], distributions: new Map() }
   }
+}
+
+const DIST_CHIP: Record<string, string> = {
+  published: "bg-emerald-500/15 text-emerald-300",
+  draft: "bg-sky-500/15 text-sky-300",
+  assets_ready: "bg-violet-500/15 text-violet-300",
+  manual: "bg-amber-500/15 text-amber-300",
+  pending: "bg-slate-800 text-slate-400",
+  failed: "bg-rose-500/15 text-rose-300",
 }
 
 function fmtDate(iso: string): string {
@@ -44,7 +61,7 @@ function SourceBadge({ source }: { source: EpisodeSource }) {
 
 export default async function EpisodeArchivePage() {
   const configured = dbReady()
-  const episodes = await loadEpisodes()
+  const { episodes, distributions } = await loadEpisodes()
 
   return (
     <div className="flex min-h-screen bg-slate-950 text-slate-100">
@@ -93,6 +110,7 @@ export default async function EpisodeArchivePage() {
                 {episodes.map((ep) => {
                   const segs = Array.isArray(ep.segments) ? ep.segments : []
                   const preview = segs[0]?.text ?? ""
+                  const dists = distributions.get(ep.id) ?? []
                   return (
                     <li key={ep.id}>
                       <div className="flex flex-col gap-3 rounded-xl border border-slate-800 bg-slate-900 p-5 transition-colors hover:border-slate-700">
@@ -118,6 +136,33 @@ export default async function EpisodeArchivePage() {
                         )}
                         {ep.video_url && (
                           <video controls preload="none" src={ep.video_url} className="max-h-72 w-full rounded-lg bg-black" />
+                        )}
+                        {(ep.audio_url || ep.video_url) && (
+                          <div className="flex flex-wrap items-center gap-2">
+                            <DistributeButton episodeId={ep.id} />
+                            {dists.map((d) =>
+                              d.url ? (
+                                <a
+                                  key={d.id}
+                                  href={d.url}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium underline-offset-2 hover:underline ${DIST_CHIP[d.status] ?? DIST_CHIP.pending}`}
+                                  title={d.error ?? undefined}
+                                >
+                                  {d.channel}: {d.status}
+                                </a>
+                              ) : (
+                                <span
+                                  key={d.id}
+                                  className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${DIST_CHIP[d.status] ?? DIST_CHIP.pending}`}
+                                  title={d.error ?? undefined}
+                                >
+                                  {d.channel}: {d.status}
+                                </span>
+                              ),
+                            )}
+                          </div>
                         )}
                         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-slate-800 pt-3 text-xs text-slate-500">
                           {ep.project_name && (
