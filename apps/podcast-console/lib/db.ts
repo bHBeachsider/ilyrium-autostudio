@@ -53,6 +53,52 @@ export type EpisodeRow = {
   idea_id: string | null
 }
 
+export type IdeaStatus =
+  | "proposed"
+  | "approved"
+  | "rejected"
+  | "needs_changes"
+  | "producing"
+  | "produced"
+  | "published"
+
+export type IdeaRow = {
+  id: string
+  project_id: string | null
+  title: string
+  summary: string | null
+  stage: string
+  sources: number
+  created_at: string
+  angle: string | null
+  rationale: string | null
+  source_refs: string[]
+  status: IdeaStatus
+  score: number | null
+  created_by: string | null
+  reviewer: string | null
+  review_note: string | null
+  decided_at: string | null
+  episode_id: string | null
+}
+
+export type ScriptStatus = "draft" | "approved" | "rejected" | "needs_changes"
+
+export type ScriptRow = {
+  id: string
+  idea_id: string
+  segments: Segment[]
+  title: string | null
+  description: string | null
+  estimated_minutes: number | null
+  status: ScriptStatus
+  version: number
+  reviewer: string | null
+  review_note: string | null
+  created_at: string
+  decided_at: string | null
+}
+
 export type ContentSourceRow = {
   id: string
   kind: "local" | "permithub_api" | "rss" | "manual"
@@ -117,6 +163,34 @@ export async function ensureSchema(): Promise<void> {
     enabled boolean NOT NULL DEFAULT true,
     last_synced_at timestamptz,
     created_at timestamptz NOT NULL DEFAULT now()
+  )`
+  // Ideas become the studio's HITL approval queue. The legacy stage/sources columns
+  // stay for back-compat; project_id becomes optional (agent ideas have no project).
+  await client`ALTER TABLE podcast_ideas ALTER COLUMN project_id DROP NOT NULL`
+  await client`ALTER TABLE podcast_ideas
+    ADD COLUMN IF NOT EXISTS angle text,
+    ADD COLUMN IF NOT EXISTS rationale text,
+    ADD COLUMN IF NOT EXISTS source_refs jsonb NOT NULL DEFAULT '[]'::jsonb,
+    ADD COLUMN IF NOT EXISTS status text NOT NULL DEFAULT 'proposed',
+    ADD COLUMN IF NOT EXISTS score numeric,
+    ADD COLUMN IF NOT EXISTS created_by text,
+    ADD COLUMN IF NOT EXISTS reviewer text,
+    ADD COLUMN IF NOT EXISTS review_note text,
+    ADD COLUMN IF NOT EXISTS decided_at timestamptz,
+    ADD COLUMN IF NOT EXISTS episode_id uuid`
+  await client`CREATE TABLE IF NOT EXISTS podcast_scripts (
+    id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+    idea_id uuid NOT NULL REFERENCES podcast_ideas(id) ON DELETE CASCADE,
+    segments jsonb NOT NULL DEFAULT '[]'::jsonb,
+    title text,
+    description text,
+    estimated_minutes integer,
+    status text NOT NULL DEFAULT 'draft',
+    version integer NOT NULL DEFAULT 1,
+    reviewer text,
+    review_note text,
+    created_at timestamptz NOT NULL DEFAULT now(),
+    decided_at timestamptz
   )`
   await client`CREATE TABLE IF NOT EXISTS podcast_content_items (
     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
