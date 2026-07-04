@@ -15,7 +15,7 @@ import { synthesizeSegments } from "@/lib/generation/tts"
 import { generateEpisodeImages } from "@/lib/generation/images"
 import { renderEpisodeVideo } from "@/lib/generation/video"
 import { twoGateEnabled } from "@/lib/ideas"
-import { briefToScriptSources, buildResearchBrief, sourcesSection } from "@/lib/research"
+import { briefToScriptSources, buildResearchBrief, escapeHtml, sourcesSection } from "@/lib/research"
 import {
   buildReport,
   extractClaims,
@@ -324,10 +324,10 @@ async function finalize(job: JobRow, artifacts: JobArtifacts): Promise<string> {
   const script = requireScript(artifacts)
   const guid = `console-${job.id}`
   // Episodes carry their receipts: description + a Sources section (the sources
-  // that supported verified claims) become the show notes, which the Transistor
-  // publisher maps to the episode description and site-box reads via RSS.
+  // that supported verified claims) become the show notes as HTML — Transistor/
+  // podcast apps render the links, site-box's tag-stripped snippet stays clean.
   const showNotes = artifacts.research
-    ? `${script.description}\n\n${sourcesSection(artifacts.research, supportedSourceIds(artifacts.verification?.verdicts ?? []))}`
+    ? `<p>${escapeHtml(script.description)}</p>\n${sourcesSection(artifacts.research, supportedSourceIds(artifacts.verification?.verdicts ?? []))}`
     : null
   // Idempotent: a retried finalize updates the same guid row instead of duplicating.
   const rows = (await sql`

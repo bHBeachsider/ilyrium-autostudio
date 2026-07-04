@@ -180,11 +180,19 @@ export function briefToScriptSources(brief: ResearchBrief): string[] {
   })
 }
 
-/** The "Sources" show-notes section. Prefers sources actually cited by supported
- * claims; falls back to the whole brief. */
+export function escapeHtml(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;")
+}
+
+/** The "Sources" show-notes section as HTML: podcast apps and Transistor render
+ * the links; site-box's tag-stripped snippet shows clean "Title — outlet" text
+ * (raw URLs never appear as text anywhere). Prefers sources actually cited by
+ * supported claims; falls back to the whole brief. */
 export function sourcesSection(brief: ResearchBrief, usedIds?: Set<string>): string {
   const picked =
     usedIds && usedIds.size > 0 ? brief.sources.filter((s) => usedIds.has(s.id)) : brief.sources
-  const lines = picked.map((s) => `- [${s.outlet}] ${s.title} — ${s.url}`)
-  return `Sources:\n${lines.join("\n")}`
+  const items = picked.map(
+    (s) => `<li><a href="${escapeHtml(s.url)}">${escapeHtml(s.title)}</a> — ${escapeHtml(s.outlet)}</li>`,
+  )
+  return `<p><strong>Sources</strong></p>\n<ul>\n${items.join("\n")}\n</ul>`
 }

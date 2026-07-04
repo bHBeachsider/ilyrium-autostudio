@@ -56,15 +56,22 @@ describe("briefToScriptSources", () => {
 })
 
 describe("sourcesSection", () => {
-  it("filters to used sources when provided", () => {
+  it("filters to used sources and emits HTML links (no raw URLs as text)", () => {
     const section = sourcesSection(brief, new Set(["S2"]))
-    expect(section).toContain("Roadwork on I-95")
+    expect(section).toContain('<a href="https://cbs12.com/b">Roadwork on I-95</a>')
     expect(section).not.toContain("Hospital approved")
+    expect(section).toContain("<ul>")
   })
   it("falls back to all sources when nothing marked used", () => {
     const section = sourcesSection(brief, new Set())
     expect(section).toContain("Hospital approved")
     expect(section).toContain("Roadwork on I-95")
+  })
+  it("escapes HTML in titles", () => {
+    const evil = { queries: [], sources: [{ id: "S1", title: 'A <b>"bold"</b> & claim', url: "https://x.com/a?b=1&c=2", outlet: "x.com", date: null, snippet: "s" }] }
+    const section = sourcesSection(evil)
+    expect(section).toContain("A &lt;b&gt;&quot;bold&quot;&lt;/b&gt; &amp; claim")
+    expect(section).toContain('href="https://x.com/a?b=1&amp;c=2"')
   })
 })
 
