@@ -19,7 +19,12 @@ export function ttsReady(): boolean {
   return !!process.env.ELEVENLABS_API_KEY
 }
 
-async function synthesizeSegment(text: string, voiceId: string, apiKey: string): Promise<Buffer> {
+async function synthesizeSegment(
+  text: string,
+  voiceId: string,
+  apiKey: string,
+  context: { previousText?: string; nextText?: string } = {},
+): Promise<Buffer> {
   const url = `${API_BASE}/${voiceId}?output_format=${OUTPUT_FORMAT}`
   const res = await fetch(url, {
     method: "POST",
@@ -31,10 +36,14 @@ async function synthesizeSegment(text: string, voiceId: string, apiKey: string):
     body: JSON.stringify({
       text,
       model_id: MODEL_ID,
+      // Conversational continuity: without these, every turn is synthesized as
+      // the first line of a fresh recording and the joins sound robotic.
+      ...(context.previousText ? { previous_text: context.previousText.slice(-500) } : {}),
+      ...(context.nextText ? { next_text: context.nextText.slice(0, 500) } : {}),
       voice_settings: {
-        stability: 0.5,
+        stability: 0.45,
         similarity_boost: 0.75,
-        style: 0.0,
+        style: 0.3, // 0.0 reads flat; a modest style setting restores natural prosody
         use_speaker_boost: true,
       },
     }),
@@ -58,9 +67,15 @@ export async function synthesizeSegments(segments: Segment[]): Promise<{ audio: 
   if (usable.length === 0) throw new Error("No script segments to synthesize.")
 
   const buffers: Buffer[] = []
-  for (const seg of usable) {
+  for (let i = 0; i < usable.length; i++) {
+    const seg = usable[i]
     const voiceId = seg.speaker === "Host B" ? VOICE_B : VOICE_A
-    buffers.push(await synthesizeSegment(seg.text.trim(), voiceId, apiKey))
+    buffers.push(
+      await synthesizeSegment(seg.text.trim(), voiceId, apiKey, {
+        previousText: i > 0 ? usable[i - 1].text.trim() : undefined,
+        nextText: i < usable.length - 1 ? usable[i + 1].text.trim() : undefined,
+      }),
+    )
   }
   return { audio: Buffer.concat(buffers), synthesized: usable.length }
 }
