@@ -99,11 +99,43 @@ export type ScriptRow = {
   decided_at: string | null
 }
 
-export type JobStep = "script" | "audio" | "images" | "video" | "finalize" | "done"
+export type JobStep = "research" | "script" | "verify" | "audio" | "images" | "video" | "finalize" | "done"
 export type JobStatus = "queued" | "running" | "failed" | "done"
 
+export type ResearchSource = {
+  id: string // "S1", "S2", …
+  title: string
+  url: string
+  outlet: string
+  date: string | null
+  snippet: string
+  fullText?: string
+}
+
+export type ResearchBrief = {
+  sources: ResearchSource[]
+  queries: string[]
+}
+
+export type ClaimVerdict = {
+  claim: string
+  segmentIndex: number
+  kind: string
+  verdict: "supported" | "unsupported" | "contradicted"
+  sourceIds: string[]
+  note: string
+}
+
+export type VerificationReport = {
+  verdicts: ClaimVerdict[]
+  revised: boolean
+  passedAt: string | null
+}
+
 export type JobArtifacts = {
+  research?: ResearchBrief
   script?: { title: string; description: string; estimatedMinutes: number; segments: Segment[] }
+  verification?: VerificationReport
   audioKey?: string
   audioUrl?: string
   imageKeys?: string[]
@@ -250,7 +282,7 @@ export async function ensureSchema(): Promise<void> {
     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     idea_id uuid NOT NULL REFERENCES podcast_ideas(id),
     episode_id uuid,
-    step text NOT NULL DEFAULT 'script',
+    step text NOT NULL DEFAULT 'research',
     status text NOT NULL DEFAULT 'queued',
     artifacts jsonb NOT NULL DEFAULT '{}'::jsonb,
     error text,
@@ -261,6 +293,8 @@ export async function ensureSchema(): Promise<void> {
   // this index instead of duplicating pipelines (createProductionJob).
   await client`CREATE UNIQUE INDEX IF NOT EXISTS podcast_jobs_active_idea_key
     ON podcast_jobs (idea_id) WHERE status != 'done'`
+  // Verified-content pipeline: new jobs start at the research step.
+  await client`ALTER TABLE podcast_jobs ALTER COLUMN step SET DEFAULT 'research'`
   // Distribution results: one row per (episode, channel); re-publishing updates
   // the row rather than duplicating it.
   await client`CREATE TABLE IF NOT EXISTS podcast_distributions (
