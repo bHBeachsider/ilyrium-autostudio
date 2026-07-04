@@ -4,6 +4,7 @@ import * as React from "react"
 import { Check, Clapperboard, Loader2, MessageCircleWarning, Sparkles, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
+import { NewIdeaDialog } from "@/components/review/new-idea-dialog"
 import type { IdeaRow, JobRow, ScriptRow } from "@/lib/db"
 
 type IdeasResponse = { ideas: IdeaRow[]; scripts: ScriptRow[]; jobs: JobRow[]; twoGate: boolean; error?: string }
@@ -166,10 +167,13 @@ export function ReviewQueue() {
           {queue.length} awaiting review
           {data?.twoGate ? " · two-gate mode (idea + script approval)" : ""}
         </p>
-        <Button onClick={generate} disabled={generating} className="gap-1.5">
-          {generating ? <Loader2 className="size-4 animate-spin" /> : <Sparkles className="size-4" aria-hidden="true" />}
-          {generating ? "Generating…" : "Generate ideas"}
-        </Button>
+        <div className="flex flex-wrap gap-2">
+          <NewIdeaDialog onCreated={() => void load()} />
+          <Button onClick={generate} disabled={generating} className="gap-1.5">
+            {generating ? <Loader2 className="size-4 animate-spin" /> : <Sparkles className="size-4" aria-hidden="true" />}
+            {generating ? "Generating…" : "Generate ideas"}
+          </Button>
+        </div>
       </div>
 
       {error && (
