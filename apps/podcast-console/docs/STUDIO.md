@@ -84,7 +84,7 @@ Telegram is configured, each proposal is mirrored with inline ✅/❌ buttons (w
 `/api/telegram/webhook`, register via `setWebhook` with `TELEGRAM_WEBHOOK_SECRET`); the app
 stays authoritative on conflicts.
 
-### 3. Produce (Phase 3)
+### 3. Produce (Phase 3) — with research + fact-check gates
 
 On an approved idea, click **Produce** in /review (or drive it by API):
 
@@ -94,10 +94,20 @@ curl -X POST localhost:3000/api/jobs/<jobId>/step         # repeat until step=do
 curl localhost:3000/api/jobs/<jobId>                      # poll status/artifacts
 ```
 
-Each step call runs one bounded stage (script → audio → images → video → finalize) with
-artifacts on R2, so serverless time limits can't kill a production and failed steps retry
-without redoing earlier work. Finalize writes a `produced` episode (guid `console-<jobId>`)
-linked to its idea.
+Each step call runs one bounded stage — **research → script → verify → audio → images →
+video → finalize** — with artifacts persisted between steps, so serverless time limits
+can't kill a production and failed steps retry without redoing earlier work.
+
+**Verified content:** the `research` step retrieves real sources (Perplexity Search API,
+domain-pinned to trusted local outlets + .gov via `RESEARCH_TRUSTED_DOMAINS`, full article
+text via Jina Reader where not paywalled) and fails hard if nothing citable is found. The
+script is written under strict sourcing rules (assert only what sources state, attribute
+on air by outlet). The `verify` step then extracts every factual claim and judges it
+against the actual source texts; unsupported claims trigger one automatic rewrite, and if
+any survive, the job **fails at the gate** with a claim-by-claim report in /review (each
+retry grants one more rewrite). Finalize appends a **Sources** section to the show notes,
+which flows to Transistor descriptions and site-box. Provenance (brief + verdicts) lives
+in the job's artifacts.
 
 ### 4. Distribute (Phase 4)
 

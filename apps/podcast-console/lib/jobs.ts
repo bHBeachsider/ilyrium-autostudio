@@ -4,8 +4,10 @@ import {
   type IdeaRow,
   type JobArtifacts,
   type JobRow,
+  type ResearchBrief,
   type ScriptRow,
   type Segment,
+  type VerificationReport,
 } from "@/lib/db"
 import { blobReady, getObject, putObject } from "@/lib/blob"
 import { generateScript } from "@/lib/generation/script"
@@ -13,6 +15,15 @@ import { synthesizeSegments } from "@/lib/generation/tts"
 import { generateEpisodeImages } from "@/lib/generation/images"
 import { renderEpisodeVideo } from "@/lib/generation/video"
 import { twoGateEnabled } from "@/lib/ideas"
+import { briefToScriptSources, buildResearchBrief, sourcesSection } from "@/lib/research"
+import {
+  buildReport,
+  extractClaims,
+  failedVerdicts,
+  judgeClaims,
+  revisionFeedback,
+  supportedSourceIds,
+} from "@/lib/verify"
 
 // Production job engine. Approval is mandatory and enforced here, not in UI:
 // createProductionJob refuses ideas that aren't 'approved' (plus an approved
@@ -108,8 +119,20 @@ export async function advanceJobStep(jobId: string): Promise<StepResult> {
     let nextStep = job.step
 
     switch (job.step) {
+      case "research": {
+        artifacts.research = await runResearchStep(job)
+        nextStep = "script"
+        break
+      }
       case "script": {
-        artifacts.script = await runScriptStep(job)
+        artifacts.script = await runScriptStep(job, artifacts)
+        nextStep = "verify"
+        break
+      }
+      case "verify": {
+        const { script, verification } = await runVerifyStep(job, artifacts)
+        artifacts.script = script
+        artifacts.verification = verification
         nextStep = "audio"
         break
       }
@@ -189,11 +212,21 @@ function requireScript(artifacts: JobArtifacts): NonNullable<JobArtifacts["scrip
   return artifacts.script
 }
 
-async function runScriptStep(job: JobRow): Promise<NonNullable<JobArtifacts["script"]>> {
+async function loadIdea(ideaId: string): Promise<IdeaRow> {
   const sql = requireSql()
-  const ideas = (await sql`SELECT * FROM podcast_ideas WHERE id = ${job.idea_id}`) as IdeaRow[]
+  const ideas = (await sql`SELECT * FROM podcast_ideas WHERE id = ${ideaId}`) as IdeaRow[]
   if (ideas.length === 0) throw new Error("Idea vanished.")
-  const idea = ideas[0]
+  return ideas[0]
+}
+
+async function runResearchStep(job: JobRow): Promise<ResearchBrief> {
+  const idea = await loadIdea(job.idea_id)
+  return buildResearchBrief(idea)
+}
+
+async function runScriptStep(job: JobRow, artifacts: JobArtifacts): Promise<NonNullable<JobArtifacts["script"]>> {
+  const sql = requireSql()
+  const idea = await loadIdea(job.idea_id)
 
   // Two-gate mode produced a human-approved script — use it verbatim.
   if (twoGateEnabled()) {
@@ -210,7 +243,11 @@ async function runScriptStep(job: JobRow): Promise<NonNullable<JobArtifacts["scr
       }
     }
   }
-  const draft = await generateScript({ topic: idea.title, summary: idea.summary ?? undefined })
+  const draft = await generateScript({
+    topic: idea.title,
+    summary: idea.summary ?? undefined,
+    sources: artifacts.research ? briefToScriptSources(artifacts.research) : undefined,
+  })
   return {
     title: draft.title,
     description: draft.description,
@@ -219,20 +256,90 @@ async function runScriptStep(job: JobRow): Promise<NonNullable<JobArtifacts["scr
   }
 }
 
+/** Verify the script's claims against the research brief. One automatic rewrite
+ * is attempted; if unsupported claims survive it, the step throws (hard gate)
+ * with a claim-by-claim summary — the full report is in artifacts.verification. */
+async function runVerifyStep(
+  job: JobRow,
+  artifacts: JobArtifacts,
+): Promise<{ script: NonNullable<JobArtifacts["script"]>; verification: VerificationReport }> {
+  let script = requireScript(artifacts)
+  const brief = artifacts.research
+  if (!brief) {
+    // Legacy job created before the research step existed — nothing to judge against.
+    console.warn(`[jobs] verify skipped for ${job.id}: no research brief (legacy job)`)
+    return { script, verification: buildReport([], false, true) }
+  }
+
+  let claims = await extractClaims(script.segments)
+  let verdicts = await judgeClaims(claims, brief)
+  let failed = failedVerdicts(verdicts)
+  let revised = false
+
+  if (failed.length > 0) {
+    // One automatic rewrite that removes/softens the failed claims, then re-check.
+    const idea = await loadIdea(job.idea_id)
+    const redraft = await generateScript({
+      topic: idea.title,
+      summary: idea.summary ?? undefined,
+      sources: briefToScriptSources(brief),
+      feedback: revisionFeedback(failed),
+      previousScript: script.segments,
+    })
+    script = {
+      title: redraft.title,
+      description: redraft.description,
+      estimatedMinutes: Math.round(redraft.estimatedMinutes),
+      segments: redraft.segments,
+    }
+    revised = true
+    claims = await extractClaims(script.segments)
+    verdicts = await judgeClaims(claims, brief)
+    failed = failedVerdicts(verdicts)
+  }
+
+  if (failed.length > 0) {
+    // Persist the report before failing so the UI can render it with the error.
+    const sql = requireSql()
+    const report = buildReport(verdicts, revised, false)
+    await sql`
+      UPDATE podcast_jobs
+      SET artifacts = ${JSON.stringify({ ...artifacts, script, verification: report })}::jsonb, updated_at = now()
+      WHERE id = ${job.id}`
+    const summary = failed
+      .slice(0, 3)
+      .map((v) => `"${v.claim.slice(0, 80)}" (${v.verdict})`)
+      .join("; ")
+    throw new Error(
+      `Fact-check gate: ${failed.length} of ${verdicts.length} claims unsupported after rewrite — ${summary}`,
+    )
+  }
+
+  console.log(`[jobs] verify passed for ${job.id}: ${verdicts.length} claims, revised=${revised}`)
+  return { script, verification: buildReport(verdicts, revised, true) }
+}
+
 async function finalize(job: JobRow, artifacts: JobArtifacts): Promise<string> {
   const sql = requireSql()
   const script = requireScript(artifacts)
   const guid = `console-${job.id}`
+  // Episodes carry their receipts: description + a Sources section (the sources
+  // that supported verified claims) become the show notes, which the Transistor
+  // publisher maps to the episode description and site-box reads via RSS.
+  const showNotes = artifacts.research
+    ? `${script.description}\n\n${sourcesSection(artifacts.research, supportedSourceIds(artifacts.verification?.verdicts ?? []))}`
+    : null
   // Idempotent: a retried finalize updates the same guid row instead of duplicating.
   const rows = (await sql`
     INSERT INTO podcast_episodes
-      (title, description, estimated_minutes, segments, status, audio_url, video_url, source, guid, idea_id)
+      (title, description, estimated_minutes, segments, status, audio_url, video_url, source, guid, idea_id, show_notes)
     VALUES
       (${script.title}, ${script.description}, ${script.estimatedMinutes},
        ${JSON.stringify(script.segments)}::jsonb, 'produced', ${artifacts.audioUrl ?? null},
-       ${artifacts.videoUrl ?? null}, 'generated', ${guid}, ${job.idea_id})
+       ${artifacts.videoUrl ?? null}, 'generated', ${guid}, ${job.idea_id}, ${showNotes})
     ON CONFLICT (guid) WHERE guid IS NOT NULL
-    DO UPDATE SET audio_url = EXCLUDED.audio_url, video_url = EXCLUDED.video_url, status = 'produced'
+    DO UPDATE SET audio_url = EXCLUDED.audio_url, video_url = EXCLUDED.video_url,
+                  show_notes = EXCLUDED.show_notes, status = 'produced'
     RETURNING id`) as { id: string }[]
   const episodeId = rows[0].id
   await sql`

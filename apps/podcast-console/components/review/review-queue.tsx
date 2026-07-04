@@ -9,7 +9,9 @@ import type { IdeaRow, JobRow, ScriptRow } from "@/lib/db"
 type IdeasResponse = { ideas: IdeaRow[]; scripts: ScriptRow[]; jobs: JobRow[]; twoGate: boolean; error?: string }
 
 const STEP_LABELS: Record<string, string> = {
+  research: "researching sources",
   script: "writing script",
+  verify: "fact-checking claims",
   audio: "synthesizing voices",
   images: "generating scenes",
   video: "rendering video",
@@ -310,6 +312,10 @@ export function ReviewQueue() {
                   {data?.twoGate && idea.status === "approved" && script && script.status !== "approved" && (
                     <ScriptPanel script={script} onDecide={decideScript} busy={busyId === script.id} />
                   )}
+                  {/* Fact-check gate failed: show the claim-by-claim report. */}
+                  {job?.status === "failed" && job.step === "verify" && job.artifacts?.verification && (
+                    <VerificationReportPanel report={job.artifacts.verification} />
+                  )}
                 </li>
               )
             })}
@@ -362,6 +368,30 @@ function ScriptPanel({
           ))}
         </div>
       )}
+    </div>
+  )
+}
+
+function VerificationReportPanel({ report }: { report: NonNullable<JobRow["artifacts"]["verification"]> }) {
+  const failed = report.verdicts.filter((v) => v.verdict !== "supported")
+  return (
+    <div className="rounded-lg border border-rose-800/50 bg-rose-950/20 p-3 text-xs">
+      <p className="font-medium text-rose-300">
+        Fact-check gate: {failed.length} of {report.verdicts.length} claims unsupported
+        {report.revised ? " (after one automatic rewrite)" : ""}
+      </p>
+      <ul className="mt-1.5 flex flex-col gap-1">
+        {failed.slice(0, 6).map((v, i) => (
+          <li key={i} className="text-rose-200/80">
+            <span className="rounded bg-rose-900/40 px-1 py-0.5 uppercase">{v.verdict}</span>{" "}
+            &ldquo;{v.claim}&rdquo;
+            {v.note && <span className="text-rose-300/60"> — {v.note}</span>}
+          </li>
+        ))}
+      </ul>
+      <p className="mt-1.5 text-rose-300/60">
+        Retry gives the fact-checker another rewrite attempt; reject the idea if the story lacks sources.
+      </p>
     </div>
   )
 }
