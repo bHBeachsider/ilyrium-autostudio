@@ -74,7 +74,11 @@ export async function generateScript(req: ScriptRequest): Promise<GeneratedScrip
       "Host A (warm, curious anchor) and Host B (sharp analyst who adds context). " +
       "Keep it factual, locally relevant, and conversational. Alternate speakers frequently. " +
       groundingRules +
-      "Open with a quick hook, cover the key angles, and close with a takeaway. " +
+      "Write ONLY words a host would actually speak aloud — never include stage directions, section labels, " +
+      "or meta-language (no 'Quick hook:', 'takeaway', 'in this segment', 'let's start with the scale'). " +
+      "Open mid-conversation with a concrete, arresting fact or question, cover the key angles, and end " +
+      "with a natural sign-off. Write for the ear: short sentences, contractions, spelled-out numbers " +
+      "where a broadcaster would say them. " +
       "When producer feedback is provided, treat it as the top priority and revise the whole episode to satisfy it. " +
       `This episode must run about ${targetMinutes} minutes when spoken aloud — roughly ${targetWords} total words across ${minSegments}-${maxSegments} segments. ` +
       `Set estimatedMinutes to ${targetMinutes}.`,
