@@ -78,7 +78,10 @@ async function searchOnce(query: string, apiKey: string): Promise<SearchRow[]> {
     body: JSON.stringify({
       query,
       max_results: 10,
-      search_recency_filter: "month",
+      // Default month keeps daily-loop stories fresh; catalog refreshes of older
+      // episodes can widen via RESEARCH_RECENCY (hour|day|week|month|year) since
+      // their coverage may have aged out of a one-month window.
+      search_recency_filter: process.env.RESEARCH_RECENCY || "month",
       // Deep page extraction: snippets carry article body text (~1-2k chars),
       // which is the primary verification material. (Do not combine with
       // max_tokens_per_page — the API 500s on the combination.)
