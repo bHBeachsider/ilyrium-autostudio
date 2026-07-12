@@ -299,6 +299,15 @@ TOOLS = [
             "required": ["tool"]},
     },
     {
+        "name": "list_tools",
+        "description": "List every studio tool available (name + one-line description), so you can "
+                       "discover the full action surface before deciding what to call. Optionally "
+                       "filter by a keyword (e.g. 'edit', 'release', 'model'). This is the studio's "
+                       "help menu.",
+        "input_schema": {"type": "object", "properties": {
+            "filter": {"type": "string", "description": "Optional keyword to match against tool names/descriptions."}}},
+    },
+    {
         "name": "list_models",
         "description": "List the studio's curated, capability-tagged model/engine catalog "
                        "(modality, provider, base, strengths, cost, recommended_for). TensorArt has "
@@ -485,6 +494,21 @@ def execute_tool(name: str, tool_input: dict, project_dir: str | None, progress_
     if name == "get_tool_manual":
         import tool_knowledge
         return out(tool_knowledge.get(tool_input.get("tool", "")))
+
+    # ---- list_tools (the studio's help menu — reads TOOLS so it self-updates) ----
+    if name == "list_tools":
+        kw = (tool_input.get("filter") or "").lower().strip()
+        rows = []
+        for t in TOOLS:
+            desc = " ".join(t["description"].split())
+            if kw and kw not in t["name"].lower() and kw not in desc.lower():
+                continue
+            # first sentence of the description keeps it to one line
+            short = desc.split(". ")[0].rstrip(".")
+            rows.append({"name": t["name"], "summary": short})
+        header = f"{len(rows)} studio tool(s)" + (f" matching '{kw}'" if kw else "") + ":"
+        listing = "\n".join(f"  {r['name']:<22} {r['summary']}" for r in rows)
+        return out({"count": len(rows), "tools": rows, "text": header + "\n" + listing})
 
     # ---- list_models (studio-wide catalog the agent chooses from) ----
     if name == "list_models":

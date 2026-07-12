@@ -69,6 +69,13 @@ def get_tool_manual(tool: str) -> str:
 
 
 @mcp.tool()
+def list_tools(filter: str = "") -> str:
+    """List every studio tool available (name + one-line summary) — the studio's help menu.
+    Optionally pass a keyword to filter by name/description (e.g. 'edit', 'release', 'model')."""
+    return _run("list_tools", filter=filter)
+
+
+@mcp.tool()
 def list_models() -> str:
     """List the studio's curated, capability-tagged model/engine catalog (modality, provider,
     base, strengths, cost, recommended_for). TensorArt has no list-all API, so this registry is
