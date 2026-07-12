@@ -103,7 +103,9 @@ def generate_first_cut(model: str = "grok-imagine") -> str:
 @mcp.tool()
 def regenerate_shot(scene_number: int, new_visual_prompt: str = "", new_voiceover: str = "",
                     model: str = "grok-imagine", regen_audio: bool = False) -> str:
-    """Regenerate ONE shot as a new take (grok-imagine / veo3 / veo3.1 / kling / comfyui / ue)."""
+    """Regenerate ONE shot as a new take (grok-imagine / veo3 / veo3.1 / kling / ue /
+    comfyui / comfyui:<registry id> e.g. comfyui:zimage, comfyui:flux2,
+    comfyui:flux2-klein-9b-uncensored — any provider='comfyui' model_registry.json entry)."""
     return _run("regenerate_shot", scene_number=scene_number,
                 new_visual_prompt=new_visual_prompt or None,
                 new_voiceover=new_voiceover or None, model=model, regen_audio=regen_audio)
@@ -115,6 +117,33 @@ def edit_shot(scene_number: int, edit_prompt: str) -> str:
     angle, add/remove/replace objects, restyle, VFX) rather than regenerating. Non-destructive:
     appends a new take. Needs RUNWAYML_API_SECRET. e.g. 'relight to golden hour', 'remove the logo'."""
     return _run("edit_shot", scene_number=scene_number, edit_prompt=edit_prompt)
+
+
+@mcp.tool()
+def edit_image(change: str, image_path: str = "", scene_number: int = None,
+               model: str = "zimage", denoise: float = 0.65, seed: int = None) -> str:
+    """EDIT a still image on the self-hosted ComfyUI box (img2img): restyle/recolor/
+    relight an existing image toward `change` while keeping its composition. Target a
+    take (scene_number) or any image_path. model = zimage | flux2 |
+    flux2-klein-9b-uncensored (on-box registry models). denoise = edit strength 0-1
+    (lower keeps more). Non-destructive: writes a NEW file (and appends an image take
+    when a scene is targeted). Needs the box + tunnel up (cli/box.ps1 start + tunnel)."""
+    return _run("edit_image", change=change, image_path=image_path or None,
+                scene_number=scene_number, model=model, denoise=denoise, seed=seed)
+
+
+@mcp.tool()
+def inpaint_image(change: str, image_path: str = "", scene_number: int = None,
+                  region: str = "", mask: str = "", model: str = "zimage",
+                  seed: int = None) -> str:
+    """INPAINT part of a still on the self-hosted ComfyUI box: ONLY the masked area
+    changes; the rest is preserved pixel-for-pixel. Pass region='x1,y1,x2,y2'
+    (fractions 0-1 or pixels) or mask=<image path, white=change>. Target a take
+    (scene_number) or any image_path. model = zimage | flux2 |
+    flux2-klein-9b-uncensored. Writes a NEW file. Needs the box + tunnel up."""
+    return _run("inpaint_image", change=change, image_path=image_path or None,
+                scene_number=scene_number, region=region or None, mask=mask or None,
+                model=model, seed=seed)
 
 
 @mcp.tool()

@@ -1,5 +1,8 @@
 ﻿venv/
 outputs/
+# Rendered images pulled from the box (keep the folder, ignore its contents)
+apps/auto-studio/cli/renders/*
+!apps/auto-studio/cli/renders/.gitkeep
 # Broderick LoRA weights (canonical in S3)
 projects/broderick/_training/local_artifacts/loras/
 # Secrets / local env — never commit
@@ -7,3 +10,10 @@ projects/broderick/_training/local_artifacts/loras/
 .env.local
 .env.*.local
 .env.bak-*
+
+# Private keys — never commit
+*.pem
+
+# Python cache
+__pycache__/
+*.pyc

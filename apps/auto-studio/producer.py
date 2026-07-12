@@ -74,10 +74,15 @@ def _render_video(model, visual_prompt, scene_number, output_dir, aspect_ratio, 
         p = compose_prompt(visual_prompt, kernel, engine="grok-imagine") if kernel else visual_prompt
         return render_scene_video(p, scene_number, output_dir=output_dir,
                                   aspect_ratio=aspect_ratio, output_name=output_name)
-    if m == "comfyui":
+    if m == "comfyui" or m.startswith("comfyui:"):
+        # 'comfyui' = default registry model (zimage); 'comfyui:<id>' = any
+        # provider='comfyui' entry in model_registry.json (incl. abliterated
+        # variants). Unknown ids raise a clear ValueError from the engine.
         from media.comfyui_renderer import render_scene_comfyui
         p = compose_prompt(visual_prompt, kernel, engine="comfyui") if kernel else visual_prompt
-        return render_scene_comfyui(p, scene_number, output_dir=output_dir, output_name=output_name)
+        comfy_model = m.split(":", 1)[1] if ":" in m else None
+        return render_scene_comfyui(p, scene_number, output_dir=output_dir,
+                                    output_name=output_name, model=comfy_model)
     if m == "ue":
         # UE renders a level sequence (visual_prompt = sequence path) — no composition.
         from media.ue_renderer import render_scene_ue

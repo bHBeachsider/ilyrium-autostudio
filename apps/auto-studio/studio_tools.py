@@ -94,9 +94,13 @@ TOOLS = [
         "input_schema": {
             "type": "object",
             "properties": {
-                "model": {"type": "string", "enum": ["grok-imagine", "veo3", "veo3.1", "kling", "comfyui", "ue", "keyframe", "runway", "runway:veo3.1"],
+                "model": {"type": "string", "enum": ["grok-imagine", "veo3", "veo3.1", "kling", "comfyui",
+                                                     "comfyui:zimage", "comfyui:flux2",
+                                                     "comfyui:flux2-klein-9b-uncensored",
+                                                     "ue", "keyframe", "runway", "runway:veo3.1"],
                           "description": "Video model for all shots in this pass. Default 'grok-imagine' "
-                                         "(fast/cheap). Use veo3/veo3.1/kling for premium quality or dialogue."},
+                                         "(fast/cheap). Use veo3/veo3.1/kling for premium quality or dialogue. "
+                                         "'comfyui:<id>' runs any registry model on the self-hosted box (stills)."},
             },
         },
     },
@@ -113,11 +117,15 @@ TOOLS = [
                 "new_visual_prompt": {"type": "string", "description": "Optional rewritten visual prompt."},
                 "new_voiceover": {"type": "string", "description": "Optional rewritten voiceover line."},
                 "regen_audio": {"type": "boolean", "description": "Re-render the voiceover too (set true if you changed the voiceover)."},
-                "model": {"type": "string", "enum": ["grok-imagine", "veo3", "veo3.1", "kling", "comfyui", "ue", "keyframe", "runway", "runway:veo3.1"],
+                "model": {"type": "string", "enum": ["grok-imagine", "veo3", "veo3.1", "kling", "comfyui",
+                                                     "comfyui:zimage", "comfyui:flux2",
+                                                     "comfyui:flux2-klein-9b-uncensored",
+                                                     "ue", "keyframe", "runway", "runway:veo3.1"],
                           "description": "Video model. 'grok-imagine' = fast/cheap draft (default). "
                                          "'veo3'/'veo3.1' = premium with native dialogue. 'kling' = "
                                          "premium with lip-synced dialogue. Use a premium model when "
-                                         "the user wants higher quality or on-camera character dialogue."},
+                                         "the user wants higher quality or on-camera character dialogue. "
+                                         "'comfyui:<id>' = any self-hosted registry model (stills)."},
             },
             "required": ["scene_number"],
         },
@@ -237,6 +245,49 @@ TOOLS = [
         },
     },
     {
+        "name": "edit_image",
+        "description": "EDIT a still image with the self-hosted ComfyUI box (img2img): restyle, "
+                       "recolor, relight, or nudge an existing produced image toward a text change "
+                       "while keeping its composition. Works on a take's image (scene_number) or any "
+                       "image path. Non-destructive: writes a NEW file (and appends an image take when "
+                       "a scene is targeted). Needs the box + tunnel up (cli/box.ps1 start + tunnel).",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "image_path": {"type": "string", "description": "Path to the image to edit. Omit to use the selected take's image of scene_number."},
+                "scene_number": {"type": "integer", "description": "Shot whose selected take's image to edit (alternative to image_path)."},
+                "change": {"type": "string", "description": "The change to apply, described visually, e.g. 'make it golden hour'."},
+                "model": {"type": "string", "enum": ["zimage", "flux2", "flux2-klein-9b-uncensored"],
+                          "description": "On-box registry model (default zimage)."},
+                "denoise": {"type": "number", "description": "Edit strength 0-1 (default 0.65; lower keeps more of the original)."},
+                "seed": {"type": "integer"},
+            },
+            "required": ["change"],
+        },
+    },
+    {
+        "name": "inpaint_image",
+        "description": "INPAINT part of a still image with the self-hosted ComfyUI box: only the "
+                       "masked area changes, the rest is preserved pixel-for-pixel. Give either a "
+                       "rectangular region 'x1,y1,x2,y2' (fractions 0-1 or pixels) or a mask image "
+                       "(white=change, black=keep). Works on a take's image (scene_number) or any "
+                       "image path; writes a NEW file. Needs the box + tunnel up.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "image_path": {"type": "string", "description": "Path to the image to inpaint. Omit to use the selected take's image of scene_number."},
+                "scene_number": {"type": "integer", "description": "Shot whose selected take's image to inpaint (alternative to image_path)."},
+                "change": {"type": "string", "description": "What the masked area should become, e.g. 'a red umbrella'."},
+                "region": {"type": "string", "description": "Rectangular mask 'x1,y1,x2,y2' — fractions 0-1 or pixels."},
+                "mask": {"type": "string", "description": "Path to a mask image (white=change). Alternative to region."},
+                "model": {"type": "string", "enum": ["zimage", "flux2", "flux2-klein-9b-uncensored"],
+                          "description": "On-box registry model (default zimage)."},
+                "seed": {"type": "integer"},
+            },
+            "required": ["change"],
+        },
+    },
+    {
         "name": "get_tool_manual",
         "description": "Load the agent-readable manual for a tool/engine (TensorArt, Runway, "
                        "ComfyUI, Unreal, DaVinci Resolve, FFmpeg, ElevenLabs, Blender, Igniter) before "
@@ -316,6 +367,76 @@ def _release_line(cut: dict) -> str:
     return "Assembled locally (not published)."
 
 
+def _comfyui_still_edit(tool_input: dict, project_dir: str | None, inpaint: bool) -> str:
+    """Shared body of the edit_image / inpaint_image tools: img2img or inpaint an
+    existing still on the ComfyUI box via media/comfyui_engine.py. Returns the
+    result text. Raises nothing silently — engine failures surface as the raise."""
+    import time
+    import tempfile
+    from media import comfyui_engine as ce
+    from ec2_session import COMFYUI_URL
+
+    # Resolve the source image: explicit path, or the targeted shot's selected take.
+    src = tool_input.get("image_path")
+    project = ps.load_project(project_dir) if project_dir else None
+    scene = tool_input.get("scene_number")
+    if not src and project and scene is not None:
+        shot = ps.get_shot(project, int(scene))
+        take = ps.get_take(shot, shot.get("selected_take")) if shot else None
+        src = (take or {}).get("image")
+        if not src:
+            return (f"Shot {scene}'s selected take has no still image to edit — "
+                    f"pass image_path instead (video takes can't be inpainted here).")
+    if not src:
+        return "Pass image_path (or scene_number of a shot whose selected take has an image)."
+    if not os.path.exists(src):
+        return f"Image not found: {src}"
+
+    base = COMFYUI_URL.rstrip("/")
+    if not ce.is_up(base):
+        return (f"ComfyUI is not reachable at {base}. Start the box + tunnel first "
+                f"(cli/box.ps1 start, then cli/box.ps1 tunnel).")
+
+    from PIL import Image
+    w, h = Image.open(src).size
+
+    mask_name = None
+    if inpaint:
+        region = tool_input.get("region")
+        mask_path = tool_input.get("mask")
+        if region:
+            local_mask = ce.make_region_mask(region, w, h, save_dir=tempfile.gettempdir())
+            mask_name = ce.upload_image(local_mask, base)
+        elif mask_path and os.path.exists(mask_path):
+            mask_name = ce.upload_image(mask_path, base)
+        else:
+            return "inpaint_image needs region='x1,y1,x2,y2' or mask=<image path>."
+
+    img_name = ce.upload_image(src, base)
+    model = tool_input.get("model") or ce.DEFAULT_MODEL
+    seed = tool_input.get("seed")
+    denoise = float(tool_input.get("denoise") or 0.65)
+    graph = ce.build_graph(model, tool_input["change"], seed=seed, width=w, height=h,
+                           img=img_name, mask=mask_name, denoise=denoise,
+                           prefix="studio/edit")
+
+    out_dir = project_dir or os.path.join("outputs", "_edits")
+    stem = (os.path.splitext(os.path.basename(src))[0]
+            + ("_inpaint" if inpaint else "_edit") + f"_{int(time.time())}")
+    out_path = ce.submit_and_wait(graph, base, timeout=600,
+                                  output_dir=out_dir, output_name=stem)
+
+    note = ""
+    if project and scene is not None and ps.get_shot(project, int(scene)) is not None:
+        take_id = ps.add_take(project, int(scene), video=None, audio=None,
+                              model=f"comfyui:{model}", status="done",
+                              image=out_path, make_selected=False)
+        ps.save_project(project_dir, project)
+        note = f" Appended to shot {scene} as image take {take_id} (not selected)."
+    verb = "Inpainted" if inpaint else "Edited"
+    return f"{verb} via comfyui:{model} -> {out_path}.{note} Original untouched."
+
+
 def execute_tool(name: str, tool_input: dict, project_dir: str | None, progress_cb=None) -> dict:
     def out(content, pdir=project_dir):
         return {"content": content if isinstance(content, str) else json.dumps(content), "project_dir": pdir}
@@ -353,6 +474,12 @@ def execute_tool(name: str, tool_input: dict, project_dir: str | None, progress_
             lines.append(f"  [{i['severity'].upper()} · risk {i['risk']} · {i['tier']}] "
                          f"{i.get('project')} — {why}")
         return out("\n".join(lines))
+
+    # ---- edit_image / inpaint_image (ComfyUI still edits; project optional) ----
+    if name in ("edit_image", "inpaint_image"):
+        if not tool_input.get("change"):
+            return out(f"{name} needs 'change' — the visual change to apply.")
+        return out(_comfyui_still_edit(tool_input, project_dir, inpaint=(name == "inpaint_image")))
 
     # ---- get_tool_manual (load a tool's agent-readable manual into context) ----
     if name == "get_tool_manual":

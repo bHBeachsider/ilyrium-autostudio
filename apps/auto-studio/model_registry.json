@@ -1,0 +1,518 @@
+{
+  "version": "1.0",
+  "note": "Curated, capability-tagged catalog of generation models/engines the agent chooses from. TAMS has no list-all-models API, so this is hand-grown: add an entry per model you've vetted (the id is the TensorArt model id, or the engine name for non-TensorArt providers). The selector (model_select.py) scores these against a project's style_kernel.json. ComfyUI convention: adding an on-box model = ONE provider='comfyui' entry with id 'comfyui:<short-id>' plus either a 'recipe' block (unet/clip/clip_type/vae/latent/steps/cfg/sampler/scheduler[/weight_dtype/hint] -> programmatic graph, supports txt2img/img2img/inpaint/region) or a 'workflow' path (pre-exported comfyui_workflows/*_api.json template with __PROMPT__/__SEED__ tokens, txt2img only). media/comfyui_engine.py reads these; the pipeline runs them via model='comfyui:<short-id>'. Abliterated/uncensored models are just another entry pointing at their safetensors.",
+  "modalities": {
+    "txt2img": "text -> still image",
+    "img2img": "image -> image (restyle/upscale)",
+    "keyframe": "still meant to seed a video shot",
+    "t2v": "text -> video",
+    "i2v": "image -> video (first frame drives motion)",
+    "v2v": "video -> video (edit/relight/restyle)",
+    "3d": "3D / virtual-production render"
+  },
+  "models": [
+    {
+      "id": "tensorart:600423083519508503",
+      "name": "TensorArt base checkpoint (test)",
+      "provider": "tensorart",
+      "modality": "txt2img",
+      "base": "SD",
+      "strengths": [
+        "general",
+        "photoreal",
+        "fast"
+      ],
+      "aspect": [
+        "1:1",
+        "16:9",
+        "9:16"
+      ],
+      "cost_tier": "low",
+      "requires_env": "TENSORART_API_TOKEN",
+      "recommended_for": [
+        "ad",
+        "draft",
+        "general"
+      ],
+      "notes": "Verified working via test_tensorart.py. A safe default checkpoint for stills."
+    },
+    {
+      "id": "tensorart:911944256908733978/Wan-2.5-Preview-I2V",
+      "name": "Wan 2.5 Preview (I2V)",
+      "provider": "tensorart",
+      "modality": "i2v",
+      "base": "Wan-2.5",
+      "strengths": [
+        "cinematic motion",
+        "photoreal",
+        "camera moves"
+      ],
+      "aspect": [
+        "16:9",
+        "9:16"
+      ],
+      "cost_tier": "med",
+      "requires_env": "TENSORART_API_TOKEN",
+      "recommended_for": [
+        "prestige-drama",
+        "narrative",
+        "film",
+        "trailer"
+      ],
+      "notes": "Image-to-video: needs a locked first-frame still (from a keyframe model) + an INPUT stage."
+    },
+    {
+      "id": "astria:4180298",
+      "name": "Astria Nano Banana 2 (FaceID stills)",
+      "provider": "astria",
+      "modality": "txt2img",
+      "base": "Gemini-3.1",
+      "strengths": [
+        "character likeness",
+        "faceid tunes",
+        "photoreal",
+        "fast"
+      ],
+      "aspect": [
+        "1:1",
+        "16:9",
+        "9:16",
+        "3:4"
+      ],
+      "cost_tier": "low",
+      "requires_env": "ASTRIA_API_KEY",
+      "recommended_for": [
+        "character",
+        "portrait",
+        "keyframe",
+        "consistency"
+      ],
+      "notes": "Character likeness via FaceID tokens in the prompt, e.g. '<faceid:5055589:1.0> man' (Robert, millan). Falls back to ~/.astria/config.json creds."
+    },
+    {
+      "id": "astria:4180298:kling30_standard",
+      "name": "Astria video — Kling 3.0",
+      "provider": "astria",
+      "modality": "t2v",
+      "base": "Kling-3.0",
+      "strengths": [
+        "character likeness",
+        "faceid first frame",
+        "5/10s takes"
+      ],
+      "aspect": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "cost_tier": "med",
+      "requires_env": "ASTRIA_API_KEY",
+      "recommended_for": [
+        "character",
+        "narrative",
+        "social"
+      ],
+      "notes": "Renders a FaceID first frame from the prompt, then animates (5 or 10s). Proven on Robert's lakeside + golden-hour clips."
+    },
+    {
+      "id": "astria:4180298:veo31_fast_720p",
+      "name": "Astria video — Veo 3.1 fast",
+      "provider": "astria",
+      "modality": "t2v",
+      "base": "Veo-3.1",
+      "strengths": [
+        "character likeness",
+        "faceid first frame",
+        "quality motion"
+      ],
+      "aspect": [
+        "16:9",
+        "9:16"
+      ],
+      "cost_tier": "med",
+      "requires_env": "ASTRIA_API_KEY",
+      "recommended_for": [
+        "character",
+        "narrative",
+        "hero-shot"
+      ],
+      "notes": "4/6/8s only. Renders a FaceID first frame, then animates. Proven on Robert's walk-up + wave clip."
+    },
+    {
+      "id": "runway:gen4.5",
+      "name": "Runway Gen-4.5",
+      "provider": "runway",
+      "modality": "i2v",
+      "base": "Gen-4.5",
+      "strengths": [
+        "premium cinematic",
+        "coherent motion",
+        "physical realism"
+      ],
+      "aspect": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "cost_tier": "high",
+      "requires_env": "RUNWAYML_API_SECRET",
+      "recommended_for": [
+        "prestige-drama",
+        "film",
+        "hero-shot",
+        "narrative"
+      ],
+      "notes": "Flagship cinematic i2v; use for hero shots where quality > cost."
+    },
+    {
+      "id": "runway:gen4_aleph",
+      "name": "Runway Gen-4 Aleph (edit)",
+      "provider": "runway",
+      "modality": "v2v",
+      "base": "Gen-4-Aleph",
+      "strengths": [
+        "relight",
+        "camera change",
+        "object edit",
+        "non-destructive"
+      ],
+      "aspect": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "cost_tier": "high",
+      "requires_env": "RUNWAYML_API_SECRET",
+      "recommended_for": [
+        "edit",
+        "finishing",
+        "continuity-fix"
+      ],
+      "notes": "Edits an existing take (relight/recompose) without re-generating from scratch."
+    },
+    {
+      "id": "grok-imagine",
+      "name": "Grok Imagine",
+      "provider": "grok",
+      "modality": "txt2img",
+      "base": "grok",
+      "strengths": [
+        "fast",
+        "cheap",
+        "draft"
+      ],
+      "aspect": [
+        "1:1",
+        "16:9",
+        "9:16"
+      ],
+      "cost_tier": "low",
+      "requires_env": "XAI_API_KEY",
+      "recommended_for": [
+        "ad",
+        "draft",
+        "first-cut"
+      ],
+      "notes": "Default fast/cheap drafting engine for first cuts."
+    },
+    {
+      "id": "veo3.1",
+      "name": "Google Veo 3.1",
+      "provider": "veo",
+      "modality": "t2v",
+      "base": "Veo-3.1",
+      "strengths": [
+        "native audio",
+        "text-to-video",
+        "dialogue"
+      ],
+      "aspect": [
+        "16:9",
+        "9:16"
+      ],
+      "cost_tier": "high",
+      "requires_env": "GEMINI_API_KEY",
+      "recommended_for": [
+        "ad",
+        "dialogue",
+        "social"
+      ],
+      "notes": "Text-to-video with native audio; good when you want sound generated with the shot."
+    },
+    {
+      "id": "kling",
+      "name": "Kling",
+      "provider": "kling",
+      "modality": "i2v",
+      "base": "Kling",
+      "strengths": [
+        "dialogue",
+        "lip-sync",
+        "motion"
+      ],
+      "aspect": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "cost_tier": "med",
+      "requires_env": "KLING_API_KEY",
+      "recommended_for": [
+        "dialogue",
+        "character",
+        "social"
+      ],
+      "notes": "Strong for on-camera dialogue / lip-sync shots."
+    },
+    {
+      "id": "comfyui",
+      "name": "ComfyUI (local/EC2 graph)",
+      "provider": "comfyui",
+      "modality": "txt2img",
+      "base": "configurable",
+      "strengths": [
+        "controlled",
+        "consistent",
+        "controlnet",
+        "custom"
+      ],
+      "aspect": [
+        "1:1",
+        "16:9",
+        "9:16"
+      ],
+      "cost_tier": "low",
+      "requires_env": null,
+      "recommended_for": [
+        "controlled",
+        "consistency",
+        "style-lock"
+      ],
+      "notes": "Runs on the EC2 GPU workstation; use when you need precise control / ControlNet / a custom graph. Bare 'comfyui' defaults to the zimage recipe; pick a specific on-box model with 'comfyui:<id>' (see the comfyui:* entries)."
+    },
+    {
+      "id": "comfyui:zimage",
+      "name": "Z-Image Turbo (on-box, abliterated encoder)",
+      "provider": "comfyui",
+      "modality": "txt2img",
+      "base": "Z-Image-Turbo",
+      "strengths": [
+        "fast",
+        "photoreal",
+        "uncensored",
+        "img2img",
+        "inpaint"
+      ],
+      "aspect": [
+        "1:1",
+        "16:9",
+        "9:16"
+      ],
+      "cost_tier": "low",
+      "requires_env": null,
+      "recommended_for": [
+        "draft",
+        "keyframe",
+        "edit",
+        "style-lock"
+      ],
+      "recipe": {
+        "unet": "z_image_turbo_bf16.safetensors",
+        "clip": "qwen3_4b_zimage_abliterated_v1.safetensors",
+        "clip_type": "qwen_image",
+        "vae": "zimage_ae.safetensors",
+        "latent": "EmptySD3LatentImage",
+        "steps": 8,
+        "cfg": 1.0,
+        "sampler": "euler",
+        "scheduler": "simple",
+        "hint": "z-image"
+      },
+      "notes": "The CLI's default model. Filenames verified against ComfyUI /object_info on the box. Uses the abliterated qwen3_4b text encoder."
+    },
+    {
+      "id": "comfyui:flux2",
+      "name": "FLUX.2 Klein 4B (on-box)",
+      "provider": "comfyui",
+      "modality": "txt2img",
+      "base": "FLUX.2-Klein",
+      "strengths": [
+        "prompt adherence",
+        "detail",
+        "img2img",
+        "inpaint"
+      ],
+      "aspect": [
+        "1:1",
+        "16:9",
+        "9:16"
+      ],
+      "cost_tier": "low",
+      "requires_env": null,
+      "recommended_for": [
+        "hero-still",
+        "keyframe",
+        "photoreal"
+      ],
+      "recipe": {
+        "unet": "flux-2-klein-4b.safetensors",
+        "clip": "qwen_3_4b.safetensors",
+        "clip_type": "flux2",
+        "vae": "flux2-vae.safetensors",
+        "latent": "EmptyFlux2LatentImage",
+        "steps": 4,
+        "cfg": 1.0,
+        "sampler": "euler",
+        "scheduler": "simple",
+        "hint": "flux"
+      },
+      "notes": "Distilled 4-step Klein. Filenames verified against ComfyUI /object_info on the box."
+    },
+    {
+      "id": "comfyui:flux2-klein-9b-uncensored",
+      "name": "FLUX.2 Klein 9B uncensored (on-box, abliterated encoder)",
+      "provider": "comfyui",
+      "modality": "txt2img",
+      "base": "FLUX.2-Klein",
+      "strengths": [
+        "uncensored",
+        "detail",
+        "prompt adherence",
+        "img2img",
+        "inpaint"
+      ],
+      "aspect": [
+        "1:1",
+        "16:9",
+        "9:16"
+      ],
+      "cost_tier": "low",
+      "requires_env": null,
+      "recommended_for": [
+        "hero-still",
+        "photoreal",
+        "unrestricted"
+      ],
+      "recipe": {
+        "unet": "flux-2-klein-9b.safetensors",
+        "weight_dtype": "fp8_e4m3fn",
+        "clip": "flux2_klein_9b_uncensored.safetensors",
+        "clip_type": "flux2",
+        "vae": "flux2-vae.safetensors",
+        "latent": "EmptyFlux2LatentImage",
+        "steps": 6,
+        "cfg": 1.0,
+        "sampler": "euler",
+        "scheduler": "simple",
+        "hint": "flux"
+      },
+      "notes": "9B Klein (fp8) with the uncensored text encoder — mirrors comfyui_workflows/flux2_klein_9b_uncensored_api.json as a recipe so img2img/inpaint work too."
+    },
+    {
+      "id": "keyframe",
+      "name": "Keyframe (Midjourney/APIframe still)",
+      "provider": "apiframe",
+      "modality": "keyframe",
+      "base": "midjourney",
+      "strengths": [
+        "art direction",
+        "anchor",
+        "--cref consistency",
+        "stylized"
+      ],
+      "aspect": [
+        "1:1",
+        "16:9",
+        "9:16",
+        "4:5"
+      ],
+      "cost_tier": "med",
+      "requires_env": "APIFRAME_API_KEY",
+      "recommended_for": [
+        "storyboard",
+        "anchor",
+        "character-design",
+        "key-art"
+      ],
+      "notes": "Locked stills + character anchors (--cref) that seed the i2v models' first frame."
+    },
+    {
+      "id": "ue",
+      "name": "Unreal Engine (virtual production)",
+      "provider": "ue",
+      "modality": "3d",
+      "base": "UE",
+      "strengths": [
+        "3d",
+        "camera control",
+        "environments",
+        "deterministic"
+      ],
+      "aspect": [
+        "16:9",
+        "9:16"
+      ],
+      "cost_tier": "high",
+      "requires_env": null,
+      "recommended_for": [
+        "virtual-production",
+        "environment",
+        "3d",
+        "flyby"
+      ],
+      "notes": "For true 3D / virtual-production shots (e.g. the kathy_flyby aerial); runs on EC2."
+    },
+    {
+      "id": "tensorart:757279507095956705",
+      "name": "FLUX.1 dev-fp8",
+      "provider": "tensorart",
+      "modality": "txt2img",
+      "base": "FLUX.1",
+      "strengths": [
+        "photoreal",
+        "prompt adherence",
+        "detail"
+      ],
+      "aspect": [
+        "1:1",
+        "16:9",
+        "9:16"
+      ],
+      "cost_tier": "low",
+      "requires_env": "TENSORART_API_TOKEN",
+      "recommended_for": [
+        "keyframe",
+        "hero-still",
+        "photoreal"
+      ],
+      "notes": "Verified 2026-07-09 via render_image.py --model flux (25 steps, cfg 3.5)."
+    },
+    {
+      "id": "tensorart:936101665537308499",
+      "name": "Z-Image-Turbo FP8",
+      "provider": "tensorart",
+      "modality": "txt2img",
+      "base": "Z-Image-Turbo",
+      "strengths": [
+        "fast",
+        "cheap",
+        "photoreal",
+        "text rendering"
+      ],
+      "aspect": [
+        "1:1",
+        "16:9",
+        "9:16"
+      ],
+      "cost_tier": "low",
+      "requires_env": "TENSORART_API_TOKEN",
+      "recommended_for": [
+        "draft",
+        "first-cut",
+        "ad",
+        "keyframe"
+      ],
+      "notes": "Official Tongyi FP8 checkpoint; commercial use permitted. Verified 2026-07-09 via render_image.py --model z-image (8 steps, cfg 1.0)."
+    }
+  ]
+}
