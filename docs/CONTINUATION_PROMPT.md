@@ -9,13 +9,23 @@ an AI film/music-video production pipeline. Windows 11, PowerShell 7 (`pwsh`) + 
 available. Prior sessions built and debugged a full production stack. **Read `docs/plans/*.md` specs
 and the memory notes for detail; don't re-derive what's below.**
 
-## The stack (4 processes — all currently RUNNING)
+## State at session close (2026-07-13)
+- **All session fixes committed + pushed** — `main` is synced with origin at commit `5c84d96`
+  (render UnicodeEncodeError fix, assembly moviepy fix, .env/model-id fix, console + upload +
+  multi-provider-chat work). Working tree still has unrelated uncommitted files (media/refs,
+  ilyrium-shots/, 2 .pyc) — left intentionally; the private key `slm-foundry-key-v2.pem` is gitignored.
+- **EC2 box is STOPPED** (billing ended). Tunnels closed. Restart with
+  `apps/auto-studio/cli> .\box.ps1 start` then `.\box.ps1 tunnel` (or the Ilyrium Start shortcut).
+- The local `:8800` pipeline service and `:3000` control-panel may or may not still be running (free
+  either way) — restart per the table below if down.
+
+## The stack (4 processes)
 
 | Layer | What / how to run | Port |
 |---|---|---|
 | **Pipeline service** (Python/Starlette, the "spine") | from `apps/auto-studio`: `.\venv\Scripts\python -m uvicorn studio_pipeline_service:app --port 8800 --host 127.0.0.1` | 8800 |
 | **Control-panel** (Next.js console — the main UI) | from `apps/control-panel`: `npm run dev` → open `http://localhost:3000/studio/console` | 3000 |
-| **EC2 GPU box** `i-04b439af98c8faf5e` (ubuntu-qwen-gpu, NVIDIA L4, ~$1.20/hr) — ComfyUI + ollama/qwen3 | driven from `apps/auto-studio/cli/box.ps1` (start/stop/status/tunnel/gen) over **AWS SSM (no SSH)** | 8188 / 11434 via SSH tunnel |
+| **EC2 GPU box** `i-04b439af98c8faf5e` (ubuntu-qwen-gpu, NVIDIA L4, ~$1.20/hr) — ComfyUI + ollama/qwen3 — **currently STOPPED** | driven from `apps/auto-studio/cli/box.ps1` (start/stop/status/tunnel/gen) over **AWS SSM (no SSH)** | 8188 / 11434 via SSH tunnel |
 
 **Rule:** editing `studio_pipeline_service.py`, `producer.py`, `media/*`, or the repo `.env` needs a
 `:8800` **restart** to take effect (it loads them once). Next.js hot-reloads. Restart pattern:
@@ -73,8 +83,9 @@ Active project dir: `outputs/1990s_style_rap_video_featuring_the_main_charact_20
 (4 shots rendered via grok-imagine default; assembly now works).
 
 ## IMPORTANT operational notes
-- **Box is RUNNING (~$1.20/hr).** If Brad is done, stop it: `apps/auto-studio/cli> .\box.ps1 stop`
-  (or Box & Status → Stop, or the Ilyrium Close shortcut).
+- **Box is STOPPED** (as of session close). To do any `comfyui:*` render or Studio Chat with local
+  qwen3, start it first: `apps/auto-studio/cli> .\box.ps1 start` then `.\box.ps1 tunnel` (wait for
+  ComfyUI 🟢). Stop it when done to end billing: `.\box.ps1 stop` (or the Ilyrium Close shortcut).
 - **ComfyUI on the box dies/deactivates** sometimes after stop/tunnel cycles — if a `comfyui:*`
   render errors, restart it: `.\box.ps1 run "sudo systemctl start comfyui"` (waits ~30s).
 - **Video encoding is slow** (~2 min for a 65s clip) — not a hang.
