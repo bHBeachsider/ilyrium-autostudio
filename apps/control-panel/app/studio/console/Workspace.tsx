@@ -3,6 +3,8 @@
 import { Fragment, useState } from "react";
 import { useRouter } from "next/navigation";
 import Pipeline from "./Pipeline";
+import BoxPanel, { BoxStatus } from "./BoxPanel";
+import ChatPanel from "./ChatPanel";
 
 /* Ilyrium Studio OS — workspace-driven film console. One project page; the left
    rail swaps the active functional domain (Scripting · Generation · Assembly ·
@@ -37,9 +39,11 @@ const ICONS: Record<string, React.ReactNode> = {
   assembly: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><rect x="3" y="4" width="18" height="16" rx="2" /><path d="M3 9h18M8 4v16M16 4v16" /></svg>,
   analytics: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M4 4v16h16" /><path d="M8 16v-4M12 16V8M16 16v-6" /></svg>,
   pipeline: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><circle cx="5" cy="6" r="2" /><circle cx="5" cy="18" r="2" /><circle cx="19" cy="12" r="2" /><path d="M7 6h6a4 4 0 0 1 4 4M7 18h6a4 4 0 0 0 4-4" /></svg>,
+  studio: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z" /><path d="M8 9h8M8 12h5" /></svg>,
 };
 const DOMAINS = [
   { key: "pipeline", label: "Pipeline", sub: "8-stage · auto-draft" },
+  { key: "studio", label: "Studio Chat", sub: "LLM · Box control" },
   { key: "script", label: "Ideation & Scripting", sub: "Pre-Production" },
   { key: "generation", label: "Asset Generation", sub: "Production" },
   { key: "assembly", label: "Timeline & Assembly", sub: "Post" },
@@ -80,6 +84,7 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
   const [overrideReason, setOverrideReason] = useState("");
   const [busy, setBusy] = useState<string | null>(null);
   const [msg, setMsg] = useState<{ id: string; text: string; ok: boolean } | null>(null);
+  const [boxStatus, setBoxStatus] = useState<BoxStatus | null>(null);
 
   const inProj = (id: string | null) => projId === "all" || id === projId;
   const proj = projects.find((p) => p.id === projId) || null;
@@ -174,8 +179,16 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
           {/* DOMAIN 0 — PIPELINE (8 stage workspaces + auto-draft) */}
           {domain === "pipeline" && <Pipeline target={pipeTarget} />}
 
+          {/* ── STUDIO CHAT + BOX CONTROL — multi-provider chat, box lifecycle ── */}
+          {domain === "studio" && (
+            <div className="grid grid-cols-1 xl:grid-cols-[1fr_340px] gap-4 items-start">
+              <ChatPanel boxStatus={boxStatus} />
+              <BoxPanel onStatus={setBoxStatus} />
+            </div>
+          )}
+
           {/* 8-stage control-point stepper (per-project HITL gates) */}
-          {proj && domain !== "pipeline" && (
+          {proj && domain !== "pipeline" && domain !== "studio" && (
             <div className="flex items-stretch gap-2 mb-5">
               {STAGE_DEFS.map((s) => {
                 const ok = stageState[s.n];

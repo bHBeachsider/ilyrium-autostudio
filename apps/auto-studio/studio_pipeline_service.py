@@ -26,11 +26,21 @@ loop stays responsive.
 import os
 import json
 import sys
+import time
 import uuid
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, _HERE)
 os.chdir(_HERE)
+
+# Windows default stdout is cp1252, which raises UnicodeEncodeError on emoji
+# status glyphs (❌ 🎥 …) that the renderers/producer print — crashing renders on
+# their own log lines. Force UTF-8 so any emoji print is safe process-wide.
+for _stream in (sys.stdout, sys.stderr):
+    try:
+        _stream.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
 try:
     from dotenv import load_dotenv
     load_dotenv(override=True)
@@ -44,7 +54,7 @@ except Exception:
     pass
 
 from starlette.applications import Starlette
-from starlette.responses import JSONResponse
+from starlette.responses import JSONResponse, FileResponse
 from starlette.routing import Route
 from starlette.middleware import Middleware
 from starlette.middleware.cors import CORSMiddleware
@@ -741,7 +751,7 @@ async def bible_element(request):
         if "#" in tgt:                                   # style_kernel.json#<field>
             kf = os.path.join(pdir, "style_kernel.json"); field = tgt.split("#")[1]
             k = json.load(open(kf, encoding="utf-8"))
-            if field == "casting_canon":
+            if field in ("casting_canon", "palette_motifs", "engine_tails", "continuity"):
                 try:
                     k[field] = json.loads(text)
                 except Exception:
@@ -775,9 +785,60 @@ async def bible_media(request):
         bible = os.path.join(_bible_project_dir(project), "01_development", "bible")
         mdir = os.path.join(bible, dim, "_media"); os.makedirs(mdir, exist_ok=True)
         ext = os.path.splitext(filename)[1] or ".bin"
-        out = os.path.join(mdir, f"{key}_{int(time.time())}{ext}")
+        ts = int(time.time())
+        out = os.path.join(mdir, f"{key}_{ts}{ext}")
+        n = 1
+        while os.path.exists(out):                      # same-second uploads must not overwrite
+            out = os.path.join(mdir, f"{key}_{ts}_{n}{ext}"); n += 1
         open(out, "wb").write(base64.b64decode(raw))
         return JSONResponse({"ok": True, "file": os.path.relpath(out, bible)})
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
+def _bible_media_target(project, rel):
+    """Resolve a client-supplied bible-relative path to an absolute path, traversal-guarded.
+
+    Returns the absolute path only if it resolves to somewhere strictly INSIDE the project's
+    bible dir; returns None for anything that escapes (.., absolute paths, drive-relative
+    tricks, symlink escapes — realpath resolves before the containment check)."""
+    bible = os.path.realpath(os.path.join(_bible_project_dir(project), "01_development", "bible"))
+    target = os.path.realpath(os.path.join(bible, rel or ""))
+    if not os.path.normcase(target).startswith(os.path.normcase(bible) + os.sep):
+        return None
+    return target
+
+
+async def bible_media_file(request):
+    """GET ?rel=<bible-relative path> -> serve an attached media file's bytes
+    (best-effort content-type). rel comes from the checklist's per-element files[]."""
+    project = request.path_params["project"]
+    rel = request.query_params.get("rel", "")
+    target = _bible_media_target(project, rel)
+    if not target or not os.path.isfile(target):
+        return JSONResponse({"error": "not found"}, status_code=404)
+    import mimetypes
+    ctype = mimetypes.guess_type(target)[0] or "application/octet-stream"
+    return FileResponse(target, media_type=ctype)
+
+
+async def bible_media_delete(request):
+    """POST {rel} -> unlink one attached media file. Only files inside a _media/ folder
+    under the bible dir may be deleted (authored .md/.json content is off limits)."""
+    project = request.path_params["project"]
+    body = await request.json()
+    rel = body.get("rel", "")
+    target = _bible_media_target(project, rel)
+    if not target:
+        return JSONResponse({"error": "invalid path"}, status_code=400)
+    bible = os.path.realpath(os.path.join(_bible_project_dir(project), "01_development", "bible"))
+    if "_media" not in os.path.relpath(target, bible).split(os.sep):
+        return JSONResponse({"error": "only files under _media/ can be deleted"}, status_code=400)
+    if not os.path.isfile(target):
+        return JSONResponse({"error": "not found"}, status_code=404)
+    try:
+        os.unlink(target)
+        return JSONResponse({"ok": True})
     except Exception as e:
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
 
@@ -886,8 +947,129 @@ async def stage_generate(request):
 
 
 
+# --------------------------------------------------------------------------- #
+# Box / tunnel control — EC2 GPU box lifecycle for the console's Box panel
+# (BoxPanel.tsx). Mirrors app.py's render_box_panel / console_helpers: AWS
+# status cached ~5s so 5s polling doesn't spam describe-instances; every AWS /
+# subprocess call is try/except-wrapped so missing creds degrade to a JSON
+# error, never a 500. The SSH tunnel itself is opened by cli/box.ps1.
+# --------------------------------------------------------------------------- #
+OLLAMA_URL = os.getenv("OLLAMA_URL", "http://127.0.0.1:11434")
+_BOX_CACHE = {"ts": 0.0, "status": None}   # module-level ~5s cache of ec2_session.status()
+
+
+def _box_aws_status(force: bool = False) -> dict:
+    """ec2_session.status() with a ~5s cache; errors folded in as state='error'."""
+    now = time.time()
+    if not force and _BOX_CACHE["status"] is not None and now - _BOX_CACHE["ts"] < 5:
+        return _BOX_CACHE["status"]
+    try:
+        import ec2_session
+        s = ec2_session.status()
+    except Exception as e:
+        s = {"state": "error", "error": f"{type(e).__name__}: {e}",
+             "instance_id": None, "public_ip": None}
+    _BOX_CACHE["status"] = s
+    _BOX_CACHE["ts"] = now
+    return s
+
+
+def _comfy_up() -> bool:
+    try:
+        import ec2_session
+        return bool(ec2_session.is_comfyui_up(timeout=2))
+    except Exception:
+        return False
+
+
+def _ollama_up() -> bool:
+    """ollama :11434 reachable through the tunnel — the tunnel-up signal."""
+    try:
+        import requests
+        r = requests.get(OLLAMA_URL.rstrip("/") + "/api/tags", timeout=2)
+        return r.status_code == 200
+    except Exception:
+        return False
+
+
+def _box_payload(force: bool = False) -> dict:
+    s = dict(_box_aws_status(force))
+    comfy = _comfy_up()
+    s["comfyui_up"] = comfy
+    # Tunnel inferred: ollama reachable, OR ComfyUI reachable while the box runs.
+    s["tunnel_up"] = _ollama_up() or (comfy and s.get("state") == "running")
+    return s
+
+
+def _run_box_ps1(verb: str) -> str:
+    """Launch cli/box.ps1 <verb> detached (pwsh preferred, powershell fallback).
+    Fire-and-forget by design — the UI reflects the outcome via status polling."""
+    import shutil
+    import subprocess
+    ps1 = os.path.join(_HERE, "cli", "box.ps1")
+    if not os.path.exists(ps1):
+        raise FileNotFoundError(f"box.ps1 not found at {ps1}")
+    exe = shutil.which("pwsh") or shutil.which("powershell")
+    if not exe:
+        raise RuntimeError("Neither pwsh nor powershell is on PATH.")
+    flags = getattr(subprocess, "CREATE_NO_WINDOW", 0)
+    subprocess.Popen([exe, "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", ps1, verb],
+                     stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                     creationflags=flags, cwd=_HERE)
+    return f"box.ps1 {verb} launched ({os.path.basename(exe)})"
+
+
+async def box_status(request):
+    """GET /box/status -> {state, public_ip, comfyui_up, tunnel_up, ...}. ?force=1 bypasses the cache."""
+    force = request.query_params.get("force") in ("1", "true")
+    return JSONResponse(await run_in_threadpool(_box_payload, force))
+
+
+async def box_start(request):
+    """POST /box/start -> ec2_session.ensure_running(wait=False); returns fresh status."""
+    def _go():
+        try:
+            import ec2_session
+            ec2_session.ensure_running(wait=False)
+        except Exception as e:
+            return {"ok": False, "error": f"could not start the box: {type(e).__name__}: {e}",
+                    **_box_payload(force=True)}
+        return {"ok": True, **_box_payload(force=True)}
+    return JSONResponse(await run_in_threadpool(_go))
+
+
+async def box_stop(request):
+    """POST /box/stop -> best-effort tunnel-down, then ec2_session.stop(); returns fresh status."""
+    def _go():
+        try:
+            _run_box_ps1("tunnel-down")   # harmless if no tunnel is open
+        except Exception:
+            pass
+        try:
+            import ec2_session
+            ec2_session.stop()
+        except Exception as e:
+            return {"ok": False, "error": f"could not stop the box: {type(e).__name__}: {e}",
+                    **_box_payload(force=True)}
+        return {"ok": True, **_box_payload(force=True)}
+    return JSONResponse(await run_in_threadpool(_go))
+
+
+async def box_tunnel(request):
+    """POST /box/tunnel -> open the SSH tunnels (:8188 ComfyUI + :11434 ollama) via box.ps1."""
+    try:
+        msg = await run_in_threadpool(_run_box_ps1, "tunnel")
+    except Exception as e:
+        return JSONResponse({"ok": False, "error": f"{type(e).__name__}: {e}"})
+    return JSONResponse({"ok": True, "message": msg + " — status will update shortly."})
+
+
 routes = [
     Route("/health", health),
+    Route("/box/status", box_status, methods=["GET"]),
+    Route("/box/start", box_start, methods=["POST"]),
+    Route("/box/stop", box_stop, methods=["POST"]),
+    Route("/box/tunnel", box_tunnel, methods=["POST"]),
     Route("/pipeline", listruns, methods=["GET"]),
     Route("/pipeline/start", start, methods=["POST"]),
     Route("/projects/scaffold", scaffold_new, methods=["POST"]),
@@ -904,6 +1086,8 @@ routes = [
     Route("/bible/{project}/checklist", bible_checklist, methods=["GET"]),
     Route("/bible/{project}/element", bible_element, methods=["POST"]),
     Route("/bible/{project}/media", bible_media, methods=["POST"]),
+    Route("/bible/{project}/media/file", bible_media_file, methods=["GET"]),
+    Route("/bible/{project}/media/delete", bible_media_delete, methods=["POST"]),
     Route("/bible/{project}/generate", bible_generate, methods=["POST"]),
     Route("/stage/{project}/{stage:int}/checklist", stage_checklist, methods=["GET"]),
     Route("/stage/{project}/{stage:int}/element", stage_element, methods=["POST"]),

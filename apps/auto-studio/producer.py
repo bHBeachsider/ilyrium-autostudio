@@ -13,6 +13,7 @@ by shot instead of re-rendered from scratch.
 """
 
 import os
+import sys
 import json
 from datetime import datetime
 
@@ -27,7 +28,14 @@ def _aspect_from_format(output_format: str) -> str:
 
 def _logger(progress_cb):
     def log(msg: str):
-        print(msg)
+        # Emoji-safe print: on Windows the default stdout codec is cp1252, which
+        # raises UnicodeEncodeError on status glyphs (❌ 🎥 …) and would crash a
+        # render on its own log line. Never let a status message fail the render.
+        try:
+            print(msg)
+        except UnicodeEncodeError:
+            enc = getattr(sys.stdout, "encoding", None) or "utf-8"
+            print(msg.encode(enc, "replace").decode(enc, "replace"))
         if progress_cb:
             try:
                 progress_cb(msg)

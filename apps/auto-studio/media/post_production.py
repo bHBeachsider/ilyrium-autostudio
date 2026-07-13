@@ -54,19 +54,29 @@ def compile_final_video(media_list: list, output_filename="final_commercial.mp4"
             if item.get("audio") and os.path.exists(item["audio"]):
                 try:
                     audio_clip = AudioFileClip(item["audio"])
-                    
+
                     # If voiceover is longer than the video, extend the video to match.
+                    extended = False
                     if audio_clip.duration > video_clip.duration:
                         print(f"🔄 Scene {item['scene_number']} video shorter than audio. Extending ({extend_mode})...")
                         video_clip = _extend_to(video_clip, audio_clip.duration, extend_mode)
+                        extended = True
 
                     # Mix the narrator OVER the clip's native audio (ambient / SFX /
-                    # dialogue the video model generated) instead of replacing it.
-                    # The clip audio is ducked so the voiceover stays clearly on top.
-                    native = video_clip.audio
+                    # dialogue the video model generated), ducked under the voiceover.
+                    # BUT: when the clip was looped/extended to match a longer
+                    # voiceover, its native audio is looped too, and moviepy's audio
+                    # reader raises "index 0 is out of bounds for axis 0 with size 0"
+                    # reading past the end of that stretched track during write. On
+                    # extended clips, drop the native audio and use only the
+                    # voiceover — the mp3 is the intended audio anyway.
+                    native = None if extended else video_clip.audio
                     if native is not None:
-                        ducked = native.with_volume_scaled(duck_level)
-                        mixed = CompositeAudioClip([ducked, audio_clip])
+                        try:
+                            ducked = native.with_volume_scaled(duck_level)
+                            mixed = CompositeAudioClip([ducked, audio_clip])
+                        except Exception:
+                            mixed = audio_clip  # native-audio compose failed; voiceover only
                     else:
                         mixed = audio_clip
                     scene_with_audio = video_clip.with_audio(mixed)

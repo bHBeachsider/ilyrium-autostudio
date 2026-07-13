@@ -12,9 +12,12 @@ import { useEffect, useState } from "react";
 //          {key,name,what,required,inputs,done,detail,value?}]}] }
 //   POST {pipe}/bible/{project}/element  {dim,key,text}
 //   POST {pipe}/bible/{project}/generate {dim,key,prompt,model_family}   -> astria_refine/gather
-//   POST {pipe}/bible/{project}/media    (multipart: dim,key,file)
+//   POST {pipe}/bible/{project}/media    {dim,key,filename,b64}  (accumulates — timestamped server-side)
+//   GET  {pipe}/bible/{project}/media/file?rel=<rel>   -> file bytes (thumbnails/preview)
+//   POST {pipe}/bible/{project}/media/delete {rel}     -> unlink one attached file
 
-type El = { key: string; name: string; what: string; required: boolean; inputs: string[]; done: boolean; detail: string; value?: string };
+type BFile = { name: string; rel: string; size: number; kind: string };
+type El = { key: string; name: string; what: string; required: boolean; inputs: string[]; done: boolean; detail: string; value?: string; files?: BFile[] };
 type Dim = { key: string; name: string; what: string; elements: El[] };
 
 const DOT = (e: El) => e.done ? "#57c97a" : e.required ? "#ef6f6c" : "#8a8a8a";
@@ -43,13 +46,30 @@ export default function Stage1Bible({ pipe, project }: { pipe: string; project: 
       const d = await r.json(); setMsg(d.ok ? "saved" : (d.error || "failed")); await load();
     } catch (e: any) { setMsg(`unreachable: ${e.message}`); } finally { setBusy(""); }
   }
-  async function upload(dim: string, el: string, file: File) {
+  async function upload(dim: string, el: string, files: File[]) {
+    if (!files.length) return;
     setBusy(k(dim, el));
-    const b64 = await new Promise<string>((res) => { const r = new FileReader(); r.onload = () => res(r.result as string); r.readAsDataURL(file); });
-    try { await fetch(`${pipe}/bible/${project}/media`, { method: "POST", headers: { "content-type": "application/json" },
-            body: JSON.stringify({ dim, key: el, filename: file.name, b64 }) }); setMsg("attached"); await load(); }
-    catch (e: any) { setMsg(`upload failed: ${e.message}`); } finally { setBusy(""); }
+    let ok = 0;
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      setMsg(`uploading ${i + 1}/${files.length}…`);
+      const b64 = await new Promise<string>((res) => { const r = new FileReader(); r.onload = () => res(r.result as string); r.readAsDataURL(file); });
+      try { await fetch(`${pipe}/bible/${project}/media`, { method: "POST", headers: { "content-type": "application/json" },
+              body: JSON.stringify({ dim, key: el, filename: file.name, b64 }) }); ok++; }
+      catch (e: any) { setMsg(`upload failed (${file.name}): ${e.message}`); }
+    }
+    if (ok === files.length) setMsg(`attached ${ok} file${ok === 1 ? "" : "s"}`);
+    await load(); setBusy("");
   }
+  async function removeFile(dim: string, el: string, rel: string) {
+    setBusy(k(dim, el)); setMsg("");
+    try {
+      const r = await fetch(`${pipe}/bible/${project}/media/delete`, { method: "POST", headers: { "content-type": "application/json" },
+        body: JSON.stringify({ rel }) });
+      const d = await r.json(); setMsg(d.ok ? "deleted" : (d.error || "delete failed")); await load();
+    } catch (e: any) { setMsg(`delete failed: ${e.message}`); } finally { setBusy(""); }
+  }
+  const fmtSize = (n: number) => n >= 1048576 ? `${(n / 1048576).toFixed(1)} MB` : `${Math.max(1, Math.round(n / 1024))} KB`;
 
   const total = dims.flatMap(d => d.elements);
   const doneN = total.filter(e => e.done).length;
@@ -108,14 +128,34 @@ export default function Stage1Bible({ pipe, project }: { pipe: string; project: 
                         </div>
                       )}
 
-                      {/* image / video / file upload */}
-                      {(el.inputs.includes("image") || el.inputs.includes("video") || el.inputs.includes("file")) && (
+                      {/* media upload — multiple files, any media type (accumulates server-side) */}
+                      {(el.inputs.includes("image") || el.inputs.includes("video") || el.inputs.includes("audio") || el.inputs.includes("file")) && (
                         <label className="inline-block text-[11px] text-dim border border-dashed border-edge rounded-md px-2 py-1 cursor-pointer mb-1">
-                          + attach {el.inputs.filter(i => ["image", "video", "file"].includes(i)).join("/")}
-                          <input type="file" className="hidden"
-                            accept={el.inputs.includes("video") ? "video/*" : el.inputs.includes("image") ? "image/*" : undefined}
-                            onChange={(e) => e.target.files?.[0] && upload(dim.key, el.key, e.target.files[0])} />
+                          + attach image/video/audio/text/pdf
+                          <input type="file" multiple className="hidden"
+                            accept="image/*,video/*,audio/*,.txt,.md,.json,.csv,.pdf,.rtf"
+                            onChange={(e) => { const fs = Array.from(e.target.files ?? []); e.target.value = ""; if (fs.length) upload(dim.key, el.key, fs); }} />
                         </label>
+                      )}
+
+                      {/* attached files — one row per file, thumbnail for images, × deletes */}
+                      {!!el.files?.length && (
+                        <div className="space-y-1 mb-1">
+                          {el.files.map((f) => (
+                            <div key={f.rel} className="flex items-center gap-2 text-[11px] text-dim">
+                              {f.kind === "image" && (
+                                <img src={`${pipe}/bible/${project}/media/file?rel=${encodeURIComponent(f.rel)}`}
+                                  alt={f.name} className="w-8 h-8 object-cover rounded border border-edge" />
+                              )}
+                              <span className="font-mono text-fg truncate max-w-[260px]" title={f.rel}>{f.name}</span>
+                              <span className="text-[10px] border border-edge rounded px-1">{f.kind}</span>
+                              <span className="text-[10px]">{fmtSize(f.size)}</span>
+                              <button disabled={busy === k(dim.key, el.key)} onClick={() => removeFile(dim.key, el.key, f.rel)}
+                                title={`delete ${f.name}`}
+                                className="text-[12px] leading-none border border-edge rounded px-1 py-0.5 hover:text-fg disabled:opacity-50">×</button>
+                            </div>
+                          ))}
+                        </div>
                       )}
 
                       {/* harvested refs link */}
