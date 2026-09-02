@@ -1,0 +1,56 @@
+{
+  "name": "new_harnomy",
+  "look": "prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "register": "sincere reverent serious register, no irony, no comedic timing, no winking",
+  "palette_motifs": {
+    "mauve": "the brownish-purple of an aged 1970s university-press paperback, never lavender, never aubergine, never pink"
+  },
+  "casting_canon": {
+    "pengold": "American, Northeast working-class origin who brown-nosed his way through an elite university and a TWEEEDS summer internship, late 40s; long-serving machine politician elevated into European-progressive technocratic register",
+    "summer": "Cast European (English-Italian old-money patrician face), plays a New England blue-blood limousine liberal; early 40s; composure that hides cost",
+    "dick": "Cast European (Berlin-via-Antwerp gallerist's-son face), plays an American trust-fund heir ('Little Dickie') in bespoke-revolutionary costume; early 30s; the only person fully alive",
+    "valencia": "European (Mediterranean rim or European East), late 20s; the real organizer and narrator; photographed truthfully in documentary register, outside the production grade",
+    "philip": "European, late 40s to early 50s; senior classical scholar; the cold analyst who was correct",
+    "bildersatz": "European, late 40s to early 50s; 1990s continental theorist; single authorized 1996 portrait"
+  },
+  "negatives": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame",
+  "engine_tails": {
+    "midjourney": "--style raw --stylize 200 --v 7",
+    "higgsfield": {
+      "aspect_ratio": "21:9",
+      "quality": "2k",
+      "resolution": "720p",
+      "genre": "drama",
+      "mode": "std",
+      "kling_mode": "std",
+      "kling_sound": "off",
+      "veo_quality": "high",
+      "generate_audio": false,
+      "note": "Per-engine defaults read by media/higgsfield_renderer.kernel_defaults(): Soul Cinematic stills 21:9 at 2k; Seedance 2.0 i2v 720p std with genre=drama; Kling 3.0 std with native sound off (score is separate); Veo 3.1 high. Aspect ratios not offered by a model (kling/veo have no 21:9) are snapped to the nearest allowed value and logged."
+    }
+  },
+  "continuity": {
+    "midjourney": "Anchor the four hero portraits first, then lock faces with --cref <hero_url> --cw 100 (use --cw 50 to let wardrobe/lighting vary).",
+    "video": "Use the locked still as the first frame; restate the full character description in every shot (models have no memory between shots).",
+    "higgsfield": "Stage 3: train ONE Soul Character per principal (higgsfield soul-id create --soul-cinematic, 8-12 varied anchor renders of the locked hero portrait) and register it in 03_design/characters/soul_ids.json; every still then passes --custom_reference_id <soul>. Stage 5/6: render the keyframe still first (soul_cinematic / soul_location plate + image reference), then image-to-video with --start-image <still or its job id> (and --end-image for held stage pictures); chain the previous shot's job id as the next start image instead of re-uploading. Restate the character's LOCKED VISUAL DESCRIPTOR in every prompt (models have no memory between shots)."
+  },
+  "legal_rule": "Specify every character by age, origin, build, wardrobe, and affect only — never by likeness to a real public figure. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "mauve_reads_lavender": "Add: the mauve is dusty, brownish, warm, the color of a faded 1970s academic paperback, not lavender, not aubergine, not pink.",
+    "acting_at_camera": "Double the performance language and add: no smile, no eyebrow lift, no dramatic gesture.",
+    "higgsfield_cost_refused": "Estimate exceeded HIGGSFIELD_MAX_CREDITS_PER_JOB: shorten duration (<=8 s), drop to 720p/std, or route the hold shots to higgsfield:kling3_0 (std) and keep Seedance 2.0 for the two lip-sync beats; confirm expensive jobs explicitly with HIGGSFIELD_ALLOW_EXPENSIVE=1."
+  },
+  "canon_decision": {
+    "date": "2026-08-15",
+    "reading": "A",
+    "rule": "casting_canon describes HOW each principal is photographed (casting); the character bibles describe WHO they are (v11). European faces play American characters; accents/voices follow the script. Anchors, LoRAs and Soul-IDs derive from the casting_canon face.",
+    "ref": "projects/new_harnomy_usa/01_development/bible/CANON_RECONCILIATION.md",
+    "valencia_age": {
+      "date": "2026-09-02",
+      "decided": "late 20s",
+      "was": "late 40s",
+      "rationale": "Old enough that the calluses are earned and her authority in the final aria survives; young enough that the novitiate framing, 'she needs the job', and the unaffordable manicure all land.",
+      "ref": "01_development/bible/characters/valencia/bible.md"
+    }
+  }
+}

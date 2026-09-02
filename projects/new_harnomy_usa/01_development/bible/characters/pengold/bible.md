@@ -8,6 +8,25 @@ PENGOLD HEAVENS | Mayor of New Harnomy, TWEEEDS Party (principal; BARITONE) | la
 > **Never** describe by likeness to a real politician; v11's named "in the mold of" figures are writer's
 > background only (WORLD_RULES #11).
 
+## 📝 CASTING REVIEW — 2026-09-02
+
+**He is not a villain, he is the intern who watched.** v11: he sat front row, attended every office hour,
+memorised his professors' work to quote back at them. The old descriptor said "calculating unhurried eyes,"
+which was producing exactly the smooth-villain squint the trap warns against — my own prompt encoding the
+failure it was written to prevent. Replaced with **eyes that have been listening a long time.** Attentive,
+never scheming.
+
+**Where the class tell actually shows.** He is Northeast working-class origin wearing acquired polish, and
+that renders in three places, now all in the prompt: heavy hands that did not come from an office; grooming a
+shade **too** precise, the overcorrection of a man who learned the rules rather than grew up inside them; and
+tailoring that is correct but worn like it is new.
+
+**The pairing to hold in mind:** Dick's expensive clothes perform poverty. Pengold's expensive clothes
+perform belonging. Both are costumes; only Pengold knows it.
+
+Also fixed: "no ostentation" was a negative instruction sitting inside a positive prompt, which image models
+handle badly. Restated as "plain, correct, unshowy."
+
 ## IDENTITY
 - key: `pengold` · role: principal antagonist / machine politician; BARITONE · age: late 40s
 - origin: kernel — American, Northeast working-class origin, long-serving machine politician "elevated into

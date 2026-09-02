@@ -15,13 +15,13 @@ VALENCIA STRONG | Actual working-class organizer; recent PILF member; Omniscient
   of ideological framework).
 - art register: **documentary register, outside the production grade** (kernel) — photographed truthfully.
 
-## ⚠️ REVISION IN PROGRESS — 2026-09-02 (Brad)
+## ✅ REVISED — CANON 2026-09-02 (Brad)
 
 Valencia is being re-conceived. The lines above are the ORIGINAL kernel/v11 reading and are retained until
 the casting slate settles the face. **Where this block and the lines above disagree, this block is the
 intent.**
 
-**Age: early twenties, not late forties.** She is the youngest person in the room and the only one who can
+**Age: LATE TWENTIES (decided 2026-09-02), not late forties.** She is the youngest person in the room and the only one who can
 see. She was taken into the TWEEEDS circle as a novitiate — initiated, not raised in it — and from inside
 has watched the farcical absurdity of the platforms and the people. She goes along to get along because she
 needs the job. She has none of the family resources the others fall back on.
@@ -49,18 +49,21 @@ aspiration. Do not cast her as picturesque hardship either. The gap between what
 be IS the character. Render the aspiration in what she has *done with limited means*: drugstore makeup applied
 with care, cheap dye growing out, one small good earring, polish chipped and grown out.
 
-### Open — the writer's call
+### The age question — SETTLED
 
-Her age change has consequences that are not yet reconciled:
-- The kernel `casting_canon.valencia` still says **late 40s**. One of the two must move.
-- v11 §VII gives her "blues, work songs, the musical language of actual labor" and calls her idiom
-  "a form of knowledge that predates and will outlast the ideological fashions the other characters inhabit."
-  At forty-seven that is authority. At twenty-two it is clarity without authority — the audience may read her
-  as naive rather than clear-eyed, which is the opposite of her function in the final aria.
-- Counterweight: at twenty-two "she needs the job" bites hardest, the novitiate framing lands, and v11's
-  "recent member of PILF" reads as a first job rather than a career change.
-- A synthesis worth considering: **late twenties**. Old enough that the calluses are earned and the authority
-  survives; young enough for the novitiate framing and the unaffordable manicure to land.
+Decided **late twenties**, and the kernel `casting_canon.valencia` has been updated to match (it read
+"late 40s"). The synthesis was taken over the two extremes for a reason worth keeping:
+
+- At forty-seven her idiom — v11 §VII's "knowledge that predates and will outlast the ideological fashions
+  the other characters inhabit," the blues and work-song references — reads as **authority**, but "she needs
+  the job" loses its bite and the novitiate framing makes no sense.
+- At twenty-two everything about the job and the initiation lands, but the final aria risks reading as
+  **naivety rather than clarity** — the opposite of her function, since she carries the opera's moral weight.
+- **Late twenties keeps both.** Old enough that the calluses are earned and she can hold the house in the
+  final aria; young enough that she is plainly the newest person in the room, that the rent is genuinely due,
+  and that the manicure she cannot afford is an aspiration rather than a resignation.
+
+FINDINGS NH-USA-004 closed. Kernel bumped with a `canon_decision.valencia_age` block.
 
 ## PHYSICAL (renderable — proposed; refine at Stage 3)
 - head & hair: practical, unfussy hair (proposed: pulled back or short); no salon finish

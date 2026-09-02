@@ -7,6 +7,26 @@ SUMMER WINTERS | Executive Director, LYSTERIA Coalition for Reproductive Justice
 > Source: v11 §III (Summer Winters), §X. Casting-canon line above is the kernel contract; the block below
 > is the renderable + performable spec. **Never** describe by likeness to a real person.
 
+## 📝 CASTING REVIEW — 2026-09-02
+
+**She is Valencia's mirror, and casting her should say so.** Valencia wants something she cannot afford.
+**Summer has bought something she cannot return.** She runs a reproductive-justice organization and had
+herself sterilized without telling her husband; the Act III portrait then glorifies her as "a mother of the
+movement despite her barrenness."
+
+None of that renders directly. What renders is that **her stillness costs her something.** A merely serene
+face has not understood the part — and a face that is merely cold cannot be idealized in the portrait, while
+one that is merely warm cannot freeze beneath it.
+
+Consequent changes to the casting slate:
+- The old descriptor said "composed" three different ways and never said what was underneath. Trimmed.
+- "professional-class activist tailoring" is unrenderable — now described: a well-cut dark blazer over a fine
+  plain knit, expensive unpatterned fabric, no logo.
+- **Bare ring finger, no mark.** Two years divorced and the skin has forgotten — the same erasure she
+  performs on Philip. A small renderable decision with real freight; reverse it if the writer prefers.
+- The variant axis changed from hair colour to **how much the composure is holding**, which is the only
+  variable about her face that is dramatically interesting.
+
 ## IDENTITY
 - key: `summer` (casting_canon key, LoRA trigger, Soul-ID name)
 - role: principal; the opera's moral center; SOPRANO

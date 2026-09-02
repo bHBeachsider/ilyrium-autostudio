@@ -49,49 +49,68 @@ Per character, the creative brief for the casting session:
 ### VALENCIA — do her first
 *Mezzo. The Greek chorus. The only character who tells the truth.*
 
-- **Hold:** late 40s; European Mediterranean-rim or Eastern; unglamorous; real clothes worn more than once this
-  week; working hands; no makeup performance; flat honest documentary light.
-- **Vary:** hair (cropped practical / tied back / greying); build (solid / wiry); face (broad / angular).
-- **The trap:** every image model drifts toward attractive. v11 is explicit that her costume is "the exception
-  that proves the rule — real clothes, practical clothes." If Valencia reads as an actress *playing*
-  working-class, the Wildean device collapses and the opera loses its one honest voice.
-- **The test question:** does she read as staff, or as cast?
+*Revised 2026-09-02. Age moved from late 40s to **late 20s** (kernel bumped; FINDINGS NH-USA-004 closed).*
+
+- **Hold:** late 20s; slight build; practical-length black hair; secondhand hipster layering worn as a work
+  uniform rather than a statement — visibly assembled from what was affordable, not curated at expense;
+  genuinely rough worked hands in frame; flat honest documentary light.
+- **Vary:** grooming effort on a budget, and face structure.
+- **The inversion that carries her:** she has real working hands and **wants a manicure.** Calluses and
+  fingers burnt over hot stoves are not badges of pride to her — they are problems she would fix tomorrow if
+  she could afford to. Dick spends $400 on sneakers to look like a worker; she has the hands of one.
+- **The trap — two opposite failures:** cast her already beautiful and the wanting evaporates; cast her as
+  picturesque hardship and she becomes the working-class cosplay the opera is attacking. Render the
+  aspiration in what she has done with limited means — drugstore lipstick, cheap dye growing out, polish
+  chipped and grown out, one small good earring.
+- **The test question:** do you believe she wants a manicure she cannot afford? The gap between what she is
+  and what she wants to be IS the character.
 - **Why first:** simplest look, no style complications. She is the pipeline control. If we cannot hold Valencia,
   we cannot hold anyone.
 
 ### SUMMER — do her second
 *Soprano. The moral center. The hardest identity problem in the film.*
 
-- **Hold:** early 40s; patrician bearing; slim, upright, still; professional-class activist tailoring, expensive
-  and muted; composure that hides cost.
-- **Vary:** hair colour and how it is worn; face width; warmth vs. coolness of affect.
-- **The trap:** her face has to do two incompatible things. The Act III portrait shows her "heroic, idealized,
-  bathed in golden light — a mother of the movement despite her barrenness." Beneath it, her real face is
-  "recognition, horror, the knowledge that she chose this." A face too cold cannot be idealized; a face too warm
-  cannot freeze.
+- **Hold:** early 40s; patrician bearing; slim, upright; a well-cut dark blazer over a fine plain knit,
+  expensive and unpatterned, no logo; bare ring finger; hands completely still; composure that is visibly
+  *maintained* rather than natural.
+- **Vary:** **how much the composure is holding** — the only dramatically interesting variable about her face
+  — plus face width and hair.
+- **She is Valencia's mirror.** Valencia wants something she cannot afford; **Summer has bought something she
+  cannot return.** She runs a reproductive-justice organization and had herself sterilized; the Act III
+  portrait glorifies her as a mother of the movement. None of it renders directly — what renders is that her
+  stillness costs her something.
+- **The trap:** a merely serene face has not understood the part. Too cold cannot be idealized in the
+  portrait; too warm cannot freeze beneath it.
 - **Why second, not last:** if the portrait problem is unsolvable it changes the finale design, and we want that
   news early.
 
 ### PENGOLD — third
 *Baritone. The machine. Carries two of the three load-bearing silences.*
 
-- **Hold:** American, Northeast working-class origin; mayoral gravitas; controlled.
+- **Hold:** late 40s; **eyes that have been listening a long time**; plain, correct, unshowy municipal
+  suiting; grooming a shade *too* precise — the overcorrection of a man who learned the rules rather than grew
+  up inside them; heavy hands that did not come from an office.
 - **Vary:** heaviness; hairline; how easily the acquired polish sits.
-- **The trap:** casting him smooth. His whole character is origin showing through acquired polish — a man
-  wearing a class he learned. v11: "he cannot find the person who existed before the construction began." The
-  face should show construction. Something slightly effortful.
+- **He is not a villain, he is the intern who watched** — front row, every office hour, memorising his
+  professors to quote back at them. "Calculating eyes" produces a villain squint and was cut for that reason.
+- **The pairing:** Dick's expensive clothes perform poverty; Pengold's perform belonging. Both are costumes;
+  only Pengold knows it.
 - **The test question:** is the face **readable at rest**? He opens the opera with a twenty-two-second silent
   read and closes it with the smallest possible smile, held. He does more acting with less than anyone.
 
 ### DICK — fourth
 *Tenor. The sacrifice. His fall must land as pathos.*
 
-- **Hold:** cast European (Berlin-via-Antwerp gallerist's-son face), plays an American trust-fund heir;
-  grown-out product-free hair, expensively maintained; softness.
+- **Hold:** **an open unguarded face that gives everything away**, immediately likeable, no wariness anywhere
+  in it; the softness of someone who has never had to be hard; the selvedge-denim-and-workwear silhouette.
 - **Vary:** age read (late 20s / mid 30s); hair length; wire-frame glasses on or off.
-- **The trap:** making him punchable. "Little Dickie" — the family called him soft, and he must look like
-  someone who has never had to be hard. If the slate produces a face the audience wants to see arrested, the
-  ending does not work.
+- **Likeable is not handsome.** The audience must understand why Summer fell for him and why a bodega owner
+  opened the door. He is the only principal whose face gives everything away — which is exactly why he never
+  sees it coming.
+- **The Valencia rhyme, now load-bearing.** Her hipster styling is a work uniform assembled from what was
+  affordable; his is the same silhouette curated at ten times the price to look that way. In a two-shot the
+  audience should read near-identical outfits and opposite bank balances.
+- **The trap:** punchability. A face the audience wants to see arrested breaks the ending.
 - **Wardrobe is a separate lock.** Build his wardrobe board from v11's list (selvedge denim, Common Projects,
   vintage band tees, Engineered Garments/RRL/Kapital workwear, keffiyeh scarf, canvas tote) as its own
   approved asset — and keep it *out* of the LoRA.

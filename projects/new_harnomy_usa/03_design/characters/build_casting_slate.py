@@ -73,7 +73,7 @@ CHARACTERS = {
         # Aspiration she cannot fund is the point; do not cast it away by making her
         # already beautiful. The gap is the character.
         "canon_core": (
-            "a young woman in her early twenties, slight build, direct steady eyes that "
+            "a young woman in her late twenties, slight build, direct steady eyes that "
             "assess before they answer, practical-length black hair, secondhand hipster "
             "layering worn as a work uniform rather than a statement - a thrifted "
             "cardigan over a plain tee, small cheap jewellery - visibly assembled from "
@@ -95,56 +95,72 @@ CHARACTERS = {
         "order": 2,
         "role": "Soprano. The moral center. The hardest identity problem in the film.",
         "lighting": "single-source tungsten key, soft falloff",
+        # REVIEWED 2026-09-02. Old core said "composed" three ways and never said what
+        # is underneath; "professional-class activist tailoring" is unrenderable, so it
+        # is now described. The axis changed too: hair colour is not the interesting
+        # variable - how much the composure is HOLDING is.
         "canon_core": (
-            "a poised woman in her early forties, patrician bearing, composed "
-            "watchful eyes, slim upright frame, professional-class activist tailoring "
-            "in muted expensive fabrics, no jewellery beyond the minimal, still hands, "
-            "sincere unsmiling composure"
+            "a woman in her early forties, patrician bearing, slim and upright, a "
+            "well-cut dark blazer over a fine plain knit in expensive unpatterned "
+            "fabric, no logo, no jewellery beyond one minimal piece, a bare ring "
+            "finger, hands completely still, composure that is visibly maintained "
+            "rather than natural"
         ),
-        "test_question": "Can this face be glorified in a Socialist-Realist portrait AND freeze in horror beneath it?",
-        "trap": "Too cold cannot be idealized. Too warm cannot freeze.",
+        "test_question": "Can this face be glorified in a Socialist-Realist portrait AND freeze in horror beneath it? Too cold cannot be idealized; too warm cannot freeze.",
+        "trap": "She is Valencia's mirror. Valencia wants something she cannot afford; Summer has bought something she cannot return - she runs a reproductive-justice organization and had herself sterilized, and the Act III portrait glorifies her as a mother of the movement. None of that renders directly. What renders is that her stillness COSTS her something. A merely serene face has not understood the part.",
         "variants": [
-            "dark hair drawn back with professional precision, narrow face, cool remote affect",
-            "ash-blonde hair in a low chignon, narrow face, cool neutral affect",
-            "chestnut hair at the shoulder tucked behind one ear, medium-width face, warmer affect",
-            "dark hair with early silver drawn back severely, narrow face, markedly cool affect",
-            "light brown hair in a sleek jaw-length bob, medium-width face, neutral affect",
-            "dark auburn hair gathered low, broader face with fuller cheekbones, warm affect",
+            "dark hair drawn back with professional precision, narrow face, composure entirely intact, nothing showing at all",
+            "ash-blonde hair in a low chignon, narrow face, composure intact but the jaw faintly set",
+            "chestnut hair at the shoulder tucked behind one ear, medium-width face, warmth still surviving underneath the control",
+            "dark hair with early silver drawn back severely, narrow face, sleeplessness under the eyes she has not bothered to conceal",
+            "light brown hair in a sleek jaw-length bob, medium-width face, a decade of donor-room smile lines with no smile in them now",
+            "dark auburn hair gathered low, broader face with fuller cheekbones, the composure very slightly slipped at the mouth",
         ],
     },
     "pengold": {
         "order": 3,
         "role": "Baritone. The machine. Carries two of the three load-bearing silences.",
         "lighting": "single-source tungsten key, soft falloff",
+        # REVIEWED 2026-09-02. "calculating" was producing the villain squint the trap
+        # warns against - replaced with the watcher note (v11: the intern who sat front
+        # row and took notes). "no ostentation" was a negative instruction inside a
+        # positive prompt; restated positively. Added the two class tells that actually
+        # render: the hands, and grooming a shade too correct.
         "canon_core": (
-            "a controlled man in his late forties, calculating unhurried eyes, "
-            "municipal mayoral suiting in dark muted wool, white shirt, no "
-            "ostentation, unhurried processional bearing"
+            "a man in his late forties, eyes that have been listening a long time, "
+            "plain correct unshowy municipal suiting in dark muted wool, a white "
+            "shirt, grooming a shade too precise - the correctness of a man who "
+            "learned the rules rather than grew up inside them, heavy hands that did "
+            "not come from an office, unhurried processional bearing"
         ),
         "test_question": "Is the face readable at rest? He opens on 22 seconds of silence and closes on the smallest possible smile.",
-        "trap": "Casting him smooth. His character is a working-class origin showing through acquired polish - the face should look constructed, slightly effortful.",
+        "trap": "Two failures. A calculating face makes him a villain - he is not one, he is the intern who watched and learned, so the eyes read attentive, never scheming. And casting him smooth kills him: Dick's expensive clothes perform poverty, Pengold's perform belonging. Both are costumes; only Pengold knows it. The polish must look acquired.",
         "variants": [
-            "heavy-set thickening build, receding hairline, the acquired polish sitting visibly uneasily",
-            "solid but not fat, full hair greying at the temples, the polish worn easily and well",
-            "thickening through the neck and jaw, high forehead and thinning crown, visibly effortful composure",
-            "burly broad-shouldered build, close-cropped receding hair, the tailoring not quite fitting the man",
-            "medium build, dark hair combed back neatly, smooth surface with watchfulness underneath",
-            "heavy jaw and thick neck, a thinning widow's peak, the whole presentation obviously constructed",
+            "heavy-set and thickening, receding hairline, the acquired polish sitting visibly uneasily on him",
+            "solid but not fat, full hair greying at the temples, the polish worn easily and well - the most dangerous version",
+            "thickening through the neck and jaw, high forehead and thinning crown, composure that visibly takes effort",
+            "burly and broad-shouldered, close-cropped receding hair, good tailoring that does not quite fit the man inside it",
+            "medium build, dark hair combed back with care, a smooth surface and something watchful underneath",
+            "heavy jaw and thick neck, a thinning widow's peak, the whole presentation obviously and recently constructed",
         ],
     },
     "dick": {
         "order": 4,
         "role": "Tenor. The sacrifice. His fall must land as pathos.",
         "lighting": "single-source tungsten key, soft falloff",
+        # REVIEWED 2026-09-02. "charismatic" is a judgement, not a feature - a model
+        # cannot render it. Leads with the face now; the wardrobe list was long enough
+        # to dominate the generation, and wardrobe is a separate lock anyway (train the
+        # face, not the jacket). The Valencia rhyme is deliberate and load-bearing.
         "canon_core": (
-            "a lean charismatic man, earnest alive expression, dark raw selvedge "
-            "denim, a tailored heritage workwear jacket over a faded vintage band "
-            "t-shirt, a handwoven scarf, an expensive-looking effortless \"worker\" "
-            "aesthetic, sincere passionate bearing, softness in the face of someone "
-            "who has never had to be hard"
+            "a lean young man with an open unguarded face that gives everything away, "
+            "immediately likeable, no wariness anywhere in it, the softness of someone "
+            "who has never had to be hard, dark raw selvedge denim and a heritage "
+            "workwear jacket over a faded band t-shirt, a handwoven scarf - the same "
+            "silhouette a broke twenty-something would wear, bought at ten times the price"
         ),
         "test_question": "Does the audience want to see him arrested? If yes, the ending does not work.",
-        "trap": "Making him punchable. 'Little Dickie' was called soft by his family and must look it.",
+        "trap": "Punchability. The audience has to understand why Summer fell for him and why a bodega owner opened the door - so he must be genuinely likeable, which is not the same as handsome. He is the only principal whose face gives everything away, which is exactly why he never sees it coming. Note the rhyme with Valencia: near-identical silhouette, opposite bank balance. Hers is assembled from what was affordable; his is curated at expense to look that way.",
         "variants": [
             "reads late twenties, collar-length grown-out hair, thin wire-frame glasses",
             "reads mid thirties, shoulder-length hair tucked behind the ears, no glasses",
