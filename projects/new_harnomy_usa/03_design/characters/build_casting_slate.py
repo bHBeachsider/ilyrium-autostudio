@@ -61,24 +61,34 @@ CHARACTERS = {
     "valencia": {
         "order": 1,
         "role": "Mezzo. The Greek chorus. The only character who tells the truth.",
-        # Her canon lighting differs from the others by design (v11: "photographed
-        # truthfully"). Held constant across HER six.
+        # Her canon lighting REPLACES the kernel's Deakins tungsten clause rather than
+        # sitting beside it - v11 photographs her truthfully while the others are lit.
+        # See "look_strip" below.
         "lighting": "flat honest documentary light, no sculpting, no glamour",
+        "look_strip": "Roger Deakins single-source tungsten lighting, ",
+        # REVISED 2026-09-02 (Brad). Early twenties, not late forties. Hipster styling
+        # worn as a uniform, not a belief. And the inversion that carries the whole
+        # character: she has real working hands and WANTS them fixed. Calloused hands
+        # are not a badge to her - they are a problem she cannot afford to solve.
+        # Aspiration she cannot fund is the point; do not cast it away by making her
+        # already beautiful. The gap is the character.
         "canon_core": (
-            "a sturdy grounded woman in her late forties, direct steady eyes, a "
-            "weathered capable face with no makeup performance, real practical work "
-            "clothes in plain worn fabrics that have been worn more than once this "
-            "week, working hands, photographed truthfully"
+            "a young woman in her early twenties, slight build, direct steady eyes that "
+            "assess before they answer, practical-length black hair, secondhand hipster "
+            "layering worn as a work uniform rather than a statement - a thrifted "
+            "cardigan over a plain tee, small cheap jewellery - visibly assembled from "
+            "what was affordable rather than curated at expense, genuinely rough worked "
+            "hands kept in frame, grooming attempted on a budget"
         ),
-        "test_question": "Does she read as staff, or as cast?",
-        "trap": "Every model drifts toward attractive. If she reads as an actress playing working-class, the opera loses its one honest voice.",
+        "test_question": "Do you believe she wants a manicure she cannot afford? The gap between what she is and what she wants to be IS the character.",
+        "trap": "Two opposite failures. Cast her already beautiful and the wanting evaporates. Cast her as picturesque poverty and she becomes the working-class cosplay the opera is attacking. She is neither: she is a young woman with real calluses who would fix them tomorrow if she had the money.",
         "variants": [
-            "cropped practical grey-streaked hair, solid heavy-set build, broad face",
-            "dark hair going grey tied back plainly, wiry lean build, angular lined face",
-            "short salt-and-pepper hair, solid build, angular face with a strong jaw",
-            "greying hair in a loose worn-in bun, wiry build, broad open face",
-            "close-cropped fully grey hair, heavy solid build, broad face",
-            "dark hair pulled back tight, medium build, long angular deeply lined face",
+            "sharp features, hair in a plain low ponytail, minimal makeup carefully applied, hands visibly rough and reddened",
+            "softer rounder face, black hair cut blunt at the shoulder by her own hand, one small gold hoop, nail polish chipped and grown out",
+            "angular face with a strong nose, hair scraped back flat, no makeup, faint shadows under the eyes, short unpolished nails",
+            "wide-set eyes and a plain unremarkable face, hair in a practical bun, drugstore lipstick the only colour on her, bitten nails",
+            "long face with heavy dark brows, hair loose and practical, careful eyeliner that took time she does not have, a small burn scar on one forearm",
+            "delicate features undercut by tiredness, hair pinned back off the face, cheap black dye growing out at the roots, a healing cut across one knuckle",
         ],
     },
     "summer": {
@@ -151,12 +161,15 @@ SEED_BASE = {"valencia": 310000, "summer": 320000, "pengold": 330000, "dick": 34
 
 
 def build(kernel):
-    look = kernel["look"]
+    base_look = kernel["look"]
     register = kernel["register"]
     negatives = kernel["negatives"] + ", " + LIKENESS_GUARD
 
     entries = []
     for key, c in sorted(CHARACTERS.items(), key=lambda kv: kv[1]["order"]):
+        # A character whose canon lighting differs from the kernel's strips the
+        # kernel's lighting clause instead of stacking a second, contradictory one.
+        look = base_look.replace(c["look_strip"], "") if c.get("look_strip") else base_look
         for i, variant in enumerate(c["variants"], start=1):
             entries.append({
                 "character": key,
