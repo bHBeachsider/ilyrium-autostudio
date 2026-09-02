@@ -9,7 +9,7 @@
     "pengold": "American, Northeast working-class origin who brown-nosed his way through an elite university and a TWEEEDS summer internship, late 40s; long-serving machine politician elevated into European-progressive technocratic register",
     "summer": "Cast European (English-Italian old-money patrician face), plays a New England blue-blood limousine liberal; early 40s; composure that hides cost",
     "dick": "Cast European (Berlin-via-Antwerp gallerist's-son face), plays an American trust-fund heir ('Little Dickie') in bespoke-revolutionary costume; early 30s; the only person fully alive",
-    "valencia": "European (Mediterranean rim or European East), late 20s; the real organizer and narrator; photographed truthfully in documentary register, outside the production grade",
+    "valencia": "Deliberately ETHNICALLY AMBIGUOUS - not identifiably of any single region; late 20s; the real organizer and narrator; photographed truthfully in documentary register, outside the production grade",
     "philip": "European, late 40s to early 50s; senior classical scholar; the cold analyst who was correct",
     "bildersatz": "European, late 40s to early 50s; 1990s continental theorist; single authorized 1996 portrait"
   },
@@ -50,6 +50,13 @@
       "decided": "late 20s",
       "was": "late 40s",
       "rationale": "Old enough that the calluses are earned and her authority in the final aria survives; young enough that the novitiate framing, 'she needs the job', and the unaffordable manicure all land.",
+      "ref": "01_development/bible/characters/valencia/bible.md"
+    },
+    "valencia_ethnicity": {
+      "date": "2026-09-02",
+      "decided": "ethnically ambiguous, deliberately",
+      "was": "European (Mediterranean rim or European East)",
+      "rationale": "Her POV is the universal truth. Every other principal reads the world through identity categories and deploys them as credential; Valencia cannot be sorted into one, so the Framework's apparatus has no purchase on her. Casting her to a region would reduce the only clear sight in the opera to one more subject position.",
       "ref": "01_development/bible/characters/valencia/bible.md"
     }
   }

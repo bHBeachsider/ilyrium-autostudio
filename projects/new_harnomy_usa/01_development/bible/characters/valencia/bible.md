@@ -32,6 +32,24 @@ wear to this office to not be noticed. Visually the two rhyme and the money does
 at expense, hers is assembled from what was affordable. Same silhouette family, opposite bank balances —
 which is the Economic Silence made wearable.
 
+### Ethnicity — DELIBERATELY AMBIGUOUS (canon 2026-09-02, Brad)
+
+She is **not identifiably of any single region.** Warm mid-tone skin, dark eyes, dark hair; features that do
+not resolve to one part of the world. Name no origin in any prompt, ever.
+
+This is structural, not decorative. **Her POV is the universal truth.** Every other principal reads the world
+through identity categories and deploys them as credential — it is the mechanism by which the Framework
+converts a person into a position. Valencia cannot be sorted, so the apparatus has no purchase on her. Cast
+her to a region and the only clear sight in the opera becomes one more subject position, dismissible by the
+same move the characters use on everyone else.
+
+The kernel's `casting_canon.valencia` previously read "Mediterranean rim or European East." The first casting
+slate drifted off it and the drift turned out to be the right instinct; the kernel now carries the ambiguity
+as the requirement. See `canon_decision.valencia_ethnicity`.
+
+**Practical note for prompts:** describe the *non-resolution* rather than listing regions — "features that do
+not resolve to any one part of the world" — so the model blends instead of picking.
+
 ### The inversion — the load-bearing note
 
 She has genuinely rough working hands. **She wants a manicure.** Calloused hands and fingers burnt over hot
@@ -48,6 +66,11 @@ the opera worn on a body, and it is why she is the one who can see.
 aspiration. Do not cast her as picturesque hardship either. The gap between what she is and what she wants to
 be IS the character. Render the aspiration in what she has *done with limited means*: drugstore makeup applied
 with care, cheap dye growing out, one small good earring, polish chipped and grown out.
+
+**Her rough working hands remain canon for SHOTS** — they are the physical fact the manicure note turns on.
+They are deliberately kept OUT of casting stills: naming a body part makes an image model feature it, and in
+the first slate "rough worked hands kept in frame" produced hands raised to camera in five of six frames
+(FINDINGS NH-USA-005). Cast the face; stage the hands later.
 
 ### The age question — SETTLED
 

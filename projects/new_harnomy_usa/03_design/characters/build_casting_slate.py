@@ -44,10 +44,26 @@ OUT_MD = os.path.join(HERE, "casting", "CASTING_SLATE.md")
 
 # Identical for all 24 - a casting portrait, not a shot. Comparability is the
 # whole point: same framing, same distance, same non-performance.
+#
+# REVISED 2026-09-02 after the first slate came back unusable. Three fixes:
+#   NH-USA-005 - naming a body part makes the model FEATURE it. "hands still"
+#     produced prayer hands in 17 of 24 frames. Hands are now explicitly OUT.
+#   NH-USA-006 - negations barely hold on an engine with no negative field
+#     (soul_cinematic has none). Everything is phrased POSITIVELY now.
+#   NH-USA-007 - the kernel grade buried every face in shadow. A casting still
+#     is lit to REVEAL A FACE; the grade belongs on shots. See CASTING_LOOK.
 FRAMING = (
-    "medium close-up from the chest, straight-on to camera, plain neutral "
-    "background, even exposure, the face at rest and not performing, no smile, "
-    "no eyebrow lift, no dramatic gesture"
+    "head-and-shoulders portrait framed just below the collarbone, hands out of "
+    "frame, straight-on to camera, plain unlit grey backdrop, mouth closed with "
+    "the lips together, jaw relaxed, eyes steady on the lens, the expression "
+    "completely neutral and still, blank unmarked clothing with no printed graphics"
+)
+
+# Replaces the kernel look for CASTING ONLY. Even, generous, revealing.
+CASTING_LOOK = (
+    "even neutral daylight-balanced exposure, soft frontal key, shadows open and "
+    "detailed, natural skin tones, sharp focus on the eyes, photographic realism, "
+    "documentary portrait, shot on a 85mm lens"
 )
 ASPECT = "3:2"
 
@@ -72,23 +88,30 @@ CHARACTERS = {
         # are not a badge to her - they are a problem she cannot afford to solve.
         # Aspiration she cannot fund is the point; do not cast it away by making her
         # already beautiful. The gap is the character.
+        # ETHNICALLY AMBIGUOUS BY DECISION (2026-09-02, Brad). Her POV is the
+        # universal truth and must not reduce to a subject position - every other
+        # principal reads the world through identity categories, and the one who
+        # sees clearly is the one the Framework cannot sort. Name no region.
+        # Her rough hands remain canon for SHOTS; they are out of the casting frame
+        # per NH-USA-005.
         "canon_core": (
-            "a young woman in her late twenties, slight build, direct steady eyes that "
-            "assess before they answer, practical-length black hair, secondhand hipster "
-            "layering worn as a work uniform rather than a statement - a thrifted "
-            "cardigan over a plain tee, small cheap jewellery - visibly assembled from "
-            "what was affordable rather than curated at expense, genuinely rough worked "
-            "hands kept in frame, grooming attempted on a budget"
+            "a young woman in her late twenties of deliberately ambiguous ethnicity - "
+            "features that do not resolve to any one part of the world, warm mid-tone "
+            "skin, dark eyes, dark hair at a practical length - slight build, a direct "
+            "steady gaze that assesses before it answers, secondhand layering worn as a "
+            "work uniform rather than a statement, a thrifted cardigan over a plain tee, "
+            "small cheap jewellery, visibly assembled from what was affordable rather "
+            "than curated at expense, grooming attempted on a budget"
         ),
         "test_question": "Do you believe she wants a manicure she cannot afford? The gap between what she is and what she wants to be IS the character.",
         "trap": "Two opposite failures. Cast her already beautiful and the wanting evaporates. Cast her as picturesque poverty and she becomes the working-class cosplay the opera is attacking. She is neither: she is a young woman with real calluses who would fix them tomorrow if she had the money.",
         "variants": [
-            "sharp features, hair in a plain low ponytail, minimal makeup carefully applied, hands visibly rough and reddened",
-            "softer rounder face, black hair cut blunt at the shoulder by her own hand, one small gold hoop, nail polish chipped and grown out",
-            "angular face with a strong nose, hair scraped back flat, no makeup, faint shadows under the eyes, short unpolished nails",
-            "wide-set eyes and a plain unremarkable face, hair in a practical bun, drugstore lipstick the only colour on her, bitten nails",
-            "long face with heavy dark brows, hair loose and practical, careful eyeliner that took time she does not have, a small burn scar on one forearm",
-            "delicate features undercut by tiredness, hair pinned back off the face, cheap black dye growing out at the roots, a healing cut across one knuckle",
+            "sharp features, hair in a plain low ponytail, minimal makeup applied with obvious care",
+            "softer rounder face, black hair cut blunt at the shoulder by her own hand, one small gold hoop - the only jewellery she owns",
+            "angular face with a strong nose, hair scraped back flat, no makeup at all, faint shadows under the eyes",
+            "wide-set eyes and a plain unremarkable face, hair in a practical bun, drugstore lipstick the only colour on her",
+            "long face with heavy dark brows, hair loose and practical, careful eyeliner that took time she does not have",
+            "delicate features undercut by tiredness, hair pinned back off the face, cheap black dye growing out at the roots",
         ],
     },
     "summer": {
@@ -102,9 +125,9 @@ CHARACTERS = {
         "canon_core": (
             "a woman in her early forties, patrician bearing, slim and upright, a "
             "well-cut dark blazer over a fine plain knit in expensive unpatterned "
-            "fabric, no logo, no jewellery beyond one minimal piece, a bare ring "
-            "finger, hands completely still, composure that is visibly maintained "
-            "rather than natural"
+            "fabric, no logo, one minimal earring and nothing else, composure that is "
+            "visibly maintained rather than natural, a stillness that is holding "
+            "something down"
         ),
         "test_question": "Can this face be glorified in a Socialist-Realist portrait AND freeze in horror beneath it? Too cold cannot be idealized; too warm cannot freeze.",
         "trap": "She is Valencia's mirror. Valencia wants something she cannot afford; Summer has bought something she cannot return - she runs a reproductive-justice organization and had herself sterilized, and the Act III portrait glorifies her as a mother of the movement. None of that renders directly. What renders is that her stillness COSTS her something. A merely serene face has not understood the part.",
@@ -130,7 +153,7 @@ CHARACTERS = {
             "a man in his late forties, eyes that have been listening a long time, "
             "plain correct unshowy municipal suiting in dark muted wool, a white "
             "shirt, grooming a shade too precise - the correctness of a man who "
-            "learned the rules rather than grew up inside them, heavy hands that did "
+            "learned the rules rather than grew up inside them, a heavy build that did "
             "not come from an office, unhurried processional bearing"
         ),
         "test_question": "Is the face readable at rest? He opens on 22 seconds of silence and closes on the smallest possible smile.",
@@ -185,7 +208,8 @@ def build(kernel):
     for key, c in sorted(CHARACTERS.items(), key=lambda kv: kv[1]["order"]):
         # A character whose canon lighting differs from the kernel's strips the
         # kernel's lighting clause instead of stacking a second, contradictory one.
-        look = base_look.replace(c["look_strip"], "") if c.get("look_strip") else base_look
+        # NH-USA-007: the kernel grade is NOT used for casting stills.
+        look = CASTING_LOOK
         for i, variant in enumerate(c["variants"], start=1):
             entries.append({
                 "character": key,
@@ -196,7 +220,7 @@ def build(kernel):
                 "aspect_ratio": ASPECT,
                 "varied_axis": variant,
                 "prompt": ", ".join([
-                    c["canon_core"], variant, FRAMING, c["lighting"], look, register,
+                    c["canon_core"], variant, FRAMING, look, register,
                 ]),
                 "negative_prompt": negatives,
             })
