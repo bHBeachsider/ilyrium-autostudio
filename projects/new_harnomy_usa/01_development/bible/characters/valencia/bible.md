@@ -95,8 +95,24 @@ FINDINGS NH-USA-004 closed. Kernel bumped with a `canon_decision.valencia_age` b
 - hands: working hands; holds a mauve book she has not opened
 - distinguishing: the only person in frame not lit or graded like the others
 
-## 🔒 LOCKED VISUAL DESCRIPTOR (reuse verbatim; finalize at anchor lock)
-`a sturdy grounded woman in her late forties, practical unfussy hair, direct steady eyes, weathered capable face without makeup performance, real practical work clothes in plain worn fabrics that have been worn more than once this week, sensible shoes, working hands, photographed truthfully in flat honest documentary light`
+## 🔒 LOCKED VISUAL DESCRIPTOR — CAST 2026-09-02 (VAL-H01)
+
+**The face is chosen.** Reference: `03_design/characters/casting/valencia_v3/VAL-H01.png`, a Nano Banana Pro
+blend of VAL-C05 (gravity, brow architecture, strong nose) with VAL-C06 (tiredness, softness, no armour).
+Screen-tested at finale Beat 5: `casting/valencia_screentest/VAL-BEAT5.png`.
+
+Reuse verbatim in every prompt. The LoRA reinforces this text, it does not replace it (FINDINGS on Flux
+trigger binding).
+
+`a woman in her late twenties of unplaceable ethnicity, features that do not resolve to any one part of the world, heavy dark brows and a strong nose framing steady dark eyes, the jaw unset and the mouth soft rather than held, faint shadows of tiredness beneath the eyes, dark hair worn loose and practical and slightly undone, slight build, grave but not defended, an open face that could break, secondhand layering worn as a work uniform, a thrifted cardigan over a plain tee, small cheap jewellery`
+
+**Why this face and not the other two.** VAL-C05 alone was the authority pick but her jaw was set, which
+reads as armour, and an armoured face cannot break open in the closing aria. VAL-C06 alone had the ache but
+not the gravity to hold a house for ninety seconds. The blend keeps C05's structure and C06's unguardedness:
+she can be still for a long time and still go somewhere.
+
+**What NOT to do to her.** Do not make her prettier. The manicure gap is the character, and a beautiful
+Valencia has no gap. "Soften" here means unsetting the jaw and opening the face, never adding glamour.
 
 ## WARDROBE (v11 §XI — the exception that proves the rule)
 - "She is dressed in what actual working people actually wear. Not in theatrical 'working class' drag.
