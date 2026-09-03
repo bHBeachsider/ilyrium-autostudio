@@ -6,12 +6,13 @@
     "mauve": "the brownish-purple of an aged 1970s university-press paperback, never lavender, never aubergine, never pink"
   },
   "casting_canon": {
-    "pengold": "American, Northeast working-class origin who brown-nosed his way through an elite university and a TWEEEDS summer internship, late 40s; long-serving machine politician elevated into European-progressive technocratic register",
-    "summer": "Cast European (English-Italian old-money patrician face), plays a New England blue-blood limousine liberal; early 40s; composure that hides cost",
-    "dick": "Cast European (Berlin-via-Antwerp gallerist's-son face), plays an American trust-fund heir ('Little Dickie') in bespoke-revolutionary costume; early 30s; the only person fully alive",
+    "pengold": "American, Northeast working-class origin who brown-nosed his way through an elite university and a TWEEEDS summer internship, late 40s; long-serving machine politician elevated into European-progressive technocratic register  || CASTE APPLIES - see casting_canon._principal_caste",
+    "summer": "Cast European (English-Italian old-money patrician face), plays a New England blue-blood limousine liberal; early 40s; composure that hides cost  || CASTE APPLIES - see casting_canon._principal_caste",
+    "dick": "Cast European (Berlin-via-Antwerp gallerist's-son face), plays an American trust-fund heir ('Little Dickie') in bespoke-revolutionary costume; early 30s; the only person fully alive  || CASTE APPLIES - see casting_canon._principal_caste",
     "valencia": "Deliberately ETHNICALLY AMBIGUOUS - not identifiably of any single region; late 20s; the real organizer and narrator; photographed truthfully in documentary register, outside the production grade",
     "philip": "European, late 40s to early 50s; senior classical scholar; the cold analyst who was correct",
-    "bildersatz": "European, late 40s to early 50s; 1990s continental theorist; single authorized 1996 portrait"
+    "bildersatz": "European, late 40s to early 50s; 1990s continental theorist; single authorized 1996 portrait",
+    "_principal_caste": "CASTE RULE - Summer, Pengold and Dick are one class, not three individuals: children of privilege cosplaying socialists regardless of actual background. Polished, scrubbed, gym-going; elite schools and the connections that come with them; masks they were trained to wear. CERTAIN, NEVER SMUG - a smug face is a wink and v11's Wildean law forbids winks. The contempt lives in what they DO. Valencia is excluded. Full rule: 01_development/bible/THE_CASTE.md"
   },
   "negatives": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame",
   "engine_tails": {
@@ -58,6 +59,13 @@
       "was": "European (Mediterranean rim or European East)",
       "rationale": "Her POV is the universal truth. Every other principal reads the world through identity categories and deploys them as credential; Valencia cannot be sorted into one, so the Framework's apparatus has no purchase on her. Casting her to a region would reduce the only clear sight in the opera to one more subject position.",
       "ref": "01_development/bible/characters/valencia/bible.md"
+    },
+    "principal_caste": {
+      "date": "2026-09-02",
+      "decided": "one uniform privileged surface for the three principals; Valencia excluded",
+      "rationale": "Three different kinds of person reads as individual flaws. One surface reads as a system, which is what the opera is about.",
+      "guard": "Render certainty, never smugness - smugness is a wink and breaks the Wildean law.",
+      "ref": "01_development/bible/THE_CASTE.md"
     }
   }
 }
