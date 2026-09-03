@@ -3,10 +3,33 @@
 *Steps 3.4 and 3.5 complete for all four principals. Brad's picks 2026-09-02; final
 anchors rendered and silhouette-tested 2026-09-03.*
 
-## The four anchors — LOCKED
+## The four anchors — LOCKED 2026-09-03
 
-| Character | Cast | Anchor file | Notes |
-|---|---|---|---|
+| Character | Anchor file | How it was made |
+|---|---|---|
+| Valencia Strong | `finals/VAL-FINAL.png` | **Held, untouched.** Blend of C05 gravity + C06 ache, deliberately ethnically ambiguous (NH-USA-008), screen-tested at finale Beat 5. |
+| Summer Winters | `finals/SUM-FINAL.png` | SUM-K02 → younger (thirty-eight) → beatific light. The radiance is a lighting fact, not an expression (NH-USA-020). |
+| Dick Suede | `finals/DIC-FINAL.png` | DIC-K02 → soft and delicately beautiful, pro-tennis build, hair long past the jaw and bun-capable. |
+| Pengold Heavens | `finals/PEN-FINAL.png` | **Re-cast from text**, then slicked hair + a hint of grey at the temples. Not an edit of K03 — see below. |
+
+### Pengold was re-cast, and that is a real change
+
+Two edit passes could not add softness to PEN-K03's face. A reference latent pins facial
+geometry, and body fat *is* geometry, so "keep this exact man" and "make his face fuller"
+are contradictory instructions and the reference wins (NH-USA-021). He was regenerated from
+text with the soft body built in from the start, guided by a detailed description of K03's
+features. **The result is a cousin of the approved face, not the same man.** Brad re-approved
+2026-09-03, choosing T02 over the plusher T03 because T03 read *too likeable* — so T02's
+warmth is the ceiling for this character.
+
+### The rule that came out of this pass
+
+**Classify the change before choosing the method.** Surface changes — light, colour, hair,
+beard, wardrobe, the age of skin — survive an edit against a reference. Structural changes —
+bone width, body fat, build, height — do not, and must be generated from text and re-cast.
+Two characters and roughly $1.50 were spent learning this twice.
+
+---|---|---|---|
 | Valencia Strong | **VAL-H01** | `finals/VAL-H01-rest.png` | Blend of C05 gravity + C06 ache. Deliberately ethnically ambiguous (NH-USA-008). Screen-tested at finale Beat 5. Re-lit only — face unmoved. |
 | Summer Winters | **SUM-K02** | `finals/SUM-K02-rest.png` | At rest. Attractive by design: v11 §III — *"She's beautiful (he's shallow, she's genuinely attractive)."* |
 | Pengold Heavens | **PEN-K03** | `finals/PEN-K03-rest.png` | At rest, build restored. *"Looks like a political consultant through and through."* |

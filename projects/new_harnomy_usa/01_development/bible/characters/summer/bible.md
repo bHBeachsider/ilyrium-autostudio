@@ -45,7 +45,7 @@ Consequent changes to the casting slate:
 
 ## 🔒 LOCKED VISUAL DESCRIPTOR — CAST 2026-09-02, RE-ANCHORED 2026-09-03 (SUM-K02)
 
-Anchor: `03_design/characters/casting/finals/SUM-K02-rest.png` (at rest, matched neutral light, 2026-09-03).
+Anchor: `03_design/characters/casting/finals/SUM-FINAL.png` (SUM-R03 - younger, plus the beatific light, 2026-09-03).
 Casting frame: `03_design/characters/casting/caste/SUM-K02.png`.
 
 `a woman of thirty-eight, genuinely beautiful in a cool patrician way, skin smooth and firm at the cheek, jaw and throat with the expensive maintenance visibly working, ash-blonde hair in a low chignon, a narrow face, luminous and well-rested, slim and strong, a well-cut dark blazer over a fine plain knit in expensive unpatterned fabric, no logo, one minimal earring, a serene inward calm with light in it, the head carried level and the eyes clear, a stillness that reads as grace and is also holding something down`

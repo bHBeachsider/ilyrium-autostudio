@@ -43,7 +43,8 @@ That is the Economic Silence made wearable, and it is now written into both prom
 
 ## 🔒 LOCKED VISUAL DESCRIPTOR — CAST 2026-09-02, ANCHORED 2026-09-03 (DIC-K02, hair v2)
 
-Anchor: `03_design/characters/casting/finals/DIC-K02-hair-v2.png` (Acts I–II).
+Anchor: `03_design/characters/casting/finals/DIC-FINAL.png` (DIC-R01 - soft, tennis build, long hair, 2026-09-03).
+Superseded: `finals/DIC-K02-hair-v2.png`.
 Act III state: `03_design/characters/casting/finals/DIC-K02-bun-v2.png`.
 **Approved by Brad 2026-09-03.** The v1 hair pass is superseded — see NH-USA-014 / NH-USA-015.
 

@@ -45,11 +45,13 @@ handle badly. Restated as "plain, correct, unshowy."
 
 ## 🔒 LOCKED VISUAL DESCRIPTOR — CAST 2026-09-02 (PEN-K03)
 
-Anchor: `03_design/characters/casting/finals/PEN-K03-rest.png` (at rest, build restored, 2026-09-03).
-Casting frame: `03_design/characters/casting/caste/PEN-K03.png`. Brad: *"perfect. Looks like a political
+Anchor: `03_design/characters/casting/finals/PEN-FINAL.png` (PEN-T02 + slicked hair and a hint of grey, 2026-09-03).
+Superseded: `finals/PEN-K03-rest.png`, `caste/PEN-K03.png`.
+
+**He was RE-CAST, not edited.** Two edit passes could not add softness to K03's face - a reference latent pins facial geometry and body fat is geometry (NH-USA-021). He was regenerated from text with the soft body built in from the start, guided by a detailed description of K03's features, so this is a cousin of the approved face rather than the same man. Brad re-approved him 2026-09-03, choosing T02 over the plusher T03, which read **too likeable**. T02's warmth is therefore the ceiling: he may be this friendly and no friendlier. Brad: *"perfect. Looks like a political
 consultant through and through."*
 
-`a man of forty-one, youthful and pampered, dark hair combed back with care, a short well-manicured hipster beard sculpted by an expensive barber and tidy at the cheek line, skin smooth and clear and unweathered, a soft well-fed indoor plushness in the cheeks and just under the jaw, trim in the frame and never fat, immaculate dark suiting in fine wool, a crisp white shirt, every detail correct, faintly amused and completely unbothered, the face of a man who has never been seriously contradicted`
+`a man of forty-one, youthful and pampered, dark hair slicked back tight to the skull, wet-combed and held with product over a clean high forehead, a light silvering of grey at the temples and just above the ears with the rest still dark, a short well-manicured hipster beard sculpted by an expensive barber and tidy at the cheek line, dark with no grey in it, skin smooth and clear and unweathered, full rounded lower cheeks with the jaw angle softened and partly hidden beneath that fullness so the jawline reads as a gentle curve rather than an edge, a small soft fullness under the chin with the head level, a fuller neck resting against the collar, the frame trim and upright with the suit fitting cleanly, immaculate dark navy suiting in fine wool over a crisp white shirt, faintly amused and completely unbothered, the face of a man who has never been seriously contradicted`
 
 ### Soft, not rough, and not fat — direction from Brad, 2026-09-03
 
