@@ -26,28 +26,37 @@ Wardrobe needed its own explicit list per character (`WARDROBE`): the reference
 latent pins clothing hard, and without an override the LoRA would have baked the
 anchor's jacket into the identity.
 
-## Review, 2026-09-03
+## Review — regenerated against the LOCKED anchors, 2026-09-03
+
+The first pass of these sets was generated against the pre-revision anchors and is
+superseded. After Brad's direction (Summer younger + beatific, Dick softer and
+longer-haired, Pengold bearded and soft) all four anchors were re-cut and all 72
+frames regenerated. About six minutes of GPU.
 
 | Set | Verdict |
 |---|---|
-| valencia | **GOOD.** Identity holds across all 18. Light, wardrobe, expression and background all vary. Reads a few years older than her canon late twenties. |
-| pengold | **GOOD — the best of the four.** Heavy through the face and shoulders as canon requires; expression range from laughing to sombre. |
-| summer | **ACCEPTABLE, one caveat.** Identity holds, but she reads mid-to-late forties rather than "early forties *maintained to read younger*" — and the maintenance is the character point. The blazer also survived the wardrobe override in most frames. |
-| dick | **NOT APPROVED.** See below. |
+| pengold | **BEST OF THE FOUR.** The hard-won softness held across all 18 — full cheeks, softened jaw, the slicked hair and temple grey consistent, beard dark and neat. Wardrobe genuinely varies (suit, shirt and tie, polo, overcoat, black tie) and the expression range runs from laughing to sombre. |
+| valencia | **GOOD, unchanged.** She was never re-anchored. |
+| dick | **GOOD — recovered.** The gaunt forty-year-old of the first pass is gone. Long dirty-blond hair, soft features, lean tennis-player build, identity consistent. A few frames still read slightly narrower than the anchor; acceptable. |
+| summer | **GOOD on wardrobe, one persistent caveat.** The wardrobe override worked this time — silk blouse, roll-neck, coat, white tee, sleeveless shift all present. Identity holds. She still reads a few years older than her canon thirty-eight in perhaps a third of the frames. |
 
-## The Dick problem — open decision
+### The beatific note is deliberately NOT in Summer's training set
 
-His set came back gaunt, in his forties, without the gym build, and with the hair
-drifted into a slicked-back mullet rather than the approved cut. A second pass
-with every preserved quality given its own positive clause (NH-USA-016) moved it
-perhaps a fifth of the way and no further.
+Her radiance is a *lighting* fact (NH-USA-020) — a luminous key wrapping the
+cheekbones, catchlights, an unfurrowed brow. The training set exists to vary lighting
+so the LoRA learns her face rather than her key light, so the beatific quality cannot
+and must not survive into it. **It is a per-shot decision at render time**, carried by
+the shot spec, not by the LoRA. Baking it in would give us a woman who glows in a
+basement.
 
-Root cause is upstream of this step: `DIC-K02-hair-v2` is itself slightly narrower
-than the DIC-K02 face Brad approved (recorded at NH-USA-014), and Klein amplifies
-that drift over 18 frames. Prompting cannot outvote the reference.
+## The Dick problem — RESOLVED
 
-**The recommendation is to re-anchor him on the original `caste/DIC-K02.png`** and
-let the training set carry that face with its original hair. A character LoRA's
-job is bone structure; hair is a per-shot variable — and Dick needs TWO hair states
-(down for Acts I–II, gathered for Act III) regardless, so baking either one into
-the LoRA is wrong on its own terms.
+His first set came back gaunt, in his forties, without the gym build. Prompting could
+not fix it: the anchor `DIC-K02-hair-v2` was itself narrower than the approved face and
+Klein amplified that over 18 frames (NH-USA-016). Brad's 2026-09-03 direction then
+reframed the character — softer, more feminine, a pro tennis player's build, longer
+hair — and a new anchor was cut to that brief. Regenerating against it fixed the set.
+
+The lesson generalised into the rule now recorded in `casting/SELECTIONS.md`:
+**classify the change before choosing the method.** Surface changes survive an edit
+against a reference; structural changes must be generated from text and re-cast.

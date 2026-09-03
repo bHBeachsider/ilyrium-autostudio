@@ -30,29 +30,32 @@ OUTDIR = os.path.expanduser("~/nh_out")
 
 # --- identity, from the LOCKED VISUAL DESCRIPTORs in the character bibles -----
 CANON = {
- "valencia": ("a woman of twenty-eight, unmistakably in her twenties with smooth firm skin across the cheek and jaw, of unplaceable ethnicity, heavy dark brows and a strong nose "
-              "framing steady dark eyes, the mouth soft rather than held, faint shadows of tiredness beneath "
-              "the eyes, dark hair worn loose and practical and slightly undone, slight build, grave but not "
-              "defended, secondhand layering worn as a work uniform, a thrifted cardigan over a plain tee"),
- "summer":   ("a woman in her early forties maintained to read younger, genuinely beautiful in a cool "
-              "patrician way, ash-blonde hair in a low chignon, a narrow face, lightly tanned and flawlessly "
-              "kept, slim and strong, a well-cut dark blazer over a fine plain knit in expensive unpatterned "
-              "fabric, composure that is visibly maintained rather than natural"),
- "pengold":  ("a man in his late forties, dark hair combed back with care, a strong brow, clean-shaven and "
-              "gleaming, tall and heavy through the shoulders in the way of a man who lifts, immaculate dark "
-              "suiting in fine wool, a crisp white shirt, faintly amused and completely unbothered"),
- "dick":     ("a man of thirty-two, young and healthy, a full unlined face with firm weight in the cheeks "
-              "and a square jaw, smooth clear tanned skin, a thick neck and broad heavy gym-built shoulders "
-              "on an athletic muscular frame, dirty-blond hair thick and full on top, cut close at the "
-              "temples and above the ears, the crown length swept back and stopping at the jawline, a "
-              "beautifully cut heritage workwear jacket over a plain fitted tee, an easy open face with "
-              "nothing behind the eyes"),
+ "valencia": ("a woman of twenty-eight, unmistakably in her twenties with smooth firm skin across the cheek "
+              "and jaw, of unplaceable ethnicity, heavy dark brows and a strong nose framing steady dark eyes, "
+              "the mouth soft rather than held, faint shadows of tiredness beneath the eyes, dark hair worn "
+              "loose and practical and slightly undone, slight build, grave but not defended, secondhand "
+              "layering worn as a work uniform"),
+ "summer":   ("a woman of thirty-eight, genuinely beautiful in a cool patrician way, skin smooth and firm at "
+              "the cheek, jaw and throat, ash-blonde hair in a low chignon, a narrow face, luminous and "
+              "well-rested, slim and strong, the brow entirely smooth and unfurrowed, the lips softly closed "
+              "and resting rather than pressed, a serene inward calm with light in it, the neck long and the "
+              "chin carried level, grace rather than satisfaction"),
+ "pengold":  ("a man of forty-one, youthful and pampered, dark hair slicked back tight to the skull over a "
+              "clean high forehead with a light silvering of grey at the temples, a short well-manicured dark "
+              "hipster beard tidy at the cheek line, smooth clear unweathered skin, full rounded lower cheeks "
+              "with the jaw angle softened into a gentle curve, a small soft fullness under the chin, a fuller "
+              "neck at the collar, the frame trim and upright, faintly amused and completely unbothered"),
+ "dick":     ("a man of thirty-one, soft and delicately beautiful, fine-boned and almost feminine, a smooth "
+              "unlined jaw, full soft lips, long lashes and gentle brows, tanned and clear-skinned, the slim "
+              "light athletic build of a professional tennis player with no bulk and no hollowing at the "
+              "cheeks, dirty-blond hair worn long and loose past the jaw to the collarbone, soft and shining, "
+              "an easy open face with nothing behind the eyes"),
 }
 ANCHOR = {
- "valencia": "nh/VAL-H01-rest.png",
- "summer":   "nh/SUM-K02-rest.png",
- "pengold":  "nh/PEN-K03-rest.png",
- "dick":     "nh/DIC-K02-hair-v2.png",
+ "valencia": "nh/VAL-FINAL.png",
+ "summer":   "nh/SUM-FINAL.png",
+ "pengold":  "nh/PEN-FINAL.png",
+ "dick":     "nh/DIC-FINAL.png",
 }
 
 # --- the variation axes. Everything here changes; the face does not. ---------
