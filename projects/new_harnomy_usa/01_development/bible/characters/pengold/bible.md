@@ -49,7 +49,22 @@ Anchor: `03_design/characters/casting/finals/PEN-K03-rest.png` (at rest, build r
 Casting frame: `03_design/characters/casting/caste/PEN-K03.png`. Brad: *"perfect. Looks like a political
 consultant through and through."*
 
-`a man in his late forties, dark hair combed back with care, a strong brow, clean-shaven and gleaming, tall and heavy through the shoulders in the way of a man who lifts, immaculate dark suiting in fine wool, a crisp white shirt, every detail correct, faintly amused and completely unbothered, the face of a man who has never been seriously contradicted`
+`a man of forty-one, youthful and pampered, dark hair combed back with care, a short well-manicured hipster beard sculpted by an expensive barber and tidy at the cheek line, skin smooth and clear and unweathered, a soft well-fed indoor plushness in the cheeks and just under the jaw, trim in the frame and never fat, immaculate dark suiting in fine wool, a crisp white shirt, every detail correct, faintly amused and completely unbothered, the face of a man who has never been seriously contradicted`
+
+### Soft, not rough, and not fat — direction from Brad, 2026-09-03
+
+The target is narrow and all three limits matter:
+
+- **Soft and slightly squishy**, in the cheek and just under the jaw. A political consultant who eats out
+  at too many high-end restaurants. The softness is evidence of the life, and it is the tell.
+- **Not fat.** The frame stays trim and the suit fits cleanly. This is plushness, not weight.
+- **Never rough or coarse.** No weathering, no hard lines, nothing that suggests he has ever worked
+  outdoors or been hit. He is an indoor animal.
+- **Bearded, not clean-shaven.** The hipster beard is precisely barbered and expensively maintained — it
+  is a costume of authenticity worn by a man with none, which is `THE_CASTE.md` in a single detail.
+
+This supersedes the earlier note to make him heavier and broader through the shoulders. He is not the big
+one; he is the *comfortable* one.
 
 Carries the caste block — see `../THE_CASTE.md`.
 

@@ -1,0 +1,14 @@
+[OK] fal auth and balance OK (probe 422)
+-- SUM-R01
+   [OK] SUM-R01 (4742 KB)
+-- SUM-R02
+   [OK] SUM-R02 (4849 KB)
+-- DIC-R01
+   [OK] DIC-R01 (5576 KB)
+-- DIC-R02
+   [OK] DIC-R02 (5860 KB)
+-- PEN-R01
+   [OK] PEN-R01 (5041 KB)
+-- PEN-R02
+   [OK] PEN-R02 (5048 KB)
+DONE

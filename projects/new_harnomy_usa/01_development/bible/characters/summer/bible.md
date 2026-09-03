@@ -43,12 +43,29 @@ Consequent changes to the casting slate:
 - hands/posture: still hands; early to every meeting; "always early, organized, professional"
 - distinguishing: the frozen face of the finale — recognition, horror, knowledge that she chose this
 
-## 🔒 LOCKED VISUAL DESCRIPTOR — CAST 2026-09-02 (SUM-K02)
+## 🔒 LOCKED VISUAL DESCRIPTOR — CAST 2026-09-02, RE-ANCHORED 2026-09-03 (SUM-K02)
 
 Anchor: `03_design/characters/casting/finals/SUM-K02-rest.png` (at rest, matched neutral light, 2026-09-03).
 Casting frame: `03_design/characters/casting/caste/SUM-K02.png`.
 
-`a woman in her early forties maintained to read younger, genuinely beautiful in a cool patrician way, ash-blonde hair in a low chignon, a narrow face, lightly tanned and flawlessly kept, slim and strong, a well-cut dark blazer over a fine plain knit in expensive unpatterned fabric, no logo, one minimal earring, composure that is visibly maintained rather than natural, a stillness that is holding something down`
+`a woman of thirty-eight, genuinely beautiful in a cool patrician way, skin smooth and firm at the cheek, jaw and throat with the expensive maintenance visibly working, ash-blonde hair in a low chignon, a narrow face, luminous and well-rested, slim and strong, a well-cut dark blazer over a fine plain knit in expensive unpatterned fabric, no logo, one minimal earring, a serene inward calm with light in it, the head carried level and the eyes clear, a stillness that reads as grace and is also holding something down`
+
+### The beatific note — she is being set up as a queen
+
+Direction from Brad, 2026-09-03: her countenance must carry **beatific notes that portend her elevation to
+Queen of New Harnomy**. This is the single most important thing about how she is photographed, and it is a
+narrow target:
+
+- **Beatific is not a smile.** NH-USA-011 already cost a slate to "pleasant". Her mouth stays closed.
+- **Beatific is not smug.** `THE_CASTE.md` forbids the wink outright, and a self-satisfied face is a wink.
+  The other two principals carry certainty; she carries something one register above it.
+- **Beatific is serenity with light in it** — the tranquillity of someone who quietly believes herself
+  chosen. Renaissance altarpiece grammar on a modern patrician woman: chin level, eyes lit from within and
+  looking steadily out, a face that already seems elevated above the room.
+
+The audience should feel the coronation coming before the libretto says it. Because she reads as grace
+rather than appetite, the finale lands harder: the frozen face at the end is the same face, finally seeing
+what the grace was purchased with.
 
 Carries the caste block — see `../THE_CASTE.md`.
 
