@@ -1,57 +1,54 @@
 # CASTING SELECTIONS — NEW HARNOMY, U.S.A.
 
-*Step 3.4 complete for all four principals. Brad's picks, 2026-09-02.*
+*Steps 3.4 and 3.5 complete for all four principals. Brad's picks 2026-09-02; final
+anchors rendered and silhouette-tested 2026-09-03.*
 
-| Character | Cast | File | Status |
+## The four anchors — LOCKED
+
+| Character | Cast | Anchor file | Notes |
 |---|---|---|---|
-| Valencia Strong | **VAL-H01** | `valencia_v3/VAL-H01.png` | LOCKED. Blend of C05 gravity + C06 ache. Screen-tested at finale Beat 5. |
-| Summer Winters | **SUM-K02** | `caste/SUM-K02.png` | LOCKED. |
-| Pengold Heavens | **PEN-K03** | `caste/PEN-K03.png` | LOCKED. *"Looks like a political consultant through and through."* |
-| Dick Suede | **DIC-K02** | `caste/DIC-K02.png` | Face approved. **Hair modification pending render.** |
+| Valencia Strong | **VAL-H01** | `finals/VAL-H01-rest.png` | Blend of C05 gravity + C06 ache. Deliberately ethnically ambiguous (NH-USA-008). Screen-tested at finale Beat 5. Re-lit only — face unmoved. |
+| Summer Winters | **SUM-K02** | `finals/SUM-K02-rest.png` | At rest. Attractive by design: v11 §III — *"She's beautiful (he's shallow, she's genuinely attractive)."* |
+| Pengold Heavens | **PEN-K03** | `finals/PEN-K03-rest.png` | At rest, build restored. *"Looks like a political consultant through and through."* |
+| Dick Suede | **DIC-K02** | `finals/DIC-K02-hair-v2.png` | At rest, dirty blond, hair down (Acts I–II). |
+| Dick Suede — Act III | **DIC-K02** | `finals/DIC-K02-bun-v2.png` | Same face, hair gathered. Wardrobe state, not a second casting. |
+
+Superseded, kept for the record: `finals/DIC-K02-hair.png` and `finals/DIC-K02-bun.png`
+(first pass — see NH-USA-014, NH-USA-015).
+
+**Why Dick's hair matters beyond hair:** Summer's initiative is *The Man Bun Collective*.
+Man-bun-capable hair puts the name of the organisation she is funding on the body of the
+man she is sleeping with. No character ever remarks on it. That is the Wildean law working
+as designed.
 
 ---
 
-## Dick — the one outstanding render
+## Step 3.5 — silhouette test: PASS (with one caveat)
 
-**Change:** slightly longer, dirty-blond hair worn to the collarbone — long enough to be gathered into a
-man-bun at a minute's notice. Everything else about DIC-K02 stays.
+All four rendered under identical neutral light, reduced to 40px tall, value only
+(`/tmp/cast/silhouette_v2.png`, script inline in this directory's history).
 
-**Why it matters beyond hair:** Summer's initiative is *The Man Bun Collective*. Man-bun-capable hair puts
-the name of the organisation she is funding on the body of the man she is sleeping with. No character ever
-remarks on it. That is the Wildean law working as designed.
+| | mean | sd | reads as |
+|---|---|---|---|
+| Valencia | 127.9 | 46.5 | wide dark hair mass flaring past the jaw, light collar |
+| Summer | 75.8 | 36.8 | dark block, light face, light hair — the outlier |
+| Pengold | 120.6 | 50.5 | broadest head and neck, light shirt V |
+| Dick | 121.0 | 42.2 | narrowest head, hair close to the skull, long neck |
 
-### Use nano_banana_pro, not soul_cinematic
+**Caveat, stated plainly:** value alone does NOT separate Valencia, Pengold and Dick — they
+sit within 8 points of each other. The separation is carried entirely by *outline*: Pengold's
+mass, Valencia's hair flare, Dick's narrow head and long neck. That is legible, but it is a
+thinner margin than the plan assumed. If a wide shot ever needs more, the lever is wardrobe
+value, not face.
 
-FINDINGS NH-USA-009: `soul_cinematic` accepts one image reference and **does not hold identity** — steering a
-face through it produced a different person three times out of four. `nano_banana_pro` held identity first
-try on VAL-H01. Cost is **2.00 credits** against 0.12, and it is worth it; do not optimise this step on price.
-
-**Ready to run the moment credits allow:**
-
-```powershell
-$D = "<casting>\caste\DIC-K02.png"
-higgsfield generate create nano_banana_pro `
-  --image-references $D `
-  --aspect-ratio "3:2" --resolution 2k --wait --wait-timeout 8m --json `
-  --prompt "This exact man, same face, same build, same clothes, same lighting. Change only the hair: slightly longer and dirty blond, worn loose to the collarbone, thick enough to be gathered into a man-bun at a minute's notice, the carefully maintained 'I don't care' cut that takes an expensive barber to look effortless. Head-and-shoulders portrait framed just below the collarbone, hands out of frame, straight-on to camera, plain unlit grey backdrop, mouth closed with the lips together, jaw relaxed, eyes steady on the lens, unbothered and certain. Even neutral daylight-balanced exposure, soft frontal key, natural skin tones, sharp focus on the eyes, photographic realism, 85mm."
-```
-
-Then render a second frame with the hair **gathered into the bun** — that is a wardrobe state, not a new
-face, and Act III needs it.
+The first Dick pass FAILED this test — hair to the collarbone read as a woman's long hair and
+collided with Valencia's outline. Fixed in v2 by cutting the sides close so the skull reads.
 
 ---
 
-## Also outstanding
+## Next
 
-- **All three caste picks are smiling or mid-speech** (NH-USA-011: "pleasant" beat "mouth closed"). Fine as
-  character — a media-trained smile is the mask — but the anchor set needs them at rest. 3 stills, 0.36 cr on
-  soul_cinematic once the descriptors above are used as text (no reference needed; the descriptors now
-  describe the chosen faces).
-- **Pengold's build flattened** in the caste pass. He should stay the heavy one against Dick's lean.
-  Heaviness is character; the caste rule governs surface only.
-- **BILLING BLOCKED on both vendors (NH-USA-013).** Higgsfield: 0.48 credits left and the free plan cannot buy credit packs. fal: HTTP 403, "User is locked. Reason: Exhausted balance." **Recommended fix: top up fal at fal.ai/dashboard/billing** - pay-as-you-go, no subscription, $0.15/image on the same nano-banana-pro. The whole remainder of Stage 3 is under $1.
-
-## Next after the anchors
-
-Step 3.5 silhouette test (all four at 40px, value only), then 3.7 descriptors are already written, then 3.8
-training sets and 3.9 LoRAs. See `../LOOK_DEVELOPMENT_PLAN.md`.
+3.8 training sets (~18 images per principal, varied light — the casting set judges the face,
+the training set teaches it), 3.9 four LoRAs serial on the g6e box from `ami-04ef6582604f56a4a`,
+3.10 verification, 3.11 register in `lora_library.json`, 3.12 stop the box.
+See `../LOOK_DEVELOPMENT_PLAN.md`.
