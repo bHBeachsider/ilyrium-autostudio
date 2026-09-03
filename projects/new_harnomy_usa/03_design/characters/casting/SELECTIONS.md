@@ -49,7 +49,7 @@ face, and Act III needs it.
   describe the chosen faces).
 - **Pengold's build flattened** in the caste pass. He should stay the heavy one against Dick's lean.
   Heaviness is character; the caste rule governs surface only.
-- Credits: **0.48 remaining** of the free plan. The Dick modification alone needs 2.00.
+- **BILLING BLOCKED on both vendors (NH-USA-013).** Higgsfield: 0.48 credits left and the free plan cannot buy credit packs. fal: HTTP 403, "User is locked. Reason: Exhausted balance." **Recommended fix: top up fal at fal.ai/dashboard/billing** - pay-as-you-go, no subscription, $0.15/image on the same nano-banana-pro. The whole remainder of Stage 3 is under $1.
 
 ## Next after the anchors
 
