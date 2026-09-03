@@ -17,3 +17,5 @@ projects/broderick/_training/local_artifacts/loras/
 # Python cache
 __pycache__/
 *.pyc
+projects/new_harnomy_usa/03_design/characters/training/sets/*/*.png
+projects/new_harnomy_usa/03_design/characters/training/_proof/
