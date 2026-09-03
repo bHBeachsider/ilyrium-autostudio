@@ -97,7 +97,8 @@ FINDINGS NH-USA-004 closed. Kernel bumped with a `canon_decision.valencia_age` b
 
 ## 🔒 LOCKED VISUAL DESCRIPTOR — CAST 2026-09-02 (VAL-H01)
 
-**The face is chosen.** Reference: `03_design/characters/casting/valencia_v3/VAL-H01.png`, a Nano Banana Pro
+**The face is chosen.** Anchor: `03_design/characters/casting/finals/VAL-H01-rest.png` (re-lit only to match
+the other three; her face was not touched, 2026-09-03). Source: `03_design/characters/casting/valencia_v3/VAL-H01.png`, a Nano Banana Pro
 blend of VAL-C05 (gravity, brow architecture, strong nose) with VAL-C06 (tiredness, softness, no armour).
 Screen-tested at finale Beat 5: `casting/valencia_screentest/VAL-BEAT5.png`.
 

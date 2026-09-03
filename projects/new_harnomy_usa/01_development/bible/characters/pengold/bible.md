@@ -45,7 +45,8 @@ handle badly. Restated as "plain, correct, unshowy."
 
 ## 🔒 LOCKED VISUAL DESCRIPTOR — CAST 2026-09-02 (PEN-K03)
 
-Reference: `03_design/characters/casting/caste/PEN-K03.png`. Brad: *"perfect. Looks like a political
+Anchor: `03_design/characters/casting/finals/PEN-K03-rest.png` (at rest, build restored, 2026-09-03).
+Casting frame: `03_design/characters/casting/caste/PEN-K03.png`. Brad: *"perfect. Looks like a political
 consultant through and through."*
 
 `a man in his late forties, dark hair combed back with care, a strong brow, clean-shaven and gleaming, tall and heavy through the shoulders in the way of a man who lifts, immaculate dark suiting in fine wool, a crisp white shirt, every detail correct, faintly amused and completely unbothered, the face of a man who has never been seriously contradicted`

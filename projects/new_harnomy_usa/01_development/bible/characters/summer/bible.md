@@ -45,7 +45,8 @@ Consequent changes to the casting slate:
 
 ## 🔒 LOCKED VISUAL DESCRIPTOR — CAST 2026-09-02 (SUM-K02)
 
-Reference: `03_design/characters/casting/caste/SUM-K02.png`.
+Anchor: `03_design/characters/casting/finals/SUM-K02-rest.png` (at rest, matched neutral light, 2026-09-03).
+Casting frame: `03_design/characters/casting/caste/SUM-K02.png`.
 
 `a woman in her early forties maintained to read younger, genuinely beautiful in a cool patrician way, ash-blonde hair in a low chignon, a narrow face, lightly tanned and flawlessly kept, slim and strong, a well-cut dark blazer over a fine plain knit in expensive unpatterned fabric, no logo, one minimal earring, composure that is visibly maintained rather than natural, a stillness that is holding something down`
 

@@ -41,12 +41,15 @@ That is the Economic Silence made wearable, and it is now written into both prom
 - build: lean, young, energetic; the only body on stage that moves freely
 - distinguishing: the wardrobe (below); in the finale, shackled — "literally shackled"
 
-## 🔒 LOCKED VISUAL DESCRIPTOR — CAST 2026-09-02 (DIC-K02 + hair modification)
+## 🔒 LOCKED VISUAL DESCRIPTOR — CAST 2026-09-02, ANCHORED 2026-09-03 (DIC-K02, hair v2)
 
-Reference: `03_design/characters/casting/caste/DIC-K02.png`. **Face approved. Hair modification pending a
-render** — see below.
+Anchor: `03_design/characters/casting/finals/DIC-K02-hair-v2.png` (Acts I–II).
+Act III state: `03_design/characters/casting/finals/DIC-K02-bun-v2.png`.
+**Approved by Brad 2026-09-03.** The v1 hair pass is superseded — see NH-USA-014 / NH-USA-015.
 
-`a man in his early thirties, athletic and lean, visibly gym-built shoulders, tanned and clear-skinned, immaculate, slightly longer dirty-blond hair worn loose to the collarbone - long enough to be gathered into a man-bun at a minute's notice, a beautifully cut heritage workwear jacket over a plain fitted tee, costly clothes styled to look casual, an easy open face with nothing behind the eyes`
+`a man in his early thirties, athletic and lean, visibly gym-built shoulders, tanned and clear-skinned, immaculate, dirty-blond hair cut close at the temples and above the ears with the length kept on top and at the back reaching the jawline, swept back off the forehead and sitting close to the head - a grown-out men's cut, thick enough on top to gather into a bun at a minute's notice, a beautifully cut heritage workwear jacket over a plain fitted tee, costly clothes styled to look casual, an easy open face with nothing behind the eyes`
+
+**Why the hair is cut close at the sides, and why that is not negotiable:** at 40px, value only, hair falling to the collarbone reads as a woman's long hair and its outline collides with Valencia's — same mid-grey field, same dark mass flaring past the jaw. Dick and Valencia must be separable in a wide shot. The length that makes a man-bun lives at the crown and the back; cutting the temples close restores the skull shape, reads male at distance, and still gathers. See NH-USA-015.
 
 Carries the caste block — see `../THE_CASTE.md`.
 
