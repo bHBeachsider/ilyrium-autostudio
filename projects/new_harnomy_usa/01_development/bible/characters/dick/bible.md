@@ -41,8 +41,37 @@ That is the Economic Silence made wearable, and it is now written into both prom
 - build: lean, young, energetic; the only body on stage that moves freely
 - distinguishing: the wardrobe (below); in the finale, shackled — "literally shackled"
 
-## 🔒 LOCKED VISUAL DESCRIPTOR (reuse verbatim; finalize at anchor lock)
-`a lean charismatic man in his early thirties, grown-out product-free hair, thin wire-frame glasses, earnest alive expression, dark raw selvedge denim, a tailored heritage workwear jacket over a faded vintage band t-shirt, minimalist off-white sneakers, a handwoven scarf, canvas tote bag, expensive-looking effortless "worker" aesthetic, sincere passionate bearing`
+## 🔒 LOCKED VISUAL DESCRIPTOR — CAST 2026-09-02 (DIC-K02 + hair modification)
+
+Reference: `03_design/characters/casting/caste/DIC-K02.png`. **Face approved. Hair modification pending a
+render** — see below.
+
+`a man in his early thirties, athletic and lean, visibly gym-built shoulders, tanned and clear-skinned, immaculate, slightly longer dirty-blond hair worn loose to the collarbone - long enough to be gathered into a man-bun at a minute's notice, a beautifully cut heritage workwear jacket over a plain fitted tee, costly clothes styled to look casual, an easy open face with nothing behind the eyes`
+
+Carries the caste block — see `../THE_CASTE.md`.
+
+### The man-bun is a rhyme the characters cannot hear
+
+Summer's new initiative is **The Man Bun Collective**. Dick's hair being man-bun-capable — dirty blond, long
+enough to gather in a second — puts the organisation's name on the body of the man she is sleeping with while
+she negotiates its funding. Nobody in New Harnomy ever remarks on it. The audience sees it; the characters
+cannot. That is the Wildean law working exactly as v11 designs it, and it costs one wardrobe decision.
+
+It also sits inside v11's own description of his hair: *"grown out and product-free (but regularly trimmed at
+an expensive barber), the carefully maintained 'I don't care' look that requires professional maintenance to
+appear effortlessly casual."*
+
+**Staging use:** he should wear it down for most of Act I and gather it into the bun at the festival — the
+gesture reads as getting-down-to-work and is, in fact, him wearing her organisation on his head.
+
+### The softness moved from the body to the eyes
+
+"Little Dickie" — the family called him soft — is now a fact about his **character, not his physique**. He is
+gym-built and immaculate with nothing behind the eyes: no resilience, never had to be hard. A physically
+impressive man with nothing underneath is more unsettling than a visibly weak one, and his collapse lands
+harder for it.
+
+**Do not make him punchable.** A face the audience wants to see arrested breaks the ending.
 
 ## WARDROBE — "Bespoke Revolutionary" (v11, canon)
 - **The pieces:** selvedge denim from Japanese heritage brands ($300–400 jeans "worn to look authentically

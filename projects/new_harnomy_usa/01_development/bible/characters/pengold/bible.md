@@ -43,8 +43,28 @@ handle badly. Restated as "plain, correct, unshowy."
 - build: medium, solid, upright; unhurried; processional walk
 - hands: the right hand that rests on Summer's left shoulder; papers aligned to the edge of the desk
 
-## 🔒 LOCKED VISUAL DESCRIPTOR (reuse verbatim; finalize at anchor lock)
-`a controlled man in his late forties, neat conservative hair greying at the temples, calculating unhurried eyes, medium solid upright build, municipal mayoral suiting in dark muted wool, white shirt, no ostentation, papers aligned squarely, unhurried processional bearing, the smallest possible held smile`
+## 🔒 LOCKED VISUAL DESCRIPTOR — CAST 2026-09-02 (PEN-K03)
+
+Reference: `03_design/characters/casting/caste/PEN-K03.png`. Brad: *"perfect. Looks like a political
+consultant through and through."*
+
+`a man in his late forties, dark hair combed back with care, a strong brow, clean-shaven and gleaming, tall and heavy through the shoulders in the way of a man who lifts, immaculate dark suiting in fine wool, a crisp white shirt, every detail correct, faintly amused and completely unbothered, the face of a man who has never been seriously contradicted`
+
+Carries the caste block — see `../THE_CASTE.md`.
+
+### The consultant read is the right one
+
+He does not look like a mayor; he looks like the person who *makes* mayors. That is exactly right — v11's
+Pengold learned power as a TWEEEDS intern by watching how funding decisions were made and who got rewarded,
+and he has been operating that machinery ever since. The face should belong to the room where the deal
+happens, not the podium.
+
+**The mask is seamless.** Nothing of the Northeast working-class origin shows. He passed completely, and
+nobody can see the intern any more — including him. That is v11's "he cannot find the person who existed
+before the construction began," and it is more tragic than a visible seam would be.
+
+**Open note:** the caste pass flattened his *build* slightly. He should remain the heavy one of the three
+against Dick's lean — heaviness is character, not surface, and the caste rule governs surface only.
 
 ## WARDROBE
 - signature: **mayoral gravitas** — correct municipal suiting; nothing that reads as costume.

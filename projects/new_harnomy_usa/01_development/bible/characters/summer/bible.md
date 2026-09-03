@@ -43,8 +43,30 @@ Consequent changes to the casting slate:
 - hands/posture: still hands; early to every meeting; "always early, organized, professional"
 - distinguishing: the frozen face of the finale — recognition, horror, knowledge that she chose this
 
-## 🔒 LOCKED VISUAL DESCRIPTOR (reuse verbatim; fill hair/eye specifics at Stage 3 anchor lock)
-`a poised woman in her early forties, patrician bearing, dark hair drawn back with professional precision, composed watchful eyes, slim upright frame, professional-class activist tailoring in muted expensive fabrics, no jewelry beyond the minimal, still hands, sincere unsmiling composure`
+## 🔒 LOCKED VISUAL DESCRIPTOR — CAST 2026-09-02 (SUM-K02)
+
+Reference: `03_design/characters/casting/caste/SUM-K02.png`.
+
+`a woman in her early forties maintained to read younger, genuinely beautiful in a cool patrician way, ash-blonde hair in a low chignon, a narrow face, lightly tanned and flawlessly kept, slim and strong, a well-cut dark blazer over a fine plain knit in expensive unpatterned fabric, no logo, one minimal earring, composure that is visibly maintained rather than natural, a stillness that is holding something down`
+
+Carries the caste block — see `../THE_CASTE.md`.
+
+### Her beauty is plot machinery, not decoration
+
+v11 §III states it directly: *"She's beautiful (he's shallow, she's genuinely attractive)."* Two men are
+undone by her and the drama does not run without it. **Pengold waits four years** — through her marriage, her
+separation, her divorce — building leverage and calling it patience. **Dick genuinely falls**, in spite of
+himself and a long roster of conquests. Cast her merely credentialed and both of those read as implausible;
+the triangle deflates and the $5 million negotiation loses its charge.
+
+*Casting note, recorded because I got this wrong:* SUM-K02 was initially marked down as "too glamorous,
+reads fashion model rather than executive director." That was over-indexing on the credential and ignoring a
+stated fact of the source. Brad overruled it. The correct reading is that she is **both** — beautiful and
+formidable — which is precisely what makes her dangerous in a room.
+
+**The tension to hold:** she must be beautiful AND able to freeze. The Act III portrait glorifies her; her
+real face beneath it is recognition and horror. Beauty is not warmth — hers is cool, kept, and costs her
+something to maintain.
 
 ## WARDROBE
 - signature: **professional-class activist tailoring** (v11 §XI) — tailored, expensive, muted, "the same
