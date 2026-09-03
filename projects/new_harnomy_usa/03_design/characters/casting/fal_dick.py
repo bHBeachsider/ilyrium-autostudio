@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Dick Suede - hair modification on the cast face (DIC-K02), via fal nano-banana-pro.
+r"""Dick Suede - hair modification on the cast face (DIC-K02), via fal nano-banana-pro.
 
 Renders two frames from the approved caste portrait:
   DIC-K02-hair : dirty blond, loose to the collarbone, man-bun capable  (Acts I-II)
