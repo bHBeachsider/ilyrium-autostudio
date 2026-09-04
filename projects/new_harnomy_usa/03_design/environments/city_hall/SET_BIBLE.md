@@ -107,9 +107,25 @@ references and this file as the prompt. References live in `reference/`.
 - Flags: American only. Books: present on the desk and credenza in both dressings. Skyline: none — a
   steeple and low rooflines.
 
-## 7. Open decision for Brad
+## 7. Decision: Office A, with Brad's revision (2026-09-04)
 
-**Office Dressing A (inherited grandeur) or B (canon-forward)?** Both satisfy the continuity contract; they
-differ only in how much of 1910 survived 1962. A is closer to Brad's drafts; B is closer to v11's
-"mahogany-laminate authority." The choice sets the register for every office scene in the opera, including
-the opening 22-second read and the Act II Betrayal.
+Brad chose **A** and supplied his own revision: `plate_office_A_v2_brad_revision.jpg`. Against v1 it adds
+heavy dark damask curtains with tiebacks, full dark-wood wall panelling, a polished real-wood desk in place of
+laminate, and lights the chandelier's candle bulbs. The curved room, the giant columns a metre beyond the
+glass and the balustrade all survive — **the continuity contract in §4 holds.**
+
+The revision moves the room further toward 1910 and further from v11's "not grand." That is Brad's call and
+it is recorded here so nobody later "corrects" the curtains back out. The reconciliation in §2 now reads:
+*1910 survived almost intact; 1962 contributed the filing cabinet and the chairs.* The satire relocates from
+the desk to the man — the room is a real seat of power and its occupant is not.
+
+### Three things in the revision that must be fixed before it is the locked plate
+
+| # | Issue | Why it matters | Fix |
+|---|---|---|---|
+| 1 | **A grand classical facade fills the view across the square.** | Contradicts both exterior plates, which ring the square with low brick commercial blocks and a steeple. It is the same error the original drafts had (§3, "the balcony POV looks at the opposite facade") — the generator drifted back to a European capital. If a courthouse stood opposite it would have to appear in the dusk and first-light plates too. | Re-edit the window view only: low four-storey brick rooflines, bare trees, the steeple to the right, flat winter sky. Everything inside the room untouched. |
+| 2 | **The chandelier is lit.** Five warm candle bulbs. | Breaks the kernel's single-source tungsten rule, and — more important — breaks the story beat: *"a lamp still on from the night before."* If the chandelier is on, the lamp is not a tell; it is just a lamp. | Chandelier present, unlit. The desk lamp is the only warm source in the room at dawn. |
+| 3 | **The three credenza books read brown-red (sampled hue ≈ 13°, terracotta) while the desk copy reads correct mauve (hue ≈ 344°, brownish-purple).** | All editions share the colour — it is the primary motif and the kernel's fixed spec. Two different colours on screen at once reads as two different books. | Match the credenza stack to the desk copy: dusty brownish-purple, aged 1970s university-press paperback. |
+
+None of the three touches the room. All are one edit pass against Brad's revision as the reference.
+
