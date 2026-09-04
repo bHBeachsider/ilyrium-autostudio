@@ -114,10 +114,20 @@ heavy dark damask curtains with tiebacks, full dark-wood wall panelling, a polis
 laminate, and lights the chandelier's candle bulbs. The curved room, the giant columns a metre beyond the
 glass and the balustrade all survive — **the continuity contract in §4 holds.**
 
-The revision moves the room further toward 1910 and further from v11's "not grand." That is Brad's call and
-it is recorded here so nobody later "corrects" the curtains back out. The reconciliation in §2 now reads:
-*1910 survived almost intact; 1962 contributed the filing cabinet and the chairs.* The satire relocates from
-the desk to the man — the room is a real seat of power and its occupant is not.
+The revision moves the room toward 1910 and away from v11's "not grand" — **deliberately.** Brad's reading,
+2026-09-04: *the ornate office echoes Tammany Hall. Pengold is a grifter like Boss Tweed posing as a social
+justice warrior; he wants his cake and to eat it too. The heavy drapes are more ominous than bare windows.*
+
+This was always latent in the piece — his party is TWEEEDS, and `world/factions.md` records the triple pun
+and the fact that **Pengold does not know who Boss Tweed was.** The office is now the set-design expression
+of that pun: he sits in Tammany Hall without knowing it, the way New Harnomy lives in *harm* without hearing
+it. The audience reads the room; he only occupies it. So the §2 reconciliation is superseded: the room is
+not a 1962 renovation of grandeur but grandeur *kept* — velvet, panelling, tassels, a real desk — with the
+filing cabinet and the cantilever chairs as the only municipal tells. The drapes do double work: they are
+the Tammany curtain, and at dawn they make the room a box with one lamp lit in it.
+
+Canon consequence for the character bible: Pengold's "aspires to rooms Robert Moses actually occupied" now
+reads as *achieved*, not aspirational — which is worse. He is not reaching for the machine. He is in it.
 
 ### Three things in the revision that must be fixed before it is the locked plate
 

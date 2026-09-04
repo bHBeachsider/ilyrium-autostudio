@@ -26,3 +26,4 @@ Creative content varies here — production values do not.*
 
 
 - `THE_CASTING_OUT.md` — the liturgy of denunciation. Governs NH-S346 and Dick's campaign against Philip.
+- `narrative/COMEDY_AND_TRAGEDY.md` — the governing decision on the laugh: a tragedy in which the audience discovers the comedy. Six rules for keeping 'no winks' from becoming 'no humor'.

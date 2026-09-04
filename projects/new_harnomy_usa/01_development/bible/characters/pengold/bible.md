@@ -53,6 +53,15 @@ consultant through and through."*
 
 `a man of forty-one, dark hair slicked back tight to the skull, wet-combed and held with product over a clean high forehead, the comb lines visible, a light silvering of grey at the temples and just above the ears with the rest still dark, a short well-manicured dark hipster beard sculpted by an expensive barber and tidy at the cheek line, smooth clear unweathered indoor skin, a lean saturnine face with a defined jaw and a heavy dark brow over deep-set eyes, the frame trim and upright, immaculate dark navy suiting in fine wool over a crisp white shirt open at the collar, faintly amused and completely unbothered, the face of a man who has never been seriously contradicted`
 
+### Tammany Hall — the office as the man (Brad, 2026-09-04)
+
+His office is ornate on purpose: heavy damask drapes, full panelling, a chandelier, a real desk — Tammany Hall
+grandeur (`03_design/environments/city_hall/SET_BIBLE.md` §7). Pengold is a grifter in the Boss Tweed line
+posing as a social-justice warrior; he wants his cake and to eat it too. His party is *TWEEEDS* and he does
+not know who Tweed was. **The room knows.** Play him at ease in it — never impressed by it, never noticing
+it. It is the one place where the caste's "certainty, never smugness" rule is carried by the furniture
+instead of the face.
+
 ### What he became, and the note that did not survive casting
 
 The direction on 2026-09-03 asked for a soft, slightly squishy man — a political
