@@ -1,41 +1,43 @@
 # NH-S346 — №46 · "The Keynote"
-### Pengold's denunciation · Act III · The Anti-Thanksgiving Feast
+### Pengold's casting-out of Dick Suede · Act III · The Anti-Thanksgiving Feast
 
-> **Placement (a Screenwriter-stage decision, 2026-09-04).** v11 names the Act III beats — *the Feast;
-> Pengold's keynote (celebration → denunciation, "Maoist in structure"); the portrait rises; the arrest* —
-> but assigns no numbers to them. Back-solved from the finale: **NH-S348** opens with Dick *already seized*,
-> which puts the arrest at **NH-S347** and the keynote's turn at **NH-S346**. Change the split if the Act III
-> slot count moves; keep this order.
+> **v2, 2026-09-04.** Rebuilt on `01_development/bible/THE_CASTING_OUT.md` after Brad's note: the rhetoric
+> must carry the solemn tone of the Bildersatzian catechism; the proceeding is a religious casting-out of the
+> sinner from the company of the righteous; it is a "teachable moment" in Foucault's sense — the condemned is
+> the text, the room is the pupil. v1 is kept beside this file as `_NH-S346_v1_superseded.md`.
 >
-> Singers: Pengold (baritone), chorus, Summer (silent throughout), Dick (silent until he is named),
-> Valencia (silent, upstage right). Idiom: Pengold's measured authority, warming into the TWEEEDS theme,
-> which arrives complete only after the naming.
+> **Placement.** Back-solved from the finale: NH-S348 opens with Dick *already seized*, so the arrest is
+> NH-S347 and the keynote's turn is NH-S346. v11 names the beats, not the numbers.
+>
+> Singers: Pengold (baritone), chorus, Dick (one spoken line), Summer (silent; one nod), Valencia (silent,
+> upstage right). The Ten Principles are sung by the chorus **verbatim**, as responses. The TWEEEDS theme enters
+> low under §II and arrives whole, brass forward, only after the book is taken.
 
 ---
 
 ## The law this number is written under
 
-The denunciation is **structurally Maoist and verbally therapeutic.** Every accusation Pengold makes is
-**true.** Dick did lean on the bodega. He did lean on the parish. He did use the word *partnership* while
-meaning *tribute*. Pengold is not lying, and he is not exaggerating, and he does not raise his voice.
+Structurally a struggle session; verbally a staff retreat; liturgically a Mass. **Every accusation is true.**
+Dick did lean on the bodega, the parish, the church. Pengold does not lie, does not exaggerate, never raises
+his voice, and **never once looks at Dick.** Dick is read from. The room is being taught.
 
-That is the whole horror of the number: **the machine does not need to lie to eat him.** It only needs to
-tell the truth at the moment the truth is useful. The audience must not be able to point to the sentence
-where the celebration became an execution — because there isn't one.
+Nobody says *punish, guilty, traitor, enemy* or *expel.* The whole vocabulary is care.
 
-No irony in the frame. No character hears the joke. Pengold is *not smug* — `THE_CASTE.md` forbids the
-wink outright. He is grave, warm, and sorry. He may even mean it.
+The audience must not be able to name the sentence where the welcome became the sacrifice — because the
+welcome *was* the sacrifice, from its first word.
 
 ---
 
 ## I. The Welcome
 
 **PENGOLD**
-[*At the podium. Warm. Unhurried. The chorus assembled behind him, mauve books held but not yet raised.
-Summer stands at his left, one step back. Dick is downstage among the organizers, applauding.*]
+[*At the podium, a pristine mauve Framework closed in front of him. The chorus assembled behind, books held
+at the chest. SUMMER at his left, one step back, lit as if from within. DICK downstage among the organizers,
+applauding, his own copy — dog-eared, underlined in three colors — under his arm.*]
 
-Friends —
-before the meal,
+Friends.
+
+Before the meal,
 before the music,
 before we do the thing we came here to do —
 
@@ -45,7 +47,7 @@ Look at the people who built this week.
 Not the ones on the program.
 The ones who carried the tables.
 
-[*He waits. Some of the chorus turn and look. Dick applauds harder.*]
+[*Some of the chorus turn and look. DICK applauds harder than anyone.*]
 
 Four years ago this city could not say the word *harm*
 without a lawyer in the room.
@@ -59,12 +61,12 @@ That is what a movement is for.
 
 ---
 
-## II. The Gratitude
+## II. The Inversion
 
 **PENGOLD**
 They will tell you this is the week for gratitude.
 
-[*The TWEEEDS theme begins underneath — strings only, low, not yet the tune.*]
+[*Strings only, low — the TWEEEDS theme as a floor, not yet a tune.*]
 
 I want to be careful with that word.
 
@@ -85,31 +87,34 @@ We give **account.**
 **CHORUS**
 We give account.
 
-[*The books come up — not raised, only lifted to the chest. The first movement of the gesture.*]
+**PENGOLD**
+And I know some of you feel that as a loss.
+The old word was warm.
+This one is not.
+
+[*He opens the book in front of him for the first time. He does not look down at it. He does not need to.*]
+
+**CHORUS**
+[*Quietly, a creed:*]
+*Discomfort signals growth.*
 
 **PENGOLD**
-And account is not a feeling.
-Account is arithmetic.
-Somebody paid.
-Somebody was paid.
-And every year we sit down to eat
-without ever once
-saying the numbers out loud.
+Discomfort signals growth.
 
-[*Behind him, at the very edge of perception, the bottom of the portrait's frame enters from the flies.
-Nobody looks up. It should be four full minutes before anyone in the house consciously registers it.*]
+[*The books lift from the chest to the collarbone. The first movement of the gesture. Behind him, at the edge
+of perception, the bottom rail of the portrait's frame enters from the flies. Nobody looks up.*]
 
 ---
 
-## III. The Turn
+## III. The Arithmetic
 
 **PENGOLD**
-So let us say them.
+So let us do the account.
 
-[*Still warm. Nothing has changed in his voice. Nothing will.*]
+[*Nothing has changed in his voice. Nothing will.*]
 
 This festival cost the city four hundred and ten thousand dollars.
-Of that, one hundred and sixty went to programming.
+One hundred and sixty went to programming.
 Ninety to security.
 Forty to the tents.
 
@@ -122,14 +127,11 @@ asked eleven businesses in this city
 for money.
 
 **CHORUS**
-[*A murmur. Not shock. The sound a room makes when it is being told something it already knows.*]
+[*A murmur. Not shock. The sound a room makes on being told what it already knew.*]
 
 **PENGOLD**
-I want to be very careful here.
-Asking is not a crime.
+Asking is not harm.
 We all ask. I ask. I have asked most of you.
-
-[*Beat.*]
 
 But there is a difference
 between asking a man for money
@@ -140,82 +142,141 @@ while you do it.
 
 ## IV. The Naming
 
-[*DICK stops applauding. He does not yet understand. He looks at Summer. SUMMER is looking at the podium,
-composed, luminous, still. She does not turn her head. She has known since Thursday.*]
+[*DICK stops applauding. He looks at SUMMER. SUMMER is looking at the podium. She does not turn her head.
+She has known since Thursday.*]
 
 **PENGOLD**
 Dick Suede is my friend.
 
-**CHORUS**
-[*Silence. This is the loudest silence in the opera before the finale.*]
+[*Silence. The loudest silence before the finale.*]
 
-**PENGOLD**
 I have known him nine years.
 He has been in my home.
 He was at my table
 the night we won this city.
 
-[*He is not performing sorrow. He appears to feel it.*]
+[*He is not performing sorrow. He appears to feel it. Perhaps he does.*]
 
-And on Tuesday
-a woman who has run a grocery on Halsted for thirty-one years
-called my office crying
-because she was told
-that a partnership with the People's Festival
-would be *noticed.*
+And he knows the words.
 
-That her *neighbors* would notice.
+He knows them better than I do.
+He has done more of the work than most of the people in this room.
+That is what makes this hard.
+
+[*Beat.*]
+
+Because the Framework is very clear
+that the work is not what we meant.
 
 **CHORUS**
-[*The books rise — fully, in unison, to shoulder height, the way congregants raise hymnals.*]
-Noticed.
+*Harm is structure, not intent.*
+
+**PENGOLD**
+Harm is structure.
+Not intent.
 
 ---
 
-## V. The Particulars
+## V. The Litany
 
 **PENGOLD**
+On Tuesday
+a woman who has run a grocery on Halsted for thirty-one years
+called my office.
+
+[*She is not here. She was not invited. He speaks for her.*]
+
+She was told
+that a *partnership* with the People's Festival
+would be *noticed.*
+That her neighbors would notice.
+
+She asked me what she had done wrong.
+
+**CHORUS**
+*The people do not yet know what they need.*
+
+**PENGOLD**
+She did nothing wrong.
+She is why we are here.
+
+[*The books rise to the shoulder.*]
+
 St. Adalbert's parish. Four thousand dollars.
+
+**CHORUS**
+*Harm is structure, not intent.*
+
+**PENGOLD**
 The Ethiopian restaurant on Dell. Two.
+
+**CHORUS**
+*Harm is structure, not intent.*
+
+**PENGOLD**
 Bethel A.M.E. — a *church* —
 asked for a contribution
 to a fund that decolonizes gratitude.
 
-[*Each item lands flatter than the last. He is reading a list. That is what makes it unbearable.*]
-
-The university paid.
-The bodega paid.
-The florist did not pay,
-and the florist was not on the vendor list,
-and the florist has been on the vendor list
-for six years.
-
-**DICK**
-[*Speaking, not singing — the only unsung line in the number. Quiet. Reasonable. He genuinely believes this
-is a misunderstanding he can clear up.*]
-Pengold. That's — that's how the work gets funded. You know that.
+**CHORUS**
+*Harm is structure, not intent.*
 
 **PENGOLD**
-[*He does not turn. He does not acknowledge that Dick has spoken. He addresses the room.*]
+The university paid.
+The bodega paid.
+The florist did not pay —
+and the florist has been on the vendor list six years,
+and the florist is not on the vendor list.
+
+[*Each item flatter than the last. He is reading. That is what makes it unbearable.*]
+
+I want to give Dick the space to acknowledge.
+
+[*He does not turn. He does not look. The offer is made to the room.*]
+
+**DICK**
+[*Spoken, not sung. Quiet. Reasonable. He believes this is a misunderstanding he can clear up in a sentence.*]
+Pengold — that's how the work gets funded. You know that.
+
+[*A breath in the room. Somewhere in the chorus a book lowers an inch. This is the moment it could tip.*]
+
+**PENGOLD**
+[*To the room. Gently.*]
 
 I do know that.
 
 That is the part
 I am going to have to live with.
 
+**CHORUS**
+[*The book comes back up.*]
+*Those who question the path oppose the destination.*
+
 ---
 
-## VI. The Consent
+## VI. The Intimate
 
 **PENGOLD**
-[*The TWEEEDS theme arrives whole for the first time — brass entering underneath, the melody at last
-recognizable. It is genuinely beautiful. It must be.*]
+I have not come to this alone.
 
-We do not get to hold this city to a standard
-and then hold ourselves to a *conversation.*
+[*He does not look at SUMMER either. He does not have to.*]
 
-**CHORUS**
-No.
+Some of you know
+that Summer Winters has already taken the harder step —
+has already asked herself
+what she was willing to protect,
+and what she was not.
+
+[*The TWEEEDS theme lifts — still strings, but the melody is now audible, and it is beautiful.*]
+
+Summer?
+
+[*SUMMER inclines her head. Once. She does not look at DICK. She looks out, past the house, at nothing.*]
+
+[*This is the loudest thing in the number.*]
+
+**DICK**
+[*He turns to her. He says nothing. He has understood.*]
 
 **PENGOLD**
 Accountability that stops at the door of a friend
@@ -223,33 +284,66 @@ is not accountability.
 It is **decor.**
 
 **CHORUS**
-It is decor!
+It is decor.
 
 **PENGOLD**
+And the voice in each of us
+that says — *not him, not this one, not tonight* —
+
+**CHORUS**
+*Individual conscience is false consciousness.*
+
+**PENGOLD**
+— is the oldest voice we have.
+And we have agreed, together,
+not to obey it anymore.
+
+---
+
+## VII. The Removal
+
+**PENGOLD**
+I'm going to ask Dick to put the Framework down.
+
+[*Silence. DICK looks at the book under his arm — nine years of margins, three colors of ink. He does not
+move. A member of the chorus steps down, kindly, and takes it from him. He lets it go. It is placed, closed,
+on the edge of the stage, spine out, and left there.*]
+
+[*The chorus raise their books full above the head — the way congregants raise hymnals. Every book in the
+room is up. His is on the floor.*]
+
+**PENGOLD**
+I'm hearing alignment.
+
+**CHORUS**
+*Silence is complicity.*
+
+**PENGOLD**
+[*The TWEEEDS theme arrives whole — brass under it, the tune complete, radiant. The portrait is at
+half-height and climbing, lit from below in Socialist-Realist gold. The room is golden. Nobody has raised
+their voice.*]
+
 So I am going to do the hardest thing
 this movement has ever asked of me.
 
 I am going to believe the woman on Halsted.
 
 **CHORUS**
-[*Books raised full above the head now. The portrait is at half-height and climbing, lit from below in
-Socialist-Realist gold. The room is radiant. Nobody has raised their voice.*]
-Believe her! Believe her! Believe her!
+*The collective will emerges through correct consciousness.*
+Believe her. Believe her. Believe her.
 
 **PENGOLD**
-[*Quietly, into the noise, almost to himself:*]
+[*Under it, almost to himself:*]
 
 And I am going to be forgiven for it
 by everyone
 except the one person
-who was standing close enough to hear
-what I decided on Thursday.
+who was standing close enough on Thursday
+to hear me decide.
 
-[*He does not look at SUMMER. SUMMER does not move.*]
-
-[*At the back of the house, two officers and the CITY AG step through the doors and begin walking down the
-aisle. Nobody in the chorus turns. VALENCIA, upstage right, holding a mauve book she has not opened, is the
-only figure on the stage looking at the doors.*]
+[*At the back of the house, two OFFICERS and the CITY AG step through the doors and begin walking down the
+aisle. Nobody in the chorus turns. DICK does not turn. VALENCIA, upstage right, holding a mauve book she has
+not opened, is the only figure on the stage looking at the doors.*]
 
 [*→ NH-S347, The Arrest.*]
 
@@ -259,12 +353,17 @@ only figure on the stage looking at the doors.*]
 
 | # | Rule | Why |
 |---|---|---|
-| 1 | **Pengold never raises his voice, and never smiles.** Grave, warm, sorry. | `THE_CASTE.md` — render certainty, never smugness. A smug denunciation is a wink and lets the audience off. |
-| 2 | **Every accusation is factually true and verifiable within the opera's own events.** Nothing is fabricated, exaggerated or misattributed. | The number's entire argument. If Pengold lies, Dick is a victim of a frame-up and the piece becomes a thriller. Because Pengold tells the truth, the piece stays a satire about what truth is *for*. |
-| 3 | **No single line marks the turn.** A director must not be able to stage a "gear change". | The audience should realize, retroactively, that it began in section II. |
-| 4 | **Dick's one line is spoken, not sung.** | He is the only person in the room still having a conversation. Everyone else is at a liturgy. |
-| 5 | **Summer never moves, never turns her head, and is lit luminously throughout.** | Her beatific anchor (NH-USA-020) does its work here: she is radiant while a man is destroyed at her elbow, and she has already signed. |
-| 6 | **The portrait begins its rise in section II and is at half-height by the end.** It must be perceptible to the camera long before it is perceptible to the house. | motifs §2 seeding rule — "something the audience has been staring at without seeing." |
-| 7 | **The chorus never sounds like a mob.** Warm, affirming, upbeat, church-basement sincere. | The horror is the register. Model-opera struggle sessions were shouted; this one is *supportive*. |
-| 8 | **Valencia is the only figure who looks at the doors.** She sings nothing in this number. | She sees. She is not yet permitted to speak — that is beat 5 of the finale, two numbers away. |
-| 9 | No on-screen text of any kind. | Kernel negatives. |
+| 1 | **Pengold never raises his voice, never smiles, and never looks at Dick.** Grave, warm, sorry. | `THE_CASTE.md`: certainty, never smugness. `THE_CASTING_OUT.md` §2a: the condemned is read from, not addressed. |
+| 2 | **Every accusation is true and verifiable within the opera's events.** | The number's argument. A lie makes a thriller; the truth makes a satire about what truth is for. |
+| 3 | **The Ten Principles are sung verbatim by the chorus as responses.** Seven are used (1, 2, 3, 6, 7, 9, 10). Never paraphrased. | `THE_FRAMEWORK.md`. They are scripture; scripture is quoted, not glossed. |
+| 4 | **No single line marks the turn.** | A director must not be able to stage a gear change. Section II is already the kill. |
+| 5 | **Dick's one line is spoken, not sung. Nobody answers its content.** | He is the last person in the room having a conversation. The room hears a confession. |
+| 6 | **Summer never speaks. She nods once, on her name, and never looks at Dick.** She is lit luminously throughout. | The denunciation by the intimate (`THE_CASTING_OUT.md` §3, struggle session). Her beatific anchor does its work: radiant while a man is destroyed at her elbow. |
+| 7 | **The book is taken from Dick by a chorus member, kindly, and left on the stage floor, spine out.** He does not resist. | The anathema's extinguished candle. It rhymes with Valencia's book in the finale — hers is let go, his is removed. |
+| 8 | **"I'm hearing alignment" is said flatly, as a facilitator says it.** | Consensus process as the excommunication vote. The Massachusetts Bay members' vote in a fleece. |
+| 9 | **The chorus never sounds like a mob.** Warm, affirming, church-basement sincere. Responses sung as a creed, not chanted as a slogan. | Struggle sessions were shouted. This one is supportive. The register is the horror. |
+| 10 | **The moment it could tip (V, after Dick's line) is real: one book lowers an inch.** Pengold closes it by claiming the pain. | Foucault: the crowd can turn. The denouncer's skill is shown in how he prevents it. |
+| 11 | **The portrait begins its rise in §II and is at half-height by §VII.** | motifs §2 seeding rule. |
+| 12 | **Valencia is the only figure who looks at the doors. She sings nothing.** | She sees. She is not yet permitted to speak — that is finale beat 5. |
+| 13 | Nobody says *punish, guilty, traitor, enemy, expel.* | `THE_CASTING_OUT.md` §6. Care is the vocabulary. |
+| 14 | No on-screen text. | Kernel negatives. |
