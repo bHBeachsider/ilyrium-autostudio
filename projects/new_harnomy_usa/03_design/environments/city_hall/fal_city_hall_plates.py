@@ -47,17 +47,18 @@ OFFICE_DRESSING = ("a tungsten desk lamp still switched on, a half-empty coffee 
                    "never lavender), a single American flag on a floor stand")
 
 JOBS = [
- ("plate_exterior_dusk_v3", "21:9", [os.path.join(HERE, "plate_exterior_firstlight_v1.png"),
-                                     os.path.join(HERE, "plate_exterior_dusk_v2.png")],
-  "Use the FIRST reference for the building, the square and the exact camera framing - keep every stone of "
-  "it, crisp and solid, no transparency, no ghosting, no double exposure anywhere. Use the SECOND reference "
-  "only for the time of day and the timber structure. Re-light the first reference as deep blue winter dusk: "
-  "the sky a clean dark blue, every upper window and the ground-floor arcade glowing warm tungsten from "
-  "inside, the stone cool and dim, frost on the granite setts. Remove the truck. Add in the square, on the "
-  "building's axis about forty metres out, a LOW raw timber platform about nine metres wide and waist-high "
-  "with a short flight of wooden steps at one end and two short timber uprights carrying a crossbeam that "
-  "rises no higher than the tops of the ground-floor arches behind it, the whole structure solid, opaque, "
-  "undressed, falling into silhouette against the lit facade. Nobody in frame. " + LOOK),
+ ("plate_office_A_v3_locked", "3:2", [os.path.join(HERE, "plate_office_A_v2_brad_revision.jpg")],
+  "Keep this exact room completely unchanged: identical curved walls, dark wood panelling, heavy damask "
+  "curtains with tiebacks, plaster cornice, parquet floor, brass chandelier, polished desk, brass desk lamp, "
+  "coffee cup, folded newspaper, American flag with eagle finial, grey steel filing cabinet, brown leather "
+  "cantilever chairs, the giant limestone columns and stone balustrade just outside the tall French windows. "
+  "Make exactly THREE changes. ONE: the chandelier's candle bulbs are switched OFF and unlit, so the brass "
+  "desk lamp is the only warm light in the room at dawn. TWO: through the windows, beyond the columns and "
+  "the balustrade, replace the grand classical building with the far side of an ordinary mid-sized American "
+  "city square - low four-storey brick commercial blocks with flat rooflines, a church steeple to the right, "
+  "bare winter trees, a flat pale winter sky. THREE: make the three stacked books on the credenza the SAME "
+  "colour as the single book on the desk - a dusty brownish-purple, the mauve of an aged 1970s "
+  "university-press paperback, never pink, never red, never lavender. " + LOOK),
 ]
 
 

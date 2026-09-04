@@ -87,8 +87,8 @@ shots SH005/SH006 agree.
 |---|---|---|---|
 | Exterior — dusk, finished frame | `plate_exterior_dusk_v3.png` (21:9) — v1 had the uprights at second-storey height and a ghosted upper floor; v2 fixed the scale but inherited the ghost; v3 was re-lit from the clean first-light plate | NH-S901 SH010/SH011; the Feast backdrop | deep blue twilight, windows lit tungsten, frame in silhouette |
 | Exterior — first light, empty | `plate_exterior_firstlight_v1.png` (21:9) | NH-S901 SH002 | low winter sun, frost |
-| Office interior — Dressing A | `plate_office_A_v1.png` (3:2) | NH-S901 SH005; NH-S101; Act II Betrayal | tungsten lamp key, columns through the glass |
-| Office interior — Dressing B | `plate_office_B_v1.png` (3:2) | alternative for Brad's decision | as above |
+| Office interior — Dressing A | **`plate_office_A_LOCKED.png`** (3:2; v1 and Brad's v2 revision kept beside it) | NH-S901 SH005; NH-S101; Act II Betrayal | tungsten lamp key, columns through the glass |
+| Office interior — Dressing B | `plate_office_B_v1.png` (3:2) | NOT chosen; kept for the record | as above |
 | Window POV — down through the colonnade | `plate_pov_square_v1.png` (3:2) | NH-S901 SH006 | flat winter daylight, the scaffold below and centred |
 
 All plates: **no people.** Generated on fal nano-banana-pro with Brad's cropped panels as composition
@@ -137,5 +137,13 @@ reads as *achieved*, not aspirational — which is worse. He is not reaching for
 | 2 | **The chandelier is lit.** Five warm candle bulbs. | Breaks the kernel's single-source tungsten rule, and — more important — breaks the story beat: *"a lamp still on from the night before."* If the chandelier is on, the lamp is not a tell; it is just a lamp. | Chandelier present, unlit. The desk lamp is the only warm source in the room at dawn. |
 | 3 | **The three credenza books read brown-red (sampled hue ≈ 13°, terracotta) while the desk copy reads correct mauve (hue ≈ 344°, brownish-purple).** | All editions share the colour — it is the primary motif and the kernel's fixed spec. Two different colours on screen at once reads as two different books. | Match the credenza stack to the desk copy: dusty brownish-purple, aged 1970s university-press paperback. |
 
-None of the three touches the room. All are one edit pass against Brad's revision as the reference.
+None of the three touches the room.
+
+**Resolved 2026-09-04 → `plate_office_A_LOCKED.png`.** Fixes 1 and 2 landed in one nano-banana-pro edit pass
+(`plate_office_A_v3_locked.png`). Fix 3 did not: the generator moved the credenza books from hue 13° to 10°
+and no further — twice — which is the small-object recolor resistance already seen on Dick's hair. Resolved
+the way a colorist would: a masked hue rotation on the credenza stack alone (body pixels rotated to ≈349°,
+highlights desaturated rather than rotated to avoid a green cast). Sampled after: hue 349°, matching the desk
+copy's 345°. RULE for the prop macro: when an edit will not recolor a small object, grade it — do not spend a
+third generation.
 
