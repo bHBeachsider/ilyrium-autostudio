@@ -71,27 +71,44 @@ shots SH005/SH006 agree.
   building's axis. Its three tall French windows open onto the curved veranda.
 - **From inside, looking out:** the nearest columns are *huge and close* — a metre or two beyond the glass,
   cropping the view into tall vertical slots. Then the balustrade. Then, below and beyond, the square.
-- **The square** is paved in grey granite setts, roughly 60 m deep, ringed by low buildings and bare trees.
-- **The scaffold / dais** stands **on the building's axis, about 40 m out**, oriented so its *back* is toward
-  City Hall and its steps face the square — the dais uses the portico as its backdrop for the Feast. From the
-  office Pengold therefore looks **down onto the back and top of the platform, framed between two columns.**
-  He sees it as a stage-manager sees a stage: from behind, from above, with the audience's side empty.
+- **The square** is paved in grey granite setts, roughly 60 m deep, ringed by low buildings and bare trees —
+  **and it is alive.** Cars parked nose-to-tail along the kerbs, a delivery truck with its tailgate down, a
+  city bus at the far corner, pedestrians in winter coats crossing the setts, a dog-walker, a courier's bike,
+  bins, a bike rack, a hot-food cart with steam. A normal mid-sized American downtown at 8 a.m. in November,
+  not a wasteland. (Brad, 2026-09-04, after the v1 cut.) People are always at distance, never facing camera,
+  never looking at the scaffold.
+- **The dais is a RALLY STAGE** (Brad, 2026-09-04): a long low raw-timber platform, **about 24 m wide and
+  1.2 m high**, built to seat a row of dignitaries — a line of folding chairs, a podium position at centre,
+  a short flight of steps at each end. It stands on the building's axis about 40 m out with its back to
+  the portico. At its rear, spanning the stage, a **timber truss: uprights and a crossbeam** — the rigging
+  a real rally stage carries for lights and a banner. From the office Pengold looks **down onto the back and
+  top of the platform between two columns**, a stage-manager's view. The gallows shape survives only in
+  silhouette, at dusk, and only for the viewer who is already looking for it. That is the whole point of
+  making it longer: the structure is *more* innocent, not less.
+- **The banner.** A long fabric banner hangs from the portico's entablature, between the columns, in
+  **Framework mauve** (the brownish-purple of an aged university-press paperback, never lavender) with pale
+  lettering: **NEW HARNOMY PEOPLE'S THANKSGIVING FESTIVAL** on one line and **ANTI-THANKSGIVING DAY ·
+  SATURDAY** beneath. It is up all week. This is the first time the audience sees the town's name written
+  down — misspelled, on a municipal banner, in public — and no one on stage ever remarks on it. The kernel's
+  no-on-screen-text rule targets chyrons and captions; a diegetic banner is staging, like the program cover
+  (motifs §9). Lettering must be *legible* in the wide plates and may soften in motion.
+
 - **Light.** The facade faces south-west, so the trailer's dusk shots put the sun behind and to the left of
   the building from the square, and the office windows get the last raking light through the columns.
-- **Scale check:** a column is ~11 m tall. The dais platform is ~1.6 m high, ~9 m wide. A man on the veranda is
-  ~1/6 of a column. Keep these ratios in every plate.
+- **Scale check:** a column is ~11 m tall. The stage is ~1.2 m high and ~24 m wide — wider than the portico. The
+  truss crossbeam tops out around the ground-floor arches. A man on the veranda is ~1/6 of a column.
 
 ## 5. The plates
 
 | Plate | File | Use | Kernel light |
 |---|---|---|---|
-| Exterior — dusk, finished frame | `plate_exterior_dusk_v3.png` (21:9) — v1 had the uprights at second-storey height and a ghosted upper floor; v2 fixed the scale but inherited the ghost; v3 was re-lit from the clean first-light plate | NH-S901 SH010/SH011; the Feast backdrop | deep blue twilight, windows lit tungsten, frame in silhouette |
-| Exterior — first light, empty | `plate_exterior_firstlight_v1.png` (21:9) | NH-S901 SH002 | low winter sun, frost |
+| Exterior — dusk, finished stage | **`plate_exterior_dusk_LOCKED.png`** (21:9) — v6 + pixel spelling fix. Lineage: v1 uprights at second-storey height + ghosted upper floor; v2 fixed scale, kept ghost; v3 re-lit from clean first-light; v4–v6 added the living square, the 24 m stage and the banner (v5 moved the camera and was discarded) | NH-S901 SH009/SH010/SH011; the Feast backdrop | deep blue twilight, windows lit tungsten, stage and truss in silhouette |
+| Exterior — first light, before the build | **`plate_exterior_firstlight_LOCKED.png`** (21:9) — v4 + pixel spelling fix. No stage yet: the lumber truck and box van are pulling up, the banner is already hung | NH-S901 SH002/SH003; the build-day shots are derived from this plate with the stage added progressively | low winter sun, frost, long shadows |
 | Office interior — Dressing A | **`plate_office_A_LOCKED.png`** (3:2; v1 and Brad's v2 revision kept beside it) | NH-S901 SH005; NH-S101; Act II Betrayal | tungsten lamp key, columns through the glass |
 | Office interior — Dressing B | `plate_office_B_v1.png` (3:2) | NOT chosen; kept for the record | as above |
-| Window POV — down through the colonnade | `plate_pov_square_v1.png` (3:2) | NH-S901 SH006 | flat winter daylight, the scaffold below and centred |
+| Window POV — down through the colonnade | `plate_pov_square_v1.png` (3:2) — **SUPERSEDED by §4's long stage**; shows the old short scaffold and an empty square. Regenerate from `plate_exterior_dusk_LOCKED.png` before SH006 is re-keyed | NH-S901 SH006 | flat winter daylight, the stage below and centred |
 
-All plates: **no people.** Generated on fal nano-banana-pro with Brad's cropped panels as composition
+Office and POV plates: **no people.** Exterior plates (LOCKED): people at distance, never facing camera (§4). Generated on fal nano-banana-pro with Brad's cropped panels as composition
 references and this file as the prompt. References live in `reference/`.
 
 ## 6. Continuity verified across the five plates (2026-09-04)
@@ -146,4 +163,22 @@ the way a colorist would: a masked hue rotation on the credenza stack alone (bod
 highlights desaturated rather than rotated to avoid a green cast). Sampled after: hue 349°, matching the desk
 copy's 345°. RULE for the prop macro: when an edit will not recolor a small object, grade it — do not spend a
 third generation.
+
+## 8. The banner spelling, and why the LOCKED exteriors are pixel-edited (2026-09-04)
+
+nano-banana-pro **auto-corrected HARNOMY to HARMONY** on every exterior generation — first-light v2–v4 and dusk
+v4–v6 — even with the word spelled letter by letter in a dedicated SPELL block and "not HARMONY" stated twice.
+A text model's prior for a common English word beats a prompt's instruction to misspell it; the finding is
+NH-USA-033. The fix was done in pixels, once, on the final plate of each pair: the seven glyphs of the word were
+located from the column-luminance profile of the banner's first line (letter gaps are the dark columns), the
+M-O-N run was tiled over with the banner fabric from the ten rows above the text, and the same three glyphs were
+laid back in N-O-M order with the original 3 px letter gaps, alpha-keyed on luminance so the fabric weave
+survives under the letters. Same coordinates on both plates (x 1412–1453, rows 724–760 at 3168×1344) because
+dusk was derived from first-light without moving the camera — one more reason to derive rather than regenerate.
+
+- `plate_exterior_firstlight_LOCKED.png` = `plate_exterior_firstlight_v4.png` + glyph swap.
+- `plate_exterior_dusk_LOCKED.png` = `plate_exterior_dusk_v6.png` + glyph swap.
+- Any keyframe that shows the banner must be composed **from a LOCKED plate as reference**, never from the
+  prompt alone, or the misspelling will silently revert. Check the word at 8× before accepting any frame in
+  which the banner is legible.
 

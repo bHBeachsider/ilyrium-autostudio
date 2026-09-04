@@ -46,19 +46,43 @@ OFFICE_DRESSING = ("a tungsten desk lamp still switched on, a half-empty coffee 
                    "squared on the desk (the brownish-purple of an aged 1970s university-press paperback, "
                    "never lavender), a single American flag on a floor stand")
 
+LIFE = ("cars parked nose-to-tail along both kerbs, a white delivery truck with its tailgate down, a city bus "
+        "at the far corner, a dozen pedestrians in winter coats and hats crossing the granite setts at a "
+        "distance with their backs or sides to camera, one walking a dog, a courier on a bicycle, a hot-food "
+        "cart with steam rising, bins and a bike rack, a normal busy mid-sized American downtown square on a "
+        "weekday morning in November, no faces toward camera")
+
+BANNER = ("a long fabric banner hung from the portico's entablature between the columns, dusty brownish-purple "
+          "mauve like an aged 1970s university-press paperback (never lavender, never pink), with clean pale "
+          "cream lettering that reads exactly, on two lines: NEW HARNOMY PEOPLE'S THANKSGIVING FESTIVAL and "
+          "beneath it ANTI-THANKSGIVING DAY - SATURDAY, the lettering crisp and fully legible")
+
+STAGE = ("a long low raw-timber rally stage about twenty-four metres wide and waist-high, wider than the portico, "
+         "a row of folding chairs and a podium on it, a short flight of wooden steps at each end, and at its "
+         "rear a timber truss of two uprights and a crossbeam spanning the stage, rising no higher than the "
+         "tops of the ground-floor arches behind it, undressed and undecorated")
+
+SPELL = ("The town's name on the banner is deliberately misspelled and must be reproduced EXACTLY as written: "
+         "H-A-R-N-O-M-Y, HARNOMY, with the N before the O and the M after it - NOT Harmony. Do not correct it. "
+         "The first line reads exactly: NEW HARNOMY PEOPLE'S THANKSGIVING FESTIVAL. The second line reads exactly: "
+         "ANTI-THANKSGIVING DAY - SATURDAY.")
+
 JOBS = [
- ("plate_office_A_v3_locked", "3:2", [os.path.join(HERE, "plate_office_A_v2_brad_revision.jpg")],
-  "Keep this exact room completely unchanged: identical curved walls, dark wood panelling, heavy damask "
-  "curtains with tiebacks, plaster cornice, parquet floor, brass chandelier, polished desk, brass desk lamp, "
-  "coffee cup, folded newspaper, American flag with eagle finial, grey steel filing cabinet, brown leather "
-  "cantilever chairs, the giant limestone columns and stone balustrade just outside the tall French windows. "
-  "Make exactly THREE changes. ONE: the chandelier's candle bulbs are switched OFF and unlit, so the brass "
-  "desk lamp is the only warm light in the room at dawn. TWO: through the windows, beyond the columns and "
-  "the balustrade, replace the grand classical building with the far side of an ordinary mid-sized American "
-  "city square - low four-storey brick commercial blocks with flat rooflines, a church steeple to the right, "
-  "bare winter trees, a flat pale winter sky. THREE: make the three stacked books on the credenza the SAME "
-  "colour as the single book on the desk - a dusty brownish-purple, the mauve of an aged 1970s "
-  "university-press paperback, never pink, never red, never lavender. " + LOOK),
+ ("plate_exterior_firstlight_v4", "21:9", [os.path.join(HERE, "plate_exterior_firstlight_v3.png")],
+  "Keep this exact image completely unchanged - building, square, cars, people, truck, light, camera. Change "
+  "ONLY the lettering on the mauve banner so that it reads, in the same crisp pale cream capitals: line one "
+  "NEW HARNOMY PEOPLE'S THANKSGIVING FESTIVAL, line two ANTI-THANKSGIVING DAY - SATURDAY. " + SPELL + " "
+  + LOOK.replace(", no text", "")),
+
+ ("plate_exterior_dusk_v6", "21:9", [os.path.join(HERE, "plate_exterior_dusk_v4.png"),
+                                     os.path.join(HERE, "plate_exterior_firstlight_v4.png")],
+  "Use the FIRST reference as the image to edit and DO NOT MOVE THE CAMERA: the same wide straight-on "
+  "framing, the building the same size in frame, the same lit windows, dusk sky, parked cars, bus, "
+  "pedestrians and streetlamps. Use the SECOND reference only to copy the banner. Make TWO changes to the "
+  "first image and nothing else. ONE: replace the small timber platform in the square with " + STAGE + ", in "
+  "silhouette against the lit facade. TWO: hang the same mauve banner from the portico entablature between "
+  "the columns, faintly lit by the windows, its lettering reading exactly as in the second reference. " + SPELL
+  + " " + LOOK.replace(", no text", "")),
 ]
 
 

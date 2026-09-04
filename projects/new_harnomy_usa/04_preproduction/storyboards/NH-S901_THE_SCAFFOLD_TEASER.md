@@ -53,12 +53,43 @@ is put people on that platform.
 | 10 | 49–54 | Wide, locked-off, dusk: the finished frame, empty, raw timber, no bunting yet, city hall lit behind it. Sound thins to wind and a flag halyard ticking against its pole. | The object, alone. Everything it is, before it is dressed as anything else. |
 | 11 | 54–60 | Hold. The last light goes. Cut to black **on stillness** — not a fade. One second of silence, then out. | Motifs §6: *cut on stillness.* No title card. No date. Nothing. |
 
+## Revision after the v1 picture cut (Brad, 2026-09-04)
+
+Brad's notes on v1: *no audio; car traffic jerky and unreasonably fast; need more parked cars, trucks;
+need pedestrians on the plaza; generally should look like a normal city streetscape, not a barren wasteland.*
+
+All four hold, and the third changes the teaser's meaning for the better. v1 emptied the square so the
+scaffold would read as ominous. That was the wrong instinct. **The square is a working city square on a
+Tuesday in November** — parked cars along the kerb, a delivery truck, a bus at the far corner, people in
+winter coats crossing with coffee, a dog-walker, someone on a phone, a courier's bike. The build goes on in
+the middle of all of it, and **nobody looks at it.** That is the Brueghel/Auden picture — the ploughman
+ploughing while Icarus falls — and it is a far more exact statement of the opera's law than emptiness was.
+The scaffold is not ominous because the square is empty. It is ominous because the square is full and
+everyone walks past.
+
+Rules for the populated square:
+- **Pedestrians at distance, never facing camera, never identifiable.** The kernel's no-likeness rule holds.
+  Backs, profiles, hats, coats. Nobody in the mid-ground is closer than the workmen.
+- **Nobody looks at the scaffold.** Not once. A person glancing at it would be a wink.
+- **Traffic is slow or stopped.** Parked cars along the kerb; a truck unloading; a bus that pulls away
+  slowly if it moves at all. Wan hallucinated fast traffic into empty streets in v1 — a plate with parked
+  cars gives it less to invent, and the shot prompts now say so.
+- Shot 5 (Pengold's window) and shot 6 (his POV) see the same living square below.
+- **The dais is a long rally stage (~24 m), not a nine-metre platform** — room for a row of dignitaries and a
+  podium — with a timber truss (uprights + crossbeam) across its rear for lights and a banner. It reads as
+  what it is: a stage. The gallows survives only in silhouette.
+- **A mauve banner hangs from the portico all week:** NEW HARNOMY PEOPLE'S THANKSGIVING FESTIVAL /
+  ANTI-THANKSGIVING DAY · SATURDAY. The city names its own structure, which is what makes it innocent — and
+  it is the first time the audience sees the misspelled town name, in public, unremarked.
+- The dusk frames (10, 11) thin out — a few last people crossing, cars with headlights on, the square
+  emptying as the light goes — so the final hold is *quieter*, not *empty*.
+
 ## What is deliberately NOT in this teaser
 
 - **No Dick.** Brad's 60-second option excludes him. His absence is the whole construction: the
   scaffold is for someone, and the teaser never says who. Showing him would answer a question the
   audience has not yet learned to ask.
-- **No Summer, no Valencia, no chorus, no portrait.** One face, once.
+- **No Summer, no Valencia, no chorus, no portrait.** One face, once. (Pedestrians are not faces — see the revision rules above.)
 - **No text of any kind** — no title, no date, no logo, no chyron. Kernel negatives already forbid
   on-screen text; here it is also dramaturgy. The piece is not announced. It is *assembled.*
 - **No music.** See rule 2.
