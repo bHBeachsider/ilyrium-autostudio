@@ -40,11 +40,11 @@ CANON = {
               "well-rested, slim and strong, the brow entirely smooth and unfurrowed, the lips softly closed "
               "and resting rather than pressed, a serene inward calm with light in it, the neck long and the "
               "chin carried level, grace rather than satisfaction"),
- "pengold":  ("a man of forty-one, youthful and pampered, dark hair slicked back tight to the skull over a "
-              "clean high forehead with a light silvering of grey at the temples, a short well-manicured dark "
-              "hipster beard tidy at the cheek line, smooth clear unweathered skin, full rounded lower cheeks "
-              "with the jaw angle softened into a gentle curve, a small soft fullness under the chin, a fuller "
-              "neck at the collar, the frame trim and upright, faintly amused and completely unbothered"),
+ "pengold":  ("a man of forty-one, dark hair slicked back tight to the skull over a clean high forehead with "
+              "the comb lines visible and a light silvering of grey at the temples, a short well-manicured "
+              "dark hipster beard tidy at the cheek line, smooth clear unweathered indoor skin, a lean "
+              "saturnine face with a defined jaw and a heavy dark brow over deep-set eyes, the frame trim and "
+              "upright, faintly amused and completely unbothered"),
  "dick":     ("a man of thirty-one, soft and delicately beautiful, fine-boned and almost feminine, a smooth "
               "unlined jaw, full soft lips, long lashes and gentle brows, tanned and clear-skinned, the slim "
               "light athletic build of a professional tennis player with no bulk and no hollowing at the "

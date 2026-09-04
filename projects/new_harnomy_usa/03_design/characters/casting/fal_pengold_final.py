@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-r"""Stage 3.5 - PENGOLD final anchor. Brad picked PEN-T02, 2026-09-03.
+r"""Stage 3.5 - PENGOLD final anchor. Brad picked PEN-T01, 2026-09-03.
+
+CORRECTION: an earlier run of this script targeted T02. Brad corrected the pick to
+T01, the leanest of the four text candidates. T01 carries less of the well-fed
+softness than T02 or T03, but it is also the coldest, which is consistent with him
+rejecting T03 as "too likeable".
 
 Two changes, both to the hair:
   - slicked back, wet-combed and held rather than dry and softly combed
@@ -13,8 +18,8 @@ The grey goes in the HAIR ONLY, at the temples. PEN-R02 put grey in the beard
 and it read as an older, harder man - the wrong direction entirely. The beard
 stays dark.
 
-T03 was rejected as "too likeable", so T02's warmth is the ceiling: hold the
-faint amusement exactly where it is and do not warm him further.
+T03 was rejected as "too likeable", so T01's coolness is the target: hold the
+expression exactly where it is and do not warm him.
 
 Two variants on how much grey. Cost: two images, ~$0.30.
 """
@@ -26,7 +31,7 @@ import httpx
 from dotenv import load_dotenv
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SRC = os.path.join(HERE, "pengold_text", "PEN-T02.png")
+SRC = os.path.join(HERE, "pengold_text", "PEN-T01.png")
 OUT = os.path.join(HERE, "pengold_text")
 
 for env in (r"C:/Users/bradu/Documents/ilyrium-autostudio/.env",
@@ -44,17 +49,11 @@ FRAME = ("Head-and-shoulders portrait, plain grey backdrop, even neutral dayligh
          "natural skin tones, photographic realism, 85mm.")
 
 JOBS = [
- ("PEN-F01", HOLD +
+ ("PEN-F03", HOLD +
   "Slick his hair back tight to the skull, wet-combed and held in place with product, "
   "the comb lines visible, a clean high forehead and nothing falling loose. Put a hint "
   "of grey in it: a light silvering at the temples and just above the ears, the rest "
   "still dark. " + FRAME),
-
- ("PEN-F02", HOLD +
-  "Slick his hair back tight to the skull, wet-combed and held with product, glossy "
-  "and controlled, a clean high forehead. Put a clear streak of grey at the temples "
-  "running back above the ears and a light scatter of grey through the dark on top - "
-  "distinguished and deliberate, still mostly dark. " + FRAME),
 ]
 
 

@@ -45,28 +45,38 @@ handle badly. Restated as "plain, correct, unshowy."
 
 ## 🔒 LOCKED VISUAL DESCRIPTOR — CAST 2026-09-02 (PEN-K03)
 
-Anchor: `03_design/characters/casting/finals/PEN-FINAL.png` (PEN-T02 + slicked hair and a hint of grey, 2026-09-03).
+Anchor: `03_design/characters/casting/finals/PEN-FINAL.png` (PEN-T01 + slicked hair and a hint of grey at the temples, 2026-09-03).
 Superseded: `finals/PEN-K03-rest.png`, `caste/PEN-K03.png`.
 
-**He was RE-CAST, not edited.** Two edit passes could not add softness to K03's face - a reference latent pins facial geometry and body fat is geometry (NH-USA-021). He was regenerated from text with the soft body built in from the start, guided by a detailed description of K03's features, so this is a cousin of the approved face rather than the same man. Brad re-approved him 2026-09-03, choosing T02 over the plusher T03, which read **too likeable**. T02's warmth is therefore the ceiling: he may be this friendly and no friendlier. Brad: *"perfect. Looks like a political
+**He was RE-CAST, not edited.** Two edit passes could not add softness to K03's face - a reference latent pins facial geometry and body fat is geometry (NH-USA-021). He was regenerated from text with the soft body built in from the start, guided by a detailed description of K03's features, so this is a cousin of the approved face rather than the same man. Brad re-approved him 2026-09-03, choosing **T01**, the leanest of the four candidates, having rejected the plushest (T03) as **too likeable**. T01's coolness is the target: he may be this friendly and no friendlier. Brad: *"perfect. Looks like a political
 consultant through and through."*
 
-`a man of forty-one, youthful and pampered, dark hair slicked back tight to the skull, wet-combed and held with product over a clean high forehead, a light silvering of grey at the temples and just above the ears with the rest still dark, a short well-manicured hipster beard sculpted by an expensive barber and tidy at the cheek line, dark with no grey in it, skin smooth and clear and unweathered, full rounded lower cheeks with the jaw angle softened and partly hidden beneath that fullness so the jawline reads as a gentle curve rather than an edge, a small soft fullness under the chin with the head level, a fuller neck resting against the collar, the frame trim and upright with the suit fitting cleanly, immaculate dark navy suiting in fine wool over a crisp white shirt, faintly amused and completely unbothered, the face of a man who has never been seriously contradicted`
+`a man of forty-one, dark hair slicked back tight to the skull, wet-combed and held with product over a clean high forehead, the comb lines visible, a light silvering of grey at the temples and just above the ears with the rest still dark, a short well-manicured dark hipster beard sculpted by an expensive barber and tidy at the cheek line, smooth clear unweathered indoor skin, a lean saturnine face with a defined jaw and a heavy dark brow over deep-set eyes, the frame trim and upright, immaculate dark navy suiting in fine wool over a crisp white shirt open at the collar, faintly amused and completely unbothered, the face of a man who has never been seriously contradicted`
 
-### Soft, not rough, and not fat — direction from Brad, 2026-09-03
+### What he became, and the note that did not survive casting
 
-The target is narrow and all three limits matter:
+The direction on 2026-09-03 asked for a soft, slightly squishy man — a political
+consultant who eats out at too many high-end restaurants — and explicitly not fat and
+not rough. Four text candidates were generated across that range. **Brad chose the
+leanest of them (PEN-T01).**
 
-- **Soft and slightly squishy**, in the cheek and just under the jaw. A political consultant who eats out
-  at too many high-end restaurants. The softness is evidence of the life, and it is the tell.
-- **Not fat.** The frame stays trim and the suit fits cleanly. This is plushness, not weight.
-- **Never rough or coarse.** No weathering, no hard lines, nothing that suggests he has ever worked
-  outdoors or been hit. He is an indoor animal.
-- **Bearded, not clean-shaven.** The hipster beard is precisely barbered and expensively maintained — it
-  is a costume of authenticity worn by a man with none, which is `THE_CASTE.md` in a single detail.
+So the well-fed plushness is *not* in the anchor, and this bible describes the face
+that exists rather than the one that was asked for. The tell moved: he is not soft, he
+is **smooth**. No weathering, no hard-won lines, nothing that suggests he has ever
+worked outdoors or been hit — an indoor animal with an expensive barber. The lean
+saturnine face reads colder than the plusher candidates did, and that is consistent
+with Brad rejecting the softest one (T03) as **too likeable**.
 
-This supersedes the earlier note to make him heavier and broader through the shoulders. He is not the big
-one; he is the *comfortable* one.
+Two limits from the original note DO still hold and must not drift:
+
+- **Never rough or coarse.** He is groomed, not weathered.
+- **Bearded, not clean-shaven.** The hipster beard is precisely barbered and
+  expensively maintained — a costume of authenticity worn by a man with none, which is
+  `THE_CASTE.md` in a single detail.
+
+This supersedes both the earlier direction to make him heavier and broader through the
+shoulders, and the softness note above it.
+
 
 Carries the caste block — see `../THE_CASTE.md`.
 

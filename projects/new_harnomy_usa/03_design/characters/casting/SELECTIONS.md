@@ -10,7 +10,7 @@ anchors rendered and silhouette-tested 2026-09-03.*
 | Valencia Strong | `finals/VAL-FINAL.png` | **Held, untouched.** Blend of C05 gravity + C06 ache, deliberately ethnically ambiguous (NH-USA-008), screen-tested at finale Beat 5. |
 | Summer Winters | `finals/SUM-FINAL.png` | SUM-K02 → younger (thirty-eight) → beatific light. The radiance is a lighting fact, not an expression (NH-USA-020). |
 | Dick Suede | `finals/DIC-FINAL.png` | DIC-K02 → soft and delicately beautiful, pro-tennis build, hair long past the jaw and bun-capable. |
-| Pengold Heavens | `finals/PEN-FINAL.png` | **Re-cast from text**, then slicked hair + a hint of grey at the temples. Not an edit of K03 — see below. |
+| Pengold Heavens | `finals/PEN-FINAL.png` | **Re-cast from text** (PEN-T01), then slicked hair + a hint of grey at the temples. Not an edit of K03 — see below. |
 
 ### Pengold was re-cast, and that is a real change
 
@@ -19,8 +19,14 @@ geometry, and body fat *is* geometry, so "keep this exact man" and "make his fac
 are contradictory instructions and the reference wins (NH-USA-021). He was regenerated from
 text with the soft body built in from the start, guided by a detailed description of K03's
 features. **The result is a cousin of the approved face, not the same man.** Brad re-approved
-2026-09-03, choosing T02 over the plusher T03 because T03 read *too likeable* — so T02's
-warmth is the ceiling for this character.
+2026-09-03, choosing **T01** — the leanest of the four — having rejected the plushest (T03) as
+*too likeable*.
+
+The consequence worth stating plainly: **the well-fed softness that prompted the re-cast is not
+in the chosen anchor.** T01 is lean and saturnine. His bible now describes that face rather than
+the one the direction asked for, so canon and anchor agree — the failure mode of NH-USA-001 and
+NH-USA-004 was exactly this kind of quiet disagreement between two places. The tell moved from
+soft to *smooth*: no weathering, no hard-won lines, an indoor animal with an expensive barber.
 
 ### The rule that came out of this pass
 
