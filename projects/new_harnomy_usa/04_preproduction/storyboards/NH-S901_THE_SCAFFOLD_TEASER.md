@@ -132,3 +132,18 @@ so the last thing the audience hears is the first thing, now finished.
 - Continuity: shots 2 → 3 → 7 → 9 → 10 are the same camera position on the square at five stages of
   build. Lock that framing once and reuse it; the build should read as one object growing, not five
   different structures.
+
+## v2 production record (2026-09-04)
+
+- Keyframes v2 in `04_preproduction/keyframes/NH-S901/` (full res) and `ilyrium-shots/keyframes/` (1664x936). SH002 and
+  SH010 are the LOCKED exterior plates; SH003 (v3), SH006 (v3), SH007 (v3), SH009 (v2) are reference-conditioned edits
+  on the LOCKED plates, banner spelling pixel-fixed on each (NH-USA-033); SH004, SH005, SH008 unchanged from v1;
+  SH011 is no longer rendered - it is the last frame of the SH010 render with the light taken down over six seconds in
+  post (NH-USA-031 option b), so the final hold cannot drift.
+- Shot prompts rewritten for the living square: parked cars that do not move, trucks with engines off, the bus stopped,
+  pedestrians slow and at distance with their backs to us, 'no fast traffic' in the negatives. Camera locked in every
+  shot. Manifest `ilyrium-shots/song_NH-S901_v2.json` (six shots), run `--no-skip`.
+- Sound: 14 layers in `06_audio/sound_design/NH-S901_sfx/`, placed by `mix_NH-S901.py` (three buses; every gain is a
+  number in the file). The single hammer strike that opens the teaser is the same strike, low-passed and 13 dB down,
+  under shot 10. Shot 11 goes to digital silence one second before the black.
+

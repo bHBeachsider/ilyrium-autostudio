@@ -10,9 +10,9 @@
   "subjects": [],
   "setting": "The square, last light",
   "mood": "cut on stillness",
-  "action": "Hold. The last light goes.",
-  "prompt": "wide shot, locked-off, identical framing, the same empty raw timber platform and crossbeam in the municipal square as the last daylight leaves the sky, the structure falling into silhouette, city hall windows lit behind, absolute stillness, nobody in frame, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
-  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame, human face, portrait, person looking at camera",
+  "action": "Hold. The last light goes. Cut to black on stillness. RENDERED IN POST as a 6 s light ramp between the SH010 and SH011 keyframes - a locked-off plate does not need a diffusion model to sit there (NH-USA-031).",
+  "prompt": "wide shot, locked-off camera, identical framing to the previous shot, the last light leaves the sky over the finished stage and truss, which fall into silhouette, City Hall windows lit, parked cars do not move, absolute stillness, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, caption text overlay, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame, human face, portrait, person looking at camera, fast moving cars, speeding traffic, time-lapse, motion blur streaks, camera movement",
   "keyframe": {
     "source": "t2i",
     "ref_lora": "",

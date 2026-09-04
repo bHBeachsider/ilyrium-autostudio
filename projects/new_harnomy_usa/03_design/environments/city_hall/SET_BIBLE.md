@@ -95,6 +95,9 @@ shots SH005/SH006 agree.
 
 - **Light.** The facade faces south-west, so the trailer's dusk shots put the sun behind and to the left of
   the building from the square, and the office windows get the last raking light through the columns.
+- **Orientation, for prompts (NH-USA-035):** the stage runs LEFT TO RIGHT across any view from the building, parallel to the
+  facade; its long near edge (toward the building) carries the truss uprights; from the square the truss stands BEHIND the
+  platform. Say the axis and the nearest edge every time - size words do not carry orientation.
 - **Scale check:** a column is ~11 m tall. The stage is ~1.2 m high and ~24 m wide — wider than the portico. The
   truss crossbeam tops out around the ground-floor arches. A man on the veranda is ~1/6 of a column.
 
@@ -106,7 +109,7 @@ shots SH005/SH006 agree.
 | Exterior — first light, before the build | **`plate_exterior_firstlight_LOCKED.png`** (21:9) — v4 + pixel spelling fix. No stage yet: the lumber truck and box van are pulling up, the banner is already hung | NH-S901 SH002/SH003; the build-day shots are derived from this plate with the stage added progressively | low winter sun, frost, long shadows |
 | Office interior — Dressing A | **`plate_office_A_LOCKED.png`** (3:2; v1 and Brad's v2 revision kept beside it) | NH-S901 SH005; NH-S101; Act II Betrayal | tungsten lamp key, columns through the glass |
 | Office interior — Dressing B | `plate_office_B_v1.png` (3:2) | NOT chosen; kept for the record | as above |
-| Window POV — down through the colonnade | `plate_pov_square_v1.png` (3:2) — **SUPERSEDED by §4's long stage**; shows the old short scaffold and an empty square. Regenerate from `plate_exterior_dusk_LOCKED.png` before SH006 is re-keyed | NH-S901 SH006 | flat winter daylight, the stage below and centred |
+| Window POV — down through the colonnade | `plate_pov_square_v1.png` (3:2) — **SUPERSEDED by §4's long stage**; shows the old short scaffold and an empty square. Interim POV reference = the SH006 v3 keyframe (`04_preproduction/keyframes/NH-S901/NH-S901-SH006_key.png`: long stage parallel to the facade, uprights on the near edge, living square). A proper finished-stage POV plate is still to be made before Act II | NH-S901 SH006 | flat winter daylight, the stage below and centred |
 
 Office and POV plates: **no people.** Exterior plates (LOCKED): people at distance, never facing camera (§4). Generated on fal nano-banana-pro with Brad's cropped panels as composition
 references and this file as the prompt. References live in `reference/`.
