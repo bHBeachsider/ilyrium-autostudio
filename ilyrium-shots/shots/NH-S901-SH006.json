@@ -1,0 +1,33 @@
+{
+  "shot_id": "NH-S901-SH006",
+  "song_id": "NH-S901",
+  "duration_s": 5,
+  "camera": {
+    "shot_size": "wide",
+    "movement": "locked-off",
+    "lens_mm": 50
+  },
+  "subjects": [],
+  "setting": "Pengold's POV, through the office window",
+  "mood": "observational",
+  "action": "What he sees: the half-built frame below, men moving around it.",
+  "prompt": "point of view shot through an office window looking down at a slight high angle into a municipal square, a half-built raw timber frame standing in the middle of it with workmen moving around its base, a faint reflection of the dim office interior lying over the glass, winter light, no people in the foreground, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame, human face, portrait, person looking at camera",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "",
+    "seed": 901006
+  },
+  "seed": 901006,
+  "continuity": {
+    "prev_shot": "",
+    "flf2v": false
+  },
+  "render": {
+    "width": 640,
+    "height": 640,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 5
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "shot_id": "NH-S901-SH001",
+  "song_id": "NH-S901",
+  "duration_s": 5,
+  "camera": {
+    "shot_size": "wide",
+    "movement": "locked-off",
+    "lens_mm": 35
+  },
+  "subjects": [],
+  "setting": "Black. The square outside New Harnomy city hall, pre-dawn \u2014 heard, not seen",
+  "mood": "black frame",
+  "action": "Black frame. A single hammer strike on a nail, in a large cold outdoor reverb. Two more follow, unhurried.",
+  "prompt": "a completely black frame, pure black, no image, total darkness",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame, human face, portrait, person looking at camera",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "",
+    "seed": 901001
+  },
+  "seed": 901001,
+  "continuity": {
+    "prev_shot": "",
+    "flf2v": false
+  },
+  "render": {
+    "width": 640,
+    "height": 640,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 5
+  }
+}

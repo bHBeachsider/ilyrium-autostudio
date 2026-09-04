@@ -1,7 +1,7 @@
 {
   "$comment": "Ownership registry for song IDs in ilyrium-shots/. Claim a prefix and an ID range BEFORE scaffolding a project. Enforced by song_id_registry.py. Created 2026-09-01 after New Harnomy and KING SIZE were found sharing the NH- prefix in one flat shots/ directory.",
   "registry_version": "1.0",
-  "updated": "2026-09-01",
+  "updated": "2026-09-04",
   "rules": [
     "A song ID is owned by exactly one project, for the life of the repo.",
     "Never re-prefix or renumber an ID that already has ledger history - the provenance chain is keyed on it.",
@@ -12,21 +12,59 @@
     "NH": {
       "project": "new_harnomy_usa",
       "title": "NEW HARNOMY, U.S.A.",
-      "scheme": "act-based: NH-S1nn (Act I) / NH-S2nn (Act II) / NH-S3nn (Act III), nn = global number 01-48",
-      "reserved_ranges": ["NH-S101..NH-S148", "NH-S201..NH-S248", "NH-S301..NH-S348"],
-      "note": "Two-digit NH-S0n IDs are NOT New Harnomy's - see legacy_claims."
+      "scheme": "act-based: NH-S1nn (Act I) / NH-S2nn (Act II) / NH-S3nn (Act III), nn = global number 01-48. NH-S9nn is the MARKETING block - trailers, teasers and promos, which are not part of the 48 and must never collide with an act number.",
+      "reserved_ranges": [
+        "NH-S101..NH-S148",
+        "NH-S201..NH-S248",
+        "NH-S301..NH-S348",
+        "NH-S901..NH-S999"
+      ],
+      "note": "Two-digit NH-S0n IDs are NOT New Harnomy's - see legacy_claims.",
+      "marketing_block": {
+        "range": "NH-S901..NH-S999",
+        "claimed": "2026-09-04",
+        "entries": {
+          "NH-S901": "The Scaffold - 60s wordless teaser. The Anti-Thanksgiving dais built in the square outside city hall."
+        }
+      }
     },
     "KS": {
       "project": "king_size",
       "title": "KING SIZE (young Stripe music video)",
       "scheme": "KS-Snn",
-      "reserved_ranges": ["KS-S01..KS-S99"],
+      "reserved_ranges": [
+        "KS-S01..KS-S99"
+      ],
       "note": "Use KS- for all NEW King Size work. The existing NH-S05 render set keeps its ID permanently - it has 177 ledger entries and a verified chain."
     },
-    "BR": { "project": "broderick", "title": "Broderick", "reserved_ranges": ["BR-S01..BR-S99"] },
-    "UP": { "project": "upham", "title": "Upham", "reserved_ranges": ["UP-S01..UP-S99"] },
-    "BA": { "project": "bank_associate", "title": "Bank Associate", "reserved_ranges": ["BA-S01..BA-S99"] },
-    "ST": { "project": "stripe", "title": "Stripe", "reserved_ranges": ["ST-S01..ST-S99"] }
+    "BR": {
+      "project": "broderick",
+      "title": "Broderick",
+      "reserved_ranges": [
+        "BR-S01..BR-S99"
+      ]
+    },
+    "UP": {
+      "project": "upham",
+      "title": "Upham",
+      "reserved_ranges": [
+        "UP-S01..UP-S99"
+      ]
+    },
+    "BA": {
+      "project": "bank_associate",
+      "title": "Bank Associate",
+      "reserved_ranges": [
+        "BA-S01..BA-S99"
+      ]
+    },
+    "ST": {
+      "project": "stripe",
+      "title": "Stripe",
+      "reserved_ranges": [
+        "ST-S01..ST-S99"
+      ]
+    }
   },
   "legacy_claims": {
     "NH-S03": {

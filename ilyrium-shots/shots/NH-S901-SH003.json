@@ -1,0 +1,35 @@
+{
+  "shot_id": "NH-S901-SH003",
+  "song_id": "NH-S901",
+  "duration_s": 6,
+  "camera": {
+    "shot_size": "medium",
+    "movement": "locked-off",
+    "lens_mm": 35
+  },
+  "subjects": [
+    "construction workers"
+  ],
+  "setting": "The square, morning",
+  "mood": "documentary stillness",
+  "action": "Two heavy timber uprights are raised into position against a white sky. Breath steams in the cold.",
+  "prompt": "low angle looking up, two heavy fresh timber uprights being raised into vertical position against a flat white winter sky, workmen in high-visibility vests and heavy gloves guiding them, breath steaming in the cold, hands and shoulders only, faces not visible, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame, human face, portrait, person looking at camera",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "",
+    "seed": 901003
+  },
+  "seed": 901003,
+  "continuity": {
+    "prev_shot": "NH-S901-SH002",
+    "flf2v": false
+  },
+  "render": {
+    "width": 640,
+    "height": 640,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 6
+  }
+}

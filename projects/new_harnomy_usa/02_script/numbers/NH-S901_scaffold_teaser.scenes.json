@@ -1,0 +1,199 @@
+[
+  {
+    "scene_number": 1,
+    "location": "Black. The square outside New Harnomy city hall, pre-dawn \u2014 heard, not seen",
+    "characters": [],
+    "action": "Black frame. A single hammer strike on a nail, in a large cold outdoor reverb. Two more follow, unhurried.",
+    "visual_prompt": "a completely black frame, pure black, no image, total darkness",
+    "dialogue": [
+      {
+        "speaker": "",
+        "line": "",
+        "delivery": ""
+      }
+    ],
+    "voiceover": "",
+    "performance": "black frame; sound only; documentary stillness; nobody performs; no telegraphed emotion; sincere serious register; no irony, no comedic timing, no winking; no smile at camera",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 2,
+    "location": "The square outside New Harnomy city hall, first light",
+    "characters": [],
+    "action": "The square before anything exists. Frost on the grass. A flatbed truck stacked with fresh lumber stands at the kerb.",
+    "visual_prompt": "wide establishing shot, locked-off, an empty municipal square outside a mid-century American city hall at first light in winter, frost on the grass, bare trees, a flatbed truck stacked with fresh pale lumber at the kerb, long low sun, nobody in frame yet",
+    "dialogue": [
+      {
+        "speaker": "",
+        "line": "",
+        "delivery": ""
+      }
+    ],
+    "voiceover": "",
+    "performance": "documentary stillness; documentary stillness; nobody performs; no telegraphed emotion; sincere serious register; no irony, no comedic timing, no winking; no smile at camera",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 3,
+    "location": "The square, morning",
+    "characters": [
+      "construction workers"
+    ],
+    "action": "Two heavy timber uprights are raised into position against a white sky. Breath steams in the cold.",
+    "visual_prompt": "low angle looking up, two heavy fresh timber uprights being raised into vertical position against a flat white winter sky, workmen in high-visibility vests and heavy gloves guiding them, breath steaming in the cold, hands and shoulders only, faces not visible",
+    "dialogue": [
+      {
+        "speaker": "",
+        "line": "",
+        "delivery": ""
+      }
+    ],
+    "voiceover": "",
+    "performance": "documentary stillness; workmanlike, unhurried; documentary stillness; nobody performs; no telegraphed emotion; sincere serious register; no irony, no comedic timing, no winking; no smile at camera",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 4,
+    "location": "The square, morning \u2014 insert",
+    "characters": [],
+    "action": "A chop saw. Timber pushed through the blade. Sawdust hangs in the low sun.",
+    "visual_prompt": "extreme close-up insert, a chop saw blade cutting through a length of fresh pine timber, sawdust catching the low winter sun in the air, gloved hands steadying the wood, shallow depth of field, sharp focus on the blade and the cut",
+    "dialogue": [
+      {
+        "speaker": "",
+        "line": "",
+        "delivery": ""
+      }
+    ],
+    "voiceover": "",
+    "performance": "craft observed closely; beautiful, ordinary; documentary stillness; nobody performs; no telegraphed emotion; sincere serious register; no irony, no comedic timing, no winking; no smile at camera",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 5,
+    "location": "Mayor Pengold's office, city hall \u2014 above the square",
+    "characters": [
+      "pengold"
+    ],
+    "action": "Pengold stands at the window looking down at the work. He does not move. Coffee going cold on the desk behind him.",
+    "visual_prompt": "pengold_heavens_nh, a man of forty-one with dark hair slicked back and a short neat dark beard in immaculate dark navy suiting, standing at a tall office window looking down into the square, seen from inside a modest mid-century municipal office, backlit by the flat winter daylight so his face is half in shadow, a half-empty coffee cup and a folded newspaper on the mahogany-laminate desk behind him, three stacked brownish-purple faded academic paperbacks on the credenza, locked-off, he does not move",
+    "dialogue": [
+      {
+        "speaker": "",
+        "line": "",
+        "delivery": ""
+      }
+    ],
+    "voiceover": "",
+    "performance": "settled, unbothered, certain; not troubled by what he is watching; no smugness, no expression played to camera; documentary stillness; nobody performs; no telegraphed emotion; sincere serious register; no irony, no comedic timing, no winking; no smile at camera",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 6,
+    "location": "Pengold's POV, through the office window",
+    "characters": [],
+    "action": "What he sees: the half-built frame below, men moving around it.",
+    "visual_prompt": "point of view shot through an office window looking down at a slight high angle into a municipal square, a half-built raw timber frame standing in the middle of it with workmen moving around its base, a faint reflection of the dim office interior lying over the glass, winter light, no people in the foreground",
+    "dialogue": [
+      {
+        "speaker": "",
+        "line": "",
+        "delivery": ""
+      }
+    ],
+    "voiceover": "",
+    "performance": "observational; the camera does not comment; documentary stillness; nobody performs; no telegraphed emotion; sincere serious register; no irony, no comedic timing, no winking; no smile at camera",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 7,
+    "location": "The square, midday",
+    "characters": [
+      "construction workers"
+    ],
+    "action": "The crossbeam is hoisted and seated between the uprights. Two workmen guide it down. It settles.",
+    "visual_prompt": "medium wide shot, a heavy horizontal timber crossbeam being hoisted and lowered into position between two tall vertical timber uprights, two workmen in high-visibility vests guiding it down with their hands, the frame standing alone in an empty municipal square, flat winter daylight, the structure raw and undressed with no bunting or decoration",
+    "dialogue": [
+      {
+        "speaker": "",
+        "line": "",
+        "delivery": ""
+      }
+    ],
+    "voiceover": "",
+    "performance": "the shape completes; hold one beat too long; documentary stillness; nobody performs; no telegraphed emotion; sincere serious register; no irony, no comedic timing, no winking; no smile at camera",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 8,
+    "location": "The square, afternoon \u2014 insert",
+    "characters": [
+      "construction workers"
+    ],
+    "action": "Planks laid across the platform. A hand sweeps sawdust off the edge of the new decking.",
+    "visual_prompt": "close insert, work boots standing on freshly laid pale timber decking, fresh planks being laid across a raised platform frame, a gloved hand sweeping sawdust off the square edge of the new decking, low winter sun raking across the grain of the wood",
+    "dialogue": [
+      {
+        "speaker": "",
+        "line": "",
+        "delivery": ""
+      }
+    ],
+    "voiceover": "",
+    "performance": "the floor is finished; someone will stand here; documentary stillness; nobody performs; no telegraphed emotion; sincere serious register; no irony, no comedic timing, no winking; no smile at camera",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 9,
+    "location": "The square, late afternoon",
+    "characters": [
+      "construction workers"
+    ],
+    "action": "The steps are assembled and set against the platform. A workman tests the first tread with his weight, nods, walks away.",
+    "visual_prompt": "medium shot, a short flight of freshly built wooden steps being set against the edge of a raised timber platform in a municipal square, a workman putting his weight on the bottom tread to test it and then turning and walking out of frame, late winter afternoon light, long shadows",
+    "dialogue": [
+      {
+        "speaker": "",
+        "line": "",
+        "delivery": ""
+      }
+    ],
+    "voiceover": "",
+    "performance": "steps up, only up; the man is satisfied with his work; documentary stillness; nobody performs; no telegraphed emotion; sincere serious register; no irony, no comedic timing, no winking; no smile at camera",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 10,
+    "location": "The square, dusk",
+    "characters": [],
+    "action": "The finished frame, empty. Raw timber. No bunting. City hall lit behind it.",
+    "visual_prompt": "wide shot, locked-off, a finished raw timber platform with two uprights and a heavy crossbeam standing empty in a municipal square at dusk, undressed and undecorated, the lit windows of a mid-century city hall behind it, bare trees, deep blue winter twilight, nobody in frame",
+    "dialogue": [
+      {
+        "speaker": "",
+        "line": "",
+        "delivery": ""
+      }
+    ],
+    "voiceover": "",
+    "performance": "the object alone, before it is dressed as anything else; documentary stillness; nobody performs; no telegraphed emotion; sincere serious register; no irony, no comedic timing, no winking; no smile at camera",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 11,
+    "location": "The square, last light",
+    "characters": [],
+    "action": "Hold. The last light goes.",
+    "visual_prompt": "wide shot, locked-off, identical framing, the same empty raw timber platform and crossbeam in the municipal square as the last daylight leaves the sky, the structure falling into silhouette, city hall windows lit behind, absolute stillness, nobody in frame",
+    "dialogue": [
+      {
+        "speaker": "",
+        "line": "",
+        "delivery": ""
+      }
+    ],
+    "voiceover": "",
+    "performance": "cut on stillness; not a fade; documentary stillness; nobody performs; no telegraphed emotion; sincere serious register; no irony, no comedic timing, no winking; no smile at camera",
+    "duration_target_s": 6
+  }
+]
