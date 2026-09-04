@@ -24,8 +24,8 @@
     "flf2v": false
   },
   "render": {
-    "width": 640,
-    "height": 640,
+    "width": 832,
+    "height": 480,
     "fps": 16,
     "steps": 4,
     "duration_s": 5

@@ -5,8 +5,8 @@
   "schema": "shot_spec.schema.json",
   "node_map_version": "1",
   "defaults": {
-    "width": 640,
-    "height": 640,
+    "width": 832,
+    "height": 480,
     "fps": 16,
     "steps": 4,
     "cfg": 1.0,
@@ -15,11 +15,11 @@
     "frames": 81
   },
   "engine": {
-    "comfyui_version": null,
-    "gpu": "NVIDIA A10G 24GB",
-    "instance_id": null,
-    "torch": null,
-    "cuda": null
+    "comfyui_version": "0.27.0 (328144ce)",
+    "gpu": "NVIDIA A10G 24GB (g5.2xlarge)",
+    "instance_id": "i-0169c83c3cef9d621",
+    "torch": "2.13.0+cu130",
+    "cuda": "13.0"
   },
   "shots": [
     {

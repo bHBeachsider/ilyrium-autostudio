@@ -51,63 +51,19 @@ COPY = {  # shot -> plate that IS the keyframe
 }
 
 JOBS = [
- ("NH-S901-SH003", "16:9", [EXT_FIRST],
-  "Use the reference for the building and the square, which must be this exact building. New camera: a LOW "
-  "angle from the granite setts looking UP at two heavy fresh pine timber uprights being raised toward vertical "
-  "against a flat white winter sky, two workmen in high-visibility vests and heavy gloves guiding them, seen "
-  "from behind and below so no faces are visible, breath steaming in the cold, the semicircular colonnade and "
-  "cupola of the city hall rising behind. Morning. " + LOOK + ", no faces, no people looking at camera"),
-
- ("NH-S901-SH004", "16:9", [],
-  "Extreme close-up insert: a chop saw blade cutting through a length of fresh pale pine timber, fine sawdust "
-  "hanging in the air and catching a low winter sun from the left, heavy gloved hands steadying the wood, "
-  "shallow depth of field, sharp focus on the blade and the fresh cut, an out-of-focus grey granite square and "
-  "pale stone building far behind. " + LOOK + ", no faces"),
-
- ("NH-S901-SH005", "16:9", [OFFICE, ANCHOR],
-  "Use the FIRST reference as the room: this exact office, unchanged - the curved panelled walls, the heavy "
-  "damask curtains, the unlit brass chandelier, the tall French windows with the giant limestone columns just "
-  "outside, the desk with its brass lamp lit, the coffee cup, the folded newspaper, the mauve book. Use the "
-  "SECOND reference for the man: pengold_heavens_nh, this exact man, same face, same slicked-back dark hair "
-  "with grey at the temples, same short neat dark beard, same navy suit and open white collar. Place him "
-  "standing at the centre French window with his back three-quarters to the camera, looking down and out "
-  "through the glass into the square, one hand in his trouser pocket, completely still, backlit by the flat "
-  "winter daylight so his face is half in shadow and half lit by the window. Medium shot from inside the room, "
-  "the desk lamp glowing in the foreground. " + LOOK),
-
- ("NH-S901-SH006", "16:9", [POV],
-  "Keep this exact view: the same two giant columns close on either side, the same balustrade, the same square, "
-  "steeple and rooflines beyond, the same flat winter light and the faint reflection of the office on the glass. "
-  "Change only the timber structure below: it is now HALF-BUILT - the two uprights standing but no crossbeam "
-  "yet, the platform frame laid but not yet decked, fresh lumber stacked beside it, and four workmen in "
-  "high-visibility vests moving around its base, small and seen from above. " + LOOK + ", no faces"),
-
- ("NH-S901-SH007", "16:9", [EXT_FIRST],
-  "Use the reference for the building and the square, which must be this exact building. New camera: a MEDIUM "
-  "shot at ground level in the square at midday under flat overcast winter light, a heavy horizontal timber "
-  "crossbeam being lowered by rope into its seat on top of two tall vertical timber uprights, two workmen in "
-  "high-visibility vests reaching up to guide it with gloved hands, seen from behind so no faces are visible, "
-  "the raw undecked platform frame at their feet, the semicircular colonnade of the city hall behind. The "
-  "crossbeam is the centre of the frame. " + LOOK + ", no faces"),
-
- ("NH-S901-SH008", "16:9", [],
-  "Close insert at platform height: worn leather work boots standing on freshly laid pale pine decking, a "
-  "gloved hand sweeping fine sawdust off the square edge of the new boards, low late-afternoon winter sun "
-  "raking across the wood grain from the right, the grey granite setts of a square out of focus below. "
-  + LOOK + ", no faces"),
-
- ("NH-S901-SH009", "16:9", [EXT_FIRST],
-  "Use the reference for the building and the square, which must be this exact building. New camera: a MEDIUM "
-  "shot at ground level in late winter afternoon with long shadows, a short flight of freshly built pale pine "
-  "wooden steps set against the side of a finished raw timber platform, a single workman in a high-visibility "
-  "vest seen from behind putting his weight on the bottom tread to test it, the two uprights and crossbeam "
-  "above, the city hall colonnade behind. " + LOOK + ", no faces"),
-
- ("NH-S901-SH011", "21:9", [EXT_DUSK],
-  "Keep this exact image completely unchanged in every detail - the same building, windows, square and timber "
-  "platform, identical framing. Change only the light: it is now several minutes later, the sky a deeper and "
-  "darker blue, the last daylight gone, the timber structure fallen fully into silhouette, the lit windows a "
-  "little brighter by contrast. " + LOOK),
+ # NH-USA-025 fix: reference the EMPTY-square POV and ADD the partial structure - never reference a
+ # plate that already contains the crossbeam and try to subtract it (the reference outvotes the prompt).
+ ("NH-S901-SH006", "16:9", [POV, EXT_FIRST],
+  "Use the FIRST reference for the camera and the room edge: the same point of view from inside the "
+  "Mayor's office looking down through the French window, the same two giant limestone columns close on "
+  "either side rising out of frame, the same stone balustrade, the same faint reflection on the glass. Use "
+  "the SECOND reference only for the far side of the square: low brick blocks, the steeple, bare trees, flat "
+  "winter light. In the square below, centred between the columns and seen from above, build ONLY THIS: two "
+  "tall fresh pine timber uprights standing vertical and braced with temporary diagonal props, WITH NO "
+  "CROSSBEAM ON TOP OF THEM - the tops of the two posts are bare and separate against the paving - and in "
+  "front of them a low rectangular timber platform frame of open joists with no decking laid yet, stacks of "
+  "fresh lumber beside it, and four workmen in high-visibility vests moving around it, small, seen from "
+  "above, no faces. " + LOOK),
 ]
 
 
@@ -128,12 +84,6 @@ def main():
     preflight()
     import fal_client
     # SH001 black frame
-    Image.new("RGB", (1920, 1080), (0, 0, 0)).save(os.path.join(HERE, "NH-S901-SH001_key.png"))
-    print("[OK] NH-S901-SH001_key.png (black, local)", flush=True)
-    # plates that are the shot
-    for sid, src in COPY.items():
-        Image.open(src).convert("RGB").save(os.path.join(HERE, sid + "_key.png"))
-        print("[OK] %s_key.png (copied from %s)" % (sid, os.path.basename(src)), flush=True)
 
     cache = {}
     for sid, ar, refs, prompt in JOBS:
