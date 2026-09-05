@@ -87,9 +87,12 @@ shots SH005/SH006 agree.
   making it longer: the structure is *more* innocent, not less.
 - **The banner.** A long fabric banner hangs from the portico's entablature, between the columns, in
   **Framework mauve** (the brownish-purple of an aged university-press paperback, never lavender) with pale
-  lettering, two centred lines, the second at 78% of the first: **WELCOME TO NEW HARNOMY'S ANNUAL ERSATZGIVING
-  HOLIDAY GATHERING!** / **A FESTIVAL OF CONTRITION, ATONEMENT AND REPENTANCE** (Brad, 2026-09-05; the holiday is
-  ERSATZGIVING — `world/setting.md`). It is up all week. This is the first time the audience sees the town's name written
+  lettering, two centred lines: **WELCOME TO TWEEEDS' ERSATZGIVING GATHERING!** / **NEW HARNOMY'S CELEBRATION OF
+  CONTRITION, ATONEMENT AND REPENTANCE** (Brad, 2026-09-05 v8; supersedes "…NEW HARNOMY'S ANNUAL ERSATZGIVING HOLIDAY
+  GATHERING! / A FESTIVAL OF CONTRITION…"). The banner is the PARTY's, not the city's: TWEEEDS (always three E's —
+  the v11 glossary) has put its own name on City Hall. The party spells its own name right; HARNOMY stays the one
+  flaw. The second line is now the longer, so both lines set at near the same cap height, edge to edge. The
+  holiday is ERSATZGIVING — `world/setting.md`. It is up all week. This is the first time the audience sees the town's name written
   down — misspelled, on a municipal banner, in public — and no one on stage ever remarks on it. The kernel's
   no-on-screen-text rule targets chyrons and captions; a diegetic banner is staging, like the program cover
   (motifs §9). Lettering must be *legible* in the wide plates and may soften in motion.
@@ -104,8 +107,14 @@ shots SH005/SH006 agree.
   built (SH003, SH007); once finished (SH009, SH010) it is dressed like everything else — a thick garland of leaves,
   Indian corn and gourds along the beam and down both posts, a sheaf at each foot — with the timber still visible and
   the silhouette of posts and beam clear against the dusk (NH-USA-041/043).
-- **Light.** The facade faces south-west, so the trailer's dusk shots put the sun behind and to the left of
-  the building from the square, and the office windows get the last raking light through the columns.
+- **Weather (Brad, 2026-09-05 v8): the build day is GLOOMY.** A heavy flat overcast — "sheet-cake grey" — with a light
+  steady drizzle from first light to dusk: no sun, no cast shadows, no frost; the granite wet and dully reflective with
+  shallow puddles; lamps and windows warm and doubled in the wet; timber darkened where wet, the banner damp and hanging
+  heavy. Both LOCKED plates are v8 relights of the v5 dressed plates (`fal_weather.py`, single-reference edits so the
+  cameras held), re-lettered in pixels afterwards. The pre-v8 sunlit plates are kept in `_v5_sunlit/`.
+- **Light.** The facade faces south-west. Under the v8 overcast this only decides where the sky is a shade brighter; the
+  sunlit-plate note (sun behind and left of the building at dusk, last raking light through the columns) is retained
+  for any future clear-weather scene.
 - **Orientation, for prompts (NH-USA-035):** the stage runs LEFT TO RIGHT across any view from the building, parallel to the
   facade; its long near edge (toward the building) carries the truss uprights; from the square the truss stands BEHIND the
   platform. Say the axis and the nearest edge every time - size words do not carry orientation.
@@ -124,8 +133,8 @@ shots SH005/SH006 agree.
 
 | Plate | File | Use | Kernel light |
 |---|---|---|---|
-| Exterior — dusk, finished stage | **`plate_exterior_dusk_LOCKED.png`** (21:9) — v6 + pixel spelling fix. Lineage: v1 uprights at second-storey height + ghosted upper floor; v2 fixed scale, kept ghost; v3 re-lit from clean first-light; v4–v6 added the living square, the 24 m stage and the banner (v5 moved the camera and was discarded) | NH-S901 SH009/SH010/SH011; the Feast backdrop | deep blue twilight, windows lit tungsten, stage and truss in silhouette |
-| Exterior — first light, before the build | **`plate_exterior_firstlight_LOCKED.png`** (21:9) — v4 + pixel spelling fix. No stage yet: the lumber truck and box van are pulling up, the banner is already hung | NH-S901 SH002/SH003; the build-day shots are derived from this plate with the stage added progressively | low winter sun, frost, long shadows |
+| Exterior — dusk, finished stage | **`plate_exterior_dusk_LOCKED.png`** (21:9) — v8: v5 dressed plate relit to drizzling overcast + TWEEEDS' banner in pixels. Earlier: v6 + pixel spelling fix. Lineage: v1 uprights at second-storey height + ghosted upper floor; v2 fixed scale, kept ghost; v3 re-lit from clean first-light; v4–v6 added the living square, the 24 m stage and the banner (v5 moved the camera and was discarded) | NH-S901 SH009/SH010/SH011; the Feast backdrop | deep blue twilight, windows lit tungsten, stage and truss in silhouette |
+| Exterior — grey morning, before the build | **`plate_exterior_firstlight_LOCKED.png`** (21:9) — v8: v5 dressed plate relit to drizzling overcast + TWEEEDS' banner in pixels. Earlier: v4 + pixel spelling fix. No stage yet: the lumber truck and box van are pulling up, the banner is already hung | NH-S901 SH002/SH003; the build-day shots are derived from this plate with the stage added progressively | low winter sun, frost, long shadows |
 | Office interior — Dressing A | **`plate_office_A_LOCKED.png`** (3:2; v1 and Brad's v2 revision kept beside it) | NH-S901 SH005; NH-S101; Act II Betrayal | tungsten lamp key, columns through the glass |
 | Office interior — Dressing B | `plate_office_B_v1.png` (3:2) | NOT chosen; kept for the record | as above |
 | Window POV — down through the colonnade | `plate_pov_square_v1.png` (3:2) — **SUPERSEDED by §4's long stage**; shows the old short scaffold and an empty square. Interim POV reference = the SH006 v3 keyframe (`04_preproduction/keyframes/NH-S901/NH-S901-SH006_key.png`: long stage parallel to the facade, uprights on the near edge, living square). A proper finished-stage POV plate is still to be made before Act II | NH-S901 SH006 | flat winter daylight, the stage below and centred |

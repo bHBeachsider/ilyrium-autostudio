@@ -79,8 +79,13 @@ Rules for the populated square:
 - **The dais is a long rally stage (~24 m), not a nine-metre platform** — room for a row of dignitaries and a
   podium — with a timber truss (uprights + crossbeam) across its rear for lights and a banner. It reads as
   what it is: a stage. The gallows survives only in silhouette.
-- **A mauve banner hangs from the portico all week:** WELCOME TO NEW HARNOMY'S ANNUAL ERSATZGIVING HOLIDAY
-  GATHERING! / A FESTIVAL OF CONTRITION, ATONEMENT AND REPENTANCE (Brad, 2026-09-05). The holiday is Ersatzgiving —
+- **A mauve banner hangs from the portico all week:** WELCOME TO TWEEEDS' ERSATZGIVING GATHERING! / NEW HARNOMY'S
+  CELEBRATION OF CONTRITION, ATONEMENT AND REPENTANCE (Brad, 2026-09-05 v8; the party's banner on the city's building).
+- **The build appears IN ORDER (Brad, v8):** SH003 uprights raised over a frame of open joists → SH006 (POV) frame
+  half-decked, uprights bare, no beam → SH007 the crossbeam seats on a fully decked stage → SH008 decking swept →
+  SH009 steps tested, chairs and podium out → SH010 finished. No shot may show a later state than the shot after it.
+- **Weather (v8):** sheet-cake grey overcast and light drizzle throughout; wet granite; slow far traffic with headlights
+  on for realism, never through the square. The holiday is Ersatzgiving —
   Bildersatz's syllable made holy, counterfeit-giving to anyone who still hears English — and the square wears
   Thanksgiving's own furniture (sheaves, pumpkins, hay, garlands) so the audience reads the holiday before the joke. The city names its own structure, which is what makes it innocent — and
   it is the first time the audience sees the misspelled town name, in public, unremarked.
@@ -185,3 +190,6 @@ a single-reference cleanup edit removing the foreground pedestrians (C). Veo 3.1
 
 ### v7 production record (2026-09-05)
 Brad on v6: (1) SH006's stage sat at an angle to City Hall - every shot must have it parallel; (2) worker movement too fast and jerky. (1) Single-reference straightening edit on the v6 key with the clay as second reference (fal_rekey_sh006.py D), Veo re-rendered; the model also completed the decking in that frame, accepted as consistent with SH007. (2) The Veo clips carry no duplicated frames - the model animates the figures too briskly - so shots 3, 4, 6, 7, 8, 9 are slowed to 75% in post with ffmpeg motion-compensated interpolation (minterpolate mci/aobmc/bidir), every output frame synthesized; RIFE on the ComfyUI box is the fallback if any shot ghosts. SFX offsets inside those shots were NOT retimed for the 0.75x - check the saw (SH004) and the beam seat (SH007) against picture. Banner wording change (TWEED's / Contribution vs Contrition) pending Brad's answers. Cost: 1 edit ~$0.15, Veo $1.20.
+
+### v8 production record (2026-09-05) - PROVISIONAL
+Brad: gloomier weather (sheet-cake grey, light drizzle), build in order, more street traffic; banner = TWEEEDS' Ersatzgiving Gathering / Contrition. Both plates + keys 3,4,6,7,8,9,12 relit as single-reference edits (fal_weather.py, no retakes), re-lettered in pixels; SH012 lettered by the model from the plate; SH006 back to half-decked. Veo re-rendered nine shots (~$10.80); SH009 take came back as a three-cut sequence with a hallucinated light stand, SH012's wet banner folded over its own text by 1.5 s; fal balance ran out before the retakes, so the provisional cut holds SH009 on its keyframe (4.5 s, SH010 lengthened to 6.5) and plays SH012's first 1.6 s at 0.4x. Rain beds (drizzle_square, drizzle_timber) added; SFX offsets in slowed shots retimed by 1/0.75. Brad then: SH003 and SH009 read as not parallel - blockout cameras for 3, 7, 9 turned square to the facade (cameras.json); re-keys against those clays pending fal top-up (NH-USA-047).

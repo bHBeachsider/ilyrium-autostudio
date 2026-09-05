@@ -211,13 +211,14 @@ CAMS = {
  # SH002 first-light wide (16:9 crop of the plate's view)
  "SH002":  camera("SH002", (0.0, Y0 + 66.0, 9.0), (0.0, 0.0, 12.0), 26),
  # SH003 low angle from the paving near the left upright, looking back at the building
- "SH003":  camera("SH003", (-8.0, STAGE_Y + 8.0, 0.9), (-11.0, y_back, 5.0), 24),
+ # v8 (Brad): every camera looks square at the facade so the stage reads as a horizontal line in every shot
+ "SH003":  camera("SH003", (-9.0, STAGE_Y + 9.0, 0.9), (-9.0, y_back - 6.0, 5.5), 24),
  # SH006 Pengold's POV: inside the office, eye at the middle window, looking down through the columns at the stage
  "SH006":  camera("SH006", (0.0, R_WALL - 0.2, 7.2), (0.0, STAGE_Y - 4.0, 0.0), 20),
  # SH007 medium-wide from the paving in front of the stage, the crossbeam seating
- "SH007":  camera("SH007", (2.0, STAGE_Y + 18.0, 1.7), (0.0, y_back, 7.5), 28),
+ "SH007":  camera("SH007", (0.0, STAGE_Y + 18.0, 1.7), (0.0, y_back - 10.0, 7.0), 28),
  # SH009 beside the left end of the finished stage, the steps in profile
- "SH009":  camera("SH009", (-17.0, STAGE_Y + 7.0, 1.5), (-12.0, STAGE_Y - 1.0, 1.6), 32),
+ "SH009":  camera("SH009", (-13.0, STAGE_Y + 12.0, 1.6), (-13.0, STAGE_Y - 20.0, 3.0), 32),
  # SH010/011 dusk wide = the plate camera at 16:9
  "SH010":  camera("SH010", (0.0, Y0 + 66.0, 9.0), (0.0, 0.0, 12.0), 26),
 }

@@ -3,7 +3,7 @@
   "endpoint": "fal-ai/veo3.1/image-to-video",
   "keyframe": "04_preproduction\\keyframes\\NH-S901\\NH-S901-SH006_key.png",
   "arguments": {
-    "prompt": "Point of view from the Mayor's office window, looking down between two giant limestone columns at a long timber rally stage under construction far out in the square below, thirty metres from the building, with empty granite paving between the balustrade and the stage. The camera is locked off on a tripod and does not move at all: no pan, no tilt, no zoom, no drift, no handheld shake. Real-time speed, natural human movement, never slow motion. Six workmen in high-visibility vests move at a normal working pace around the platform, two carrying a board together, one kneeling to fix decking; the two tall braced uprights stand still. Beyond the stage the square goes about its morning: parked cars do not move, the lumber truck and open box van stand still, a bus is stopped at the far corner, a few pedestrians walk slowly at a distance with their backs to us, a cyclist rolls by. Nobody walks across the empty paving below the balustrade. Low raking winter sun from the left, frost on the setts. Prestige political drama photographed on an Arri Alexa with anamorphic lenses: single-source natural light, slight 35mm film grain, colours desaturated about twelve percent, warm tungstens, deep browns and charcoals in the shadows, photographic realism.",
+    "prompt": "Point of view from the Mayor's office window, looking down between two giant limestone columns at a long timber rally stage under construction far out in the square below, thirty metres from the building, with empty wet granite paving between the balustrade and the stage. A heavy flat overcast, sheet-cake grey sky, no sun and no shadows; a light steady drizzle falls, fine rain visible against the dark stone, the granite paving wet with shallow puddles mirroring the grey sky; street lamps and windows glow warm and are doubled in the wet. The camera is locked off on a tripod and does not move at all: no pan, no tilt, no zoom, no drift, no handheld shake. Real-time speed, natural human movement, never slow motion. Six workmen in high-visibility vests move at a normal working pace around the platform, two carrying a decking board together to the open joists on the right, one kneeling to fix a board at the boundary; the two tall bare uprights stand still. Beyond the stage the square goes about its morning: parked cars do not move, the lumber truck and open box van stand still, a bus is stopped at the far corner, a few pedestrians walk slowly at a distance with their backs to us, a cyclist rolls by. Nobody walks across the empty paving below the balustrade. On the far street beyond the square and along the side kerbs a few cars move slowly and steadily with their headlights and tail-lights on, reflected in the wet road, at an unhurried city pace - no car ever enters the square or comes near the stage. Prestige political drama photographed on an Arri Alexa with anamorphic lenses: flat overcast daylight, slight 35mm film grain, colours desaturated about twelve percent, warm tungstens, deep browns and charcoals in the shadows, photographic realism.",
     "aspect_ratio": "16:9",
     "duration": "6s",
     "resolution": "1080p",
@@ -11,16 +11,16 @@
     "negative_prompt": "turning around, walking away, camera pull back, dolly, reframing, people walking into frame, pedestrians in the foreground, moving bus, moving vehicles, slow motion, speed ramp, time-lapse, camera movement, zoom, pan, dolly, handheld shake, on-screen text, captions, subtitles, watermark, logo, lens flare, fast traffic, cars driving through the frame, people looking at the camera, faces toward camera, cartoon, illustration, oversaturated",
     "seed": 901006
   },
-  "image_url": "https://v3b.fal.media/files/b/0aa93cbf/vBKafm2wFllslQGtKvbz5_NH-S901-SH006_key.png",
+  "image_url": "https://v3b.fal.media/files/b/0aa93e92/D8TWwPRjd2GMuRLMP9ADE_NH-S901-SH006_key.png",
   "response": {
     "video": {
-      "url": "https://v3b.fal.media/files/b/0aa93ccd/FbBrLhJ3ncOjjIrPtuPx8_fa18ff320bff424ab6fba565b82be2e7.mp4",
+      "url": "https://v3b.fal.media/files/b/0aa93eb7/iZ8qEK_Z8f5wAvhGRCO4r_e6d8255788eb4a83b5adfac25a0f3bfc.mp4",
       "content_type": "video/mp4",
-      "file_name": "fa18ff320bff424ab6fba565b82be2e7.mp4",
-      "file_size": 7464495
+      "file_name": "e6d8255788eb4a83b5adfac25a0f3bfc.mp4",
+      "file_size": 10389290
     }
   },
-  "seconds": 137.3,
+  "seconds": 133.3,
   "est_cost_usd": 1.2000000000000002,
-  "rendered_at": "2026-09-05T14:31:33"
+  "rendered_at": "2026-09-05T15:49:22"
 }

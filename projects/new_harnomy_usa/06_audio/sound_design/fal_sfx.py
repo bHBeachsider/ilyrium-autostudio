@@ -36,6 +36,9 @@ LAYERS = [
  ("boots_decking",  "work boots stepping on fresh pine decking boards, a few slow steps, then a hand brush sweeping sawdust off wood, outdoors", 7, False),
  ("bus_brake_far",  "a distant city bus air brake release and the bus pulling away slowly, far off across a square", 5, False),
  # v3 (2026-09-05): the banner insert
+ # v8 (Brad, 2026-09-05): the build day is a drizzle under a flat grey sky
+ ("drizzle_square", "light steady drizzle falling on wet granite paving and stone in a large open city square, fine rain hiss, occasional drips from a stone ledge, distant wet-road tyre hiss, no thunder, no voices", 22, True),
+ ("drizzle_timber", "light rain pattering close on fresh pine boards and a tarpaulin, drips, outdoors, close perspective", 12, True),
  ("banner_flap",    "a large heavy fabric banner stirring and softly flapping in a light steady winter wind, the canvas breathing and creaking against its ropes, outdoors, close, no voices", 10, True),
 ]
 

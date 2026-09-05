@@ -3,7 +3,7 @@
   "endpoint": "fal-ai/veo3.1/image-to-video",
   "keyframe": "04_preproduction\\keyframes\\NH-S901\\NH-S901-SH008_key.png",
   "arguments": {
-    "prompt": "Close insert on new pine decking, camera low at board level, fixed. Work boots stand on the fresh boards; a gloved hand with a stiff hand brush sweeps sawdust off the square edge of the platform toward the camera in two slow strokes, the dust falling and catching the low raking winter sun; the boots shift their weight once and stay. The camera is locked off on a tripod and does not move at all: no pan, no tilt, no zoom, no drift, no handheld shake. Real-time speed, natural human movement, never slow motion. The framing at the end of the shot is identical to the framing at the start. Shallow depth of field on the boards and the boots. Prestige political drama photographed on an Arri Alexa with anamorphic lenses: single-source natural light, slight 35mm film grain, colours desaturated about twelve percent, warm tungstens, deep browns and charcoals in the shadows, photographic realism.",
+    "prompt": "Close insert on new pine decking, camera low at board level, fixed. Work boots stand on the fresh boards; a gloved hand with a stiff hand brush sweeps sawdust off the square edge of the platform toward the camera in two slow strokes, the damp dust dropping in clumps onto the wet setts, drizzle beading on the boards; the boots shift their weight once and stay. The camera is locked off on a tripod and does not move at all: no pan, no tilt, no zoom, no drift, no handheld shake. Real-time speed, natural human movement, never slow motion. The framing at the end of the shot is identical to the framing at the start. Shallow depth of field on the boards and the boots. Prestige political drama photographed on an Arri Alexa with anamorphic lenses: flat overcast daylight, slight 35mm film grain, colours desaturated about twelve percent, warm tungstens, deep browns and charcoals in the shadows, photographic realism.",
     "aspect_ratio": "16:9",
     "duration": "6s",
     "resolution": "1080p",
@@ -11,16 +11,16 @@
     "negative_prompt": "turning around, walking away, camera pull back, dolly, reframing, people walking into frame, pedestrians in the foreground, moving bus, moving vehicles, slow motion, speed ramp, time-lapse, camera movement, zoom, pan, dolly, handheld shake, on-screen text, captions, subtitles, watermark, logo, lens flare, fast traffic, cars driving through the frame, people looking at the camera, faces toward camera, cartoon, illustration, oversaturated",
     "seed": 901008
   },
-  "image_url": "https://v3b.fal.media/files/b/0aa925c6/L4GNCeFyfeQWPjhsvOwJJ_NH-S901-SH008_key.png",
+  "image_url": "https://v3b.fal.media/files/b/0aa93ead/HgCSPcIqC_zFo5n0gFh4v_NH-S901-SH008_key.png",
   "response": {
     "video": {
-      "url": "https://v3b.fal.media/files/b/0aa925d2/Lyxkvv8f-KUX-SPxUXdj1_3e70576ec0f94e6ca133a4df8034a4ac.mp4",
+      "url": "https://v3b.fal.media/files/b/0aa93ed1/vbITvxZ664FuCvhi5sWQe_bcffec7a19524d5fb700586e620eb0c7.mp4",
       "content_type": "video/mp4",
-      "file_name": "3e70576ec0f94e6ca133a4df8034a4ac.mp4",
-      "file_size": 6792998
+      "file_name": "bcffec7a19524d5fb700586e620eb0c7.mp4",
+      "file_size": 8753480
     }
   },
-  "seconds": 124.9,
+  "seconds": 134.9,
   "est_cost_usd": 1.2000000000000002,
-  "rendered_at": "2026-09-04T22:11:07"
+  "rendered_at": "2026-09-05T15:53:50"
 }

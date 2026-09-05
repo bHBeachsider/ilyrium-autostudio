@@ -3,7 +3,7 @@
   "endpoint": "fal-ai/veo3.1/image-to-video",
   "keyframe": "04_preproduction\\keyframes\\NH-S901\\NH-S901-SH010_key.png",
   "arguments": {
-    "prompt": "Wide shot at dusk, a completely empty square. The finished long timber rally stage with its row of folding chairs, a podium and a tall rear truss stands alone in front of City Hall, whose windows are lit warm tungsten; the mauve banner hangs on the portico. The camera is locked off on a tripod and does not move at all: no pan, no tilt, no zoom, no drift, no handheld shake. Real-time speed, natural human movement, never slow motion. There are NO PEOPLE anywhere in this shot and nothing drives: every car stays parked and dark, the bus at the far corner is parked with its engine off and does not move, no one walks into or through the frame. The only change over eight seconds is the sky deepening slowly from blue toward night and a very faint stir of the banner fabric. A locked-off, silent, unpeopled hold on an object. Deep blue winter twilight, absolute stillness. Prestige political drama photographed on an Arri Alexa with anamorphic lenses: single-source natural light, slight 35mm film grain, colours desaturated about twelve percent, warm tungstens, deep browns and charcoals in the shadows, photographic realism.",
+    "prompt": "Wide shot at dusk, a completely empty square. The finished long timber rally stage with its row of folding chairs, a podium and a tall rear truss stands alone in front of City Hall, whose windows are lit warm tungsten; the mauve banner hangs damp on the portico. A heavy flat overcast, sheet-cake grey sky at dusk, no sun and no shadows; a light steady drizzle falls, fine rain visible against the dark stone, the granite paving wet with shallow puddles mirroring the grey sky at dusk; street lamps and windows glow warm and are doubled in the wet. The camera is locked off on a tripod and does not move at all: no pan, no tilt, no zoom, no drift, no handheld shake. Real-time speed, natural human movement, never slow motion. There are NO PEOPLE anywhere in this shot: every car in the square stays parked and dark, the bus at the far corner is parked with its engine off, no one walks into or through the frame. On the far street beyond the square only, a car or two passes slowly with headlights on, reflected in the wet road. The only other change over eight seconds is the grey light failing slowly toward night, rain ringing the puddles and a very faint stir of the wet banner fabric. A locked-off, silent, unpeopled hold on an object. Grey-blue drizzling dusk, stillness. Prestige political drama photographed on an Arri Alexa with anamorphic lenses: flat overcast daylight, slight 35mm film grain, colours desaturated about twelve percent, warm tungstens, deep browns and charcoals in the shadows, photographic realism.",
     "aspect_ratio": "16:9",
     "duration": "8s",
     "resolution": "1080p",
@@ -11,16 +11,16 @@
     "negative_prompt": "turning around, walking away, camera pull back, dolly, reframing, people walking into frame, pedestrians in the foreground, moving bus, moving vehicles, slow motion, speed ramp, time-lapse, camera movement, zoom, pan, dolly, handheld shake, on-screen text, captions, subtitles, watermark, logo, lens flare, fast traffic, cars driving through the frame, people looking at the camera, faces toward camera, cartoon, illustration, oversaturated",
     "seed": 901010
   },
-  "image_url": "https://v3b.fal.media/files/b/0aa92ac8/W6sicy0EWiW_WuOD6JQLC_NH-S901-SH010_key.png",
+  "image_url": "https://v3b.fal.media/files/b/0aa93ec7/0l133WMW2WqfKLl97O5rD_NH-S901-SH010_key.png",
   "response": {
     "video": {
-      "url": "https://v3b.fal.media/files/b/0aa92aec/4WkvMoUEUyVT3ow8H27pE_1b1c73385e5148dd8744f3d9ff22de1a.mp4",
+      "url": "https://v3b.fal.media/files/b/0aa93ed4/Y8nGjng4myf5bLLX8B8V9_010bb0549c1442cc8069e3ee09d0af6e.mp4",
       "content_type": "video/mp4",
-      "file_name": "1b1c73385e5148dd8744f3d9ff22de1a.mp4",
-      "file_size": 10860242
+      "file_name": "010bb0549c1442cc8069e3ee09d0af6e.mp4",
+      "file_size": 15307320
     }
   },
-  "seconds": 126.9,
+  "seconds": 131.6,
   "est_cost_usd": 1.6,
-  "rendered_at": "2026-09-05T01:44:54"
+  "rendered_at": "2026-09-05T15:58:04"
 }
