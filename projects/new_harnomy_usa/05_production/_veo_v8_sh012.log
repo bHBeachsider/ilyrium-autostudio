@@ -1,0 +1,11 @@
+[OK] fal auth OK (probe 422)
+-- SH012  fal-ai/veo3.1/image-to-video  4s  (~$0.80)
+   [OK] NH-S901-SH012.mp4 (8728 KB, 119s)
+Traceback (most recent call last):
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\projects\new_harnomy_usa\05_production\fal_veo_render.py", line 196, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\projects\new_harnomy_usa\05_production\fal_veo_render.py", line 164, in main
+    dur, prompt = SHOTS[sid]
+                  ~~~~~^^^^^
+KeyError: '7'

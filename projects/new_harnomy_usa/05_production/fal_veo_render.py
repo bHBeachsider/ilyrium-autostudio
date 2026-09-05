@@ -55,7 +55,7 @@ SHOTS = {
   "Wide establishing shot of the square outside New Harnomy City Hall on a grey drizzling November morning. "
   + WEATHER + STATIC + " The only movement is small and human: a handful of pedestrians in winter coats walk slowly across "
   "the granite paving at a distance with their backs to the camera, a dog-walker crosses, a cyclist rolls slowly "
-  "past under an umbrella, steam rises from the hot-food cart. The parked cars along the kerbs stay parked; the flatbed lumber truck "
+  "past under an umbrella, steam rises from the hot-food cart. The granite paving in front of the building's entrance steps stays open and empty throughout - nothing is built or stacked on it. The parked cars along the kerbs stay parked; the flatbed lumber truck "
   "and the white box van stand still with their engines off; the bus at the far corner pulls away slowly. " + TRAFFIC +
   "The damp mauve banner on the portico hangs heavy and barely stirs. " + LOOK),
  "SH012": ("4s",   # the banner insert; plays second
@@ -66,8 +66,8 @@ SHOTS = {
   "word stays fully visible, perfectly legible and undistorted for the whole shot. "
   "Nothing else moves; the stone is fixed. No people. " + LOOK),
  "SH003": ("6s",
-  "Low angle from the wet paving in front of the stage, looking straight at City Hall across the open joists of the "
-  "platform frame in the foreground. Two workmen in high-visibility vests and knit caps steadily raise a tall square pine "
+  "Locked-off eye-height shot from the wet paving a few metres back from the stage, looking straight at City Hall; the "
+  "open pine joists of the platform frame make a band across the bottom quarter of the frame and the building fills the rest. Two workmen in high-visibility vests and knit caps steadily raise a tall square pine "
   "upright on the far edge of the frame from a lean to full vertical, hand over hand, their breath steaming in the cold; a third man holds a "
   "diagonal brace steady, rain beading on their wet vests. " + WEATHER + STATIC + " Behind them the semicircular colonnade of City Hall with its mauve banner "
   "stays perfectly fixed; the parked cars, the lumber flatbed and the box van do not move; two distant pedestrians "

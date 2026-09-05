@@ -37,14 +37,15 @@ LAYOUT = ("The FIRST image is a plain grey architectural model rendered from the
 DRESS = ("Use the SECOND image for what everything is made of and how it is dressed: the same limestone City Hall with "
          "its semicircular colonnade, drum and cupola, the mauve banner hanging between the columns with its pale "
          "lettering, corn-stalk sheaves tied to the columns and lampposts, pumpkins and gourds at the column bases, "
-         "garlands on the balustrade, the parked cars along the kerbs, the lumber flatbed and white box van, a bus at "
+         "garlands on the balustrade; the granite paving in front of the building's entrance steps is open and empty - there is NO platform, no straw bales and no heaped pumpkins standing on the paving there, only a few pumpkins on the steps themselves. The parked cars along the kerbs, the lumber flatbed and white box van, a bus at "
          "the far corner, a few distant pedestrians under umbrellas with their backs to us; nobody faces the camera. ")
 
 JOBS = {
  "SH003": ([os.path.join(HERE, "clay_SH003_build.png"), PLATE],
-   LAYOUT + "Low angle from the wet paving in FRONT of the stage, looking across the near edge of the platform toward "
-   "City Hall. The platform is under construction: a frame of open raw-pine joists with NO decking yet, its long near "
-   "edge running horizontally across the lower third of the frame. On its far edge, toward the building, stands a tall "
+   LAYOUT + "v9: the camera stands back four metres from the stage on the wet paving, eye height, looking across the "
+   "platform toward City Hall, which fills the upper two thirds of the frame; the timber occupies only the lower "
+   "quarter. The platform is under construction: a frame of open raw-pine joists with NO decking yet, its long near "
+   "edge running horizontally across the bottom of the frame. On its far edge, toward the building, stands a tall "
    "square pine upright just to the right of centre; two workmen in wet high-visibility vests and knit caps, seen "
    "from behind and in profile, are steadying it upright hand over hand while a third holds a temporary diagonal "
    "prop; a second tall upright already stands at the far left end. No crossbeam. Their breath steams in the cold. "

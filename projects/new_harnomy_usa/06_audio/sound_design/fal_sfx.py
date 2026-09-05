@@ -36,6 +36,11 @@ LAYERS = [
  ("boots_decking",  "work boots stepping on fresh pine decking boards, a few slow steps, then a hand brush sweeping sawdust off wood, outdoors", 7, False),
  ("bus_brake_far",  "a distant city bus air brake release and the bus pulling away slowly, far off across a square", 5, False),
  # v3 (2026-09-05): the banner insert
+ # v9 (Brad, 2026-09-05): "there are sounds of hammering in scene without any hammering. maybe insert random worker
+ # conversations or laughing." Work sound now only where the action is on screen; elsewhere the square carries voices.
+ ("workmen_chat",   "two or three workmen talking to each other while they work outdoors in a large stone city square, ordinary unhurried conversation, the words completely unintelligible, no shouting, distant and reverberant, no music", 22, True),
+ ("workmen_laugh",  "a short easy laugh from two men working outdoors across a large stone square, one says a few unintelligible words after it, distant and reverberant", 8, False),
+ ("workmen_call",   "one workman calling a short instruction to another across a large stone square outdoors, unintelligible, the other answers briefly, distant and reverberant", 7, False),
  # v8 (Brad, 2026-09-05): the build day is a drizzle under a flat grey sky
  ("drizzle_square", "light steady drizzle falling on wet granite paving and stone in a large open city square, fine rain hiss, occasional drips from a stone ledge, distant wet-road tyre hiss, no thunder, no voices", 22, True),
  ("drizzle_timber", "light rain pattering close on fresh pine boards and a tarpaulin, drips, outdoors, close perspective", 12, True),

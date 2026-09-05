@@ -168,7 +168,7 @@ if STATE == "finished":
             continue
         box("chair_%d" % k, k * 1.1, STAGE_Y - 0.8, ST_H + 0.45, 0.45, 0.45, 0.9, M_TIMBER)
 else:                                                # build day: bare uprights, no beam, lumber stacks on the paving
-    for k, (lx, ly) in enumerate(((-6, STAGE_Y + 6), (4, STAGE_Y + 7), (14, STAGE_Y + 5.5))):
+    for k, (lx, ly) in enumerate(((-20, STAGE_Y + 7), (4, STAGE_Y + 7), (16, STAGE_Y + 5.5))):
         box("lumber_%d" % k, lx, ly, 0.4, 5.0, 1.2, 0.8, M_TIMBER)
 # vehicles: lumber flatbed and white box van parked nose-in at the left kerb of the square (plate: far left of the stage)
 box("flatbed", -38, STAGE_Y + 4, 1.0, 2.5, 8.0, 1.2, M_VEH); box("flatbed_cab", -38, STAGE_Y + 0.7, 1.9, 2.4, 2.2, 2.4, M_VEH)
@@ -212,7 +212,8 @@ CAMS = {
  "SH002":  camera("SH002", (0.0, Y0 + 66.0, 9.0), (0.0, 0.0, 12.0), 26),
  # SH003 low angle from the paving near the left upright, looking back at the building
  # v8 (Brad): every camera looks square at the facade so the stage reads as a horizontal line in every shot
- "SH003":  camera("SH003", (-9.0, STAGE_Y + 9.0, 0.9), (-9.0, y_back - 6.0, 5.5), 24),
+ # v9 (Brad): SH003 camera pulled back 4 m with the eye a little higher - the joist foreground was too close
+ "SH003":  camera("SH003", (-9.0, STAGE_Y + 13.0, 1.6), (-9.0, y_back - 6.0, 6.5), 26),
  # SH006 Pengold's POV: inside the office, eye at the middle window, looking down through the columns at the stage
  "SH006":  camera("SH006", (0.0, R_WALL - 0.2, 7.2), (0.0, STAGE_Y - 4.0, 0.0), 20),
  # SH007 medium-wide from the paving in front of the stage, the crossbeam seating
