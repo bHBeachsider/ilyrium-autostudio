@@ -128,6 +128,10 @@ def build(sfx_dir, master_db=0.0, timeline=None):
     # ---- SH001 black: three unhurried strikes, alone, in the cold. -----------------------------------------
     # hammer_single came back as a 14-strike run; its last strike (6.45 s) has the only clean 3.5 s tail, so
     # that one strike is the instrument, placed three times.
+    # v8: shots slowed to 75% in post (motion-compensated interpolation) - an action at +t in the Veo clip lands at
+    # +t/0.75 in the cut. Offsets inside these shots go through T().
+    SLOW = {"SH003": 0.75, "SH004": 0.75, "SH006": 0.75, "SH007": 0.75, "SH008": 0.75, "SH009": 0.75}
+    T = lambda sid, off: S[sid] + off / SLOW.get(sid, 1.0)
     STRIKE = dict(start=6.45, end=9.95, fin=0.003, fout=0.4)
     for t in (0.6, 2.5, 4.3):
         m.place("hammer_single", t, -7, **STRIKE)
@@ -136,8 +140,9 @@ def build(sfx_dir, master_db=0.0, timeline=None):
     for a, b in ((S["SH002"], S["SH005"]), (S["SH007"], S["SH011"])):
         m.place("city_ambience", a, -22, bus="bed", fin=0.4, fout=0.25, loop_until=b)
         m.place("wind_winter", a, -21, bus="bed", fin=0.6, fout=0.25, loop_until=b)
+        m.place("drizzle_square", a, -19, bus="bed", fin=0.5, fout=0.25, loop_until=b)
     # bed automation: duck under the saw; thin out through dusk
-    m.auto["bed"] += [(S["SH004"], 0.0), (S["SH004"] + 0.25, -7.0), (S["SH005"] - 0.3, -7.0), (S["SH005"], 0.0),
+    m.auto["bed"] += [(S["SH004"], 0.0), (T("SH004", 0.25), -7.0), (S["SH005"] - 0.3, -7.0), (S["SH005"], 0.0),
                       (S["SH010"] - 0.5, 0.0), (S["SH010"] + 1.5, -5.0), (S["SH011"], -8.0)]
 
     # ---- SH002 first light: a bus at the corner, men arriving, lumber coming off the flatbed -----------------
@@ -150,39 +155,43 @@ def build(sfx_dir, master_db=0.0, timeline=None):
         m.auto["bed"] += [(S["SH012"] - 0.2, 0.0), (S["SH012"] + 0.4, -6.0), (S["SH003"] - 0.3, -6.0), (S["SH003"], 0.0)]
         m.place("banner_flap", S["SH012"], -16, fin=0.4, fout=0.4, end=D["SH012"])
         m.place("wind_winter", S["SH012"], -19, fin=0.5, fout=0.4, start=6.0, end=6.0 + D["SH012"])
+        m.place("drizzle_square", S["SH012"], -20, fin=0.4, fout=0.4, start=3.0, end=3.0 + D["SH012"])
 
     # ---- SH003 uprights: distant nailing on the joists, voices, the post's foot seats at the end ------------
-    m.place("workmen_far", S["SH003"] + 0.2, -22, fin=0.5, fout=0.6, end=5.6)
-    m.place("hammer_work", S["SH003"] + 0.6, -24, start=0.0, end=4.6, fin=0.3, fout=0.5)
-    m.place("timber_drop", S["SH003"] + 5.3, -5, start=0.6, end=2.0, fin=0.005, fout=0.3)
+    m.place("workmen_far", T("SH003", 0.2), -22, fin=0.5, fout=0.6, end=5.6)
+    m.place("hammer_work", T("SH003", 0.6), -24, start=0.0, end=4.6, fin=0.3, fout=0.5)
+    m.place("timber_drop", T("SH003", 5.3), -5, start=0.6, end=2.0, fin=0.005, fout=0.3)
 
     # ---- SH004 chop saw: the whine rises and is cut off hard ---------------------------------------------------
-    saw_len = (S["SH005"] - 0.3) - (S["SH004"] + 0.15)
-    m.place("chop_saw", S["SH004"] + 0.15, -13, start=0.0, end=saw_len, fin=0.02, fout=0.03)
+    saw_len = (S["SH005"] - 0.3) - (T("SH004", 0.15))
+    m.place("chop_saw", T("SH004", 0.15), -13, start=0.0, end=saw_len, fin=0.02, fout=0.03)
+    m.place("drizzle_timber", S["SH004"], -24, fin=0.3, fout=0.2, loop_until=S["SH005"])
 
     # ---- SH005 Pengold at the glass / SH006 his POV: the room, and the build through closed windows ---------
     m.place("interior_room", S["SH005"], -8, bus="int", fin=0.05, fout=0.05, loop_until=S["SH007"])
     m.place("hammer_work", S["SH005"] + 0.8, -25, bus="int", start=5.0, end=14.5, fin=0.5, fout=0.5, lp=900)
     m.place("circular_saw", S["SH005"] + 2.2, -33, bus="int", start=1.0, end=5.5, fin=0.3, fout=0.4, lp=700)
     m.place("city_ambience", S["SH005"], -34, bus="int", fin=0.2, fout=0.2, lp=400, loop_until=S["SH007"])
-    m.place("workmen_far", S["SH006"] + 0.3, -30, bus="int", end=4.6, fin=0.4, fout=0.4, lp=1200)
-    m.place("nailgun", S["SH006"] + 0.9, -27, bus="int", start=0.0, end=2.7, fin=0.05, fout=0.1, lp=1000)
+    m.place("drizzle_square", S["SH005"], -30, bus="int", fin=0.3, fout=0.3, lp=1500, loop_until=S["SH007"])   # rain on the glass
+    m.place("workmen_far", T("SH006", 0.3), -30, bus="int", end=4.6, fin=0.4, fout=0.4, lp=1200)
+    m.place("nailgun", T("SH006", 0.9), -27, bus="int", start=0.0, end=2.7, fin=0.05, fout=0.1, lp=1000)
 
     # ---- SH007 the crossbeam seats. Then the beat too long. --------------------------------------------------
-    m.place("workmen_far", S["SH007"] + 0.2, -22, end=3.2, fin=0.3, fout=0.6)
-    m.place("timber_drop", S["SH007"] + 2.95, -12, start=3.05, end=5.6, fin=0.003, fout=0.6)   # the big slap at 3.14 -> lands at +3.04 s
-    m.place("halyard", S["SH007"] + 3.2, -28, bus="bed", fin=0.8, fout=0.4, end=2.8)           # only the wind is left
+    m.place("workmen_far", T("SH007", 0.2), -22, end=3.2, fin=0.3, fout=0.6)
+    m.place("timber_drop", T("SH007", 2.95), -12, start=3.05, end=5.6, fin=0.003, fout=0.6)   # the big slap at 3.14 -> lands at +3.04 s
+    m.place("halyard", T("SH007", 3.2), -28, bus="bed", fin=0.8, fout=0.4, end=2.8)           # only the wind is left
 
     # ---- SH008 decking: boots, the nail gun, the brush ------------------------------------------------------
-    m.place("boots_decking", S["SH008"] + 0.2, +10, fin=0.05, fout=0.2, end=4.7)
-    m.place("nailgun", S["SH008"] + 1.5, -12, start=0.0, end=1.95, fin=0.02, fout=0.08)
-    m.place("hammer_work", S["SH008"] + 0.4, -26, start=8.0, end=12.4, fin=0.3, fout=0.4)
+    m.place("boots_decking", T("SH008", 0.2), +10, fin=0.05, fout=0.2, end=4.7)
+    m.place("drizzle_timber", S["SH008"], -22, fin=0.3, fout=0.3, loop_until=S["SH009"])
+    m.place("nailgun", T("SH008", 1.5), -12, start=0.0, end=1.95, fin=0.02, fout=0.08)
+    m.place("hammer_work", T("SH008", 0.4), -26, start=8.0, end=12.4, fin=0.3, fout=0.4)
 
     # ---- SH009 steps: the last screws, his weight on the tread, he walks off -------------------------------
-    m.place("drill", S["SH009"] + 0.1, -18, fin=0.05, fout=0.2, end=3.2)
-    m.place("boots_decking", S["SH009"] + 1.0, +8, start=3.85, end=5.75, fin=0.02, fout=0.15)    # two steps, the test
-    m.place("workmen_far", S["SH009"] + 1.6, -24, start=6.0, end=12.5, fin=0.5, fout=0.6)        # the laugh is in here
-    m.place("bus_brake_far", S["SH009"] + 3.8, -22)
+    m.place("drill", T("SH009", 0.1), -18, fin=0.05, fout=0.2, end=3.2)
+    m.place("boots_decking", T("SH009", 1.0), +8, start=3.85, end=5.75, fin=0.02, fout=0.15)    # two steps, the test
+    m.place("workmen_far", T("SH009", 1.6), -24, start=6.0, end=12.5, fin=0.5, fout=0.6)        # the laugh is in here
+    m.place("bus_brake_far", T("SH009", 3.8), -22)
 
     # ---- SH010 dusk: sound thins to wind and the halyard; the first strikes return, far away ----------------
     m.place("halyard", S["SH010"] + 0.1, -18, bus="bed", fin=1.2, fout=0.0, loop_until=S["SH011"] + 5.0)

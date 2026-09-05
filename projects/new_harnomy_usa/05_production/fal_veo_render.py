@@ -66,8 +66,9 @@ SHOTS = {
   "word stays fully visible, perfectly legible and undistorted for the whole shot. "
   "Nothing else moves; the stone is fixed. No people. " + LOOK),
  "SH003": ("6s",
-  "Low angle from the paving. Two workmen in high-visibility vests and knit caps steadily raise a tall square pine "
-  "upright from a lean to full vertical, hand over hand, their breath steaming in the cold; a third man holds a "
+  "Low angle from the wet paving in front of the stage, looking straight at City Hall across the open joists of the "
+  "platform frame in the foreground. Two workmen in high-visibility vests and knit caps steadily raise a tall square pine "
+  "upright on the far edge of the frame from a lean to full vertical, hand over hand, their breath steaming in the cold; a third man holds a "
   "diagonal brace steady, rain beading on their wet vests. " + WEATHER + STATIC + " Behind them the semicircular colonnade of City Hall with its mauve banner "
   "stays perfectly fixed; the parked cars, the lumber flatbed and the box van do not move; two distant pedestrians "
   "walk slowly away from the camera under umbrellas. " + TRAFFIC + "Effortful, deliberate, real-time movement, faces turned toward the post, "
@@ -109,9 +110,10 @@ SHOTS = {
   "stay. " + STATIC + " The framing at the end of the shot is identical to the framing at the start. Shallow depth "
   "of field on the boards and the boots. " + LOOK),
  "SH009": ("6s",
-  "Medium shot beside the left end of a long finished timber stage. A workman in a high-visibility vest, seen in "
-  "profile, puts his weight on the first tread of a short flight of new pine steps set against the platform, "
-  "bounces once to test it, nods to himself, steps down and walks out of frame to the left at an ordinary pace. "
+  "Head-height medium shot from the wet paving in front of the left end of a long finished timber stage, looking "
+  "straight at City Hall; the stage runs horizontally across the frame. A workman in a high-visibility vest and white "
+  "hard hat, seen in profile, puts his weight on the first tread of a short flight of new pine steps at the front of "
+  "the platform, bounces once to test it, nods to himself, steps down and walks out of frame to the left at an ordinary pace. "
   + STATIC + " The row of folding chairs and the podium on the platform stay perfectly still; behind them City Hall "
   "with its mauve banner; parked cars do not move; the lumber truck and box van stand at the kerb; steam from a "
   "hot-food cart; a bus stopped at the far corner. The stage, its steps and the podium remain in the frame in exactly "
@@ -151,7 +153,11 @@ def main():
     only = None
     if "--only" in args:
         i = args.index("--only")
-        only = set(a for a in args[i + 1:] if not a.startswith("--"))
+        only = set()
+        for a in args[i + 1:]:
+            if a.startswith("--"):
+                break
+            only.add(a)
     endpoint = "fal-ai/veo3.1/fast/image-to-video" if fast else "fal-ai/veo3.1/image-to-video"
     rate = 0.10 if fast else 0.20
     os.makedirs(OUT, exist_ok=True)
@@ -159,7 +165,7 @@ def main():
         preflight()
         import fal_client
     total = 0.0
-    order = [a for a in args[args.index("--only") + 1:] if not a.startswith("--")] if only else list(SHOTS)
+    order = [a for a in args[args.index("--only") + 1:] if a in only] if only else list(SHOTS)
     for sid in order:
         dur, prompt = SHOTS[sid]
         dst = os.path.join(OUT, "NH-S901-%s.mp4" % sid)
