@@ -43,6 +43,7 @@ is put people on that platform.
 |---|---|---|---|
 | 1 | 0–5 | **Black.** One hammer strike. Then two more, unhurried, in a large cold outdoor reverb. | Sound before image. The rhythm of building, alone in the dark. |
 | 2 | 5–11 | Wide, locked-off: the square outside city hall at first light, empty, frost on the grass, a flatbed of fresh lumber. Winter light, short day. | The site before anything exists. Nothing is wrong yet. |
+| 2b | 11–15 | **The banner.** Medium, long lens: the mauve banner alone between the columns, the fabric breathing in a light wind. (Added 2026-09-05 as SH012; the running times below shift by four seconds.) | The one place the audience can read what the city has written — NEW HARNOMY, DAY OF ATONEMENT — before anyone on stage does. |
 | 3 | 11–17 | Low angle: two uprights raised into position against a white sky. Breath steaming. | The first vertical. Read as staging; shaped as gallows. |
 | 4 | 17–22 | Insert, tight: a chop saw. Timber pushed through. Sawdust in low sun. The blade's whine rises and cuts off. | Craft, close, beautiful. The most seductive shot in the teaser. |
 | 5 | 22–27 | **Pengold's window.** Interior, mid-century municipal office. He stands at the glass looking down, backlit, a coffee going cold, three mauve books stacked on the credenza behind him. Locked-off. He does not move. | The one principal we see. He is watching it go up. He is not troubled. |
@@ -79,7 +80,8 @@ Rules for the populated square:
   podium — with a timber truss (uprights + crossbeam) across its rear for lights and a banner. It reads as
   what it is: a stage. The gallows survives only in silhouette.
 - **A mauve banner hangs from the portico all week:** NEW HARNOMY PEOPLE'S THANKSGIVING FESTIVAL /
-  ANTI-THANKSGIVING DAY · SATURDAY. The city names its own structure, which is what makes it innocent — and
+  ANTI-THANKSGIVING DAY OF ATONEMENT · SATURDAY (the day's official name, Brad 2026-09-05 — the city names
+  the mechanism of its own Feast and nobody on stage hears it). The city names its own structure, which is what makes it innocent — and
   it is the first time the audience sees the misspelled town name, in public, unremarked.
 - The dusk frames (10, 11) thin out — a few last people crossing, cars with headlights on, the square
   emptying as the light goes — so the final hold is *quieter*, not *empty*.
@@ -90,8 +92,11 @@ Rules for the populated square:
   scaffold is for someone, and the teaser never says who. Showing him would answer a question the
   audience has not yet learned to ask.
 - **No Summer, no Valencia, no chorus, no portrait.** One face, once. (Pedestrians are not faces — see the revision rules above.)
-- **No text of any kind** — no title, no date, no logo, no chyron. Kernel negatives already forbid
-  on-screen text; here it is also dramaturgy. The piece is not announced. It is *assembled.*
+- **No text inside the piece** — no date, no chyron, no caption; the banner is the only writing and it is the city's, not
+  ours. Amended 2026-09-05 (Brad: 'this film should be in the form of trailer with beginning and end'): the piece is
+  now book-ended — a small ILYRIUM STUDIOS ident dissolving through the opening black, and after the cut on
+  stillness one second of silence, then the title NEW HARNOMY, U.S.A. / AN OPERA on a fourth hammer strike, then
+  the studio card. Between those cards the rule holds: nothing is announced, everything is *assembled.*
 - **No music.** See rule 2.
 - **No blood, no rope, no shackles, no anticipatory imagery.** The horror is that it is a perfectly
   ordinary Tuesday.
@@ -146,4 +151,17 @@ so the last thing the audience hears is the first thing, now finished.
 - Sound: 14 layers in `06_audio/sound_design/NH-S901_sfx/`, placed by `mix_NH-S901.py` (three buses; every gain is a
   number in the file). The single hammer strike that opens the teaser is the same strike, low-passed and 13 dB down,
   under shot 10. Shot 11 goes to digital silence one second before the black.
+
+## v3 production record (2026-09-05)
+
+- **Finals on Veo 3.1** (`05_production/fal_veo_render.py`, fal-ai/veo3.1/image-to-video, 1080p, 24 fps, no audio,
+  $0.20/s) from the same LOCKED keyframes, after Brad rejected the v2 Wan cut on quality (NH-USA-039). Box/Wan
+  stays the previz tier. Nine shots + the banner insert ≈ $12 a pass. Renders and JSON sidecars in
+  `05_production/renders/NH-S901/veo/` (pipeline finding NH-USA-038).
+- **Banner:** line 2 is now the day's official name (see the revision rules above); set in pixels on the plates and
+  the three keyframes that see it. New shot **SH012**, the banner insert, plays second.
+- **Trailer shape** and title typography (Oswald — the same condensed grotesque family as the city's banner, so the
+  title reads as the town's own signage) in `07_post/assemble_NH-S901_v3.py`; the mix reads the assembler's timeline.
+- SH001 is generated black with the ident; SH010/SH011 are one Veo hold with the light taken down in post over the
+  last six seconds; the fourth hammer strike lands under the title.
 

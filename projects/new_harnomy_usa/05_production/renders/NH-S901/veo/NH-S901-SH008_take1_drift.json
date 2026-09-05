@@ -1,0 +1,26 @@
+{
+  "shot_id": "NH-S901-SH008",
+  "endpoint": "fal-ai/veo3.1/image-to-video",
+  "keyframe": "04_preproduction\\keyframes\\NH-S901\\NH-S901-SH008_key.png",
+  "arguments": {
+    "prompt": "Close insert on new pine decking. Work boots take two slow steps along the fresh boards, then a gloved hand sweeps sawdust off the square edge of the platform with a hand brush, the dust falling in the low raking winter sun. The camera is locked off on a tripod and does not move at all: no pan, no tilt, no zoom, no drift, no handheld shake. Real-time speed, natural human movement, never slow motion. Shallow depth of field on the boards and the boots. Prestige political drama photographed on an Arri Alexa with anamorphic lenses: single-source natural light, slight 35mm film grain, colours desaturated about twelve percent, warm tungstens, deep browns and charcoals in the shadows, photographic realism.",
+    "aspect_ratio": "16:9",
+    "duration": "6s",
+    "resolution": "1080p",
+    "generate_audio": false,
+    "negative_prompt": "slow motion, speed ramp, time-lapse, camera movement, zoom, pan, dolly, handheld shake, on-screen text, captions, subtitles, watermark, logo, lens flare, fast traffic, cars driving through the frame, people looking at the camera, faces toward camera, cartoon, illustration, oversaturated",
+    "seed": 901008
+  },
+  "image_url": "https://v3b.fal.media/files/b/0aa9258c/Oec66ckVMJ9n6YUqAn959_NH-S901-SH008_key.png",
+  "response": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0aa92596/4rOdvfTOTbGk9aAAdryEV_75c6f5baab2a4e3881b693da3d033999.mp4",
+      "content_type": "video/mp4",
+      "file_name": "75c6f5baab2a4e3881b693da3d033999.mp4",
+      "file_size": 6730402
+    }
+  },
+  "seconds": 109.8,
+  "est_cost_usd": 1.2000000000000002,
+  "rendered_at": "2026-09-04T21:57:21"
+}

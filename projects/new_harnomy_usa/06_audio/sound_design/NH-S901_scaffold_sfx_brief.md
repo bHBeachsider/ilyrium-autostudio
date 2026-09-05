@@ -38,3 +38,12 @@ teaser was explicitly built to avoid (Brad, 2026-09-04: structural rhyme only).
 The interior cut at SH005 should be a real acoustic drop, not a fade — glass between us and the
 work, sudden and slightly airless. When SH007 returns outside, the crossbeam seating should be
 the loudest single event in the teaser.
+
+## v3 additions (2026-09-05)
+
+- **banner_flap** — the fabric breathing under the banner insert (SH012): the city bed drops 6 dB for four seconds
+  and only the wind and the canvas remain. Generated on fal elevenlabs sound-effects v2 like the rest.
+- **The fourth strike.** After the cut to black on stillness: one second of digital silence, then the same single
+  hammer strike that opened the piece, full-voiced, under the title card. Nothing under the studio card. The first
+  sound of the trailer is its last.
+

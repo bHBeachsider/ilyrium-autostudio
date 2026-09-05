@@ -87,8 +87,8 @@ shots SH005/SH006 agree.
   making it longer: the structure is *more* innocent, not less.
 - **The banner.** A long fabric banner hangs from the portico's entablature, between the columns, in
   **Framework mauve** (the brownish-purple of an aged university-press paperback, never lavender) with pale
-  lettering: **NEW HARNOMY PEOPLE'S THANKSGIVING FESTIVAL** on one line and **ANTI-THANKSGIVING DAY ·
-  SATURDAY** beneath. It is up all week. This is the first time the audience sees the town's name written
+  lettering: **NEW HARNOMY PEOPLE'S THANKSGIVING FESTIVAL** on one line and **ANTI-THANKSGIVING DAY OF
+  ATONEMENT · SATURDAY** beneath (the day's official name, Brad 2026-09-05; line 2 set ~10% smaller). It is up all week. This is the first time the audience sees the town's name written
   down — misspelled, on a municipal banner, in public — and no one on stage ever remarks on it. The kernel's
   no-on-screen-text rule targets chyrons and captions; a diegetic banner is staging, like the program cover
   (motifs §9). Lettering must be *legible* in the wide plates and may soften in motion.
@@ -184,4 +184,13 @@ dusk was derived from first-light without moving the camera — one more reason 
 - Any keyframe that shows the banner must be composed **from a LOCKED plate as reference**, never from the
   prompt alone, or the misspelling will silently revert. Check the word at 8× before accepting any frame in
   which the banner is legible.
+
+**LOCKED v2 (2026-09-05).** Line 2 of the banner re-set to the day's official name, *ANTI-THANKSGIVING DAY OF
+ATONEMENT · SATURDAY*, on both LOCKED plates with `set_banner_line.py` — every capital the new line needs already
+existed on the fabric, so the letters are the banner's own glyphs (same font, weight, colour, light), spaced with
+the line's own metrics and scaled to fit. Keyframes SH007/SH009 (frontal) were re-set the same way; SH003
+(banner in perspective) with `transplant_line2.py`, which rectifies the banner quad, clears the old line along a
+per-column split fitted to the sag, keys in the plate's line-2 letters at the keyframe's line height, and warps
+back. The pre-v2 LOCKED plates are in git at `0d306e1`. Rule stands: banner text is a plate asset; never ask a
+model to render it.
 

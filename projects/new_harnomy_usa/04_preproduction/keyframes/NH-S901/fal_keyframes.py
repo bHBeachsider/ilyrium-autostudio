@@ -88,6 +88,17 @@ STAGE_TRUSS = ("The structure is a LONG low timber rally stage about twenty-four
                "ground-floor arches behind. ")
 
 JOBS = [
+ # SH012 (2026-09-05), plays second: the banner insert. At 1080p the wides leave the banner ~330 px across and the video
+ # model softens the lettering; the misspelling is the point, so it gets four seconds of its own.
+ ("NH-S901-SH012", "16:9", [EXT_FIRST],
+  "Same building, same banner, same first-light morning as the reference, from a new camera position: a medium "
+  "shot from the square at head height with a long lens, framing the mauve fabric banner that hangs between the "
+  "columns of the semicircular portico. The banner fills most of the frame width, one limestone column cut off at "
+  "each edge, the tops of the ground-floor arches along the bottom of frame, the entablature along the top. The "
+  "banner reads, in pale condensed capitals exactly as in the reference, two lines: NEW HARNOMY PEOPLE'S "
+  "THANKSGIVING FESTIVAL. and below it, smaller, ANTI-THANKSGIVING DAY OF ATONEMENT - SATURDAY. The fabric hangs "
+  "from its top edge with a slight sag and one soft fold, low winter sun raking across it from the left, the "
+  "limestone warm. No people. " + LOOK),
  # v3 (2026-09-04). v2 takes are kept in _v2_takes/ for the record:
  #  SH003 v2 re-imagined the building (giant-order colonnade, carved CITY HALL) once the camera moved -
  #    so the v1 take, which had the right building and the right action, is now the camera reference;

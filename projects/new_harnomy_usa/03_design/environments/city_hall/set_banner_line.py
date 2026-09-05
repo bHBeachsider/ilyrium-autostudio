@@ -46,22 +46,51 @@ def segment_line(ink, r0, r1, x0):
     return [(x0 + a, x0 + b) for a, b in merged if b - a >= 1]
 
 
-def split_merged(runs, ink, r0, r1, x0, want):
-    """Kerned pairs (A-Y, A-T, -T) touch at this resolution and come out as one run. While we have fewer
-    runs than characters, split the widest run at its weakest interior column."""
+REL_W = {"I": 0.38, "J": 0.6, "L": 0.8, "T": 0.9, "F": 0.85, "E": 0.85, "M": 1.3, "W": 1.4, "-": 0.55,
+         "'": 0.25, ".": 0.25, ":": 0.25, "1": 0.5}
+
+
+def split_merged(runs, ink, r0, r1, x0, text):
+    """Kerned pairs (A-Y, A-T, -T, TH) touch at this resolution and come out as one run. Align the runs to
+    the characters by dynamic programming over expected glyph widths (each run = 1 or 2 characters), then
+    split every two-character run at its weakest interior column."""
+    chars = [c for c in text if c != " "]
     runs = list(runs)
-    while len(runs) < want:
-        widths = [b - a for a, b in runs]
-        med = float(np.median(widths))
-        i = int(np.argmax(widths))
-        a, b = runs[i]
-        if b - a < 1.4 * med:
-            break
+    if len(runs) >= len(chars):
+        return runs
+    widths = np.array([b - a + 1 for a, b in runs], dtype=float)
+    unit = np.median(widths) / 1.0
+    ew = np.array([REL_W.get(c, 1.0) for c in chars]) * unit
+    n, m = len(runs), len(chars)
+    INF = 1e18
+    # dp[i][j] = best cost aligning first i runs with first j chars
+    dp = np.full((n + 1, m + 1), INF); dp[0][0] = 0.0
+    back = np.zeros((n + 1, m + 1), dtype=int)
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            c1 = dp[i - 1][j - 1] + (widths[i - 1] - ew[j - 1]) ** 2
+            if c1 < dp[i][j]:
+                dp[i][j] = c1; back[i][j] = 1
+            if j >= 2:
+                c2 = dp[i - 1][j - 2] + (widths[i - 1] - ew[j - 1] - ew[j - 2] - 0.15 * unit) ** 2 + 0.1 * unit ** 2
+                if c2 < dp[i][j]:
+                    dp[i][j] = c2; back[i][j] = 2
+    if dp[n][m] >= INF:
+        return runs
+    groups = []
+    i, j = n, m
+    while i > 0:
+        k = back[i][j]; groups.append(k); i -= 1; j -= k
+    groups.reverse()
+    out = []
+    for (a, b), k in zip(runs, groups):
+        if k == 1:
+            out.append((a, b)); continue
         col = ink[r0:r1 + 1, a - x0:b - x0 + 1].sum(0).astype(float)
-        lo, hi = int(0.25 * (b - a)), int(0.75 * (b - a))
-        j = lo + int(np.argmin(col[lo:hi + 1]))
-        runs[i:i + 1] = [(a, a + j - 1), (a + j + 1, b)] if col[j] == 0 else [(a, a + j), (a + j + 1, b)]
-    return runs
+        lo, hi = int(0.3 * (b - a)), int(0.7 * (b - a))
+        jj = lo + int(np.argmin(col[lo:hi + 1]))
+        out += [(a, a + jj - 1), (a + jj + 1, b)] if col[jj] == 0 else [(a, a + jj), (a + jj + 1, b)]
+    return out
 
 
 def label(runs, text):
@@ -111,6 +140,14 @@ def main():
     bands = [b for b in runs_of(rows) if b[1] - b[0] >= 6]
     bands = sorted(bands, key=lambda b: -ink[b[0]:b[1] + 1].sum())[:2]
     bands = sorted(bands)
+    if len(bands) == 1:
+        # the two lines touch (tilt, or a tight leading): split the band at its weakest interior row
+        b0, b1 = bands[0]
+        prof = ink[b0:b1 + 1].sum(1).astype(float)
+        lo, hi = int(0.3 * (b1 - b0)), int(0.7 * (b1 - b0))
+        j = lo + int(np.argmin(prof[lo:hi + 1]))
+        bands = [(b0, b0 + j - 1), (b0 + j + 1, b1)]
+        print("one text band; split at row %d (ink %d)" % (y0 + b0 + j, int(prof[j])))
     if len(bands) != 2:
         raise SystemExit("expected two text lines in the box, found %d: %s" % (len(bands), bands))
     (l1r0, l1r1), (l2r0, l2r1) = bands
@@ -119,7 +156,7 @@ def main():
     for k, (r0, r1, text) in {1: (l1r0, l1r1, line1), 2: (l2r0, l2r1, line2)}.items():
         r0 = max(0, r0 - pad); r1 = min(ink.shape[0] - 1, r1 + pad)
         runs = segment_line(ink, r0, r1, x0)
-        runs = split_merged(runs, ink, r0, r1, x0, len([c for c in text if c != " "]))
+        runs = split_merged(runs, ink, r0, r1, x0, text)
         L[k] = dict(rows=(y0 + r0, y0 + r1 + 1), runs=runs, text=text, glyphs=label(runs, text))
         print("line %d rows %d-%d: %d glyphs %s" % (k, y0 + r0, y0 + r1, len(runs), text))
 

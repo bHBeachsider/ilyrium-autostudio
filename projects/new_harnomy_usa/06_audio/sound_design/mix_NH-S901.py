@@ -8,10 +8,14 @@ numpy so every gain, fade and low-pass is a number in this file rather than a se
 Three buses: BED (the ambiences and far layers, automated), FX (the events, never ducked), INT (the room,
 shots 5-6). A master envelope carries the end.
 
-usage: mix_NH-S901.py SFX_DIR PICTURE.mp4 OUT.mp4 [--wav OUT.wav] [--master DB]
+usage: mix_NH-S901.py SFX_DIR PICTURE.mp4 OUT.mp4 [--timeline PICTURE.timeline.json] [--wav OUT.wav] [--master DB]
 
-Timeline: the picture cut is eleven Wan clips of 16n+1 frames at 16 fps plus one second of black; the shot
-in-points below are computed from those frame counts, not typed in.
+Timeline: read from the assembler's timeline JSON ({shot: [start, duration]}, v3) so the in-points are the
+picture's own; without --timeline the v2 layout (16n+1 frames at 16 fps + 1 s black) is computed.
+
+v3 (2026-09-05): the banner insert SH012 (wind and the fabric breathing), and the trailer's end - one second of
+silence after the cut on stillness, then the FOURTH hammer strike under the title (the first sound of the trailer
+is its last), then nothing under the studio card.
 """
 import os
 import subprocess
@@ -28,13 +32,17 @@ SHOTS = [("SH001", 5), ("SH002", 6), ("SH003", 6), ("SH004", 5), ("SH005", 5), (
 TAIL_BLACK = 1.0
 
 
-def in_points():
-    t, out = 0.0, {}
+def in_points(timeline=None):
+    if timeline:
+        import json
+        tl = json.load(open(timeline))
+        return {k: v[0] for k, v in tl.items()}, {k: v[1] for k, v in tl.items()}
+    t, out, dur = 0.0, {}, {}
     for sid, s in SHOTS:
-        out[sid] = t
+        out[sid] = t; dur[sid] = (FPS * s + 1) / FPS
         t += (FPS * s + 1) / FPS
     out["END"] = t + TAIL_BLACK
-    return out
+    return out, dur
 
 
 def db(x):
@@ -113,8 +121,8 @@ class Mix:
         return out
 
 
-def build(sfx_dir, master_db=0.0):
-    S = in_points()
+def build(sfx_dir, master_db=0.0, timeline=None):
+    S, D = in_points(timeline)
     m = Mix(sfx_dir, S["END"])
 
     # ---- SH001 black: three unhurried strikes, alone, in the cold. -----------------------------------------
@@ -136,6 +144,12 @@ def build(sfx_dir, master_db=0.0):
     m.place("bus_brake_far", S["SH002"] + 2.3, -17)
     m.place("workmen_far", S["SH002"] + 2.8, -25, fin=1.0, fout=0.5, end=3.2)
     m.place("timber_drop", S["SH002"] + 3.9, -10, start=0.6, end=2.0, fout=0.3)      # unloading, off-screen (the small drop)
+
+    # ---- SH012 the banner (v3): only wind and the fabric breathing; the city falls away for four seconds ----
+    if "SH012" in S:
+        m.auto["bed"] += [(S["SH012"] - 0.2, 0.0), (S["SH012"] + 0.4, -6.0), (S["SH003"] - 0.3, -6.0), (S["SH003"], 0.0)]
+        m.place("banner_flap", S["SH012"], -16, fin=0.4, fout=0.4, end=D["SH012"])
+        m.place("wind_winter", S["SH012"], -19, fin=0.5, fout=0.4, start=6.0, end=6.0 + D["SH012"])
 
     # ---- SH003 uprights: distant nailing on the joists, voices, the post's foot seats at the end ------------
     m.place("workmen_far", S["SH003"] + 0.2, -22, fin=0.5, fout=0.6, end=5.6)
@@ -177,9 +191,14 @@ def build(sfx_dir, master_db=0.0):
 
     # ---- SH011 the last light goes: everything to nothing by 5.0 s in; one second of silence; black --------
     m.master += [(S["SH011"] + 0.8, 0.0), (S["SH011"] + 5.0, -70.0)]
+    if "TITLE" in S:
+        m.master += [(S["TITLE"] - 0.05, -70.0), (S["TITLE"], 0.0)]
+        m.place("hammer_single", S["TITLE"] + 0.35, -8, **STRIKE)     # the fourth strike, under the title
 
     out = m.render(master_db)
-    out[int((S["SH011"] + 5.0) * SR):] = 0.0
+    end_silence = int((S["SH011"] + 5.0) * SR)
+    resume = int((S["TITLE"] - 0.05) * SR) if "TITLE" in S else len(out)
+    out[end_silence:resume] = 0.0
     peak = np.abs(out).max()
     if peak > db(-1.0):
         print("[mix] peak %.2f dBFS - limiting by %.1f dB" % (20 * np.log10(peak), 20 * np.log10(peak) + 1.0))
@@ -200,8 +219,11 @@ def main():
         i = args.index("--master"); master = float(args[i + 1]); del args[i:i + 2]
     if "--wav" in args:
         i = args.index("--wav"); wav = args[i + 1]; del args[i:i + 2]
+    timeline = None
+    if "--timeline" in args:
+        i = args.index("--timeline"); timeline = args[i + 1]; del args[i:i + 2]
     sfx_dir, picture, out = args[0], args[1], args[2]
-    x, S = build(sfx_dir, master)
+    x, S = build(sfx_dir, master, timeline)
     wav = wav or os.path.splitext(out)[0] + ".wav"
     write_wav(x, wav)
     print("[mix] %.2f s, in-points: %s" % (S["END"], {k: round(v, 3) for k, v in S.items()}))

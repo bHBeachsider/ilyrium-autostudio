@@ -35,6 +35,8 @@ LAYERS = [
  ("interior_room",  "the interior of a large quiet high-ceilinged office room, close room tone, an old cast-iron radiator ticking as it heats, faint muffled construction sounds through closed glass windows", 12, True),
  ("boots_decking",  "work boots stepping on fresh pine decking boards, a few slow steps, then a hand brush sweeping sawdust off wood, outdoors", 7, False),
  ("bus_brake_far",  "a distant city bus air brake release and the bus pulling away slowly, far off across a square", 5, False),
+ # v3 (2026-09-05): the banner insert
+ ("banner_flap",    "a large heavy fabric banner stirring and softly flapping in a light steady winter wind, the canvas breathing and creaking against its ropes, outdoors, close, no voices", 10, True),
 ]
 
 
