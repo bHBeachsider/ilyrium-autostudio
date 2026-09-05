@@ -11,16 +11,16 @@
     "negative_prompt": "turning around, walking away, camera pull back, dolly, reframing, people walking into frame, pedestrians in the foreground, moving bus, moving vehicles, slow motion, speed ramp, time-lapse, camera movement, zoom, pan, dolly, handheld shake, on-screen text, captions, subtitles, watermark, logo, lens flare, fast traffic, cars driving through the frame, people looking at the camera, faces toward camera, cartoon, illustration, oversaturated",
     "seed": 901006
   },
-  "image_url": "https://v3b.fal.media/files/b/0aa9399d/GDSrG3emqAQpvTKiEuqdE_NH-S901-SH006_key.png",
+  "image_url": "https://v3b.fal.media/files/b/0aa93cbf/vBKafm2wFllslQGtKvbz5_NH-S901-SH006_key.png",
   "response": {
     "video": {
-      "url": "https://v3b.fal.media/files/b/0aa939aa/0rZpDvURCbqkyfy5KZ-hO_8bc1c6467a7b479bbeab6ebbf73c94c8.mp4",
+      "url": "https://v3b.fal.media/files/b/0aa93ccd/FbBrLhJ3ncOjjIrPtuPx8_fa18ff320bff424ab6fba565b82be2e7.mp4",
       "content_type": "video/mp4",
-      "file_name": "8bc1c6467a7b479bbeab6ebbf73c94c8.mp4",
-      "file_size": 7920251
+      "file_name": "fa18ff320bff424ab6fba565b82be2e7.mp4",
+      "file_size": 7464495
     }
   },
-  "seconds": 134.7,
+  "seconds": 137.3,
   "est_cost_usd": 1.2000000000000002,
-  "rendered_at": "2026-09-05T12:17:48"
+  "rendered_at": "2026-09-05T14:31:33"
 }

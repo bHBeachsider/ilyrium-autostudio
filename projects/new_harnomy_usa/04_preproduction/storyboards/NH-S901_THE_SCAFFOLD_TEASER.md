@@ -182,3 +182,6 @@ B; variant A, with the v3 key as second reference, kept the wrong layout — the
 a single-reference cleanup edit removing the foreground pedestrians (C). Veo 3.1 re-rendered SH006 from the new key
 (6 s, 1080p/24, locked camera). Everything else is v5. The v3 key is in `_v3_takes/`, the v5 Veo take in
 `05_production/renders/NH-S901/veo/v5_pov_at_building/`. Cost: 3 edits ≈ $0.45, Veo $1.20.
+
+### v7 production record (2026-09-05)
+Brad on v6: (1) SH006's stage sat at an angle to City Hall - every shot must have it parallel; (2) worker movement too fast and jerky. (1) Single-reference straightening edit on the v6 key with the clay as second reference (fal_rekey_sh006.py D), Veo re-rendered; the model also completed the decking in that frame, accepted as consistent with SH007. (2) The Veo clips carry no duplicated frames - the model animates the figures too briskly - so shots 3, 4, 6, 7, 8, 9 are slowed to 75% in post with ffmpeg motion-compensated interpolation (minterpolate mci/aobmc/bidir), every output frame synthesized; RIFE on the ComfyUI box is the fallback if any shot ghosts. SFX offsets inside those shots were NOT retimed for the 0.75x - check the saw (SH004) and the beam seat (SH007) against picture. Banner wording change (TWEED's / Contribution vs Contrition) pending Brad's answers. Cost: 1 edit ~$0.15, Veo $1.20.

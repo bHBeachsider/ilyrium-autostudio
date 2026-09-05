@@ -68,6 +68,15 @@ JOBS = {
        "areas with the same empty grey granite paving, matching the low raking winter light and frost. Change "
        "nothing else: the columns, balustrade, stage, workmen, vehicles, distant pedestrians, buildings and light "
        "stay exactly as they are."),
+ # D (after C): Brad on v6 - the stage in this shot is at an angle to City Hall; every shot must have it parallel.
+ "D": ([os.path.join(OUT, "SH006_C.png"), CLAY],
+       "Edit this photograph (the FIRST image). The long timber platform is currently skewed - its left end is nearer "
+       "the camera than its right end. Rotate it about its centre so that it is EXACTLY PARALLEL to the building's "
+       "facade and to the stone balustrade in the foreground: its long near edge must run perfectly horizontal "
+       "across the frame, both ends at the same height and the same distance from the camera, exactly as the grey "
+       "model in the SECOND image shows it. Move the two tall pine uprights with it so they stand at the two ends of "
+       "the platform's near edge, vertical, no crossbeam. Keep the camera, the columns, the balustrade, the paving, "
+       "the lumber truck and van, the workmen, the distant pedestrians and the light exactly as they are."),
  "B": ([CLAY, EXT_FIRST],
        LAYOUT + "Use the SECOND reference only for materials, light and the life of the square - the warm limestone, "
        "the grey granite setts, the low winter sun and frost, the parked cars, the lumber flatbed, the box van, the "
