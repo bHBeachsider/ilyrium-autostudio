@@ -109,6 +109,14 @@ shots SH005/SH006 agree.
 - **Orientation, for prompts (NH-USA-035):** the stage runs LEFT TO RIGHT across any view from the building, parallel to the
   facade; its long near edge (toward the building) carries the truss uprights; from the square the truss stands BEHIND the
   platform. Say the axis and the nearest edge every time - size words do not carry orientation.
+- **The blockout is the layout authority (2026-09-05).** `blockout/build_city_hall.py` builds this section as a Blender
+  greybox (runs headless with the `bpy` pip module) and renders a clay pass from one camera per shot; `blockout/cameras.json`
+  carries each camera's position, rotation and lens. Fitted to the LOCKED dusk plate by 50/50 overlay
+  (`blockout/overlay_PLATE.png`): the stage's centre is **32 m in front of the column line**, the plate camera is 66 m out
+  at 9 m height on a 22 mm lens, the main block is 64 m wide and 24 m to the cornice, the truss beam tops out 5 m above the
+  deck. Every keyframe that shows the stage must agree with its clay render (`blockout/clay_SHxxx.png`) on where the
+  stage sits; the SH006 POV as keyed put the stage at the foot of the building (`blockout/compare_SH006.jpg`) and is to
+  be re-keyed against its clay.
 - **Scale check:** a column is ~11 m tall. The stage is ~1.2 m high and ~24 m wide — wider than the portico. The
   truss crossbeam tops out around the ground-floor arches. A man on the veranda is ~1/6 of a column.
 
