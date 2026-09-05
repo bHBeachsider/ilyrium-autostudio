@@ -98,8 +98,12 @@ shots SH005/SH006 agree.
   corn-stalk sheaves tied with twine to the base of every portico column and to the lampposts; orange and white pumpkins
   and knobbly gourds heaped at the column bases and along the front edge of the stage and beside its steps; a few square
   hay bales; garlands of dried autumn leaves and Indian corn swagged along the stone balustrade. Municipal, tasteful,
-  slightly too much. It is up all week, so it is in the first-light plate before the build. **The truss is never
-  decorated** beyond a sheaf leaned at the foot of each upright — the silhouette must stay clean (NH-USA-041).
+  slightly too much. It is up all week, so it is in the first-light plate before the build. **The truss is SOLID and stays
+  solid** — two square sawn-pine posts, one solid beam across their tops, a short brace at each corner; never a lattice,
+  open-web or box truss (Brad, 2026-09-05: it had drifted to a lattice in SH009). Raw and undecorated while it is being
+  built (SH003, SH007); once finished (SH009, SH010) it is dressed like everything else — a thick garland of leaves,
+  Indian corn and gourds along the beam and down both posts, a sheaf at each foot — with the timber still visible and
+  the silhouette of posts and beam clear against the dusk (NH-USA-041/043).
 - **Light.** The facade faces south-west, so the trailer's dusk shots put the sun behind and to the left of
   the building from the square, and the office windows get the last raking light through the columns.
 - **Orientation, for prompts (NH-USA-035):** the stage runs LEFT TO RIGHT across any view from the building, parallel to the
@@ -209,4 +213,9 @@ family the model rendered, tinted with the banner's own letter colour and modula
 matters: dress with the model first, letter in pixels second; the model is never trusted with the text. The insert
 SH012 is the exception: at that scale the model copied the plate's letterforms faithfully (NH-USA-040), so it was
 lettered by the model from the LOCKED plate as reference. Pre-v3 LOCKED plates are in git at `5e0b173`.
+
+**LOCKED v4 dusk (2026-09-05).** The finished truss dressed with garland per Brad's note ("solid and then covered with
+seasonal decorations"); SH009's truss rebuilt solid. `fal_dress_harvest.py` jobs `plate_dusk_truss` / `SH009_truss`.
+A first SH009 attempt that gave the model SH007 as a second reference for the truss's construction came back with
+SH007's camera and action (NH-USA-043) — for construction details, describe in words; a second image is a camera.
 

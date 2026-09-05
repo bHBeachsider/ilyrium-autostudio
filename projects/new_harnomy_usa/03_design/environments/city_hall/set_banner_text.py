@@ -99,8 +99,9 @@ def set_text(a, box, line1, line2, h1=1.0, h2=1.0, debug=None, fabric_rows=None)
     # --- clear the text block: per-column blend of fabric above line 1 and below line 2 + zero-mean weave
     above = list(range(max(0, l1[0] - 8), max(1, l1[0] - 1)))
     below = list(range(min(reg.shape[0] - 1, l2[1] + 2), min(reg.shape[0], l2[1] + 8))) or [reg.shape[0] - 1]
-    if fabric_rows:                                              # hand-placed box: fabric just outside it top and bottom
-        above = list(range(0, 6)); below = list(range(reg.shape[0] - 6, reg.shape[0]))
+    if fabric_rows:                                              # a named clean band of fabric (absolute rows)
+        fr = list(range(fabric_rows[0] - y0, fabric_rows[1] - y0))
+        above = below = fr
     cy0, cy1 = max(0, l1[0] - 2), min(reg.shape[0], l2[1] + 3)
     if fabric_rows:                                              # a hand-placed box: clear all of it
         cy0, cy1 = 1, reg.shape[0] - 1

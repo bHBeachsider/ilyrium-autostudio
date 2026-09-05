@@ -74,6 +74,23 @@ JOBS = {
            "smaller: A FESTIVAL OF CONTRITION, ATONEMENT AND REPENTANCE  - exactly as the banner in the SECOND image is "
            "lettered; copy that spelling letter for letter, including the invented words HARNOMY and ERSATZGIVING. "
            "Nothing else changes. Photographic realism."),
+ # v5 (Brad, 2026-09-05): the truss must stay SOLID from the beam-seating (SH007) through the finish (SH009, SH010) -
+ # SH009 had drifted to a lattice/box truss - and once finished it is covered with seasonal decorations.
+ "SH009_truss": ("16:9", [os.path.join(KEYS, "NH-S901-SH009_key.png")],
+           "Keep this exact image - same camera, same workman testing the steps, same stage, chairs, podium, pumpkins, hay, "
+           "vehicles, building and banner. Change ONLY the tall timber truss behind the stage: rebuild it as two tall square "
+           "SOLID pine posts with one long SOLID pine beam laid flat across their tops and a short diagonal brace at each "
+           "corner - plain sawn timber, NO lattice, NO open-web or box-truss members, NO cross-hatching, NO steel. Then "
+           "dress that solid truss for the holiday: a thick garland of dried autumn leaves, ears of Indian corn and small "
+           "gourds wound along the whole length of the beam and spiralling down both posts, a corn-stalk sheaf tied at the "
+           "foot of each post. The timber stays visible under the garland. Photographic realism." + KEEP_TEXT),
+ "plate_dusk_truss": ("21:9", [PLATE_DUSK],
+           "Change ONLY the tall timber truss behind the stage in this image: keep it exactly where it is and exactly as built "
+           "- two tall square solid pine posts and one long solid beam across their tops with a short brace at each corner - "
+           "and dress it for the holiday: a thick garland of dried autumn leaves, ears of Indian corn and small gourds wound "
+           "along the whole length of the beam and spiralling down both posts, catching the warm light from the windows. The "
+           "timber stays visible under the garland; the silhouette of posts and beam against the dusk sky stays clear. Nothing "
+           "else changes. Photographic realism." + KEEP_TEXT),
 }
 
 
