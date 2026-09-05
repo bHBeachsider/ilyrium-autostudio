@@ -172,3 +172,13 @@ so the last thing the audience hears is the first thing, now finished.
   dressed for Thanksgiving (Brad: "sheaves, pumpkins ... so audience knows this is thanksgiving"). Six shots back through
   Veo 3.1 (SH002, SH012, SH003, SH007, SH009, SH010); SH004/005/006/008 and all post elements unchanged from v3.
 
+
+### v6 production record (2026-09-05) — spatial continuity
+Brad on v5: the stage sat next to the building in Pengold's POV (SH006) but across the piazza in every other shot. Fix
+(NH-USA-044): a Blender greybox blockout of the square (`03_design/environments/city_hall/blockout/`) fitted to the
+LOCKED dusk plate by overlay — stage centre 32 m in front of the column line — with one camera per shot; SH006 re-keyed
+on nano-banana-pro with its build-day clay render as the FIRST reference and the first-light plate as the second (variant
+B; variant A, with the v3 key as second reference, kept the wrong layout — the reference outvoted the prompt again), then
+a single-reference cleanup edit removing the foreground pedestrians (C). Veo 3.1 re-rendered SH006 from the new key
+(6 s, 1080p/24, locked camera). Everything else is v5. The v3 key is in `_v3_takes/`, the v5 Veo take in
+`05_production/renders/NH-S901/veo/v5_pov_at_building/`. Cost: 3 edits ≈ $0.45, Veo $1.20.

@@ -80,12 +80,13 @@ SHOTS = {
   "A portrait of a man watching. " + LOOK),
  "SH006": ("6s",
   "Point of view from the Mayor's office window, looking down between two giant limestone columns at a long timber "
-  "rally stage under construction in the square below. " + STATIC + " Six workmen in high-visibility vests move "
+  "rally stage under construction far out in the square below, thirty metres from the building, with empty granite "
+  "paving between the balustrade and the stage. " + STATIC + " Six workmen in high-visibility vests move "
   "at a normal working pace around the platform, two carrying a board together, one kneeling to fix decking; the "
   "two tall braced uprights stand still. Beyond the stage the square goes about its morning: parked cars do not "
   "move, the lumber truck and open box van stand still, a bus is stopped at the far corner, a few pedestrians walk "
-  "slowly at a distance with their backs to us, a cyclist rolls by. Flat winter daylight, a faint reflection of "
-  "the room on the glass. " + LOOK),
+  "slowly at a distance with their backs to us, a cyclist rolls by. Nobody walks across the empty paving below the "
+  "balustrade. Low raking winter sun from the left, frost on the setts. " + LOOK),
  "SH007": ("6s",
   "Medium-wide shot from the paving in front of a long decked timber stage. A long pine crossbeam hanging level "
   "from two hoist cables descends the last hand's breadth and settles onto the tops of the two tall pine uprights "

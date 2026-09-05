@@ -15,7 +15,7 @@ Fixed dimensions (SET_BIBLE §4 + the two LOCKED plates):
   podium at centre; a row of folding chairs; steps at each end; lumber flatbed + box van parked as boxes.
 
 Cameras are written to cameras.json (position, rotation, lens, sensor) so the shot specs can carry them.
-usage: python3 build_city_hall.py OUT_DIR [--stage-y 42] [--only CAM ...] [--no-render]
+usage: python3 build_city_hall.py OUT_DIR [--stage-y 42] [--state finished|build] [--only CAM ...] [--no-render]
 """
 import json
 import math
@@ -35,6 +35,7 @@ ONLY = None
 if "--only" in args:
     i = args.index("--only"); ONLY = set(a for a in args[i + 1:] if not a.startswith("--"))
 RENDER = "--no-render" not in args
+STATE = args[args.index("--state") + 1] if "--state" in args else "finished"   # finished | build
 
 bpy.ops.wm.read_factory_settings(use_empty=True)
 scene = bpy.context.scene
@@ -159,12 +160,16 @@ for sx in (-1, 1):
     # steps at each end, descending away from the stage along X
     for k in range(4):
         box("steps_%d_%d" % (sx > 0, k), sx * (ST_W / 2 + 0.3 + 0.3 * k + 0.15), STAGE_Y + 0.5, (ST_H - 0.3 * (k + 1)) + 0.15 - 0.0, 0.3, 1.2, 0.3, M_TIMBER)
-box("truss_beam", 0, y_back + 0.3, ST_H + 5.0 + 0.15, ST_W - 0.5, 0.3, 0.3, M_TIMBER)
-box("podium", 0, STAGE_Y + 1.6, ST_H + 0.6, 0.6, 0.5, 1.2, M_TIMBER)
-for k in range(-9, 10):                              # a row of folding chairs behind the podium
-    if k == 0:
-        continue
-    box("chair_%d" % k, k * 1.1, STAGE_Y - 0.8, ST_H + 0.45, 0.45, 0.45, 0.9, M_TIMBER)
+if STATE == "finished":
+    box("truss_beam", 0, y_back + 0.3, ST_H + 5.0 + 0.15, ST_W - 0.5, 0.3, 0.3, M_TIMBER)
+    box("podium", 0, STAGE_Y + 1.6, ST_H + 0.6, 0.6, 0.5, 1.2, M_TIMBER)
+    for k in range(-9, 10):                          # a row of folding chairs behind the podium
+        if k == 0:
+            continue
+        box("chair_%d" % k, k * 1.1, STAGE_Y - 0.8, ST_H + 0.45, 0.45, 0.45, 0.9, M_TIMBER)
+else:                                                # build day: bare uprights, no beam, lumber stacks on the paving
+    for k, (lx, ly) in enumerate(((-6, STAGE_Y + 6), (4, STAGE_Y + 7), (14, STAGE_Y + 5.5))):
+        box("lumber_%d" % k, lx, ly, 0.4, 5.0, 1.2, 0.8, M_TIMBER)
 # vehicles: lumber flatbed and white box van parked nose-in at the left kerb of the square (plate: far left of the stage)
 box("flatbed", -38, STAGE_Y + 4, 1.0, 2.5, 8.0, 1.2, M_VEH); box("flatbed_cab", -38, STAGE_Y + 0.7, 1.9, 2.4, 2.2, 2.4, M_VEH)
 box("box_van", -38, STAGE_Y - 6, 1.4, 2.4, 6.0, 2.8, M_VEH)
@@ -229,10 +234,11 @@ for name, (cam, res) in CAMS.items():
     scene.camera = cam
     scene.render.resolution_x, scene.render.resolution_y = res
     scene.render.resolution_percentage = 100
-    scene.render.filepath = os.path.join(OUT, "clay_%s.png" % name)
+    scene.render.filepath = os.path.join(OUT, "clay_%s%s.png" % (name, "" if STATE == "finished" else "_" + STATE))
     bpy.ops.render.render(write_still=True)
     print("rendered", scene.render.filepath, flush=True)
 
 json.dump(meta, open(os.path.join(OUT, "cameras.json"), "w"), indent=1)
-bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT, "city_hall_blockout.blend"))
+if STATE == "finished":
+    bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT, "city_hall_blockout.blend"))
 print("saved blockout; stage centre %.1f m in front of the column line" % (STAGE_Y - Y0))

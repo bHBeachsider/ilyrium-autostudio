@@ -3,24 +3,24 @@
   "endpoint": "fal-ai/veo3.1/image-to-video",
   "keyframe": "04_preproduction\\keyframes\\NH-S901\\NH-S901-SH006_key.png",
   "arguments": {
-    "prompt": "Point of view from the Mayor's office window, looking down between two giant limestone columns at a long timber rally stage under construction in the square below. The camera is locked off on a tripod and does not move at all: no pan, no tilt, no zoom, no drift, no handheld shake. Real-time speed, natural human movement, never slow motion. Six workmen in high-visibility vests move at a normal working pace around the platform, two carrying a board together, one kneeling to fix decking; the two tall braced uprights stand still. Beyond the stage the square goes about its morning: parked cars do not move, the lumber truck and open box van stand still, a bus is stopped at the far corner, a few pedestrians walk slowly at a distance with their backs to us, a cyclist rolls by. Flat winter daylight, a faint reflection of the room on the glass. Prestige political drama photographed on an Arri Alexa with anamorphic lenses: single-source natural light, slight 35mm film grain, colours desaturated about twelve percent, warm tungstens, deep browns and charcoals in the shadows, photographic realism.",
+    "prompt": "Point of view from the Mayor's office window, looking down between two giant limestone columns at a long timber rally stage under construction far out in the square below, thirty metres from the building, with empty granite paving between the balustrade and the stage. The camera is locked off on a tripod and does not move at all: no pan, no tilt, no zoom, no drift, no handheld shake. Real-time speed, natural human movement, never slow motion. Six workmen in high-visibility vests move at a normal working pace around the platform, two carrying a board together, one kneeling to fix decking; the two tall braced uprights stand still. Beyond the stage the square goes about its morning: parked cars do not move, the lumber truck and open box van stand still, a bus is stopped at the far corner, a few pedestrians walk slowly at a distance with their backs to us, a cyclist rolls by. Nobody walks across the empty paving below the balustrade. Low raking winter sun from the left, frost on the setts. Prestige political drama photographed on an Arri Alexa with anamorphic lenses: single-source natural light, slight 35mm film grain, colours desaturated about twelve percent, warm tungstens, deep browns and charcoals in the shadows, photographic realism.",
     "aspect_ratio": "16:9",
     "duration": "6s",
     "resolution": "1080p",
     "generate_audio": false,
-    "negative_prompt": "slow motion, speed ramp, time-lapse, camera movement, zoom, pan, dolly, handheld shake, on-screen text, captions, subtitles, watermark, logo, lens flare, fast traffic, cars driving through the frame, people looking at the camera, faces toward camera, cartoon, illustration, oversaturated",
+    "negative_prompt": "turning around, walking away, camera pull back, dolly, reframing, people walking into frame, pedestrians in the foreground, moving bus, moving vehicles, slow motion, speed ramp, time-lapse, camera movement, zoom, pan, dolly, handheld shake, on-screen text, captions, subtitles, watermark, logo, lens flare, fast traffic, cars driving through the frame, people looking at the camera, faces toward camera, cartoon, illustration, oversaturated",
     "seed": 901006
   },
-  "image_url": "https://v3b.fal.media/files/b/0aa92554/aDdN_q8iWRqwyNRFNLbUK_NH-S901-SH006_key.png",
+  "image_url": "https://v3b.fal.media/files/b/0aa9399d/GDSrG3emqAQpvTKiEuqdE_NH-S901-SH006_key.png",
   "response": {
     "video": {
-      "url": "https://v3b.fal.media/files/b/0aa9255e/MelgTB-BjFv2cy3v4Affo_171b780cffbc4125b644a9abed4d97a1.mp4",
+      "url": "https://v3b.fal.media/files/b/0aa939aa/0rZpDvURCbqkyfy5KZ-hO_8bc1c6467a7b479bbeab6ebbf73c94c8.mp4",
       "content_type": "video/mp4",
-      "file_name": "171b780cffbc4125b644a9abed4d97a1.mp4",
-      "file_size": 10068723
+      "file_name": "8bc1c6467a7b479bbeab6ebbf73c94c8.mp4",
+      "file_size": 7920251
     }
   },
-  "seconds": 112.3,
+  "seconds": 134.7,
   "est_cost_usd": 1.2000000000000002,
-  "rendered_at": "2026-09-04T21:51:53"
+  "rendered_at": "2026-09-05T12:17:48"
 }
