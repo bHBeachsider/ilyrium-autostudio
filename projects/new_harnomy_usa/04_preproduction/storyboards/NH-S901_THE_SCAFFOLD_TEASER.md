@@ -79,9 +79,10 @@ Rules for the populated square:
 - **The dais is a long rally stage (~24 m), not a nine-metre platform** — room for a row of dignitaries and a
   podium — with a timber truss (uprights + crossbeam) across its rear for lights and a banner. It reads as
   what it is: a stage. The gallows survives only in silhouette.
-- **A mauve banner hangs from the portico all week:** NEW HARNOMY PEOPLE'S THANKSGIVING FESTIVAL /
-  ANTI-THANKSGIVING DAY OF ATONEMENT · SATURDAY (the day's official name, Brad 2026-09-05 — the city names
-  the mechanism of its own Feast and nobody on stage hears it). The city names its own structure, which is what makes it innocent — and
+- **A mauve banner hangs from the portico all week:** WELCOME TO NEW HARNOMY'S ANNUAL ERSATZGIVING HOLIDAY
+  GATHERING! / A FESTIVAL OF CONTRITION, ATONEMENT AND REPENTANCE (Brad, 2026-09-05). The holiday is Ersatzgiving —
+  Bildersatz's syllable made holy, counterfeit-giving to anyone who still hears English — and the square wears
+  Thanksgiving's own furniture (sheaves, pumpkins, hay, garlands) so the audience reads the holiday before the joke. The city names its own structure, which is what makes it innocent — and
   it is the first time the audience sees the misspelled town name, in public, unremarked.
 - The dusk frames (10, 11) thin out — a few last people crossing, cars with headlights on, the square
   emptying as the light goes — so the final hold is *quieter*, not *empty*.
@@ -164,4 +165,10 @@ so the last thing the audience hears is the first thing, now finished.
   title reads as the town's own signage) in `07_post/assemble_NH-S901_v3.py`; the mix reads the assembler's timeline.
 - SH001 is generated black with the ident; SH010/SH011 are one Veo hold with the light taken down in post over the
   last six seconds; the fourth hammer strike lands under the title.
+
+## v4 production record (2026-09-05)
+
+- Holiday renamed **Ersatzgiving**; banner re-lettered on both LOCKED plates and the four banner keyframes; the square
+  dressed for Thanksgiving (Brad: "sheaves, pumpkins ... so audience knows this is thanksgiving"). Six shots back through
+  Veo 3.1 (SH002, SH012, SH003, SH007, SH009, SH010); SH004/005/006/008 and all post elements unchanged from v3.
 

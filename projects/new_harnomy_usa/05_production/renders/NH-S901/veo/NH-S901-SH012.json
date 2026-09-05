@@ -8,19 +8,19 @@
     "duration": "4s",
     "resolution": "1080p",
     "generate_audio": false,
-    "negative_prompt": "people walking into frame, pedestrians in the foreground, moving bus, moving vehicles, slow motion, speed ramp, time-lapse, camera movement, zoom, pan, dolly, handheld shake, on-screen text, captions, subtitles, watermark, logo, lens flare, fast traffic, cars driving through the frame, people looking at the camera, faces toward camera, cartoon, illustration, oversaturated",
+    "negative_prompt": "turning around, walking away, camera pull back, dolly, reframing, people walking into frame, pedestrians in the foreground, moving bus, moving vehicles, slow motion, speed ramp, time-lapse, camera movement, zoom, pan, dolly, handheld shake, on-screen text, captions, subtitles, watermark, logo, lens flare, fast traffic, cars driving through the frame, people looking at the camera, faces toward camera, cartoon, illustration, oversaturated",
     "seed": 901012
   },
-  "image_url": "https://v3b.fal.media/files/b/0aa925a3/iB_dXfu4_wCVqIm_ZUCVP_NH-S901-SH012_key.png",
+  "image_url": "https://v3b.fal.media/files/b/0aa92993/53KzjoMyi2plWCTVxIrJw_NH-S901-SH012_key.png",
   "response": {
     "video": {
-      "url": "https://v3b.fal.media/files/b/0aa92596/pqyBi9wNzQZ8h6AFGo1c-_95b02d68ffd247018d12e1fbebbf8c68.mp4",
+      "url": "https://v3b.fal.media/files/b/0aa9299e/eqf8IUV1BBXmtD5NqHKhV_0d1d84a1b0284ec49546f92661fb5dd3.mp4",
       "content_type": "video/mp4",
-      "file_name": "95b02d68ffd247018d12e1fbebbf8c68.mp4",
-      "file_size": 5855887
+      "file_name": "0d1d84a1b0284ec49546f92661fb5dd3.mp4",
+      "file_size": 8487681
     }
   },
-  "seconds": 109.5,
+  "seconds": 112.3,
   "est_cost_usd": 0.8,
-  "rendered_at": "2026-09-04T22:01:10"
+  "rendered_at": "2026-09-05T00:53:02"
 }

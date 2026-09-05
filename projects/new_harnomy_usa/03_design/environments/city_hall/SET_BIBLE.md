@@ -87,12 +87,19 @@ shots SH005/SH006 agree.
   making it longer: the structure is *more* innocent, not less.
 - **The banner.** A long fabric banner hangs from the portico's entablature, between the columns, in
   **Framework mauve** (the brownish-purple of an aged university-press paperback, never lavender) with pale
-  lettering: **NEW HARNOMY PEOPLE'S THANKSGIVING FESTIVAL** on one line and **ANTI-THANKSGIVING DAY OF
-  ATONEMENT · SATURDAY** beneath (the day's official name, Brad 2026-09-05; line 2 set ~10% smaller). It is up all week. This is the first time the audience sees the town's name written
+  lettering, two centred lines, the second at 78% of the first: **WELCOME TO NEW HARNOMY'S ANNUAL ERSATZGIVING
+  HOLIDAY GATHERING!** / **A FESTIVAL OF CONTRITION, ATONEMENT AND REPENTANCE** (Brad, 2026-09-05; the holiday is
+  ERSATZGIVING — `world/setting.md`). It is up all week. This is the first time the audience sees the town's name written
   down — misspelled, on a municipal banner, in public — and no one on stage ever remarks on it. The kernel's
   no-on-screen-text rule targets chyrons and captions; a diegetic banner is staging, like the program cover
   (motifs §9). Lettering must be *legible* in the wide plates and may soften in motion.
 
+- **Harvest dressing (Brad, 2026-09-05):** the square must read as Thanksgiving before anyone reads the banner. Tall
+  corn-stalk sheaves tied with twine to the base of every portico column and to the lampposts; orange and white pumpkins
+  and knobbly gourds heaped at the column bases and along the front edge of the stage and beside its steps; a few square
+  hay bales; garlands of dried autumn leaves and Indian corn swagged along the stone balustrade. Municipal, tasteful,
+  slightly too much. It is up all week, so it is in the first-light plate before the build. **The truss is never
+  decorated** beyond a sheaf leaned at the foot of each upright — the silhouette must stay clean (NH-USA-041).
 - **Light.** The facade faces south-west, so the trailer's dusk shots put the sun behind and to the left of
   the building from the square, and the office windows get the last raking light through the columns.
 - **Orientation, for prompts (NH-USA-035):** the stage runs LEFT TO RIGHT across any view from the building, parallel to the
@@ -193,4 +200,13 @@ the line's own metrics and scaled to fit. Keyframes SH007/SH009 (frontal) were r
 per-column split fitted to the sag, keys in the plate's line-2 letters at the keyframe's line height, and warps
 back. The pre-v2 LOCKED plates are in git at `0d306e1`. Rule stands: banner text is a plate asset; never ask a
 model to render it.
+
+**LOCKED v3 (2026-09-05).** Two changes in one pass. (1) Harvest dressing added by a nano-banana-pro edit on each LOCKED
+plate (`fal_dress_harvest.py`) — the first dusk take dressed the truss away and was retaken with the truss named as
+untouchable (NH-USA-041). (2) The holiday renamed ERSATZGIVING with a two-line banner the fabric's own glyphs could not
+spell (Z, !, comma), so both lines are set in **Oswald Medium** by `set_banner_text.py` — the same condensed grotesque
+family the model rendered, tinted with the banner's own letter colour and modulated by the fabric's shading. Order
+matters: dress with the model first, letter in pixels second; the model is never trusted with the text. The insert
+SH012 is the exception: at that scale the model copied the plate's letterforms faithfully (NH-USA-040), so it was
+lettered by the model from the LOCKED plate as reference. Pre-v3 LOCKED plates are in git at `5e0b173`.
 
