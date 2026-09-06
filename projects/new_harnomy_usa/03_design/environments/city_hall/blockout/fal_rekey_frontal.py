@@ -50,19 +50,25 @@ JOBS = {
    "from behind and in profile, are steadying it upright hand over hand while a third holds a temporary diagonal "
    "prop; a second tall upright already stands at the far left end. No crossbeam. Their breath steams in the cold. "
    "Behind and above them the full colonnade and the banner. " + GLOOM + DRESS + LOOK),
+ # v11 (NH-USA-051): every constraint stated POSITIVELY and only once. The v10 prompt asked for a stage that both
+ # "runs horizontally across the frame" and "ENDS INSIDE THIS FRAME with nothing to its right"; from a camera twelve
+ # metres away at the very end of the deck those fight, and the model resolved the fight by turning the stage to
+ # recede from the lens. It also read "there is no second row of chairs" as an instruction to draw a second row.
+ # The camera has been moved back to 26 m and toward centre so ONE description covers the whole frame.
  "SH009": ([os.path.join(HERE, "clay_SH009.png"), PLATE],
-   LAYOUT + "Head-height medium shot from the wet paving in front of the LEFT END of the finished stage, looking "
-   "straight at City Hall. THE STAGE ENDS INSIDE THIS FRAME: its decking runs in from the left edge and STOPS at a "
-   "tall square pine upright standing at that end of the platform, a little left of centre; to the RIGHT of that "
-   "upright there is NO stage at all - only open wet granite paving running back to the far side of the square. The "
-   "solid crossbeam leaves the top of the upright and runs LEFT, away over the stage, out of the frame; nothing of the "
-   "structure appears to the right of the upright. On the deck stand ONE SINGLE ROW of folding chairs, all in one "
-   "straight line parallel to the stage front - there is no second row behind them - and a podium. A short flight of "
-   "four raw-pine steps is set against the stage front near its end; pumpkins, gourds and hay bales are banked along "
-   "the stage front and beside the steps; the upright is wrapped in a garland of autumn leaves. A single workman in a "
-   "wet high-visibility vest, seen in profile, puts his weight on the first tread of the steps to test it, one hand on "
-   "the platform edge, face turned to the steps. Behind everything the colonnade and the banner, the lumber flatbed "
-   "and box van at the left kerb. " + GLOOM + DRESS + LOOK),
+   LAYOUT + "Locked-off eye-height shot from the wet paving, twenty-six metres out, looking straight at City Hall. "
+   "The long timber stage crosses the whole lower third of the frame as one horizontal band, its front edge level "
+   "with the bottom of the picture and exactly parallel to the building behind it, the same height above the paving "
+   "at the left of the frame as at the right. The stage reaches the right-hand quarter of the frame and finishes "
+   "there at a tall square pine upright wrapped in a garland; past that upright the wet granite of the square runs "
+   "away empty to the frame edge. The solid crossbeam sits on top of that upright and runs left along the whole "
+   "stage. On the deck: a single line of folding chairs, twelve of them standing shoulder to shoulder in one "
+   "straight line, every chair back at the same height, the line one chair deep; and at the centre a plain timber "
+   "podium. A short flight of four raw-pine steps stands against the stage front near the upright, with pumpkins, "
+   "gourds and hay bales banked along the stage front and beside the steps. One workman in a wet high-visibility "
+   "vest and a white hard hat, seen in profile, has his weight on the first tread of those steps, one hand on the "
+   "platform edge, face turned down to the steps. Behind the stage the full colonnade of City Hall with the banner, "
+   "the corn sheaves at the columns, and the lumber flatbed and box van at the kerb. " + GLOOM + DRESS + LOOK),
 }
 
 

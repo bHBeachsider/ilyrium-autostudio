@@ -110,15 +110,14 @@ SHOTS = {
   "stay. " + STATIC + " The framing at the end of the shot is identical to the framing at the start. Shallow depth "
   "of field on the boards and the boots. " + LOOK),
  "SH009": ("6s",
-  "Head-height medium shot from the wet paving in front of the left end of a long finished timber stage, looking "
-  "straight at City Hall; the stage runs horizontally across the frame. A workman in a high-visibility vest and white "
-  "hard hat, seen in profile, puts his weight on the first tread of a short flight of new pine steps at the front of "
-  "the platform, bounces once to test it, nods to himself, steps down and walks out of frame to the RIGHT at an ordinary pace across the open paving. The stage ENDS at the tall pine upright: nothing of the structure is ever visible to the right of that upright, only wet granite. The single row of folding chairs stays a single row. "
-  + STATIC + " The row of folding chairs and the podium on the platform stay perfectly still; behind them City Hall "
-  "with its mauve banner; parked cars do not move; the lumber truck and box van stand at the kerb; steam from a "
-  "hot-food cart; a bus stopped at the far corner. The stage, its steps and the podium remain in the frame in exactly "
-  "the same place from the first frame to the last; the camera never pans to follow the workman - he simply leaves the "
-  "frame. " + WEATHER + TRAFFIC + LOOK),
+  "Locked-off eye-height wide from the wet paving twenty-six metres out, looking straight at City Hall. The long "
+  "timber stage crosses the lower third of the frame as one horizontal band, parallel to the building, finishing at a "
+  "tall garlanded pine upright in the right-hand quarter with open wet granite beyond it. " + STATIC + " A workman in "
+  "a high-visibility vest and white hard hat, in profile at the short flight of steps against the stage front, puts "
+  "his weight on the first tread, bounces once, nods, steps down and walks out of the frame to the right at an "
+  "ordinary pace. Everything else holds still: the single line of folding chairs stays a single line, the podium, the "
+  "crossbeam, the pumpkins and hay bales along the stage front, the corn sheaves at the columns and the banner. "
+  + WEATHER + TRAFFIC + LOOK),
  "SH010": ("8s",
   "Wide shot at dusk, a completely empty square. The finished long timber rally stage with its row of folding chairs, "
   "a podium and a tall rear truss stands alone in front of City Hall, whose windows are lit warm tungsten; the mauve "

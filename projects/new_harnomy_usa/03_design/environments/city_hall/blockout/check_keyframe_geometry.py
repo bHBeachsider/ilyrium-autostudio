@@ -16,7 +16,10 @@ end post, a second chair row) for free, before a $1.20 Veo render is spent on a 
 WHAT IT CHECKS
   1. POSTS   - for every control point tagged "post" visible in this camera, a vertical timber edge within
                --tol of its projected column; and no unexplained vertical timber elsewhere in the deck band.
-  2. DECKLINE- the stage's front edge is a near-horizontal line at the projected height (the "parallel" rule).
+  2. DECK     - advisory: where the front edge sits and which way the deck's dominant edge runs. Both are edge
+               heuristics and neither reliably catches a stage TURNED toward the lens (a turned stage still has
+               short horizontal edges, and buildings supply plenty more). Use --sheet and LOOK: that comparison
+               is the check for orientation until keyframes are generated through a depth ControlNet.
   3. CHAIRS  - advisory: how many ink bands the chair strip holds (a second row shows up as extra bands).
              Never blocks - edge counting is not reliable enough to refuse an image on.
 Each check prints PASS/FAIL with the measured and expected pixel positions, and the script exits non-zero on any FAIL
@@ -161,6 +164,31 @@ def peaks_of(prof, n=4, min_sep_frac=0.05):
             break
     return sorted(out)
 
+
+def dominant_edge_angle(a, y0, y1, x0, x1, span=34.0, step=2.0):
+    """The orientation of the strongest LONG straight edge in a region, in degrees (positive = down to the right).
+
+    A stage turned to face the camera still has short horizontal edges, so asking "is there a horizontal edge near
+    where the deck should be" is not the same question as "does the deck run the way the blockout says". This rotates
+    the gradient field through a range of angles and keeps the angle whose row-projection is sharpest - the angle at
+    which the long edge lines up - which answers the second question (NH-USA-051).
+    """
+    from scipy.ndimage import rotate as ndrotate
+    g = a.mean(-1)[int(max(0, y0)):int(y1), int(max(0, x0)):int(x1)]
+    if g.size < 400:
+        return None
+    gy = np.abs(np.diff(g, axis=0))
+    best, best_ang = -1.0, None
+    ang = -span
+    while ang <= span:
+        r = ndrotate(gy, ang, reshape=False, order=1, mode="nearest")
+        prof = r.mean(1)
+        score = float(prof.max() / max(prof.mean(), 1e-6))      # a long straight edge = one very sharp row
+        if score > best:
+            best, best_ang = score, ang
+        ang += step
+    return best_ang
+
 # ----------------------------------------------------------------- main
 def main():
     ap = argparse.ArgumentParser()
@@ -171,6 +199,7 @@ def main():
     ap.add_argument("--tol", type=float, default=0.06, help="fraction of frame width inside which a post PASSES")
     ap.add_argument("--hard", type=float, default=0.15, help="beyond this fraction it FAILS rather than warns")
     ap.add_argument("--clay", help="clay render from the same camera; enables the comparative check")
+    ap.add_argument("--sheet", help="write a clay | keyframe side-by-side for the human look (needs --clay)")
     ap.add_argument("--debug")
     args = ap.parse_args()
 
@@ -239,18 +268,27 @@ def main():
             if deck_px and min(deck_px[0][0], deck_px[1][0]) < f < max(deck_px[0][0], deck_px[1][0]):
                 lines.append("  WARN vertical at x=%d inside the stage span with no post in the blockout - LOOK at it" % f)
 
-    # ---- 2. the deck front edge is horizontal (the "parallel" rule)
+    # ---- 2. the deck runs the way the blockout says it runs (the "parallel" rule)
     if deck_px:
         (lx, ly), (rx, ry) = deck_px
         want = math.degrees(math.atan((ry - ly) / max(abs(rx - lx), 1e-6)))
-        got, _ = horizontal_line_angle(a, (ly + ry) / 2, max(0, min(lx, rx)), min(W, max(lx, rx)))
+        x0d, x1d = max(0, min(lx, rx)), min(W, max(lx, rx))
+        y_mid = (ly + ry) / 2.0
+        got, _ = horizontal_line_angle(a, y_mid, x0d, x1d)
         if got is None:
             lines.append("  SKIP deck line - not enough edge to measure")
         elif abs(got - want) <= 2.5:
             lines.append("  PASS deck front edge %.1f deg (blockout %.1f)" % (got, want))
         else:
-            fails += 1
-            lines.append("  FAIL deck front edge %.1f deg, blockout says %.1f - the stage is not parallel" % (got, want))
+            lines.append("  WARN deck front edge %.1f deg, blockout says %.1f - LOOK at it" % (got, want))
+        # the orientation question, asked of the deck as a whole rather than of one edge
+        dom = dominant_edge_angle(a, y_mid - 0.16 * H, y_mid + 0.06 * H, x0d, x1d)
+        if dom is None:
+            lines.append("  SKIP deck orientation - region too small")
+        elif abs(dom - want) <= 8.0:
+            lines.append("  ok   deck's dominant edge %.0f deg (blockout %.0f) - advisory only, see --sheet" % (dom, want))
+        else:
+            lines.append("  WARN deck's dominant edge %.0f deg, blockout says %.0f - LOOK at it" % (dom, want))
 
     # ---- 3. one row of chairs
     ch = pts.get("chair_band")
@@ -291,6 +329,25 @@ def main():
         else:
             lines.append("  WARN clay vertical at x=%d has nothing within %.1f%% of frame - LOOK at it (advisory: the clay's "
                           "strongest verticals include building edges the dressed frame draws differently)" % (worst_at, 100 * worst))
+
+    if args.sheet and args.clay and os.path.exists(args.clay):
+        cl = Image.open(args.clay).convert("RGB").resize((W // 2, H // 2))
+        kf = im.resize((W // 2, H // 2))
+        sheet = Image.new("RGB", (W, H // 2 + 26), (12, 12, 12))
+        sheet.paste(cl, (0, 26)); sheet.paste(kf, (W // 2, 26))
+        d = ImageDraw.Draw(sheet)
+        d.text((8, 6), "BLOCKOUT %s - what the set is" % args.shot, fill=(255, 255, 0))
+        d.text((W // 2 + 8, 6), "KEYFRAME - what the model drew", fill=(255, 255, 0))
+        for p in posts:                                        # the same control points on both halves
+            for ox in (0, W // 2):
+                d.line([(ox + p["x"] / 2, 26 + p["y_top"] / 2), (ox + p["x"] / 2, 26 + p["y_base"] / 2)],
+                       fill=(0, 255, 0), width=2)
+        if deck_px:
+            for ox in (0, W // 2):
+                d.line([(ox + deck_px[0][0] / 2, 26 + deck_px[0][1] / 2),
+                        (ox + deck_px[1][0] / 2, 26 + deck_px[1][1] / 2)], fill=(0, 200, 255), width=2)
+        sheet.save(args.sheet)
+        lines.append("  wrote comparison sheet -> %s (green = where the posts belong, blue = the deck line)" % args.sheet)
 
     if args.debug:
         dbg = im.copy(); d = ImageDraw.Draw(dbg)
