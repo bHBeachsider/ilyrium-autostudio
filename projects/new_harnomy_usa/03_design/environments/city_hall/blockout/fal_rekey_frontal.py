@@ -51,15 +51,18 @@ JOBS = {
    "prop; a second tall upright already stands at the far left end. No crossbeam. Their breath steams in the cold. "
    "Behind and above them the full colonnade and the banner. " + GLOOM + DRESS + LOOK),
  "SH009": ([os.path.join(HERE, "clay_SH009.png"), PLATE],
-   LAYOUT + "Head-height medium shot from the wet paving in front of the LEFT end of the finished stage, looking "
-   "straight at City Hall. The stage's long near edge runs horizontally across the frame; its left end with a short "
-   "flight of four raw-pine steps is at frame centre-right; a row of folding chairs and, further right, the podium "
-   "stand on the wet decking; the tall square pine upright at the stage's left end rises at the frame's right of "
-   "centre with the solid crossbeam leaving frame to the right, both wrapped in garlands of autumn leaves; pumpkins, "
-   "gourds and hay bales along the stage front and beside the steps. A single workman in a wet high-visibility "
-   "vest, seen in profile, puts his weight on the first tread of the steps to test it, one hand on the platform "
-   "edge, face turned to the steps. Behind, the colonnade and the banner, the lumber flatbed and box van at the "
-   "left kerb. " + GLOOM + DRESS + LOOK),
+   LAYOUT + "Head-height medium shot from the wet paving in front of the LEFT END of the finished stage, looking "
+   "straight at City Hall. THE STAGE ENDS INSIDE THIS FRAME: its decking runs in from the left edge and STOPS at a "
+   "tall square pine upright standing at that end of the platform, a little left of centre; to the RIGHT of that "
+   "upright there is NO stage at all - only open wet granite paving running back to the far side of the square. The "
+   "solid crossbeam leaves the top of the upright and runs LEFT, away over the stage, out of the frame; nothing of the "
+   "structure appears to the right of the upright. On the deck stand ONE SINGLE ROW of folding chairs, all in one "
+   "straight line parallel to the stage front - there is no second row behind them - and a podium. A short flight of "
+   "four raw-pine steps is set against the stage front near its end; pumpkins, gourds and hay bales are banked along "
+   "the stage front and beside the steps; the upright is wrapped in a garland of autumn leaves. A single workman in a "
+   "wet high-visibility vest, seen in profile, puts his weight on the first tread of the steps to test it, one hand on "
+   "the platform edge, face turned to the steps. Behind everything the colonnade and the banner, the lumber flatbed "
+   "and box van at the left kerb. " + GLOOM + DRESS + LOOK),
 }
 
 

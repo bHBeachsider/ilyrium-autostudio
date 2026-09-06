@@ -113,7 +113,7 @@ SHOTS = {
   "Head-height medium shot from the wet paving in front of the left end of a long finished timber stage, looking "
   "straight at City Hall; the stage runs horizontally across the frame. A workman in a high-visibility vest and white "
   "hard hat, seen in profile, puts his weight on the first tread of a short flight of new pine steps at the front of "
-  "the platform, bounces once to test it, nods to himself, steps down and walks out of frame to the left at an ordinary pace. "
+  "the platform, bounces once to test it, nods to himself, steps down and walks out of frame to the RIGHT at an ordinary pace across the open paving. The stage ENDS at the tall pine upright: nothing of the structure is ever visible to the right of that upright, only wet granite. The single row of folding chairs stays a single row. "
   + STATIC + " The row of folding chairs and the podium on the platform stay perfectly still; behind them City Hall "
   "with its mauve banner; parked cars do not move; the lumber truck and box van stand at the kerb; steam from a "
   "hot-food cart; a bus stopped at the far corner. The stage, its steps and the podium remain in the frame in exactly "
