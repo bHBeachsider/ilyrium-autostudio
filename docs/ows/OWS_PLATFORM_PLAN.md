@@ -1,215 +1,263 @@
-# OWS — One World Set
-### A platform plan for Ilyrium Studios, seeded by NEW HARNOMY, U.S.A. / NH-S901
+# OWS — the Ilyrium Backlot
+### Evaluation of the backlot proposal, reconciled with what NH-S901 taught, and a plan
 
-*Drafted 2026-09-08 from the v1–v11 production record of "The Scaffold" teaser. Status: proposal.*
+*v2, 2026-09-08. Supersedes v1 (written before the proposal was seen). Status: proposal.*
 
-**Reading of the brief.** "OWS" is taken here as **One World Set**: a single, versioned, code-defined 3D world for each
-production, from which every generated frame is derived and against which every frame is verified before money is
-spent on it. The seed is what the teaser forced into existence in the last four days — the City Hall blockout, the
-per-shot cameras, the backlot, the geometry gate, the findings ledger — and this plan is that seed made into a
-platform rather than a set of rescues. If "OWS" meant something else, the evaluation below still stands; the plan
-would need re-aiming.
-
----
-
-## 1. Evaluation of the seed
-
-### 1.1 What the teaser proved
-
-The teaser went through eleven cuts. Roughly a third of the generations in that run were retakes for **continuity**
-failures rather than taste: the truss turning into a lattice, the stage standing at the foot of the building in one
-shot and thirty metres out in the next, the stage skewed, the stage turned perpendicular, an upright mid-span, two
-chair rows, a build state jumping ahead, a second reference stealing the camera, a cleanup edit deleting the wrong
-platform. Each was fixed; each cost a generation, a render, and a review round. None was caught by the pipeline.
-
-Four things did work, and they are the seed:
-
-- **A code-defined world with one origin.** `build_city_hall.py` fitted to the LOCKED dusk plate by overlay put the
-  stage at 32 m from the column line and settled the argument for every shot at once. `build_backlot.py` extends it
-  to the town (shakedown row, both churches, PILF, the axis street, the university). The sight line from the
-  university gate to the portico now exists as geometry.
-- **Cameras as data.** `cameras.json` carries one camera per shot; the rule that every exterior camera looks square
-  at the facade came out of a real failure (NH-USA-047) and is now a coordinate, not a note.
-- **A gate that projects the world into the frame.** `check_keyframe_geometry.py` refused the mid-span upright at
-  35% of frame width and passes good keys at 1–2%. Its limits are documented honestly (NH-USA-052): posts are
-  blocking, orientation and counts are advisory, and it writes a blockout-beside-keyframe sheet for the human look.
-- **A findings ledger.** NH-USA-016 through 052 is an institutional memory of how these models fail. It is the most
-  valuable artefact of the run and currently the least enforced.
-
-### 1.2 What is structurally weak
-
-1. **Generation is unconstrained.** Every keyframe is composed independently by an image model. Prose is a
-   suggestion; a reference image is a stronger suggestion that can be outvoted (NH-USA-043); a clay render is a
-   picture the model may or may not honour. The world exists, but nothing forces a frame to obey it.
-2. **Verification is by eye.** The gate proves one thing (post columns). Orientation, build state, chair rows,
-   dressing, and text are checked by looking — by me, then by Brad, after the render has been paid for.
-3. **Set state is implicit.** The build ladder (open joists → half-decked → beam seated → swept → chairs out) lives
-   in prompts and in memory. The blockout knows two states. Shot specs name none.
-4. **Text is fought every time.** Models scramble any text they touch (NH-USA-033/040/042). The fix — re-lettering
-   in pixels from the plate — works, but the banner's box is found by hand for each new camera.
-5. **The tooling is a pile of incident scripts.** `fal_keyframes.py`, `fal_dress_harvest.py`, `fal_weather.py`,
-   `fal_rekey_frontal.py`, `fal_v9_cleanup.py`, `fal_rekey_sh006.py` — six entry points, prompts hand-edited in
-   place, outputs installed by hand. Reproducible only by reading the storyboard's production record.
-6. **Renders live outside the ledger.** fal generations are not in batch_render's provenance chain (NH-USA-038);
-   sidecars exist but nothing consumes them.
-7. **Cost is spent before checking.** Veo billed above the estimated rate and the balance ran dry mid-pass; every
-   continuity retake was a paid render of a still that could have been refused for free.
-8. **Interiors are not in the world.** Pengold's office is contracted to the colonnade by prose (SET_BIBLE §4), not
-   by a window registered in world coordinates.
-9. **The GUI and the code do not talk.** Brad works in Blender by hand; the builder is the source of truth; nothing
-   carries a hand-moved building back into the code.
-10. **Prompts are written free-hand**, so the two failure modes that produced v10's perpendicular stage — a
-    shot instruction contradicting a set rule, and a negation nominating the thing it forbids (NH-USA-051) — can
-    recur in any prompt anyone writes.
-
-The pattern behind all ten: **the world is a reference, not an input.** OWS is the change that makes it an input.
+Two seeds are on the table. The first is the **backlot proposal** Brad brought: an AI-native digital studio backlot
+with OpenUSD at the centre, Blender for authoring, Unreal for shooting, a catalogued and provenanced asset library, a
+Backlot Agent that assembles a filmable stage from a scene description, and a loop that makes every production
+cheaper than the last. The second is the **NH-S901 record**: eleven cuts of a sixty-second teaser, a code-defined
+greybox world with per-shot cameras, a geometry gate, and a ledger of thirty-seven ways the image models broke
+continuity. The proposal describes where the studio should end up. The record says which parts of the road are
+load-bearing. This document is the two put together.
 
 ---
 
-## 2. What OWS is
+## 1. Evaluation of the proposal
 
-One World Set is seven layers, each with one job. Existing pieces are named where they already exist.
+### 1.1 What it gets right, and why the record confirms it
 
-| Layer | Job | Exists today |
-|---|---|---|
-| **World** | The production's sets, props, marks, text planes, cameras and lights in one coordinate system, versioned in git, with named **states** (build ladder, dressing, weather, time of day) | `build_city_hall.py`, `build_backlot.py` (two states) |
-| **Shot spec v2** | One JSON per shot naming camera, set state, action, dressing/weather preset, references, machine-checkable invariants, conditioning passes, budget | `ilyrium-shots/shots/*.json` (no camera, no state) |
-| **Conditioning** | Headless Blender per shot → clay, depth, normal, segmentation-ID and line passes, projected control points, text-plane quads | clay only; `control_points.json` |
-| **Generation** | One entry point per tier: structure-locked keyframe (ControlNet), camera-preserving edit (single-reference nano-banana), motion (Veo / Wan). Sidecars always. | six incident scripts; `fal_veo_render.py` |
-| **Verification** | The gate, before any paid render: projected posts (blocking), deck/segmentation IoU against the seg pass, OCR of text planes, a VLM judge given the comparison sheet and the invariants; PASS / WARN / FAIL with a sheet | `check_keyframe_geometry.py` (posts only) |
-| **Provenance** | World version hash + camera + state + prompt + seed + model + cost for every generation; back-filled into batch_render's ledger | sidecars, unconsumed |
-| **Rules** | Findings turned into lint: prompts checked for negations and for contradictions with the set contract; cameras checked against the square-to-facade rule; costs checked against budget | `FINDINGS.md` (prose) |
+**OpenUSD as the canonical representation.** This is the proposal's most important decision and it is correct. The
+things NH-S901 needed and improvised — set states (open joists → half-decked → beam → finished), dressing layers
+(harvest), weather layers (drizzle), per-shot cameras, a banner as a tracked plane — are exactly USD's native
+vocabulary: variant sets, layers, references, prims. The `layout.yaml` I proposed in v1 is a home-made subset of a
+USD layer stack; better to use the real thing from the start. Blender exports and imports USD; Unreal imports it well;
+`usd-core` gives Python composition for free.
 
-The thing to hold onto: **the world is greybox and stays greybox.** It decides where things are and what state they
-are in. The look still comes from the models, conditioned on the world, then verified against it.
+**A catalog with structured metadata and provenance.** Right, and it converges with the studio's existing instinct
+(the batch_render provenance ledger, the findings ledger). The proposal's framing of a *rights-cleared proprietary
+asset corpus* is the correct economic argument: every set built for New Harnomy is a set the next production does not
+build. Provenance per asset — created how, by whom, licensed how, used where, approved when — should be there from
+asset one, because it cannot be back-filled honestly.
+
+**Deterministic 3D feeding generative imagery (§9).** This is the exact architecture the teaser arrived at by
+failure: the world renders depth, segmentation, camera and continuity references; the generative model paints inside
+them. The proposal's list — character reference, environment reference, camera trajectory, depth, segmentation,
+lighting, pose, motion, props, wardrobe, continuity reference, previous frame — is the conditioning stack. Everything
+in v1's Phase 1 is a subset of it.
+
+**Universal sets with variants (§4), procedural generators (§2), the self-expanding loop (§10).** All sound. Variants
+are USD variant sets; generators are what `build_backlot.py`'s `storefront()` already is in miniature; the loop is
+the findings ledger turned into a build queue.
+
+**"Build the catalog, the USD schema and the agent at the same time, around one short."** Correct emphasis. The
+first milestone being an *assembled, filmable stage from a scene description* rather than *a beautiful scene* is the
+right test.
+
+### 1.2 Where the record disagrees, or the proposal is early
+
+**It has no verification layer.** The proposal goes catalog → agent → USD → Unreal → render as if assembly were the
+hard part. The record says assembly is the easy part; the hard part is that every generative step *re-invents* what
+it was given (NH-USA-016, 034, 041, 043, 045, 047, 048, 051 — eight findings, one pattern). A backlot without a gate is
+a library of things the model will ignore. The gate — projected control points, segmentation IoU, OCR of text
+planes, a judge reading the comparison sheet — is the studio's contribution to this architecture and must sit
+between "generate" and "spend" at every tier.
+
+**Unreal is right for a different studio.** Its virtual-production stack (nDisplay, Live Link, camera tracking,
+Composure) exists for LED volumes and tracked physical cameras. Ilyrium is not shooting people on a stage; it is
+generating frames from a world. What Unreal offers *this* studio is real-time iteration on camera and light, and fast
+conditioning passes for moving cameras. Both matter later — sequences with camera moves, a director working live —
+and neither is needed to fix what broke in the teaser. Headless Blender already renders the passes and the survey
+views in seconds. Unreal is a Phase 3 adoption, on evidence of need, not a foundation. Omniverse likewise: its
+value here is USD services, which `usd-core` provides without it.
+
+**Film-ready photoreal assets are the wrong fidelity for most of the backlot.** The proposal assumes hero-quality
+models, materials and LODs. In a generative pipeline the look comes from the model; the world's job is to fix *where*
+and *what state*. Two grades are enough: **conditioning-grade** (greybox at true scale with segmentation IDs and
+text planes — what exists now, cheap, and sufficient for depth/seg conditioning) and **hero-grade** (only where the
+generative path cannot be trusted: text-bearing signage, hero props, anything read in close-up). Building
+hero-grade everything is the traditional CG cost the proposal itself, in §9, argues the studio should avoid.
+
+**Natural language in, geometry out is where continuity dies.** "Give me 1970s Manhattan at night in rain" is the
+right *interface*, but the agent's output must be a structured spec against a catalog of real geometry — never a
+prompt to an image model. The record's worst failures came from prose asked to do geometry's job. The Backlot Agent
+resolves *assets and states*; it does not describe scenes to a diffusion model.
+
+**Scope.** Five environments, ten modular sets, two hundred props, ten vehicles, five characters, a virtual-camera
+system, a catalog, a schema and an agent is a studio department's quarter. For a solo operator with Claude sessions
+the MVP has to be one production's worth of world — New Harnomy — with the schema, catalog and agent built at full
+generality but populated only as far as the next sequence needs. "Generic_USA" is a bucket to grow into, not to
+fill first. Semantic search over embeddings is premature below a few hundred assets; the metadata schema must be
+right on day one so it can be added without migration.
+
+**Characters.** Listed as assets; the hard part is not a rig, it is identity across generated frames, which the
+studio handles with anchors and LoRAs. In the backlot a character is a mannequin on a mark — enough for blocking,
+pose passes and eyelines — plus a pointer to its identity assets. That is a deliberate half-measure and should be
+labelled as one.
+
+### 1.3 Net
+
+Adopt the proposal's spine — USD, catalog, provenance, agent, self-expanding loop, deterministic-3D-into-generative —
+now. Add the verification layer it lacks. Defer Unreal and Omniverse to evidence of need. Scope the MVP to New
+Harnomy. Keep the world conditioning-grade except where close-ups demand more.
+
+---
+
+## 2. Architecture (as amended)
+
+```
+                          BACKLOT AGENT
+             libretto scene ─► asset + state + camera spec
+                                  │  (never a prompt)
+                                  ▼
+                          BACKLOT CATALOG           provenance on every row
+                 locations · sets · props · text planes · marks
+                 cameras · lighting states · weather states
+                                  │
+                                  ▼
+                          OpenUSD STAGE  (layers + variant sets = states)
+                                  │
+              ┌───────────────────┼───────────────────┐
+              ▼                   ▼                   ▼
+        BLENDER (headless)   CONDITIONING        [UNREAL — phase 3,
+        author · generators  clay depth normal    moving cameras,
+        USD export           seg-ID line-art      live iteration]
+                             text quads · control points
+                                  │
+                                  ▼
+                          GENERATION  (one entry point per tier)
+                 structure-locked key (ControlNet) · camera-preserving edit
+                 (single-reference) · motion (Veo first/last · Wan on box)
+                                  │
+                                  ▼
+                          THE GATE  — before any spend
+                 projected posts · seg IoU · OCR · judge on the sheet
+                 PASS / WARN / FAIL  + sheet saved beside every key
+                                  │
+                                  ▼
+                 RENDER ─► LEDGER ─► ASSEMBLE ─► FINDINGS ─► RULES ─► (loop)
+```
 
 ---
 
 ## 3. The plan
 
-Five phases. Each has a gate you can check without trusting anyone's summary. Numbers are for a solo operator with
-Claude sessions; the box is the g5.2xlarge already provisioned.
+Six phases. Each ends in a check that does not depend on a summary.
 
-### Phase 0 — Make the world the input (no spend, ~2 sessions)
+### Phase 0 — USD, catalog and provenance under what already exists (no spend, ~3 sessions)
 
-1. Create `ows/world/layout.yaml` — every set, prop, text plane and camera as data (name, position, rotation,
-   dimensions, state membership); `build_backlot.py` becomes a consumer of it rather than the place numbers live.
-2. Add `ows/world/readback.py` — opens a `.blend` Brad has edited by hand and harvests object transforms back into
-   `layout.yaml`, so a building moved in the GUI becomes a diff in git.
-3. Add **set states** to the builder: `build.joists`, `build.half_decked`, `build.beam_seated`, `build.swept`,
-   `finished`, `feast` — each a named subset of objects; the storyboard's build ladder becomes a list of state names.
-4. Add **text planes**: the banner (and every future sign) as a tracked quad in the world, so `set_banner_text.py`
-   receives its box or perspective quad from the camera projection instead of from a crop I measured by hand.
-5. Extend the shot-spec schema (v2): `camera` (ref into cameras), `set_state`, `weather`, `dressing`, `invariants[]`,
-   `conditioning[]`, `budget_usd`. Raise the 1280 render cap (NH-USA-038). Migrate NH-S901's twelve specs.
-6. Add `ows/cost_preflight.py` — every generation entry point prints its cost and refuses to run past a per-shot
-   budget or below a balance floor; Veo's *observed* rate replaces the assumed one.
+1. Create `backlot/schema/asset.yaml` — the catalog row: `asset_id`, `kind`, `production`, `period`, `states[]`,
+   `grade` (conditioning | hero), `formats[]`, `provenance` (method, creator, source, license, approval, used_in[]),
+   `text_planes[]`, `marks[]`, `control_points[]`. Every field the proposal's LOC_NYC_042 example has, plus grade and
+   control points.
+2. Create `backlot/catalog.py` — a SQLite catalog with a YAML mirror in git; `add`, `find` (structured filters),
+   `provenance`, `used_in`. Embeddings are a column reserved now and filled later.
+3. Convert `build_backlot.py` to emit **USD**: one `.usda` per asset (`CityHall.usda`, `RallyStage.usda`,
+   `Bodega.usda` …), a `NewHarnomy_square.usda` that references them, **variant sets** for set states
+   (`build: joists | half_decked | beam_seated | swept | finished | feast`) and for weather/time, and a
+   `cameras.usda` layer with one camera prim per shot. The `.blend` becomes an export, not the truth.
+4. Create `backlot/readback.py` — harvests transforms from a `.blend` Brad has edited by hand into the USD layer,
+   so a building moved in the GUI is a diff in git, not a divergence.
+5. Register every existing NH asset in the catalog with provenance (method: procedural; creator: builder script;
+   used_in: NH-S901) — the corpus starts with what exists.
+6. Extend the shot-spec schema to v2: `camera` (prim path), `set_state`, `weather`, `dressing`, `invariants[]`,
+   `conditioning[]`, `budget_usd`; raise the render cap; migrate the twelve NH-S901 specs.
+7. Add `backlot/cost_preflight.py` — every generating entry point prints its cost and refuses past a per-shot cap or
+   below a balance floor; Veo's observed rate replaces the assumed one.
 
-**Gate:** rebuild the whole backlot from `layout.yaml`; `cameras.json` and `control_points.json` regenerate
-byte-identical; all twelve NH-S901 specs validate under schema v2.
+**Check:** the square rebuilds from USD alone; `cameras.json` and `control_points.json` regenerate byte-identical
+from the USD cameras layer; all twelve specs validate; `catalog find kind=set production=NH` lists the stage.
 
-### Phase 1 — Structure-locked keyframes (the half-day on the box, ~$15 GPU + ~$5 test spend)
+### Phase 1 — Conditioning passes and structure-locked keyframes (the box, ~$20 GPU + ~$5 test spend)
 
-7. Install on the ComfyUI box: FLUX.1-dev, a Union ControlNet (depth + canny), an IP-Adapter for look transfer from
-   the LOCKED plates. Document exact versions in `ows/generation/MODELS.md`.
-8. Create `ows/conditioning/render_passes.py` — headless Blender per shot: clay, depth (EXR, normalised), normal,
-   segmentation-ID (one flat colour per object class: deck, post, beam, chair, building, paving), line-art.
-9. Create `ows/generation/keyframe_from_world.json` (ComfyUI workflow) and `ows/generation/generate_keyframe.py` —
-   inputs: shot spec → passes → prompt built from the spec (see Phase 4's linter) → FLUX + depth ControlNet at
-   high weight + IP-Adapter from the plate → 2K key + sidecar.
-10. Keep nano-banana for what it is good at and safe for: **single-reference** dressing, weather and cleanup edits
-    that preserve the camera (NH-USA-046). Wrap the six incident scripts into one `edit_keyframe.py` with named
-    presets (`harvest`, `overcast_drizzle`, `strip_platform`, `letter_from_plate`).
-11. Validate on the three shots that failed most (SH003, SH006, SH009): generate five takes each through the
-    ControlNet path, run the gate on all fifteen.
+8. Create `backlot/conditioning/render_passes.py` — headless Blender from the USD stage per shot camera: clay,
+   depth (EXR, normalised), normal, segmentation-ID (flat colour per class: deck, post, beam, chair, building,
+   paving, text plane), line-art; plus projected control points and text-plane quads.
+9. Install on the ComfyUI box FLUX.1-dev, a Union ControlNet (depth + canny), an IP-Adapter for look from the LOCKED
+   plates; pin versions in `backlot/generation/MODELS.md`.
+10. Create `backlot/generation/generate_keyframe.py` — shot spec → passes → prompt *built from the spec by the
+    linter, not typed* → FLUX + depth ControlNet at high weight + IP-Adapter → 2K key + sidecar.
+11. Fold the six incident scripts into `backlot/generation/edit_keyframe.py` with named single-reference presets
+    (`harvest`, `overcast_drizzle`, `strip`, `letter_from_plate`) — nano-banana kept for what it is safe for.
+12. Validate on SH003, SH006, SH009: five takes each through the ControlNet path, gate all fifteen.
 
-**Gate:** first-take pass rate on the geometry gate ≥ 90% over those fifteen (the run just finished was roughly
-40%). If the ControlNet look is too CG, the pipeline becomes ControlNet-for-structure → nano-banana single-reference
-restyle, and the gate runs again on the restyled key.
+**Check:** first-take gate pass rate ≥ 90% over the fifteen (the teaser ran at roughly 40%). If the look reads CG,
+the tier becomes ControlNet-for-structure → single-reference restyle, gated again after.
 
-### Phase 2 — Verification before spend (~2 sessions, no generation spend)
+### Phase 2 — The gate becomes the QA station (~2 sessions, no spend)
 
-12. Add segmentation IoU to the gate: mask the deck, posts and beam in the seg pass; mask the same classes in the
-    key (a small open-vocabulary segmenter on the box, or the seg pass warped by the key's depth); IoU below
-    threshold is a FAIL for the deck footprint — this is the check that catches a *turned* stage, which edges cannot.
-13. Add OCR of every text plane: the banner must read exactly the spec's string; anything else routes to
-    `letter_from_plate` automatically.
-14. Add a VLM judge step: the comparison sheet plus the invariant list → a structured verdict per invariant
-    ("posts at both ends of the deck: yes/no", "one row of chairs: yes/no"). Advisory at first; promoted to blocking
-    per invariant once its false-positive rate is measured.
-15. Wire the gate into every entry point: no Veo call without a PASS, no install of a key without its sheet saved
-    beside it.
-16. Add `ows/provenance/ledger.py` — one row per generation with the world version hash; back-fill NH-S901 from
-    the sidecars; expose "reproduce this key" as a command.
+13. Add segmentation IoU: deck, posts, beam masked in the seg pass vs. the same classes in the key (a
+    small open-vocabulary segmenter on the box); a low deck IoU FAILs — this is the check that catches a *turned*
+    stage, which edge heuristics could not (NH-USA-052).
+14. Add OCR on every text plane: the banner must read the spec's string exactly; otherwise `letter_from_plate`
+    runs automatically.
+15. Add a judge: the comparison sheet plus the spec's invariants → one verdict per invariant, advisory until its
+    false-positive rate is measured, then blocking per invariant.
+16. Gate every entry point: no motion render without a PASS; no key installed without its sheet beside it.
+17. Create `backlot/provenance/ledger.py` — one row per generation with the USD stage hash, camera prim, state,
+    prompt, seed, model, cost; back-fill NH-S901 from the sidecars; add `reproduce <key>`.
 
-**Gate:** rerun the gate over every archived bad take from v3–v10 (there are eleven); it must FAIL all of them and
-PASS every installed key. That is the regression suite, and it is free.
+**Check:** the eleven archived bad takes from v3–v10 all FAIL; every installed key PASSes. That regression suite
+costs nothing and runs on every change to the gate.
 
-### Phase 3 — World coverage (modelling time; interiors ~1 session each)
+### Phase 3 — The Backlot Agent, and Unreal on evidence (~3 sessions)
 
-17. Take the north row, the axis street and the university from blockout to shot-ready cameras (frontages, awning,
-    gate, quad) — same fit-by-overlay method against whatever plate is locked first for each.
-18. Build the interiors as sets registered to the world: Pengold's office with its three windows on the drum wall
-    (the POV contract in SET_BIBLE §4 becomes geometry), the PILF storefront office, LYSTERIA.
-19. Add lighting states as world data (first light, overcast drizzle, dusk, tungsten interior) so a relight is a
-    state change with a matching pass, not a prompt.
-20. Build the Feast state of the square (Act III): the same stage, the portrait rig, the chorus marks.
-21. Place character marks in the world (where Pengold stands at the glass, where Dick exits stage-left) so blocking
-    is data the specs can reference.
+18. Create `backlot/agent/resolve_scene.py` — input: a libretto scene (or the storyboard's shot row); output: a
+    structured request — location, set, state, weather, time, props, marks, camera — resolved against the catalog:
+    reuse / configure variant / **queue a build**. It never emits a prompt.
+19. Create `backlot/agent/build_queue.py` — the missing-asset queue, ranked by the findings ledger and by how
+    often an asset was re-generated (the self-expanding loop, §10, as a table rather than a hope).
+20. Populate the catalog to the next sequence's needs only: north row to shot-ready, the university gate, the three
+    interiors (Pengold's office with its windows on the drum wall, PILF, LYSTERIA) as USD sets registered to the
+    world, lighting states as data, the Feast state of the square, character mannequins on marks.
+21. Trial Unreal on one sequence with a camera move: import the USD stage, place the shot cameras, render depth and
+    seg for a move, condition Wan on the box with them. Adopt if it beats headless Blender on iteration speed for
+    that work; otherwise it stays optional.
 
-**Gate:** every location in `setting.md` has at least one shot-ready camera and a survey render in
-`03_design/environments/backlot/`; the SET_BIBLE's §4 contract is expressed as world geometry with no prose-only rules.
+**Check:** the agent takes one NH scene from the libretto and returns a resolved spec whose every asset either exists
+in the catalog or is a queued build with a grade; a stage composes from that spec and its passes render without a
+hand edit.
 
 ### Phase 4 — Motion and rules (~2 sessions)
 
-22. Camera paths from Blender for Veo's first/last-frame mode: render the last frame of a move through the same
-    ControlNet path so both ends are gated before the clip is bought.
-23. Depth-video conditioning on the box (Wan 2.2 + depth) for the previz tier: cheap moving-camera layout checks
-    before any Veo spend, from the same world.
-24. Create `ows/rules/prompt_lint.py` from the findings: flags negations ("no second row"), flags a shot instruction
-    that contradicts the set contract (parallel + ends-here from a camera that cannot show both), flags a second
-    reference image on a shot whose camera is fixed, flags "platform/stage" ambiguity when both exist in frame.
-25. Create `ows/rules/camera_lint.py`: exterior cameras square to the facade unless the spec says otherwise; a
-    camera whose view cannot contain the invariants it asserts is refused.
-26. Turn FINDINGS.md rows into rule IDs the linters cite, so a refusal names the finding that taught it.
+22. Veo first/last-frame: render both ends through the ControlNet path, gate both before the clip is bought.
+23. Depth-video conditioning on the box (Wan 2.2 + depth) as the previz tier for moving cameras.
+24. Create `backlot/rules/prompt_lint.py` from the findings: refuses negations, contradictions with the set contract,
+    a second reference on a fixed-camera shot, "platform/stage" ambiguity when both are in frame — each refusal
+    cites its finding.
+25. Create `backlot/rules/camera_lint.py`: exteriors square to the facade unless the spec overrides; a camera that
+    cannot contain the invariants it asserts is refused.
 
-**Gate:** the v10 SH009 prompt, fed to the linter, is refused with NH-USA-051 cited. The v8 SH009 camera is refused
-by the camera lint with NH-USA-047 cited.
+**Check:** the v10 SH009 prompt is refused citing NH-USA-051; the v8 SH009 camera is refused citing NH-USA-047.
 
-### Phase 5 — Operate (ongoing)
+### Phase 5 — Operate
 
-27. A one-page status per production: first-take pass rate, $ per accepted key, retakes per shot, continuity
-    defects found after delivery (target: zero — every one becomes a finding and a rule).
-28. Budget guard with a hard floor and per-shot caps; balance read from fal before every pass.
-29. Fold OWS into the studio pipeline (`specs → world → passes → generate → gate → render → ledger → assemble`) so
-    `batch_render` calls it rather than the incident scripts; retire the incident scripts.
-30. Write `ows/README.md` — the method, the invariants, and how to add a set, a state, a camera, a rule.
+26. One status page per production: first-take pass rate, $ per accepted key, retakes per shot, continuity defects
+    found after delivery (target zero; each one becomes a finding and then a rule).
+27. `batch_render` calls the backlot path (`spec → stage → passes → generate → gate → render → ledger → assemble`);
+    the incident scripts are retired.
+28. `backlot/README.md`: how to add a set, a state, a camera, a rule; the grades; the provenance contract.
 
 ---
 
-## 4. What changes for the next production
+## 4. The MVP, in this studio's terms
 
-Today a new scene costs: write prompts, generate, look, notice, re-prompt, generate, render, look, notice, re-render.
-Under OWS it costs: place the camera in the world, name the state, run `generate_keyframe`, read a gate report, render
-once. The models still invent — that is what they are for — but they invent *inside* geometry, and what they invent is
-checked against the world before it is paid for. The ledger of findings stops being a diary of what went wrong and
-becomes the list of what the pipeline refuses to let go wrong again.
+The proposal's milestone, re-aimed at New Harnomy:
 
-## 5. Risks, stated plainly
+> A Backlot Agent takes one scene of the libretto, resolves every required asset from the New Harnomy catalog
+> (reusing, configuring a variant, or queuing a build), composes a USD stage in the right state and weather, renders
+> conditioning passes for each shot camera, generates keyframes that pass the gate on the first take nine times in
+> ten, and hands over a shot list with gated keys ready to render — with every asset's provenance and every
+> generation's lineage in the ledger.
 
-- **Over-constraint looks CG.** A high-weight depth ControlNet can flatten the photographic look the teaser has now.
-  Mitigation is built into Phase 1: structure from ControlNet, look from a single-reference restyle, gate both.
-- **Video is still unconstrained.** Nothing here locks geometry *during* a Veo clip; it locks the still it starts
-  from and, in first/last-frame mode, the still it ends on. Locked-off cameras and short clips remain the rule until
-  a video ControlNet is worth its cost.
-- **Modelling time.** Every set is an evening of Blender. The backlot proves it is tractable; it is still time.
-- **Segmentation reliability.** The IoU check depends on a segmenter reading a photograph the way the seg pass reads
-  the model. It is measured before it is trusted (Phase 2's regression suite), like everything else here.
-- **The GPU bill.** The box runs for Phase 1 and for previz; Phase 0's cost preflight applies to it too.
+Film one (the teaser) built 100% of its world by hand. The next NH sequence should build under half. The Feast
+should build almost none. That is the moat the proposal describes, measured.
 
-## 6. What I need from Brad
+## 5. Risks, plainly
 
-- Confirmation that OWS means what §0 says it means, or the document it was meant to mean.
-- Which location after the square matters first (Phase 3 ordering).
-- Whether the ControlNet session on the box runs before or after the next teaser note — my recommendation is
-  before: every note since v5 has been a continuity note.
+- **Over-constraint looks CG** — mitigated in Phase 1 by structure-then-restyle, both gated.
+- **Video is unconstrained mid-clip** — locked-off cameras and short clips until a video ControlNet earns its cost.
+- **USD in Blender is good, not perfect** — variant sets and some material round-trips need care; the builder owns
+  the USD, Blender consumes it, which sidesteps most of it.
+- **Segmentation reliability** — measured on the regression suite before it blocks anything.
+- **Scope creep toward the generic backlot** — the catalog schema is general; the population is New Harnomy only,
+  until a second production pulls something else in.
+- **Time** — Phases 0–2 are about two weeks of sessions; they pay back on the first sequence that ships without a
+  continuity note.
+
+## 6. Decisions needed
+
+- Confirm USD as the canonical format (it changes Phase 0's first task).
+- Confirm Unreal deferred to Phase 3 on evidence, not adopted up front.
+- Which interior first: Pengold's office (the POV contract) is my recommendation.
+- Run Phase 1 on the box before the next teaser note — every note since v5 has been a continuity note.
