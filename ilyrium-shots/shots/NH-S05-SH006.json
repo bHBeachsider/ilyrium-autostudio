@@ -1,0 +1,37 @@
+{
+  "shot_id": "NH-S05-SH006",
+  "song_id": "NH-S05",
+  "duration_s": 7,
+  "camera": {
+    "shot_size": "medium",
+    "movement": "static",
+    "lens_mm": 50
+  },
+  "subjects": [
+    "stripe_young",
+    "mama",
+    "girlfriends"
+  ],
+  "setting": "Mama's kitchen / the dice game",
+  "mood": "cold, remorseless",
+  "action": "The savings. Mama's back turned at the stove; Stripe pries the lid off her savings tin - the rent money, the folded bills she counted for years - and pockets it all. Straight cut: the same crumpled bills slapped down on the alley dice game as a glowering bookie collects Stripe's gambling debt. Mama finds the empty tin.",
+  "prompt": "black and white pen line drawing, photomontage, young fat ohwx man prying open his tired mother's savings tin and pocketing folded bills behind her turned back in a tenement kitchen, straight cut to the same crumpled bills slapped onto an alley dice game as a big glowering bookie collects the debt, mother holding the empty tin, scratchy crosshatch ink, no color, strictly black and white pen line drawing, scratchy confident ink strokes, crosshatch shading, harsh contrast, photomontage collage energy, gritty 1970s Bronx underworld drawn in ink, no color fills, at most a faint gold glint on jewelry",
+  "negative_prompt": "photorealism, photograph, realistic skin, cinematic color grading, lens flare, film grain, anime, manga, 3d render, full color scene, skinny young stripe, bald young stripe, smiling, grinning, teeth, real person likeness, MLB logo, watermark",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "stripe_young",
+    "seed": 100006
+  },
+  "seed": 100006,
+  "continuity": {
+    "prev_shot": "NH-S05-SH005",
+    "flf2v": true
+  },
+  "render": {
+    "width": 640,
+    "height": 640,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 7
+  }
+}

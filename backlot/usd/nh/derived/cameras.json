@@ -1,0 +1,140 @@
+{
+ "stage": "../NewHarnomy_square.usda",
+ "build": "finished",
+ "weather": "overcast_drizzle",
+ "cameras": {
+  "PLATE": {
+   "location": [
+    0.0,
+    76.0,
+    9.0
+   ],
+   "rotation_deg": [
+    -87.74,
+    180.0,
+    0.0
+   ],
+   "lens_mm": 22.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1584,
+    672
+   ],
+   "set_state": "finished"
+  },
+  "SH002": {
+   "location": [
+    0.0,
+    76.0,
+    9.0
+   ],
+   "rotation_deg": [
+    -87.74,
+    180.0,
+    0.0
+   ],
+   "lens_mm": 26.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "set_state": "joists"
+  },
+  "SH003": {
+   "location": [
+    -9.0,
+    55.0,
+    1.6
+   ],
+   "rotation_deg": [
+    -77.44,
+    180.0,
+    0.0
+   ],
+   "lens_mm": 26.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "set_state": "joists"
+  },
+  "SH006": {
+   "location": [
+    0.0,
+    8.3,
+    7.2
+   ],
+   "rotation_deg": [
+    76.37,
+    -0.0,
+    0.0
+   ],
+   "lens_mm": 20.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "set_state": "half_decked"
+  },
+  "SH007": {
+   "location": [
+    0.0,
+    60.0,
+    1.7
+   ],
+   "rotation_deg": [
+    -80.3,
+    180.0,
+    0.0
+   ],
+   "lens_mm": 28.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "set_state": "beam_seated"
+  },
+  "SH009": {
+   "location": [
+    -5.0,
+    68.0,
+    1.7
+   ],
+   "rotation_deg": [
+    -86.71,
+    180.0,
+    0.0
+   ],
+   "lens_mm": 32.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "set_state": "finished"
+  },
+  "SH010": {
+   "location": [
+    0.0,
+    76.0,
+    9.0
+   ],
+   "rotation_deg": [
+    -87.74,
+    180.0,
+    0.0
+   ],
+   "lens_mm": 26.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "set_state": "finished"
+  }
+ }
+}

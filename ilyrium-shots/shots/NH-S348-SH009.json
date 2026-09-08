@@ -1,0 +1,35 @@
+{
+  "shot_id": "NH-S348-SH009",
+  "song_id": "NH-S348",
+  "duration_s": 8,
+  "camera": {
+    "shot_size": "medium",
+    "movement": "locked-off",
+    "lens_mm": 50
+  },
+  "subjects": [
+    "valencia"
+  ],
+  "setting": "The Anti-Thanksgiving Feast stage, upstage right, Valencia's own light",
+  "mood": "documentary truthfulness",
+  "action": "BEAT 5 - VALENCIA. One step downstage from upstage right, into her own light. She opens the mauve book she has been holding. She looks at it. She closes it. She lets it fall from her hand, not dramatically, just lets it fall. It hits the floor with a single unamplified thump. She sings one line, not accusatory, quiet, a question offered to the house.",
+  "prompt": "medium shot, locked-off, documentary register, a sturdy grounded woman in her late forties, practical unfussy hair, direct steady eyes, weathered capable face without makeup performance, real practical work clothes in plain worn fabrics that have been worn more than once this week, sensible shoes, working hands, photographed truthfully in flat honest documentary light stepping one step downstage into a pool of flatter truer light, opening a closed worn trade paperback in dusty brownish mauve, the color of a faded 1970s university-press paperback, not lavender, not aubergine, not pink, looking at it, closing it, letting it fall from her hand to the stage floor, then singing one quiet line toward the house, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "valencia",
+    "seed": 348009
+  },
+  "seed": 348009,
+  "continuity": {
+    "prev_shot": "NH-S348-SH008",
+    "flf2v": false
+  },
+  "render": {
+    "width": 640,
+    "height": 640,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 8
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "shot_id": "NH-S101-SH002",
+  "song_id": "NH-S101",
+  "duration_s": 3,
+  "camera": {
+    "shot_size": "medium",
+    "movement": "static",
+    "lens_mm": 50
+  },
+  "subjects": [],
+  "setting": "Black",
+  "mood": "silence",
+  "action": "BLACK SLUG (post may slug this): hard cut to black, no dimmer. Three full seconds of nothing. A cough from the house sounds like a gunshot.",
+  "prompt": "a pure black frame, no light, no content, absolute darkness, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "",
+    "seed": 101002
+  },
+  "seed": 101002,
+  "continuity": {
+    "prev_shot": "NH-S101-SH001",
+    "flf2v": false
+  },
+  "render": {
+    "width": 640,
+    "height": 640,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 3
+  }
+}

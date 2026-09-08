@@ -1,0 +1,16 @@
+#usda 1.0
+(
+    defaultPrim = "WestShops"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "WestShops" (
+    kind = "component"
+    prepend references = @./geo.usda@</geo>
+)
+{
+    custom string backlot:asset_id = "WestShops"
+    custom token backlot:grade = "conditioning"
+}
+

@@ -2,49 +2,136 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://ilyrium.studio/schemas/shot-spec-1.0.json",
   "title": "Ilyrium Shot Spec v1.0",
-  "description": "Stage 2 contract: one shot definition. The fine-tuned shot-breakdown model emits the creative fields; the orchestrator fills the optional render/image fields before generation.",
+  "description": "Stage 2 contract: one shot definition. The fine-tuned shot-breakdown model emits the creative fields; the orchestrator fills the optional render/image fields before generation. v2 (2026-09-08): optional 'backlot' block binds a shot to the USD stage, camera prim, set state and gate invariants; render caps raised for 1080p/2K.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["shot_id", "song_id", "duration_s", "camera", "subjects", "setting", "mood", "action", "prompt", "keyframe", "seed", "continuity"],
+  "required": [
+    "shot_id",
+    "song_id",
+    "duration_s",
+    "camera",
+    "subjects",
+    "setting",
+    "mood",
+    "action",
+    "prompt",
+    "keyframe",
+    "seed",
+    "continuity"
+  ],
   "properties": {
-    "shot_id":   { "type": "string", "pattern": "^[A-Z]{2,4}-S[0-9]{2,}-SH[0-9]{3,}$" },
-    "song_id":   { "type": "string", "pattern": "^[A-Z]{2,4}-S[0-9]{2,}$" },
-    "duration_s": { "type": "number", "minimum": 1, "maximum": 10 },
+    "shot_id": {
+      "type": "string",
+      "pattern": "^[A-Z]{2,4}-S[0-9]{2,}-SH[0-9]{3,}$"
+    },
+    "song_id": {
+      "type": "string",
+      "pattern": "^[A-Z]{2,4}-S[0-9]{2,}$"
+    },
+    "duration_s": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 10
+    },
     "camera": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["shot_size", "movement", "lens_mm"],
+      "required": [
+        "shot_size",
+        "movement",
+        "lens_mm"
+      ],
       "properties": {
-        "shot_size": { "enum": ["extreme-wide", "wide", "medium", "close-up", "two-shot", "macro"] },
-        "movement":  { "type": "string", "minLength": 1 },
-        "lens_mm":   { "type": "integer", "minimum": 8, "maximum": 300 }
+        "shot_size": {
+          "enum": [
+            "extreme-wide",
+            "wide",
+            "medium",
+            "close-up",
+            "two-shot",
+            "macro"
+          ]
+        },
+        "movement": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lens_mm": {
+          "type": "integer",
+          "minimum": 8,
+          "maximum": 300
+        }
       }
     },
-    "subjects": { "type": "array", "items": { "type": "string" } },
-    "setting":  { "type": "string", "minLength": 1 },
-    "mood":     { "type": "string", "minLength": 1 },
-    "action":   { "type": "string", "minLength": 1 },
-    "prompt":   { "type": "string", "minLength": 1 },
-    "negative_prompt": { "type": "string" },
+    "subjects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "setting": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mood": {
+      "type": "string",
+      "minLength": 1
+    },
+    "action": {
+      "type": "string",
+      "minLength": 1
+    },
+    "prompt": {
+      "type": "string",
+      "minLength": 1
+    },
+    "negative_prompt": {
+      "type": "string"
+    },
     "keyframe": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["source", "ref_lora", "seed"],
+      "required": [
+        "source",
+        "ref_lora",
+        "seed"
+      ],
       "properties": {
-        "source":   { "enum": ["t2i", "flf2v"] },
-        "ref_lora": { "type": "string" },
-        "image":    { "type": "string", "description": "Filename present in ComfyUI/input (uploaded by the orchestrator). Filled at render time, not by the model." },
-        "seed":     { "type": "integer" }
+        "source": {
+          "enum": [
+            "t2i",
+            "flf2v"
+          ]
+        },
+        "ref_lora": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string",
+          "description": "Filename present in ComfyUI/input (uploaded by the orchestrator). Filled at render time, not by the model."
+        },
+        "seed": {
+          "type": "integer"
+        }
       }
     },
-    "seed": { "type": "integer" },
+    "seed": {
+      "type": "integer"
+    },
     "continuity": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["prev_shot", "flf2v"],
+      "required": [
+        "prev_shot",
+        "flf2v"
+      ],
       "properties": {
-        "prev_shot": { "type": "string" },
-        "flf2v":     { "type": "boolean" }
+        "prev_shot": {
+          "type": "string"
+        },
+        "flf2v": {
+          "type": "boolean"
+        }
       }
     },
     "render": {
@@ -52,11 +139,132 @@
       "additionalProperties": false,
       "description": "Generation params filled by the orchestrator. Defaults applied if absent.",
       "properties": {
-        "width":      { "type": "integer", "minimum": 64, "maximum": 1280 },
-        "height":     { "type": "integer", "minimum": 64, "maximum": 1280 },
-        "fps":        { "type": "integer", "minimum": 8, "maximum": 60 },
-        "steps":      { "type": "integer", "minimum": 1, "maximum": 60 },
-        "duration_s": { "type": "number", "minimum": 1, "maximum": 10 }
+        "width": {
+          "type": "integer",
+          "minimum": 64,
+          "maximum": 4096
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 64,
+          "maximum": 4096
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 8,
+          "maximum": 60
+        },
+        "steps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "duration_s": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "renderer": {
+          "enum": [
+            "comfyui-wan22",
+            "fal-veo3.1",
+            "fal-veo3.1-fast",
+            "comfyui-flux-controlnet"
+          ]
+        }
+      }
+    },
+    "backlot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stage",
+        "camera",
+        "set_state"
+      ],
+      "description": "One World Set: where this shot lives in the world. See docs/ows/OWS_PLATFORM_PLAN.md.",
+      "properties": {
+        "stage": {
+          "type": "string",
+          "description": "USD stage path relative to repo root"
+        },
+        "camera": {
+          "type": "string",
+          "pattern": "^/World/Cameras/[A-Za-z0-9_]+$",
+          "description": "camera prim in the stage"
+        },
+        "set_state": {
+          "type": "string",
+          "description": "the 'build' variant selection on /World for this shot"
+        },
+        "weather": {
+          "type": "string"
+        },
+        "dressing": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "invariants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "check"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "check": {
+                "enum": [
+                  "post_projection",
+                  "deck_orientation",
+                  "seg_iou",
+                  "ocr",
+                  "judge"
+                ]
+              },
+              "blocking": {
+                "type": "boolean",
+                "default": false
+              },
+              "args": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "conditioning": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "clay",
+              "depth",
+              "normal",
+              "seg",
+              "lineart"
+            ]
+          }
+        },
+        "references": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "named reference images (plate, anchor) - the camera never comes from these (NH-USA-043)"
+        },
+        "budget_usd": {
+          "type": "number",
+          "minimum": 0
+        },
+        "world_version": {
+          "type": "string",
+          "description": "git hash of backlot/ the stage was composed at; filled by generate"
+        }
       }
     }
   }

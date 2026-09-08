@@ -1,0 +1,16 @@
+#usda 1.0
+(
+    defaultPrim = "AxisStreet"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "AxisStreet" (
+    kind = "component"
+    prepend references = @./geo.usda@</geo>
+)
+{
+    custom string backlot:asset_id = "AxisStreet"
+    custom token backlot:grade = "conditioning"
+}
+

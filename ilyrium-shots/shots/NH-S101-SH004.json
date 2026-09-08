@@ -1,0 +1,35 @@
+{
+  "shot_id": "NH-S101-SH004",
+  "song_id": "NH-S101",
+  "duration_s": 5,
+  "camera": {
+    "shot_size": "wide",
+    "movement": "locked-off",
+    "lens_mm": 24
+  },
+  "subjects": [
+    "pengold"
+  ],
+  "setting": "Pengold's mayoral office at dawn",
+  "mood": "he does not react to being seen",
+  "action": "The stage is revealed: one room. Pengold is already seated at the desk when the light finds him. He does not react to being seen. He is reading the folded newspaper.",
+  "prompt": "wide shot, locked-off, modest mid-century municipal mayor's office at dawn, mahogany-laminate desk and credenza, a tungsten desk lamp still on from the night before, a half-empty coffee cup, a folded newspaper, three worn trade paperbacks in dusty brownish mauve, the color of a faded 1970s university-press paperback, not lavender, not aubergine, not pink stacked on the credenza, thin cold dawn light held off the desk, a controlled man in his late forties, neat conservative hair greying at the temples, calculating unhurried eyes, medium solid upright build, municipal mayoral suiting in dark muted wool, white shirt, no ostentation, papers aligned squarely, unhurried processional bearing seated at the desk reading a folded newspaper, not reacting to being seen, single-source tungsten from the desk lamp, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "pengold",
+    "seed": 101004
+  },
+  "seed": 101004,
+  "continuity": {
+    "prev_shot": "NH-S101-SH003",
+    "flf2v": false
+  },
+  "render": {
+    "width": 640,
+    "height": 640,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 5
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "shot_id": "NH-S05-SH018",
+  "song_id": "NH-S05",
+  "duration_s": 7,
+  "camera": {
+    "shot_size": "medium",
+    "movement": "locked-off",
+    "lens_mm": 50
+  },
+  "subjects": [
+    "stripe_young",
+    "customers",
+    "cop"
+  ],
+  "setting": "Shop front / the fix",
+  "mood": "shameless, protected",
+  "action": "The heat. A mob of ripped-off customers screams and pounds on the locked shop door, shaking fists and a leaking newspaper-stuffed mattress; around the corner Stripe slips an envelope to a uniformed cop who looks the other way; Stripe counts bills deadpan as complaint letters pile.",
+  "prompt": "black and white pen line drawing, photomontage, angry mob of 1970s customers pounding on a locked shop door shaking fists and holding a leaking newspaper-stuffed mattress, around the corner young fat ohwx man slipping an envelope to a uniformed police officer who looks away, ohwx man counting bills deadpan, complaint letters piling like snow, scratchy ink, no color, strictly black and white pen line drawing, scratchy confident ink strokes, crosshatch shading, harsh contrast, photomontage collage energy, gritty 1970s Bronx underworld drawn in ink, no color fills, at most a faint gold glint on jewelry",
+  "negative_prompt": "photorealism, photograph, realistic skin, cinematic color grading, lens flare, film grain, anime, manga, 3d render, full color scene, skinny young stripe, bald young stripe, smiling, grinning, teeth, real person likeness, MLB logo, watermark",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "stripe_young",
+    "seed": 100018
+  },
+  "seed": 100018,
+  "continuity": {
+    "prev_shot": "NH-S05-SH017",
+    "flf2v": false
+  },
+  "render": {
+    "width": 640,
+    "height": 640,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 7
+  }
+}

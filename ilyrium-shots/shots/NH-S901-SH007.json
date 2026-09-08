@@ -30,6 +30,45 @@
     "height": 480,
     "fps": 16,
     "steps": 4,
-    "duration_s": 6
+    "duration_s": 6,
+    "renderer": "fal-veo3.1"
+  },
+  "backlot": {
+    "stage": "backlot/usd/nh/NewHarnomy_square.usda",
+    "camera": "/World/Cameras/SH007",
+    "set_state": "beam_seated",
+    "weather": "overcast_drizzle",
+    "dressing": [
+      "harvest"
+    ],
+    "invariants": [
+      {
+        "id": "posts_at_stage_ends",
+        "check": "post_projection",
+        "blocking": true
+      },
+      {
+        "id": "deck_parallel_to_facade",
+        "check": "deck_orientation",
+        "blocking": false
+      },
+      {
+        "id": "banner_reads_spec",
+        "check": "ocr",
+        "blocking": false,
+        "args": {
+          "text_plane": "Banner"
+        }
+      }
+    ],
+    "conditioning": [
+      "clay",
+      "depth",
+      "seg"
+    ],
+    "references": {
+      "plate": "projects/new_harnomy_usa/03_design/environments/city_hall/plate_exterior_firstlight_LOCKED.png"
+    },
+    "budget_usd": 3.0
   }
 }

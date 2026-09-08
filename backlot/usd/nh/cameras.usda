@@ -1,0 +1,200 @@
+#usda 1.0
+(
+    upAxis = "Z"
+)
+
+def Xform "World"
+{
+    def Scope "Cameras"
+    {
+        def Camera "PLATE"
+        {
+            custom int2 backlot:resolution = (1584, 672)
+            custom token backlot:role = "shot"
+            custom token backlot:set_state = "finished"
+            custom double3 backlot:target = (0, 0, 12)
+            float2 clippingRange = (0.1, 2000)
+            float focalLength = 22
+            float horizontalAperture = 36
+            float verticalAperture = 15.272727
+            float3 xformOp:rotateXYZ = (-87.739494, 179.99998, 1.9756786e-7)
+            double3 xformOp:translate = (0, 76, 9)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        def Camera "SH002"
+        {
+            custom int2 backlot:resolution = (1920, 1080)
+            custom token backlot:role = "shot"
+            custom token backlot:set_state = "joists"
+            custom double3 backlot:target = (0, 0, 12)
+            float2 clippingRange = (0.1, 2000)
+            float focalLength = 26
+            float horizontalAperture = 36
+            float verticalAperture = 20.25
+            float3 xformOp:rotateXYZ = (-87.739494, 179.99998, 1.9756786e-7)
+            double3 xformOp:translate = (0, 76, 9)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        def Camera "SH003"
+        {
+            custom int2 backlot:resolution = (1920, 1080)
+            custom token backlot:role = "shot"
+            custom token backlot:set_state = "joists"
+            custom double3 backlot:target = (-9, 33, 6.5)
+            float2 clippingRange = (0.1, 2000)
+            float focalLength = 26
+            float horizontalAperture = 36
+            float verticalAperture = 20.25
+            float3 xformOp:rotateXYZ = (-77.44362, 179.99998, 0.000001088948)
+            double3 xformOp:translate = (-9, 55, 1.6)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        def Camera "SH006"
+        {
+            custom int2 backlot:resolution = (1920, 1080)
+            custom token backlot:role = "shot"
+            custom token backlot:set_state = "half_decked"
+            custom double3 backlot:target = (0, 38, 0)
+            float2 clippingRange = (0.1, 2000)
+            float focalLength = 20
+            float horizontalAperture = 36
+            float verticalAperture = 20.25
+            float3 xformOp:rotateXYZ = (76.373, -0, 0)
+            double3 xformOp:translate = (0, 8.3, 7.2)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        def Camera "SH007"
+        {
+            custom int2 backlot:resolution = (1920, 1080)
+            custom token backlot:role = "shot"
+            custom token backlot:set_state = "beam_seated"
+            custom double3 backlot:target = (0, 29, 7)
+            float2 clippingRange = (0.1, 2000)
+            float focalLength = 28
+            float horizontalAperture = 36
+            float verticalAperture = 20.25
+            float3 xformOp:rotateXYZ = (-80.29805, 179.99998, 8.441219e-7)
+            double3 xformOp:translate = (0, 60, 1.7)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        def Camera "SH009"
+        {
+            custom int2 backlot:resolution = (1920, 1080)
+            custom token backlot:role = "shot"
+            custom token backlot:set_state = "finished"
+            custom double3 backlot:target = (-5, 28, 4)
+            float2 clippingRange = (0.1, 2000)
+            float focalLength = 32
+            float horizontalAperture = 36
+            float verticalAperture = 20.25
+            float3 xformOp:rotateXYZ = (-86.709114, 179.99998, 2.875397e-7)
+            double3 xformOp:translate = (-5, 68, 1.7)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        def Camera "SH010"
+        {
+            custom int2 backlot:resolution = (1920, 1080)
+            custom token backlot:role = "shot"
+            custom token backlot:set_state = "finished"
+            custom double3 backlot:target = (0, 0, 12)
+            float2 clippingRange = (0.1, 2000)
+            float focalLength = 26
+            float horizontalAperture = 36
+            float verticalAperture = 20.25
+            float3 xformOp:rotateXYZ = (-87.739494, 179.99998, 1.9756786e-7)
+            double3 xformOp:translate = (0, 76, 9)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        def Camera "PLAN"
+        {
+            custom int2 backlot:resolution = (1920, 1080)
+            custom token backlot:role = "survey"
+            custom double3 backlot:target = (0, 95, 0)
+            float2 clippingRange = (0.1, 2000)
+            float focalLength = 40
+            float horizontalAperture = 36
+            float verticalAperture = 20.25
+            float3 xformOp:rotateXYZ = (0, -0, 0)
+            double3 xformOp:translate = (0, 95, 260)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        def Camera "AERIAL"
+        {
+            custom int2 backlot:resolution = (1920, 1080)
+            custom token backlot:role = "survey"
+            custom double3 backlot:target = (0, 70, 8)
+            float2 clippingRange = (0.1, 2000)
+            float focalLength = 35
+            float horizontalAperture = 36
+            float verticalAperture = 20.25
+            float3 xformOp:rotateXYZ = (65.13268, 0.0000013615563, -42.709393)
+            double3 xformOp:translate = (-120, -60, 90)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        def Camera "AXIS_UP"
+        {
+            custom int2 backlot:resolution = (1920, 1080)
+            custom token backlot:role = "survey"
+            custom double3 backlot:target = (0, 160, 8)
+            float2 clippingRange = (0.1, 2000)
+            float focalLength = 40
+            float horizontalAperture = 36
+            float verticalAperture = 20.25
+            float3 xformOp:rotateXYZ = (92.64255, -0, 0)
+            double3 xformOp:translate = (0, 30, 2)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        def Camera "AXIS_DOWN"
+        {
+            custom int2 backlot:resolution = (1920, 1080)
+            custom token backlot:role = "survey"
+            custom double3 backlot:target = (0, 0, 14)
+            float2 clippingRange = (0.1, 2000)
+            float focalLength = 40
+            float horizontalAperture = 36
+            float verticalAperture = 20.25
+            float3 xformOp:rotateXYZ = (-83.99099, 179.99998, 5.243612e-7)
+            double3 xformOp:translate = (0, 114, 2)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        def Camera "BODEGA"
+        {
+            custom int2 backlot:resolution = (1920, 1080)
+            custom token backlot:role = "survey"
+            custom double3 backlot:target = (10, 74, 4)
+            float2 clippingRange = (0.1, 2000)
+            float focalLength = 30
+            float horizontalAperture = 36
+            float verticalAperture = 20.25
+            float3 xformOp:rotateXYZ = (97.665794, -0.0000033512888, 20.556046)
+            double3 xformOp:translate = (16, 58, 1.7)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        def Camera "CHURCH_E"
+        {
+            custom int2 backlot:resolution = (1920, 1080)
+            custom token backlot:role = "survey"
+            custom double3 backlot:target = (50, 24, 20)
+            float2 clippingRange = (0.1, 2000)
+            float focalLength = 30
+            float horizontalAperture = 36
+            float verticalAperture = 20.25
+            float3 xformOp:rotateXYZ = (108.97666, -0.000005173467, -136.54817)
+            double3 xformOp:translate = (14, 62, 2)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+    }
+}
+

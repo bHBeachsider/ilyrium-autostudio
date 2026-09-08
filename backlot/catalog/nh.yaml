@@ -1,0 +1,588 @@
+- asset_id: AxisStreet
+  kind: location
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states: []
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/AxisStreet/AxisStreet.usda
+  text_planes: []
+  marks: []
+  control_points: []
+  tags:
+  - street
+  - sightline
+  - lamps
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: 01_development/bible/world/setting.md
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: reviewed
+    approved_by: ''
+    used_in: []
+    modifications:
+    - 2026-09-08 ported from build_backlot.py into assets with states
+    version: 1
+- asset_id: Banner
+  kind: text_plane
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states: []
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/Banner/Banner.usda
+  text_planes:
+  - banner_cloth
+  marks: []
+  control_points: []
+  tags:
+  - text
+  - fabric
+  - mauve
+  - festival
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: SET_BIBLE §4 banner wording (TWEEEDS' Ersatzgiving)
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: reviewed
+    approved_by: Brad (v8-v11 cuts)
+    used_in:
+    - NH-S901
+    modifications:
+    - 2026-09-08 ported from build_backlot.py into assets with states
+    version: 1
+- asset_id: BlackChurch
+  kind: building
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states: []
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/BlackChurch/BlackChurch.usda
+  text_planes: []
+  marks: []
+  control_points: []
+  tags:
+  - church
+  - tower
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: 01_development/bible/world/setting.md
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: reviewed
+    approved_by: ''
+    used_in: []
+    modifications:
+    - 2026-09-08 ported from build_backlot.py into assets with states
+    version: 1
+- asset_id: Bodega
+  kind: building
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states: []
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/Bodega/Bodega.usda
+  text_planes: []
+  marks: []
+  control_points: []
+  tags:
+  - storefront
+  - bodega
+  - awning
+  - shakedown
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: 01_development/bible/world/setting.md
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: reviewed
+    approved_by: ''
+    used_in: []
+    modifications:
+    - 2026-09-08 ported from build_backlot.py into assets with states
+    version: 1
+- asset_id: BuildSite
+  kind: prop
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states:
+  - joists
+  - half_decked
+  - beam_seated
+  - swept
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/BuildSite/BuildSite.usda
+  text_planes: []
+  marks: []
+  control_points: []
+  tags:
+  - lumber
+  - construction
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: 01_development/bible/world/setting.md
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: reviewed
+    approved_by: ''
+    used_in:
+    - NH-S901
+    modifications:
+    - 2026-09-08 ported from build_backlot.py into assets with states
+    version: 1
+- asset_id: CityHall
+  kind: building
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states: []
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/CityHall/CityHall.usda
+  text_planes: []
+  marks: []
+  control_points: []
+  tags:
+  - civic
+  - limestone
+  - portico
+  - colonnade
+  - cupola
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: SET_BIBLE §4 + LOCKED plates (fit by overlay)
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: reviewed
+    approved_by: Brad (v8-v11 cuts)
+    used_in:
+    - NH-S901
+    modifications:
+    - 2026-09-08 ported from build_backlot.py into assets with states
+    version: 1
+- asset_id: EastBlocks
+  kind: building
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states: []
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/EastBlocks/EastBlocks.usda
+  text_planes: []
+  marks: []
+  control_points: []
+  tags:
+  - brick
+  - background
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: 01_development/bible/world/setting.md
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: reviewed
+    approved_by: ''
+    used_in: []
+    modifications:
+    - 2026-09-08 ported from build_backlot.py into assets with states
+    version: 1
+- asset_id: Ground
+  kind: location
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states: []
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/Ground/Ground.usda
+  text_planes: []
+  marks: []
+  control_points: []
+  tags:
+  - ground
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: 01_development/bible/world/setting.md
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: reviewed
+    approved_by: ''
+    used_in: []
+    modifications:
+    - 2026-09-08 ported from build_backlot.py into assets with states
+    version: 1
+- asset_id: NorthRow
+  kind: building
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states: []
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/NorthRow/NorthRow.usda
+  text_planes: []
+  marks: []
+  control_points: []
+  tags:
+  - storefront
+  - brick
+  - shakedown
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: 01_development/bible/world/setting.md
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: reviewed
+    approved_by: ''
+    used_in: []
+    modifications:
+    - 2026-09-08 ported from build_backlot.py into assets with states
+    version: 1
+- asset_id: PILFOffice
+  kind: building
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states: []
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/PILFOffice/PILFOffice.usda
+  text_planes:
+  - pilf_sign
+  marks: []
+  control_points: []
+  tags:
+  - storefront
+  - office
+  - sign
+  - text
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: 01_development/bible/world/setting.md
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: reviewed
+    approved_by: ''
+    used_in: []
+    modifications:
+    - 2026-09-08 ported from build_backlot.py into assets with states
+    version: 1
+- asset_id: ParishChurch
+  kind: building
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states: []
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/ParishChurch/ParishChurch.usda
+  text_planes: []
+  marks: []
+  control_points: []
+  tags:
+  - church
+  - steeple
+  - landmark
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: 01_development/bible/world/setting.md
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: reviewed
+    approved_by: ''
+    used_in: []
+    modifications:
+    - 2026-09-08 ported from build_backlot.py into assets with states
+    version: 1
+- asset_id: RallyStage
+  kind: set
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states:
+  - joists
+  - half_decked
+  - beam_seated
+  - swept
+  - finished
+  - feast
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/RallyStage/RallyStage.usda
+  text_planes: []
+  marks: []
+  control_points:
+  - post_L
+  - post_R
+  - deck_front
+  - chair_band
+  - truss_beam
+  tags:
+  - timber
+  - stage
+  - truss
+  - chairs
+  - podium
+  - harvest
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: SET_BIBLE §4 (24x6x1.2 m, 32 m from the column line)
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: reviewed
+    approved_by: Brad (v8-v11 cuts)
+    used_in:
+    - NH-S901
+    modifications:
+    - 2026-09-08 ported from build_backlot.py into assets with states
+    version: 1
+- asset_id: Restaurant
+  kind: building
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states: []
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/Restaurant/Restaurant.usda
+  text_planes: []
+  marks: []
+  control_points: []
+  tags:
+  - storefront
+  - restaurant
+  - shakedown
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: 01_development/bible/world/setting.md
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: reviewed
+    approved_by: ''
+    used_in: []
+    modifications:
+    - 2026-09-08 ported from build_backlot.py into assets with states
+    version: 1
+- asset_id: Square
+  kind: location
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states: []
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/Square/Square.usda
+  text_planes: []
+  marks: []
+  control_points: []
+  tags:
+  - granite
+  - paving
+  - piazza
+  - trees
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: SET_BIBLE §4 (~60 m deep)
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: reviewed
+    approved_by: Brad (v8-v11 cuts)
+    used_in:
+    - NH-S901
+    modifications:
+    - 2026-09-08 ported from build_backlot.py into assets with states
+    version: 1
+- asset_id: University
+  kind: location
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states: []
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/University/University.usda
+  text_planes: []
+  marks: []
+  control_points: []
+  tags:
+  - gate
+  - quad
+  - lecture_hall
+  - shakedown
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: 01_development/bible/world/setting.md
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: reviewed
+    approved_by: ''
+    used_in: []
+    modifications:
+    - 2026-09-08 ported from build_backlot.py into assets with states
+    version: 1
+- asset_id: Vehicles
+  kind: vehicle
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states: []
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/Vehicles/Vehicles.usda
+  text_planes: []
+  marks: []
+  control_points: []
+  tags:
+  - flatbed
+  - van
+  - parked
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: 01_development/bible/world/setting.md
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: reviewed
+    approved_by: ''
+    used_in:
+    - NH-S901
+    modifications:
+    - 2026-09-08 ported from build_backlot.py into assets with states
+    version: 1
+- asset_id: WestShops
+  kind: building
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states: []
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/WestShops/WestShops.usda
+  text_planes: []
+  marks: []
+  control_points: []
+  tags:
+  - storefront
+  - brick
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: 01_development/bible/world/setting.md
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: reviewed
+    approved_by: ''
+    used_in: []
+    modifications:
+    - 2026-09-08 ported from build_backlot.py into assets with states
+    version: 1

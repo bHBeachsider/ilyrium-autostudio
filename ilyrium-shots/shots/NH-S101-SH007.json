@@ -1,0 +1,35 @@
+{
+  "shot_id": "NH-S101-SH007",
+  "song_id": "NH-S101",
+  "duration_s": 7,
+  "camera": {
+    "shot_size": "medium",
+    "movement": "locked-off",
+    "lens_mm": 50
+  },
+  "subjects": [
+    "pengold"
+  ],
+  "setting": "Pengold's mayoral office at dawn",
+  "mood": "silent reading, page turn included",
+  "action": "THE TWENTY-TWO SECONDS. Pengold actually reads, silently, the full beat, page turn included at about the midpoint. Nothing else happens. Load-bearing silence; never shortened.",
+  "prompt": "medium shot, locked-off, very slow push-in over the whole hold, a controlled man in his late forties, neat conservative hair greying at the temples, calculating unhurried eyes, medium solid upright build, municipal mayoral suiting in dark muted wool, white shirt, no ostentation, papers aligned squarely, unhurried processional bearing reading a folded newspaper at a mahogany-laminate desk, a tungsten desk lamp still on, half-empty coffee cup, three worn trade paperbacks in dusty brownish mauve, the color of a faded 1970s university-press paperback, not lavender, not aubergine, not pink on the credenza behind him, thin cold dawn at the window, he turns a page and continues reading, no other movement, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "pengold",
+    "seed": 101007
+  },
+  "seed": 101007,
+  "continuity": {
+    "prev_shot": "NH-S101-SH006",
+    "flf2v": true
+  },
+  "render": {
+    "width": 640,
+    "height": 640,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 7
+  }
+}

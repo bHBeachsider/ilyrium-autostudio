@@ -1,0 +1,36 @@
+{
+  "shot_id": "NH-S348-SH006",
+  "song_id": "NH-S348",
+  "duration_s": 7,
+  "camera": {
+    "shot_size": "two-shot",
+    "movement": "tracking",
+    "lens_mm": 35
+  },
+  "subjects": [
+    "dick",
+    "valencia"
+  ],
+  "setting": "The Anti-Thanksgiving Feast stage, stage-left threshold and upstage right",
+  "mood": "the only moment of genuine seeing in the opera",
+  "action": "BEAT 3 - THE EXIT. Dick is led off. He does not scream. He stops speaking at the threshold, turns once, and looks, not at Pengold, not at Summer, at Valencia, upstage right, holding a mauve book she has not opened. She holds his look. The clarinet sustains. Dick exits. The clarinet stops mid-phrase.",
+  "prompt": "two-shot, tracking with him then holding, a lean charismatic man in his early thirties, grown-out product-free hair, thin wire-frame glasses, earnest alive expression, dark raw selvedge denim, a tailored heritage workwear jacket over a faded vintage band t-shirt, minimalist off-white sneakers, a handwoven scarf in steel shackles stopped at a stage-left exit doorway turning once to look across the stage at a sturdy grounded woman in her late forties, practical unfussy hair, direct steady eyes, weathered capable face without makeup performance, real practical work clothes in plain worn fabrics that have been worn more than once this week, sensible shoes, working hands, photographed truthfully in flat honest documentary light standing upstage right holding a closed worn trade paperback in dusty brownish mauve, the color of a faded 1970s university-press paperback, not lavender, not aubergine, not pink, she holds his look, then he is led out through the doorway, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "dick",
+    "seed": 348006
+  },
+  "seed": 348006,
+  "continuity": {
+    "prev_shot": "NH-S348-SH005",
+    "flf2v": true
+  },
+  "render": {
+    "width": 640,
+    "height": 640,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 7
+  }
+}

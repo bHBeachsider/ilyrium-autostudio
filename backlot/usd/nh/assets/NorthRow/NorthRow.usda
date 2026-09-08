@@ -1,0 +1,16 @@
+#usda 1.0
+(
+    defaultPrim = "NorthRow"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "NorthRow" (
+    kind = "component"
+    prepend references = @./geo.usda@</geo>
+)
+{
+    custom string backlot:asset_id = "NorthRow"
+    custom token backlot:grade = "conditioning"
+}
+

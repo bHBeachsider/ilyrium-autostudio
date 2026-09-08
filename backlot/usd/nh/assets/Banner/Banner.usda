@@ -1,0 +1,16 @@
+#usda 1.0
+(
+    defaultPrim = "Banner"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "Banner" (
+    kind = "component"
+    prepend references = @./geo.usda@</geo>
+)
+{
+    custom string backlot:asset_id = "Banner"
+    custom token backlot:grade = "conditioning"
+}
+

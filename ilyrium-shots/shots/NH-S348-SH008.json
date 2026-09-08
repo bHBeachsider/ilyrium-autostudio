@@ -1,0 +1,36 @@
+{
+  "shot_id": "NH-S348-SH008",
+  "song_id": "NH-S348",
+  "duration_s": 7,
+  "camera": {
+    "shot_size": "two-shot",
+    "movement": "locked-off",
+    "lens_mm": 35
+  },
+  "subjects": [
+    "pengold",
+    "summer"
+  ],
+  "setting": "The Anti-Thanksgiving Feast stage, beneath the portrait",
+  "mood": "settled, not triumphant",
+  "action": "BEAT 4 - THE CORONATION. Silence on stage. Pengold turns from the podium and walks, unhurried, processional, to Summer beneath the portrait. He places his right hand on her left shoulder. She does not move. She does not look at him. She looks out, past the house, at nothing. The smallest possible smile on Pengold's face. Held. (The Confirmation may be spoken here, quietly.)",
+  "prompt": "medium two-shot, slow tracking then locked-off, a controlled man in his late forties, neat conservative hair greying at the temples, calculating unhurried eyes, medium solid upright build, municipal mayoral suiting in dark muted wool, white shirt, no ostentation, papers aligned squarely, unhurried processional bearing walking unhurried and processional from the podium to a poised woman in her early forties, patrician bearing, dark hair drawn back with professional precision, composed watchful eyes, slim upright frame, professional-class activist tailoring in muted expensive fabrics, still hands, sincere unsmiling composure standing beneath a monumental Socialist-Realist painted portrait of the poised patrician woman, heroic and idealized, gazing upward, at its full height above the podium, blazing, lit from below in golden light, he places his right hand on her left shoulder, she does not move and does not look at him, she looks out past everything at nothing, the smallest possible smile on his face held, silence, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "pengold",
+    "seed": 348008
+  },
+  "seed": 348008,
+  "continuity": {
+    "prev_shot": "NH-S348-SH007",
+    "flf2v": true
+  },
+  "render": {
+    "width": 640,
+    "height": 640,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 7
+  }
+}
