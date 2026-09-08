@@ -65,6 +65,15 @@ def box(name, cx, cy, cz, sx, sy, sz, m="stone", rot=0.0):
     o.data.materials.append(mat(m)); return _tag(o)
 
 
+def chair(name, cx, cy, z0):
+    """A folding chair (seat, back, four legs) facing +Y (the square). Phase 1 found box chairs read as crates in
+    depth-conditioned keys; a chair-shaped silhouette fixes every shot at the source."""
+    box(name + "_seat", cx, cy, z0 + 0.45, 0.45, 0.45, 0.04, "timber")
+    box(name + "_back", cx, cy - 0.2, z0 + 0.72, 0.45, 0.04, 0.5, "timber")
+    for i, (dx, dy) in enumerate(((-0.2, -0.2), (0.2, -0.2), (-0.2, 0.2), (0.2, 0.2))):
+        box(name + "_leg%d" % i, cx + dx, cy + dy, z0 + 0.22, 0.03, 0.03, 0.44, "timber")
+
+
 def cyl(name, cx, cy, z0, z1, r, m="stone", verts=32):
     bpy.ops.mesh.primitive_cylinder_add(vertices=verts, radius=r, depth=z1 - z0, location=(cx, cy, (z0 + z1) / 2))
     o = bpy.context.object; o.name = name; o.data.materials.append(mat(m)); return _tag(o)
@@ -211,7 +220,7 @@ def build_RallyStage():
             box("podium_%s" % st, 0, STAGE_Y + 1.6, ST_H + 0.6, 0.6, 0.5, 1.2, "timber")
             for k in range(-9, 10):
                 if k:
-                    box("chair_%s_%d" % (st, k + 9), k * 1.1, STAGE_Y - 0.8, ST_H + 0.45, 0.45, 0.45, 0.9, "timber")
+                    chair("chair_%s_%d" % (st, k + 9), k * 1.1, STAGE_Y - 0.8, ST_H)
     with asset("RallyStage", "feast"):
         box("portrait_rig", 0, Y_BACK + 0.6, ST_H + 3.0, 6.0, 0.2, 4.0, "banner")     # Summer's portrait, Act III
 

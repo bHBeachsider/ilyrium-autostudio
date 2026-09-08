@@ -121,6 +121,8 @@ def main():
     ap.add_argument("--guidance", type=float, default=3.5)
     ap.add_argument("--cn-strength", type=float, default=0.7)
     ap.add_argument("--cn-end", type=float, default=0.8)
+    ap.add_argument("--edge-strength", type=float, default=0.45, help="lineart pass as edge control; 0 = depth only")
+    ap.add_argument("--edge-end", type=float, default=0.6)
     ap.add_argument("--workflow", default=os.path.join(HERE, "keyframe_from_world.json"))
     a = ap.parse_args()
 
@@ -132,12 +134,18 @@ def main():
         meta = json.load(open(os.path.join(pdir, "passes.json")))
         depth = os.path.join(pdir, "depth.png")
         uploaded = comfy.upload_image(depth, "%s_%s_depth.png" % (a.seq, shot))
+        edge = os.path.join(pdir, "edge.png")
+        if not os.path.exists(edge):          # edge control = lineart pass inverted (white lines on black, canny-style)
+            from PIL import Image, ImageOps
+            ImageOps.invert(Image.open(os.path.join(pdir, "lineart.png")).convert("L")).point(lambda v: 255 if v > 30 else 0).save(edge)
+        uploaded_edge = comfy.upload_image(edge, "%s_%s_edge.png" % (a.seq, shot))
         prompt = build_prompt(book, shot)
         odir = os.path.join(a.out, shot); os.makedirs(odir, exist_ok=True)
         for k in range(a.takes):
             seed = a.seed + k
             values = dict(prompt=prompt, guidance=a.guidance, depth_image=uploaded, cn_strength=a.cn_strength,
-                          cn_end=a.cn_end, width=a.width, height=a.height, seed=seed, steps=a.steps,
+                          cn_end=a.cn_end, edge_image=uploaded_edge, edge_strength=a.edge_strength, edge_end=a.edge_end,
+                          width=a.width, height=a.height, seed=seed, steps=a.steps,
                           prefix="backlot/%s_%s_%d" % (a.seq, shot, seed))
             wf = fill(template, values)
             t0 = time.time()
@@ -149,8 +157,9 @@ def main():
             dst = os.path.join(odir, "take_%d.png" % seed)
             comfy.fetch(outs[0]["filename"], outs[0].get("subfolder", ""), outs[0].get("type", "output"), dst)
             prov = dict(shot=shot, seq=a.seq, seed=seed, prompt=prompt, values={k: v for k, v in values.items() if k != "prompt"},
-                        model="flux1-dev-fp8 + ControlNet Union Pro 2.0 (depth)", server=a.server,
+                        model="flux1-dev-fp8 + ControlNet Union Pro 2.0 (depth + edge)", server=a.server,
                         depth_pass=dict(path=os.path.relpath(depth, PKG), sha256=sha256(depth)),
+                        edge_pass=dict(path=os.path.relpath(edge, PKG), sha256=sha256(edge)),
                         set_state=meta.get("set_state"), camera=meta.get("camera"), world_version=meta.get("world_version"),
                         seconds=round(time.time() - t0, 1), prompt_id=pid)
             json.dump(prov, open(os.path.join(odir, "take_%d.json" % seed), "w"), indent=1)

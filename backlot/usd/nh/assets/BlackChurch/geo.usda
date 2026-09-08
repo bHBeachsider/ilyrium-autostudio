@@ -86,17 +86,17 @@ def Xform "geo" (
         }
     }
 
-    def Xform "bc_tower"
+    def Xform "bc_roof"
     {
         custom string userProperties:backlot_asset = "BlackChurch"
         custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "bc_tower"
+        custom string userProperties:blender:object_name = "bc_roof"
         float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (6, 6, 22)
-        double3 xformOp:translate = (-53, 18, 11)
+        float3 xformOp:scale = (17, 27, 2.6)
+        double3 xformOp:translate = (-58, 30, 16)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "bc_tower" (
+        def Mesh "bc_roof" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -111,7 +111,7 @@ def Xform "geo" (
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "bc_tower"
+            custom string userProperties:blender:data_name = "bc_roof"
         }
     }
 
@@ -144,17 +144,17 @@ def Xform "geo" (
         }
     }
 
-    def Xform "bc_roof"
+    def Xform "bc_tower"
     {
         custom string userProperties:backlot_asset = "BlackChurch"
         custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "bc_roof"
+        custom string userProperties:blender:object_name = "bc_tower"
         float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (17, 27, 2.6)
-        double3 xformOp:translate = (-58, 30, 16)
+        float3 xformOp:scale = (6, 6, 22)
+        double3 xformOp:translate = (-53, 18, 11)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "bc_roof" (
+        def Mesh "bc_tower" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -169,7 +169,7 @@ def Xform "geo" (
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "bc_roof"
+            custom string userProperties:blender:data_name = "bc_tower"
         }
     }
 }

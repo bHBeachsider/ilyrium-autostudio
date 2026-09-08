@@ -14,6 +14,58 @@ def Xform "geo" (
     }
 )
 {
+    def Xform "east_block_0"
+    {
+        custom string userProperties:backlot_asset = "EastBlocks"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "east_block_0"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (22, 16, 16)
+        double3 xformOp:translate = (62, 52, 8)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "east_block_0" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/brick_pale>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "east_block_0"
+        }
+    }
+
+    def Scope "_materials"
+    {
+        def Material "brick_pale"
+        {
+            token outputs:surface.connect = </geo/_materials/brick_pale/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "brick_pale"
+
+            def Shader "Principled_BSDF"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.03
+                color3f inputs:diffuseColor = (0.66, 0.5, 0.42)
+                float inputs:ior = 1.5
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.9
+                float inputs:specular = 0.5
+                token outputs:surface
+            }
+        }
+    }
+
     def Xform "east_block_2"
     {
         custom string userProperties:backlot_asset = "EastBlocks"
@@ -43,29 +95,6 @@ def Xform "geo" (
         }
     }
 
-    def Scope "_materials"
-    {
-        def Material "brick_pale"
-        {
-            token outputs:surface.connect = </geo/_materials/brick_pale/Principled_BSDF.outputs:surface>
-            custom string userProperties:blender:data_name = "brick_pale"
-
-            def Shader "Principled_BSDF"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                float inputs:clearcoat = 0
-                float inputs:clearcoatRoughness = 0.03
-                color3f inputs:diffuseColor = (0.66, 0.5, 0.42)
-                float inputs:ior = 1.5
-                float inputs:metallic = 0
-                float inputs:opacity = 1
-                float inputs:roughness = 0.9
-                float inputs:specular = 0.5
-                token outputs:surface
-            }
-        }
-    }
-
     def Xform "east_block_1"
     {
         custom string userProperties:backlot_asset = "EastBlocks"
@@ -92,35 +121,6 @@ def Xform "geo" (
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
             custom string userProperties:blender:data_name = "east_block_1"
-        }
-    }
-
-    def Xform "east_block_0"
-    {
-        custom string userProperties:backlot_asset = "EastBlocks"
-        custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "east_block_0"
-        float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (22, 16, 16)
-        double3 xformOp:translate = (62, 52, 8)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
-
-        def Mesh "east_block_0" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            uniform bool doubleSided = 1
-            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
-            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
-            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
-            rel material:binding = </geo/_materials/brick_pale>
-            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
-                interpolation = "faceVarying"
-            )
-            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
-            uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "east_block_0"
         }
     }
 }

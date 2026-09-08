@@ -80,3 +80,18 @@ SH006 (joists overhead instead of underfoot) - depth alone is ambiguous about op
 seg pass as a second control (or normal) for build states. Chairs in SH009 come out blocky because the blockout's
 chairs are boxes - a `hero`-grade chair asset fixes it at the source. Every take took ~50 s warm; the 30 GB of system
 RAM (not the 24 GB A10G) is the limit - ComfyUI peaked at 24.4 GB and was OOM-killed once; a 10 GB swapfile is now on.
+
+## Phase 1b result (2026-09-08, same box; depth 0.7/0.8 + lineart-as-edge 0.45/0.6; chair-shaped chairs)
+
+15 takes, seeds 3000-3004, no retries: **14/15 = 93% first-take gate pass - target MET.** SH003 4/5, SH006 5/5,
+SH009 5/5 (`generation/reports/phase1b_first_take_2026-09-08.json`, sheets in `phase1b_review.png`).
+
+The two source fixes did what they were meant to: SH006's half-decked stage now reads as a platform with an open joist
+grid underfoot (no pergola in any take) and SH009's chairs are chairs in one row in all five. The one FAIL (SH003
+3004) is the same detector class as before - the post is drawn on its line, the edge finder locked onto a stronger
+vertical - which Phase 2 addresses.
+
+Cost of the edge control, stated plainly: at 0.45 the frames are more literal to the blockout - flatter facades,
+blank window panels, less dressing (fewer sheaves, pumpkins, garlands; SH003's workmen dropped out in two takes), and
+the banner reads as a plain purple rectangle. Layout went up; dress went down. Start Phase 2's judge on exactly this
+trade-off, and try edge 0.3 / end 0.4, or edge only for build states, before touching the prompts.

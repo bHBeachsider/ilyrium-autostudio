@@ -11,7 +11,7 @@
 def Xform "World" (
     kind = "assembly"
     variants = {
-        string build = "half_decked"
+        string build = "finished"
         string weather = "overcast_drizzle"
     }
     prepend variantSets = ["build", "weather"]
