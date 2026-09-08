@@ -14,17 +14,17 @@ def Xform "geo" (
     }
 )
 {
-    def Xform "parish_nave"
+    def Xform "parish_belfry"
     {
         custom string userProperties:backlot_asset = "ParishChurch"
         custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "parish_nave"
+        custom string userProperties:blender:object_name = "parish_belfry"
         float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (18, 30, 16)
-        double3 xformOp:translate = (58, 34, 8)
+        float3 xformOp:scale = (5.5, 5.5, 4)
+        double3 xformOp:translate = (52, 20, 29)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "Cube_296" (
+        def Mesh "parish_belfry" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -33,38 +33,18 @@ def Xform "geo" (
             float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
             int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
             int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
-            rel material:binding = </geo/_materials/brick>
+            rel material:binding = </geo/_materials/stone>
             normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "faceVarying"
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "Cube.296"
+            custom string userProperties:blender:data_name = "parish_belfry"
         }
     }
 
     def Scope "_materials"
     {
-        def Material "brick"
-        {
-            token outputs:surface.connect = </geo/_materials/brick/Principled_BSDF.outputs:surface>
-            custom string userProperties:blender:data_name = "brick"
-
-            def Shader "Principled_BSDF"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                float inputs:clearcoat = 0
-                float inputs:clearcoatRoughness = 0.03
-                color3f inputs:diffuseColor = (0.55, 0.34, 0.28)
-                float inputs:ior = 1.5
-                float inputs:metallic = 0
-                float inputs:opacity = 1
-                float inputs:roughness = 0.9
-                float inputs:specular = 0.5
-                token outputs:surface
-            }
-        }
-
         def Material "stone"
         {
             token outputs:surface.connect = </geo/_materials/stone/Principled_BSDF.outputs:surface>
@@ -84,19 +64,39 @@ def Xform "geo" (
                 token outputs:surface
             }
         }
+
+        def Material "brick"
+        {
+            token outputs:surface.connect = </geo/_materials/brick/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "brick"
+
+            def Shader "Principled_BSDF"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.03
+                color3f inputs:diffuseColor = (0.55, 0.34, 0.28)
+                float inputs:ior = 1.5
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.9
+                float inputs:specular = 0.5
+                token outputs:surface
+            }
+        }
     }
 
-    def Xform "parish_roof"
+    def Xform "parish_nave"
     {
         custom string userProperties:backlot_asset = "ParishChurch"
         custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "parish_roof"
+        custom string userProperties:blender:object_name = "parish_nave"
         float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (19, 31, 3)
-        double3 xformOp:translate = (58, 34, 17.5)
+        float3 xformOp:scale = (18, 30, 16)
+        double3 xformOp:translate = (58, 34, 8)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "Cube_297" (
+        def Mesh "parish_nave" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -111,21 +111,21 @@ def Xform "geo" (
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "Cube.297"
+            custom string userProperties:blender:data_name = "parish_nave"
         }
     }
 
-    def Xform "parish_tower"
+    def Xform "parish_roof"
     {
         custom string userProperties:backlot_asset = "ParishChurch"
         custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "parish_tower"
+        custom string userProperties:blender:object_name = "parish_roof"
         float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (7, 7, 28)
-        double3 xformOp:translate = (52, 20, 14)
+        float3 xformOp:scale = (19, 31, 3)
+        double3 xformOp:translate = (58, 34, 17.5)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "Cube_298" (
+        def Mesh "parish_roof" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -134,13 +134,13 @@ def Xform "geo" (
             float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
             int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
             int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
-            rel material:binding = </geo/_materials/stone>
+            rel material:binding = </geo/_materials/brick>
             normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
                 interpolation = "faceVarying"
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "Cube.298"
+            custom string userProperties:blender:data_name = "parish_roof"
         }
     }
 
@@ -154,7 +154,7 @@ def Xform "geo" (
         double3 xformOp:translate = (52, 20, 37)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "Cone" (
+        def Mesh "parish_steeple" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -169,21 +169,21 @@ def Xform "geo" (
             )
             point3f[] points = [(0, 3.6, -6), (0.70232517, 3.5308268, -6), (1.3776604, 3.3259661, -6), (2.000053, 2.9932904, -6), (2.5455842, 2.5455842, -6), (2.9932904, 2.000053, -6), (3.3259661, 1.3776604, -6), (3.5308268, 0.70232517, -6), (3.6, 0, -6), (3.5308268, -0.70232517, -6), (3.3259661, -1.3776604, -6), (2.9932904, -2.000053, -6), (2.5455842, -2.5455842, -6), (2.000053, -2.9932904, -6), (1.3776604, -3.3259661, -6), (0.70232517, -3.5308268, -6), (0, -3.6, -6), (-0.70232517, -3.5308268, -6), (-1.3776604, -3.3259661, -6), (-2.000053, -2.9932904, -6), (-2.5455842, -2.5455842, -6), (-2.9932904, -2.000053, -6), (-3.3259661, -1.3776604, -6), (-3.5308268, -0.70232517, -6), (-3.6, 0, -6), (-3.5308268, 0.70232517, -6), (-3.3259661, 1.3776604, -6), (-2.9932904, 2.000053, -6), (-2.5455842, 2.5455842, -6), (-2.000053, 2.9932904, -6), (-1.3776604, 3.3259661, -6), (-0.70232517, 3.5308268, -6), (0, 0, 6)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "Cone"
+            custom string userProperties:blender:data_name = "parish_steeple"
         }
     }
 
-    def Xform "parish_belfry"
+    def Xform "parish_tower"
     {
         custom string userProperties:backlot_asset = "ParishChurch"
         custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "parish_belfry"
+        custom string userProperties:blender:object_name = "parish_tower"
         float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (5.5, 5.5, 4)
-        double3 xformOp:translate = (52, 20, 29)
+        float3 xformOp:scale = (7, 7, 28)
+        double3 xformOp:translate = (52, 20, 14)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "Cube_299" (
+        def Mesh "parish_tower" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -198,7 +198,7 @@ def Xform "geo" (
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "Cube.299"
+            custom string userProperties:blender:data_name = "parish_tower"
         }
     }
 }

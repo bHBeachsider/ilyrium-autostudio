@@ -14,17 +14,17 @@ def Xform "geo" (
     }
 )
 {
-    def Xform "box_van"
+    def Xform "flatbed"
     {
         custom string userProperties:backlot_asset = "Vehicles"
         custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "box_van"
+        custom string userProperties:blender:object_name = "flatbed"
         float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (2.4, 6, 2.8)
-        double3 xformOp:translate = (-38, 36, 1.399999976158142)
+        float3 xformOp:scale = (2.5, 8, 1.2)
+        double3 xformOp:translate = (-38, 46, 1)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "Cube_208" (
+        def Mesh "flatbed" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -39,7 +39,7 @@ def Xform "geo" (
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "Cube.208"
+            custom string userProperties:blender:data_name = "flatbed"
         }
     }
 
@@ -76,7 +76,7 @@ def Xform "geo" (
         double3 xformOp:translate = (-38, 42.70000076293945, 1.899999976158142)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "Cube_207" (
+        def Mesh "flatbed_cab" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -91,21 +91,21 @@ def Xform "geo" (
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "Cube.207"
+            custom string userProperties:blender:data_name = "flatbed_cab"
         }
     }
 
-    def Xform "flatbed"
+    def Xform "box_van"
     {
         custom string userProperties:backlot_asset = "Vehicles"
         custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "flatbed"
+        custom string userProperties:blender:object_name = "box_van"
         float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (2.5, 8, 1.2)
-        double3 xformOp:translate = (-38, 46, 1)
+        float3 xformOp:scale = (2.4, 6, 2.8)
+        double3 xformOp:translate = (-38, 36, 1.399999976158142)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "Cube_206" (
+        def Mesh "box_van" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -120,7 +120,7 @@ def Xform "geo" (
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "Cube.206"
+            custom string userProperties:blender:data_name = "box_van"
         }
     }
 }

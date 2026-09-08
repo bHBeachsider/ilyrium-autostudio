@@ -35,6 +35,12 @@ def _select(asset_id, state):
 
 def _export(path):
     os.makedirs(os.path.dirname(path), exist_ok=True)
+    # the Mesh prim under each Xform is named after the mesh datablock; Blender's importer then names the merged
+    # object after the Mesh prim ("Cube_041"), which strips the semantic name the passes renderer classifies on.
+    # Name the datablock after the object so the name survives the USD round trip.
+    for o in bpy.context.selected_objects:
+        if o.type == "MESH" and o.data.name != o.name:
+            o.data.name = o.name
     bpy.ops.wm.usd_export(filepath=path, selected_objects_only=True, export_materials=True,
                           export_uvmaps=False, export_normals=True, export_animation=False,
                           root_prim_path="/geo", convert_orientation=False)

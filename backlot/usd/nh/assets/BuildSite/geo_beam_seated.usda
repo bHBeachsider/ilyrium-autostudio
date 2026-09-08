@@ -14,17 +14,17 @@ def Xform "geo" (
     }
 )
 {
-    def Xform "lumber_beam_seated_0"
+    def Xform "lumber_beam_seated_1"
     {
         custom string userProperties:backlot_asset = "BuildSite"
         custom string userProperties:backlot_state = "beam_seated"
-        custom string userProperties:blender:object_name = "lumber_beam_seated_0"
+        custom string userProperties:blender:object_name = "lumber_beam_seated_1"
         float3 xformOp:rotateXYZ = (0, -0, 0)
         float3 xformOp:scale = (5, 1.2, 0.8)
-        double3 xformOp:translate = (-20, 49, 0.4000000059604645)
+        double3 xformOp:translate = (4, 49, 0.4000000059604645)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "Cube_200" (
+        def Mesh "lumber_beam_seated_1" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -39,7 +39,7 @@ def Xform "geo" (
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "Cube.200"
+            custom string userProperties:blender:data_name = "lumber_beam_seated_1"
         }
     }
 
@@ -66,17 +66,17 @@ def Xform "geo" (
         }
     }
 
-    def Xform "lumber_beam_seated_1"
+    def Xform "lumber_beam_seated_0"
     {
         custom string userProperties:backlot_asset = "BuildSite"
         custom string userProperties:backlot_state = "beam_seated"
-        custom string userProperties:blender:object_name = "lumber_beam_seated_1"
+        custom string userProperties:blender:object_name = "lumber_beam_seated_0"
         float3 xformOp:rotateXYZ = (0, -0, 0)
         float3 xformOp:scale = (5, 1.2, 0.8)
-        double3 xformOp:translate = (4, 49, 0.4000000059604645)
+        double3 xformOp:translate = (-20, 49, 0.4000000059604645)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "Cube_201" (
+        def Mesh "lumber_beam_seated_0" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -91,7 +91,7 @@ def Xform "geo" (
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "Cube.201"
+            custom string userProperties:blender:data_name = "lumber_beam_seated_0"
         }
     }
 
@@ -105,7 +105,7 @@ def Xform "geo" (
         double3 xformOp:translate = (16, 47.5, 0.4000000059604645)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "Cube_202" (
+        def Mesh "lumber_beam_seated_2" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -120,7 +120,7 @@ def Xform "geo" (
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "Cube.202"
+            custom string userProperties:blender:data_name = "lumber_beam_seated_2"
         }
     }
 }

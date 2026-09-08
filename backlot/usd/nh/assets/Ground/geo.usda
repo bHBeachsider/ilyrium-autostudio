@@ -24,7 +24,7 @@ def Xform "geo" (
         double3 xformOp:translate = (0, 90, -0.20000000298023224)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "Cube_431" (
+        def Mesh "ground" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -39,7 +39,7 @@ def Xform "geo" (
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "Cube.431"
+            custom string userProperties:blender:data_name = "ground"
         }
     }
 

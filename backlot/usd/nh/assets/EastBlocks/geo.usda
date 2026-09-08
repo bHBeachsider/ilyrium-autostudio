@@ -14,17 +14,17 @@ def Xform "geo" (
     }
 )
 {
-    def Xform "east_block_1"
+    def Xform "east_block_2"
     {
         custom string userProperties:backlot_asset = "EastBlocks"
         custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "east_block_1"
+        custom string userProperties:blender:object_name = "east_block_2"
         float3 xformOp:rotateXYZ = (0, -0, 0)
         float3 xformOp:scale = (22, 16, 16)
-        double3 xformOp:translate = (62, 70, 8)
+        double3 xformOp:translate = (62, 88, 8)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "Cube_301" (
+        def Mesh "east_block_2" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -39,7 +39,7 @@ def Xform "geo" (
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "Cube.301"
+            custom string userProperties:blender:data_name = "east_block_2"
         }
     }
 
@@ -66,17 +66,17 @@ def Xform "geo" (
         }
     }
 
-    def Xform "east_block_2"
+    def Xform "east_block_1"
     {
         custom string userProperties:backlot_asset = "EastBlocks"
         custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "east_block_2"
+        custom string userProperties:blender:object_name = "east_block_1"
         float3 xformOp:rotateXYZ = (0, -0, 0)
         float3 xformOp:scale = (22, 16, 16)
-        double3 xformOp:translate = (62, 88, 8)
+        double3 xformOp:translate = (62, 70, 8)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "Cube_302" (
+        def Mesh "east_block_1" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -91,7 +91,7 @@ def Xform "geo" (
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "Cube.302"
+            custom string userProperties:blender:data_name = "east_block_1"
         }
     }
 
@@ -105,7 +105,7 @@ def Xform "geo" (
         double3 xformOp:translate = (62, 52, 8)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "Cube_300" (
+        def Mesh "east_block_0" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -120,7 +120,7 @@ def Xform "geo" (
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "Cube.300"
+            custom string userProperties:blender:data_name = "east_block_0"
         }
     }
 }

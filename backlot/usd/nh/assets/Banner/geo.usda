@@ -25,7 +25,7 @@ def Xform "geo" (
         double3 xformOp:translate = (0, 10.199999809265137, 13.5)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "Cube_083" (
+        def Mesh "banner_cloth" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -40,7 +40,7 @@ def Xform "geo" (
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "Cube.083"
+            custom string userProperties:blender:data_name = "banner_cloth"
         }
     }
 

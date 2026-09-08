@@ -24,7 +24,7 @@ def Xform "geo" (
         double3 xformOp:translate = (4, 49, 0.4000000059604645)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "Cube_195" (
+        def Mesh "lumber_joists_1" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -39,7 +39,7 @@ def Xform "geo" (
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "Cube.195"
+            custom string userProperties:blender:data_name = "lumber_joists_1"
         }
     }
 
@@ -66,35 +66,6 @@ def Xform "geo" (
         }
     }
 
-    def Xform "lumber_joists_0"
-    {
-        custom string userProperties:backlot_asset = "BuildSite"
-        custom string userProperties:backlot_state = "joists"
-        custom string userProperties:blender:object_name = "lumber_joists_0"
-        float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (5, 1.2, 0.8)
-        double3 xformOp:translate = (-20, 49, 0.4000000059604645)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
-
-        def Mesh "Cube_194" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            uniform bool doubleSided = 1
-            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
-            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
-            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
-            rel material:binding = </geo/_materials/timber>
-            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
-                interpolation = "faceVarying"
-            )
-            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
-            uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "Cube.194"
-        }
-    }
-
     def Xform "lumber_joists_2"
     {
         custom string userProperties:backlot_asset = "BuildSite"
@@ -105,7 +76,7 @@ def Xform "geo" (
         double3 xformOp:translate = (16, 47.5, 0.4000000059604645)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "Cube_196" (
+        def Mesh "lumber_joists_2" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -120,7 +91,36 @@ def Xform "geo" (
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "Cube.196"
+            custom string userProperties:blender:data_name = "lumber_joists_2"
+        }
+    }
+
+    def Xform "lumber_joists_0"
+    {
+        custom string userProperties:backlot_asset = "BuildSite"
+        custom string userProperties:backlot_state = "joists"
+        custom string userProperties:blender:object_name = "lumber_joists_0"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (5, 1.2, 0.8)
+        double3 xformOp:translate = (-20, 49, 0.4000000059604645)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lumber_joists_0" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lumber_joists_0"
         }
     }
 }
