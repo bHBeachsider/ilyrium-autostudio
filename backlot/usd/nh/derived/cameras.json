@@ -20,6 +20,7 @@
     1584,
     672
    ],
+   "depth_mode": "linear",
    "set_state": "finished"
   },
   "SH002": {
@@ -39,6 +40,7 @@
     1920,
     1080
    ],
+   "depth_mode": "linear",
    "set_state": "joists"
   },
   "SH003": {
@@ -58,6 +60,7 @@
     1920,
     1080
    ],
+   "depth_mode": "linear",
    "variants": {
     "people": "build"
    },
@@ -80,6 +83,7 @@
     1920,
     1080
    ],
+   "depth_mode": "linear",
    "variants": {
     "office": "dawn",
     "people": "none"
@@ -103,6 +107,7 @@
     1920,
     1080
    ],
+   "depth_mode": "linear",
    "variants": {
     "people": "build"
    },
@@ -125,6 +130,7 @@
     1920,
     1080
    ],
+   "depth_mode": "linear",
    "set_state": "finished"
   },
   "SH010": {
@@ -144,6 +150,7 @@
     1920,
     1080
    ],
+   "depth_mode": "linear",
    "set_state": "finished"
   },
   "S101_SH004": {
@@ -163,6 +170,7 @@
     2520,
     1080
    ],
+   "depth_mode": "inverse",
    "variants": {
     "office": "dawn",
     "people": "office_dawn"
@@ -186,6 +194,7 @@
     1920,
     1080
    ],
+   "depth_mode": "inverse",
    "variants": {
     "office": "dawn",
     "people": "office_dawn"
@@ -209,6 +218,7 @@
     1920,
     1080
    ],
+   "depth_mode": "inverse",
    "variants": {
     "office": "dawn",
     "people": "office_dawn"
@@ -232,6 +242,7 @@
     1920,
     1080
    ],
+   "depth_mode": "inverse",
    "variants": {
     "office": "dawn",
     "people": "office_dawn"

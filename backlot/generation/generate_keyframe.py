@@ -103,7 +103,11 @@ def fill(template, values):
 
 def build_prompt(book, shot):
     s = book["shots"][shot]; sh = book["shared"]
-    return "%s Weather and light: %s. %s. %s" % (s["text"], sh["gloom"], sh["dress"], sh["look"])
+    parts = [s["text"]]
+    for k in ("gloom", "light", "dress", "look"):           # whichever shared clauses this book has, in this order
+        if k in sh:
+            parts.append(("Weather and light: %s." % sh[k]) if k == "gloom" else ("Light: %s." % sh[k]) if k == "light" else sh[k])
+    return " ".join(parts)
 
 
 def main():
@@ -140,12 +144,18 @@ def main():
             ImageOps.invert(Image.open(os.path.join(pdir, "lineart.png")).convert("L")).point(lambda v: 255 if v > 30 else 0).save(edge)
         uploaded_edge = comfy.upload_image(edge, "%s_%s_edge.png" % (a.seq, shot))
         prompt = build_prompt(book, shot)
+        res = meta.get("camera", {}).get("res") or [a.width, a.height]
+        ar = res[0] / float(res[1])
+        width, height = (a.width, a.height) if abs(ar - a.width / float(a.height)) < 0.05 else \
+            ((int(round((1.03e6 * ar) ** 0.5 / 16)) * 16), int(round((1.03e6 / ar) ** 0.5 / 16)) * 16)
+        if width % 16 or height % 16:
+            width, height = width // 16 * 16, height // 16 * 16
         odir = os.path.join(a.out, shot); os.makedirs(odir, exist_ok=True)
         for k in range(a.takes):
             seed = a.seed + k
             values = dict(prompt=prompt, guidance=a.guidance, depth_image=uploaded, cn_strength=a.cn_strength,
                           cn_end=a.cn_end, edge_image=uploaded_edge, edge_strength=a.edge_strength, edge_end=a.edge_end,
-                          width=a.width, height=a.height, seed=seed, steps=a.steps,
+                          width=width, height=height, seed=seed, steps=a.steps,
                           prefix="backlot/%s_%s_%d" % (a.seq, shot, seed))
             wf = fill(template, values)
             t0 = time.time()

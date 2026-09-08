@@ -30,6 +30,9 @@ def derive(stage_path, out):
                    lens_mm=float(c.GetFocalLengthAttr().Get()),
                    sensor_mm=float(c.GetHorizontalApertureAttr().Get()),
                    res=[int(res[0]), int(res[1])])
+        dm = p.GetAttribute("backlot:depth_mode")
+        if dm and dm.Get():
+            rec["depth_mode"] = str(dm.Get())
         vv = p.GetAttribute("backlot:variants")
         if vv and vv.Get():
             rec["variants"] = dict(kv.split("=") for kv in str(vv.Get()).split(";"))

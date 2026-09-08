@@ -199,3 +199,25 @@ since the 93% was measured under linear depth.
 sequence with a camera move only if it beats headless Blender on iteration speed for depth+seg passes of a move
 (Blender today: ~15 s per still, no move path yet). Until a moving-camera sequence is scheduled there is no evidence
 to collect.
+
+### Phase 3 check, measured (2026-09-08, box session 4, ~40 min GPU, 45 takes)
+
+**Office keys nine in ten: NOT MET — and the reason is exact.** From the world, the room is right in every take:
+10/10 wides have the three windows with the columns beyond, the desk, the lamp, the credenza with the books
+(`phase3_office_SH005_std.png`). But the seated man is absent in 10/10 at Phase 1b control strengths: the box-and-
+sphere mannequin in the depth and edge passes is drawn literally — a bust on the credenza. At softer control (edge
+0.2, depth 0.6) the drapes and window light appear and 2/5 mediums have a real man reading the paper; 3/5 still draw
+the box-stack. The verifier saw it too: the seg check's interior structure includes the pass's person, and the
+key's missing person collapsed the extent (SH005 seg 2/10) — a true finding, not a false reject.
+
+Fix at the source, two options, both queued: (a) mannequins condition nothing until they are human-shaped —
+`stage_scene.py` now renders passes with `people=none` by default, so the set is held by the world and the person is
+the generation layer's, judged against the mark; (b) a hero-grade human mannequin (build queue). (a) is a one-line
+change already in; its 10-take measurement is the next box session.
+
+**Exteriors under inverse depth: 12/15 (80%) vs 14/15 (93%) under linear.** SH003 5/5, SH009 5/5 (dressier than 1b),
+SH006 2/5 — inverse depth compresses the far uprights out of the signal and they vanish; three real misses. So depth
+normalisation is now per camera (`cameras.py DEPTH_MODE`): linear for exteriors, inverse for interiors.
+
+Also learned: the geometry check expects the stage posts through the office windows (they project into frame) —
+interiors need the post check scoped to exteriors; recorded, not yet done.

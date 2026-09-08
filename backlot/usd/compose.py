@@ -106,6 +106,7 @@ def author_cameras(out):
             p.CreateAttribute("backlot:target", Sdf.ValueTypeNames.Double3).Set(Gf.Vec3d(*cam["target"]))
             if name in C.SHOT_STATES:
                 p.CreateAttribute("backlot:set_state", Sdf.ValueTypeNames.Token).Set(C.SHOT_STATES[name])
+            p.CreateAttribute("backlot:depth_mode", Sdf.ValueTypeNames.Token).Set(getattr(C, "DEPTH_MODE", {}).get(name, "linear"))
             if name in getattr(C, "SHOT_VARIANTS", {}):
                 p.CreateAttribute("backlot:variants", Sdf.ValueTypeNames.String).Set(
                     ";".join("%s=%s" % kv for kv in sorted(C.SHOT_VARIANTS[name].items())))

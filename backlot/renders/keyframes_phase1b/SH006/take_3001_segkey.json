@@ -1,0 +1,209 @@
+{
+ "key": "renders/keyframes/SH006/take_3001.png",
+ "detections": [
+  {
+   "cls": "chair",
+   "box": [
+    558.5906982421875,
+    245.75747680664062,
+    592.441650390625,
+    291.04949951171875
+   ],
+   "score": 0.47918134927749634,
+   "label": "chair"
+  },
+  {
+   "cls": "beam",
+   "box": [
+    384.3671875,
+    321.1163330078125,
+    957.7305297851562,
+    356.624755859375
+   ],
+   "score": 0.424137681722641,
+   "label": "horizontal wooden beam"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    382.2178039550781,
+    315.49261474609375,
+    963.9541015625,
+    379.750732421875
+   ],
+   "score": 0.346148818731308,
+   "label": "wooden stage platform timber deck podium"
+  },
+  {
+   "cls": "post",
+   "box": [
+    660.6409301757812,
+    163.4593505859375,
+    696.5768432617188,
+    326.933349609375
+   ],
+   "score": 0.3347044289112091,
+   "label": "tall wooden post wooden upright pole"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    377.95440673828125,
+    293.3198547363281,
+    975.6432495117188,
+    397.7896728515625
+   ],
+   "score": 0.29177922010421753,
+   "label": "wooden stage platform timber deck"
+  },
+  {
+   "cls": "post",
+   "box": [
+    374.0242004394531,
+    219.25357055664062,
+    400.1302490234375,
+    347.5767822265625
+   ],
+   "score": 0.2749376893043518,
+   "label": "tall wooden post wooden upright pole"
+  },
+  {
+   "cls": "chair",
+   "box": [
+    546.6116333007812,
+    237.6338653564453,
+    605.4375,
+    299.98101806640625
+   ],
+   "score": 0.2607468068599701,
+   "label": "chair"
+  },
+  {
+   "cls": "post",
+   "box": [
+    944.7008056640625,
+    219.40390014648438,
+    969.4931640625,
+    348.21856689453125
+   ],
+   "score": 0.24273446202278137,
+   "label": "tall wooden post wooden upright pole"
+  },
+  {
+   "cls": "post",
+   "box": [
+    654.2252807617188,
+    154.2210693359375,
+    706.3305053710938,
+    342.8407897949219
+   ],
+   "score": 0.24272103607654572,
+   "label": "tall wooden post wooden upright pole"
+  },
+  {
+   "cls": "post",
+   "box": [
+    673.4180908203125,
+    174.02218627929688,
+    686.0505981445312,
+    326.7258605957031
+   ],
+   "score": 0.24014905095100403,
+   "label": "tall wooden post wooden upright pole"
+  },
+  {
+   "cls": "post",
+   "box": [
+    393.05816650390625,
+    224.18577575683594,
+    411.5583801269531,
+    294.72100830078125
+   ],
+   "score": 0.23425275087356567,
+   "label": "tall wooden post wooden upright pole"
+  },
+  {
+   "cls": "post",
+   "box": [
+    368.673095703125,
+    215.44192504882812,
+    408.8177185058594,
+    352.9861145019531
+   ],
+   "score": 0.22874480485916138,
+   "label": "tall wooden post wooden upright pole"
+  }
+ ],
+ "dropped": [
+  {
+   "cls": "deck",
+   "box": [
+    854.2072143554688,
+    471.447021484375,
+    943.9899291992188,
+    591.450927734375
+   ],
+   "score": 0.4035096764564514,
+   "label": "wooden joists",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "beam",
+   "box": [
+    543.83251953125,
+    656.5786743164062,
+    799.4249877929688,
+    695.0110473632812
+   ],
+   "score": 0.2445487529039383,
+   "label": "horizontal wooden beam",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "podium",
+   "box": [
+    791.3934326171875,
+    583.4722900390625,
+    982.0291137695312,
+    764.45751953125
+   ],
+   "score": 0.23147937655448914,
+   "label": "wooden podium",
+   "dropped": "less than 70% inside the world's structure band"
+  }
+ ],
+ "band": {
+  "core": [
+   0.284375,
+   0.29444444444444445,
+   0.7145833333333333,
+   0.4898148148148148
+  ],
+  "band": [
+   0.134375,
+   0.14444444444444446,
+   0.8645833333333334,
+   0.6398148148148148
+  ],
+  "core_area": 0.08404996141975309,
+  "platform_band": [
+   0.13697916666666668,
+   0.275,
+   0.8625,
+   0.6398148148148148
+  ]
+ },
+ "seconds_detect": 0.21,
+ "seconds_total": 0.43,
+ "models": "IDEA-Research/grounding-dino-tiny + facebook/sam-vit-base",
+ "box_thr": 0.22,
+ "text_thr": 0.2,
+ "areas": {
+  "post": 0.00441,
+  "beam": 0.01526,
+  "deck": 0.00075,
+  "chair": 0.0008,
+  "podium": 0.0,
+  "steps": 0.0
+ }
+}

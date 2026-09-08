@@ -85,9 +85,10 @@ def git_hash(stage_path=None):
     return "unversioned"
 
 
-def render_shot(shot, stage_path, out, near, far, variants=None, depth_mode="inverse"):
+def render_shot(shot, stage_path, out, near, far, variants=None, depth_mode=None):
     cams = json.load(open(os.path.join(os.path.dirname(stage_path), "derived", "cameras.json")))["cameras"]
     cam = cams[shot]
+    depth_mode = depth_mode or cam.get("depth_mode", "linear")      # per camera (world/nh/cameras.py DEPTH_MODE)
     st = Usd.Stage.Open(stage_path)
     vsets = st.GetPrimAtPath("/World").GetVariantSets()
     vsets.GetVariantSet("build").SetVariantSelection(cam.get("set_state", "finished"))
@@ -225,7 +226,7 @@ def main():
     out = opt("--out", os.path.join(HERE, "nh", "passes"))
     near, far = float(opt("--near", 2.0)), float(opt("--far", 120.0))
     variants = dict(kv.split("=") for kv in opt("--variants", "").split(",") if "=" in kv)
-    depth_mode = opt("--depth-mode", "inverse")
+    depth_mode = opt("--depth-mode", None)
     skip = set(); [skip.update([a[i + 1]]) for i, t in enumerate(a) if t in ("--stage", "--out", "--near", "--far", "--variants", "--depth-mode")]
     shots = [s for s in a if not s.startswith("--") and s not in skip]
     for s in shots:

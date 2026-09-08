@@ -36,6 +36,10 @@ SURVEY_CAMERAS = {
 SHOT_STATES = {"PLATE": "finished", "SH002": "joists", "SH003": "joists", "SH006": "half_decked",
                "SH007": "beam_seated", "SH009": "finished", "SH010": "finished",
                "S101_SH004": "finished", "S101_SH005": "finished", "S101_SH006": "finished", "S101_SH007": "finished"}
+# depth normalisation per shot: LINEAR for exteriors (the 93% first-take result was measured with it; inverse depth
+# compresses the far uprights out of SH006 - 2/5 under inverse vs 5/5 under linear, 2026-09-08), INVERSE for
+# interiors (a fixed linear range leaves a room near-white)
+DEPTH_MODE = {"S101_SH004": "inverse", "S101_SH005": "inverse", "S101_SH006": "inverse", "S101_SH007": "inverse"}
 # every other state family a shot selects (build is SHOT_STATES); absent = the family's default
 SHOT_VARIANTS = {
     "SH003": {"people": "build"}, "SH006": {"office": "dawn", "people": "none"}, "SH007": {"people": "build"},

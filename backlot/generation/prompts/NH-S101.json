@@ -1,0 +1,41 @@
+{
+ "_comment": "NH-S101 opening - Pengold's office at dawn. Layout comes from the depth+edge passes of the PengoldOffice set (office=dawn, people=office_dawn); words carry material, light and the man. Invariants positive and counted.",
+ "shared": {
+  "look": "prestige political drama, House of Cards season one color grade, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, photographic realism, cinematic",
+  "light": "single-source tungsten from the desk lamp still on from the night before, the room otherwise dim, faint cool blue only in the deepest blacks, thin cold winter dawn light at the tall windows held off the desk, no lens flare",
+  "dress": "a modest mid-century municipal mayor's office renovated in 1962 inside a grand 1910 room: mahogany-laminate desk and credenza, heavy dark drapes flanking three tall French windows through which the giant limestone columns of the colonnade stand a metre beyond the glass, a half-empty coffee cup, a folded newspaper with no legible headline, three worn dusty-mauve paperbacks stacked on the credenza, one pristine mauve copy squared on the desk, municipal furniture, papers aligned squarely"
+ },
+ "shots": {
+  "S101_SH004": {
+   "set_state": "finished",
+   "text": "Wide establishing shot of the office at dawn, one room, from the back corner: the desk at the right with a controlled man in his late forties seated behind it reading a folded newspaper, neat conservative hair greying at the temples, dark muted wool suit and white shirt, not reacting to being seen; the three tall French windows at the left with the columns beyond and the brick shopfronts of the square far below; the desk lamp the only warm light.",
+   "invariants": [
+    "three tall French windows with the giant limestone columns a metre beyond the glass",
+    "exactly one person, a man seated behind the desk reading a newspaper",
+    "a desk lamp is the single warm light source; the dawn light at the windows is cold and does not reach the desk",
+    "three mauve books stacked on the credenza behind him",
+    "no smile, no gesture toward the lens"
+   ]
+  },
+  "S101_SH005": {
+   "set_state": "finished",
+   "text": "Medium shot, locked off, across the desk: a controlled man in his late forties seated reading a folded newspaper held in both hands, neat conservative hair greying at the temples, calculating unhurried eyes lowered to the page, dark muted wool suit, white shirt; on the desk a half-empty coffee cup, a pristine mauve paperback squared to the edge, the tungsten desk lamp at the left; the credenza behind him with three stacked mauve books; the dark drapes and a slice of cold window light behind.",
+   "invariants": [
+    "exactly one person, seated, reading a folded newspaper",
+    "the desk lamp at the left of frame is the single warm light source",
+    "a half-empty coffee cup and one mauve paperback on the desk",
+    "three mauve books stacked on the credenza behind him",
+    "no smile, eyes on the page, not at the lens"
+   ]
+  },
+  "S101_SH007": {
+   "set_state": "finished",
+   "text": "Close-up, 85mm, locked off: the face of a controlled man in his late forties, neat conservative hair greying at the temples, eyes lifted to the middle distance past the lens, never into it, mouth closed, an inhale held; tungsten lamplight from the left, the dark credenza and drapes soft behind him.",
+   "invariants": [
+    "exactly one person, a man in close-up, eyes past the lens not into it",
+    "mouth closed, no smile",
+    "warm tungsten key from the left, cool dim fill"
+   ]
+  }
+ }
+}

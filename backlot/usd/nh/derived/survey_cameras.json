@@ -16,7 +16,8 @@
    "res": [
     1920,
     1080
-   ]
+   ],
+   "depth_mode": "linear"
   },
   "AERIAL": {
    "location": [
@@ -34,7 +35,8 @@
    "res": [
     1920,
     1080
-   ]
+   ],
+   "depth_mode": "linear"
   },
   "AXIS_UP": {
    "location": [
@@ -52,7 +54,8 @@
    "res": [
     1920,
     1080
-   ]
+   ],
+   "depth_mode": "linear"
   },
   "AXIS_DOWN": {
    "location": [
@@ -70,7 +73,8 @@
    "res": [
     1920,
     1080
-   ]
+   ],
+   "depth_mode": "linear"
   },
   "BODEGA": {
    "location": [
@@ -88,7 +92,8 @@
    "res": [
     1920,
     1080
-   ]
+   ],
+   "depth_mode": "linear"
   },
   "CHURCH_E": {
    "location": [
@@ -106,7 +111,8 @@
    "res": [
     1920,
     1080
-   ]
+   ],
+   "depth_mode": "linear"
   }
  }
 }

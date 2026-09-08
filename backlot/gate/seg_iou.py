@@ -41,6 +41,7 @@ PROMPTS = {
     "chair": ["a row of folding chairs"],
 }
 STRUCTURE = ("deck", "post", "beam", "chair", "steps", "podium")   # the pass classes that make up "the stage"
+INTERIOR = ("furniture", "person", "chair")                          # ... and "the set" in a room (the desk group + who sits at it)
 THRESH = {"structure": 0.35, "deck": 0.35, "post": 0.35, "beam": 0.35, "chair": 0.30}
 MIN_PASS_AREA = 0.002          # class must cover >= 0.2% of the pass frame to be judged at all
 
@@ -143,7 +144,8 @@ def run_keymask(key_path, passes_dir, keymask_path, debug=None, blocking=True):
     # a beam "platform" interchangeably, and the pass's crossbeam is only present in some states
     for d in (truth, pred):
         d["deck"] = d.get("deck", 0) | d.get("beam", np.zeros_like(truth["deck"]))
-    present = [c for c in STRUCTURE if c in truth and c not in ("post", "beam") and truth[c].mean() >= MIN_PASS_AREA]
+    group = STRUCTURE if truth.get("deck", np.zeros(1)).mean() >= MIN_PASS_AREA else INTERIOR   # a room has no deck
+    present = [c for c in group if c in truth and c not in ("post", "beam") and truth[c].mean() >= MIN_PASS_AREA]
     for d in (truth, pred):
         d["structure"] = np.zeros_like(next(iter(d.values())))
         for c in present:

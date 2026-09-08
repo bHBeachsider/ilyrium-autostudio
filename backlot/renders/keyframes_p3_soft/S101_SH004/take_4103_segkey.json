@@ -1,0 +1,213 @@
+{
+ "key": "renders/keyframes_p3_soft/S101_SH004/take_4103.png",
+ "detections": [
+  {
+   "cls": "deck",
+   "box": [
+    1330.7698974609375,
+    434.8269958496094,
+    1512.223388671875,
+    644.5324096679688
+   ],
+   "score": 0.45566871762275696,
+   "label": "wooden stage platform wooden podium wooden desk"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    1070.31640625,
+    427.9071960449219,
+    1343.002685546875,
+    628.9761352539062
+   ],
+   "score": 0.40655213594436646,
+   "label": "wooden stage platform wooden podium wooden desk"
+  },
+  {
+   "cls": "chair",
+   "box": [
+    467.56597900390625,
+    305.8882751464844,
+    495.7464599609375,
+    347.86566162109375
+   ],
+   "score": 0.4049295485019684,
+   "label": "chair wooden steps"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    1196.6531982421875,
+    417.52447509765625,
+    1287.8924560546875,
+    475.0984802246094
+   ],
+   "score": 0.29026302695274353,
+   "label": "wooden joists"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    1072.2828369140625,
+    431.7376403808594,
+    1339.818603515625,
+    493.40325927734375
+   ],
+   "score": 0.2658078670501709,
+   "label": "wooden stage platform deck wooden desk"
+  },
+  {
+   "cls": "steps",
+   "box": [
+    468.855224609375,
+    324.6890563964844,
+    494.33416748046875,
+    347.65435791015625
+   ],
+   "score": 0.25855115056037903,
+   "label": "wooden steps"
+  },
+  {
+   "cls": "chair",
+   "box": [
+    460.40966796875,
+    297.82940673828125,
+    504.4021911621094,
+    355.7342529296875
+   ],
+   "score": 0.25652313232421875,
+   "label": "chair"
+  },
+  {
+   "cls": "furniture",
+   "box": [
+    1055.94580078125,
+    393.6283264160156,
+    1374.3487548828125,
+    640.2357177734375
+   ],
+   "score": 0.2410544753074646,
+   "label": "wooden desk"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    1180.896728515625,
+    398.7923583984375,
+    1304.4786376953125,
+    494.4998474121094
+   ],
+   "score": 0.22816018760204315,
+   "label": "wooden joists"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    1069.57958984375,
+    414.5509338378906,
+    1367.2081298828125,
+    505.5715026855469
+   ],
+   "score": 0.22060997784137726,
+   "label": "wooden stage platform wooden desk"
+  }
+ ],
+ "dropped": [
+  {
+   "cls": "beam",
+   "box": [
+    241.75125122070312,
+    1.4706144332885742,
+    1510.703857421875,
+    94.47003936767578
+   ],
+   "score": 0.3717440962791443,
+   "label": "horizontal wooden beam",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "post",
+   "box": [
+    405.44842529296875,
+    34.70344543457031,
+    468.3909912109375,
+    434.8809814453125
+   ],
+   "score": 0.364107221364975,
+   "label": "tall wooden post wooden upright pole",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "post",
+   "box": [
+    584.2883911132812,
+    61.39612579345703,
+    626.3163452148438,
+    418.2109375
+   ],
+   "score": 0.35039687156677246,
+   "label": "tall wooden post wooden upright pole",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "beam",
+   "box": [
+    241.81646728515625,
+    19.255708694458008,
+    762.2218017578125,
+    115.0850601196289
+   ],
+   "score": 0.34616801142692566,
+   "label": "horizontal wooden beam",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "post",
+   "box": [
+    572.0103149414062,
+    54.33066177368164,
+    642.4102172851562,
+    427.14080810546875
+   ],
+   "score": 0.2785998284816742,
+   "label": "tall wooden post wooden upright pole",
+   "dropped": "less than 70% inside the world's structure band"
+  }
+ ],
+ "band": {
+  "core": [
+   0.16468253968253968,
+   0.4666666666666667,
+   0.9674603174603175,
+   0.9638888888888889
+  ],
+  "band": [
+   0.014682539682539686,
+   0.31666666666666665,
+   1.1174603174603175,
+   1.113888888888889
+  ],
+  "core_area": 0.39915895061728396,
+  "platform_band": [
+   0.014682539682539686,
+   0.31666666666666665,
+   1.1174603174603175,
+   1.113888888888889
+  ]
+ },
+ "seconds_detect": 0.17,
+ "seconds_total": 0.39,
+ "models": "IDEA-Research/grounding-dino-tiny + facebook/sam-vit-base",
+ "box_thr": 0.22,
+ "text_thr": 0.2,
+ "areas": {
+  "post": 0.0,
+  "beam": 0.0,
+  "deck": 0.06854,
+  "chair": 0.00082,
+  "podium": 0.0,
+  "steps": 0.00043,
+  "furniture": 0.03684,
+  "person": 0.0
+ }
+}
