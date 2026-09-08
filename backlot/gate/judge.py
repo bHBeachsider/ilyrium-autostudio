@@ -29,7 +29,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PKG = os.path.dirname(HERE)
 sys.path.insert(0, os.path.dirname(PKG))
 
-BLOCKING = set()            # invariant texts promoted to blocking after measurement; empty until then
+BLOCKING = set()            # invariant texts promoted to blocking after measurement; empty until then.
+# Calibration 2026-09-08 (12 sheets, README "Judge calibration"): "stage horizontal ... not turned" scored 0 false
+# violations on good frames and caught both bad ones -> first candidate for promotion after a 30-sheet sample.
+# "exactly two uprights" as worded is NOT promotable (counts chairs/columns as uprights): reword before re-measuring.
 
 SYSTEM = ("You are the continuity supervisor on a film set. You are shown one image: on the LEFT a plain grey 3D "
           "blockout of the set from the shot camera (this is the ground truth of where things are), on the RIGHT the "
@@ -37,7 +40,17 @@ SYSTEM = ("You are the continuity supervisor on a film set. You are shown one im
           "for layout. Answer strictly as JSON.")
 
 
+def load_env():
+    try:
+        from dotenv import load_dotenv
+        for env in (os.path.join(os.path.dirname(PKG), ".env"), os.path.expanduser("~/.ilyrium.env")):
+            load_dotenv(env, override=False)
+    except ImportError:
+        pass
+
+
 def ask(sheet_path, invariants, provider, model, base_url=None):
+    load_env()
     b64 = base64.b64encode(open(sheet_path, "rb").read()).decode()
     numbered = "\n".join("%d. %s" % (i + 1, t) for i, t in enumerate(invariants))
     user = ("For each numbered invariant below, say whether the RIGHT-hand keyframe satisfies it. Reply with JSON only: "

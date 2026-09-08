@@ -1,0 +1,70 @@
+{
+ "sheet": "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\_staging\\judge_set2\\SH009_take_3004_p1b.png",
+ "shot": "SH009",
+ "provider": "anthropic",
+ "model": null,
+ "verdicts": [
+  {
+   "invariant": "the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera)",
+   "verdict": "holds",
+   "reason": "The timber stage platform runs horizontally across the frame, parallel to the City Hall facade, matching the blockout reference.",
+   "blocking": false
+  },
+  {
+   "invariant": "exactly two tall square timber uprights, one at each END of the stage, none mid-span",
+   "verdict": "violated",
+   "reason": "There are no visible tall square timber uprights at the ends of the stage in the right frame, whereas the blockout shows two such uprights should be present.",
+   "blocking": false
+  },
+  {
+   "invariant": "a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving",
+   "verdict": "holds",
+   "reason": "The sky is overcast and grey, the paving appears wet with reflections visible, and there are no cast shadows or visible sun.",
+   "blocking": false
+  },
+  {
+   "invariant": "City Hall is a limestone neoclassical building with a semicircular colonnade under a drum and cupola",
+   "verdict": "holds",
+   "reason": "City Hall is depicted as a limestone/beige neoclassical building with a semicircular colonnade under a drum structure, consistent with the blockout.",
+   "blocking": false
+  },
+  {
+   "invariant": "exactly ONE row of folding chairs on the decking",
+   "verdict": "cannot_tell",
+   "reason": "No folding chairs are clearly visible on the stage decking in the right frame.",
+   "blocking": false
+  },
+  {
+   "invariant": "a solid crossbeam spans the tops of the two uprights",
+   "verdict": "cannot_tell",
+   "reason": "Since the tall timber uprights are not visible, cannot verify whether a crossbeam spans their tops.",
+   "blocking": false
+  },
+  {
+   "invariant": "a short flight of timber steps at the left end of the stage",
+   "verdict": "holds",
+   "reason": "A short flight of timber steps is visible at the left end of the stage platform, matching the blockout reference.",
+   "blocking": false
+  },
+  {
+   "invariant": "a single workman in a high-visibility vest tests the steps",
+   "verdict": "cannot_tell",
+   "reason": "No workman in a high-visibility vest is visible on or near the steps in the right frame.",
+   "blocking": false
+  }
+ ],
+ "usage": {
+  "input_tokens": 1256,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "cache_creation": {
+   "ephemeral_5m_input_tokens": 0,
+   "ephemeral_1h_input_tokens": 0
+  },
+  "output_tokens": 451,
+  "service_tier": "standard",
+  "inference_geo": "not_available"
+ },
+ "seconds": 7.8,
+ "status": "advisory"
+}

@@ -124,3 +124,21 @@ segmenter on the box (Grounded-SAM / SAM2 on the A10G, Phase 3) or a post-column
 post pixels directly. Until then geometry stays the blocking check, its two known false rejects are documented, and
 the sheet + judge carry the rest. The plan's Phase 2 check ("the archived bad takes all FAIL") is not yet met: only
 the two Phase 1a bad takes are in the suite; the v3–v7 archive needs its pre-frontal cameras recovered first.
+
+### Judge calibration (12 sheets, claude-sonnet-4-5, plain clay|key sheets, ~$0.25 on the studio key)
+
+First lesson, before any number: the judge must see a PLAIN sheet. Shown the gate's annotated sheet it counted the
+green post markers as uprights ("two tall green uprights"). `run_gate.py --judge` now builds `<key>_sheet_plain.png`.
+
+Per invariant against the eye (10 good frames, 2 bad — the pergola and the footbridge):
+
+| invariant | false "violated" on good frames | caught the bad frames | verdict |
+|---|---|---|---|
+| stage horizontal, parallel to the facade, not turned | 0/10 | 2/2 | promote to blocking after a 30-sheet sample (the only check so far that saw the pergola) |
+| exactly two uprights, one at each end | 6/10 | 2/2 | not promotable as worded — the model counts chairs, steps and columns as "uprights"; reword to "tall posts rising above the crossbeam height" and re-measure |
+| no crossbeam (SH003/SH006) | 1–2/6 | 2/2 | re-measure after the reword |
+| flat grey overcast, wet paving | 1/10 | — | look note, not layout; keep advisory |
+| workmen / single workman present | 0 false — the frames really lack them | — | true findings: the Phase 1b edge control dropped the people; feed it back to the generator, not the gate |
+| open joists / half-decked / one row of chairs | 1/10 (SH006 3004 "half decked" ambiguous by eye too) | — | keep advisory |
+
+Raw verdicts: `generation/reports/judge_calibration_2026-09-08/`. Nothing in the judge blocks yet (`BLOCKING = set()`).

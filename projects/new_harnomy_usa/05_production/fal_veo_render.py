@@ -28,6 +28,12 @@ from dotenv import load_dotenv
 HERE = os.path.dirname(os.path.abspath(__file__))
 PROJ = os.path.abspath(os.path.join(HERE, ".."))
 KEYS = os.path.join(PROJ, "04_preproduction", "keyframes", "NH-S901")
+REPO = os.path.abspath(os.path.join(PROJ, "..", ".."))          # ilyrium-autostudio: backlot/ lives here
+sys.path.insert(0, REPO)
+try:
+    from backlot.gate.require import require_pass, GateRefused   # no motion render without a fresh gate PASS (OWS Phase 2)
+except ImportError:
+    require_pass = None
 OUT = os.path.join(HERE, "renders", "NH-S901", "veo")
 
 for env in (r"C:/Users/bradu/Documents/ilyrium-autostudio/.env",
@@ -145,6 +151,9 @@ def preflight():
 
 def main():
     args = sys.argv[1:]
+    ungated = "--ungated" in args
+    if ungated:
+        args.remove("--ungated")
     fast = "--fast" in args
     dry = "--dry-run" in args
     force = "--force" in args
@@ -172,6 +181,14 @@ def main():
         if os.path.exists(dst) and not force:
             print("[SKIP] %s exists" % sid, flush=True); continue
         key = os.path.join(KEYS, "NH-S901-%s_key.png" % sid)
+        if require_pass and not ungated:
+            try:
+                require_pass(key)
+            except GateRefused as e:
+                print("[REFUSED] %s - run backlot/gate/run_gate.py on the key first (or --ungated to override, logged)" % e, flush=True)
+                continue
+        elif ungated:
+            print("[UNGATED] %s rendered without a gate receipt - override requested" % sid, flush=True)
         secs = int(dur[:-1]); total += secs * rate
         arguments = {"prompt": prompt, "aspect_ratio": "16:9", "duration": dur, "resolution": "1080p",
                      "generate_audio": False, "negative_prompt": NEG, "seed": 901000 + int("".join(ch for ch in sid if ch.isdigit())) }

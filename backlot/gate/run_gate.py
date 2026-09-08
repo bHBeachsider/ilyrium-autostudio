@@ -37,6 +37,16 @@ def run(cmd):
     return r.returncode, out
 
 
+def plain_sheet(clay, key, out, width=1600):
+    """clay | key side by side, no annotations, no labels - what a judge should see."""
+    from PIL import Image
+    a = Image.open(clay).convert("RGB"); b = Image.open(key).convert("RGB")
+    w = width // 2; ha = int(a.height * w / a.width); hb = int(b.height * w / b.width); h = max(ha, hb)
+    sheet = Image.new("RGB", (2 * w, h), (0, 0, 0))
+    sheet.paste(a.resize((w, ha)), (0, 0)); sheet.paste(b.resize((w, hb)), (w, 0))
+    sheet.save(out); return out
+
+
 def gate(key, shot, passes_root, derived, autoletter=False, judge=False, seq="NH-S901", py=sys.executable):
     cams = os.path.join(derived, "cameras.json"); pts = os.path.join(derived, "control_points.json")
     pdir = os.path.join(passes_root, shot)
@@ -70,8 +80,10 @@ def gate(key, shot, passes_root, derived, autoletter=False, judge=False, seq="NH
             lines = lines + ["  -- auto-lettered from the world's text plane, re-read:"] + lines2
     report["checks"]["text"] = dict(blocking=True, passed=rc == 0, lines=lines)
 
-    if judge and os.path.exists(sheet):
-        rc, lines = run([py, os.path.join(HERE, "judge.py"), sheet, "--shot", shot, "--seq", seq,
+    if judge and os.path.exists(os.path.join(pdir, "clay.png")):
+        # the judge gets a PLAIN clay | key sheet: the gate's green/blue overlays read as "uprights" to a vision model
+        plain = plain_sheet(os.path.join(pdir, "clay.png"), key, key[:-4] + "_sheet_plain.png")
+        rc, lines = run([py, os.path.join(HERE, "judge.py"), plain, "--shot", shot, "--seq", seq,
                          "--json", key[:-4] + "_judge.json"])
         report["checks"]["judge"] = dict(blocking=False, passed=rc == 0, lines=lines)
 

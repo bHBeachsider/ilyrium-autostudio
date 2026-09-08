@@ -1,0 +1,70 @@
+{
+ "sheet": "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\_staging\\judge_set2\\SH009_take_2000_p1.png",
+ "shot": "SH009",
+ "provider": "anthropic",
+ "model": null,
+ "verdicts": [
+  {
+   "invariant": "the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera)",
+   "verdict": "holds",
+   "reason": "The timber stage runs horizontally across the frame, parallel to the building facade, not angled toward the camera.",
+   "blocking": false
+  },
+  {
+   "invariant": "exactly two tall square timber uprights, one at each END of the stage, none mid-span",
+   "verdict": "violated",
+   "reason": "There are multiple tall timber uprights visible across the stage structure, not just two at the ends. Several vertical posts can be seen along the span.",
+   "blocking": false
+  },
+  {
+   "invariant": "a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving",
+   "verdict": "holds",
+   "reason": "The sky is flat grey and overcast, the paving is clearly wet with reflections visible, and there are no visible cast shadows or sun.",
+   "blocking": false
+  },
+  {
+   "invariant": "City Hall is a limestone neoclassical building with a semicircular colonnade under a drum and cupola",
+   "verdict": "holds",
+   "reason": "The building shown is clearly neoclassical with a semicircular colonnade under a drum and cupola structure, matching the description of City Hall.",
+   "blocking": false
+  },
+  {
+   "invariant": "exactly ONE row of folding chairs on the decking",
+   "verdict": "cannot_tell",
+   "reason": "The stage decking area is visible but folding chairs, if present, are not clearly distinguishable in this view to count rows definitively.",
+   "blocking": false
+  },
+  {
+   "invariant": "a solid crossbeam spans the tops of the two uprights",
+   "verdict": "cannot_tell",
+   "reason": "While there appear to be horizontal structural elements at the top of the timber framework, it's not clearly visible whether a solid crossbeam spans the tops of the uprights.",
+   "blocking": false
+  },
+  {
+   "invariant": "a short flight of timber steps at the left end of the stage",
+   "verdict": "holds",
+   "reason": "A short flight of timber steps is visible at the left end of the stage structure.",
+   "blocking": false
+  },
+  {
+   "invariant": "a single workman in a high-visibility vest tests the steps",
+   "verdict": "violated",
+   "reason": "No workman in a high-visibility vest is visible testing the steps or anywhere else in the frame.",
+   "blocking": false
+  }
+ ],
+ "usage": {
+  "input_tokens": 1256,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "cache_creation": {
+   "ephemeral_5m_input_tokens": 0,
+   "ephemeral_1h_input_tokens": 0
+  },
+  "output_tokens": 466,
+  "service_tier": "standard",
+  "inference_geo": "not_available"
+ },
+ "seconds": 9.0,
+ "status": "advisory"
+}

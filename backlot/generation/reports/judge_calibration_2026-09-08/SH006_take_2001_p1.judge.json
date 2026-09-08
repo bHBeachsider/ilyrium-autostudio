@@ -1,0 +1,58 @@
+{
+ "sheet": "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\_staging\\judge_set2\\SH006_take_2001_p1.png",
+ "shot": "SH006",
+ "provider": "anthropic",
+ "model": null,
+ "verdicts": [
+  {
+   "invariant": "the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera)",
+   "verdict": "holds",
+   "reason": "The timber stage/platform runs horizontally across the frame, parallel to the building facades in the background, not angled toward the camera.",
+   "blocking": false
+  },
+  {
+   "invariant": "exactly two tall square timber uprights, one at each END of the stage, none mid-span",
+   "verdict": "cannot_tell",
+   "reason": "The dark cylindrical column in the foreground obscures much of the view of the stage. While some vertical elements may be present at the ends of the platform, they are not clearly visible enough to count them definitively or verify they are tall square timber uprights.",
+   "blocking": false
+  },
+  {
+   "invariant": "a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving",
+   "verdict": "holds",
+   "reason": "The sky is flat grey and overcast with no visible sun. The paving appears wet and reflective with dark patches suggesting moisture. No distinct cast shadows are visible.",
+   "blocking": false
+  },
+  {
+   "invariant": "decking covers only the LEFT half of the platform; the right half is open joists",
+   "verdict": "holds",
+   "reason": "The platform shows decking/solid surface covering approximately the left half, while the right half appears to show exposed structural joists or framework underneath.",
+   "blocking": false
+  },
+  {
+   "invariant": "no crossbeam joins the uprights",
+   "verdict": "cannot_tell",
+   "reason": "The foreground column obscures critical areas where a crossbeam would be visible if present. Cannot definitively verify absence of a crossbeam between uprights.",
+   "blocking": false
+  },
+  {
+   "invariant": "the view is from a high window looking down across the square",
+   "verdict": "holds",
+   "reason": "The viewpoint is clearly from an elevated position looking down across a square/courtyard area with construction activity below, consistent with viewing from a high window.",
+   "blocking": false
+  }
+ ],
+ "usage": {
+  "input_tokens": 1215,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "cache_creation": {
+   "ephemeral_5m_input_tokens": 0,
+   "ephemeral_1h_input_tokens": 0
+  },
+  "output_tokens": 402,
+  "service_tier": "standard",
+  "inference_geo": "not_available"
+ },
+ "seconds": 9.7,
+ "status": "advisory"
+}
