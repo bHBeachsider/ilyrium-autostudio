@@ -1,7 +1,7 @@
 # OWS — the Ilyrium Backlot
 ### Evaluation of the backlot proposal, reconciled with what NH-S901 taught, and a plan
 
-*v2, 2026-09-08. Supersedes v1 (written before the proposal was seen). Status: proposal.*
+*v2, 2026-09-08. Supersedes v1. Status: **accepted 2026-09-08** - USD canonical, Unreal deferred, scope = New Harnomy. Phase 0 shipped in commit 34f9e95 (`backlot/`); its checks are recorded in `backlot/README.md`.*
 
 Two seeds are on the table. The first is the **backlot proposal** Brad brought: an AI-native digital studio backlot
 with OpenUSD at the centre, Blender for authoring, Unreal for shooting, a catalogued and provenanced asset library, a
