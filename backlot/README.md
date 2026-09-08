@@ -63,3 +63,20 @@ python backlot/generation/generate_keyframe.py SH003 SH006 SH009 --takes 5 --see
 - a hand edit round-trips: move `RallyStage` in the .blend → `readback.py` → recompose → `post_L` moves with it
 - `catalog find kind=set` lists the stage; `used_in NH-S901` lists the six assets the teaser used
 - `cost_preflight` refuses past the per-shot cap and below the floor
+
+## Phase 1 result (2026-09-08, NH box, FLUX.1-dev fp8 + ControlNet Union Pro 2.0 depth, 1344x768, 28 steps, cn 0.7/0.8)
+
+15 takes (5 seeds x SH003/SH006/SH009), no retries: **13/15 = 87% first-take gate pass** (target >= 90%: NOT MET).
+SH003 5/5, SH009 5/5, SH006 3/5. `generation/reports/phase1_first_take_2026-09-08.json` has every gate line.
+
+What the two SH006 fails are: the gate's edge detector could not find the far-right post - a thin, low-contrast
+upright 40 m from the window camera - and locked onto a stronger vertical (a plaza axis line) 17% away. In both
+frames the post IS drawn where the blockout puts it (see `reports/phase1_review_SH006_fails.png`). Layout held in
+15/15 by eye; the misses are the verifier's, which is why Phase 2 replaces edge heuristics with seg-mask IoU against
+the seg pass.
+
+What the depth pass does not carry: the `half_decked` state read as a pergola/footbridge from the high POV in
+SH006 (joists overhead instead of underfoot) - depth alone is ambiguous about open framing seen from above; feed the
+seg pass as a second control (or normal) for build states. Chairs in SH009 come out blocky because the blockout's
+chairs are boxes - a `hero`-grade chair asset fixes it at the source. Every take took ~50 s warm; the 30 GB of system
+RAM (not the 24 GB A10G) is the limit - ComfyUI peaked at 24.4 GB and was OOM-killed once; a 10 GB swapfile is now on.
