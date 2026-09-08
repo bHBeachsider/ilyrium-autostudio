@@ -37,18 +37,20 @@ def main():
                            "--cameras", os.path.join(derived, "cameras.json"), "--points", os.path.join(derived, "control_points.json")])
         rc_s, out_s = run([sys.executable, os.path.join(HERE, "seg_iou.py"), key, "--passes", os.path.join(passes, shot)])
         seg_v = "WARN" if "WARN stage" in out_s else ("PASS" if rc_s == 0 else "FAIL")
-        rows.append(dict(path=e["path"], shot=shot, expect=e["expect"], geometry="PASS" if rc_g == 0 else "FAIL", seg=seg_v, note=e["note"]))
+        rows.append(dict(path=e["path"], shot=shot, expect=e["expect"], fail_kind=e.get("fail_kind"), geometry="PASS" if rc_g == 0 else "FAIL", seg=seg_v, note=e["note"]))
         print("%-45s eye %-4s geometry %-4s seg %-4s" % (e["path"], e["expect"], rows[-1]["geometry"], seg_v), flush=True)
     summary = {}
     for chk in ("geometry", "seg"):
-        good = [r for r in rows if r["expect"] == "PASS"]; bad = [r for r in rows if r["expect"] == "FAIL"]
+        good = [r for r in rows if r["expect"] == "PASS"]
+        # geometry and seg are LAYOUT checks: a semantic failure (pergola, footbridge) is the judge's to catch
+        bad = [r for r in rows if r["expect"] == "FAIL" and r.get("fail_kind") in (None, "layout")]
         fr = [r["path"] for r in good if r[chk] != "PASS"]
         miss = [r["path"] for r in bad if r[chk] == "PASS"]
         summary[chk] = dict(false_reject=len(fr), false_reject_rate=round(len(fr) / max(1, len(good)), 3), false_rejects=fr,
                             misses=len(miss), miss_rate=round(len(miss) / max(1, len(bad)), 3), missed=miss,
                             may_block=len(fr) / max(1, len(good)) < 0.05)
-        print("== %-8s false-reject %d/%d (%.0f%%)  misses %d/%d  -> %s" % (chk, len(fr), len(good), 100 * summary[chk]["false_reject_rate"],
-              len(miss), len(bad), "may block" if summary[chk]["may_block"] else "advisory only"))
+        print("== %-8s false-reject %d/%d (%.0f%%)  layout misses %d/%d%s  -> %s" % (chk, len(fr), len(good), 100 * summary[chk]["false_reject_rate"],
+              len(miss), len(bad), "" if bad else " (no layout-bad take in the suite yet)", "may block" if summary[chk]["may_block"] else "advisory only"))
     if a.report:
         json.dump(dict(rows=rows, summary=summary), open(a.report, "w"), indent=1)
 

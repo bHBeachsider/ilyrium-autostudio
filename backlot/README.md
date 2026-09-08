@@ -19,7 +19,8 @@ backlot/
   generation/edit_keyframe.py       the paid edit path (nano-banana-pro) with the incident rules as presets
   gate/run_gate.py          the QA station: geometry (blocking) + seg (advisory) + text (blocking, --autoletter) + judge
   gate/check_keyframe_geometry.py   projected posts, deck line, chair rows, clay|key sheet
-  gate/seg_iou.py           CLIPSeg mask of the stage vs the seg pass: extent + axis (ADVISORY - see measurement below)
+  gate/seg_box.py           Grounding DINO + SAM on the box: per-class masks of the key in the seg pass's colours
+  gate/seg_iou.py           key mask vs seg pass: platform extent + axis (BLOCKING with a box mask; CLIPSeg fallback advisory)
   gate/ocr_text.py, gate/letter_text_plane.py   every text plane must read the spec; auto-letter from the world's quad
   gate/judge.py             a vision model rules per invariant (ADVISORY until measured per invariant)
   gate/require.py, gate/install_key.py          no install, no motion render, without a fresh PASS receipt
@@ -142,3 +143,23 @@ Per invariant against the eye (10 good frames, 2 bad — the pergola and the foo
 | open joists / half-decked / one row of chairs | 1/10 (SH006 3004 "half decked" ambiguous by eye too) | — | keep advisory |
 
 Raw verdicts: `generation/reports/judge_calibration_2026-09-08/`. Nothing in the judge blocks yet (`BLOCKING = set()`).
+
+### Seg verifier fixed (2026-09-08, box session 3, ~20 min GPU)
+
+`gate/seg_box.py` runs Grounding DINO (tiny) + SAM (vit-base) on the A10G: 0.4 s a frame, masks per class in the seg
+pass's colours, so `seg_iou.py` compares mask to mask at full resolution with no model in the loop. Four things had to
+be learned on the 30-take suite before it agreed with the eye, each recorded in the code:
+
+1. the detector boxes the whole City Hall, or the whole plaza, as "a wooden platform" — boxes are kept only if 70%
+   inside the world's band and under 3× the world's extent;
+2. a 5 m post stretches that band up to the portico — flat classes (deck, beam, chairs, steps, podium) get the
+   PLATFORM band, posts the full one;
+3. the detector labels a platform's front edge "beam" and a beam "platform" — deck and beam are one pool on both sides;
+4. a tall post mask dominates a principal-axis fit and reads as "turned" — extent and axis are asked of the platform
+   without the posts; posts get their own column check.
+
+Result on the suite: **0/28 false rejects** (CLIPSeg: 5/28), so the seg check is now BLOCKING on extent (box IoU
+< 0.25) and axis (> 15°) when a box mask exists, advisory on the CLIPSeg fallback. Stated caveat: the two bad takes
+in the suite are SEMANTIC (a pergola and a footbridge whose footprint is exactly where the world puts it) — no 2D
+extent check can see a roof vs a floor; the judge caught both. The suite has no layout-bad negative yet; the v9
+turned-stage key joins it when its camera is recovered. `gate_regression_segbox_2026-09-08.json` has every row.

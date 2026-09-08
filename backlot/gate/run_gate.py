@@ -2,7 +2,8 @@
 r"""run_gate.py - the QA station: every check on one key, one verdict, one sheet, one JSON (Phase 2, tasks 13-16).
 
     geometry   check_keyframe_geometry.py   BLOCKING   posts on their columns, deck line, chair band, clay comparison
-    seg        seg_iou.py                    advisory   the stage's extent and axis vs the seg pass (CLIPSeg)
+    seg        seg_box.py + seg_iou.py       BLOCKING   stage extent + axis, Grounding DINO + SAM mask vs the seg pass
+                                             (advisory when no GPU mask exists and the CLIPSeg fallback runs)
     text       ocr_text.py                   BLOCKING   every text plane reads the spec (auto-fix: --autoletter)
     judge      judge.py                      advisory   a vision model rules on the shot's invariants (--judge)
 
@@ -47,7 +48,7 @@ def plain_sheet(clay, key, out, width=1600):
     sheet.save(out); return out
 
 
-def gate(key, shot, passes_root, derived, autoletter=False, judge=False, seq="NH-S901", py=sys.executable):
+def gate(key, shot, passes_root, derived, autoletter=False, judge=False, seq="NH-S901", py=sys.executable, segbox_py=None):
     cams = os.path.join(derived, "cameras.json"); pts = os.path.join(derived, "control_points.json")
     pdir = os.path.join(passes_root, shot)
     sheet = key[:-4] + "_sheet.png"
@@ -64,8 +65,14 @@ def gate(key, shot, passes_root, derived, autoletter=False, judge=False, seq="NH
     report["checks"]["geometry"] = dict(blocking=True, passed=rc == 0, lines=lines)
 
     if os.path.exists(os.path.join(pdir, "seg.png")):
-        rc, lines = run([py, os.path.join(HERE, "seg_iou.py"), key, "--passes", pdir])
-        report["checks"]["seg"] = dict(blocking=False, passed=rc == 0, lines=lines)
+        km = key[:-4] + "_segkey.png"
+        if segbox_py:                                   # on the box: make the real mask first (Grounding DINO + SAM)
+            run([segbox_py, os.path.join(HERE, "seg_box.py"), key, "--passes-root", passes_root])
+        has_mask = os.path.exists(km)
+        rc, lines = run([py, os.path.join(HERE, "seg_iou.py"), key, "--passes", pdir] + (["--keymask", km] if has_mask else []))
+        # blocking only with a real mask (measured 0/28 false rejects); the CLIPSeg fallback stays advisory
+        report["checks"]["seg"] = dict(blocking=has_mask, passed=rc == 0, lines=lines,
+                                       segmenter="grounding-dino + sam (seg_box.py)" if has_mask else "clipseg fallback (advisory)")
 
     rc, lines = run([py, os.path.join(HERE, "ocr_text.py"), key, "--shot", shot, "--cameras", cams, "--points", pts])
     if rc != 0 and autoletter:
@@ -101,8 +108,9 @@ def main():
     ap.add_argument("--passes-root", default=os.path.join(PKG, "usd", "nh", "passes"))
     ap.add_argument("--derived", default=os.path.join(PKG, "usd", "nh", "derived"))
     ap.add_argument("--autoletter", action="store_true"); ap.add_argument("--judge", action="store_true")
+    ap.add_argument("--segbox-python", help="python with torch+transformers+CUDA (the box's ComfyUI venv): runs seg_box.py first")
     a = ap.parse_args()
-    rep = gate(a.key, a.shot, a.passes_root, a.derived, a.autoletter, a.judge, a.seq)
+    rep = gate(a.key, a.shot, a.passes_root, a.derived, a.autoletter, a.judge, a.seq, segbox_py=a.segbox_python)
     for name, c in rep["checks"].items():
         print("%s %-8s %s" % ("PASS" if c["passed"] else ("FAIL" if c["blocking"] else "WARN"), name,
                                "(blocking)" if c["blocking"] else "(advisory)"))
