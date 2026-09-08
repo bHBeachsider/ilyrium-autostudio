@@ -1,0 +1,26 @@
+{
+ "seq": "NH-ALL",
+ "scene": 3,
+ "duration_s": 4,
+ "location": {
+  "text": "The proscenium arch, lit from the house side",
+  "set": null,
+  "match": "none",
+  "confidence": 0.0,
+  "via": null
+ },
+ "build_queue": [
+  {
+   "kind": "set",
+   "asset": null,
+   "noun": "The proscenium arch, lit from the house side",
+   "scene": 3,
+   "reason": "no catalog set matches this location (alias or tag)"
+  }
+ ],
+ "props": [],
+ "characters": [],
+ "text_planes": [],
+ "invariants": [],
+ "world": null
+}

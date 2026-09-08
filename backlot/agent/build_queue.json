@@ -1,0 +1,56 @@
+[
+ {
+  "kind": "hero_grade",
+  "noun": "hero-grade RallyStage",
+  "asset": "RallyStage",
+  "scenes": [],
+  "regenerations": 62,
+  "findings": 0,
+  "score": 62,
+  "reasons": [
+   "62 generations recorded against this asset in the ledger"
+  ]
+ },
+ {
+  "kind": "set",
+  "noun": "The theater auditorium, seen from the stage; houselights up",
+  "asset": null,
+  "scenes": [
+   1
+  ],
+  "regenerations": 0,
+  "findings": 0,
+  "score": 3,
+  "reasons": [
+   "no catalog set matches this location (alias or tag)"
+  ]
+ },
+ {
+  "kind": "set",
+  "noun": "The proscenium arch, lit from the house side",
+  "asset": null,
+  "scenes": [
+   3
+  ],
+  "regenerations": 0,
+  "findings": 0,
+  "score": 3,
+  "reasons": [
+   "no catalog set matches this location (alias or tag)"
+  ]
+ },
+ {
+  "kind": "set",
+  "noun": "The theater auditorium; the vomitoria; then the stage",
+  "asset": null,
+  "scenes": [
+   10
+  ],
+  "regenerations": 0,
+  "findings": 0,
+  "score": 3,
+  "reasons": [
+   "no catalog set matches this location (alias or tag)"
+  ]
+ }
+]

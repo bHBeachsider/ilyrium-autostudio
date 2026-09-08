@@ -1,0 +1,16 @@
+#usda 1.0
+(
+    defaultPrim = "LysteriaInterior"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "LysteriaInterior" (
+    kind = "component"
+    prepend references = @./geo.usda@</geo>
+)
+{
+    custom string backlot:asset_id = "LysteriaInterior"
+    custom token backlot:grade = "conditioning"
+}
+

@@ -18,6 +18,11 @@ from pxr import Usd
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 
+def _default(fam):
+    from backlot.world.nh import geometry as G
+    return G.STATE_FAMILIES[fam]["default"]
+
+
 def main():
     a = sys.argv[1:]
     shots = [s for s in a if not s.startswith("--") and s not in a[a.index("--stage") + 1:a.index("--stage") + 2] if "--stage" in a] if "--stage" in a else [s for s in a if not s.startswith("--")]
@@ -29,7 +34,10 @@ def main():
     st = Usd.Stage.Open(stage_path)
     for shot in shots:
         cam = cams[shot]
-        st.GetPrimAtPath("/World").GetVariantSets().GetVariantSet("build").SetVariantSelection(cam.get("set_state", "finished"))
+        vsets = st.GetPrimAtPath("/World").GetVariantSets()
+        vsets.GetVariantSet("build").SetVariantSelection(cam.get("set_state", "finished"))
+        for fam, spec in [(f, None) for f in vsets.GetNames() if f not in ("build", "weather")]:
+            vsets.GetVariantSet(fam).SetVariantSelection(cam.get("variants", {}).get(fam) or _default(fam))
         st.GetRootLayer().Save()
         bpy.ops.wm.read_factory_settings(use_empty=True)
         bpy.ops.wm.usd_import(filepath=stage_path, import_cameras=True, import_meshes=True, import_materials=True,

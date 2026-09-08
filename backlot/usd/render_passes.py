@@ -40,8 +40,15 @@ SEG_CLASSES = {                      # class -> flat colour (sRGB 0-255); order 
     "vehicle":    (230, 230, 230),
     "prop":       (120, 80, 40),
     "ground":     (20, 20, 25),
+    "person":     (255, 255, 255),
+    "furniture":  (170, 110, 60),
 }
-PREFIX = [("truss_post", "post"), ("truss_beam", "beam"), ("deck", "deck"), ("joist", "deck"), ("rim_", "deck"),
+PREFIX = [("man_", "person"), ("lyst_chair", "chair"), ("po_drape", "prop"), ("po_book", "prop"), ("po_lamp", "prop"),
+          ("po_cup", "prop"), ("po_newspaper", "prop"), ("po_portrait", "text_plane"), ("po_desk", "furniture"),
+          ("po_credenza", "furniture"), ("po_door", "furniture"), ("po_", "building"), ("pilf_table", "furniture"),
+          ("pilf_petition", "furniture"), ("pilf_wall_board", "text_plane"), ("pilf_in", "building"), ("lyst_desk", "furniture"),
+          ("lyst_conf", "furniture"), ("lyst_mission", "text_plane"), ("lyst_in", "building"),
+          ("truss_post", "post"), ("truss_beam", "beam"), ("deck", "deck"), ("joist", "deck"), ("rim_", "deck"),
           ("pier_", "deck"), ("chair", "chair"), ("podium", "podium"), ("steps_", "steps"), ("step_", "building"),
           ("portrait", "prop"), ("banner", "text_plane"), ("pilf_sign", "text_plane"), ("tree", "vegetation"),
           ("crown", "vegetation"), ("uni_tree", "vegetation"), ("uni_quad", "vegetation"), ("flatbed", "vehicle"),
@@ -78,11 +85,21 @@ def git_hash(stage_path=None):
     return "unversioned"
 
 
-def render_shot(shot, stage_path, out, near, far):
+def render_shot(shot, stage_path, out, near, far, variants=None, depth_mode="inverse"):
     cams = json.load(open(os.path.join(os.path.dirname(stage_path), "derived", "cameras.json")))["cameras"]
     cam = cams[shot]
     st = Usd.Stage.Open(stage_path)
-    st.GetPrimAtPath("/World").GetVariantSets().GetVariantSet("build").SetVariantSelection(cam.get("set_state", "finished"))
+    vsets = st.GetPrimAtPath("/World").GetVariantSets()
+    vsets.GetVariantSet("build").SetVariantSelection(cam.get("set_state", "finished"))
+    from backlot.world.nh import geometry as G
+    sel = dict(cam.get("variants", {})); sel.update(variants or {})       # the agent's resolved request wins over the camera's default
+    if "build" in sel:
+        vsets.GetVariantSet("build").SetVariantSelection(sel["build"])
+    for fam in vsets.GetNames():
+        if fam in G.STATE_FAMILIES and fam != "build":
+            vsets.GetVariantSet(fam).SetVariantSelection(sel.get(fam) or G.STATE_FAMILIES[fam]["default"])
+    if "weather" in sel and vsets.HasVariantSet("weather"):
+        vsets.GetVariantSet("weather").SetVariantSelection(sel["weather"])
     st.GetRootLayer().Save()
     bpy.ops.wm.read_factory_settings(use_empty=True)
     bpy.ops.wm.usd_import(filepath=stage_path, import_cameras=True, import_meshes=True, import_materials=True,
@@ -160,16 +177,40 @@ def render_shot(shot, stage_path, out, near, far):
         nt.links.new(vt.outputs[0], vm.inputs[0])
         return vm.outputs[0]
 
-    for fname, fmt, depth, mode, build in (("depth.png", "PNG", "16", "BW", depth_nodes),
-                                           ("depth.exr", "OPEN_EXR", "32", "BW", depthraw_nodes),
+    for fname, fmt, depth, mode, build in (("depth.exr", "OPEN_EXR", "32", "BW", depthraw_nodes),
                                            ("normal.png", "PNG", "8", "RGB", normal_nodes)):
         vl.material_override = override(fname, build)
         ims = scene.render.image_settings; ims.file_format = fmt; ims.color_depth = depth; ims.color_mode = mode
         if fmt == "OPEN_EXR":
             ims.exr_codec = "ZIP"
         scene.render.filepath = os.path.join(d, fname); bpy.ops.render.render(write_still=True)
+    # depth.png: the raw metres from the EXR, normalised to THIS frame's range (1st..99th percentile of what is in
+    # view) as INVERSE depth, so an interior (1-8 m) and the square (5-120 m) both fill the 16-bit range - a fixed
+    # linear near/far made every office depth pass near-white (2026-09-08). near_m/far_m in passes.json record the range.
+    import numpy as np
+    from PIL import Image
+    img = bpy.data.images.load(os.path.join(d, "depth.exr"))
+    px = np.array(img.pixels[:], dtype=np.float32).reshape(img.size[1], img.size[0], img.channels)[::-1, :, 0]
+    bpy.data.images.remove(img)
+    clip0 = float(scene.camera.data.clip_start)
+    valid = np.isfinite(px) & (px < 1e6) & (px > clip0 * 1.05)     # Cycles returns clip_start for background rays: that is "far"
+    finite = px[valid]
+    if finite.size:
+        near, far = float(np.percentile(finite, 1.0)), float(np.percentile(finite, 99.0))
+        if far - near < 0.5:
+            far = near + 0.5
+    z = np.where(valid, px, far)
+    # inverse depth (disparity), the convention the depth ControlNets were trained on (MiDaS / Depth-Anything):
+    # near white, far black, with the room's metres given most of the range even when a window shows the square
+    if depth_mode == "linear":                                        # Phase 1a/1b were validated with this
+        norm = np.clip((far - z) / (far - near), 0.0, 1.0)
+    else:
+        inv = 1.0 / np.clip(z, max(near, 0.05), None)
+        norm = np.clip((inv - 1.0 / far) / (1.0 / max(near, 0.05) - 1.0 / far), 0.0, 1.0)
+    Image.fromarray((norm * 65535.0).astype(np.uint16)).save(os.path.join(d, "depth.png"))
     vl.material_override = None
-    meta = dict(shot=shot, camera=cam, set_state=cam.get("set_state", "finished"), near_m=near, far_m=far,
+    meta = dict(shot=shot, camera=cam, set_state=sel.get("build", cam.get("set_state", "finished")), variants=sel, near_m=near, far_m=far,
+                depth_mode=depth_mode,
                 seg_classes=SEG_CLASSES, seg_counts=seg_counts, world_version=git_hash(stage_path),
                 stage=os.path.relpath(stage_path, out))
     json.dump(meta, open(os.path.join(d, "passes.json"), "w"), indent=1)
@@ -183,10 +224,12 @@ def main():
     stage_path = opt("--stage", os.path.join(HERE, "nh", "NewHarnomy_square.usda"))
     out = opt("--out", os.path.join(HERE, "nh", "passes"))
     near, far = float(opt("--near", 2.0)), float(opt("--far", 120.0))
-    skip = set(); [skip.update([a[i + 1]]) for i, t in enumerate(a) if t in ("--stage", "--out", "--near", "--far")]
+    variants = dict(kv.split("=") for kv in opt("--variants", "").split(",") if "=" in kv)
+    depth_mode = opt("--depth-mode", "inverse")
+    skip = set(); [skip.update([a[i + 1]]) for i, t in enumerate(a) if t in ("--stage", "--out", "--near", "--far", "--variants", "--depth-mode")]
     shots = [s for s in a if not s.startswith("--") and s not in skip]
     for s in shots:
-        print("passes for %s -> %s" % (s, render_shot(s, stage_path, out, near, far)), flush=True)
+        print("passes for %s -> %s" % (s, render_shot(s, stage_path, out, near, far, variants, depth_mode)), flush=True)
 
 
 if __name__ == "__main__":

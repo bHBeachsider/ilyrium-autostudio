@@ -58,6 +58,85 @@
    ]
   }
  ],
+ "marks": [
+  {
+   "name": "desk_chair",
+   "asset": "World",
+   "pos": [
+    0.0,
+    -3.0,
+    5.4
+   ],
+   "facing_deg": 0.0,
+   "posture": "seated"
+  },
+  {
+   "name": "window_centre",
+   "asset": "World",
+   "pos": [
+    0.0,
+    7.3,
+    5.4
+   ],
+   "facing_deg": 0.0,
+   "posture": "standing"
+  },
+  {
+   "name": "door",
+   "asset": "World",
+   "pos": [
+    -6.5,
+    -5.0,
+    5.4
+   ],
+   "facing_deg": 180.0,
+   "posture": "standing"
+  },
+  {
+   "name": "podium",
+   "asset": "World",
+   "pos": [
+    0.0,
+    43.0,
+    1.2
+   ],
+   "facing_deg": 0.0,
+   "posture": "standing"
+  },
+  {
+   "name": "beneath_portrait",
+   "asset": "World",
+   "pos": [
+    2.0,
+    40.5,
+    1.2
+   ],
+   "facing_deg": 0.0,
+   "posture": "standing"
+  },
+  {
+   "name": "stage_left_threshold",
+   "asset": "World",
+   "pos": [
+    -11.0,
+    42.0,
+    1.2
+   ],
+   "facing_deg": 90.0,
+   "posture": "standing"
+  },
+  {
+   "name": "upstage_right",
+   "asset": "World",
+   "pos": [
+    9.0,
+    40.0,
+    1.2
+   ],
+   "facing_deg": 0.0,
+   "posture": "standing"
+  }
+ ],
  "deck_front": {
   "left": [
    -12.0,

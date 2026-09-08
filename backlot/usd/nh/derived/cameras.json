@@ -58,6 +58,9 @@
     1920,
     1080
    ],
+   "variants": {
+    "people": "build"
+   },
    "set_state": "joists"
   },
   "SH006": {
@@ -77,6 +80,10 @@
     1920,
     1080
    ],
+   "variants": {
+    "office": "dawn",
+    "people": "none"
+   },
    "set_state": "half_decked"
   },
   "SH007": {
@@ -96,6 +103,9 @@
     1920,
     1080
    ],
+   "variants": {
+    "people": "build"
+   },
    "set_state": "beam_seated"
   },
   "SH009": {
@@ -134,6 +144,98 @@
     1920,
     1080
    ],
+   "set_state": "finished"
+  },
+  "S101_SH004": {
+   "location": [
+    -6.0,
+    -5.2,
+    7.1
+   ],
+   "rotation_deg": [
+    87.93,
+    -0.0,
+    -38.01
+   ],
+   "lens_mm": 24.0,
+   "sensor_mm": 36.0,
+   "res": [
+    2520,
+    1080
+   ],
+   "variants": {
+    "office": "dawn",
+    "people": "office_dawn"
+   },
+   "set_state": "finished"
+  },
+  "S101_SH005": {
+   "location": [
+    -0.8,
+    2.0,
+    6.85
+   ],
+   "rotation_deg": [
+    87.74,
+    -0.0,
+    -170.91
+   ],
+   "lens_mm": 55.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "variants": {
+    "office": "dawn",
+    "people": "office_dawn"
+   },
+   "set_state": "finished"
+  },
+  "S101_SH006": {
+   "location": [
+    0.9,
+    -0.2,
+    6.6
+   ],
+   "rotation_deg": [
+    77.67,
+    -0.0,
+    153.43
+   ],
+   "lens_mm": 85.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "variants": {
+    "office": "dawn",
+    "people": "office_dawn"
+   },
+   "set_state": "finished"
+  },
+  "S101_SH007": {
+   "location": [
+    0.0,
+    0.2,
+    6.8
+   ],
+   "rotation_deg": [
+    90.0,
+    0.0,
+    180.0
+   ],
+   "lens_mm": 85.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "variants": {
+    "office": "dawn",
+    "people": "office_dawn"
+   },
    "set_state": "finished"
   }
  }

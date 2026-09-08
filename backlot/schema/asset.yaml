@@ -15,6 +15,7 @@ text_planes: [string]       # prim names of tracked text quads inside the asset 
 marks: [string]             # character marks inside the asset (empty until Phase 3)
 control_points: [string]    # names of gate control points this asset owns
 tags: [string]              # free vocabulary for search: "civic", "storefront", "timber", "harvest"
+aliases: [string]           # how the libretto / scene cards name this place ("Pengold's mayoral office"); the resolver matches on these
 provenance:
   method: enum              # procedural | modelled | photogrammetry | ai_generated | licensed
   creator: string           # person or script

@@ -69,6 +69,12 @@ def author_asset(out, aid):
             p.CreateAttribute("backlot:b", Sdf.ValueTypeNames.Double3).Set(Gf.Vec3d(*cp[name][key[1]]))
             p.CreateAttribute("backlot:a_name", Sdf.ValueTypeNames.String).Set(key[0])
             p.CreateAttribute("backlot:b_name", Sdf.ValueTypeNames.String).Set(key[1])
+        for mk in cp.get("marks", []):
+            p = UsdGeom.Xform.Define(stage, "/%s/ControlPoints/mark_%s" % (aid, mk["name"])).GetPrim()
+            p.CreateAttribute("backlot:kind", Sdf.ValueTypeNames.Token).Set("mark")
+            p.CreateAttribute("backlot:pos", Sdf.ValueTypeNames.Double3).Set(Gf.Vec3d(*mk["pos"]))
+            p.CreateAttribute("backlot:facing_deg", Sdf.ValueTypeNames.Double).Set(float(mk["facing_deg"]))
+            p.CreateAttribute("backlot:posture", Sdf.ValueTypeNames.Token).Set(mk.get("posture", "standing"))
         for tp in cp.get("text_planes", []):
             p = UsdGeom.Xform.Define(stage, "/%s/ControlPoints/%s" % (aid, tp["name"])).GetPrim()
             p.CreateAttribute("backlot:kind", Sdf.ValueTypeNames.Token).Set("text_plane")
@@ -100,6 +106,9 @@ def author_cameras(out):
             p.CreateAttribute("backlot:target", Sdf.ValueTypeNames.Double3).Set(Gf.Vec3d(*cam["target"]))
             if name in C.SHOT_STATES:
                 p.CreateAttribute("backlot:set_state", Sdf.ValueTypeNames.Token).Set(C.SHOT_STATES[name])
+            if name in getattr(C, "SHOT_VARIANTS", {}):
+                p.CreateAttribute("backlot:variants", Sdf.ValueTypeNames.String).Set(
+                    ";".join("%s=%s" % kv for kv in sorted(C.SHOT_VARIANTS[name].items())))
     stage.GetRootLayer().Save()
     return path
 
@@ -120,20 +129,23 @@ def author_stage(out, assets):
     for aid in assets:
         prim = UsdGeom.Xform.Define(stage, "/World/" + aid)
         prim.GetPrim().GetReferences().AddReference("./assets/%s/%s.usda" % (aid, aid))
-    # the build ladder: one selection on /World drives every stateful asset
-    vs = wp.GetVariantSets().AddVariantSet("build")
-    for st in G.STAGE_STATES:
-        vs.AddVariant(st)
-        vs.SetVariantSelection(st)
-        with vs.GetVariantEditContext():
-            for aid, states in G.STATEFUL.items():
-                child = stage.GetPrimAtPath("/World/" + aid)
-                if st in states:
-                    child.SetActive(True)
-                    child.GetVariantSets().GetVariantSet("build").SetVariantSelection(st)
-                else:
-                    child.SetActive(False)        # e.g. the build-site lumber is gone once the stage is finished
-    vs.SetVariantSelection("finished")
+    # one variantSet per state family on /World; each drives only its own assets (geometry.STATE_FAMILIES)
+    for fam, spec in G.STATE_FAMILIES.items():
+        vs = wp.GetVariantSets().AddVariantSet(fam)
+        for st in spec["states"]:
+            vs.AddVariant(st)
+            vs.SetVariantSelection(st)
+            with vs.GetVariantEditContext():
+                for aid in spec["assets"]:
+                    child = stage.GetPrimAtPath("/World/" + aid)
+                    if not child:
+                        continue
+                    if st in G.STATEFUL.get(aid, []):
+                        child.SetActive(True)
+                        child.GetVariantSets().GetVariantSet("build").SetVariantSelection(st)
+                    else:
+                        child.SetActive(False)        # "none", or a state this asset has no geometry for
+        vs.SetVariantSelection(spec["default"])
     # weather / time of day: a state that lighting and generation read; geometry does not change
     wv = wp.GetVariantSets().AddVariantSet("weather")
     for w in WEATHER_STATES:
@@ -163,8 +175,9 @@ def main():
     st = Usd.Stage.Open(os.path.join(out, "NewHarnomy_square.usda"))
     n = sum(1 for _ in st.Traverse())
     vs = st.GetPrimAtPath("/World").GetVariantSets()
-    print("stage composes: %d prims; build=%s weather=%s; assets: %s" % (
-        n, vs.GetVariantSet("build").GetVariantSelection(), vs.GetVariantSet("weather").GetVariantSelection(), ", ".join(assets)))
+    print("stage composes: %d prims; %s weather=%s; assets: %s" % (
+        n, " ".join("%s=%s" % (f, vs.GetVariantSet(f).GetVariantSelection()) for f in G.STATE_FAMILIES),
+        vs.GetVariantSet("weather").GetVariantSelection(), ", ".join(assets)))
 
 
 if __name__ == "__main__":

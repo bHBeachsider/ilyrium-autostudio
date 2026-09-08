@@ -58,6 +58,38 @@ def Xform "RallyStage" (
             custom string backlot:b_name = "right"
             custom token backlot:kind = "segment"
         }
+
+        def Xform "mark_podium"
+        {
+            custom double backlot:facing_deg = 0
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (0, 43, 1.2)
+            custom token backlot:posture = "standing"
+        }
+
+        def Xform "mark_beneath_portrait"
+        {
+            custom double backlot:facing_deg = 0
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (2, 40.5, 1.2)
+            custom token backlot:posture = "standing"
+        }
+
+        def Xform "mark_stage_left_threshold"
+        {
+            custom double backlot:facing_deg = 90
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (-11, 42, 1.2)
+            custom token backlot:posture = "standing"
+        }
+
+        def Xform "mark_upstage_right"
+        {
+            custom double backlot:facing_deg = 0
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (9, 40, 1.2)
+            custom token backlot:posture = "standing"
+        }
     }
     variantSet "build" = {
         "beam_seated" (

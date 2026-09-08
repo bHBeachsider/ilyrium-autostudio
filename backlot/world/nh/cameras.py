@@ -4,7 +4,7 @@ Each entry: location, look-at target, focal length (mm on a 36 mm sensor), resol
 (camera looks down -Z with +Y up, the convention Blender and USD share). Shot cameras obey the set rule from
 NH-USA-047: exteriors look square at the facade. Survey cameras exist to look at the world, not to shoot it.
 """
-from .geometry import R_COL, R_WALL, STAGE_Y, Y_BACK, UNI_Y, NORTH_Y
+from .geometry import R_COL, R_WALL, STAGE_Y, Y_BACK, UNI_Y, NORTH_Y, OFFICE_FLOOR
 
 Y0 = R_COL
 
@@ -16,6 +16,11 @@ SHOT_CAMERAS = {
     "SH007": dict(loc=(0.0, STAGE_Y + 18.0, 1.7), target=(0.0, Y_BACK - 10.0, 7.0), lens=28.0, res=(1920, 1080)),
     "SH009": dict(loc=(-5.0, STAGE_Y + 26.0, 1.7), target=(-5.0, STAGE_Y - 14.0, 4.0), lens=32.0, res=(1920, 1080)),
     "SH010": dict(loc=(0.0, Y0 + 66.0, 9.0), target=(0.0, 0.0, 12.0), lens=26.0, res=(1920, 1080)),
+    # NH-S101 - Pengold's office at dawn (interior; the POV contract with SH006: same room, same windows)
+    "S101_SH004": dict(loc=(-6.0, -5.2, OFFICE_FLOOR + 1.7), target=(0.8, 3.5, OFFICE_FLOOR + 1.3), lens=24.0, res=(2520, 1080)),   # wide: desk, the man, the three windows and the columns beyond
+    "S101_SH005": dict(loc=(-0.8, 2.0, OFFICE_FLOOR + 1.45), target=(0.0, -3.0, OFFICE_FLOOR + 1.25), lens=55.0, res=(1920, 1080)),  # medium, the 22 s
+    "S101_SH006": dict(loc=(0.9, -0.2, OFFICE_FLOOR + 1.2), target=(0.0, -2.0, OFFICE_FLOOR + 0.76), lens=85.0, res=(1920, 1080)),   # hands / desk edge
+    "S101_SH007": dict(loc=(0.0, 0.2, OFFICE_FLOOR + 1.4), target=(0.0, -3.0, OFFICE_FLOOR + 1.4), lens=85.0, res=(1920, 1080)),     # close-up, past the lens
 }
 
 SURVEY_CAMERAS = {
@@ -29,7 +34,14 @@ SURVEY_CAMERAS = {
 
 # which set state each shot camera shoots in (the build ladder, NH-USA-045)
 SHOT_STATES = {"PLATE": "finished", "SH002": "joists", "SH003": "joists", "SH006": "half_decked",
-               "SH007": "beam_seated", "SH009": "finished", "SH010": "finished"}
+               "SH007": "beam_seated", "SH009": "finished", "SH010": "finished",
+               "S101_SH004": "finished", "S101_SH005": "finished", "S101_SH006": "finished", "S101_SH007": "finished"}
+# every other state family a shot selects (build is SHOT_STATES); absent = the family's default
+SHOT_VARIANTS = {
+    "SH003": {"people": "build"}, "SH006": {"office": "dawn", "people": "none"}, "SH007": {"people": "build"},
+    "S101_SH004": {"office": "dawn", "people": "office_dawn"}, "S101_SH005": {"office": "dawn", "people": "office_dawn"},
+    "S101_SH006": {"office": "dawn", "people": "office_dawn"}, "S101_SH007": {"office": "dawn", "people": "office_dawn"},
+}
 
 
 def rotation_deg(loc, target):

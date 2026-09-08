@@ -43,6 +43,7 @@ def Xform "World"
             custom token backlot:role = "shot"
             custom token backlot:set_state = "joists"
             custom double3 backlot:target = (-9, 33, 6.5)
+            custom string backlot:variants = "people=build"
             float2 clippingRange = (0.1, 2000)
             float focalLength = 26
             float horizontalAperture = 36
@@ -58,6 +59,7 @@ def Xform "World"
             custom token backlot:role = "shot"
             custom token backlot:set_state = "half_decked"
             custom double3 backlot:target = (0, 38, 0)
+            custom string backlot:variants = "office=dawn;people=none"
             float2 clippingRange = (0.1, 2000)
             float focalLength = 20
             float horizontalAperture = 36
@@ -73,6 +75,7 @@ def Xform "World"
             custom token backlot:role = "shot"
             custom token backlot:set_state = "beam_seated"
             custom double3 backlot:target = (0, 29, 7)
+            custom string backlot:variants = "people=build"
             float2 clippingRange = (0.1, 2000)
             float focalLength = 28
             float horizontalAperture = 36
@@ -109,6 +112,70 @@ def Xform "World"
             float verticalAperture = 20.25
             float3 xformOp:rotateXYZ = (-87.739494, 179.99998, 1.9756786e-7)
             double3 xformOp:translate = (0, 76, 9)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        def Camera "S101_SH004"
+        {
+            custom int2 backlot:resolution = (2520, 1080)
+            custom token backlot:role = "shot"
+            custom token backlot:set_state = "finished"
+            custom double3 backlot:target = (0.8, 3.5, 6.7)
+            custom string backlot:variants = "office=dawn;people=office_dawn"
+            float2 clippingRange = (0.1, 2000)
+            float focalLength = 24
+            float horizontalAperture = 36
+            float verticalAperture = 15.428572
+            float3 xformOp:rotateXYZ = (87.925385, -0.000004358017, -38.01152)
+            double3 xformOp:translate = (-6, -5.2, 7.1000000000000005)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        def Camera "S101_SH005"
+        {
+            custom int2 backlot:resolution = (1920, 1080)
+            custom token backlot:role = "shot"
+            custom token backlot:set_state = "finished"
+            custom double3 backlot:target = (0, -3, 6.65)
+            custom string backlot:variants = "office=dawn;people=office_dawn"
+            float2 clippingRange = (0.1, 2000)
+            float focalLength = 55
+            float horizontalAperture = 36
+            float verticalAperture = 20.25
+            float3 xformOp:rotateXYZ = (87.73812, -0.0000029232322, -170.90971)
+            double3 xformOp:translate = (-0.8, 2, 6.8500000000000005)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        def Camera "S101_SH006"
+        {
+            custom int2 backlot:resolution = (1920, 1080)
+            custom token backlot:role = "shot"
+            custom token backlot:set_state = "finished"
+            custom double3 backlot:target = (0, -2, 6.16)
+            custom string backlot:variants = "office=dawn;people=office_dawn"
+            float2 clippingRange = (0.1, 2000)
+            float focalLength = 85
+            float horizontalAperture = 36
+            float verticalAperture = 20.25
+            float3 xformOp:rotateXYZ = (77.66705, -0.000005536873, 153.43495)
+            double3 xformOp:translate = (0.9, -0.2, 6.6000000000000005)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
+        }
+
+        def Camera "S101_SH007"
+        {
+            custom int2 backlot:resolution = (1920, 1080)
+            custom token backlot:role = "shot"
+            custom token backlot:set_state = "finished"
+            custom double3 backlot:target = (0, -3, 6.800000000000001)
+            custom string backlot:variants = "office=dawn;people=office_dawn"
+            float2 clippingRange = (0.1, 2000)
+            float focalLength = 85
+            float horizontalAperture = 36
+            float verticalAperture = 20.25
+            float3 xformOp:rotateXYZ = (90, 0.0000050089557, 180)
+            double3 xformOp:translate = (0, 0.2, 6.800000000000001)
             uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ"]
         }
 

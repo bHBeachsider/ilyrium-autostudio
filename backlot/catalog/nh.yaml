@@ -67,6 +67,9 @@
     modifications:
     - 2026-09-08 ported from build_backlot.py into assets with states
     version: 1
+  aliases:
+  - the TWEEEDS banner
+  - the banner
 - asset_id: BlackChurch
   kind: building
   production: NEW HARNOMY, U.S.A.
@@ -133,6 +136,8 @@
     modifications:
     - 2026-09-08 ported from build_backlot.py into assets with states
     version: 1
+  aliases:
+  - the bodega
 - asset_id: BuildSite
   kind: prop
   production: NEW HARNOMY, U.S.A.
@@ -206,6 +211,10 @@
     modifications:
     - 2026-09-08 ported from build_backlot.py into assets with states
     version: 1
+  aliases:
+  - City Hall
+  - the colonnade
+  - the veranda
 - asset_id: EastBlocks
   kind: building
   production: NEW HARNOMY, U.S.A.
@@ -390,7 +399,11 @@
   - blend
   usd: nh/assets/RallyStage/RallyStage.usda
   text_planes: []
-  marks: []
+  marks:
+  - podium
+  - beneath_portrait
+  - stage_left_threshold
+  - upstage_right
   control_points:
   - post_L
   - post_R
@@ -418,6 +431,12 @@
     modifications:
     - 2026-09-08 ported from build_backlot.py into assets with states
     version: 1
+  aliases:
+  - the Anti-Thanksgiving Feast stage
+  - the Feast stage
+  - the dais
+  - the rally stage
+  - the stage in the square
 - asset_id: Restaurant
   kind: building
   production: NEW HARNOMY, U.S.A.
@@ -451,6 +470,8 @@
     modifications:
     - 2026-09-08 ported from build_backlot.py into assets with states
     version: 1
+  aliases:
+  - the restaurant
 - asset_id: Square
   kind: location
   production: NEW HARNOMY, U.S.A.
@@ -486,6 +507,10 @@
     modifications:
     - 2026-09-08 ported from build_backlot.py into assets with states
     version: 1
+  aliases:
+  - City Hall square
+  - the piazza
+  - the square
 - asset_id: University
   kind: location
   production: NEW HARNOMY, U.S.A.
@@ -520,6 +545,10 @@
     modifications:
     - 2026-09-08 ported from build_backlot.py into assets with states
     version: 1
+  aliases:
+  - the quad
+  - the university
+  - the university gate
 - asset_id: Vehicles
   kind: vehicle
   production: NEW HARNOMY, U.S.A.
@@ -585,4 +614,183 @@
     used_in: []
     modifications:
     - 2026-09-08 ported from build_backlot.py into assets with states
+    version: 1
+- asset_id: PengoldOffice
+  kind: set
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 1962
+    end: 2030
+  states:
+  - dawn
+  - meeting
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/PengoldOffice/PengoldOffice.usda
+  text_planes:
+  - po_portrait
+  marks:
+  - desk_chair
+  - window_centre
+  - door
+  control_points: []
+  tags:
+  - interior
+  - office
+  - mayor
+  - city_hall
+  - tammany
+  - drapes
+  - desk
+  - credenza
+  aliases:
+  - Pengold's mayoral office
+  - Pengold's office
+  - the Mayor's office
+  - mayoral office
+  - the office at dawn
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: 03_design/environments/pengold_office_dawn.md; city_hall/SET_BIBLE.md
+      s2
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: draft
+    approved_by: ''
+    used_in: []
+    modifications:
+    - '2026-09-08 blockout: the half-disc behind the colonnade + 6 m into the main
+      block; floor 5.4 m, dropped ceiling 10.4 m; three French windows shared with
+      CityHall (POV contract with SH006)'
+    version: 1
+- asset_id: PILFInterior
+  kind: set
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 1962
+    end: 2030
+  states: []
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/PILFInterior/PILFInterior.usda
+  text_planes:
+  - pilf_wall_board
+  marks: []
+  control_points: []
+  tags:
+  - interior
+  - office
+  - campaign
+  - pilf
+  - west_side
+  aliases:
+  - PILF office
+  - the PILF office
+  - PILF headquarters
+  - campaign office
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: 01_development/bible/world/factions.md (PILF)
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: draft
+    approved_by: ''
+    used_in: []
+    modifications:
+    - '2026-09-08 blockout: ground floor of the PILF storefront, folding tables, petition
+      table by the door'
+    version: 1
+- asset_id: LysteriaInterior
+  kind: set
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 1962
+    end: 2030
+  states: []
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/LysteriaInterior/LysteriaInterior.usda
+  text_planes:
+  - lyst_mission
+  marks: []
+  control_points: []
+  tags:
+  - interior
+  - office
+  - lysteria
+  - summer
+  - north_row
+  aliases:
+  - LYSTERIA office
+  - LYSTERIA Coalition office
+  - Summer's office
+  - LYSTERIA
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: 01_development/bible/world/factions.md (LYSTERIA)
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: draft
+    approved_by: ''
+    used_in: []
+    modifications:
+    - '2026-09-08 blockout: upper floor of shop_e1 on the north row; desk, conference
+      table, six chairs, mission board (text plane)'
+    version: 1
+- asset_id: Mannequins
+  kind: character_mark
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 1962
+    end: 2030
+  states:
+  - office_dawn
+  - feast
+  - build
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/Mannequins/Mannequins.usda
+  text_planes: []
+  marks: []
+  control_points: []
+  tags:
+  - people
+  - scale
+  - marks
+  - mannequin
+  aliases:
+  - people
+  - characters on marks
+  - mannequins
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: 02_script/scenes.json (who is in which scene)
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-08'
+    approval_status: draft
+    approved_by: ''
+    used_in: []
+    modifications:
+    - 2026-09-08 neutral figures on marks per scene family; identity comes from the
+      generation layer, never from here
     version: 1

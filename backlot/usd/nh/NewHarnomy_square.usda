@@ -12,9 +12,11 @@ def Xform "World" (
     kind = "assembly"
     variants = {
         string build = "finished"
+        string office = "dawn"
+        string people = "none"
         string weather = "overcast_drizzle"
     }
-    prepend variantSets = ["build", "weather"]
+    prepend variantSets = ["build", "office", "people", "weather"]
 )
 {
     custom string backlot:origin = "centre of City Hall's portico semicircle at pavement level; +X along the facade to the right, +Y into the square, +Z up"
@@ -68,8 +70,26 @@ def Xform "World" (
     {
     }
 
+    def Xform "LysteriaInterior" (
+        prepend references = @./assets/LysteriaInterior/LysteriaInterior.usda@
+    )
+    {
+    }
+
+    def Xform "Mannequins" (
+        prepend references = @./assets/Mannequins/Mannequins.usda@
+    )
+    {
+    }
+
     def Xform "NorthRow" (
         prepend references = @./assets/NorthRow/NorthRow.usda@
+    )
+    {
+    }
+
+    def Xform "PILFInterior" (
+        prepend references = @./assets/PILFInterior/PILFInterior.usda@
     )
     {
     }
@@ -82,6 +102,12 @@ def Xform "World" (
 
     def Xform "ParishChurch" (
         prepend references = @./assets/ParishChurch/ParishChurch.usda@
+    )
+    {
+    }
+
+    def Xform "PengoldOffice" (
+        prepend references = @./assets/PengoldOffice/PengoldOffice.usda@
     )
     {
     }
@@ -230,6 +256,73 @@ def Xform "World" (
                 active = true
                 variants = {
                     string build = "swept"
+                }
+            )
+            {
+            }
+
+        }
+    }
+    variantSet "office" = {
+        "dawn" {
+            over "PengoldOffice" (
+                active = true
+                variants = {
+                    string build = "dawn"
+                }
+            )
+            {
+            }
+
+        }
+        "meeting" {
+            over "PengoldOffice" (
+                active = true
+                variants = {
+                    string build = "meeting"
+                }
+            )
+            {
+            }
+
+        }
+    }
+    variantSet "people" = {
+        "build" {
+            over "Mannequins" (
+                active = true
+                variants = {
+                    string build = "build"
+                }
+            )
+            {
+            }
+
+        }
+        "feast" {
+            over "Mannequins" (
+                active = true
+                variants = {
+                    string build = "feast"
+                }
+            )
+            {
+            }
+
+        }
+        "none" {
+            over "Mannequins" (
+                active = false
+            )
+            {
+            }
+
+        }
+        "office_dawn" {
+            over "Mannequins" (
+                active = true
+                variants = {
+                    string build = "office_dawn"
                 }
             )
             {

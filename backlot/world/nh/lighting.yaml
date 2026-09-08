@@ -1,0 +1,52 @@
+# backlot/world/nh/lighting.yaml - lighting states as DATA (Phase 3, task 20).
+# A lighting state names key/fill/practicals/time so the generation layer (prompt clauses, ControlNet hints,
+# later an Unreal/Blender light rig) and the judge read the same words. Sets list which states they accept.
+# Sources: 03_design/environments/pengold_office_dawn.md; NH-S901 v8 weather rule (sheet-cake grey); the bible's
+# kernel look (anamorphic, Alexa, 35 mm grain, desaturated 12%).
+look: &look
+  camera: "anamorphic, Arri Alexa, slight 35mm film grain, colour palette desaturated twelve percent"
+  grade: "prestige political drama, warm tungstens lifted, deep browns and charcoals in shadows"
+
+states:
+  office_dawn:
+    sets: [PengoldOffice]
+    time: dawn
+    key: {source: practical, what: "the desk lamp, tungsten, still on from the night before", side: "desk left", intensity: single-source}
+    fill: {what: "none; the room otherwise dim, faint cool blue only in the deepest blacks"}
+    window: {what: "thin cold winter dawn light, held OFF the desk", colour: "cool bluish grey", intensity: low}
+    practicals: [desk_lamp]
+    rules: ["dawn stays off the desk", "no lens flare", "no screen glow", "mauve reads brownish"]
+    <<: *look
+  office_meeting_hour:
+    sets: [PengoldOffice]
+    time: mid-morning
+    key: {source: window, what: "flat grey daylight through the three French windows", side: "front", intensity: soft}
+    fill: {what: "bounce off the drum's inner wall"}
+    practicals: []
+    rules: ["door slightly ajar (state: meeting)", "the columns visible through the glass"]
+    <<: *look
+  square_overcast_drizzle:
+    sets: [Square, RallyStage, CityHall, NorthRow, Bodega, Restaurant]
+    time: day
+    weather: overcast_drizzle            # /World{weather=overcast_drizzle}
+    key: {source: sky, what: "a heavy flat sheet-cake grey overcast, no sun, no cast shadows", intensity: even}
+    fill: {what: "wet granite setts reflecting the sky; shallow puddles"}
+    practicals: [street_lamps_on, building_windows_warm]
+    rules: ["no cast shadows", "timber darkened where wet", "street lamps and windows glow warm and double in the wet"]
+    <<: *look
+  square_dusk:
+    sets: [Square, RallyStage, CityHall, NorthRow]
+    time: dusk
+    weather: overcast_drizzle
+    key: {source: sky, what: "the last grey light going", intensity: low}
+    practicals: [street_lamps_on, building_windows_lit]
+    rules: ["every window and lamp lit and doubled in the wet paving", "the empty stage dark and glistening"]
+    <<: *look
+  feast_stage:
+    sets: [RallyStage, Square]
+    time: evening
+    key: {source: rig, what: "stage wash from the truss; a single follow-spot on the podium", intensity: theatrical}
+    fill: {what: "the square dark beyond the light"}
+    practicals: [truss_wash, follow_spot, string_lights]
+    rules: ["Valencia has her own light upstage right", "the portrait is lit from below when it rises"]
+    <<: *look

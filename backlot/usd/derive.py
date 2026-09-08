@@ -30,11 +30,14 @@ def derive(stage_path, out):
                    lens_mm=float(c.GetFocalLengthAttr().Get()),
                    sensor_mm=float(c.GetHorizontalApertureAttr().Get()),
                    res=[int(res[0]), int(res[1])])
+        vv = p.GetAttribute("backlot:variants")
+        if vv and vv.Get():
+            rec["variants"] = dict(kv.split("=") for kv in str(vv.Get()).split(";"))
         ss = p.GetAttribute("backlot:set_state")
         if ss and ss.Get():
             rec["set_state"] = str(ss.Get())
         (cams if p.GetAttribute("backlot:role").Get() == "shot" else survey)[p.GetName()] = rec
-    control = {"posts": [], "text_planes": []}
+    control = {"posts": [], "text_planes": [], "marks": []}
     xc = UsdGeom.XformCache()
     def W(prim, v):                                   # a point authored in the asset, carried by the asset's world xform
         m = xc.GetLocalToWorldTransform(prim)
@@ -47,6 +50,11 @@ def derive(stage_path, out):
         if kind.Get() == "post":
             control["posts"].append({"name": p.GetName(), "base": W(p, p.GetAttribute("backlot:base").Get()),
                                      "top": W(p, p.GetAttribute("backlot:top").Get())})
+        elif kind.Get() == "mark":
+            control["marks"].append({"name": p.GetName()[5:], "asset": p.GetPath().pathString.split("/")[1],
+                                     "pos": W(p, p.GetAttribute("backlot:pos").Get()),
+                                     "facing_deg": float(p.GetAttribute("backlot:facing_deg").Get()),
+                                     "posture": str(p.GetAttribute("backlot:posture").Get())})
         elif kind.Get() == "text_plane":
             control["text_planes"].append({"name": p.GetName(),
                                            "corners": [W(p, c) for c in p.GetAttribute("backlot:corners").Get()],

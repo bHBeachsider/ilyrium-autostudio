@@ -46,7 +46,7 @@ def mat(name):
     if name in _MATS and _MATS[name].name in bpy.data.materials:
         return _MATS[name]
     rgb = dict(stone=(0.70, 0.68, 0.62), pave=(0.45, 0.45, 0.47), road=(0.30, 0.30, 0.32),
-               timber=(0.85, 0.65, 0.35), banner=(0.55, 0.30, 0.42), brick=(0.55, 0.34, 0.28),
+               timber=(0.85, 0.65, 0.35), banner=(0.55, 0.30, 0.42), brick=(0.55, 0.34, 0.28), mannequin=(0.80, 0.55, 0.50),
                brick_pale=(0.66, 0.50, 0.42), shop=(0.35, 0.42, 0.44), glass=(0.30, 0.40, 0.50),
                veh=(0.80, 0.80, 0.82), green=(0.42, 0.50, 0.36), man=(0.95, 0.75, 0.10))[name]
     m = bpy.data.materials.new(name); m.diffuse_color = (*rgb, 1.0)
@@ -141,7 +141,10 @@ STAGE_STATES = ["joists", "half_decked", "beam_seated", "swept", "finished", "fe
 # =================================================================== ASSETS
 def build_CityHall():
     with asset("CityHall"):
-        box("main_block", 0, -8, 12, 64, 16, 24); box("main_cornice", 0, -8, 24.4, 65, 17, 0.8)
+        mb = box("main_block", 0, -8, 12, 64, 16, 24); box("main_cornice", 0, -8, 24.4, 65, 17, 0.8)
+        # the Mayor's office cavity: the room runs from the drum back into the main block (build_PengoldOffice owns
+        # its floor, ceiling, walls and furniture; the building only stops being solid there)
+        _boolean(mb, box("office_cavity", 0, -3.0, (OFFICE_FLOOR + OFFICE_CEIL) / 2, 2 * (R_WALL - 0.4), 6.6, OFFICE_CEIL - OFFICE_FLOOR))
         box("roof", 0, -8, 25.8, 58, 12, 2.0)
         for fl, z in ((0, 2.8), (1, 10.0), (2, 17.5)):
             for k in range(-7, 8):
@@ -313,11 +316,129 @@ def build_Ground():
         box("ground", 0, 90, -0.2, 400, 400, 0.2, "road")
 
 
-BUILDERS = [build_CityHall, build_Banner, build_Square, build_RallyStage, build_BuildSiteDressing, build_NorthRow,
+
+# ----------------------------------------------------------------------------- interiors (Phase 3, task 20)
+# Interior sets are registered to the world at their true position: Pengold's office IS the inside of the drum
+# behind the SH006 window, so a POV out of it and a wide of the square agree by construction (the POV contract).
+# Blockout grade: walls, floor, ceiling, windows, the furniture the libretto names, and MARKS for the mannequins.
+OFFICE_FLOOR, OFFICE_CEIL = 5.4, 10.4          # 1962 renovation inside the 1910 drum: a dropped ceiling at 5 m
+PILF_X, PILF_Y = -59.5, 52.0                    # centre of the PILF storefront block (build_WestSide)
+LYST_X, LYST_Y = 21.0, NORTH_Y + 8.0            # LYSTERIA: the upper floor of shop_e1 on the north row
+
+
+def build_PengoldOffice():
+    """The Mayor's office: the half-disc room behind the colonnade plus a rectangle into the main block.
+    Windows are the drum's three French windows (already cut in build_CityHall); this asset owns the floor,
+    ceiling, back wall, door and furniture, in two states: "dawn" (opening) and "meeting" (Act II Betrayal, door ajar)."""
+    z0, zc = OFFICE_FLOOR, OFFICE_CEIL
+    with asset("PengoldOffice"):
+        box("po_floor", 0, 1.0, z0 - 0.05, 2 * (R_WALL - 0.4), 2 * (R_WALL - 0.4) + 12.0, 0.1, "timber")
+        box("po_ceiling", 0, 1.0, zc + 0.1, 2 * (R_WALL - 0.4), 2 * (R_WALL - 0.4) + 12.0, 0.2, "stone")
+        box("po_back_wall", 0, -6.0, (z0 + zc) / 2, 2 * (R_WALL - 0.4), 0.3, zc - z0, "stone")
+        for sx in (-1, 1):
+            box("po_side_wall_%d" % (sx > 0), sx * (R_WALL - 0.55), -3.0, (z0 + zc) / 2, 0.3, 6.0, zc - z0, "stone")
+        # drapes flanking each French window (heavy - "Tammany Hall echoed by an ornate office with heavy drapes")
+        for k in range(3):
+            a = math.radians(50 + 40 * k)
+            for da in (-0.14, 0.14):
+                box("po_drape_%d_%d" % (k, da > 0), (R_WALL - 0.7) * math.cos(a + da), (R_WALL - 0.7) * math.sin(a + da),
+                    (z0 + zc) / 2, 0.5, 0.25, zc - z0 - 0.4, "banner", rot=a + da)
+        box("po_desk", 0, -2.0, z0 + 0.72, 2.0, 0.9, 0.06, "timber"); box("po_desk_body", 0, -2.0, z0 + 0.36, 1.9, 0.8, 0.7, "timber")
+        box("po_desk_chair", 0, -3.0, z0 + 0.45, 0.6, 0.6, 0.9, "timber")
+        box("po_credenza", 0, -5.6, z0 + 0.4, 2.4, 0.5, 0.8, "timber")
+        for k in range(3):                                     # three mauve books, stacked, on the credenza
+            box("po_book_%d" % k, 0.6, -5.6, z0 + 0.8 + 0.035 + 0.07 * k, 0.16, 0.24, 0.07, "banner")
+        box("po_book_desk", 0.55, -1.85, z0 + 0.78, 0.16, 0.24, 0.04, "banner")     # the pristine copy, squared
+        box("po_lamp_base", -0.7, -1.7, z0 + 0.77, 0.16, 0.16, 0.04, "stone"); cyl("po_lamp_stem", -0.7, -1.7, z0 + 0.79, z0 + 1.25, 0.015, "stone")
+        cone("po_lamp_shade", -0.7, -1.7, z0 + 1.25, 0.18, 0.16, "banner")
+        cyl("po_cup", 0.45, -2.25, z0 + 0.75, z0 + 0.84, 0.04, "stone")
+        box("po_newspaper", -0.1, -2.05, z0 + 0.76, 0.3, 0.2, 0.02, "stone")
+        box("po_portrait", -5.0, -5.85, z0 + 2.2, 0.5, 0.04, 0.65, "banner")       # Summer's portrait, small, background
+    with asset("PengoldOffice", "dawn"):
+        box("po_door_closed", -6.5, -5.85, z0 + 1.05, 1.0, 0.1, 2.1, "timber")
+    with asset("PengoldOffice", "meeting"):
+        box("po_door_ajar", -6.85, -5.5, z0 + 1.05, 1.0, 0.1, 2.1, "timber", rot=math.radians(-35))
+
+
+def _interior_room(tag, cx, cy, w, d, z0, h, m="stone", door=None, windows=()):
+    box("%s_floor" % tag, cx, cy, z0 - 0.05, w, d, 0.1, "timber")
+    box("%s_ceiling" % tag, cx, cy, z0 + h + 0.1, w, d, 0.2, m)
+    for name, x, y, sx, sy in (("n", cx, cy + d / 2, w, 0.25), ("s", cx, cy - d / 2, w, 0.25),
+                               ("e", cx + w / 2, cy, 0.25, d), ("w", cx - w / 2, cy, 0.25, d)):
+        wall = box("%s_wall_%s" % (tag, name), x, y, z0 + h / 2, sx, sy, h, m)
+        for wx, wy, ww in windows:
+            if abs(wx - x) < 0.3 or abs(wy - y) < 0.3:
+                _boolean(wall, box("%s_win_cut" % tag, wx, wy, z0 + 1.6, ww if sy > sx else 0.6, ww if sx > sy else 0.6, 1.8))
+    if door:
+        box("%s_door" % tag, door[0], door[1], z0 + 1.05, 1.0 if abs(door[1] - cy) > abs(door[0] - cx) else 0.1,
+            0.1 if abs(door[1] - cy) > abs(door[0] - cx) else 1.0, 2.1, "timber")
+
+
+def build_PILFInterior():
+    """The PILF office: the ground floor of the storefront on the west side - a campaign office, folding tables,
+    a petition table by the door, the sign's back visible through the shopfront glass."""
+    with asset("PILFInterior"):
+        _interior_room("pilf_in", PILF_X, PILF_Y, 13.0, 11.0, 0.0, 3.6, "brick", door=(PILF_X + 6.4, PILF_Y - 4.0),
+                       windows=((PILF_X + 6.5, PILF_Y, 6.0),))
+        for k in range(3):
+            box("pilf_table_%d" % k, PILF_X - 3.0 + 3.0 * k, PILF_Y + 2.0, 0.74, 1.8, 0.8, 0.05, "timber")
+            box("pilf_table_legs_%d" % k, PILF_X - 3.0 + 3.0 * k, PILF_Y + 2.0, 0.36, 1.6, 0.6, 0.7, "timber")
+        box("pilf_petition_table", PILF_X + 4.5, PILF_Y - 3.0, 0.74, 1.2, 0.6, 0.05, "timber")
+        box("pilf_wall_board", PILF_X - 6.3, PILF_Y, 1.8, 0.05, 6.0, 1.6, "banner")
+
+
+def build_LysteriaInterior():
+    """LYSTERIA Coalition: Summer's office on the upper floor of the north row (shop_e1) - tailored, tidy, a
+    conference table, a framed mission statement (text plane later), windows onto the square."""
+    z0 = 4.2
+    with asset("LysteriaInterior"):
+        _interior_room("lyst_in", LYST_X, LYST_Y, 10.0, 14.0, z0, 3.2, "brick_pale", door=(LYST_X - 4.0, LYST_Y + 6.9),
+                       windows=((LYST_X - 2.5, LYST_Y - 7.0, 2.2), (LYST_X + 2.5, LYST_Y - 7.0, 2.2)))
+        box("lyst_desk", LYST_X + 2.0, LYST_Y - 3.0, z0 + 0.74, 1.8, 0.9, 0.05, "timber")
+        box("lyst_desk_body", LYST_X + 2.0, LYST_Y - 3.0, z0 + 0.36, 1.7, 0.8, 0.7, "timber")
+        box("lyst_conf_table", LYST_X - 1.5, LYST_Y + 2.5, z0 + 0.74, 3.2, 1.2, 0.06, "timber")
+        for k in range(6):
+            chair("lyst_chair_%d" % k, LYST_X - 2.75 + 1.25 * (k % 3), LYST_Y + 2.5 + (1.0 if k < 3 else -1.0), z0)
+        box("lyst_mission", LYST_X + 4.9, LYST_Y, z0 + 1.9, 0.05, 1.6, 1.0, "banner")
+
+
+def mannequin(name, x, y, z0, facing_deg=0.0, height=1.75):
+    """A neutral human figure on a mark: head, torso, hips, legs - enough for a depth pass to place a person at the
+    right scale and heading, nothing more (character identity comes from the generation layer, never from here)."""
+    h = height
+    box(name + "_legs", x, y, z0 + 0.45 * h, 0.34, 0.22, 0.9 * h, "mannequin", rot=math.radians(facing_deg))
+    box(name + "_torso", x, y, z0 + 0.66 * h, 0.44, 0.24, 0.32 * h, "mannequin", rot=math.radians(facing_deg))
+    sphere(name + "_head", x, y, z0 + 0.93 * h, 0.11, "mannequin")
+
+
+def build_Mannequins():
+    """Mannequins on their marks, one state per scene family; empty when the scene has nobody."""
+    with asset("Mannequins", "office_dawn"):
+        mannequin("man_pengold", 0, -3.0, OFFICE_FLOOR, 0.0, 1.30)            # seated: 1.30 m tall figure at the desk chair
+    with asset("Mannequins", "feast"):
+        mannequin("man_pengold", 0, STAGE_Y + 1.0, ST_H, 0.0)                 # at the podium
+        mannequin("man_summer", 2.0, Y_BACK + 1.5, ST_H, 0.0)                 # beneath the portrait
+        mannequin("man_dick", -6.0, STAGE_Y - 0.5, ST_H, 90.0)
+        mannequin("man_valencia", 9.0, Y_BACK + 1.0, ST_H, 0.0)               # upstage right, her own light
+    with asset("Mannequins", "build"):
+        for k, (x, y) in enumerate(((ST_W / 2 - 1.2, Y_BACK + 0.8), (ST_W / 2 - 2.2, Y_BACK + 1.6), (ST_W / 2 - 0.4, STAGE_Y + 1.5))):
+            mannequin("man_worker_%d" % k, x, y, 0.0, 180.0)
+
+
+BUILDERS = [build_PengoldOffice, build_PILFInterior, build_LysteriaInterior, build_Mannequins,
+            build_CityHall, build_Banner, build_Square, build_RallyStage, build_BuildSiteDressing, build_NorthRow,
             build_EastSide, build_WestSide, build_AxisStreet, build_University, build_Ground]
 
 # asset id -> the states it has (assets absent from this table are stateless)
-STATEFUL = {"RallyStage": STAGE_STATES, "BuildSite": ["joists", "half_decked", "beam_seated", "swept"]}
+STATEFUL = {"RallyStage": STAGE_STATES, "BuildSite": ["joists", "half_decked", "beam_seated", "swept"],
+            "PengoldOffice": ["dawn", "meeting"], "Mannequins": ["office_dawn", "feast", "build"]}
+# one variantSet on /World per state FAMILY; each drives only the assets listed (an asset absent from a family is
+# untouched by that family's selection). "none" deactivates the asset.
+STATE_FAMILIES = {
+    "build":  dict(states=STAGE_STATES, assets=["RallyStage", "BuildSite"], default="finished"),
+    "office": dict(states=["dawn", "meeting"], assets=["PengoldOffice"], default="dawn"),
+    "people": dict(states=["none", "office_dawn", "feast", "build"], assets=["Mannequins"], default="none"),
+}
 
 # ------------------------------------------------------------------ control points (world space) for the gate
 CONTROL_POINTS = {
@@ -342,7 +463,23 @@ BANNER_CONTROL = {
  ],
 }
 
-CONTROL_POINTS_BY_ASSET = {"RallyStage": CONTROL_POINTS, "Banner": BANNER_CONTROL}
+OFFICE_CONTROL = {
+ "marks": [   # where a body stands or sits; facing in degrees (0 = toward +Y, the windows and the square)
+   {"name": "desk_chair", "pos": [0.0, -3.0, OFFICE_FLOOR], "facing_deg": 0.0, "posture": "seated"},
+   {"name": "window_centre", "pos": [0.0, R_WALL - 1.2, OFFICE_FLOOR], "facing_deg": 0.0, "posture": "standing"},
+   {"name": "door", "pos": [-6.5, -5.0, OFFICE_FLOOR], "facing_deg": 180.0, "posture": "standing"},
+ ],
+}
+STAGE_MARKS = {
+ "marks": [
+   {"name": "podium", "pos": [0.0, STAGE_Y + 1.0, ST_H], "facing_deg": 0.0, "posture": "standing"},
+   {"name": "beneath_portrait", "pos": [2.0, Y_BACK + 1.5, ST_H], "facing_deg": 0.0, "posture": "standing"},
+   {"name": "stage_left_threshold", "pos": [-ST_W / 2 + 1.0, STAGE_Y, ST_H], "facing_deg": 90.0, "posture": "standing"},
+   {"name": "upstage_right", "pos": [9.0, Y_BACK + 1.0, ST_H], "facing_deg": 0.0, "posture": "standing"},
+ ],
+}
+CONTROL_POINTS["marks"] = STAGE_MARKS["marks"]
+CONTROL_POINTS_BY_ASSET = {"RallyStage": CONTROL_POINTS, "Banner": BANNER_CONTROL, "PengoldOffice": OFFICE_CONTROL}
 
 
 def build_all(only=None):

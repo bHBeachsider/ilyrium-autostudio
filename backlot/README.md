@@ -1,4 +1,4 @@
-# backlot — One World Set (Phase 0 + Phase 1)
+# backlot — One World Set (Phases 0–3)
 
 The studio's world as an input, not a reference. Everything a shot is generated from and verified against lives in
 one OpenUSD stage per production; cameras, control points and set states are data in that stage; the `.blend` is an
@@ -26,6 +26,10 @@ backlot/
   gate/require.py, gate/install_key.py          no install, no motion render, without a fresh PASS receipt
   gate/regression.py, gate/regression_manifest.json   the gate's own test against the eye
   provenance/ledger.py      one row per generation (jsonl + sqlite); backfill, show, reproduce
+  agent/resolve_scene.py    scene card -> resolved request against the catalog (reuse / variant / BUILD); never a prompt
+  agent/stage_scene.py      resolved request -> stage in that state -> passes for the suggested camera
+  agent/build_queue.py      the missing-asset table, ranked by scene demand, ledger regenerations, findings
+  world/nh/lighting.yaml    lighting states as data (office_dawn, square_overcast_drizzle, feast_stage, ...)
   open_in_blender.py        stage -> nh_backlot.blend (asset roots are Empties under World)
   readback.py               edited .blend -> usd/nh/overrides/readback.usda (strongest sublayer)
   catalog.py, catalog/nh.yaml, schema/asset.yaml     the catalog: YAML truth, SQLite index, provenance per asset
@@ -163,3 +167,35 @@ Result on the suite: **0/28 false rejects** (CLIPSeg: 5/28), so the seg check is
 in the suite are SEMANTIC (a pergola and a footbridge whose footprint is exactly where the world puts it) — no 2D
 extent check can see a roof vs a floor; the judge caught both. The suite has no layout-bad negative yet; the v9
 turned-stage key joins it when its camera is recovered. `gate_regression_segbox_2026-09-08.json` has every row.
+
+## Phase 3 — the Backlot Agent, and the world grows to the next sequence (2026-09-08)
+
+The next sequence is NH-S101, the opening: Pengold's office at dawn. The office now exists as a set registered to
+the world at its true position — the half-disc behind the colonnade plus six metres cut into the main block, floor
+5.4 m, the three French windows shared with `CityHall` — so the office wide (`S101_SH004`) sees the columns a metre
+beyond the glass and the north row across the square, and SH006's window POV looks out of the same room: the POV
+contract holds by construction, not by prompt. Also registered: `PILFInterior`, `LysteriaInterior` (blockout),
+`Mannequins` (neutral figures on marks, one state per scene family: office_dawn, feast, build), marks as control
+points (`desk_chair`, `window_centre`, `door`; `podium`, `beneath_portrait`, `stage_left_threshold`, `upstage_right`),
+state FAMILIES on `/World` (`build`, `office`, `people`, `weather` — each drives only its own assets), and lighting
+states as data. Depth passes are now inverse-depth normalised to the frame's own 1st–99th percentile range (a fixed
+linear near/far made every interior pass near-white); `--depth-mode linear` keeps the Phase 1b convention.
+
+The agent: `resolve_scene.py` reads the 17 scene cards of `02_script/scenes.json` and resolves each — every office
+and Feast scene lands on its set by alias (0.95–0.99), every named prop is found in the blockout (desk, lamp, cup,
+newspaper, the mauve books, the portrait; podium, chairs, steps, banner), every character gets a mark, and the three
+theatre scenes (auditorium, proscenium, vomitoria) come back as BUILD requests because no such set exists — which is
+the correct answer. `stage_scene.py` refuses a scene with anything queued, otherwise sets the variants and renders
+the passes; `build_queue.py` ranks what is missing (top of the list today: a hero-grade RallyStage — 62 generations
+against it in the ledger — then the theatre). The agent emits no prompt anywhere.
+
+**Phase 3 check, honestly:** the agent takes a libretto scene and returns a resolved spec whose every asset exists or
+is queued (met, 17/17), composes the stage in the right state and renders passes (met, scenes 4/5/7). "Generates keys
+that pass the gate nine times in ten" is NOT yet measured for the office: it needs one more box session (10 takes of
+S101_SH004/005 through the same workflow), and that session must also re-validate SH003/006/009 under inverse depth,
+since the 93% was measured under linear depth.
+
+**Unreal, on evidence (task 21):** deferred as decided. The criterion stays written down: adopt Unreal for a
+sequence with a camera move only if it beats headless Blender on iteration speed for depth+seg passes of a move
+(Blender today: ~15 s per still, no move path yet). Until a moving-camera sequence is scheduled there is no evidence
+to collect.
