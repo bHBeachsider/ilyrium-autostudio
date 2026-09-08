@@ -17,7 +17,14 @@ backlot/
   generation/keyframe_from_world.json, prompts/<SEQ>.json, MODELS.md   the workflow, the words, the licences
   generation/validate_first_take.py gate every take, report first-take pass rate against the >=90% target
   generation/edit_keyframe.py       the paid edit path (nano-banana-pro) with the incident rules as presets
-  gate/check_keyframe_geometry.py   the geometry gate (projected posts, deck line, chair rows, clay|key sheet)
+  gate/run_gate.py          the QA station: geometry (blocking) + seg (advisory) + text (blocking, --autoletter) + judge
+  gate/check_keyframe_geometry.py   projected posts, deck line, chair rows, clay|key sheet
+  gate/seg_iou.py           CLIPSeg mask of the stage vs the seg pass: extent + axis (ADVISORY - see measurement below)
+  gate/ocr_text.py, gate/letter_text_plane.py   every text plane must read the spec; auto-letter from the world's quad
+  gate/judge.py             a vision model rules per invariant (ADVISORY until measured per invariant)
+  gate/require.py, gate/install_key.py          no install, no motion render, without a fresh PASS receipt
+  gate/regression.py, gate/regression_manifest.json   the gate's own test against the eye
+  provenance/ledger.py      one row per generation (jsonl + sqlite); backfill, show, reproduce
   open_in_blender.py        stage -> nh_backlot.blend (asset roots are Empties under World)
   readback.py               edited .blend -> usd/nh/overrides/readback.usda (strongest sublayer)
   catalog.py, catalog/nh.yaml, schema/asset.yaml     the catalog: YAML truth, SQLite index, provenance per asset
@@ -95,3 +102,25 @@ Cost of the edge control, stated plainly: at 0.45 the frames are more literal to
 blank window panels, less dressing (fewer sheaves, pumpkins, garlands; SH003's workmen dropped out in two takes), and
 the banner reads as a plain purple rectangle. Layout went up; dress went down. Start Phase 2's judge on exactly this
 trade-off, and try edge 0.3 / end 0.4, or edge only for build states, before touching the prompts.
+
+## Phase 2 — the gate becomes the QA station (2026-09-08)
+
+Built: `run_gate.py` (one verdict, one receipt `<key>_gate.json`, one sheet), text planes as world data (the banner
+quad and its two lines live in the Banner asset's ControlPoints and flow through USD to `derived/control_points.json`),
+`ocr_text.py` + `letter_text_plane.py --ink` (a world-generated key's blank banner is lettered from the projected quad
+and re-read: similarity 0.91/0.97 on SH009), `require.py`/`install_key.py` (receipt is per sha256, not per filename),
+`judge.py` (advisory, per-invariant), and `provenance/ledger.py` (87 rows back-filled: 30 takes with full
+provenance, the installed v11 keys as `edit` rows that say plainly they have no sidecar).
+
+Measured, not assumed (`gate/regression.py` on 30 takes, 28 correct by eye, 2 wrong):
+
+| check | false-reject on good frames | misses on bad frames | status |
+|---|---|---|---|
+| geometry (edge posts) | 2/28 = 7% | 1/2 (the pergola: posts were in place) | blocking (as before) — 7% is above the 5% rule; the two rejects are the thin-far-post miss |
+| seg (CLIPSeg extent/axis) | 5/28 = 18% | 2/2 | advisory only — worse than the eye on this set; not fit to block |
+
+The honest conclusion: CLIPSeg at 352 px cannot see a 1%-of-frame stage well enough; the next verifier is a real
+segmenter on the box (Grounded-SAM / SAM2 on the A10G, Phase 3) or a post-column check that reads the seg pass's
+post pixels directly. Until then geometry stays the blocking check, its two known false rejects are documented, and
+the sheet + judge carry the rest. The plan's Phase 2 check ("the archived bad takes all FAIL") is not yet met: only
+the two Phase 1a bad takes are in the suite; the v3–v7 archive needs its pre-frontal cameras recovered first.

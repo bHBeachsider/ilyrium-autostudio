@@ -34,7 +34,7 @@ def derive(stage_path, out):
         if ss and ss.Get():
             rec["set_state"] = str(ss.Get())
         (cams if p.GetAttribute("backlot:role").Get() == "shot" else survey)[p.GetName()] = rec
-    control = {"posts": []}
+    control = {"posts": [], "text_planes": []}
     xc = UsdGeom.XformCache()
     def W(prim, v):                                   # a point authored in the asset, carried by the asset's world xform
         m = xc.GetLocalToWorldTransform(prim)
@@ -47,6 +47,10 @@ def derive(stage_path, out):
         if kind.Get() == "post":
             control["posts"].append({"name": p.GetName(), "base": W(p, p.GetAttribute("backlot:base").Get()),
                                      "top": W(p, p.GetAttribute("backlot:top").Get())})
+        elif kind.Get() == "text_plane":
+            control["text_planes"].append({"name": p.GetName(),
+                                           "corners": [W(p, c) for c in p.GetAttribute("backlot:corners").Get()],
+                                           "text": [str(t) for t in p.GetAttribute("backlot:text").Get()]})
         elif kind.Get() == "segment":
             control[p.GetName()] = {str(p.GetAttribute("backlot:a_name").Get()): W(p, p.GetAttribute("backlot:a").Get()),
                                     str(p.GetAttribute("backlot:b_name").Get()): W(p, p.GetAttribute("backlot:b").Get())}
@@ -67,7 +71,7 @@ def main():
     stage = args[args.index("--stage") + 1] if "--stage" in args else os.path.join(HERE, "nh", "NewHarnomy_square.usda")
     out = args[args.index("--out") + 1] if "--out" in args else os.path.join(HERE, "nh", "derived")
     meta, control = derive(stage, out)
-    print("derived %d shot cameras, %d posts -> %s" % (len(meta["cameras"]), len(control["posts"]), out))
+    print("derived %d shot cameras, %d posts, %d text planes -> %s" % (len(meta["cameras"]), len(control["posts"]), len(control["text_planes"]), out))
 
 
 if __name__ == "__main__":

@@ -50,6 +50,10 @@ PREFIX = [("truss_post", "post"), ("truss_beam", "beam"), ("deck", "deck"), ("jo
           ("axis_kerb", "paving"), ("ground", "ground")]
 
 
+def _srgb_to_linear(v):
+    return v / 12.92 if v <= 0.04045 else ((v + 0.055) / 1.055) ** 2.4
+
+
 def classify(name):
     n = name.lower()
     for p, c in PREFIX:
@@ -58,12 +62,20 @@ def classify(name):
     return "building"
 
 
-def git_hash():
+def git_hash(stage_path=None):
+    """The world's version: the repo's commit when there is one, else a content hash of the composed stage - so a
+    take made outside the repo (a scratch checkout, the box) still names the exact world it came from."""
     try:
-        return subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True,
-                              cwd=os.path.join(HERE, "..", "..")).stdout.strip() or "unversioned"
+        h = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True,
+                           cwd=os.path.join(HERE, "..", "..")).stdout.strip()
+        if h:
+            return h
     except Exception:
-        return "unversioned"
+        pass
+    if stage_path and os.path.exists(stage_path):
+        import hashlib
+        return "usda:" + hashlib.sha256(open(stage_path, "rb").read()).hexdigest()[:12]
+    return "unversioned"
 
 
 def render_shot(shot, stage_path, out, near, far):
@@ -98,7 +110,9 @@ def render_shot(shot, stage_path, out, near, far):
     for o in bpy.data.objects:
         if o.type == "MESH":
             c = classify(o.name); seg_counts[c] = seg_counts.get(c, 0) + 1
-            r, g, b = SEG_CLASSES[c]; o.color = (r / 255.0, g / 255.0, b / 255.0, 1.0)
+            # object colour is linear; the PNG goes through the Standard (sRGB) view, so pre-invert the transfer
+            # function and the file holds exactly the SEG_CLASSES value the verifiers match on
+            o.color = tuple(_srgb_to_linear(v / 255.0) for v in SEG_CLASSES[c]) + (1.0,)
     scene.world.color = (0, 0, 0)
     scene.render.filepath = os.path.join(d, "seg.png"); bpy.ops.render.render(write_still=True)
 
@@ -156,7 +170,7 @@ def render_shot(shot, stage_path, out, near, far):
         scene.render.filepath = os.path.join(d, fname); bpy.ops.render.render(write_still=True)
     vl.material_override = None
     meta = dict(shot=shot, camera=cam, set_state=cam.get("set_state", "finished"), near_m=near, far_m=far,
-                seg_classes=SEG_CLASSES, seg_counts=seg_counts, world_version=git_hash(),
+                seg_classes=SEG_CLASSES, seg_counts=seg_counts, world_version=git_hash(stage_path),
                 stage=os.path.relpath(stage_path, out))
     json.dump(meta, open(os.path.join(d, "passes.json"), "w"), indent=1)
     return d

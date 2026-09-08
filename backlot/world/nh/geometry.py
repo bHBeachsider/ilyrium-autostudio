@@ -331,7 +331,18 @@ CONTROL_POINTS = {
 }
 
 
-CONTROL_POINTS_BY_ASSET = {"RallyStage": CONTROL_POINTS}
+BANNER_TEXT = ["WELCOME TO TWEEEDS' ERSATZGIVING GATHERING!",
+               "NEW HARNOMY'S CELEBRATION OF CONTRITION, ATONEMENT AND REPENTANCE"]
+BANNER_CONTROL = {
+ "text_planes": [
+   # the cloth's front face (toward the square, +Y), corners clockwise from top-left AS THE CAMERA SEES IT: a
+   # camera in the square looks along -Y, so world +X is frame-left
+   {"name": "banner", "text": BANNER_TEXT,
+    "corners": [[7.0, R_COL + 0.225, 14.8], [-7.0, R_COL + 0.225, 14.8], [-7.0, R_COL + 0.225, 12.2], [7.0, R_COL + 0.225, 12.2]]},
+ ],
+}
+
+CONTROL_POINTS_BY_ASSET = {"RallyStage": CONTROL_POINTS, "Banner": BANNER_CONTROL}
 
 
 def build_all(only=None):

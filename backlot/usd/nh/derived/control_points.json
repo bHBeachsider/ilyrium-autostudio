@@ -27,6 +27,37 @@
    ]
   }
  ],
+ "text_planes": [
+  {
+   "name": "banner",
+   "corners": [
+    [
+     7.0,
+     10.225,
+     14.8
+    ],
+    [
+     -7.0,
+     10.225,
+     14.8
+    ],
+    [
+     -7.0,
+     10.225,
+     12.2
+    ],
+    [
+     7.0,
+     10.225,
+     12.2
+    ]
+   ],
+   "text": [
+    "WELCOME TO TWEEEDS' ERSATZGIVING GATHERING!",
+    "NEW HARNOMY'S CELEBRATION OF CONTRITION, ATONEMENT AND REPENTANCE"
+   ]
+  }
+ ],
  "deck_front": {
   "left": [
    -12.0,

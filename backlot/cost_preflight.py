@@ -27,6 +27,7 @@ RATES = {                                   # USD; observed where noted
     "elevenlabs/sfx": {"per_clip": 0.10},
     "wan2.2-box": {"per_second": 0.0, "note": "EC2 time is booked separately as gpu_hours"},
     "gpu_hours": {"per_hour": 1.21, "note": "g5.2xlarge on-demand, us-east-1"},
+    "judge": {"per_call": 0.02, "note": "one vision call on a comparison sheet (claude-sonnet-4-5, ~2k tokens)"},
 }
 
 
@@ -60,6 +61,8 @@ def estimate(service, **q):
         return r["per_second"] * q.get("seconds", 0)
     if "per_image" in r:
         return r["per_image"] * q.get("images", 1)
+    if "per_call" in r:
+        return r["per_call"] * q.get("calls", 1)
     if "per_clip" in r:
         return r["per_clip"] * q.get("clips", 1)
     if "per_hour" in r:

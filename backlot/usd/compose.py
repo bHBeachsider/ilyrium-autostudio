@@ -69,6 +69,11 @@ def author_asset(out, aid):
             p.CreateAttribute("backlot:b", Sdf.ValueTypeNames.Double3).Set(Gf.Vec3d(*cp[name][key[1]]))
             p.CreateAttribute("backlot:a_name", Sdf.ValueTypeNames.String).Set(key[0])
             p.CreateAttribute("backlot:b_name", Sdf.ValueTypeNames.String).Set(key[1])
+        for tp in cp.get("text_planes", []):
+            p = UsdGeom.Xform.Define(stage, "/%s/ControlPoints/%s" % (aid, tp["name"])).GetPrim()
+            p.CreateAttribute("backlot:kind", Sdf.ValueTypeNames.Token).Set("text_plane")
+            p.CreateAttribute("backlot:corners", Sdf.ValueTypeNames.Double3Array).Set([Gf.Vec3d(*c) for c in tp["corners"]])
+            p.CreateAttribute("backlot:text", Sdf.ValueTypeNames.StringArray).Set(list(tp["text"]))
     stage.GetRootLayer().Save()
     return path
 

@@ -8,15 +8,43 @@
  "shots": {
   "SH003": {
    "set_state": "joists",
-   "text": "Low angle from the wet paving in front of a rally stage under construction, looking straight at City Hall, square to its facade. The platform is a frame of open raw-pine joists with no decking yet; its long near edge runs perfectly horizontal across the lower third of the frame. Exactly two tall square pine uprights stand at the two ends of the platform, one at the far left end and one at the far right end, and no crossbeam. Three workmen in wet high-visibility vests and knit caps, seen from behind and in profile, steady the right-hand upright hand over hand while one holds a temporary diagonal prop; their breath steams in the cold."
+   "text": "Low angle from the wet paving in front of a rally stage under construction, looking straight at City Hall, square to its facade. The platform is a frame of open raw-pine joists with no decking yet; its long near edge runs perfectly horizontal across the lower third of the frame. Exactly two tall square pine uprights stand at the two ends of the platform, one at the far left end and one at the far right end, and no crossbeam. Three workmen in wet high-visibility vests and knit caps, seen from behind and in profile, steady the right-hand upright hand over hand while one holds a temporary diagonal prop; their breath steams in the cold.",
+   "invariants": [
+    "the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera)",
+    "exactly two tall square timber uprights, one at each END of the stage, none mid-span",
+    "a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving",
+    "City Hall is a limestone neoclassical building with a semicircular colonnade under a drum and cupola",
+    "the platform is a frame of open joists with no decking laid",
+    "no crossbeam joins the uprights",
+    "three workmen in high-visibility vests are steadying the right-hand upright"
+   ]
   },
   "SH006": {
    "set_state": "half_decked",
-   "text": "High point of view from a tall window of City Hall looking down and out across the square, the sides of the window embrasure dark at both edges of the frame. Below, the rally stage runs perfectly horizontal, parallel to the facade: decking boards laid across the left half of the platform, the right half still a frame of open pine joists with the wet paving visible between them, a workman kneeling at the boundary fixing a board. Exactly two tall square pine uprights stand at the two ends of the platform with no crossbeam. Beyond the square a wet street with slow traffic, headlights on, a row of brick and stone shopfronts under the grey sky."
+   "text": "High point of view from a tall window of City Hall looking down and out across the square, the sides of the window embrasure dark at both edges of the frame. Below, the rally stage runs perfectly horizontal, parallel to the facade: decking boards laid across the left half of the platform, the right half still a frame of open pine joists with the wet paving visible between them, a workman kneeling at the boundary fixing a board. Exactly two tall square pine uprights stand at the two ends of the platform with no crossbeam. Beyond the square a wet street with slow traffic, headlights on, a row of brick and stone shopfronts under the grey sky.",
+   "invariants": [
+    "the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera)",
+    "exactly two tall square timber uprights, one at each END of the stage, none mid-span",
+    "a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving",
+    "City Hall is a limestone neoclassical building with a semicircular colonnade under a drum and cupola",
+    "decking covers only the LEFT half of the platform; the right half is open joists",
+    "no crossbeam joins the uprights",
+    "the view is from a high window looking down across the square"
+   ]
   },
   "SH009": {
    "set_state": "finished",
-   "text": "Head-height medium shot from the wet paving in front of the left end of the finished rally stage, looking straight at City Hall, square to its facade. The stage's long near edge runs perfectly horizontal across the frame; its left end with a short flight of four raw-pine steps sits right of centre; exactly one row of folding chairs and a podium stand on the wet decking. Exactly two tall square pine uprights stand at the two ends of the stage, the near one at the left end rising just right of frame centre, with a solid crossbeam across their tops, both wrapped in garlands of autumn leaves; pumpkins, gourds and hay bales along the stage front and beside the steps. A single workman in a wet high-visibility vest, in profile, puts his weight on the first tread of the steps to test it, one hand on the platform edge."
+   "text": "Head-height medium shot from the wet paving in front of the left end of the finished rally stage, looking straight at City Hall, square to its facade. The stage's long near edge runs perfectly horizontal across the frame; its left end with a short flight of four raw-pine steps sits right of centre; exactly one row of folding chairs and a podium stand on the wet decking. Exactly two tall square pine uprights stand at the two ends of the stage, the near one at the left end rising just right of frame centre, with a solid crossbeam across their tops, both wrapped in garlands of autumn leaves; pumpkins, gourds and hay bales along the stage front and beside the steps. A single workman in a wet high-visibility vest, in profile, puts his weight on the first tread of the steps to test it, one hand on the platform edge.",
+   "invariants": [
+    "the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera)",
+    "exactly two tall square timber uprights, one at each END of the stage, none mid-span",
+    "a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving",
+    "City Hall is a limestone neoclassical building with a semicircular colonnade under a drum and cupola",
+    "exactly ONE row of folding chairs on the decking",
+    "a solid crossbeam spans the tops of the two uprights",
+    "a short flight of timber steps at the left end of the stage",
+    "a single workman in a high-visibility vest tests the steps"
+   ]
   }
  }
 }
