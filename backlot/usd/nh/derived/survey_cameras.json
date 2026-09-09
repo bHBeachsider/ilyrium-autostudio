@@ -113,6 +113,44 @@
     1080
    ],
    "depth_mode": "linear"
+  },
+  "PILF_IN": {
+   "location": [
+    -65.1,
+    47.4,
+    1.6
+   ],
+   "rotation_deg": [
+    88.67,
+    0.0,
+    -64.23
+   ],
+   "lens_mm": 20.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear"
+  },
+  "PILF_IN_BACK": {
+   "location": [
+    -53.7,
+    56.6,
+    1.6
+   ],
+   "rotation_deg": [
+    88.68,
+    -0.0,
+    115.39
+   ],
+   "lens_mm": 20.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear"
   }
  }
 }

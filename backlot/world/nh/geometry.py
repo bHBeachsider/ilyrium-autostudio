@@ -383,9 +383,13 @@ def _interior_room(tag, cx, cy, w, d, z0, h, m="stone", door=None, windows=()):
     for name, x, y, sx, sy in (("n", cx, cy + d / 2, w, 0.25), ("s", cx, cy - d / 2, w, 0.25),
                                ("e", cx + w / 2, cy, 0.25, d), ("w", cx - w / 2, cy, 0.25, d)):
         wall = box("%s_wall_%s" % (tag, name), x, y, z0 + h / 2, sx, sy, h, m)
-        for wx, wy, ww in windows:
+        for k, (wx, wy, ww) in enumerate(windows):
             if abs(wx - x) < 0.3 or abs(wy - y) < 0.3:
-                _boolean(wall, box("%s_win_cut" % tag, wx, wy, z0 + 1.6, ww if sy > sx else 0.6, ww if sx > sy else 0.6, 1.8))
+                # the cut runs ALONG the wall: a wall long in x gets a cut wide in x (fixed 2026-09-09: the axes were
+                # swapped and a 6 m shopfront came out as a 0.6 m slit)
+                along_x = sx > sy
+                _boolean(wall, box("%s_win_cut_%d" % (tag, k), wx, wy, z0 + 1.6, ww if along_x else 0.6, 0.6 if along_x else ww, 1.8))
+                box("%s_win_%d" % (tag, k), wx, wy, z0 + 1.6, ww if along_x else 0.06, 0.06 if along_x else ww, 1.8, "glass")
     if door:
         box("%s_door" % tag, door[0], door[1], z0 + 1.05, 1.0 if abs(door[1] - cy) > abs(door[0] - cx) else 0.1,
             0.1 if abs(door[1] - cy) > abs(door[0] - cx) else 1.0, 2.1, "timber")
@@ -414,6 +418,9 @@ def build_PILFInterior():
             box("pilf_table_%d" % k, PILF_X - 3.0 + 3.0 * k, PILF_Y + 2.0, 0.74, 1.8, 0.8, 0.05, "timber")
             box("pilf_table_legs_%d" % k, PILF_X - 3.0 + 3.0 * k, PILF_Y + 2.0, 0.36, 1.6, 0.6, 0.7, "timber")
         box("pilf_petition_table", PILF_X + 4.5, PILF_Y - 3.0, 0.74, 1.2, 0.6, 0.05, "timber")
+        box("pilf_petition_table_legs", PILF_X + 4.5, PILF_Y - 3.0, 0.36, 1.0, 0.45, 0.7, "timber")
+        for k in range(3):                                                          # a folding chair behind each table
+            chair("pilf_chair_%d" % k, PILF_X - 3.0 + 3.0 * k, PILF_Y + 2.9, 0.0)
         box("pilf_wall_board", PILF_X - 6.3, PILF_Y, 1.8, 0.05, 6.0, 1.6, "banner")
 
 
