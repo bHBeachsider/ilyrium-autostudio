@@ -5,7 +5,7 @@ Imports the stage at the camera's set state, selects the camera prim by name, re
 first half of Phase 1's conditioning renderer (depth / normal / segmentation-ID passes are added there); today it
 proves the stage, not the builder, is what a shot is rendered from.
 
-usage: python3 -m backlot.usd.render_clay SHOT [SHOT ...] [--stage PATH] [--out DIR]
+usage: python3 -m backlot.usd.render_clay SHOT [SHOT ...] [--stage PATH] [--out DIR] [--variants fam=state,...]
 """
 import json
 import math
@@ -31,13 +31,20 @@ def main():
     out = a[a.index("--out") + 1] if "--out" in a else os.path.join(HERE, "nh", "renders")
     os.makedirs(out, exist_ok=True)
     cams = json.load(open(os.path.join(os.path.dirname(stage_path), "derived", "cameras.json")))["cameras"]
+    sv = os.path.join(os.path.dirname(stage_path), "derived", "survey_cameras.json")      # survey cameras render too
+    if os.path.exists(sv):
+        cams = dict(json.load(open(sv))["cameras"], **cams)
+    # --variants fam=state,... overrides what the camera asks for. Survey cameras carry no variants at all, so this is
+    # the only way to look at a stateful asset in a state other than its default (added 2026-09-09 for LysteriaInterior).
+    override = dict(kv.split("=", 1) for kv in a[a.index("--variants") + 1].split(",")) if "--variants" in a else {}
+    shots = [s for s in shots if s not in override.values() and "=" not in s]
     st = Usd.Stage.Open(stage_path)
     for shot in shots:
         cam = cams[shot]
         vsets = st.GetPrimAtPath("/World").GetVariantSets()
-        vsets.GetVariantSet("build").SetVariantSelection(cam.get("set_state", "finished"))
+        vsets.GetVariantSet("build").SetVariantSelection(override.get("build") or cam.get("set_state", "finished"))
         for fam, spec in [(f, None) for f in vsets.GetNames() if f not in ("build", "weather")]:
-            vsets.GetVariantSet(fam).SetVariantSelection(cam.get("variants", {}).get(fam) or _default(fam))
+            vsets.GetVariantSet(fam).SetVariantSelection(override.get(fam) or cam.get("variants", {}).get(fam) or _default(fam))
         st.GetRootLayer().Save()
         bpy.ops.wm.read_factory_settings(use_empty=True)
         bpy.ops.wm.usd_import(filepath=stage_path, import_cameras=True, import_meshes=True, import_materials=True,

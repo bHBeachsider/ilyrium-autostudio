@@ -29,6 +29,35 @@
  ],
  "text_planes": [
   {
+   "name": "lyst_mission",
+   "corners": [
+    [
+     27.24,
+     81.2,
+     6.5
+    ],
+    [
+     27.24,
+     82.8,
+     6.5
+    ],
+    [
+     27.24,
+     82.8,
+     5.5
+    ],
+    [
+     27.24,
+     81.2,
+     5.5
+    ]
+   ],
+   "text": [
+    "LYSTERIA COALITION FOR REPRODUCTIVE JUSTICE",
+    "EVERY BODY. EVERY CHOICE. EVERY TIME."
+   ]
+  },
+  {
    "name": "banner",
    "corners": [
     [
@@ -59,6 +88,50 @@
   }
  ],
  "marks": [
+  {
+   "name": "desk_chair",
+   "asset": "World",
+   "pos": [
+    24.3,
+    76.85,
+    4.2
+   ],
+   "facing_deg": 0.0,
+   "posture": "seated"
+  },
+  {
+   "name": "table_head",
+   "asset": "World",
+   "pos": [
+    20.5,
+    82.5,
+    4.2
+   ],
+   "facing_deg": 90.0,
+   "posture": "standing"
+  },
+  {
+   "name": "window_centre",
+   "asset": "World",
+   "pos": [
+    22.9,
+    76.4,
+    4.2
+   ],
+   "facing_deg": 180.0,
+   "posture": "standing"
+  },
+  {
+   "name": "door",
+   "asset": "World",
+   "pos": [
+    19.4,
+    88.0,
+    4.2
+   ],
+   "facing_deg": 180.0,
+   "posture": "standing"
+  },
   {
    "name": "desk_chair",
    "asset": "World",

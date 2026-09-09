@@ -7,10 +7,67 @@
 
 def Xform "LysteriaInterior" (
     kind = "component"
-    prepend references = @./geo.usda@</geo>
+    variants = {
+        string build = "launch"
+    }
+    prepend variantSets = "build"
 )
 {
     custom string backlot:asset_id = "LysteriaInterior"
     custom token backlot:grade = "conditioning"
+
+    def Scope "ControlPoints"
+    {
+        def Xform "mark_desk_chair"
+        {
+            custom double backlot:facing_deg = 0
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (24.299999999999997, 76.85, 4.2)
+            custom token backlot:posture = "seated"
+        }
+
+        def Xform "mark_table_head"
+        {
+            custom double backlot:facing_deg = 90
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (20.5, 82.5, 4.2)
+            custom token backlot:posture = "standing"
+        }
+
+        def Xform "mark_window_centre"
+        {
+            custom double backlot:facing_deg = 180
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (22.9, 76.4, 4.2)
+            custom token backlot:posture = "standing"
+        }
+
+        def Xform "mark_door"
+        {
+            custom double backlot:facing_deg = 180
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (19.4, 88, 4.2)
+            custom token backlot:posture = "standing"
+        }
+
+        def Xform "lyst_mission"
+        {
+            custom double3[] backlot:corners = [(27.24, 81.2, 6.5), (27.24, 82.8, 6.5), (27.24, 82.8, 5.5), (27.24, 81.2, 5.5)]
+            custom token backlot:kind = "text_plane"
+            custom string[] backlot:text = ["LYSTERIA COALITION FOR REPRODUCTIVE JUSTICE", "EVERY BODY. EVERY CHOICE. EVERY TIME."]
+        }
+    }
+    variantSet "build" = {
+        "launch" (
+            prepend references = @./geo_launch.usda@</geo>
+        ) {
+
+        }
+        "working" (
+            prepend references = @./geo_working.usda@</geo>
+        ) {
+
+        }
+    }
 }
 

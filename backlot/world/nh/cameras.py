@@ -38,6 +38,8 @@ SURVEY_CAMERAS = {
     # two windows onto the square (desk right, conference table left); and from the windows back to the door and mission board
     "LYST_IN": dict(loc=(LYST_X - LYST_W / 2 + 0.8, LYST_Y + 6.0, 4.2 + 1.6), target=(LYST_X + 1.0, LYST_Y - 7.0, 4.2 + 1.3), lens=20.0, res=(1920, 1080)),
     "LYST_IN_BACK": dict(loc=(LYST_X - LYST_W / 2 + 1.2, LYST_Y - 6.2, 4.2 + 1.6), target=(LYST_X + 2.0, LYST_Y + 6.0, 4.2 + 1.3), lens=20.0, res=(1920, 1080)),
+    # the visitor's view: in at the door, the conference table and the plaque wall, Summer's desk against the windows
+    "LYST_DESK": dict(loc=(LYST_X - 2.6, LYST_Y + 5.4, 4.2 + 1.55), target=(LYST_X + 1.4, LYST_Y - 5.0, 4.2 + 1.15), lens=24.0, res=(2520, 1080)),
 }
 
 # which set state each shot camera shoots in (the build ladder, NH-USA-045)

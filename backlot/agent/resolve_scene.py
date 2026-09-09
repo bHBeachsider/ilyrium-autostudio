@@ -42,8 +42,11 @@ BLOCKING = {
     "PengoldOffice": {"pengold": ("desk_chair", "seated")},
     "RallyStage": {"pengold": ("podium", "standing"), "summer": ("beneath_portrait", "standing"),
                    "dick": ("stage_left_threshold", "standing"), "valencia": ("upstage_right", "standing")},
+    # LYSTERIA: Summer works with the square behind her; a visitor takes the head of the conference table
+    "LysteriaInterior": {"summer": ("desk_chair", "seated"), "dick": ("table_head", "standing"),
+                         "pengold": ("table_head", "standing")},
 }
-PEOPLE_STATE = {"PengoldOffice": "office_dawn", "RallyStage": "feast"}
+PEOPLE_STATE = {"PengoldOffice": "office_dawn", "RallyStage": "feast", "LysteriaInterior": "office_dawn"}
 TIME_WORDS = [("dawn", "dawn"), ("dusk", "dusk"), ("night", "night"), ("evening", "evening"), ("morning", "morning"),
               ("meeting", "meeting_hour")]
 # scene-card nouns -> prim name fragments in the set (props that exist in the blockout)
@@ -54,6 +57,9 @@ PROP_NOUNS = {
     "podium": "podium", "chairs": "chair", "banner": "banner_cloth", "steps": "steps", "crossbeam": "truss_beam",
     "uprights": "truss_post", "posts": "truss_post", "hay bales": None, "pumpkins": None, "garlands": None,
     "folding tables": "pilf_table", "petition": "pilf_petition", "conference table": "lyst_conf",
+    "plaques": "lyst_plaque", "awards": "lyst_plaque", "framed banners": "lyst_banner", "banners": "lyst_banner",
+    "tote bags": "lyst_tote", "totes": "lyst_tote", "presentation boards": "lyst_mbc_board", "easels": "lyst_easel",
+    "sash": "lyst_sash", "mission statement": "lyst_mission", "credenza ": "lyst_credenza",
 }
 FRAMING = [("wide", "wide"), ("establishing", "wide"), ("medium", "medium"), ("close-up", "close"), ("closeup", "close"),
            ("hands", "close"), ("insert", "close")]
@@ -126,6 +132,8 @@ def resolve(scene, catalog, lighting, seq):
     variants = {"build": "finished", "weather": lighting["states"].get(out["lighting"] or "", {}).get("weather", "overcast_drizzle")}
     if aid == "PengoldOffice":
         variants["office"] = "meeting" if time == "meeting_hour" else "dawn"
+    if aid == "LysteriaInterior":
+        variants["lysteria"] = "launch" if ("launch" in text or "man bun" in text or "festival" in text) else "working"
     if aid == "RallyStage" and ("feast" in text or "denunciation" in text or "coronation" in text):
         variants["build"] = "feast"
     chars = scene.get("characters", []) or []
@@ -162,6 +170,8 @@ def resolve(scene, catalog, lighting, seq):
         out["camera"]["suggest"] = {"wide": "S101_SH004", "medium": "S101_SH005", "close": "S101_SH007"}[framing]
     elif aid == "RallyStage":
         out["camera"]["suggest"] = {"wide": "SH010", "medium": "SH009", "close": "SH009"}[framing]
+    elif aid == "LysteriaInterior":
+        out["camera"]["suggest"] = {"wide": "LYST_DESK", "medium": "LYST_DESK", "close": "LYST_DESK"}[framing]
     # invariants come from the set's rules and the scene's own words (positive, counted - NH-USA-051)
     if aid == "PengoldOffice":
         out["invariants"] += ["three French windows with the giant columns a metre beyond the glass",
@@ -170,6 +180,13 @@ def resolve(scene, catalog, lighting, seq):
     if aid == "RallyStage":
         out["invariants"] += ["the stage runs horizontally, parallel to the City Hall facade",
                               "exactly two tall timber uprights, one at each end of the stage"]
+    if aid == "LysteriaInterior":
+        out["invariants"] += ["three windows onto the square along one wall; she sits with the square behind her",
+                              "the handmade protest banners are framed under glass, hung like art",
+                              "a tight grid of grant and award plaques on the wall beside the desk",
+                              "the brand rose is drained, never a saturated pink"]
+        if variants.get("lysteria") == "launch":
+            out["invariants"].append("the Man Bun Collective cartons are stacked and still shrink-wrapped, unopened")
     if "no smile" in text or "does not react" in text:
         out["invariants"].append("no smile, no gesture toward the lens")
     return out

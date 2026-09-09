@@ -189,6 +189,25 @@
     1080
    ],
    "depth_mode": "linear"
+  },
+  "LYST_DESK": {
+   "location": [
+    20.3,
+    87.4,
+    5.75
+   ],
+   "rotation_deg": [
+    87.94,
+    -0.0,
+    -158.96
+   ],
+   "lens_mm": 24.0,
+   "sensor_mm": 36.0,
+   "res": [
+    2520,
+    1080
+   ],
+   "depth_mode": "linear"
   }
  }
 }

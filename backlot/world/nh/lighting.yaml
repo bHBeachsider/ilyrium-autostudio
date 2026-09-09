@@ -25,6 +25,27 @@ states:
     practicals: []
     rules: ["door slightly ajar (state: meeting)", "the columns visible through the glass"]
     <<: *look
+  lysteria_morning:
+    sets: [LysteriaInterior]
+    time: morning
+    key: {source: window, what: "thin cool overcast daylight through the three windows onto the square", side: "behind the desk", intensity: soft}
+    fill: {what: "bounce off the pale brick; deep browns holding in the corners"}
+    window: {what: "the square visible beyond the glass, flat and grey", colour: "cool bluish grey", intensity: low}
+    practicals: [desk_lamp]
+    rules: ["she sits with the window behind her, so a visitor is lit and she is not",
+            "the brand rose stays drained - never a saturated pink",
+            "the framed banners catch the window as glass, not as cloth",
+            "no screen glow, no lens flare"]
+    <<: *look
+  lysteria_launch:
+    sets: [LysteriaInterior]
+    time: mid-morning
+    key: {source: window, what: "flat grey daylight, the room lit for a presentation", intensity: even}
+    fill: {what: "the presentation boards bouncing white back into the room"}
+    practicals: [desk_lamp, ceiling_off]
+    rules: ["the rollout materials are the brightest things in the room",
+            "the cartons read as sealed - shrink-wrap catches the window"]
+    <<: *look
   square_overcast_drizzle:
     sets: [Square, RallyStage, CityHall, NorthRow, Bodega, Restaurant]
     time: day

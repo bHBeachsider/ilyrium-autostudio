@@ -717,7 +717,9 @@
   period:
     start: 1962
     end: 2030
-  states: []
+  states:
+  - working
+  - launch
   grade: conditioning
   formats:
   - usd
@@ -725,7 +727,11 @@
   usd: nh/assets/LysteriaInterior/LysteriaInterior.usda
   text_planes:
   - lyst_mission
-  marks: []
+  marks:
+  - desk_chair
+  - table_head
+  - window_centre
+  - door
   control_points: []
   tags:
   - interior
