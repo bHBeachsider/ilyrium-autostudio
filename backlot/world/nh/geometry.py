@@ -310,14 +310,12 @@ def build_AxisStreet():
         box("axis_road", 0, (NORTH_Y + UNI_Y) / 2, 0.02, 14.0, UNI_Y - NORTH_Y + 8, 0.04, "road")
         for side in (-1, 1):
             box("axis_kerb_%d" % (side > 0), side * 7.5, (NORTH_Y + UNI_Y) / 2, 0.1, 1.0, UNI_Y - NORTH_Y + 8, 0.2, "stone")
-            for k in range(4):
-                storefront("axis_%d_%d" % (side > 0, k), side * 9.0, NORTH_Y + 8 + k * 12, 11, 16.0, 3,
+            # the street's own blocks start BEYOND the north row's depth (NORTH_Y + 16): the row is the square's frontage
+            # and the street cuts through it; before 2026-09-09 the first block sat at y 76.5..87.5, inside shop_e1.
+            # Two lots per side fit between the row's back (y 90) and the university wall (y 120).
+            for k in range(2):
+                storefront("axis_%d_%d" % (side > 0, k), side * 9.0, NORTH_Y + 16.0 + 1.0 + 5.5 + k * 12, 11, 16.0, 3,
                            "brick" if k % 2 else "brick_pale", axis="x", face=-side)
-                if side > 0 and k == 0:
-                    # KNOWN OVERLAP (2026-09-09): this block (x 9..25, y 76.5..87.5) runs through the north row's shop_e1
-                    # (x 15.5..26.5, y 74..90), which is where LYSTERIA's room sits; the room's cavity is cut from both
-                    # solids so an interior camera sees the room. The street/row clash itself is a layout decision.
-                    _boolean(bpy.data.objects["axis_1_0_block"], box("lyst_cavity_axis", LYST_X, LYST_Y, 4.2 + 1.6, 10.0 - 0.2, 14.0 - 0.2, 3.3))
             for k in range(5):
                 cyl("axis_lamp_%d_%d" % (side > 0, k), side * 7.0, NORTH_Y + 4 + k * 11, 0, 5.0, 0.14, "stone", 8)
 
