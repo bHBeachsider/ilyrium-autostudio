@@ -17,7 +17,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def main():
-    a = sys.argv[1:]
+    a = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else sys.argv[1:]   # `blender -b --python X.py -- args`
     stage_path = a[a.index("--stage") + 1] if "--stage" in a else os.path.join(HERE, "usd", "nh", "NewHarnomy_square.usda")
     build = a[a.index("--build") + 1] if "--build" in a else None
     out = a[a.index("--out") + 1] if "--out" in a else os.path.join(HERE, "usd", "nh", "nh_backlot.blend")
