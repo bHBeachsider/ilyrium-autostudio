@@ -279,6 +279,28 @@
    ],
    "facing_deg": 0.0,
    "posture": "standing"
+  },
+  {
+   "name": "head_of_table",
+   "asset": "World",
+   "pos": [
+    22.9,
+    82.45,
+    7.6
+   ],
+   "facing_deg": 180.0,
+   "posture": "seated"
+  },
+  {
+   "name": "window",
+   "asset": "World",
+   "pos": [
+    22.9,
+    76.0,
+    7.6
+   ],
+   "facing_deg": 180.0,
+   "posture": "standing"
   }
  ],
  "deck_front": {

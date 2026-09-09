@@ -228,6 +228,63 @@
    ],
    "depth_mode": "linear"
   },
+  "LYST_WINDOW": {
+   "location": [
+    23.5,
+    76.3,
+    5.75
+   ],
+   "rotation_deg": [
+    86.22,
+    -0.0,
+    145.58
+   ],
+   "lens_mm": 40.0,
+   "sensor_mm": 36.0,
+   "res": [
+    2520,
+    1080
+   ],
+   "depth_mode": "linear"
+  },
+  "LYST_BOARD": {
+   "location": [
+    22.6,
+    87.4,
+    9.15
+   ],
+   "rotation_deg": [
+    88.85,
+    -0.0,
+    -177.69
+   ],
+   "lens_mm": 24.0,
+   "sensor_mm": 36.0,
+   "res": [
+    2520,
+    1080
+   ],
+   "depth_mode": "linear"
+  },
+  "LYST_BOARD_VIEW": {
+   "location": [
+    22.7,
+    76.6,
+    9.2
+   ],
+   "rotation_deg": [
+    82.01,
+    -0.0,
+    145.99
+   ],
+   "lens_mm": 35.0,
+   "sensor_mm": 36.0,
+   "res": [
+    2520,
+    1080
+   ],
+   "depth_mode": "linear"
+  },
   "LYST_DESK": {
    "location": [
     24.6,

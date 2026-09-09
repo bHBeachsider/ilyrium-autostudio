@@ -26,7 +26,7 @@ states:
     rules: ["door slightly ajar (state: meeting)", "the columns visible through the glass"]
     <<: *look
   lysteria_morning:
-    sets: [LysteriaInterior]
+    sets: [LysteriaInterior, LysteriaBoardroom]
     time: morning
     # THE ONE EXCEPTION to "winter daylight stays out of the principals' faces" (visual_signature.md, amended 2026-09-09):
     # this is the only interior in the opera lit generously by day. The room is her altarpiece - the beatific note
@@ -43,7 +43,7 @@ states:
             "no screen glow, no lens flare, no logo mark - the wordmark is type"]
     <<: *look
   lysteria_launch:
-    sets: [LysteriaInterior]
+    sets: [LysteriaInterior, LysteriaBoardroom]
     time: mid-morning
     key: {source: window, what: "the same cold-white sun, the floor busy", intensity: high}
     fill: {what: "presentation boards and shrink-wrap catching the window"}

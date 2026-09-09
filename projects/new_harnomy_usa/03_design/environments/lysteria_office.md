@@ -51,6 +51,35 @@ Not an unfaded rectangle: there is no aged paint in a white room. Two devices, n
 In a room curated to the millimetre, one empty hook is loud, and a visitor cannot tell whether a photograph is being
 reframed or a person removed. Which is the point.
 
+## The boardroom — `LysteriaBoardroom`
+
+The top floor of the same building, the whole footprint (9 × 14, ceiling 3.0, floor at z = 7.6): white, one long oak
+table with ten white chairs, a credenza, linear pendants, one large framed campaign banner on the back wall, and the
+same glazed band across the front — one storey higher, so it has the best view in the building of the square and of
+the scaffold going up in front of City Hall. Meetings that need a table happen here; the chat happens on her sofa.
+The head of the table faces the band. Marks: `head_of_table` (seated), `window` (standing). People state `boardroom`
+puts Summer at the head and Pengold at the window, looking down. Cameras: `LYST_BOARD` (across the table to the band),
+`LYST_BOARD_VIEW` (out of the band at the stage). Exterior: shop_e1 now carries the band on both upper floors.
+
+## The view of the scaffold
+
+`LYST_WINDOW` — from her desk end, out through the band: the rally stage going up in front of City Hall, the steps and
+the colonnade behind it. Render with `--variants build=joists` (or `half_decked`, `beam_seated`) for the build ladder.
+This is the POV contract with the square holding by construction: she watches the scaffold from her chair, and the
+trailer's SH006 (Pengold at his window) has its mirror across the square.
+
+## The assets
+
+The room is split so each part can be re-dressed, gated and ledgered on its own:
+
+| asset | kind | what |
+|---|---|---|
+| `LysteriaInterior` | set | the shell, the glass wall, the two text-plane surfaces (wordmark, nameplate); states `working` / `launch` |
+| `LysteriaFurniture` | prop | reception, the two benches with rose screens and pendants, the mauve shelf, her desk and lamp, the sofa and oak table |
+| `LysteriaWallArt` | prop | the two framed campaign banners, the gallery (one gap, hook in), the twelve plaques |
+| `LysteriaStaff` | character_mark | the five staff (people family, state `lysteria`) |
+| `LysteriaBoardroom` | set | the top floor |
+
 ## The staff — props for now
 
 Handmaidens for the Queen of New Harnomy. Casting guide (Brad, 2026-09-09 — *guides, not instructions*): revolutionary
@@ -83,12 +112,12 @@ In the stage: `Mannequins` state `lysteria` — Summer at `desk_chair`, one at `
 | marks | `desk_chair`, `visitor_chair`, `sofa`, `glass_door`, `reception`, `floor_centre`, `window_centre`, `door` |
 | text planes | `lyst_wordmark` — LYSTERIA, rose ink. `lyst_nameplate` — SUMMER WINTERS, on the glass door. |
 | lighting | `lysteria_morning` (the sun exception), `lysteria_launch` |
-| cameras | `LYST_DESK` (32 mm, 2.39:1 — the visitor's view down the aisle, through the glass, to her); `LYST_RECEPTION` (arriving); `LYST_POV` (hers, over the floor); `LYST_IN`, `LYST_IN_BACK` (survey). |
+| cameras | `LYST_DESK` (32 mm, 2.39:1 — the visitor's view down the aisle, through the glass, to her); `LYST_WINDOW` (the scaffold); `LYST_RECEPTION` (arriving); `LYST_POV` (hers, over the floor); `LYST_BOARD`, `LYST_BOARD_VIEW` (the boardroom); `LYST_IN`, `LYST_IN_BACK` (survey). |
 
 Render: `python3 -m backlot.usd.render_clay LYST_DESK --variants lysteria=launch,people=lysteria`.
 Agent: `BLOCKING` puts Summer on `desk_chair`, Dick on `visitor_chair`, Pengold on the `sofa`, Valencia at the
-`glass_door`; a card naming the room resolves with zero build items (a card naming a *conference table* is flagged —
-there isn't one; the chat happens on the sofa).
+`glass_door`; a card naming the room resolves with zero build items (a card naming a *conference table* in her office is flagged — there isn't one;
+a card naming the boardroom resolves to `LysteriaBoardroom`).
 
 ## Still open
 

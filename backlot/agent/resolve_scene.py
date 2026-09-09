@@ -47,8 +47,9 @@ BLOCKING = {
     # their face, or the sofa for the chat
     "LysteriaInterior": {"summer": ("desk_chair", "seated"), "dick": ("visitor_chair", "seated"),
                          "pengold": ("sofa", "seated"), "valencia": ("glass_door", "standing")},
+    "LysteriaBoardroom": {"summer": ("head_of_table", "seated"), "dick": ("window", "standing"), "pengold": ("window", "standing")},
 }
-PEOPLE_STATE = {"PengoldOffice": "office_dawn", "RallyStage": "feast", "LysteriaInterior": "lysteria"}
+PEOPLE_STATE = {"PengoldOffice": "office_dawn", "RallyStage": "feast", "LysteriaInterior": "lysteria", "LysteriaBoardroom": "boardroom"}
 TIME_WORDS = [("dawn", "dawn"), ("dusk", "dusk"), ("night", "night"), ("evening", "evening"), ("morning", "morning"),
               ("meeting", "meeting_hour")]
 # scene-card nouns -> prim name fragments in the set (props that exist in the blockout)
@@ -64,6 +65,8 @@ PROP_NOUNS = {
     "sash": "lyst_sash", "glass wall": "lyst_glass_wall", "glass door": "lyst_glass_door", "nameplate": "lyst_nameplate",
     "wordmark": "lyst_wordmark", "reception": "lyst_reception", "photographs": "lyst_photo", "gallery": "lyst_photo",
     "sofa": "lyst_sofa", "staff desks": "lyst_bench", "benches": "lyst_bench", "pendant": "lyst_pendant", "staff": "man_staff",
+    "board table": "lyst_board_table", "boardroom table": "lyst_board_table", "long table": "lyst_board_table",
+    "credenza": "lyst_board_credenza", "scaffold": "truss_post", "the stage": "deck",
 }
 FRAMING = [("wide", "wide"), ("establishing", "wide"), ("medium", "medium"), ("close-up", "close"), ("closeup", "close"),
            ("hands", "close"), ("insert", "close")]
@@ -176,6 +179,10 @@ def resolve(scene, catalog, lighting, seq):
         out["camera"]["suggest"] = {"wide": "SH010", "medium": "SH009", "close": "SH009"}[framing]
     elif aid == "LysteriaInterior":
         out["camera"]["suggest"] = {"wide": "LYST_DESK", "medium": "LYST_DESK", "close": "LYST_DESK"}[framing]
+        if "window" in text or "scaffold" in text or "square" in text:
+            out["camera"]["suggest"] = "LYST_WINDOW"
+    elif aid == "LysteriaBoardroom":
+        out["camera"]["suggest"] = "LYST_BOARD_VIEW" if ("window" in text or "scaffold" in text or "square" in text) else "LYST_BOARD"
     # invariants come from the set's rules and the scene's own words (positive, counted - NH-USA-051)
     if aid == "PengoldOffice":
         out["invariants"] += ["three French windows with the giant columns a metre beyond the glass",
@@ -193,6 +200,10 @@ def resolve(scene, catalog, lighting, seq):
                               "nothing in the room is ironic: everything is beautiful, tidy and certain"]
         if variants.get("lysteria") == "launch":
             out["invariants"].append("the Man Bun Collective cartons are stacked and still shrink-wrapped, unopened")
+    if aid == "LysteriaBoardroom":
+        out["invariants"] += ["a white room the full depth of the building, one long oak table, ten white chairs",
+                              "one glazed band the width of the room onto the square; City Hall and the rally stage beyond",
+                              "the brand rose only as the one framed banner on the back wall"]
     if "no smile" in text or "does not react" in text:
         out["invariants"].append("no smile, no gesture toward the lens")
     return out

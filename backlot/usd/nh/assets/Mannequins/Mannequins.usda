@@ -8,7 +8,7 @@
 def Xform "Mannequins" (
     kind = "component"
     variants = {
-        string build = "lysteria"
+        string build = "boardroom"
     }
     prepend variantSets = "build"
 )
@@ -16,6 +16,11 @@ def Xform "Mannequins" (
     custom string backlot:asset_id = "Mannequins"
     custom token backlot:grade = "conditioning"
     variantSet "build" = {
+        "boardroom" (
+            prepend references = @./geo_boardroom.usda@</geo>
+        ) {
+
+        }
         "build" (
             prepend references = @./geo_build.usda@</geo>
         ) {

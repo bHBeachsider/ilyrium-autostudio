@@ -11,10 +11,10 @@
 def Xform "World" (
     kind = "assembly"
     variants = {
-        string build = "finished"
+        string build = "joists"
         string lysteria = "working"
         string office = "dawn"
-        string people = "none"
+        string people = "boardroom"
         string weather = "overcast_drizzle"
     }
     prepend variantSets = ["build", "office", "people", "lysteria", "weather"]
@@ -77,8 +77,32 @@ def Xform "World" (
     {
     }
 
+    def Xform "LysteriaBoardroom" (
+        prepend references = @./assets/LysteriaBoardroom/LysteriaBoardroom.usda@
+    )
+    {
+    }
+
+    def Xform "LysteriaFurniture" (
+        prepend references = @./assets/LysteriaFurniture/LysteriaFurniture.usda@
+    )
+    {
+    }
+
     def Xform "LysteriaInterior" (
         prepend references = @./assets/LysteriaInterior/LysteriaInterior.usda@
+    )
+    {
+    }
+
+    def Xform "LysteriaStaff" (
+        prepend references = @./assets/LysteriaStaff/LysteriaStaff.usda@
+    )
+    {
+    }
+
+    def Xform "LysteriaWallArt" (
+        prepend references = @./assets/LysteriaWallArt/LysteriaWallArt.usda@
     )
     {
     }
@@ -337,12 +361,35 @@ def Xform "World" (
         }
     }
     variantSet "people" = {
+        "boardroom" {
+            over "Mannequins" (
+                active = true
+                variants = {
+                    string build = "boardroom"
+                }
+            )
+            {
+            }
+
+            over "LysteriaStaff" (
+                active = false
+            )
+            {
+            }
+
+        }
         "build" {
             over "Mannequins" (
                 active = true
                 variants = {
                     string build = "build"
                 }
+            )
+            {
+            }
+
+            over "LysteriaStaff" (
+                active = false
             )
             {
             }
@@ -358,9 +405,24 @@ def Xform "World" (
             {
             }
 
+            over "LysteriaStaff" (
+                active = false
+            )
+            {
+            }
+
         }
         "lysteria" {
             over "Mannequins" (
+                active = true
+                variants = {
+                    string build = "lysteria"
+                }
+            )
+            {
+            }
+
+            over "LysteriaStaff" (
                 active = true
                 variants = {
                     string build = "lysteria"
@@ -377,6 +439,12 @@ def Xform "World" (
             {
             }
 
+            over "LysteriaStaff" (
+                active = false
+            )
+            {
+            }
+
         }
         "office_dawn" {
             over "Mannequins" (
@@ -384,6 +452,12 @@ def Xform "World" (
                 variants = {
                     string build = "office_dawn"
                 }
+            )
+            {
+            }
+
+            over "LysteriaStaff" (
+                active = false
             )
             {
             }

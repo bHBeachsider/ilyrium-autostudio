@@ -655,8 +655,7 @@
   provenance:
     method: procedural
     creator: backlot/world/nh/geometry.py
-    source: 03_design/environments/pengold_office_dawn.md; city_hall/SET_BIBLE.md
-      s2
+    source: 03_design/environments/pengold_office_dawn.md; city_hall/SET_BIBLE.md s2
     license: ilyrium-original
     copyright_status: original
     created: '2026-09-08'
@@ -664,9 +663,8 @@
     approved_by: ''
     used_in: []
     modifications:
-    - '2026-09-08 blockout: the half-disc behind the colonnade + 6 m into the main
-      block; floor 5.4 m, dropped ceiling 10.4 m; three French windows shared with
-      CityHall (POV contract with SH006)'
+    - '2026-09-08 blockout: the half-disc behind the colonnade + 6 m into the main block; floor 5.4 m, dropped ceiling 10.4
+      m; three French windows shared with CityHall (POV contract with SH006)'
     version: 1
 - asset_id: PILFInterior
   kind: set
@@ -707,8 +705,7 @@
     approved_by: ''
     used_in: []
     modifications:
-    - '2026-09-08 blockout: ground floor of the PILF storefront, folding tables, petition
-      table by the door'
+    - '2026-09-08 blockout: ground floor of the PILF storefront, folding tables, petition table by the door'
     version: 1
 - asset_id: LysteriaInterior
   kind: set
@@ -760,8 +757,8 @@
     approved_by: ''
     used_in: []
     modifications:
-    - '2026-09-08 blockout: upper floor of shop_e1 on the north row; desk, conference
-      table, six chairs, mission board (text plane)'
+    - '2026-09-08 blockout: upper floor of shop_e1 on the north row; desk, conference table, six chairs, mission board (text
+      plane)'
     version: 1
 - asset_id: Mannequins
   kind: character_mark
@@ -774,6 +771,8 @@
   - office_dawn
   - feast
   - build
+  - lysteria
+  - boardroom
   grade: conditioning
   formats:
   - usd
@@ -802,6 +801,169 @@
     approved_by: ''
     used_in: []
     modifications:
-    - 2026-09-08 neutral figures on marks per scene family; identity comes from the
-      generation layer, never from here
+    - 2026-09-08 neutral figures on marks per scene family; identity comes from the generation layer, never from here
     version: 1
+- asset_id: LysteriaFurniture
+  kind: prop
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states: []
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/LysteriaFurniture/LysteriaFurniture.usda
+  text_planes: []
+  marks: []
+  control_points: []
+  tags:
+  - furniture
+  - white
+  - oak
+  - steel
+  - lysteria
+  - office
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: 03_design/environments/lysteria_office.md - reception, two staff benches with rose screens and pendants, the mauve
+      shelf, her desk and lamp, the sofa and oak table
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-09'
+    approval_status: proposed
+    approved_by: null
+    used_in: []
+    modifications: []
+    version: 1
+  aliases:
+  - LYSTERIA furniture
+  - the benches
+  - reception desk
+  - Summer's desk
+- asset_id: LysteriaWallArt
+  kind: prop
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states: []
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/LysteriaWallArt/LysteriaWallArt.usda
+  text_planes: []
+  marks: []
+  control_points: []
+  tags:
+  - wall_art
+  - photographs
+  - plaques
+  - banners
+  - rose
+  - lysteria
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: 03_design/environments/lysteria_office.md - two framed campaign banners, the museum-spaced gallery with ONE GAP
+      (hook still in), twelve grant/award plaques
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-09'
+    approval_status: proposed
+    approved_by: null
+    used_in: []
+    modifications: []
+    version: 1
+  aliases:
+  - the gallery wall
+  - the plaques
+  - the campaign banners
+  - LYSTERIA wall art
+- asset_id: LysteriaStaff
+  kind: character_mark
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states:
+  - lysteria
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/LysteriaStaff/LysteriaStaff.usda
+  text_planes: []
+  marks: []
+  control_points: []
+  tags:
+  - people
+  - staff
+  - lysteria
+  - mannequin
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: 03_design/environments/lysteria_office.md - five staff on their seats (people family, state lysteria); casting
+      guide in the set bible
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-09'
+    approval_status: proposed
+    approved_by: null
+    used_in: []
+    modifications: []
+    version: 1
+  aliases:
+  - the staff
+  - LYSTERIA staff
+  - the handmaidens
+- asset_id: LysteriaBoardroom
+  kind: set
+  production: NEW HARNOMY, U.S.A.
+  world: nh
+  period:
+    start: 2020
+    end: 2030
+  states: []
+  grade: conditioning
+  formats:
+  - usd
+  - blend
+  usd: nh/assets/LysteriaBoardroom/LysteriaBoardroom.usda
+  text_planes: []
+  marks:
+  - head_of_table
+  - window
+  control_points: []
+  tags:
+  - interior
+  - boardroom
+  - white
+  - lysteria
+  - north_row
+  - view_of_the_square
+  provenance:
+    method: procedural
+    creator: backlot/world/nh/geometry.py
+    source: '03_design/environments/lysteria_office.md - shop_e1''s top floor: long oak table, ten chairs, credenza, one framed
+      banner, the glazed band over the square and the scaffold'
+    license: ilyrium-original
+    copyright_status: original
+    created: '2026-09-09'
+    approval_status: proposed
+    approved_by: null
+    used_in: []
+    modifications: []
+    version: 1
+  aliases:
+  - LYSTERIA boardroom
+  - the boardroom
+  - Summer's boardroom
+  - the board table

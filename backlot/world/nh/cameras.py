@@ -4,7 +4,7 @@ Each entry: location, look-at target, focal length (mm on a 36 mm sensor), resol
 (camera looks down -Z with +Y up, the convention Blender and USD share). Shot cameras obey the set rule from
 NH-USA-047: exteriors look square at the facade. Survey cameras exist to look at the world, not to shoot it.
 """
-from .geometry import R_COL, R_WALL, STAGE_Y, Y_BACK, UNI_Y, NORTH_Y, OFFICE_FLOOR, PILF_X, PILF_Y, LYST_X, LYST_Y, LYST_W, LYST_D, LYST_GLASS_Y, BODEGA_X
+from .geometry import R_COL, R_WALL, STAGE_Y, Y_BACK, UNI_Y, NORTH_Y, OFFICE_FLOOR, PILF_X, PILF_Y, LYST_X, LYST_Y, LYST_W, LYST_D, LYST_GLASS_Y, BOARD_Z0, BODEGA_X
 
 Y0 = R_COL
 
@@ -42,6 +42,11 @@ SURVEY_CAMERAS = {
     "LYST_RECEPTION": dict(loc=(LYST_X - LYST_W / 2 + 1.2, LYST_Y + LYST_D / 2 - 1.1, 4.2 + 1.6), target=(LYST_X + LYST_W / 2, LYST_Y + LYST_D / 2 - 2.2, 4.2 + 1.7), lens=24.0, res=(1920, 1080)),
     # her POV: from the desk, out through the glass over the floor - she sees everyone
     "LYST_POV": dict(loc=(LYST_X + 1.2, LYST_Y - LYST_D / 2 + 1.4, 4.2 + 1.25), target=(LYST_X - 0.7, LYST_Y + LYST_D / 2 - 2.0, 4.2 + 1.3), lens=28.0, res=(1920, 1080)),
+    # THE VIEW OF THE SCAFFOLD: from her desk end, out through the band, the rally stage going up in front of City Hall
+    "LYST_WINDOW": dict(loc=(LYST_X + 0.6, LYST_Y - LYST_D / 2 + 1.3, 4.2 + 1.55), target=(0.0, STAGE_Y, 3.0), lens=40.0, res=(2520, 1080)),
+    # the boardroom (top floor): across the table and out through its band at the same view, higher
+    "LYST_BOARD": dict(loc=(LYST_X - 0.3, LYST_Y + LYST_D / 2 - 1.6, BOARD_Z0 + 1.55), target=(LYST_X + 0.2, LYST_Y - LYST_D / 2, BOARD_Z0 + 1.3), lens=24.0, res=(2520, 1080)),
+    "LYST_BOARD_VIEW": dict(loc=(LYST_X - 0.2, LYST_Y - LYST_D / 2 + 1.6, BOARD_Z0 + 1.6), target=(-2.0, STAGE_Y - 2.0, 3.0), lens=35.0, res=(2520, 1080)),
     # the visitor's view (2.39:1): from the floor, through the glass, to Summer against the band
     "LYST_DESK": dict(loc=(LYST_X + 1.7, LYST_GLASS_Y + 3.6, 4.2 + 1.5), target=(LYST_X + 1.2, LYST_Y - LYST_D / 2 + 1.9, 4.2 + 1.15), lens=32.0, res=(2520, 1080)),
 }

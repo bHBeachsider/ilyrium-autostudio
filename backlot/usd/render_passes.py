@@ -52,6 +52,8 @@ PREFIX = [("man_", "person"), ("dress_", "dressing"), ("lyst_chair", "chair"), (
           ("lyst_mbc_board", "text_plane"), ("lyst_glass", "building"), ("lyst_reception", "furniture"), ("lyst_bench", "furniture"),
           ("lyst_sofa", "furniture"), ("lyst_coffee", "furniture"), ("lyst_staff_chair", "chair"), ("lyst_reception_chair", "chair"),
           ("lyst_photo", "prop"), ("lyst_gallery", "prop"), ("lyst_pendant", "prop"), ("lyst_sash", "text_plane"),
+          ("lyst_board_table", "furniture"), ("lyst_board_credenza", "furniture"), ("lyst_board_chair", "chair"),
+          ("lyst_board_banner", "text_plane"), ("lyst_board_pendant", "prop"), ("lyst_board", "building"),
           ("lyst_banner_cloth", "text_plane"), ("lyst_plaque", "text_plane"), ("lyst_sash", "text_plane"),
           ("lyst_credenza", "furniture"), ("lyst_shelf", "furniture"), ("lyst_visitor", "chair"),
           ("lyst_book", "prop"), ("lyst_lamp", "prop"), ("lyst_cup", "prop"), ("lyst_bottle", "prop"),
