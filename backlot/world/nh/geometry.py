@@ -256,23 +256,40 @@ def build_BuildSiteDressing():
         box("box_van", -38, STAGE_Y - 6, 1.4, 2.4, 6.0, 2.8, "veh")
 
 
+# The north row is packed OUTWARD from the street mouth (2026-09-09): Axis Street's road is 14 m wide with kerbs to
+# x = +-8, and the row used to run straight through it (shop_w1 -13..-3, bodega 5..15 - an 8 m mouth for a 14 m road).
+# Lots are 1 m narrower than before so the row's ends stay where they were (-49.7 .. 49.7); 0.4 m party gaps.
+MOUTH = 8.5
+NORTH_ROW_WEST = [("shop_w1", 9, 3, "brick_pale"), ("restaurant", 11, 3, "brick"), ("shop_w2", 10, 4, "brick_pale"), ("shop_w3", 10, 3, "brick")]
+NORTH_ROW_EAST = [("bodega", 9, 2, "brick"), ("shop_e1", 10, 3, "brick_pale"), ("shop_e2", 11, 4, "brick"), ("shop_e3", 10, 3, "brick_pale")]
+
+
+def _pack_row():
+    lots = {}
+    for side, spec in ((-1, NORTH_ROW_WEST), (1, NORTH_ROW_EAST)):
+        edge = MOUTH
+        for tag, w, floors, m in spec:
+            lots[tag] = (side * (edge + w / 2.0), w, floors, m); edge += w + 0.4
+    return lots
+
+
+NORTH_ROW = _pack_row()             # tag -> (x, w, floors, material)
+BODEGA_X = NORTH_ROW["bodega"][0]
+
+
 def build_NorthRow():
-    row = [("shop_w3", -44, 11, 3, "brick"), ("shop_w2", -32, 11, 4, "brick_pale"),
-           ("restaurant", -20, 12, 3, "brick"), ("shop_w1", -8, 10, 3, "brick_pale"),
-           ("bodega", 10, 10, 2, "brick"), ("shop_e1", 21, 11, 3, "brick_pale"),
-           ("shop_e2", 33, 12, 4, "brick"), ("shop_e3", 45, 11, 3, "brick_pale")]
-    for tag, x, w, floors, m in row:
+    for tag, (x, w, floors, m) in NORTH_ROW.items():
         aid = {"restaurant": "Restaurant", "bodega": "Bodega"}.get(tag, "NorthRow")
         with asset(aid):
             storefront(tag, x, NORTH_Y, w, 16.0, floors, m)
             if tag == "shop_e1":     # LYSTERIA's room on the upper floor: the block stops being solid there (as City Hall does for the office)
-                _boolean(bpy.data.objects["shop_e1_block"], box("lyst_cavity", LYST_X, LYST_Y, 4.2 + 1.6, 10.0 - 0.2, 14.0 - 0.2, 3.3))
+                _boolean(bpy.data.objects["shop_e1_block"], box("lyst_cavity", LYST_X, LYST_Y, 4.2 + 1.6, LYST_W - 0.2, LYST_D - 0.2, 3.3))
                 for k in (-1, 0, 1):    # the room's windows ARE the storefront's first-floor windows: punch the block's skin behind them
                     _boolean(bpy.data.objects["shop_e1_block"], box("lyst_win_punch_%d" % (k + 1), LYST_X + k * LYST_WIN_STEP, NORTH_Y + 0.55, 5.9, 1.8, 1.3, 1.8))
-    with asset("Bodega"):
-        box("bodega_awning", 10, NORTH_Y - 1.6, 3.5, 9.0, 3.0, 0.2, "banner")
+    with asset("Bodega"):           # the awning and crates ride with the lot
+        box("bodega_awning", BODEGA_X, NORTH_Y - 1.6, 3.5, 8.0, 3.0, 0.2, "banner")
         for k in range(3):
-            box("bodega_crate_%d" % k, 6.0 + 1.2 * k, NORTH_Y - 1.2, 0.4, 1.0, 0.8, 0.8, "timber")
+            box("bodega_crate_%d" % k, BODEGA_X - 4.0 + 1.2 * k, NORTH_Y - 1.2, 0.4, 1.0, 0.8, 0.8, "timber")
     with asset("NorthRow"):
         for k in range(-5, 6):
             if abs(k) > 1:
@@ -349,8 +366,9 @@ def build_Ground():
 # Blockout grade: walls, floor, ceiling, windows, the furniture the libretto names, and MARKS for the mannequins.
 OFFICE_FLOOR, OFFICE_CEIL = 5.4, 10.4          # 1962 renovation inside the 1910 drum: a dropped ceiling at 5 m
 PILF_X, PILF_Y = -59.5, 52.0                    # centre of the PILF storefront block (build_WestSide)
-LYST_X, LYST_Y = 21.0, NORTH_Y + 8.0            # LYSTERIA: the upper floor of shop_e1 on the north row
-LYST_WIN_STEP = 11.0 / 3.2                      # shop_e1's first-floor window pitch (storefront(): step = w / 3.2) - the room's windows sit in them
+LYST_X, LYST_Y = NORTH_ROW["shop_e1"][0], NORTH_Y + 8.0     # LYSTERIA: the upper floor of shop_e1 on the north row (follows the lot)
+LYST_W, LYST_D = NORTH_ROW["shop_e1"][1] - 1.0, 14.0        # the room fills the lot less a 0.5 m party wall each side
+LYST_WIN_STEP = NORTH_ROW["shop_e1"][1] / 3.2               # shop_e1's first-floor window pitch (storefront(): step = w / 3.2) - the room's windows sit in them
 
 
 def build_PengoldOffice():
@@ -439,14 +457,14 @@ def build_LysteriaInterior():
     conference table, a framed mission statement (text plane later), windows onto the square."""
     z0 = 4.2
     with asset("LysteriaInterior"):
-        _interior_room("lyst_in", LYST_X, LYST_Y, 10.0, 14.0, z0, 3.2, "brick_pale", door=(LYST_X - 4.0, LYST_Y + 6.9),
+        _interior_room("lyst_in", LYST_X, LYST_Y, LYST_W, LYST_D, z0, 3.2, "brick_pale", door=(LYST_X - LYST_W / 2 + 1.0, LYST_Y + 6.9),
                        windows=tuple((LYST_X + k * LYST_WIN_STEP, LYST_Y - 7.0, 1.8) for k in (-1, 0, 1)))   # = shop_e1_win_1_*
         box("lyst_desk", LYST_X + 2.0, LYST_Y - 3.0, z0 + 0.74, 1.8, 0.9, 0.05, "timber")
         box("lyst_desk_body", LYST_X + 2.0, LYST_Y - 3.0, z0 + 0.36, 1.7, 0.8, 0.7, "timber")
         box("lyst_conf_table", LYST_X - 1.5, LYST_Y + 2.5, z0 + 0.74, 3.2, 1.2, 0.06, "timber")
         for k in range(6):
             chair("lyst_chair_%d" % k, LYST_X - 2.75 + 1.25 * (k % 3), LYST_Y + 2.5 + (1.0 if k < 3 else -1.0), z0)
-        box("lyst_mission", LYST_X + 4.9, LYST_Y, z0 + 1.9, 0.05, 1.6, 1.0, "banner")
+        box("lyst_mission", LYST_X + LYST_W / 2 - 0.1, LYST_Y, z0 + 1.9, 0.05, 1.6, 1.0, "banner")
 
 
 def _limb(name, a, b, r, m="mannequin"):

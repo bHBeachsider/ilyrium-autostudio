@@ -4,7 +4,7 @@ Each entry: location, look-at target, focal length (mm on a 36 mm sensor), resol
 (camera looks down -Z with +Y up, the convention Blender and USD share). Shot cameras obey the set rule from
 NH-USA-047: exteriors look square at the facade. Survey cameras exist to look at the world, not to shoot it.
 """
-from .geometry import R_COL, R_WALL, STAGE_Y, Y_BACK, UNI_Y, NORTH_Y, OFFICE_FLOOR, PILF_X, PILF_Y, LYST_X, LYST_Y
+from .geometry import R_COL, R_WALL, STAGE_Y, Y_BACK, UNI_Y, NORTH_Y, OFFICE_FLOOR, PILF_X, PILF_Y, LYST_X, LYST_Y, LYST_W, BODEGA_X
 
 Y0 = R_COL
 
@@ -28,7 +28,7 @@ SURVEY_CAMERAS = {
     "AERIAL": dict(loc=(-120.0, -60.0, 90.0), target=(0.0, 70.0, 8.0), lens=35.0, res=(1920, 1080)),
     "AXIS_UP": dict(loc=(0.0, 30.0, 2.0), target=(0.0, UNI_Y + 40.0, 8.0), lens=40.0, res=(1920, 1080)),
     "AXIS_DOWN": dict(loc=(0.0, UNI_Y - 6.0, 2.0), target=(0.0, 0.0, 14.0), lens=40.0, res=(1920, 1080)),
-    "BODEGA": dict(loc=(16.0, 58.0, 1.7), target=(10.0, NORTH_Y, 4.0), lens=30.0, res=(1920, 1080)),
+    "BODEGA": dict(loc=(BODEGA_X + 6.0, 58.0, 1.7), target=(BODEGA_X, NORTH_Y, 4.0), lens=30.0, res=(1920, 1080)),
     "CHURCH_E": dict(loc=(14.0, 62.0, 2.0), target=(50.0, 24.0, 20.0), lens=30.0, res=(1920, 1080)),
     # PILF storefront interior (build_PILFInterior): from the back-wall corner looking out through the shopfront glass,
     # and from the glass looking back at the wall board and the three folding tables
@@ -36,8 +36,8 @@ SURVEY_CAMERAS = {
     "PILF_IN_BACK": dict(loc=(PILF_X + 5.8, PILF_Y + 4.6, 1.6), target=(PILF_X - 6.0, PILF_Y - 1.0, 1.3), lens=20.0, res=(1920, 1080)),
     # LYSTERIA interior (build_LysteriaInterior, upper floor z0=4.2): from the door corner looking down the room to the
     # two windows onto the square (desk right, conference table left); and from the windows back to the door and mission board
-    "LYST_IN": dict(loc=(LYST_X - 4.2, LYST_Y + 6.0, 4.2 + 1.6), target=(LYST_X + 1.0, LYST_Y - 7.0, 4.2 + 1.3), lens=20.0, res=(1920, 1080)),
-    "LYST_IN_BACK": dict(loc=(LYST_X - 3.8, LYST_Y - 6.2, 4.2 + 1.6), target=(LYST_X + 2.0, LYST_Y + 6.0, 4.2 + 1.3), lens=20.0, res=(1920, 1080)),
+    "LYST_IN": dict(loc=(LYST_X - LYST_W / 2 + 0.8, LYST_Y + 6.0, 4.2 + 1.6), target=(LYST_X + 1.0, LYST_Y - 7.0, 4.2 + 1.3), lens=20.0, res=(1920, 1080)),
+    "LYST_IN_BACK": dict(loc=(LYST_X - LYST_W / 2 + 1.2, LYST_Y - 6.2, 4.2 + 1.6), target=(LYST_X + 2.0, LYST_Y + 6.0, 4.2 + 1.3), lens=20.0, res=(1920, 1080)),
 }
 
 # which set state each shot camera shoots in (the build ladder, NH-USA-045)
