@@ -133,7 +133,10 @@ SQ_D, SQ_W = 60.0, 96.0
 STAGE_Y = 42.0
 ST_W, ST_D, ST_H = 24.0, 6.0, 1.2
 Y_BACK = STAGE_Y - ST_D / 2
-NORTH_Y, UNI_Y = 74.0, 120.0
+NORTH_Y, UNI_Y = 74.0, 144.0        # the university gate closes the axis; UNI_Y set 2026-09-09 so FOUR
+                                    # blocks of street fit between the row's back and the gate (the design
+                                    # note in build_backlot.py: "four blocks up the axis street"). At the
+                                    # old 120 only two fitted once the street stopped overlapping the row.
 
 STAGE_STATES = ["joists", "half_decked", "beam_seated", "swept", "finished", "feast"]
 
@@ -322,6 +325,12 @@ def build_WestSide():
             storefront("west_shop_%d" % k, X + 6, 70.0 + k * 14, 12, 15.0, 3, "brick_pale", axis="x", face=1)
 
 
+# Axis Street's lots: 11 m frontages on a 12 m pitch, from a metre behind the north row (NORTH_Y + 16) up to the
+# university wall. AXIS_LOTS is how many whole lots that gap holds - move UNI_Y and the street re-lots itself.
+AXIS_Y0, AXIS_W, AXIS_PITCH = NORTH_Y + 17.0, 11.0, 12.0
+AXIS_LOTS = max(0, int((UNI_Y - 1.0 - AXIS_Y0 - AXIS_W) // AXIS_PITCH) + 1)
+
+
 def build_AxisStreet():
     with asset("AxisStreet"):
         box("axis_road", 0, (NORTH_Y + UNI_Y) / 2, 0.02, 14.0, UNI_Y - NORTH_Y + 8, 0.04, "road")
@@ -329,11 +338,11 @@ def build_AxisStreet():
             box("axis_kerb_%d" % (side > 0), side * 7.5, (NORTH_Y + UNI_Y) / 2, 0.1, 1.0, UNI_Y - NORTH_Y + 8, 0.2, "stone")
             # the street's own blocks start BEYOND the north row's depth (NORTH_Y + 16): the row is the square's frontage
             # and the street cuts through it; before 2026-09-09 the first block sat at y 76.5..87.5, inside shop_e1.
-            # Two lots per side fit between the row's back (y 90) and the university wall (y 120).
-            for k in range(2):
-                storefront("axis_%d_%d" % (side > 0, k), side * 9.0, NORTH_Y + 16.0 + 1.0 + 5.5 + k * 12, 11, 16.0, 3,
+            # How many lots fit is DERIVED from the gap to the university wall, so moving UNI_Y re-lots the street.
+            for k in range(AXIS_LOTS):
+                storefront("axis_%d_%d" % (side > 0, k), side * 9.0, AXIS_Y0 + AXIS_W / 2.0 + k * AXIS_PITCH, AXIS_W, 16.0, 3,
                            "brick" if k % 2 else "brick_pale", axis="x", face=-side)
-            for k in range(5):
+            for k in range(int((UNI_Y - NORTH_Y - 8) // 11) + 1):        # lamps the length of the street, 11 m apart
                 cyl("axis_lamp_%d_%d" % (side > 0, k), side * 7.0, NORTH_Y + 4 + k * 11, 0, 5.0, 0.14, "stone", 8)
 
 
