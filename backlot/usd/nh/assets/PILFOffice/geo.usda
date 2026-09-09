@@ -14,49 +14,48 @@ def Xform "geo" (
     }
 )
 {
-    def Xform "pilf_sign"
+    def Xform "pilf_block"
     {
         custom string userProperties:backlot_asset = "PILFOffice"
         custom string userProperties:backlot_state = "*"
-        custom bool userProperties:backlot_text_plane = 1
-        custom string userProperties:blender:object_name = "pilf_sign"
+        custom string userProperties:blender:object_name = "pilf_block"
         float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (0.2, 6, 1.2)
-        double3 xformOp:translate = (-51.650001525878906, 52, 8)
+        float3 xformOp:scale = (15, 12, 11)
+        double3 xformOp:translate = (-59.5, 52, 5.5)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "pilf_sign" (
+        def Mesh "pilf_block" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
         {
             uniform bool doubleSided = 1
             float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
-            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
-            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
-            rel material:binding = </geo/_materials/banner>
-            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+            int[] faceVertexCounts = [4, 4, 8, 4, 4, 8, 4, 4, 4, 4, 8, 4, 4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 4, 3, 3, 4, 10, 9, 9, 10, 7, 6, 16, 17, 19, 18, 16, 6, 9, 18, 6, 7, 1, 0, 12, 14, 0, 3, 9, 6, 15, 13, 6, 0, 14, 15, 10, 4, 1, 7, 12, 5, 2, 14, 13, 11, 5, 12, 21, 15, 8, 11, 13, 23, 20, 22, 13, 15, 21, 23, 14, 2, 8, 15, 11, 8, 2, 5, 23, 18, 19, 20, 22, 17, 16, 21, 16, 18, 23, 21, 20, 19, 17, 22]
+            rel material:binding = </geo/_materials/brick>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (-1.605153e-7, 0, -1), (-1.605153e-7, 0, -1), (-1.605153e-7, 0, -1), (-1.605153e-7, 0, -1), (-1.605153e-7, 0, -1), (-1.605153e-7, 0, -1), (-1.605153e-7, 0, -1), (-1.605153e-7, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 0, 0.99999994), (0, 0, 0.99999994), (0, 0, 0.99999994), (0, 0, 0.99999994), (0, 0, -0.99999994), (0, 0, -0.99999994), (0, 0, -0.99999994), (0, 0, -0.99999994)] (
                 interpolation = "faceVarying"
             )
-            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.4266667, -0.45000002, -0.16818179), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (-0.4266667, 0.45000002, -0.16818179), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.4266667, -0.45000002, -0.16818179), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5), (0.4266667, 0.45000002, -0.16818179), (-0.4266667, 0.45000002, -0.5), (0.4266667, 0.45000002, -0.5), (-0.4266667, -0.45000002, -0.5), (0.4266667, -0.45000002, -0.5), (0.5, -0.25, -0.43636364), (0.5, -0.25, -0.27272725), (0.5, 0.25, -0.43636364), (0.5, 0.25, -0.27272725), (0.4266667, 0.25, -0.27272725), (0.4266667, -0.25, -0.43636364), (0.4266667, -0.25, -0.27272725), (0.4266667, 0.25, -0.43636364)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "pilf_sign"
+            custom string userProperties:blender:data_name = "pilf_block"
         }
     }
 
     def Scope "_materials"
     {
-        def Material "banner"
+        def Material "brick"
         {
-            token outputs:surface.connect = </geo/_materials/banner/Principled_BSDF.outputs:surface>
-            custom string userProperties:blender:data_name = "banner"
+            token outputs:surface.connect = </geo/_materials/brick/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "brick"
 
             def Shader "Principled_BSDF"
             {
                 uniform token info:id = "UsdPreviewSurface"
                 float inputs:clearcoat = 0
                 float inputs:clearcoatRoughness = 0.03
-                color3f inputs:diffuseColor = (0.55, 0.3, 0.42)
+                color3f inputs:diffuseColor = (0.55, 0.34, 0.28)
                 float inputs:ior = 1.5
                 float inputs:metallic = 0
                 float inputs:opacity = 1
@@ -106,17 +105,17 @@ def Xform "geo" (
             }
         }
 
-        def Material "brick"
+        def Material "banner"
         {
-            token outputs:surface.connect = </geo/_materials/brick/Principled_BSDF.outputs:surface>
-            custom string userProperties:blender:data_name = "brick"
+            token outputs:surface.connect = </geo/_materials/banner/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "banner"
 
             def Shader "Principled_BSDF"
             {
                 uniform token info:id = "UsdPreviewSurface"
                 float inputs:clearcoat = 0
                 float inputs:clearcoatRoughness = 0.03
-                color3f inputs:diffuseColor = (0.55, 0.34, 0.28)
+                color3f inputs:diffuseColor = (0.55, 0.3, 0.42)
                 float inputs:ior = 1.5
                 float inputs:metallic = 0
                 float inputs:opacity = 1
@@ -124,209 +123,6 @@ def Xform "geo" (
                 float inputs:specular = 0.5
                 token outputs:surface
             }
-        }
-    }
-
-    def Xform "pilf_win_2_1"
-    {
-        custom string userProperties:backlot_asset = "PILFOffice"
-        custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "pilf_win_2_1"
-        float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (0.3, 2, 1.9)
-        double3 xformOp:translate = (-51.880001068115234, 55.75, 9.300000190734863)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
-
-        def Mesh "pilf_win_2_1" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            uniform bool doubleSided = 1
-            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
-            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
-            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
-            rel material:binding = </geo/_materials/glass>
-            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
-                interpolation = "faceVarying"
-            )
-            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
-            uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "pilf_win_2_1"
-        }
-    }
-
-    def Xform "pilf_fascia"
-    {
-        custom string userProperties:backlot_asset = "PILFOffice"
-        custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "pilf_fascia"
-        float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (0.35, 10.32, 0.9)
-        double3 xformOp:translate = (-51.849998474121094, 52, 4.050000190734863)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
-
-        def Mesh "pilf_fascia" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            uniform bool doubleSided = 1
-            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
-            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
-            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
-            rel material:binding = </geo/_materials/shop>
-            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
-                interpolation = "faceVarying"
-            )
-            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
-            uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "pilf_fascia"
-        }
-    }
-
-    def Xform "pilf_win_2__1"
-    {
-        custom string userProperties:backlot_asset = "PILFOffice"
-        custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "pilf_win_2_-1"
-        float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (0.3, 2, 1.9)
-        double3 xformOp:translate = (-51.880001068115234, 48.25, 9.300000190734863)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
-
-        def Mesh "pilf_win_2__1" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            uniform bool doubleSided = 1
-            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
-            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
-            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
-            rel material:binding = </geo/_materials/glass>
-            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
-                interpolation = "faceVarying"
-            )
-            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
-            uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "pilf_win_2_-1"
-        }
-    }
-
-    def Xform "pilf_shopfront"
-    {
-        custom string userProperties:backlot_asset = "PILFOffice"
-        custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "pilf_shopfront"
-        float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (0.4, 9.84, 3.4)
-        double3 xformOp:translate = (-51.849998474121094, 52, 1.899999976158142)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
-
-        def Mesh "pilf_shopfront" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            uniform bool doubleSided = 1
-            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
-            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
-            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
-            rel material:binding = </geo/_materials/shop>
-            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
-                interpolation = "faceVarying"
-            )
-            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
-            uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "pilf_shopfront"
-        }
-    }
-
-    def Xform "pilf_win_1__1"
-    {
-        custom string userProperties:backlot_asset = "PILFOffice"
-        custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "pilf_win_1_-1"
-        float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (0.3, 2, 1.9)
-        double3 xformOp:translate = (-51.880001068115234, 48.25, 5.900000095367432)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
-
-        def Mesh "pilf_win_1__1" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            uniform bool doubleSided = 1
-            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
-            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
-            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
-            rel material:binding = </geo/_materials/glass>
-            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
-                interpolation = "faceVarying"
-            )
-            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
-            uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "pilf_win_1_-1"
-        }
-    }
-
-    def Xform "pilf_win_1_0"
-    {
-        custom string userProperties:backlot_asset = "PILFOffice"
-        custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "pilf_win_1_0"
-        float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (0.3, 2, 1.9)
-        double3 xformOp:translate = (-51.880001068115234, 52, 5.900000095367432)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
-
-        def Mesh "pilf_win_1_0" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            uniform bool doubleSided = 1
-            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
-            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
-            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
-            rel material:binding = </geo/_materials/glass>
-            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
-                interpolation = "faceVarying"
-            )
-            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
-            uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "pilf_win_1_0"
-        }
-    }
-
-    def Xform "pilf_parapet"
-    {
-        custom string userProperties:backlot_asset = "PILFOffice"
-        custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "pilf_parapet"
-        float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (15.3, 12.3, 1)
-        double3 xformOp:translate = (-59.5, 52, 11.5)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
-
-        def Mesh "pilf_parapet" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            uniform bool doubleSided = 1
-            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
-            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
-            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
-            rel material:binding = </geo/_materials/brick>
-            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
-                interpolation = "faceVarying"
-            )
-            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
-            uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "pilf_parapet"
         }
     }
 
@@ -359,6 +155,239 @@ def Xform "geo" (
         }
     }
 
+    def Xform "pilf_win_1_0"
+    {
+        custom string userProperties:backlot_asset = "PILFOffice"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "pilf_win_1_0"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.3, 2, 1.9)
+        double3 xformOp:translate = (-51.880001068115234, 52, 5.900000095367432)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "pilf_win_1_0" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/glass>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "pilf_win_1_0"
+        }
+    }
+
+    def Xform "pilf_win_1__1"
+    {
+        custom string userProperties:backlot_asset = "PILFOffice"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "pilf_win_1_-1"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.3, 2, 1.9)
+        double3 xformOp:translate = (-51.880001068115234, 48.25, 5.900000095367432)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "pilf_win_1__1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/glass>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "pilf_win_1_-1"
+        }
+    }
+
+    def Xform "pilf_fascia"
+    {
+        custom string userProperties:backlot_asset = "PILFOffice"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "pilf_fascia"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.35, 10.32, 0.9)
+        double3 xformOp:translate = (-51.849998474121094, 52, 4.050000190734863)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "pilf_fascia" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/shop>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "pilf_fascia"
+        }
+    }
+
+    def Xform "pilf_sign"
+    {
+        custom string userProperties:backlot_asset = "PILFOffice"
+        custom string userProperties:backlot_state = "*"
+        custom bool userProperties:backlot_text_plane = 1
+        custom string userProperties:blender:object_name = "pilf_sign"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.2, 6, 1.2)
+        double3 xformOp:translate = (-51.650001525878906, 52, 8)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "pilf_sign" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/banner>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "pilf_sign"
+        }
+    }
+
+    def Xform "pilf_shopfront"
+    {
+        custom string userProperties:backlot_asset = "PILFOffice"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "pilf_shopfront"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.4, 9.84, 3.4)
+        double3 xformOp:translate = (-51.849998474121094, 52, 1.899999976158142)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "pilf_shopfront" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/shop>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "pilf_shopfront"
+        }
+    }
+
+    def Xform "pilf_win_2__1"
+    {
+        custom string userProperties:backlot_asset = "PILFOffice"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "pilf_win_2_-1"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.3, 2, 1.9)
+        double3 xformOp:translate = (-51.880001068115234, 48.25, 9.300000190734863)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "pilf_win_2__1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/glass>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "pilf_win_2_-1"
+        }
+    }
+
+    def Xform "pilf_win_2_1"
+    {
+        custom string userProperties:backlot_asset = "PILFOffice"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "pilf_win_2_1"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.3, 2, 1.9)
+        double3 xformOp:translate = (-51.880001068115234, 55.75, 9.300000190734863)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "pilf_win_2_1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/glass>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "pilf_win_2_1"
+        }
+    }
+
+    def Xform "pilf_parapet"
+    {
+        custom string userProperties:backlot_asset = "PILFOffice"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "pilf_parapet"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (15.3, 12.3, 1)
+        double3 xformOp:translate = (-59.5, 52, 11.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "pilf_parapet" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/brick>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "pilf_parapet"
+        }
+    }
+
     def Xform "pilf_win_2_0"
     {
         custom string userProperties:backlot_asset = "PILFOffice"
@@ -385,35 +414,6 @@ def Xform "geo" (
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
             custom string userProperties:blender:data_name = "pilf_win_2_0"
-        }
-    }
-
-    def Xform "pilf_block"
-    {
-        custom string userProperties:backlot_asset = "PILFOffice"
-        custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "pilf_block"
-        float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (15, 12, 11)
-        double3 xformOp:translate = (-59.5, 52, 5.5)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
-
-        def Mesh "pilf_block" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            uniform bool doubleSided = 1
-            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
-            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
-            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
-            rel material:binding = </geo/_materials/brick>
-            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
-                interpolation = "faceVarying"
-            )
-            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
-            uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "pilf_block"
         }
     }
 }

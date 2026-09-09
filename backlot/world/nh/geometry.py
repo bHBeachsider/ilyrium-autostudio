@@ -265,6 +265,10 @@ def build_NorthRow():
         aid = {"restaurant": "Restaurant", "bodega": "Bodega"}.get(tag, "NorthRow")
         with asset(aid):
             storefront(tag, x, NORTH_Y, w, 16.0, floors, m)
+            if tag == "shop_e1":     # LYSTERIA's room on the upper floor: the block stops being solid there (as City Hall does for the office)
+                _boolean(bpy.data.objects["shop_e1_block"], box("lyst_cavity", LYST_X, LYST_Y, 4.2 + 1.6, 10.0 - 0.2, 14.0 - 0.2, 3.3))
+                for k in (-1, 0, 1):    # the room's windows ARE the storefront's first-floor windows: punch the block's skin behind them
+                    _boolean(bpy.data.objects["shop_e1_block"], box("lyst_win_punch_%d" % (k + 1), LYST_X + k * LYST_WIN_STEP, NORTH_Y + 0.55, 5.9, 1.8, 1.3, 1.8))
     with asset("Bodega"):
         box("bodega_awning", 10, NORTH_Y - 1.6, 3.5, 9.0, 3.0, 0.2, "banner")
         for k in range(3):
@@ -293,6 +297,8 @@ def build_WestSide():
         box("bc_tower", X + 5.0, 18.0, 11.0, 6, 6, 22, "brick_pale"); box("bc_cross", X + 5.0, 18.0, 24.0, 0.4, 0.4, 4.0, "stone")
     with asset("PILFOffice"):
         storefront("pilf", X + 6, 52.0, 12, 15.0, 3, "brick", axis="x", face=1)
+        _boolean(bpy.data.objects["pilf_block"], box("pilf_cavity", PILF_X, PILF_Y, 1.8, 13.0 - 0.2, 11.0 - 0.2, 3.7))   # the PILF room
+        _boolean(bpy.data.objects["pilf_block"], box("pilf_win_punch", PILF_X + 6.9, PILF_Y, 1.6, 1.2, 6.0, 1.8))          # ...and its shopfront glass through the skin
         o = box("pilf_sign", X + 6.35, 52.0, 8.0, 0.2, 6.0, 1.2, "banner"); o["backlot_text_plane"] = True
     with asset("WestShops"):
         for k in range(2):
@@ -307,6 +313,11 @@ def build_AxisStreet():
             for k in range(4):
                 storefront("axis_%d_%d" % (side > 0, k), side * 9.0, NORTH_Y + 8 + k * 12, 11, 16.0, 3,
                            "brick" if k % 2 else "brick_pale", axis="x", face=-side)
+                if side > 0 and k == 0:
+                    # KNOWN OVERLAP (2026-09-09): this block (x 9..25, y 76.5..87.5) runs through the north row's shop_e1
+                    # (x 15.5..26.5, y 74..90), which is where LYSTERIA's room sits; the room's cavity is cut from both
+                    # solids so an interior camera sees the room. The street/row clash itself is a layout decision.
+                    _boolean(bpy.data.objects["axis_1_0_block"], box("lyst_cavity_axis", LYST_X, LYST_Y, 4.2 + 1.6, 10.0 - 0.2, 14.0 - 0.2, 3.3))
             for k in range(5):
                 cyl("axis_lamp_%d_%d" % (side > 0, k), side * 7.0, NORTH_Y + 4 + k * 11, 0, 5.0, 0.14, "stone", 8)
 
@@ -341,6 +352,7 @@ def build_Ground():
 OFFICE_FLOOR, OFFICE_CEIL = 5.4, 10.4          # 1962 renovation inside the 1910 drum: a dropped ceiling at 5 m
 PILF_X, PILF_Y = -59.5, 52.0                    # centre of the PILF storefront block (build_WestSide)
 LYST_X, LYST_Y = 21.0, NORTH_Y + 8.0            # LYSTERIA: the upper floor of shop_e1 on the north row
+LYST_WIN_STEP = 11.0 / 3.2                      # shop_e1's first-floor window pitch (storefront(): step = w / 3.2) - the room's windows sit in them
 
 
 def build_PengoldOffice():
@@ -430,7 +442,7 @@ def build_LysteriaInterior():
     z0 = 4.2
     with asset("LysteriaInterior"):
         _interior_room("lyst_in", LYST_X, LYST_Y, 10.0, 14.0, z0, 3.2, "brick_pale", door=(LYST_X - 4.0, LYST_Y + 6.9),
-                       windows=((LYST_X - 2.5, LYST_Y - 7.0, 2.2), (LYST_X + 2.5, LYST_Y - 7.0, 2.2)))
+                       windows=tuple((LYST_X + k * LYST_WIN_STEP, LYST_Y - 7.0, 1.8) for k in (-1, 0, 1)))   # = shop_e1_win_1_*
         box("lyst_desk", LYST_X + 2.0, LYST_Y - 3.0, z0 + 0.74, 1.8, 0.9, 0.05, "timber")
         box("lyst_desk_body", LYST_X + 2.0, LYST_Y - 3.0, z0 + 0.36, 1.7, 0.8, 0.7, "timber")
         box("lyst_conf_table", LYST_X - 1.5, LYST_Y + 2.5, z0 + 0.74, 3.2, 1.2, 0.06, "timber")

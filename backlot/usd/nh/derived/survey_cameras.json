@@ -151,6 +151,44 @@
     1080
    ],
    "depth_mode": "linear"
+  },
+  "LYST_IN": {
+   "location": [
+    16.8,
+    88.0,
+    5.8
+   ],
+   "rotation_deg": [
+    88.77,
+    -0.0,
+    -158.2
+   ],
+   "lens_mm": 20.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear"
+  },
+  "LYST_IN_BACK": {
+   "location": [
+    17.2,
+    75.8,
+    5.8
+   ],
+   "rotation_deg": [
+    88.73,
+    -0.0,
+    -25.43
+   ],
+   "lens_mm": 20.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear"
   }
  }
 }
