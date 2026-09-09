@@ -154,14 +154,14 @@
   },
   "LYST_IN": {
    "location": [
-    19.2,
-    88.0,
+    19.3,
+    88.1,
     5.8
    ],
    "rotation_deg": [
-    88.76,
+    88.16,
     -0.0,
-    -160.12
+    -158.37
    ],
    "lens_mm": 20.0,
    "sensor_mm": 36.0,
@@ -173,14 +173,14 @@
   },
   "LYST_IN_BACK": {
    "location": [
-    19.6,
-    75.8,
+    19.3,
+    75.6,
     5.8
    ],
    "rotation_deg": [
-    88.71,
+    88.72,
     -0.0,
-    -23.48
+    -22.36
    ],
    "lens_mm": 20.0,
    "sensor_mm": 36.0,
@@ -190,18 +190,56 @@
    ],
    "depth_mode": "linear"
   },
-  "LYST_DESK": {
+  "LYST_RECEPTION": {
    "location": [
-    20.3,
-    87.4,
-    5.75
+    19.6,
+    87.9,
+    5.8
    ],
    "rotation_deg": [
-    87.94,
+    90.73,
     -0.0,
-    -158.96
+    -98.03
    ],
    "lens_mm": 24.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear"
+  },
+  "LYST_POV": {
+   "location": [
+    24.1,
+    76.4,
+    5.45
+   ],
+   "rotation_deg": [
+    90.27,
+    0.0,
+    10.16
+   ],
+   "lens_mm": 28.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear"
+  },
+  "LYST_DESK": {
+   "location": [
+    24.6,
+    84.2,
+    5.7
+   ],
+   "rotation_deg": [
+    87.26,
+    0.0,
+    176.08
+   ],
+   "lens_mm": 32.0,
    "sensor_mm": 36.0,
    "res": [
     2520,

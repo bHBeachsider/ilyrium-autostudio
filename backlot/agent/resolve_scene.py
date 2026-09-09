@@ -43,10 +43,12 @@ BLOCKING = {
     "RallyStage": {"pengold": ("podium", "standing"), "summer": ("beneath_portrait", "standing"),
                    "dick": ("stage_left_threshold", "standing"), "valencia": ("upstage_right", "standing")},
     # LYSTERIA: Summer works with the square behind her; a visitor takes the head of the conference table
-    "LysteriaInterior": {"summer": ("desk_chair", "seated"), "dick": ("table_head", "standing"),
-                         "pengold": ("table_head", "standing")},
+    # LYSTERIA: Summer at her desk behind the glass, the band behind her; a visitor takes the chair with the light in
+    # their face, or the sofa for the chat
+    "LysteriaInterior": {"summer": ("desk_chair", "seated"), "dick": ("visitor_chair", "seated"),
+                         "pengold": ("sofa", "seated"), "valencia": ("glass_door", "standing")},
 }
-PEOPLE_STATE = {"PengoldOffice": "office_dawn", "RallyStage": "feast", "LysteriaInterior": "office_dawn"}
+PEOPLE_STATE = {"PengoldOffice": "office_dawn", "RallyStage": "feast", "LysteriaInterior": "lysteria"}
 TIME_WORDS = [("dawn", "dawn"), ("dusk", "dusk"), ("night", "night"), ("evening", "evening"), ("morning", "morning"),
               ("meeting", "meeting_hour")]
 # scene-card nouns -> prim name fragments in the set (props that exist in the blockout)
@@ -59,7 +61,9 @@ PROP_NOUNS = {
     "folding tables": "pilf_table", "petition": "pilf_petition", "conference table": "lyst_conf",
     "plaques": "lyst_plaque", "awards": "lyst_plaque", "framed banners": "lyst_banner", "banners": "lyst_banner",
     "tote bags": "lyst_tote", "totes": "lyst_tote", "presentation boards": "lyst_mbc_board", "easels": "lyst_easel",
-    "sash": "lyst_sash", "mission statement": "lyst_mission", "credenza ": "lyst_credenza",
+    "sash": "lyst_sash", "glass wall": "lyst_glass_wall", "glass door": "lyst_glass_door", "nameplate": "lyst_nameplate",
+    "wordmark": "lyst_wordmark", "reception": "lyst_reception", "photographs": "lyst_photo", "gallery": "lyst_photo",
+    "sofa": "lyst_sofa", "staff desks": "lyst_bench", "benches": "lyst_bench", "pendant": "lyst_pendant", "staff": "man_staff",
 }
 FRAMING = [("wide", "wide"), ("establishing", "wide"), ("medium", "medium"), ("close-up", "close"), ("closeup", "close"),
            ("hands", "close"), ("insert", "close")]
@@ -181,10 +185,12 @@ def resolve(scene, catalog, lighting, seq):
         out["invariants"] += ["the stage runs horizontally, parallel to the City Hall facade",
                               "exactly two tall timber uprights, one at each end of the stage"]
     if aid == "LysteriaInterior":
-        out["invariants"] += ["three windows onto the square along one wall; she sits with the square behind her",
-                              "the handmade protest banners are framed under glass, hung like art",
-                              "a tight grid of grant and award plaques on the wall beside the desk",
-                              "the brand rose is drained, never a saturated pink"]
+        out["invariants"] += ["an all-white room, walls and floor, one glazed band onto the square, cold-white sun",
+                              "a full-height glass wall divides the floor from her office; she sits with the band behind her",
+                              "the brand rose is the only accent and it is drained, never a saturated pink",
+                              "photographs hung museum-spaced in white frames, one gap with the hook still in the wall",
+                              "a tight grid of grant and award plaques on the wall beside her desk",
+                              "nothing in the room is ironic: everything is beautiful, tidy and certain"]
         if variants.get("lysteria") == "launch":
             out["invariants"].append("the Man Bun Collective cartons are stacked and still shrink-wrapped, unopened")
     if "no smile" in text or "does not react" in text:

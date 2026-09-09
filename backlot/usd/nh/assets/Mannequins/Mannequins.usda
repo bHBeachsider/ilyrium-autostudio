@@ -8,7 +8,7 @@
 def Xform "Mannequins" (
     kind = "component"
     variants = {
-        string build = "build"
+        string build = "lysteria"
     }
     prepend variantSets = "build"
 )
@@ -23,6 +23,11 @@ def Xform "Mannequins" (
         }
         "feast" (
             prepend references = @./geo_feast.usda@</geo>
+        ) {
+
+        }
+        "lysteria" (
+            prepend references = @./geo_lysteria.usda@</geo>
         ) {
 
         }

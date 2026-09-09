@@ -726,10 +726,15 @@
   - blend
   usd: nh/assets/LysteriaInterior/LysteriaInterior.usda
   text_planes:
-  - lyst_mission
+  - lyst_wordmark
+  - lyst_nameplate
   marks:
   - desk_chair
-  - table_head
+  - visitor_chair
+  - sofa
+  - glass_door
+  - reception
+  - floor_centre
   - window_centre
   - door
   control_points: []

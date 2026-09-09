@@ -1,85 +1,98 @@
 # LYSTERIA — Summer's office
 
-Set: `LysteriaInterior` (backlot asset). Upper floor of `shop_e1`, the north row's east end; three windows onto the
-square, door at the north-west corner. Room 9 × 14 m, ceiling 3.2 m, floor at z = 4.2.
-Design brief, Brad, 2026-09-09: *"in the style of a feminist NGO like Code Pink."*
+Set: `LysteriaInterior` (backlot asset). The upper floor of `shop_e1`, the north row's east end, re-fronted in glass.
+Room 9 × 14 m, ceiling 3.2 m, floor at z = 4.2. Brief, Brad, 2026-09-09; evaluated against the bible before building
+(the evaluation is summarised under *Canon* below), then built.
 
-## The thesis
+## The room
 
-The reference is the **genre**, not any real organisation — every mark in this room is LYSTERIA's own.
+All white — walls and floor — with the brand rose as the only accent. The aesthetic of a high-end London PR company:
+white, pale oak, brushed steel, one colour, nothing loud. "Impeccable, expensive, never flashy" (wardrobe bible), as a
+room.
 
-And the room is not scrappy. LYSTERIA is ten years old, well funded and respected (`world/factions.md`), and Summer
-was raised in elite rooms. Playing the office as grassroots protest craft would be the easy joke and the wrong one.
-The satire is that the room **performs the movement it has outgrown**: protest craft, bought.
+**A glass wall divides it.** North of the glass, the door end, is the floor: reception against the east wall with
+LYSTERIA on the wall behind it in the rose; two white benches with a low rose screen down the middle, two staff each,
+linear pendants over them; the gallery wall along the west side; a low white shelf of the mauve paperbacks under it.
+South of the glass is Summer's own office, backed by the glazed band onto the square: her desk facing the floor, two
+visitor chairs, a white sofa with a low oak table for the chat, the plaque grid on her east wall, the second framed
+campaign banner over the sofa.
 
-Four decisions carry it.
+**She sits with the square behind her.** A visitor takes the chair with the light in their face; she is a shape
+against the band until she leans in. Through the band: City Hall's colonnade and the rally stage. She watches the
+scaffold go up from her desk. That is the POV contract with the square, and it came free from the geometry.
 
-**The craft is behind glass.** Three handmade banners hang framed on the west wall, lit like art. A banner in a frame
-has stopped being a banner. This is the room's thesis in one prop, and it is the first thing a visitor sees on the
-way to a chair.
+**The glass wall is status and surveillance in one plane.** She sees the floor; the floor sees her. It rhymes with her
+sixty-second wait outside Pengold's ajar door — here she runs the room where the glass makes her the one watched.
 
-**The plaques are what the room is actually proud of.** Twelve grant and award plaques in a tight grid on the east
-wall, beside Summer's desk where she sees them and a funder sees them being seen. The banners get the long wall; the
-plaques get the money wall.
+**Larger windows.** LYSTERIA re-fronted the shop's upper floor as a single glazed band when it moved in (7.6 m of a
+10 m frontage, sill 0.7, head 3.0). The exterior changed with it: the one shop on the row with a modern glass first
+floor is the one with money. `NorthRow` carries the band; the interior cut is the same opening.
 
-**The rose is drained.** LYSTERIA's brand colour sits a half-step from the mauve of the paperbacks — the same family,
-one lifted and one aged. The visual signature allows only two saturated events (the portrait's Socialist-Realist gold
-and, deliberately un-saturated, the mauve), and this is not one of them. The pink is present and dead. Material
-`rose = (0.64, 0.44, 0.48)`; the books stay on `banner`.
+## The satire, and the law that governs it
 
-**The launch outnumbers the services.** The Man Bun Collective is six months old with zero services delivered. In the
-`launch` state that is literal: two presentation boards on easels at the presenting end, tote bags out on the
-conference table, and four cartons by the door **still shrink-wrapped**. Nothing in the room does anything; all of it
-announces.
+The causes are instruments of her aspiration. Campaign banners framed in white; photographs hung museum-spaced, her in
+every one; the plaques — twelve grants and awards — in a tight grid beside her desk, where she sees them and a funder
+sees them being seen. The bible says instrumental is canon ("want: $5M → $50M, to remain in the game"; "radicalism
+that is socially costless").
 
-## Blocking
+**But the set never states the reading.** THE_CASTE: "the contempt lives in what they DO, never on the face" — and a
+set is a face. The bible has her as *genuine believer → collaborator*. So the photographs are hung the way someone
+proud of the work hangs them: beautiful, uniform, exact. The audience notices she is in every one. Nothing in the room
+knows it is a joke. This is the rule that keeps it from being the easy version, and every prop was checked against it.
 
-Summer sits with the square behind her, so a visitor faces the window and she reads the visitor's face against the
-light. Her desk is at the south end; the conference table — the donor-and-press half of the room — is in the middle,
-six chairs addressing it; the tea and natural-wine credenza is by the door where arrivals meet it.
+## The void where Philip was — twice
 
-Marks (`LYST_CONTROL`, composed into the stage as ControlPoints): `desk_chair` (seated, facing into the room),
-`table_head` (standing at the head of the conference table), `window_centre` (standing at the windows, facing back
-into the room), `door`.
+Not an unfaded rectangle: there is no aged paint in a white room. Two devices, neither of which announces itself.
 
-## States
+**Her nameplate on the glass door reads SUMMER WINTERS.** Winters is his name. She kept it; the bible's own pun
+("abundance turned to barrenness") depends on it. His absence is spelled on her door and she walks past it daily.
 
-| state | what changes |
+**One gap in the gallery grid.** Two rows of five, museum-spaced — and one frame missing, the hook still in the wall.
+In a room curated to the millimetre, one empty hook is loud, and a visitor cannot tell whether a photograph is being
+reframed or a person removed. Which is the point.
+
+## The staff — props for now
+
+Handmaidens for the Queen of New Harnomy. Casting guide (Brad, 2026-09-09 — *guides, not instructions*): revolutionary
+chic; rings, some tattoos, earrings, hair expensive but hipster; all very attractive and younger than Summer. A couple
+of men in glasses, different body types and clothing — t-shirts, keffiyehs. They render under THE_CASTE's block
+(elite schools and a good gym, no visible wear) — the same caste, one generation down, curated. Played serene and
+certain, never mean: a sorority queen bee's court, not a mean-girls scene.
+
+In the stage: `Mannequins` state `lysteria` — Summer at `desk_chair`, one at `reception`, four on the benches, heights
+1.62–1.80. No LYSTERIA staff exist in the libretto; adding them as characters is a writing decision.
+
+## Canon — the evaluation
+
+| Brief | Verdict |
 |---|---|
-| `working` *(default)* | Ordinary morning: document boxes open on the conference table, papers, desk lamp on. |
-| `launch` | The Festival rollout staged: boards on easels, totes on the table, cartons stacked by the door, the sash on its stand. |
+| White, pink accents, London PR | In keeping; better than the Code-Pink-genre read it replaced. |
+| LYSTERIA on the wall in rose | In keeping as a **wordmark in type**, lettered by the gate (text plane). No symbol, no logo mark — kernel negative. |
+| Her own office behind glass | In keeping — strong. |
+| Larger windows, sun streaming in | **Conflicts with `visual_signature.md`** ("winter daylight stays out of the principals' faces"); resolved as the opera's one deliberate exception, written into the signature. Cold-white, never golden. |
+| Causes as instruments, trophies | In keeping — governed by THE_CASTE: the set must not wink. |
+| The void where Philip was | In keeping; the aged-paint device is dead in a white room — replaced by the nameplate and the gap. |
+| Curated staff | Plausible, not canon; props for now. |
 
-Driven by the `lysteria` variantSet on `/World`. Render with
-`python3 -m backlot.usd.render_clay LYST_DESK --variants lysteria=launch`.
+## States, marks, text, cameras
 
-## Text planes
+| | |
+|---|---|
+| `lysteria` variantSet | `working` (default): papers on the benches, one archive box on reception. `launch`: the Man Bun Collective rollout — boards on easels west of the benches (out of her sightline), totes on the benches, four cartons by reception **still shrink-wrapped**, the sash on its stand. |
+| `people` | `lysteria` — Summer and the staff. |
+| marks | `desk_chair`, `visitor_chair`, `sofa`, `glass_door`, `reception`, `floor_centre`, `window_centre`, `door` |
+| text planes | `lyst_wordmark` — LYSTERIA, rose ink. `lyst_nameplate` — SUMMER WINTERS, on the glass door. |
+| lighting | `lysteria_morning` (the sun exception), `lysteria_launch` |
+| cameras | `LYST_DESK` (32 mm, 2.39:1 — the visitor's view down the aisle, through the glass, to her); `LYST_RECEPTION` (arriving); `LYST_POV` (hers, over the floor); `LYST_IN`, `LYST_IN_BACK` (survey). |
 
-`lyst_mission` — east wall, lettered by the gate rather than by the diffusion (the kernel forbids on-screen text
-generated into the image, and OCR-gating requires we own the letters):
-
-> LYSTERIA COALITION FOR REPRODUCTIVE JUSTICE
-> EVERY BODY. EVERY CHOICE. EVERY TIME.
-
-The strapline is placeholder — it is written to sound like the genre and to be replaced by the writer. The
-organisation's name is canon; the line under it is not.
-
-## Cameras
-
-`LYST_DESK` (24 mm, 2.39:1) — the visitor's view: in at the door, down the room past the table to Summer against the
-windows. `LYST_IN` and `LYST_IN_BACK` are the two survey ends.
-
-## One proposal, flagged not assumed
-
-`lyst_ghost_frame` — an unfaded rectangle on the east wall where a frame used to hang. Philip is two years gone and
-the wall has not been repainted; the casting bible already carries *"bare ring finger, no mark — the skin has
-forgotten, the same erasure she performs on Philip."* This is that note, in the set. It costs two lines and reads at
-any focal length. **Delete it if the writer would rather she never hung him at all** — which is a different and also
-true version of her.
+Render: `python3 -m backlot.usd.render_clay LYST_DESK --variants lysteria=launch,people=lysteria`.
+Agent: `BLOCKING` puts Summer on `desk_chair`, Dick on `visitor_chair`, Pengold on the `sofa`, Valencia at the
+`glass_door`; a card naming the room resolves with zero build items (a card naming a *conference table* is flagged —
+there isn't one; the chat happens on the sofa).
 
 ## Still open
 
-- The chairs are folding chairs, correct for the PILF storefront and too cheap for this room; Summer's office wants
-  proper seating once the set goes past blockout.
-- No lighting state registered yet in `world/nh/lighting.yaml` — the room needs one (`lysteria_day`: thin cool window
-  light from the south, one warm desk lamp, per the world's single-source rule).
-- No scene cards name this room yet, so no shot cameras beyond the survey three and no prompt book.
+- Glass in the passes: clay and lineart see through it; seg, depth and normal now hide it. Not yet measured on the box.
+- The chairs are the folding-chair primitive in white; a PR office wants better seating past blockout.
+- The wordmark ink colour: the gate letters it in the rose; `letter_text_plane.py --ink` takes the value.
+- No number puts a camera in this room yet. Every prop here is a proposal until one does.

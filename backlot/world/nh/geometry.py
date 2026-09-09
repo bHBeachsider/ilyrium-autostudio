@@ -49,6 +49,7 @@ def mat(name):
                timber=(0.85, 0.65, 0.35), banner=(0.55, 0.30, 0.42), brick=(0.55, 0.34, 0.28), mannequin=(0.80, 0.55, 0.50), hay=(0.78, 0.66, 0.36), pumpkin=(0.85, 0.45, 0.12), garland=(0.55, 0.40, 0.18),
                brick_pale=(0.66, 0.50, 0.42), shop=(0.35, 0.42, 0.44), glass=(0.30, 0.40, 0.50),
                rose=(0.64, 0.44, 0.48), paper=(0.86, 0.84, 0.79), felt=(0.52, 0.34, 0.38),
+               white=(0.90, 0.89, 0.86), oak=(0.78, 0.68, 0.52), photo=(0.32, 0.30, 0.29), steel=(0.55, 0.56, 0.58),
                veh=(0.80, 0.80, 0.82), green=(0.42, 0.50, 0.36), man=(0.95, 0.75, 0.10))[name]
     m = bpy.data.materials.new(name); m.diffuse_color = (*rgb, 1.0)
     m.use_nodes = True                                      # a node tree, so the USD exporter writes a PreviewSurface
@@ -109,7 +110,7 @@ def half_cyl(name, r, z0, z1, m="stone", verts=48):
     return o
 
 
-def storefront(tag, x, y, w, depth, floors, m="brick", face=-1, axis="y"):
+def storefront(tag, x, y, w, depth, floors, m="brick", face=-1, axis="y", band=None):
     h = 4.2 + 3.4 * (floors - 1)
     if axis == "y":
         cx, cy, sx, sy, fx, fy = x, y - face * depth / 2.0, w, depth, x, y + face * 0.15
@@ -125,6 +126,14 @@ def storefront(tag, x, y, w, depth, floors, m="brick", face=-1, axis="y"):
         box("%s_fascia" % tag, fx, fy, 4.05, 0.35, w * 0.86, 0.9, "shop")
     step = w / 3.2
     for f in range(1, floors):
+        if band and band[0] == f:               # (floor, width, height, centre-above-floor): a glazed band, not three windows
+            _, bw, bh, bzc = band
+            z = 4.2 + 3.4 * (f - 1) + bzc
+            if axis == "y":
+                box("%s_band_%d" % (tag, f), x, y + face * 0.12, z, bw, 0.3, bh, "glass")
+            else:
+                box("%s_band_%d" % (tag, f), x + face * 0.12, y, z, 0.3, bw, bh, "glass")
+            continue
         for k in (-1, 0, 1):
             z = 4.2 + 3.4 * (f - 1) + 1.7
             if axis == "y":
@@ -291,11 +300,13 @@ def build_NorthRow():
     for tag, (x, w, floors, m) in NORTH_ROW.items():
         aid = {"restaurant": "Restaurant", "bodega": "Bodega"}.get(tag, "NorthRow")
         with asset(aid):
-            storefront(tag, x, NORTH_Y, w, 16.0, floors, m)
-            if tag == "shop_e1":     # LYSTERIA's room on the upper floor: the block stops being solid there (as City Hall does for the office)
+            # LYSTERIA re-fronted shop_e1's upper floor as one glazed band when it moved in - the one shop on the row
+            # with a modern glass first floor is the one with money (POV contract: the room's window IS this band)
+            storefront(tag, x, NORTH_Y, w, 16.0, floors, m,
+                       band=(1, LYST_BAND_W, LYST_BAND_H, LYST_BAND_ZC) if tag == "shop_e1" else None)
+            if tag == "shop_e1":     # the block stops being solid where the room is (as City Hall does for the office)
                 _boolean(bpy.data.objects["shop_e1_block"], box("lyst_cavity", LYST_X, LYST_Y, 4.2 + 1.6, LYST_W - 0.2, LYST_D - 0.2, 3.3))
-                for k in (-1, 0, 1):    # the room's windows ARE the storefront's first-floor windows: punch the block's skin behind them
-                    _boolean(bpy.data.objects["shop_e1_block"], box("lyst_win_punch_%d" % (k + 1), LYST_X + k * LYST_WIN_STEP, NORTH_Y + 0.55, 5.9, 1.8, 1.3, 1.8))
+                _boolean(bpy.data.objects["shop_e1_block"], box("lyst_band_punch", LYST_X, NORTH_Y + 0.55, 4.2 + LYST_BAND_ZC, LYST_BAND_W, 1.3, LYST_BAND_H))
     with asset("Bodega"):           # the awning and crates ride with the lot
         box("bodega_awning", BODEGA_X, NORTH_Y - 1.6, 3.5, 8.0, 3.0, 0.2, "banner")
         for k in range(3):
@@ -384,7 +395,8 @@ OFFICE_FLOOR, OFFICE_CEIL = 5.4, 10.4          # 1962 renovation inside the 1910
 PILF_X, PILF_Y = -59.5, 52.0                    # centre of the PILF storefront block (build_WestSide)
 LYST_X, LYST_Y = NORTH_ROW["shop_e1"][0], NORTH_Y + 8.0     # LYSTERIA: the upper floor of shop_e1 on the north row (follows the lot)
 LYST_W, LYST_D = NORTH_ROW["shop_e1"][1] - 1.0, 14.0        # the room fills the lot less a 0.5 m party wall each side
-LYST_WIN_STEP = NORTH_ROW["shop_e1"][1] / 3.2               # shop_e1's first-floor window pitch (storefront(): step = w / 3.2) - the room's windows sit in them
+LYST_BAND_W, LYST_BAND_H, LYST_BAND_ZC = NORTH_ROW["shop_e1"][1] - 2.4, 2.3, 1.85   # the glazed band: sill 0.7, head 3.0 above her floor
+LYST_GLASS_Y = NORTH_Y + 8.0 - 14.0 / 2 + 5.6                # the glass wall between Summer's office (south, the band) and the floor
 
 
 def build_PengoldOffice():
@@ -421,8 +433,13 @@ def build_PengoldOffice():
         box("po_door_ajar", -6.85, -5.5, z0 + 1.05, 1.0, 0.1, 2.1, "timber", rot=math.radians(-35))
 
 
-def _interior_room(tag, cx, cy, w, d, z0, h, m="stone", door=None, windows=()):
-    box("%s_floor" % tag, cx, cy, z0 - 0.05, w, d, 0.1, "timber")
+def _interior_room(tag, cx, cy, w, d, z0, h, m="stone", door=None, windows=(), floor_m="timber", win_h=1.8, win_zc=None,
+                   door_m="timber"):
+    """A room as walls, floor, ceiling, a door and window cuts (with glass). windows: (x, y, width) on any wall; the
+    cut is win_h tall centred win_zc above the floor (default 1.6 - a domestic window; LYSTERIA's glazed band is
+    2.3 tall at 1.85)."""
+    zc = z0 + (1.6 if win_zc is None else win_zc)
+    box("%s_floor" % tag, cx, cy, z0 - 0.05, w, d, 0.1, floor_m)
     box("%s_ceiling" % tag, cx, cy, z0 + h + 0.1, w, d, 0.2, m)
     for name, x, y, sx, sy in (("n", cx, cy + d / 2, w, 0.25), ("s", cx, cy - d / 2, w, 0.25),
                                ("e", cx + w / 2, cy, 0.25, d), ("w", cx - w / 2, cy, 0.25, d)):
@@ -432,11 +449,11 @@ def _interior_room(tag, cx, cy, w, d, z0, h, m="stone", door=None, windows=()):
                 # the cut runs ALONG the wall: a wall long in x gets a cut wide in x (fixed 2026-09-09: the axes were
                 # swapped and a 6 m shopfront came out as a 0.6 m slit)
                 along_x = sx > sy
-                _boolean(wall, box("%s_win_cut_%d" % (tag, k), wx, wy, z0 + 1.6, ww if along_x else 0.6, 0.6 if along_x else ww, 1.8))
-                box("%s_win_%d" % (tag, k), wx, wy, z0 + 1.6, ww if along_x else 0.06, 0.06 if along_x else ww, 1.8, "glass")
+                _boolean(wall, box("%s_win_cut_%d" % (tag, k), wx, wy, zc, ww if along_x else 0.6, 0.6 if along_x else ww, win_h))
+                box("%s_win_%d" % (tag, k), wx, wy, zc, ww if along_x else 0.06, 0.06 if along_x else ww, win_h, "glass")
     if door:
         box("%s_door" % tag, door[0], door[1], z0 + 1.05, 1.0 if abs(door[1] - cy) > abs(door[0] - cx) else 0.1,
-            0.1 if abs(door[1] - cy) > abs(door[0] - cx) else 1.0, 2.1, "timber")
+            0.1 if abs(door[1] - cy) > abs(door[0] - cx) else 1.0, 2.1, door_m)
 
 
 def build_HarvestDressing():
@@ -469,105 +486,128 @@ def build_PILFInterior():
 
 
 def build_LysteriaInterior():
-    """LYSTERIA Coalition for Reproductive Justice - Summer's office, upper floor of shop_e1, windows onto the square.
+    """LYSTERIA Coalition for Reproductive Justice - Summer's office, the upper floor of shop_e1, re-fronted in glass.
 
-    DESIGN NOTE (2026-09-09, Brad: "in the style of a feminist NGO like Code Pink"). The reference is the GENRE, not
-    any real organisation: every mark in this room is LYSTERIA's own. The satire is not that the office is scrappy -
-    LYSTERIA is ten years old, well funded and respected, and Summer was raised in elite rooms. It is that the room
-    performs the movement it has outgrown. So: protest craft, bought. Handmade banners FRAMED UNDER GLASS on the west
-    wall (the craft neutralised, hung like art); a tight grid of grant and award plaques on the east wall, which is
-    what the room is actually proud of; the brand rose everywhere, drained to the world grade (the visual signature
-    allows only two saturated events, and this is not one - the rose sits a half-step from the mauve of the books, on
-    purpose); and the Man Bun Collective launch staged where a visitor cannot miss it, six months of branding and no
-    services, still shrink-wrapped.
+    DESIGN (Brad, 2026-09-09, evaluated against the bible before building - see 03_design/environments/lysteria_office.md):
+    all white, walls and floor, the brand rose as the only accent; the aesthetic of a high-end London PR company.
+    A glass wall divides the floor (north, the door end) from Summer's own office (south, the glazed band onto the
+    square): status and surveillance in one wall - she sees the floor, the floor sees her. LYSTERIA is spelled on the
+    wall behind reception in the rose (a text plane, lettered by the gate; a wordmark in type, never a logo mark - kernel
+    negative). The causes are instruments: campaign banners framed, photographs hung museum-spaced with her in every
+    one. THE LAW: the set never states the reading. Everything here is beautiful and certain; nothing in the room
+    knows it is a joke (THE_CASTE: "a smug face is a wink", and a set is a face).
 
-    Two states, both donor-facing:
-      working - the room on an ordinary morning; document boxes open on the conference table, desk lamp on
-      launch  - the Festival rollout staged: presentation boards on easels, tote cartons stacked, the sash on its stand
-    One proposal, flagged rather than assumed: LYST_GHOST, an unfaded rectangle on the east wall where a frame used to
-    hang - the same erasure as the bare ring finger. Delete the two lines if the writer would rather she never hung it.
+    The void where Philip was, twice, neither of them aged paint (there is none in a white room): her nameplate on the
+    glass door reads SUMMER WINTERS - his name, kept, the bible's own pun - and the gallery grid has one gap with the
+    hook still in the wall.
+
+    States (variantSet "lysteria"): working (default) | launch (the Man Bun Collective rollout staged, cartons still
+    shrink-wrapped). People: build_Mannequins state "lysteria" - Summer at her desk, the staff on the floor.
     """
-    z0 = 4.2
+    z0, H = 4.2, 3.2
     W, D = LYST_W, LYST_D
-    xw, xe = LYST_X - W / 2 + 0.15, LYST_X + W / 2 - 0.15          # interior faces of the west and east walls
-    ys, yn = LYST_Y - D / 2, LYST_Y + D / 2                        # south = windows onto the square, north = door
-    tx, ty = LYST_X - 0.4, LYST_Y + 0.5                            # the conference table, the room's donor-facing half
-    dx, dy = LYST_X + 1.4, ys + 2.6                                # Summer's desk, backed by the windows
+    xw, xe = LYST_X - W / 2 + 0.14, LYST_X + W / 2 - 0.14          # interior faces of the west and east walls
+    ys, yn = LYST_Y - D / 2, LYST_Y + D / 2                        # south = the glazed band onto the square, north = door
+    yg = LYST_GLASS_Y                                              # the glass wall
+    dx, dy = LYST_X + 1.2, ys + 1.9                                # Summer's desk, backed by the band
+    bx = LYST_X - 0.7                                              # the staff benches' centre line
 
     with asset("LysteriaInterior"):
-        _interior_room("lyst_in", LYST_X, LYST_Y, W, D, z0, 3.2, "brick_pale", door=(LYST_X - W / 2 + 1.0, yn - 0.1),
-                       windows=tuple((LYST_X + k * LYST_WIN_STEP, ys, 1.8) for k in (-1, 0, 1)))   # = shop_e1_win_1_*
+        _interior_room("lyst_in", LYST_X, LYST_Y, W, D, z0, H, "white", floor_m="white", door_m="white",
+                       door=(LYST_X - W / 2 + 1.0, yn - 0.1), windows=((LYST_X, ys, LYST_BAND_W),),
+                       win_h=LYST_BAND_H, win_zc=LYST_BAND_ZC)
 
-        # --- Summer's desk: she sits with the square behind her, so a visitor faces the window and she reads the room
-        box("lyst_desk", dx, dy, z0 + 0.74, 2.0, 0.9, 0.05, "timber")
-        box("lyst_desk_body", dx, dy, z0 + 0.36, 1.9, 0.8, 0.7, "timber")
-        chair("lyst_desk_chair", dx, dy - 0.75, z0, 0.0)                       # her chair, between desk and windows
-        for sx in (-1, 1):                                                     # two visitor chairs, squared
-            chair("lyst_visitor_%d" % (sx > 0), dx + sx * 0.55, dy + 0.85, z0, 180.0)
-        box("lyst_lamp_base", dx - 0.75, dy - 0.2, z0 + 0.79, 0.16, 0.16, 0.04, "stone")
-        cyl("lyst_lamp_stem", dx - 0.75, dy - 0.2, z0 + 0.81, z0 + 1.24, 0.015, "stone")
-        cone("lyst_lamp_shade", dx - 0.75, dy - 0.2, z0 + 1.24, 0.17, 0.15, "banner")
-        box("lyst_book_desk", dx + 0.6, dy + 0.05, z0 + 0.79, 0.16, 0.24, 0.04, "banner")     # one mauve copy, squared
+        # --- the glass wall, with her door in it at the west end and a slim white frame
+        box("lyst_glass_wall", LYST_X + 0.55, yg, z0 + H / 2, W - 0.28 - 1.1, 0.03, H, "glass")
+        box("lyst_glass_door", xw + 0.55, yg, z0 + 1.05, 1.0, 0.03, 2.1, "glass")
+        box("lyst_glass_transom", xw + 0.55, yg, z0 + 2.65, 1.1, 0.03, 1.1, "glass")
+        box("lyst_glass_head", LYST_X, yg, z0 + H - 0.04, W - 0.28, 0.08, 0.08, "white")
+        box("lyst_glass_sill", LYST_X, yg, z0 + 0.03, W - 0.28, 0.08, 0.06, "white")
+        for k, mx in enumerate((xw + 1.1, LYST_X + 0.55, xe)):
+            box("lyst_glass_mullion_%d" % k, mx - (0.02 if k == 2 else 0.0), yg, z0 + H / 2, 0.05, 0.06, H, "white")
+        # her name on the door: a frosted strip at eye height, the letters go on by the gate ("SUMMER WINTERS")
+        box("lyst_nameplate", xw + 0.55, yg - 0.025, z0 + 1.52, 0.46, 0.012, 0.075, "paper")
 
-        # --- the conference table: where funders and press sit, six chairs addressing it
-        box("lyst_conf_table", tx, ty, z0 + 0.74, 3.2, 1.2, 0.06, "timber")
-        for sx in (-1, 1):
-            box("lyst_conf_leg_%d" % (sx > 0), tx + sx * 1.4, ty, z0 + 0.37, 0.1, 1.0, 0.74, "timber")
-        for k in range(6):
-            side = -1 if k < 3 else 1
-            chair("lyst_chair_%d" % k, tx - 1.25 + 1.25 * (k % 3), ty + side * 1.05, z0, 0.0 if side < 0 else 180.0)
-
-        # --- west wall: handmade protest banners, framed under glass. The craft is behind glass; that is the point.
-        for k, ry in enumerate((ys + 3.0, LYST_Y + 0.5, yn - 3.2)):
-            box("lyst_banner_frame_%d" % k, xw + 0.04, ry, z0 + 1.75, 0.08, 1.7, 1.15, "timber")
-            box("lyst_banner_cloth_%d" % k, xw + 0.10, ry, z0 + 1.75, 0.03, 1.5, 0.95, "rose" if k != 1 else "felt")
-        # a low shelf of mauve paperbacks under them - the movement's own reading, the motif that runs the opera
-        box("lyst_shelf", xw + 0.25, LYST_Y - 3.4, z0 + 0.42, 0.35, 2.2, 0.84, "timber")
-        for k in range(9):
-            box("lyst_book_%d" % k, xw + 0.25, LYST_Y - 4.35 + 0.235 * k, z0 + 0.96, 0.15, 0.2, 0.24, "banner")
-
-        # --- east wall: the grid of grant and award plaques, which is what the room is actually proud of
-        for k in range(12):
-            box("lyst_plaque_%d" % k, xe - 0.03, ys + 2.4 + 0.42 * (k % 4), z0 + 1.35 + 0.44 * (k // 4),
-                0.05, 0.3, 0.36, "paper")
-        box("lyst_ghost_frame", xe - 0.02, yn - 3.6, z0 + 1.75, 0.02, 0.52, 0.62, "paper")   # LYST_GHOST (proposal)
-        # the mission statement: the SURFACE the gate letters (its corners are LYST_CONTROL["text_planes"]), high on
-        # the east wall above the plaques - the org's name over the evidence that it is funded
-        box("lyst_mission", LYST_X + LYST_W / 2 - 0.20, LYST_Y, z0 + 1.80, 0.06, 1.6, 1.0, "paper")
-
-        # --- north end, by the door: the tea and natural-wine credenza every such office has
-        box("lyst_credenza", LYST_X + 1.4, yn - 0.8, z0 + 0.4, 2.2, 0.5, 0.8, "timber")
-        for k in range(4):
-            cyl("lyst_cup_%d" % k, LYST_X + 0.7 + 0.3 * k, yn - 0.8, z0 + 0.8, z0 + 0.89, 0.04, "paper")
+        # --- FLOOR: reception against the east wall by the door, the wordmark on the wall behind it
+        box("lyst_reception", xe - 1.05, yn - 2.2, z0 + 0.52, 0.62, 2.1, 1.04, "white")
+        box("lyst_reception_top", xe - 1.05, yn - 2.2, z0 + 1.06, 0.70, 2.2, 0.04, "oak")
+        chair("lyst_reception_chair", xe - 0.42, yn - 2.2, z0, 90.0, "white")
+        box("lyst_wordmark", xe - 0.02, yn - 2.2, z0 + 1.95, 0.02, 3.0, 0.62, "white")          # the surface the gate letters, rose ink
+        # a framed campaign banner further down the east wall - the accent, one of two on the floor
+        box("lyst_banner_frame_0", xe - 0.04, yg + 2.2, z0 + 1.85, 0.06, 2.4, 1.25, "white")
+        box("lyst_banner_cloth_0", xe - 0.08, yg + 2.2, z0 + 1.85, 0.03, 2.2, 1.05, "rose")
+        # the gallery wall: photographs museum-spaced, two rows of five, her in every one - and ONE gap, hook still in
+        for r in range(2):
+            for c in range(5):
+                gy, gz = yg + 1.4 + 1.15 * c, z0 + 1.30 + 0.82 * r
+                if (r, c) == (1, 2):
+                    cyl("lyst_gallery_hook", xw + 0.03, gy, gz + 0.28, gz + 0.31, 0.012, "steel")   # the void
+                    continue
+                box("lyst_photo_frame_%d_%d" % (r, c), xw + 0.03, gy, gz, 0.04, 0.58, 0.72, "white")
+                box("lyst_photo_%d_%d" % (r, c), xw + 0.055, gy, gz, 0.01, 0.48, 0.62, "photo")
+        # staff benches: two white benches, two seats each facing across, linear pendants over them
         for k in range(2):
-            cyl("lyst_bottle_%d" % k, LYST_X + 2.1 + 0.22 * k, yn - 0.85, z0 + 0.8, z0 + 1.09, 0.045, "glass")
+            by = yg + 1.9 + 2.6 * k
+            box("lyst_bench_%d" % k, bx, by, z0 + 0.72, 2.4, 1.3, 0.05, "white")
+            for sx in (-1, 1):
+                box("lyst_bench_leg_%d_%d" % (k, sx > 0), bx + sx * 1.1, by, z0 + 0.35, 0.08, 1.1, 0.70, "white")
+            box("lyst_bench_screen_%d" % k, bx, by, z0 + 0.92, 2.2, 0.03, 0.35, "rose")            # a low rose modesty screen down the middle
+            chair("lyst_staff_chair_%d_0" % k, bx - 0.55, by - 0.95, z0, 0.0, "white")
+            chair("lyst_staff_chair_%d_1" % k, bx + 0.55, by + 0.95, z0, 180.0, "white")
+            box("lyst_pendant_%d" % k, bx, by, z0 + 2.45, 2.0, 0.08, 0.05, "steel")
+            for sx in (-1, 1):
+                cyl("lyst_pendant_drop_%d_%d" % (k, sx > 0), bx + sx * 0.8, by, z0 + 2.47, z0 + H, 0.006, "steel")
+        # the mauve shelf, low, on the floor's west wall under the gallery: the movement's reading, the opera's motif
+        box("lyst_shelf", xw + 0.22, yn - 1.4, z0 + 0.40, 0.32, 1.9, 0.80, "white")
+        for k in range(8):
+            box("lyst_book_%d" % k, xw + 0.22, yn - 2.2 + 0.235 * k, z0 + 0.92, 0.15, 0.2, 0.24, "banner")
+
+        # --- SUMMER'S OFFICE: her desk against the band, facing the floor; the visitor sits with the light in their face
+        box("lyst_desk", dx, dy, z0 + 0.74, 2.2, 0.9, 0.05, "white")
+        box("lyst_desk_body", dx + 0.7, dy, z0 + 0.36, 0.7, 0.8, 0.70, "white")
+        box("lyst_desk_leg", dx - 1.0, dy, z0 + 0.36, 0.06, 0.8, 0.70, "steel")
+        chair("lyst_desk_chair", dx, dy - 0.75, z0, 0.0, "white")
+        for sx in (-1, 1):
+            chair("lyst_visitor_%d" % (sx > 0), dx + sx * 0.55, dy + 0.85, z0, 180.0, "white")
+        box("lyst_lamp_base", dx - 0.8, dy - 0.2, z0 + 0.79, 0.16, 0.16, 0.04, "steel")
+        cyl("lyst_lamp_stem", dx - 0.8, dy - 0.2, z0 + 0.81, z0 + 1.24, 0.015, "steel")
+        cone("lyst_lamp_shade", dx - 0.8, dy - 0.2, z0 + 1.24, 0.17, 0.15, "rose")                 # the one warm practical
+        box("lyst_book_desk", dx + 0.55, dy + 0.05, z0 + 0.79, 0.16, 0.24, 0.04, "banner")        # her copy: annotated, squared
+        # the sofa for the chat, against her west wall, a low oak table
+        box("lyst_sofa", xw + 0.55, ys + 2.6, z0 + 0.22, 0.85, 1.9, 0.44, "white")
+        box("lyst_sofa_back", xw + 0.20, ys + 2.6, z0 + 0.62, 0.15, 1.9, 0.40, "white")
+        box("lyst_coffee_table", xw + 1.45, ys + 2.6, z0 + 0.40, 0.6, 1.1, 0.03, "oak")
+        for k in range(4):
+            cyl("lyst_coffee_leg_%d" % k, xw + 1.45 + (0.22 if k % 2 else -0.22), ys + 2.6 + (0.45 if k > 1 else -0.45), z0, z0 + 0.39, 0.012, "steel")
+        # her east wall: the plaque grid - twelve grants and awards, white frames, what the room is proud of
+        for k in range(12):
+            box("lyst_plaque_%d" % k, xe - 0.03, ys + 1.6 + 0.44 * (k % 4), z0 + 1.30 + 0.46 * (k // 4), 0.05, 0.32, 0.38, "paper")
+        # her west wall, above the sofa: the second framed campaign banner
+        box("lyst_banner_frame_1", xw + 0.04, ys + 2.6, z0 + 2.05, 0.06, 1.7, 0.95, "white")
+        box("lyst_banner_cloth_1", xw + 0.08, ys + 2.6, z0 + 2.05, 0.03, 1.5, 0.78, "rose")
 
     with asset("LysteriaInterior", "working"):
-        box("lyst_docbox_0", tx - 0.9, ty + 0.1, z0 + 0.92, 0.5, 0.36, 0.3, "paper")     # open document boxes, working
-        box("lyst_docbox_1", tx + 0.2, ty - 0.15, z0 + 0.9, 0.5, 0.36, 0.26, "paper")
-        box("lyst_papers", tx + 1.1, ty + 0.2, z0 + 0.79, 0.3, 0.42, 0.04, "paper")
+        box("lyst_papers_0", bx - 0.6, yg + 1.6, z0 + 0.77, 0.30, 0.42, 0.04, "paper")
+        box("lyst_papers_1", bx + 0.7, yg + 4.8, z0 + 0.77, 0.30, 0.42, 0.03, "paper")
+        box("lyst_docbox", xe - 1.05, yn - 2.2, z0 + 1.23, 0.40, 0.30, 0.28, "paper")           # one archive box on reception
 
     with asset("LysteriaInterior", "launch"):
-        # The Man Bun Collective rollout: six months old, zero services, all of it branding - staged where a visitor
-        # cannot miss it. The cartons have never been opened.
-        # the boards stand at the PRESENTING end, beyond the table and facing the visitors' chairs - put them between
-        # the door and the table and they simply wall the room off from every camera that comes in (measured 2026-09-09)
-        for k, ex in enumerate((tx - 1.0, tx + 1.0)):
-            by = ty - 2.15
-            for sx in (-1, 1):                                  # front legs splayed, back leg raked: a proper easel
-                cyl("lyst_easel_leg_%d_%d" % (k, sx > 0), ex + sx * 0.36, by, z0, z0 + 1.50, 0.025, "timber")
-            cyl("lyst_easel_rake_%d" % k, ex, by - 0.40, z0, z0 + 1.38, 0.025, "timber")
-            box("lyst_easel_ledge_%d" % k, ex, by + 0.02, z0 + 0.70, 0.78, 0.07, 0.05, "timber")
+        # The Man Bun Collective rollout: six months of branding and no services, staged where an arrival meets it.
+        # west of the benches, angled toward the door: an arrival meets them; the visitor's sightline to Summer stays clear
+        for k, ex in enumerate((xw + 1.5, xw + 2.6)):
+            by = yg + 0.75 + 0.55 * k
+            for sx in (-1, 1):
+                cyl("lyst_easel_leg_%d_%d" % (k, sx > 0), ex + sx * 0.36, by, z0, z0 + 1.50, 0.025, "white")
+            cyl("lyst_easel_rake_%d" % k, ex, by - 0.40, z0, z0 + 1.38, 0.025, "white")
+            box("lyst_easel_ledge_%d" % k, ex, by + 0.02, z0 + 0.70, 0.78, 0.07, 0.05, "white")
             box("lyst_mbc_board_%d" % k, ex, by + 0.05, z0 + 1.22, 0.82, 0.04, 1.00, "paper")
-        for k in range(4):                                   # tote cartons, still shrink-wrapped, stacked by the door
-            box("lyst_mbc_carton_%d" % k, LYST_X - 3.1 + 0.66 * (k % 2), yn - 1.9, z0 + 0.32 + 0.64 * (k // 2),
-                0.6, 0.6, 0.6, "paper")
-        box("lyst_tote_stack", tx + 1.25, ty - 0.15, z0 + 0.87, 0.44, 0.34, 0.20, "rose")     # totes out on the table
-        for k in range(3):
-            box("lyst_tote_%d" % k, tx - 1.35 + 0.42 * k, ty - 0.32, z0 + 0.80, 0.34, 0.26, 0.06, "rose")
-        cyl("lyst_sash_pole", xe - 0.75, ty - 2.6, z0, z0 + 2.2, 0.03, "stone")               # the sash on its stand
-        box("lyst_sash_arm", xe - 0.75, ty - 2.6, z0 + 2.18, 0.04, 0.62, 0.04, "stone")
-        box("lyst_sash", xe - 0.78, ty - 2.6, z0 + 1.50, 0.03, 0.56, 1.32, "rose")
+        for k in range(4):                                   # tote cartons, still shrink-wrapped, stacked by reception
+            box("lyst_mbc_carton_%d" % k, xe - 2.1 - 0.66 * (k % 2), yn - 0.55, z0 + 0.32 + 0.64 * (k // 2), 0.6, 0.6, 0.6, "paper")
+        for k in range(2):
+            box("lyst_tote_stack_%d" % k, bx + 0.6, yg + 1.9 + 2.6 * k + 0.35, z0 + 0.85, 0.44, 0.34, 0.20, "rose")
+        cyl("lyst_sash_pole", xw + 0.6, yg + 2.4, z0, z0 + 2.2, 0.03, "steel")                    # the sash on its stand
+        box("lyst_sash_arm", xw + 0.6, yg + 2.4, z0 + 2.18, 0.62, 0.04, 0.04, "steel")
+        box("lyst_sash", xw + 0.6, yg + 2.43, z0 + 1.50, 0.56, 0.03, 1.32, "rose")
 
 
 def _limb(name, a, b, r, m="mannequin"):
@@ -628,6 +668,15 @@ def build_Mannequins():
     with asset("Mannequins", "build"):
         for k, (x, y) in enumerate(((ST_W / 2 - 1.2, Y_BACK + 0.8), (ST_W / 2 - 2.2, Y_BACK + 1.6), (ST_W / 2 - 0.4, STAGE_Y + 1.5))):
             mannequin("man_worker_%d" % k, x, y, 0.0, 180.0)
+    with asset("Mannequins", "lysteria"):
+        # Summer at her desk behind the glass; the staff on the floor (props for now - casting note in the set bible:
+        # handmaidens, revolutionary chic, all attractive and younger than her; two men in glasses, different bodies)
+        z0, ys, yg, xe = 4.2, LYST_Y - LYST_D / 2, LYST_GLASS_Y, LYST_X + LYST_W / 2 - 0.14
+        dx, dy, bx = LYST_X + 1.2, ys + 1.9, LYST_X - 0.7
+        mannequin("man_summer", dx, dy - 0.75, z0, 0.0, 1.72, posture="seated")
+        mannequin("man_staff_reception", xe - 0.42, LYST_Y + LYST_D / 2 - 2.2, z0, 90.0, 1.64, posture="seated")
+        for k, (h, sx, sy, f) in enumerate(((1.62, -0.55, -0.95, 0.0), (1.80, 0.55, 0.95, 180.0), (1.67, -0.55, -0.95, 0.0), (1.76, 0.55, 0.95, 180.0))):
+            mannequin("man_staff_%d" % k, bx + sx, yg + 1.9 + 2.6 * (k // 2) + sy, z0, f, h, posture="seated")
 
 
 BUILDERS = [build_PengoldOffice, build_PILFInterior, build_LysteriaInterior, build_Mannequins, build_HarvestDressing,
@@ -636,14 +685,14 @@ BUILDERS = [build_PengoldOffice, build_PILFInterior, build_LysteriaInterior, bui
 
 # asset id -> the states it has (assets absent from this table are stateless)
 STATEFUL = {"RallyStage": STAGE_STATES, "BuildSite": ["joists", "half_decked", "beam_seated", "swept"],
-            "PengoldOffice": ["dawn", "meeting"], "Mannequins": ["office_dawn", "feast", "build"],
+            "PengoldOffice": ["dawn", "meeting"], "Mannequins": ["office_dawn", "feast", "build", "lysteria"],
             "HarvestDressing": ["finished", "feast"], "LysteriaInterior": ["working", "launch"]}
 # one variantSet on /World per state FAMILY; each drives only the assets listed (an asset absent from a family is
 # untouched by that family's selection). "none" deactivates the asset.
 STATE_FAMILIES = {
     "build":  dict(states=STAGE_STATES, assets=["RallyStage", "BuildSite", "HarvestDressing"], default="finished"),
     "office": dict(states=["dawn", "meeting"], assets=["PengoldOffice"], default="dawn"),
-    "people": dict(states=["none", "office_dawn", "feast", "build"], assets=["Mannequins"], default="none"),
+    "people": dict(states=["none", "office_dawn", "feast", "build", "lysteria"], assets=["Mannequins"], default="none"),
     "lysteria": dict(states=["working", "launch"], assets=["LysteriaInterior"], default="working"),
 }
 
@@ -679,21 +728,29 @@ OFFICE_CONTROL = {
 }
 # LYSTERIA (Summer's office). Facing 0 = toward +Y, i.e. AWAY from the windows and into the room; she sits with the
 # square behind her. The mission statement is a text plane on the east wall, lettered by the gate, not by the diffusion.
-LYST_MISSION_TEXT = ["LYSTERIA COALITION FOR REPRODUCTIVE JUSTICE",
-                     "EVERY BODY. EVERY CHOICE. EVERY TIME."]
+LYST_WORDMARK_TEXT = ["LYSTERIA"]                 # the org's name, in the rose; a wordmark in type, never a logo mark
+LYST_NAMEPLATE_TEXT = ["SUMMER WINTERS"]          # his name, kept - the bible's pun (abundance turned to barrenness) lives here
 LYST_CONTROL = {
- "marks": [
-   {"name": "desk_chair", "pos": [LYST_X + 1.4, LYST_Y - 7.0 + 2.6 - 0.75, 4.2], "facing_deg": 0.0, "posture": "seated"},
-   {"name": "table_head", "pos": [LYST_X - 2.4, LYST_Y + 0.5, 4.2], "facing_deg": 90.0, "posture": "standing"},
-   {"name": "window_centre", "pos": [LYST_X, LYST_Y - 5.6, 4.2], "facing_deg": 180.0, "posture": "standing"},
+ "marks": [   # facing 0 = toward +Y (into the floor, away from the band); the desk chair faces the floor through the glass
+   {"name": "desk_chair", "pos": [LYST_X + 1.2, LYST_Y - 7.0 + 1.9 - 0.75, 4.2], "facing_deg": 0.0, "posture": "seated"},
+   {"name": "visitor_chair", "pos": [LYST_X + 0.65, LYST_Y - 7.0 + 1.9 + 0.85, 4.2], "facing_deg": 180.0, "posture": "seated"},
+   {"name": "sofa", "pos": [LYST_X - LYST_W / 2 + 0.69, LYST_Y - 7.0 + 2.6, 4.2], "facing_deg": 270.0, "posture": "seated"},
+   {"name": "glass_door", "pos": [LYST_X - LYST_W / 2 + 0.69, LYST_GLASS_Y + 0.7, 4.2], "facing_deg": 180.0, "posture": "standing"},
+   {"name": "reception", "pos": [LYST_X + LYST_W / 2 - 0.56, LYST_Y + 7.0 - 2.2, 4.2], "facing_deg": 90.0, "posture": "seated"},
+   {"name": "floor_centre", "pos": [LYST_X - 0.7, LYST_GLASS_Y + 3.2, 4.2], "facing_deg": 180.0, "posture": "standing"},
+   {"name": "window_centre", "pos": [LYST_X, LYST_Y - 7.0 + 0.9, 4.2], "facing_deg": 180.0, "posture": "standing"},
    {"name": "door", "pos": [LYST_X - LYST_W / 2 + 1.0, LYST_Y + 6.0, 4.2], "facing_deg": 180.0, "posture": "standing"},
  ],
  "text_planes": [
-   # the east wall reads left-to-right for a camera looking +X... a camera in the room looks EAST at this wall, so
-   # world -Y is frame-left; corners clockwise from top-left as the camera sees it
-   {"name": "lyst_mission", "text": LYST_MISSION_TEXT,
-    "corners": [[LYST_X + LYST_W / 2 - 0.16, LYST_Y - 0.8, 6.5], [LYST_X + LYST_W / 2 - 0.16, LYST_Y + 0.8, 6.5],
-                [LYST_X + LYST_W / 2 - 0.16, LYST_Y + 0.8, 5.5], [LYST_X + LYST_W / 2 - 0.16, LYST_Y - 0.8, 5.5]]},
+   # the wordmark on the floor's east wall: a camera on the floor looks +X at it, so world -Y is frame-left;
+   # corners clockwise from top-left AS THE CAMERA SEES IT
+   {"name": "lyst_wordmark", "text": LYST_WORDMARK_TEXT,
+    "corners": [[LYST_X + LYST_W / 2 - 0.17, LYST_Y + 7.0 - 3.7, 6.46], [LYST_X + LYST_W / 2 - 0.17, LYST_Y + 7.0 - 0.7, 6.46],
+                [LYST_X + LYST_W / 2 - 0.17, LYST_Y + 7.0 - 0.7, 5.84], [LYST_X + LYST_W / 2 - 0.17, LYST_Y + 7.0 - 3.7, 5.84]]},
+   # her nameplate on the glass door: a camera on the floor looks -Y at it, so world +X is frame-left
+   {"name": "lyst_nameplate", "text": LYST_NAMEPLATE_TEXT,
+    "corners": [[LYST_X - LYST_W / 2 + 0.69 + 0.23, LYST_GLASS_Y - 0.032, 5.755], [LYST_X - LYST_W / 2 + 0.69 - 0.23, LYST_GLASS_Y - 0.032, 5.755],
+                [LYST_X - LYST_W / 2 + 0.69 - 0.23, LYST_GLASS_Y - 0.032, 5.685], [LYST_X - LYST_W / 2 + 0.69 + 0.23, LYST_GLASS_Y - 0.032, 5.685]]},
  ],
 }
 STAGE_MARKS = {

@@ -29,32 +29,59 @@
  ],
  "text_planes": [
   {
-   "name": "lyst_mission",
+   "name": "lyst_wordmark",
    "corners": [
     [
-     27.24,
-     81.2,
-     6.5
+     27.23,
+     85.3,
+     6.46
     ],
     [
-     27.24,
-     82.8,
-     6.5
+     27.23,
+     88.3,
+     6.46
     ],
     [
-     27.24,
-     82.8,
-     5.5
+     27.23,
+     88.3,
+     5.84
     ],
     [
-     27.24,
-     81.2,
-     5.5
+     27.23,
+     85.3,
+     5.84
     ]
    ],
    "text": [
-    "LYSTERIA COALITION FOR REPRODUCTIVE JUSTICE",
-    "EVERY BODY. EVERY CHOICE. EVERY TIME."
+    "LYSTERIA"
+   ]
+  },
+  {
+   "name": "lyst_nameplate",
+   "corners": [
+    [
+     19.32,
+     80.568,
+     5.755
+    ],
+    [
+     18.86,
+     80.568,
+     5.755
+    ],
+    [
+     18.86,
+     80.568,
+     5.685
+    ],
+    [
+     19.32,
+     80.568,
+     5.685
+    ]
+   ],
+   "text": [
+    "SUMMER WINTERS"
    ]
   },
   {
@@ -92,22 +119,66 @@
    "name": "desk_chair",
    "asset": "World",
    "pos": [
-    24.3,
-    76.85,
+    24.1,
+    76.15,
     4.2
    ],
    "facing_deg": 0.0,
    "posture": "seated"
   },
   {
-   "name": "table_head",
+   "name": "visitor_chair",
    "asset": "World",
    "pos": [
-    20.5,
-    82.5,
+    23.55,
+    77.75,
+    4.2
+   ],
+   "facing_deg": 180.0,
+   "posture": "seated"
+  },
+  {
+   "name": "sofa",
+   "asset": "World",
+   "pos": [
+    19.09,
+    77.6,
+    4.2
+   ],
+   "facing_deg": 270.0,
+   "posture": "seated"
+  },
+  {
+   "name": "glass_door",
+   "asset": "World",
+   "pos": [
+    19.09,
+    81.3,
+    4.2
+   ],
+   "facing_deg": 180.0,
+   "posture": "standing"
+  },
+  {
+   "name": "reception",
+   "asset": "World",
+   "pos": [
+    26.84,
+    86.8,
     4.2
    ],
    "facing_deg": 90.0,
+   "posture": "seated"
+  },
+  {
+   "name": "floor_centre",
+   "asset": "World",
+   "pos": [
+    22.2,
+    83.8,
+    4.2
+   ],
+   "facing_deg": 180.0,
    "posture": "standing"
   },
   {
@@ -115,7 +186,7 @@
    "asset": "World",
    "pos": [
     22.9,
-    76.4,
+    75.9,
     4.2
    ],
    "facing_deg": 180.0,

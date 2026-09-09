@@ -50,6 +50,9 @@ def main():
         bpy.ops.wm.usd_import(filepath=stage_path, import_cameras=True, import_meshes=True, import_materials=True,
                               read_mesh_colors=True, import_usd_preview=True, set_frame_range=False)
         scene = bpy.context.scene
+        for m in bpy.data.materials:                 # glass reads as glass: Workbench honours the viewport alpha (2026-09-09)
+            if m.name.lower().startswith("glass"):
+                m.diffuse_color = (*m.diffuse_color[:3], 0.22)
         camobj = bpy.data.objects.get(shot)
         if camobj is None or camobj.type != "CAMERA":
             sys.exit("camera %s not found after import" % shot)

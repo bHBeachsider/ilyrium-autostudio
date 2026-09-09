@@ -359,6 +359,17 @@ def Xform "World" (
             }
 
         }
+        "lysteria" {
+            over "Mannequins" (
+                active = true
+                variants = {
+                    string build = "lysteria"
+                }
+            )
+            {
+            }
+
+        }
         "none" {
             over "Mannequins" (
                 active = false

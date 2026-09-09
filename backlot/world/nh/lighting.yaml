@@ -28,23 +28,27 @@ states:
   lysteria_morning:
     sets: [LysteriaInterior]
     time: morning
-    key: {source: window, what: "thin cool overcast daylight through the three windows onto the square", side: "behind the desk", intensity: soft}
-    fill: {what: "bounce off the pale brick; deep browns holding in the corners"}
-    window: {what: "the square visible beyond the glass, flat and grey", colour: "cool bluish grey", intensity: low}
+    # THE ONE EXCEPTION to "winter daylight stays out of the principals' faces" (visual_signature.md, amended 2026-09-09):
+    # this is the only interior in the opera lit generously by day. The room is her altarpiece - the beatific note
+    # ("serenity with light in it") is motivated here. The grade still holds it: cold-white winter sun, desaturated 12%,
+    # NEVER golden - gold stays reserved for the portrait, so the coronation light in Act III has somewhere to arrive from.
+    key: {source: window, what: "low winter sun through the glazed band onto the square, cold-white, streaming across the white floor", side: "behind her desk", intensity: high}
+    fill: {what: "the white walls and floor bouncing it everywhere; the room has almost no shadow"}
+    window: {what: "the square beyond the glass - City Hall's colonnade, the rally stage - flat and grey against the bright room", colour: "cool white", intensity: high}
     practicals: [desk_lamp]
-    rules: ["she sits with the window behind her, so a visitor is lit and she is not",
+    rules: ["cold-white sun, never golden; gold is the portrait's",
+            "she sits with the band behind her: the visitor is lit, she is a shape against the light until she leans in",
             "the brand rose stays drained - never a saturated pink",
-            "the framed banners catch the window as glass, not as cloth",
-            "no screen glow, no lens flare"]
+            "the glass wall reads as glass: reflections of the floor over her, never a mirror",
+            "no screen glow, no lens flare, no logo mark - the wordmark is type"]
     <<: *look
   lysteria_launch:
     sets: [LysteriaInterior]
     time: mid-morning
-    key: {source: window, what: "flat grey daylight, the room lit for a presentation", intensity: even}
-    fill: {what: "the presentation boards bouncing white back into the room"}
-    practicals: [desk_lamp, ceiling_off]
-    rules: ["the rollout materials are the brightest things in the room",
-            "the cartons read as sealed - shrink-wrap catches the window"]
+    key: {source: window, what: "the same cold-white sun, the floor busy", intensity: high}
+    fill: {what: "presentation boards and shrink-wrap catching the window"}
+    practicals: [desk_lamp]
+    rules: ["the rollout materials are the brightest things on the floor", "the cartons read as sealed"]
     <<: *look
   square_overcast_drizzle:
     sets: [Square, RallyStage, CityHall, NorthRow, Bodega, Restaurant]

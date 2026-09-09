@@ -22,15 +22,47 @@ def Xform "LysteriaInterior" (
         {
             custom double backlot:facing_deg = 0
             custom token backlot:kind = "mark"
-            custom double3 backlot:pos = (24.299999999999997, 76.85, 4.2)
+            custom double3 backlot:pos = (24.099999999999998, 76.15, 4.2)
             custom token backlot:posture = "seated"
         }
 
-        def Xform "mark_table_head"
+        def Xform "mark_visitor_chair"
+        {
+            custom double backlot:facing_deg = 180
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (23.549999999999997, 77.75, 4.2)
+            custom token backlot:posture = "seated"
+        }
+
+        def Xform "mark_sofa"
+        {
+            custom double backlot:facing_deg = 270
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (19.09, 77.6, 4.2)
+            custom token backlot:posture = "seated"
+        }
+
+        def Xform "mark_glass_door"
+        {
+            custom double backlot:facing_deg = 180
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (19.09, 81.3, 4.2)
+            custom token backlot:posture = "standing"
+        }
+
+        def Xform "mark_reception"
         {
             custom double backlot:facing_deg = 90
             custom token backlot:kind = "mark"
-            custom double3 backlot:pos = (20.5, 82.5, 4.2)
+            custom double3 backlot:pos = (26.84, 86.8, 4.2)
+            custom token backlot:posture = "seated"
+        }
+
+        def Xform "mark_floor_centre"
+        {
+            custom double backlot:facing_deg = 180
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (22.2, 83.8, 4.2)
             custom token backlot:posture = "standing"
         }
 
@@ -38,7 +70,7 @@ def Xform "LysteriaInterior" (
         {
             custom double backlot:facing_deg = 180
             custom token backlot:kind = "mark"
-            custom double3 backlot:pos = (22.9, 76.4, 4.2)
+            custom double3 backlot:pos = (22.9, 75.9, 4.2)
             custom token backlot:posture = "standing"
         }
 
@@ -50,11 +82,18 @@ def Xform "LysteriaInterior" (
             custom token backlot:posture = "standing"
         }
 
-        def Xform "lyst_mission"
+        def Xform "lyst_wordmark"
         {
-            custom double3[] backlot:corners = [(27.24, 81.2, 6.5), (27.24, 82.8, 6.5), (27.24, 82.8, 5.5), (27.24, 81.2, 5.5)]
+            custom double3[] backlot:corners = [(27.229999999999997, 85.3, 6.46), (27.229999999999997, 88.3, 6.46), (27.229999999999997, 88.3, 5.84), (27.229999999999997, 85.3, 5.84)]
             custom token backlot:kind = "text_plane"
-            custom string[] backlot:text = ["LYSTERIA COALITION FOR REPRODUCTIVE JUSTICE", "EVERY BODY. EVERY CHOICE. EVERY TIME."]
+            custom string[] backlot:text = ["LYSTERIA"]
+        }
+
+        def Xform "lyst_nameplate"
+        {
+            custom double3[] backlot:corners = [(19.32, 80.568, 5.755), (18.86, 80.568, 5.755), (18.86, 80.568, 5.685), (19.32, 80.568, 5.685)]
+            custom token backlot:kind = "text_plane"
+            custom string[] backlot:text = ["SUMMER WINTERS"]
         }
     }
     variantSet "build" = {

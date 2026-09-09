@@ -48,7 +48,10 @@ PREFIX = [("man_", "person"), ("dress_", "dressing"), ("lyst_chair", "chair"), (
           ("po_cup", "prop"), ("po_newspaper", "prop"), ("po_portrait", "text_plane"), ("po_desk", "furniture"),
           ("po_credenza", "furniture"), ("po_door", "furniture"), ("po_", "building"), ("pilf_table", "furniture"),
           ("pilf_petition", "furniture"), ("pilf_wall_board", "text_plane"), ("pilf_in", "building"), ("lyst_desk", "furniture"),
-          ("lyst_conf", "furniture"), ("lyst_mission", "text_plane"), ("lyst_mbc_board", "text_plane"),
+          ("lyst_conf", "furniture"), ("lyst_mission", "text_plane"), ("lyst_wordmark", "text_plane"), ("lyst_nameplate", "text_plane"),
+          ("lyst_mbc_board", "text_plane"), ("lyst_glass", "building"), ("lyst_reception", "furniture"), ("lyst_bench", "furniture"),
+          ("lyst_sofa", "furniture"), ("lyst_coffee", "furniture"), ("lyst_staff_chair", "chair"), ("lyst_reception_chair", "chair"),
+          ("lyst_photo", "prop"), ("lyst_gallery", "prop"), ("lyst_pendant", "prop"), ("lyst_sash", "text_plane"),
           ("lyst_banner_cloth", "text_plane"), ("lyst_plaque", "text_plane"), ("lyst_sash", "text_plane"),
           ("lyst_credenza", "furniture"), ("lyst_shelf", "furniture"), ("lyst_visitor", "chair"),
           ("lyst_book", "prop"), ("lyst_lamp", "prop"), ("lyst_cup", "prop"), ("lyst_bottle", "prop"),
@@ -117,6 +120,13 @@ def render_shot(shot, stage_path, out, near, far, variants=None, depth_mode=None
     scene.view_settings.view_transform = "Standard"
     d = os.path.join(out, shot); os.makedirs(d, exist_ok=True)
 
+    # glass: the clay and lineart see through it (viewport alpha); seg, depth and normal do not see it at all - a pane
+    # is not a wall, and a depth pass that stops at LYSTERIA's glass wall would condition a solid partition (2026-09-09)
+    glass = [o for o in bpy.data.objects if o.type == "MESH" and any(sl.material and sl.material.name.lower().startswith("glass") for sl in o.material_slots)]
+    for m in bpy.data.materials:
+        if m.name.lower().startswith("glass"):
+            m.diffuse_color = (*m.diffuse_color[:3], 0.22)
+
     # ---- clay + lineart (Workbench)
     scene.render.engine = "BLENDER_WORKBENCH"
     sh = scene.display.shading; sh.light = "STUDIO"; sh.color_type = "MATERIAL"; sh.show_shadows = True; sh.show_cavity = True
@@ -129,6 +139,8 @@ def render_shot(shot, stage_path, out, near, far, variants=None, depth_mode=None
     scene.render.filepath = os.path.join(d, "lineart.png"); bpy.ops.render.render(write_still=True)
 
     # ---- segmentation-ID (Workbench, flat, one emission-free colour per class via object colour)
+    for o in glass:
+        o.hide_render = True
     sh.color_type = "OBJECT"
     seg_counts = {}
     for o in bpy.data.objects:

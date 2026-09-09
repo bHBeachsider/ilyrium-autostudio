@@ -4,7 +4,7 @@ Each entry: location, look-at target, focal length (mm on a 36 mm sensor), resol
 (camera looks down -Z with +Y up, the convention Blender and USD share). Shot cameras obey the set rule from
 NH-USA-047: exteriors look square at the facade. Survey cameras exist to look at the world, not to shoot it.
 """
-from .geometry import R_COL, R_WALL, STAGE_Y, Y_BACK, UNI_Y, NORTH_Y, OFFICE_FLOOR, PILF_X, PILF_Y, LYST_X, LYST_Y, LYST_W, BODEGA_X
+from .geometry import R_COL, R_WALL, STAGE_Y, Y_BACK, UNI_Y, NORTH_Y, OFFICE_FLOOR, PILF_X, PILF_Y, LYST_X, LYST_Y, LYST_W, LYST_D, LYST_GLASS_Y, BODEGA_X
 
 Y0 = R_COL
 
@@ -34,12 +34,16 @@ SURVEY_CAMERAS = {
     # and from the glass looking back at the wall board and the three folding tables
     "PILF_IN": dict(loc=(PILF_X - 5.6, PILF_Y - 4.6, 1.6), target=(PILF_X + 6.0, PILF_Y + 1.0, 1.3), lens=20.0, res=(1920, 1080)),
     "PILF_IN_BACK": dict(loc=(PILF_X + 5.8, PILF_Y + 4.6, 1.6), target=(PILF_X - 6.0, PILF_Y - 1.0, 1.3), lens=20.0, res=(1920, 1080)),
-    # LYSTERIA interior (build_LysteriaInterior, upper floor z0=4.2): from the door corner looking down the room to the
-    # two windows onto the square (desk right, conference table left); and from the windows back to the door and mission board
-    "LYST_IN": dict(loc=(LYST_X - LYST_W / 2 + 0.8, LYST_Y + 6.0, 4.2 + 1.6), target=(LYST_X + 1.0, LYST_Y - 7.0, 4.2 + 1.3), lens=20.0, res=(1920, 1080)),
-    "LYST_IN_BACK": dict(loc=(LYST_X - LYST_W / 2 + 1.2, LYST_Y - 6.2, 4.2 + 1.6), target=(LYST_X + 2.0, LYST_Y + 6.0, 4.2 + 1.3), lens=20.0, res=(1920, 1080)),
-    # the visitor's view: in at the door, the conference table and the plaque wall, Summer's desk against the windows
-    "LYST_DESK": dict(loc=(LYST_X - 2.6, LYST_Y + 5.4, 4.2 + 1.55), target=(LYST_X + 1.4, LYST_Y - 5.0, 4.2 + 1.15), lens=24.0, res=(2520, 1080)),
+    # LYSTERIA (build_LysteriaInterior, upper floor z0 = 4.2). The floor is the north half (door end), Summer's office is
+    # the south half behind the glass wall, backed by the glazed band onto the square.
+    "LYST_IN": dict(loc=(LYST_X - LYST_W / 2 + 0.9, LYST_Y + LYST_D / 2 - 0.9, 4.2 + 1.6), target=(LYST_X + 1.0, LYST_Y - LYST_D / 2 + 1.5, 4.2 + 1.2), lens=20.0, res=(1920, 1080)),
+    "LYST_IN_BACK": dict(loc=(LYST_X - 3.6, LYST_Y - LYST_D / 2 + 0.6, 4.2 + 1.6), target=(LYST_X + 1.5, LYST_Y + LYST_D / 2 - 1.0, 4.2 + 1.3), lens=20.0, res=(1920, 1080)),
+    # arriving: in at the door, the reception desk and the wordmark on the wall behind it
+    "LYST_RECEPTION": dict(loc=(LYST_X - LYST_W / 2 + 1.2, LYST_Y + LYST_D / 2 - 1.1, 4.2 + 1.6), target=(LYST_X + LYST_W / 2, LYST_Y + LYST_D / 2 - 2.2, 4.2 + 1.7), lens=24.0, res=(1920, 1080)),
+    # her POV: from the desk, out through the glass over the floor - she sees everyone
+    "LYST_POV": dict(loc=(LYST_X + 1.2, LYST_Y - LYST_D / 2 + 1.4, 4.2 + 1.25), target=(LYST_X - 0.7, LYST_Y + LYST_D / 2 - 2.0, 4.2 + 1.3), lens=28.0, res=(1920, 1080)),
+    # the visitor's view (2.39:1): from the floor, through the glass, to Summer against the band
+    "LYST_DESK": dict(loc=(LYST_X + 1.7, LYST_GLASS_Y + 3.6, 4.2 + 1.5), target=(LYST_X + 1.2, LYST_Y - LYST_D / 2 + 1.9, 4.2 + 1.15), lens=32.0, res=(2520, 1080)),
 }
 
 # which set state each shot camera shoots in (the build ladder, NH-USA-045)

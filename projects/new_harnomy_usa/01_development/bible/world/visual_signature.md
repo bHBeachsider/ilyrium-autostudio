@@ -16,7 +16,12 @@ bottles in the lobby.
 **Light.** Single-source tungsten, motivated (desk lamp still on at dawn; podium light; Socialist-Realist
 gold from below on the portrait; a single cold wash on the proscenium; Valencia's "own light" — one step
 downstage into it). Deep shadow holds detail in brown/charcoal. Winter daylight, when it appears, is thin
-and cool and stays out of the principals' faces.
+and cool and stays out of the principals' faces — **with one deliberate exception (2026-09-09): LYSTERIA,
+Summer's office.** The only interior in the opera lit generously by day: low winter sun through the glazed band
+onto the square, cold-white, streaming across a white floor. The room is her altarpiece; the beatific note
+("serenity with light in it") is motivated there. The grade still holds it — desaturated, never golden. Gold
+stays reserved for the portrait, so the coronation light in Act III has somewhere to arrive from. See
+`03_design/environments/lysteria_office.md`.
 
 **Color.** Desaturated by ~12%; warm tungstens lifted; the only saturated events are (a) the Socialist-Realist
 gold of the portrait and (b) the mauve of the books — and mauve is deliberately un-saturated (brownish, aged).
