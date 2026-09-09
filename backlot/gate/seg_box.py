@@ -28,16 +28,18 @@ from PIL import Image
 
 # same colours as usd/render_passes.py SEG_CLASSES (kept literal so this file runs alone on the box)
 SEG_CLASSES = {"post": (255, 40, 40), "beam": (255, 140, 0), "deck": (255, 220, 0), "chair": (0, 200, 255),
-               "podium": (0, 120, 255), "steps": (200, 0, 255), "furniture": (170, 110, 60), "person": (255, 255, 255)}
+               "podium": (0, 120, 255), "steps": (200, 0, 255), "furniture": (170, 110, 60), "person": (255, 255, 255),
+               "dressing": (0, 255, 120)}
 # Grounding DINO phrases -> class. Several phrases per class; the detector's label text is matched by keyword.
 PHRASES = [("wooden stage platform", "deck"), ("timber deck", "deck"), ("wooden joists", "deck"),
            ("tall wooden post", "post"), ("wooden upright pole", "post"),
            ("horizontal wooden beam", "beam"), ("folding chair", "chair"), ("wooden podium", "podium"),
            ("wooden steps", "steps"), ("wooden desk", "furniture"), ("credenza", "furniture"), ("a person", "person"),
-           ("a seated man", "person")]
+           ("a seated man", "person"), ("pumpkin", "dressing"), ("hay bale", "dressing"), ("corn stalk sheaf", "dressing"),
+           ("garland", "dressing")]
 KEYWORDS = {"deck": ("stage", "deck", "platform", "joist"), "post": ("post", "upright", "pole"), "beam": ("beam",),
             "chair": ("chair",), "podium": ("podium",), "steps": ("step", "stair"), "furniture": ("desk", "credenza", "table"),
-            "person": ("person", "man", "woman", "figure")}
+            "person": ("person", "man", "woman", "figure"), "dressing": ("pumpkin", "hay", "sheaf", "corn", "garland", "gourd")}
 
 _models = {}
 
@@ -73,7 +75,7 @@ def world_band(path, passes_root, margin=0.15):
         return None
     seg = np.asarray(Image.open(seg_path).convert("RGB")).astype(int)
     mask = np.zeros(seg.shape[:2], bool)
-    for c in ("deck", "post", "beam", "chair", "steps", "podium", "furniture", "person"):
+    for c in ("deck", "post", "beam", "chair", "steps", "podium", "furniture", "person", "dressing"):
         r, g, b = SEG_CLASSES[c]
         mask |= (np.abs(seg[..., 0] - r) < 8) & (np.abs(seg[..., 1] - g) < 8) & (np.abs(seg[..., 2] - b) < 8)
     ys, xs = np.nonzero(mask)
@@ -85,7 +87,7 @@ def world_band(path, passes_root, margin=0.15):
     # the PLATFORM band (no posts): deck/beam/chair/steps/podium boxes must live here - a 5 m post stretches the
     # structure band up to the portico, and the detector will box the portico as "a wooden platform"
     flat = np.zeros_like(mask)
-    for c in ("deck", "beam", "chair", "steps", "podium", "furniture", "person"):
+    for c in ("deck", "beam", "chair", "steps", "podium", "furniture", "person", "dressing"):
         r, g, b = SEG_CLASSES[c]
         flat |= (np.abs(seg[..., 0] - r) < 8) & (np.abs(seg[..., 1] - g) < 8) & (np.abs(seg[..., 2] - b) < 8)
     fy, fx = np.nonzero(flat)
@@ -143,7 +145,7 @@ def segment(path, device="cuda", box_thr=0.22, text_thr=0.2, max_boxes=40, passe
     # posts and beam are thin: subtract them from the deck so the deck mask is decking, not the whole structure
     masks["deck"] &= ~(masks["post"] | masks["beam"])
     seg = np.zeros((H, W, 3), np.uint8)
-    for c in ("deck", "furniture", "chair", "podium", "steps", "beam", "post", "person"):      # later classes paint over earlier
+    for c in ("deck", "furniture", "dressing", "chair", "podium", "steps", "beam", "post", "person"):      # later classes paint over earlier
         seg[masks[c]] = SEG_CLASSES[c]
     out_png = path[:-4] + "_segkey.png"
     Image.fromarray(seg).save(out_png)

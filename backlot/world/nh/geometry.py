@@ -46,7 +46,7 @@ def mat(name):
     if name in _MATS and _MATS[name].name in bpy.data.materials:
         return _MATS[name]
     rgb = dict(stone=(0.70, 0.68, 0.62), pave=(0.45, 0.45, 0.47), road=(0.30, 0.30, 0.32),
-               timber=(0.85, 0.65, 0.35), banner=(0.55, 0.30, 0.42), brick=(0.55, 0.34, 0.28), mannequin=(0.80, 0.55, 0.50),
+               timber=(0.85, 0.65, 0.35), banner=(0.55, 0.30, 0.42), brick=(0.55, 0.34, 0.28), mannequin=(0.80, 0.55, 0.50), hay=(0.78, 0.66, 0.36), pumpkin=(0.85, 0.45, 0.12), garland=(0.55, 0.40, 0.18),
                brick_pale=(0.66, 0.50, 0.42), shop=(0.35, 0.42, 0.44), glass=(0.30, 0.40, 0.50),
                veh=(0.80, 0.80, 0.82), green=(0.42, 0.50, 0.36), man=(0.95, 0.75, 0.10))[name]
     m = bpy.data.materials.new(name); m.diffuse_color = (*rgb, 1.0)
@@ -226,6 +226,23 @@ def build_RallyStage():
                     chair("chair_%s_%d" % (st, k + 9), k * 1.1, STAGE_Y - 0.8, ST_H)
     with asset("RallyStage", "feast"):
         box("portrait_rig", 0, Y_BACK + 0.6, ST_H + 3.0, 6.0, 0.2, 4.0, "banner")     # Summer's portrait, Act III
+    # harvest dressing as DATA (the judge kept finding it missing when it lived only in adjectives): hay bales and
+    # pumpkins along the stage front and beside the steps, garlands on the crossbeam; sheaves at the columns and
+    # pumpkins on the granite steps belong to the building and live in build_HarvestDressing
+    for st in ("finished", "feast"):
+        with asset("RallyStage", st):
+            rng = 901
+            for k in range(-5, 6):
+                if k % 2:
+                    box("dress_hay_%s_%d" % (st, k + 5), k * 2.1, STAGE_Y + ST_D / 2 + 0.5, 0.22, 0.9, 0.45, 0.44, "hay")
+                for j in range(2):
+                    rng = (rng * 1103515245 + 12345) % 2 ** 31
+                    r = 0.16 + 0.12 * ((rng >> 8) % 100) / 100.0
+                    sphere("dress_pumpkin_%s_%d_%d" % (st, k + 5, j), k * 2.1 + (j - 0.5) * 0.6, STAGE_Y + ST_D / 2 + 0.25 + 0.4 * j, r, r, "pumpkin")
+            for sx in (-1, 1):                                                          # beside the steps
+                for j in range(3):
+                    sphere("dress_pumpkin_steps_%s_%d_%d" % (st, sx > 0, j), sx * (ST_W / 2 + 1.6 + 0.35 * j), STAGE_Y + 1.2 - 0.3 * j, 0.22, 0.22, "pumpkin")
+            _limb("dress_garland_%s" % st, (-(ST_W / 2 - 0.4), Y_BACK + 0.3 + 0.35, ST_H + 5.0 - 0.15), (ST_W / 2 - 0.4, Y_BACK + 0.3 + 0.35, ST_H + 5.0 - 0.15), 0.12, "garland")
 
 
 def build_BuildSiteDressing():
@@ -374,6 +391,19 @@ def _interior_room(tag, cx, cy, w, d, z0, h, m="stone", door=None, windows=()):
             0.1 if abs(door[1] - cy) > abs(door[0] - cx) else 1.0, 2.1, "timber")
 
 
+def build_HarvestDressing():
+    """Corn-stalk sheaves tied to the columns and pumpkins on the granite steps: present in the finished and feast
+    states of the square (the RallyStage's own dressing rides with the stage; this rides with the building)."""
+    for st in ("finished", "feast"):
+        with asset("HarvestDressing", st):
+            for k in range(8):
+                a = math.radians(20 + 20 * k)
+                x, y = R_COL * math.cos(a), R_COL * math.sin(a)
+                cone("dress_sheaf_%s_%d" % (st, k), x + 0.9 * math.cos(a), y + 0.9 * math.sin(a), 5.4, 0.45, 2.6, "hay")
+            for k in range(7):
+                sphere("dress_pumpkin_step_%s_%d" % (st, k), -5.0 + 1.7 * k, R_COL + 1.4 + 0.4 * (k % 3), 5.0 - 0.83 * (k % 3 + 1) + 0.6, 0.24, "pumpkin")
+
+
 def build_PILFInterior():
     """The PILF office: the ground floor of the storefront on the west side - a campaign office, folding tables,
     a petition table by the door, the sign's back visible through the shopfront glass."""
@@ -402,19 +432,56 @@ def build_LysteriaInterior():
         box("lyst_mission", LYST_X + 4.9, LYST_Y, z0 + 1.9, 0.05, 1.6, 1.0, "banner")
 
 
-def mannequin(name, x, y, z0, facing_deg=0.0, height=1.75):
-    """A neutral human figure on a mark: head, torso, hips, legs - enough for a depth pass to place a person at the
-    right scale and heading, nothing more (character identity comes from the generation layer, never from here)."""
+def _limb(name, a, b, r, m="mannequin"):
+    """A cylinder from point a to point b (metres), radius r."""
+    import mathutils
+    a = mathutils.Vector(a); b = mathutils.Vector(b); d = b - a
+    bpy.ops.mesh.primitive_cylinder_add(vertices=12, radius=r, depth=max(d.length, 0.01), location=(a + b) / 2)
+    o = bpy.context.object; o.name = name
+    o.rotation_euler = d.to_track_quat("Z", "Y").to_euler()
+    o.data.materials.append(mat(m)); return _tag(o)
+
+
+def mannequin(name, x, y, z0, facing_deg=0.0, height=1.75, posture="standing"):
+    """A HUMAN-SHAPED figure on a mark: head, neck, shoulders, tapered torso, upper arms, forearms, thighs, shins -
+    enough silhouette for a depth/edge pass to read "a person" (a box-and-sphere figure was drawn as a bust on the
+    credenza, 0/10 takes, 2026-09-08). Identity still comes from the generation layer, never from here.
+    posture "seated": thighs horizontal toward +facing, shins vertical, forearms forward on a desk at 0.72 m."""
+    import mathutils
     h = height
-    box(name + "_legs", x, y, z0 + 0.45 * h, 0.34, 0.22, 0.9 * h, "mannequin", rot=math.radians(facing_deg))
-    box(name + "_torso", x, y, z0 + 0.66 * h, 0.44, 0.24, 0.32 * h, "mannequin", rot=math.radians(facing_deg))
-    sphere(name + "_head", x, y, z0 + 0.93 * h, 0.11, "mannequin")
+    R = mathutils.Matrix.Rotation(math.radians(facing_deg), 3, "Z")
+    def P(dx, dy, dz):                      # body-local (x right, y forward, z up) -> world
+        v = R @ mathutils.Vector((dx, dy, dz)); return (x + v.x, y + v.y, z0 + dz)
+    sh_w, hip_w = 0.22 * h, 0.16 * h
+    if posture == "seated":
+        seat = 0.26 * h                     # seat height ~0.45 m at 1.75
+        hip, shoulder = seat, seat + 0.34 * h
+        head = shoulder + 0.115 * h
+        for sx in (-1, 1):
+            _limb(name + "_thigh_%d" % (sx > 0), P(sx * hip_w * 0.4, 0.0, hip), P(sx * hip_w * 0.4, 0.24 * h, hip), 0.075)
+            _limb(name + "_shin_%d" % (sx > 0), P(sx * hip_w * 0.4, 0.24 * h, hip), P(sx * hip_w * 0.4, 0.24 * h, 0.02), 0.06)
+            _limb(name + "_upperarm_%d" % (sx > 0), P(sx * sh_w * 0.5, 0.0, shoulder), P(sx * sh_w * 0.55, 0.10 * h, shoulder - 0.16 * h), 0.05)
+            _limb(name + "_forearm_%d" % (sx > 0), P(sx * sh_w * 0.55, 0.10 * h, shoulder - 0.16 * h), P(sx * sh_w * 0.35, 0.28 * h, shoulder - 0.14 * h), 0.045)
+    else:
+        hip, shoulder = 0.52 * h, 0.82 * h
+        head = shoulder + 0.115 * h
+        for sx in (-1, 1):
+            _limb(name + "_thigh_%d" % (sx > 0), P(sx * hip_w * 0.4, 0.0, hip), P(sx * hip_w * 0.4, 0.0, 0.27 * h), 0.075)
+            _limb(name + "_shin_%d" % (sx > 0), P(sx * hip_w * 0.4, 0.0, 0.27 * h), P(sx * hip_w * 0.4, 0.02, 0.02), 0.06)
+            _limb(name + "_upperarm_%d" % (sx > 0), P(sx * sh_w * 0.5, 0.0, shoulder), P(sx * sh_w * 0.58, 0.0, shoulder - 0.17 * h), 0.05)
+            _limb(name + "_forearm_%d" % (sx > 0), P(sx * sh_w * 0.58, 0.0, shoulder - 0.17 * h), P(sx * sh_w * 0.6, 0.05, shoulder - 0.32 * h), 0.045)
+    # torso: hips box, chest box a little wider, shoulders bar, neck, head
+    box(name + "_hips", *P(0, 0, hip + 0.06 * h), hip_w * 1.9, 0.13 * h, 0.14 * h, "mannequin", rot=math.radians(facing_deg))
+    box(name + "_chest", *P(0, 0, shoulder - 0.10 * h), sh_w * 1.8, 0.14 * h, 0.20 * h, "mannequin", rot=math.radians(facing_deg))
+    _limb(name + "_shoulders", P(-sh_w * 0.5, 0, shoulder), P(sh_w * 0.5, 0, shoulder), 0.05)
+    _limb(name + "_neck", P(0, 0, shoulder), P(0, 0, shoulder + 0.05 * h), 0.04)
+    sphere(name + "_head", *P(0, 0.01, head), 0.065 * h, "mannequin")
 
 
 def build_Mannequins():
     """Mannequins on their marks, one state per scene family; empty when the scene has nobody."""
     with asset("Mannequins", "office_dawn"):
-        mannequin("man_pengold", 0, -3.0, OFFICE_FLOOR, 0.0, 1.30)            # seated: 1.30 m tall figure at the desk chair
+        mannequin("man_pengold", 0, -3.0, OFFICE_FLOOR, 0.0, 1.78, posture="seated")   # seated at the desk chair, facing the windows
     with asset("Mannequins", "feast"):
         mannequin("man_pengold", 0, STAGE_Y + 1.0, ST_H, 0.0)                 # at the podium
         mannequin("man_summer", 2.0, Y_BACK + 1.5, ST_H, 0.0)                 # beneath the portrait
@@ -425,17 +492,18 @@ def build_Mannequins():
             mannequin("man_worker_%d" % k, x, y, 0.0, 180.0)
 
 
-BUILDERS = [build_PengoldOffice, build_PILFInterior, build_LysteriaInterior, build_Mannequins,
+BUILDERS = [build_PengoldOffice, build_PILFInterior, build_LysteriaInterior, build_Mannequins, build_HarvestDressing,
             build_CityHall, build_Banner, build_Square, build_RallyStage, build_BuildSiteDressing, build_NorthRow,
             build_EastSide, build_WestSide, build_AxisStreet, build_University, build_Ground]
 
 # asset id -> the states it has (assets absent from this table are stateless)
 STATEFUL = {"RallyStage": STAGE_STATES, "BuildSite": ["joists", "half_decked", "beam_seated", "swept"],
-            "PengoldOffice": ["dawn", "meeting"], "Mannequins": ["office_dawn", "feast", "build"]}
+            "PengoldOffice": ["dawn", "meeting"], "Mannequins": ["office_dawn", "feast", "build"],
+            "HarvestDressing": ["finished", "feast"]}
 # one variantSet on /World per state FAMILY; each drives only the assets listed (an asset absent from a family is
 # untouched by that family's selection). "none" deactivates the asset.
 STATE_FAMILIES = {
-    "build":  dict(states=STAGE_STATES, assets=["RallyStage", "BuildSite"], default="finished"),
+    "build":  dict(states=STAGE_STATES, assets=["RallyStage", "BuildSite", "HarvestDressing"], default="finished"),
     "office": dict(states=["dawn", "meeting"], assets=["PengoldOffice"], default="dawn"),
     "people": dict(states=["none", "office_dawn", "feast", "build"], assets=["Mannequins"], default="none"),
 }

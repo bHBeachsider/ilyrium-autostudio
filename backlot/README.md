@@ -221,3 +221,22 @@ normalisation is now per camera (`cameras.py DEPTH_MODE`): linear for exteriors,
 
 Also learned: the geometry check expects the stage posts through the office windows (they project into frame) —
 interiors need the post check scoped to exteriors; recorded, not yet done.
+
+### The actor and the dressing layer, measured (2026-09-09, box session 5, ~40 min GPU, 35 takes)
+
+Two arms for the office medium, ten takes each, same softer control (edge 0.2, depth 0.6):
+
+| arm | the room | a figure on the mark (desk chair, reading) | a real man | notes |
+|---|---|---|---|---|
+| A — passes condition the SET only, the man left to the prompt | 10/10 | 1/10 | 4/10 | best dress so far (drapes, windows, columns through the glass); the man wanders — standing, or seated by the window |
+| B — human-shaped mannequin in the passes | 10/10 | 10/10 | 4/10 | posture and mark held every time; the SPHERE head is drawn as a globe, helmet or lamp in 6/10 |
+
+Neither reaches nine in ten, and the split is informative: the world can hold the mark and the posture (B), and the
+prompt can make a man (A); what fails is the one primitive that does not look like its subject. Next fix at the
+source: an ovoid head with a hair cap and a neck, and a person-region FADE in the depth/edge control (the body's
+silhouette guides, it does not dictate) — then ten more takes. `phase3b_SH005_A_set_only.png`, `_B_mannequin.png`.
+
+Dressing as data works: pumpkins and hay bales placed in the `finished` state appear along the stage front in 5/5
+SH009 takes (`phase3b_SH009_dressing.png`; near-recall 14–55%, advisory threshold 0.30 until calibrated). The
+sheaves at the columns are faint and the garland on the beam is not drawn — thin things at distance again, the same
+lesson as SH006's posts. Interior seg extent is advisory until calibrated (35 office takes were noisy on it).

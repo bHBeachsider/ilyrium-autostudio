@@ -14,17 +14,17 @@ def Xform "geo" (
     }
 )
 {
-    def Xform "flatbed_cab"
+    def Xform "flatbed"
     {
         custom string userProperties:backlot_asset = "Vehicles"
         custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "flatbed_cab"
+        custom string userProperties:blender:object_name = "flatbed"
         float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (2.4, 2.2, 2.4)
-        double3 xformOp:translate = (-38, 42.70000076293945, 1.899999976158142)
+        float3 xformOp:scale = (2.5, 8, 1.2)
+        double3 xformOp:translate = (-38, 46, 1)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "flatbed_cab" (
+        def Mesh "flatbed" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -39,7 +39,7 @@ def Xform "geo" (
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "flatbed_cab"
+            custom string userProperties:blender:data_name = "flatbed"
         }
     }
 
@@ -95,17 +95,17 @@ def Xform "geo" (
         }
     }
 
-    def Xform "flatbed"
+    def Xform "flatbed_cab"
     {
         custom string userProperties:backlot_asset = "Vehicles"
         custom string userProperties:backlot_state = "*"
-        custom string userProperties:blender:object_name = "flatbed"
+        custom string userProperties:blender:object_name = "flatbed_cab"
         float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (2.5, 8, 1.2)
-        double3 xformOp:translate = (-38, 46, 1)
+        float3 xformOp:scale = (2.4, 2.2, 2.4)
+        double3 xformOp:translate = (-38, 42.70000076293945, 1.899999976158142)
         uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
 
-        def Mesh "flatbed" (
+        def Mesh "flatbed_cab" (
             active = true
             prepend apiSchemas = ["MaterialBindingAPI"]
         )
@@ -120,7 +120,7 @@ def Xform "geo" (
             )
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "flatbed"
+            custom string userProperties:blender:data_name = "flatbed_cab"
         }
     }
 }

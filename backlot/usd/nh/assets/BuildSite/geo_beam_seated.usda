@@ -14,58 +14,6 @@ def Xform "geo" (
     }
 )
 {
-    def Xform "lumber_beam_seated_0"
-    {
-        custom string userProperties:backlot_asset = "BuildSite"
-        custom string userProperties:backlot_state = "beam_seated"
-        custom string userProperties:blender:object_name = "lumber_beam_seated_0"
-        float3 xformOp:rotateXYZ = (0, -0, 0)
-        float3 xformOp:scale = (5, 1.2, 0.8)
-        double3 xformOp:translate = (-20, 49, 0.4000000059604645)
-        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
-
-        def Mesh "lumber_beam_seated_0" (
-            active = true
-            prepend apiSchemas = ["MaterialBindingAPI"]
-        )
-        {
-            uniform bool doubleSided = 1
-            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
-            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
-            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
-            rel material:binding = </geo/_materials/timber>
-            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
-                interpolation = "faceVarying"
-            )
-            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
-            uniform token subdivisionScheme = "none"
-            custom string userProperties:blender:data_name = "lumber_beam_seated_0"
-        }
-    }
-
-    def Scope "_materials"
-    {
-        def Material "timber"
-        {
-            token outputs:surface.connect = </geo/_materials/timber/Principled_BSDF.outputs:surface>
-            custom string userProperties:blender:data_name = "timber"
-
-            def Shader "Principled_BSDF"
-            {
-                uniform token info:id = "UsdPreviewSurface"
-                float inputs:clearcoat = 0
-                float inputs:clearcoatRoughness = 0.03
-                color3f inputs:diffuseColor = (0.85, 0.65, 0.35)
-                float inputs:ior = 1.5
-                float inputs:metallic = 0
-                float inputs:opacity = 1
-                float inputs:roughness = 0.9
-                float inputs:specular = 0.5
-                token outputs:surface
-            }
-        }
-    }
-
     def Xform "lumber_beam_seated_1"
     {
         custom string userProperties:backlot_asset = "BuildSite"
@@ -92,6 +40,58 @@ def Xform "geo" (
             point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
             uniform token subdivisionScheme = "none"
             custom string userProperties:blender:data_name = "lumber_beam_seated_1"
+        }
+    }
+
+    def Scope "_materials"
+    {
+        def Material "timber"
+        {
+            token outputs:surface.connect = </geo/_materials/timber/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "timber"
+
+            def Shader "Principled_BSDF"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.03
+                color3f inputs:diffuseColor = (0.85, 0.65, 0.35)
+                float inputs:ior = 1.5
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.9
+                float inputs:specular = 0.5
+                token outputs:surface
+            }
+        }
+    }
+
+    def Xform "lumber_beam_seated_0"
+    {
+        custom string userProperties:backlot_asset = "BuildSite"
+        custom string userProperties:backlot_state = "beam_seated"
+        custom string userProperties:blender:object_name = "lumber_beam_seated_0"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (5, 1.2, 0.8)
+        double3 xformOp:translate = (-20, 49, 0.4000000059604645)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lumber_beam_seated_0" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lumber_beam_seated_0"
         }
     }
 

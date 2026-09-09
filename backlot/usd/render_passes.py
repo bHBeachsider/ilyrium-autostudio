@@ -41,9 +41,10 @@ SEG_CLASSES = {                      # class -> flat colour (sRGB 0-255); order 
     "prop":       (120, 80, 40),
     "ground":     (20, 20, 25),
     "person":     (255, 255, 255),
+    "dressing":   (0, 255, 120),
     "furniture":  (170, 110, 60),
 }
-PREFIX = [("man_", "person"), ("lyst_chair", "chair"), ("po_drape", "prop"), ("po_book", "prop"), ("po_lamp", "prop"),
+PREFIX = [("man_", "person"), ("dress_", "dressing"), ("lyst_chair", "chair"), ("po_drape", "prop"), ("po_book", "prop"), ("po_lamp", "prop"),
           ("po_cup", "prop"), ("po_newspaper", "prop"), ("po_portrait", "text_plane"), ("po_desk", "furniture"),
           ("po_credenza", "furniture"), ("po_door", "furniture"), ("po_", "building"), ("pilf_table", "furniture"),
           ("pilf_petition", "furniture"), ("pilf_wall_board", "text_plane"), ("pilf_in", "building"), ("lyst_desk", "furniture"),

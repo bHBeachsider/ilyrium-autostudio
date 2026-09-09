@@ -145,6 +145,8 @@ def run_keymask(key_path, passes_dir, keymask_path, debug=None, blocking=True):
     for d in (truth, pred):
         d["deck"] = d.get("deck", 0) | d.get("beam", np.zeros_like(truth["deck"]))
     group = STRUCTURE if truth.get("deck", np.zeros(1)).mean() >= MIN_PASS_AREA else INTERIOR   # a room has no deck
+    if group is INTERIOR:
+        blocking = False        # interior extent is not calibrated against the eye yet (2026-09-09: 35 office takes, noisy) - advisory
     present = [c for c in group if c in truth and c not in ("post", "beam") and truth[c].mean() >= MIN_PASS_AREA]
     for d in (truth, pred):
         d["structure"] = np.zeros_like(next(iter(d.values())))
@@ -153,7 +155,9 @@ def run_keymask(key_path, passes_dir, keymask_path, debug=None, blocking=True):
                 d["structure"] |= d[c]
     W, H = size
     res, fails, warns, lines = {}, 0, 0, []
-    for c in ("structure", "deck", "post", "beam", "chair"):
+    for c in ("structure", "deck", "post", "beam", "chair", "person", "dressing"):
+        if c not in truth:
+            continue
         t, p = truth[c], pred.get(c, np.zeros_like(truth[c])); area = t.mean()
         r = dict(pass_area=round(float(area), 4), key_area=round(float(p.mean()), 4), iou=round(iou(p, t), 3))
         if area < MIN_PASS_AREA:
@@ -204,6 +208,19 @@ def run_keymask(key_path, passes_dir, keymask_path, debug=None, blocking=True):
                 lines.append("  WARN post: %d of %d pass posts have no key post within 3%% of frame - LOOK at it" % (missing, r["posts_in_pass"]))
             else:
                 r["verdict"] = "PASS"; lines.append("  PASS post IoU %.2f, every pass post has a key post at its column" % r["iou"])
+        elif c in ("person", "dressing"):
+            # PRESENCE, advisory: how much of what the world placed did the key draw? (people and harvest dressing
+            # are the things the generator kept dropping - measured 2026-09-08)
+            recall = float((p & t).sum() / max(t.sum(), 1)); r["recall"] = round(recall, 3)
+            # a dilated recall too: the key's pumpkin need not sit on the pass's pixel, only within ~2% of frame
+            from scipy import ndimage
+            dil = ndimage.binary_dilation(p, iterations=max(1, int(0.02 * W)))
+            r["recall_near"] = round(float((dil & t).sum() / max(t.sum(), 1)), 3)
+            if r["recall_near"] < 0.3:
+                r["verdict"] = "WARN"; warns += 1
+                lines.append("  WARN %-9s the key draws %.0f%% of what the world placed (near-recall) - LOOK at it" % (c, 100 * r["recall_near"]))
+            else:
+                r["verdict"] = "PASS"; lines.append("  PASS %-9s present: near-recall %.0f%% (pixel IoU %.2f)" % (c, 100 * r["recall_near"], r["iou"]))
         else:
             r["verdict"] = "info"; lines.append("  info %-9s IoU %.2f" % (c, r["iou"]))
         res[c] = r

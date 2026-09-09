@@ -1,0 +1,317 @@
+{
+ "key": "renders/keyframes_p4/B/S101_SH004/take_6101.png",
+ "detections": [
+  {
+   "cls": "deck",
+   "box": [
+    1071.2518310546875,
+    429.7091979980469,
+    1337.9287109375,
+    628.2100830078125
+   ],
+   "score": 0.4043058753013611,
+   "label": "wooden stage platform wooden podium wooden desk"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    1066.9478759765625,
+    343.7969665527344,
+    1504.4256591796875,
+    633.1171264648438
+   ],
+   "score": 0.36794134974479675,
+   "label": "wooden joists"
+  },
+  {
+   "cls": "person",
+   "box": [
+    1283.5299072265625,
+    350.5987854003906,
+    1474.3175048828125,
+    611.360107421875
+   ],
+   "score": 0.3654613494873047,
+   "label": "a person a seated man"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    1322.19677734375,
+    443.754150390625,
+    1513.9415283203125,
+    648.5803833007812
+   ],
+   "score": 0.3319806754589081,
+   "label": "wooden platform chair wooden podium"
+  },
+  {
+   "cls": "person",
+   "box": [
+    1286.9166259765625,
+    350.7203369140625,
+    1467.9998779296875,
+    484.6706237792969
+   ],
+   "score": 0.32187753915786743,
+   "label": "a person a seated man"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    1070.0830078125,
+    425.4382019042969,
+    1513.553955078125,
+    646.1338500976562
+   ],
+   "score": 0.3197711408138275,
+   "label": "wooden stage platform deck wooden desk"
+  },
+  {
+   "cls": "steps",
+   "box": [
+    282.15386962890625,
+    343.44622802734375,
+    423.32977294921875,
+    432.2087707519531
+   ],
+   "score": 0.30752336978912354,
+   "label": "wooden steps"
+  },
+  {
+   "cls": "steps",
+   "box": [
+    647.4234008789062,
+    349.71063232421875,
+    759.5181274414062,
+    410.54425048828125
+   ],
+   "score": 0.28831028938293457,
+   "label": "wooden steps"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    5.812085151672363,
+    401.8619079589844,
+    1531.56591796875,
+    665.5252075195312
+   ],
+   "score": 0.27653828263282776,
+   "label": "stage timber deck"
+  },
+  {
+   "cls": "steps",
+   "box": [
+    647.9646606445312,
+    369.9580078125,
+    755.6537475585938,
+    408.573974609375
+   ],
+   "score": 0.2692405581474304,
+   "label": "wooden steps"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    1035.927978515625,
+    301.2904968261719,
+    1521.321533203125,
+    648.2401733398438
+   ],
+   "score": 0.26309528946876526,
+   "label": "wooden joists"
+  },
+  {
+   "cls": "steps",
+   "box": [
+    282.2731018066406,
+    383.13916015625,
+    419.4241638183594,
+    431.30865478515625
+   ],
+   "score": 0.24246981739997864,
+   "label": "wooden steps"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    281.6938781738281,
+    340.76690673828125,
+    685.1923828125,
+    431.2964782714844
+   ],
+   "score": 0.23165573179721832,
+   "label": "timber deck"
+  },
+  {
+   "cls": "chair",
+   "box": [
+    1307.3138427734375,
+    411.1129150390625,
+    1478.2958984375,
+    611.3489990234375
+   ],
+   "score": 0.22585302591323853,
+   "label": "chair"
+  },
+  {
+   "cls": "chair",
+   "box": [
+    1305.97705078125,
+    500.96136474609375,
+    1341.5826416015625,
+    610.6259765625
+   ],
+   "score": 0.22269569337368011,
+   "label": "chair"
+  }
+ ],
+ "dropped": [
+  {
+   "cls": "dressing",
+   "box": [
+    308.88226318359375,
+    54.348777770996094,
+    417.94598388671875,
+    365.84326171875
+   ],
+   "score": 0.42331933975219727,
+   "label": "corn stalk sheaf garland",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "beam",
+   "box": [
+    241.32785034179688,
+    1.8119072914123535,
+    1540.296142578125,
+    86.8752670288086
+   ],
+   "score": 0.3629026412963867,
+   "label": "horizontal wooden beam",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "post",
+   "box": [
+    587.8129272460938,
+    66.18711853027344,
+    628.177001953125,
+    412.17181396484375
+   ],
+   "score": 0.36242422461509705,
+   "label": "tall wooden post wooden upright pole",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "post",
+   "box": [
+    411.3158264160156,
+    41.937416076660156,
+    477.3049011230469,
+    425.3836975097656
+   ],
+   "score": 0.3375103771686554,
+   "label": "tall wooden post wooden upright pole",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "dressing",
+   "box": [
+    679.5720825195312,
+    100.44175720214844,
+    759.3173217773438,
+    365.27490234375
+   ],
+   "score": 0.29434698820114136,
+   "label": "corn stalk sheaf garland",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "dressing",
+   "box": [
+    505.543212890625,
+    82.01496124267578,
+    592.8573608398438,
+    348.562744140625
+   ],
+   "score": 0.2627967894077301,
+   "label": "corn stalk sheaf garland",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "post",
+   "box": [
+    574.229248046875,
+    59.35115051269531,
+    644.6819458007812,
+    422.8932800292969
+   ],
+   "score": 0.25919491052627563,
+   "label": "tall wooden post wooden upright pole",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "post",
+   "box": [
+    812.5924682617188,
+    78.57759857177734,
+    840.8319091796875,
+    406.2652587890625
+   ],
+   "score": 0.22621048986911774,
+   "label": "tall wooden post wooden upright pole",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "post",
+   "box": [
+    957.1737060546875,
+    78.2421646118164,
+    985.637939453125,
+    406.8157958984375
+   ],
+   "score": 0.2237534523010254,
+   "label": "tall wooden post wooden upright pole",
+   "dropped": "less than 70% inside the world's structure band"
+  }
+ ],
+ "band": {
+  "core": [
+   0.16468253968253968,
+   0.4666666666666667,
+   0.9674603174603175,
+   0.9638888888888889
+  ],
+  "band": [
+   0.014682539682539686,
+   0.31666666666666665,
+   1.1174603174603175,
+   1.113888888888889
+  ],
+  "core_area": 0.39915895061728396,
+  "platform_band": [
+   0.014682539682539686,
+   0.31666666666666665,
+   1.1174603174603175,
+   1.113888888888889
+  ]
+ },
+ "seconds_detect": 0.18,
+ "seconds_total": 0.43,
+ "models": "IDEA-Research/grounding-dino-tiny + facebook/sam-vit-base",
+ "box_thr": 0.22,
+ "text_thr": 0.2,
+ "areas": {
+  "post": 0.0,
+  "beam": 0.0,
+  "deck": 0.35348,
+  "chair": 0.0097,
+  "podium": 0.0,
+  "steps": 0.01104,
+  "furniture": 0.0,
+  "person": 0.01205,
+  "dressing": 0.0
+ }
+}

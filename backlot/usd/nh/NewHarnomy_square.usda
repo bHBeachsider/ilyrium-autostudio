@@ -70,6 +70,12 @@ def Xform "World" (
     {
     }
 
+    def Xform "HarvestDressing" (
+        prepend references = @./assets/HarvestDressing/HarvestDressing.usda@
+    )
+    {
+    }
+
     def Xform "LysteriaInterior" (
         prepend references = @./assets/LysteriaInterior/LysteriaInterior.usda@
     )
@@ -167,6 +173,12 @@ def Xform "World" (
             {
             }
 
+            over "HarvestDressing" (
+                active = false
+            )
+            {
+            }
+
         }
         "feast" {
             over "RallyStage" (
@@ -184,6 +196,15 @@ def Xform "World" (
             {
             }
 
+            over "HarvestDressing" (
+                active = true
+                variants = {
+                    string build = "feast"
+                }
+            )
+            {
+            }
+
         }
         "finished" {
             over "RallyStage" (
@@ -197,6 +218,15 @@ def Xform "World" (
 
             over "BuildSite" (
                 active = false
+            )
+            {
+            }
+
+            over "HarvestDressing" (
+                active = true
+                variants = {
+                    string build = "finished"
+                }
             )
             {
             }
@@ -221,6 +251,12 @@ def Xform "World" (
             {
             }
 
+            over "HarvestDressing" (
+                active = false
+            )
+            {
+            }
+
         }
         "joists" {
             over "RallyStage" (
@@ -241,6 +277,12 @@ def Xform "World" (
             {
             }
 
+            over "HarvestDressing" (
+                active = false
+            )
+            {
+            }
+
         }
         "swept" {
             over "RallyStage" (
@@ -257,6 +299,12 @@ def Xform "World" (
                 variants = {
                     string build = "swept"
                 }
+            )
+            {
+            }
+
+            over "HarvestDressing" (
+                active = false
             )
             {
             }
