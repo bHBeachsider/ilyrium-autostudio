@@ -122,8 +122,9 @@ def render_shot(shot, stage_path, out, near, far, variants=None, depth_mode=None
     scene.view_settings.view_transform = "Standard"
     d = os.path.join(out, shot); os.makedirs(d, exist_ok=True)
 
-    # glass: the clay and lineart see through it (viewport alpha); seg, depth and normal do not see it at all - a pane
-    # is not a wall, and a depth pass that stops at LYSTERIA's glass wall would condition a solid partition (2026-09-09)
+    # glass: the clay sees through it (viewport alpha); lineart, seg, depth and normal do not see it at all - a pane is
+    # not a wall, a depth pass that stops at LYSTERIA's glass wall would condition a solid partition, and the outline
+    # pass cannot draw what is behind it (2026-09-09)
     glass = [o for o in bpy.data.objects if o.type == "MESH" and any(sl.material and sl.material.name.lower().startswith("glass") for sl in o.material_slots)]
     for m in bpy.data.materials:
         if m.name.lower().startswith("glass"):
@@ -135,14 +136,17 @@ def render_shot(shot, stage_path, out, near, far, variants=None, depth_mode=None
     scene.world = bpy.data.worlds.new("w"); scene.world.color = (0.75, 0.80, 0.86)
     scene.render.image_settings.file_format = "PNG"; scene.render.image_settings.color_depth = "8"
     scene.render.filepath = os.path.join(d, "clay.png"); bpy.ops.render.render(write_still=True)
+    # lineart: Workbench's outline pass loses every object BEHIND a transparent surface (LYSTERIA's glass wall blanked the
+    # whole office, 2026-09-09) - and the edge control is this image inverted. Glass is hidden from here on; the mullions,
+    # head and sill still draw the wall's line.
+    for o in glass:
+        o.hide_render = True
     sh.light = "FLAT"; sh.color_type = "SINGLE"; sh.single_color = (1, 1, 1); sh.show_shadows = False; sh.show_cavity = False
     sh.show_object_outline = True; sh.object_outline_color = (0, 0, 0)
     scene.world.color = (1, 1, 1)
     scene.render.filepath = os.path.join(d, "lineart.png"); bpy.ops.render.render(write_still=True)
 
-    # ---- segmentation-ID (Workbench, flat, one emission-free colour per class via object colour)
-    for o in glass:
-        o.hide_render = True
+    # ---- segmentation-ID (Workbench, flat, one emission-free colour per class via object colour); glass stays hidden
     sh.color_type = "OBJECT"
     seg_counts = {}
     for o in bpy.data.objects:

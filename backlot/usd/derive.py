@@ -39,6 +39,9 @@ def derive(stage_path, out):
         ss = p.GetAttribute("backlot:set_state")
         if ss and ss.Get():
             rec["set_state"] = str(ss.Get())
+        it = p.GetAttribute("backlot:interior")
+        if it and it.Get():
+            rec["interior"] = True
         (cams if p.GetAttribute("backlot:role").Get() == "shot" else survey)[p.GetName()] = rec
     control = {"posts": [], "text_planes": [], "marks": []}
     xc = UsdGeom.XformCache()

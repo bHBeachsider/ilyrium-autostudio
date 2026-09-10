@@ -74,7 +74,7 @@ def gate(key, shot, passes_root, derived, autoletter=False, judge=False, seq="NH
         report["checks"]["seg"] = dict(blocking=has_mask, passed=rc == 0, lines=lines,
                                        segmenter="grounding-dino + sam (seg_box.py)" if has_mask else "clipseg fallback (advisory)")
 
-    rc, lines = run([py, os.path.join(HERE, "ocr_text.py"), key, "--shot", shot, "--cameras", cams, "--points", pts])
+    rc, lines = run([py, os.path.join(HERE, "ocr_text.py"), key, "--shot", shot, "--cameras", cams, "--points", pts, "--passes", pdir])
     if rc != 0 and autoletter:
         cmds = [l.split("letter_from_plate: ", 1)[1] for l in lines if "letter_from_plate: " in l]
         for c in cmds:
@@ -83,7 +83,7 @@ def gate(key, shot, passes_root, derived, autoletter=False, judge=False, seq="NH
         if os.path.exists(lettered):
             os.replace(lettered, key)
             report["sha256"] = sha256(key); report["autolettered"] = True
-            rc, lines2 = run([py, os.path.join(HERE, "ocr_text.py"), key, "--shot", shot, "--cameras", cams, "--points", pts])
+            rc, lines2 = run([py, os.path.join(HERE, "ocr_text.py"), key, "--shot", shot, "--cameras", cams, "--points", pts, "--passes", pdir])
             lines = lines + ["  -- auto-lettered from the world's text plane, re-read:"] + lines2
     report["checks"]["text"] = dict(blocking=True, passed=rc == 0, lines=lines)
 

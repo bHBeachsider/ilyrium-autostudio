@@ -27,9 +27,11 @@ from PIL import Image, ImageOps
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from check_keyframe_geometry import project  # noqa: E402
+from check_keyframe_geometry import project, rot_matrix  # noqa: E402
 
 MIN_H_PX = 40
+MIN_PX_PER_CHAR = 9      # under this, no letterer and no OCR can make a line legible: the TWEEEDS banner seen through
+                         # LYSTERIA's band at 60 m is 250 px for 45 characters (5.5 px/char) - n/a, not FAIL (2026-09-10)
 PASS_SIM = 0.85
 
 
@@ -61,7 +63,32 @@ def ocr(strip):
         os.unlink(path)
 
 
-def check_plane(im, cam, plane, debug=None):
+def occluded(cam, plane, quad, depth_png, near_m, far_m, depth_mode):
+    """Is something in the world nearer than this plane where it projects? Read the shot's own depth pass at the
+    quad's centre: if the pass is more than 15% nearer than the plane, a wall (or a building) is in the way and the
+    plane is not in this picture. The TWEEEDS banner on City Hall's outside face projected INTO every office key
+    (the office is inside City Hall) and failed 10/10 on OCR of a banner nobody can see (2026-09-10)."""
+    if not depth_png or not os.path.exists(depth_png) or near_m is None:
+        return False
+    R = rot_matrix(cam["rotation_deg"])
+    zs = []
+    for c in plane["corners"]:
+        d = np.asarray(c, float) - np.asarray(cam["location"], float); zs.append(float(-(R.T @ d)[2]))
+    z_plane = sum(zs) / len(zs)
+    im = Image.open(depth_png); dw, dh = im.size
+    a = np.asarray(im).astype(np.float64) / (65535.0 if im.mode.startswith("I") else 255.0)
+    u = min(max(int(sum(q[0] for q in quad) / 4.0 * dw / cam["res"][0]), 0), dw - 1)
+    v = min(max(int(sum(q[1] for q in quad) / 4.0 * dh / cam["res"][1]), 0), dh - 1)
+    n = float(a[v, u])
+    if depth_mode == "inverse":
+        inv = n * (1.0 / max(near_m, 0.05) - 1.0 / far_m) + 1.0 / far_m
+        z_pass = 1.0 / max(inv, 1e-6)
+    else:
+        z_pass = far_m - n * (far_m - near_m)
+    return z_pass < 0.85 * z_plane, z_pass, z_plane
+
+
+def check_plane(im, cam, plane, debug=None, passes=None):
     W, H = im.size
     quad = [project(c, cam, (W, H)) for c in plane["corners"]]
     if any(q is None for q in quad):
@@ -69,9 +96,20 @@ def check_plane(im, cam, plane, debug=None):
     xs = [q[0] for q in quad]; ys = [q[1] for q in quad]
     if max(xs) < 0 or min(xs) > W or max(ys) < 0 or min(ys) > H:
         return dict(name=plane["name"], verdict="n/a", reason="out of frame")
+    if passes:
+        try:
+            meta = json.load(open(os.path.join(passes, "passes.json")))
+            occ = occluded(cam, plane, quad, os.path.join(passes, "depth.png"), meta.get("near_m"), meta.get("far_m"), meta.get("depth_mode", "linear"))
+            if occ and occ[0]:
+                return dict(name=plane["name"], verdict="n/a", reason="occluded (the depth pass has something at %.0f m in front of the plane at %.0f m)" % (occ[1], occ[2]), quad=quad)
+        except Exception as e:
+            pass
     h_px = max(ys) - min(ys)
     if h_px < MIN_H_PX:
         return dict(name=plane["name"], verdict="n/a", reason="too small (%.0f px tall)" % h_px, quad=quad)
+    w_px = max(xs) - min(xs); longest = max(len(t) for t in plane["text"]) or 1
+    if w_px / longest < MIN_PX_PER_CHAR:
+        return dict(name=plane["name"], verdict="n/a", reason="too small to read (%.1f px per character over %d px)" % (w_px / longest, w_px), quad=quad)
     strip = rectify(im, quad)
     read = ocr(strip)
     joined = norm(" ".join(read))
@@ -102,13 +140,14 @@ def main():
     ap.add_argument("--cameras", default=os.path.join(HERE, "..", "usd", "nh", "derived", "cameras.json"))
     ap.add_argument("--points", default=os.path.join(HERE, "..", "usd", "nh", "derived", "control_points.json"))
     ap.add_argument("--debug"); ap.add_argument("--json")
+    ap.add_argument("--passes", help="the shot's passes dir: its depth pass tells a plane behind a wall from one in view")
     a = ap.parse_args()
     cam = json.load(open(a.cameras))["cameras"][a.shot]
     planes = json.load(open(a.points)).get("text_planes", [])
     im = Image.open(a.key).convert("RGB")
     results, fails = [], 0
     for pl in planes:
-        r = check_plane(im, cam, pl, a.debug)
+        r = check_plane(im, cam, pl, a.debug, a.passes)
         results.append(r)
         if r["verdict"] == "n/a":
             print("  n/a  %s: %s" % (r["name"], r["reason"]))

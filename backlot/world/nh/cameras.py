@@ -21,6 +21,14 @@ SHOT_CAMERAS = {
     "S101_SH005": dict(loc=(-0.8, 2.0, OFFICE_FLOOR + 1.45), target=(0.0, -3.0, OFFICE_FLOOR + 1.25), lens=55.0, res=(1920, 1080)),  # medium, the 22 s
     "S101_SH006": dict(loc=(0.9, -0.2, OFFICE_FLOOR + 1.2), target=(0.0, -2.0, OFFICE_FLOOR + 0.76), lens=85.0, res=(1920, 1080)),   # hands / desk edge
     "S101_SH007": dict(loc=(0.0, 0.2, OFFICE_FLOOR + 1.4), target=(0.0, -3.0, OFFICE_FLOOR + 1.4), lens=85.0, res=(1920, 1080)),     # close-up, past the lens
+    # LYSTERIA (no number yet; shot cameras so the passes renderer and the gate can measure the glass-walled interior)
+    # THE VIEW OF THE SCAFFOLD: from her desk end, out through the band, the rally stage going up in front of City Hall
+    "LYST_WINDOW": dict(loc=(LYST_X + 0.6, LYST_Y - LYST_D / 2 + 1.3, 4.2 + 1.55), target=(0.0, STAGE_Y, 3.0), lens=40.0, res=(2520, 1080)),
+    # the boardroom (top floor): across the table and out through its band at the same view, higher
+    "LYST_BOARD": dict(loc=(LYST_X - 0.3, LYST_Y + LYST_D / 2 - 1.6, BOARD_Z0 + 1.55), target=(LYST_X + 0.2, LYST_Y - LYST_D / 2, BOARD_Z0 + 1.3), lens=24.0, res=(2520, 1080)),
+    "LYST_BOARD_VIEW": dict(loc=(LYST_X - 0.2, LYST_Y - LYST_D / 2 + 1.6, BOARD_Z0 + 1.6), target=(-2.0, STAGE_Y - 2.0, 3.0), lens=35.0, res=(2520, 1080)),
+    # the visitor's view (2.39:1): from the floor, through the glass, to Summer against the band
+    "LYST_DESK": dict(loc=(LYST_X + 1.7, LYST_GLASS_Y + 3.6, 4.2 + 1.5), target=(LYST_X + 1.2, LYST_Y - LYST_D / 2 + 1.9, 4.2 + 1.15), lens=32.0, res=(2520, 1080)),
 }
 
 SURVEY_CAMERAS = {
@@ -42,28 +50,29 @@ SURVEY_CAMERAS = {
     "LYST_RECEPTION": dict(loc=(LYST_X - LYST_W / 2 + 1.2, LYST_Y + LYST_D / 2 - 1.1, 4.2 + 1.6), target=(LYST_X + LYST_W / 2, LYST_Y + LYST_D / 2 - 2.2, 4.2 + 1.7), lens=24.0, res=(1920, 1080)),
     # her POV: from the desk, out through the glass over the floor - she sees everyone
     "LYST_POV": dict(loc=(LYST_X + 1.2, LYST_Y - LYST_D / 2 + 1.4, 4.2 + 1.25), target=(LYST_X - 0.7, LYST_Y + LYST_D / 2 - 2.0, 4.2 + 1.3), lens=28.0, res=(1920, 1080)),
-    # THE VIEW OF THE SCAFFOLD: from her desk end, out through the band, the rally stage going up in front of City Hall
-    "LYST_WINDOW": dict(loc=(LYST_X + 0.6, LYST_Y - LYST_D / 2 + 1.3, 4.2 + 1.55), target=(0.0, STAGE_Y, 3.0), lens=40.0, res=(2520, 1080)),
-    # the boardroom (top floor): across the table and out through its band at the same view, higher
-    "LYST_BOARD": dict(loc=(LYST_X - 0.3, LYST_Y + LYST_D / 2 - 1.6, BOARD_Z0 + 1.55), target=(LYST_X + 0.2, LYST_Y - LYST_D / 2, BOARD_Z0 + 1.3), lens=24.0, res=(2520, 1080)),
-    "LYST_BOARD_VIEW": dict(loc=(LYST_X - 0.2, LYST_Y - LYST_D / 2 + 1.6, BOARD_Z0 + 1.6), target=(-2.0, STAGE_Y - 2.0, 3.0), lens=35.0, res=(2520, 1080)),
-    # the visitor's view (2.39:1): from the floor, through the glass, to Summer against the band
-    "LYST_DESK": dict(loc=(LYST_X + 1.7, LYST_GLASS_Y + 3.6, 4.2 + 1.5), target=(LYST_X + 1.2, LYST_Y - LYST_D / 2 + 1.9, 4.2 + 1.15), lens=32.0, res=(2520, 1080)),
 }
 
 # which set state each shot camera shoots in (the build ladder, NH-USA-045)
 SHOT_STATES = {"PLATE": "finished", "SH002": "joists", "SH003": "joists", "SH006": "half_decked",
                "SH007": "beam_seated", "SH009": "finished", "SH010": "finished",
-               "S101_SH004": "finished", "S101_SH005": "finished", "S101_SH006": "finished", "S101_SH007": "finished"}
+               "S101_SH004": "finished", "S101_SH005": "finished", "S101_SH006": "finished", "S101_SH007": "finished",
+               "LYST_DESK": "half_decked", "LYST_WINDOW": "joists", "LYST_BOARD": "half_decked", "LYST_BOARD_VIEW": "joists"}
 # depth normalisation per shot: LINEAR for exteriors (the 93% first-take result was measured with it; inverse depth
 # compresses the far uprights out of SH006 - 2/5 under inverse vs 5/5 under linear, 2026-09-08), INVERSE for
 # interiors (a fixed linear range leaves a room near-white)
-DEPTH_MODE = {"S101_SH004": "inverse", "S101_SH005": "inverse", "S101_SH006": "inverse", "S101_SH007": "inverse"}
+DEPTH_MODE = {"S101_SH004": "inverse", "S101_SH005": "inverse", "S101_SH006": "inverse", "S101_SH007": "inverse",
+              "LYST_DESK": "inverse", "LYST_BOARD": "inverse"}      # the two window views look 60 m out: linear, like the exteriors
+# shots inside a room. The gate's RallyStage geometry check (posts on their columns, the deck line) does not apply
+# to an interior even when the stage is visible through a window at 60 m - it would look for two 3-pixel uprights and
+# fail every office key (recorded 2026-09-08 for S101, scoped 2026-09-09). The comparative clay check still runs.
+INTERIOR_SHOTS = {"S101_SH004", "S101_SH005", "S101_SH006", "S101_SH007", "LYST_DESK", "LYST_WINDOW", "LYST_BOARD", "LYST_BOARD_VIEW"}
 # every other state family a shot selects (build is SHOT_STATES); absent = the family's default
 SHOT_VARIANTS = {
     "SH003": {"people": "build"}, "SH006": {"office": "dawn", "people": "none"}, "SH007": {"people": "build"},
     "S101_SH004": {"office": "dawn", "people": "office_dawn"}, "S101_SH005": {"office": "dawn", "people": "office_dawn"},
     "S101_SH006": {"office": "dawn", "people": "office_dawn"}, "S101_SH007": {"office": "dawn", "people": "office_dawn"},
+    "LYST_DESK": {"lysteria": "working", "people": "lysteria"}, "LYST_WINDOW": {"lysteria": "working", "people": "none"},
+    "LYST_BOARD": {"people": "boardroom"}, "LYST_BOARD_VIEW": {"people": "none"},
 }
 
 

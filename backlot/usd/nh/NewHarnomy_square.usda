@@ -11,10 +11,10 @@
 def Xform "World" (
     kind = "assembly"
     variants = {
-        string build = "joists"
+        string build = "finished"
         string lysteria = "working"
         string office = "dawn"
-        string people = "boardroom"
+        string people = "none"
         string weather = "overcast_drizzle"
     }
     prepend variantSets = ["build", "office", "people", "lysteria", "weather"]

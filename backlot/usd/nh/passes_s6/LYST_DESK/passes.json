@@ -1,0 +1,134 @@
+{
+ "shot": "LYST_DESK",
+ "camera": {
+  "location": [
+   24.6,
+   84.2,
+   5.7
+  ],
+  "rotation_deg": [
+   87.26,
+   0.0,
+   176.08
+  ],
+  "lens_mm": 32.0,
+  "sensor_mm": 36.0,
+  "res": [
+   2520,
+   1080
+  ],
+  "depth_mode": "inverse",
+  "variants": {
+   "lysteria": "working",
+   "people": "lysteria"
+  },
+  "set_state": "half_decked"
+ },
+ "set_state": "half_decked",
+ "variants": {
+  "lysteria": "working",
+  "people": "lysteria"
+ },
+ "near_m": 3.658965003490448,
+ "far_m": 90.43513359069829,
+ "depth_mode": "inverse",
+ "seg_classes": {
+  "post": [
+   255,
+   40,
+   40
+  ],
+  "beam": [
+   255,
+   140,
+   0
+  ],
+  "deck": [
+   255,
+   220,
+   0
+  ],
+  "chair": [
+   0,
+   200,
+   255
+  ],
+  "podium": [
+   0,
+   120,
+   255
+  ],
+  "steps": [
+   200,
+   0,
+   255
+  ],
+  "text_plane": [
+   255,
+   0,
+   160
+  ],
+  "building": [
+   140,
+   140,
+   140
+  ],
+  "paving": [
+   60,
+   60,
+   70
+  ],
+  "vegetation": [
+   40,
+   160,
+   60
+  ],
+  "vehicle": [
+   230,
+   230,
+   230
+  ],
+  "prop": [
+   120,
+   80,
+   40
+  ],
+  "ground": [
+   20,
+   20,
+   25
+  ],
+  "person": [
+   255,
+   255,
+   255
+  ],
+  "dressing": [
+   0,
+   255,
+   120
+  ],
+  "furniture": [
+   170,
+   110,
+   60
+  ]
+ },
+ "seg_counts": {
+  "building": 388,
+  "paving": 6,
+  "text_plane": 22,
+  "prop": 70,
+  "vehicle": 3,
+  "vegetation": 31,
+  "deck": 36,
+  "ground": 1,
+  "furniture": 50,
+  "chair": 102,
+  "person": 90,
+  "podium": 1,
+  "post": 2
+ },
+ "world_version": "usda:a91eddc428bc",
+ "stage": "../NewHarnomy_square.usda"
+}

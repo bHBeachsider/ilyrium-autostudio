@@ -216,16 +216,19 @@ def main():
     fails, lines = 0, []
 
     # ---- where the blockout says the structure is, in this frame
+    interior = bool(cam.get("interior"))
     posts = []
-    for p in pts.get("posts", []):
+    for p in ([] if interior else pts.get("posts", [])):
         top = project(p["top"], cam, res)
         base = project(p["base"], cam, res)
         if top is None or base is None:
             continue
         if -tol_px < base[0] < W + tol_px:
             posts.append(dict(name=p["name"], x=base[0], y_top=top[1], y_base=base[1]))
-    deck = pts.get("deck_front", None)
+    deck = None if interior else pts.get("deck_front", None)
     deck_px = None
+    if interior:
+        lines.append("  n/a  interior shot: the RallyStage checks (posts, deck line, chair band) do not apply; the comparative clay check runs")
     if deck:
         l = project(deck["left"], cam, res); r = project(deck["right"], cam, res)
         if l and r:
@@ -291,7 +294,7 @@ def main():
             lines.append("  WARN deck's dominant edge %.0f deg, blockout says %.0f - LOOK at it" % (dom, want))
 
     # ---- 3. one row of chairs
-    ch = pts.get("chair_band")
+    ch = None if interior else pts.get("chair_band")
     if ch:
         tl = project(ch["top_left"], cam, res); br = project(ch["bottom_right"], cam, res)
         if tl and br:

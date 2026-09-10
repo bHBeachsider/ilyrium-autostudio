@@ -700,8 +700,18 @@ def mannequin(name, x, y, z0, facing_deg=0.0, height=1.75, posture="standing"):
     box(name + "_hips", *P(0, 0, hip + 0.06 * h), hip_w * 1.9, 0.13 * h, 0.14 * h, "mannequin", rot=math.radians(facing_deg))
     box(name + "_chest", *P(0, 0, shoulder - 0.10 * h), sh_w * 1.8, 0.14 * h, 0.20 * h, "mannequin", rot=math.radians(facing_deg))
     _limb(name + "_shoulders", P(-sh_w * 0.5, 0, shoulder), P(sh_w * 0.5, 0, shoulder), 0.05)
-    _limb(name + "_neck", P(0, 0, shoulder), P(0, 0, shoulder + 0.05 * h), 0.04)
-    sphere(name + "_head", *P(0, 0.01, head), 0.065 * h, "mannequin")
+    _limb(name + "_neck", P(0, 0, shoulder), P(0, 0, shoulder + 0.06 * h), 0.038)
+    # THE HEAD (2026-09-09, actor fix): a sphere on a stick was drawn as a globe on the desk in 6/10 office takes. A skull
+    # is an ovoid taller than it is wide, a hair cap over the top-back, a jaw under the front, and it sits on the neck
+    # rather than floating - three silhouette cues a depth/edge pass carries and a sphere does not.
+    hx, hy, hz = P(0, 0.012, head + 0.01 * h)
+    o = sphere(name + "_head", hx, hy, hz, 0.062 * h, "mannequin")
+    o.scale = (0.94, 1.02, 1.22); o.rotation_euler = (math.radians(6.0), 0.0, math.radians(facing_deg))   # ovoid, chin tucked a touch
+    cx, cy, cz = P(0, -0.012, head + 0.035 * h)
+    o = sphere(name + "_hair", cx, cy, cz, 0.066 * h, "mannequin")
+    o.scale = (0.98, 0.98, 0.92); o.rotation_euler = (0.0, 0.0, math.radians(facing_deg))                # the cap of the skull, back-weighted
+    jx, jy, jz = P(0, 0.028, head - 0.052 * h)
+    box(name + "_jaw", jx, jy, jz, 0.085 * h, 0.075 * h, 0.045 * h, "mannequin", rot=math.radians(facing_deg))
 
 
 def build_Mannequins():
