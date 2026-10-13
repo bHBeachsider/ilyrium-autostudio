@@ -14,8 +14,8 @@ not procedurally:
 
 Traces carry reasoning SUMMARIES only — never raw chain-of-thought.
 
-The raw model SDK is importable only here (enforced by
-harness/lint_no_raw_sdk.py as a pre-commit gate).
+The raw model SDK is importable only here, and filmcraft-cli is invoked only
+here (both enforced by harness/lint_no_raw_sdk.py as a pre-commit gate).
 """
 
 from __future__ import annotations
@@ -417,3 +417,209 @@ def run_model(*, agent: str, task_type: str, messages: List[Dict[str, Any]],
 def _sha256_text(s: str) -> str:
     import hashlib
     return "sha256:" + hashlib.sha256(s.encode("utf-8")).hexdigest()
+
+
+# --------------------------------------------------------------------------- #
+# FilmCraft (filmcraft-cli, headless) — the ONLY call site for the binary
+# (enforced by harness/lint_no_raw_sdk.py). Each call emits one trace row with
+# script/output hashes, binary version, exit code and wall time.
+# --------------------------------------------------------------------------- #
+def _sha256_file(path: str | Path) -> Optional[str]:
+    import hashlib
+    p = Path(path)
+    if not p.is_file():
+        return None
+    h = hashlib.sha256()
+    with p.open("rb") as fh:
+        for block in iter(lambda: fh.read(1 << 20), b""):
+            h.update(block)
+    return h.hexdigest()
+
+
+def filmcraft_cli() -> Path:
+    """Absolute path of filmcraft-cli from FILMCRAFT_CLI. Never falls back to PATH."""
+    val = os.getenv("FILMCRAFT_CLI")
+    if not val:
+        raise RuntimeError(
+            "FILMCRAFT_CLI not set — put the absolute path of filmcraft-cli.exe in the root .env "
+            "(pinned build: FILMCRAFT_PIN)")
+    p = Path(val)
+    if not p.is_absolute() or not p.is_file():
+        raise RuntimeError(f"FILMCRAFT_CLI={val!r} is not an absolute path to an existing file")
+    return p
+
+
+_FC_VERSION: Dict[str, str] = {}
+
+
+def filmcraft_version() -> str:
+    cli = str(filmcraft_cli())
+    if cli not in _FC_VERSION:
+        import subprocess
+        p = subprocess.run([cli, "--version"], capture_output=True, encoding="utf-8",
+                           errors="replace", timeout=60)
+        _FC_VERSION[cli] = p.stdout.strip() or f"unknown (exit {p.returncode})"
+    return _FC_VERSION[cli]
+
+
+def _filmcraft_exec(args: List[str], *, project_path: str | Path = None,
+                    script_path: str | Path = None, output_path: str | Path = None,
+                    task_type: str, project_id: str, trace_dir: str | Path = None,
+                    timeout: float = 3600.0):
+    """Run filmcraft-cli once; trace it; return (returncode, stdout, stderr)."""
+    import subprocess
+    cmd = [str(filmcraft_cli())]
+    if project_path:
+        cmd += ["--project", str(project_path)]
+    cmd += [str(a) for a in args]
+    version = filmcraft_version()
+    t0 = time.time()
+    p = subprocess.run(cmd, capture_output=True, encoding="utf-8", errors="replace",
+                       timeout=timeout)
+    wall_ms = int((time.time() - t0) * 1000)
+    first_error = None
+    if p.returncode != 0:
+        first_error = next((ln for ln in (p.stderr or "").splitlines() if ln.strip()), None)
+        for ln in (p.stdout or "").splitlines():
+            if '"ok":false' in ln.replace(" ", ""):
+                first_error = ln.strip()[:500]
+                break
+    emit_trace(project_id, {
+        "task_type": task_type, "model": "filmcraft-cli", "replayable": False,
+        "latency_s": round(wall_ms / 1000, 3), "estimated_cost_usd": 0.0,
+        "status": "ok" if p.returncode == 0 else "error", "error": first_error,
+        "tool_calls": [{
+            "tool": "filmcraft-cli", "ts": now_iso(),
+            "request": {"args": [str(a) for a in args],
+                        "project": str(project_path) if project_path else None,
+                        "script_sha256": _sha256_file(script_path) if script_path else None},
+            "recorded_response": {
+                "exit_code": p.returncode, "wall_ms": wall_ms,
+                "filmcraft_version": version, "filmcraft_pin": os.getenv("FILMCRAFT_PIN"),
+                "output": str(output_path) if output_path else None,
+                "output_sha256": _sha256_file(output_path) if output_path else None,
+                "first_error": first_error,
+            },
+        }],
+    }, project_dir=trace_dir)
+    return p.returncode, p.stdout or "", p.stderr or ""
+
+
+def _filmcraft_lines(stdout: str) -> List[Dict[str, Any]]:
+    rows = []
+    for ln in stdout.splitlines():
+        ln = ln.strip()
+        if ln.startswith("{"):
+            try:
+                rows.append(json.loads(ln))
+            except json.JSONDecodeError:
+                pass
+    return rows
+
+
+def filmcraft_run(project_path: str | Path | None, script_path: str | Path, *,
+                  project_id: str = "filmcraft", trace_dir: str | Path = None,
+                  output_path: str | Path = None) -> List[Dict[str, Any]]:
+    """`filmcraft-cli [--project p] run script.jsonl` -> one result dict per line.
+    Raises if the binary exits non-zero or any step is not ok (run stops at the first
+    error and saves nothing, so a partial run is a failed run)."""
+    rc, out, err = _filmcraft_exec(["run", script_path], project_path=project_path,
+                                   script_path=script_path, output_path=output_path,
+                                   task_type="edit_filmcraft_run", project_id=project_id,
+                                   trace_dir=trace_dir)
+    rows = _filmcraft_lines(out)
+    bad = next((r for r in rows if not r.get("ok")), None)
+    if rc != 0 or bad is not None:
+        raise RuntimeError(f"filmcraft run failed (exit {rc}) at {bad or err.strip()[:500]}")
+    return rows
+
+
+def filmcraft_export(project_path: str | Path, settings: Dict[str, Any], *,
+                     project_id: str = "filmcraft", trace_dir: str | Path = None) -> Dict[str, Any]:
+    """Export the project's active sequence with `file.exportMedia {..., wait:true}`.
+    `settings` must carry `path`. The one-step script is written beside the output."""
+    out = Path(settings["path"])
+    script = out.with_name(out.name + ".export.jsonl")
+    step = {"id": "file.exportMedia", "params": {**settings, "path": str(out), "wait": True}}
+    script.write_bytes((json.dumps(step) + "\n").encode("utf-8"))
+    rows = filmcraft_run(project_path, script, project_id=project_id, trace_dir=trace_dir,
+                         output_path=out)
+    res = (rows[-1].get("result") or {}) if rows else {}
+    if res.get("offlineMedia"):
+        raise RuntimeError(f"filmcraft export had offline media: {res['offlineMedia']}")
+    inner = res.get("result") or {}
+    return {"path": str(out), "sha256": _sha256_file(out), "frames": inner.get("frames"),
+            "render_fps": inner.get("render_fps"), "seconds": inner.get("seconds"),
+            "script": str(script)}
+
+
+def filmcraft_render(project_path: str | Path, seconds: float, out_png: str | Path, *,
+                     project_id: str = "filmcraft", trace_dir: str | Path = None) -> Path:
+    """Render one Program frame to PNG."""
+    out = Path(out_png)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    rc, _, err = _filmcraft_exec(["render", "--seconds", f"{seconds:.6f}", "--out", out],
+                                 project_path=project_path, output_path=out,
+                                 task_type="edit_filmcraft_render", project_id=project_id,
+                                 trace_dir=trace_dir)
+    if rc != 0 or not out.is_file():
+        raise RuntimeError(f"filmcraft render failed (exit {rc}): {err.strip()[:500]}")
+    return out
+
+
+def filmcraft_probe(media_path: str | Path, *, project_id: str = "filmcraft",
+                    trace_dir: str | Path = None) -> Dict[str, Any]:
+    """`filmcraft-cli probe <media>` -> media info (duration in ticks)."""
+    rc, out, err = _filmcraft_exec(["probe", media_path], task_type="edit_filmcraft_probe",
+                                   project_id=project_id, trace_dir=trace_dir)
+    if rc != 0:
+        raise RuntimeError(f"filmcraft probe failed for {media_path}: {err.strip()[:500]}")
+    return json.loads(out)
+
+
+def filmcraft_inspect(project_path: str | Path, what: str = "sequence", *,
+                      project_id: str = "filmcraft", trace_dir: str | Path = None) -> str:
+    """`filmcraft-cli --project p inspect <what>` -> the raw JSON text (hash it as-is)."""
+    rc, out, err = _filmcraft_exec(["inspect", what], project_path=project_path,
+                                   task_type="edit_filmcraft_inspect", project_id=project_id,
+                                   trace_dir=trace_dir)
+    if rc != 0:
+        raise RuntimeError(f"filmcraft inspect failed (exit {rc}): {err.strip()[:500]}")
+    return out
+
+
+def ffmpeg_image_sequence_to_mov(pattern: str, fps: float, out_path: str | Path, *,
+                                 start_number: int = 0, project_id: str = "filmcraft",
+                                 trace_dir: str | Path = None) -> Path:
+    """Wrap a numbered image sequence (ffmpeg pattern, e.g. frame_%04d.png) into a ProRes
+    4444 .mov at `fps` (alpha kept). FilmCraft imports sequences at 29.97 fps with no CLI
+    override, so sequences are pre-wrapped at the sequence rate before import."""
+    import subprocess
+    ffmpeg = os.getenv("FFMPEG")
+    if not ffmpeg:
+        try:
+            import imageio_ffmpeg
+            ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
+        except Exception:
+            ffmpeg = "ffmpeg"
+    out = Path(out_path)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    args = ["-v", "error", "-y", "-framerate", f"{fps:g}", "-start_number", str(start_number),
+            "-i", str(pattern),
+            "-c:v", "prores_ks", "-profile:v", "4", "-pix_fmt", "yuva444p10le", str(out)]
+    t0 = time.time()
+    p = subprocess.run([ffmpeg] + args, capture_output=True, encoding="utf-8",
+                       errors="replace", timeout=3600)
+    wall_ms = int((time.time() - t0) * 1000)
+    err = (p.stderr or "").strip()[:500] or None
+    emit_trace(project_id, {
+        "task_type": "edit_wrap_image_sequence", "model": "ffmpeg", "replayable": False,
+        "latency_s": round(wall_ms / 1000, 3), "estimated_cost_usd": 0.0,
+        "status": "ok" if p.returncode == 0 else "error", "error": err if p.returncode else None,
+        "tool_calls": [{"tool": "ffmpeg", "ts": now_iso(), "request": {"args": args},
+                        "recorded_response": {"exit_code": p.returncode, "wall_ms": wall_ms,
+                                              "output_sha256": _sha256_file(out)}}],
+    }, project_dir=trace_dir)
+    if p.returncode != 0:
+        raise RuntimeError(f"ffmpeg image-sequence wrap failed: {err}")
+    return out
