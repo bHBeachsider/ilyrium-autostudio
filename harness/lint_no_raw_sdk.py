@@ -5,7 +5,10 @@ Fails any Python file OUTSIDE harness/ that
       litellm, ollama), or
   (b) speaks to the ComfyUI API directly (an HTTP client import combined with
       a ComfyUI endpoint literal: /prompt, /upload/image, /history/,
-      /system_stats, /view?).
+      /system_stats, /view?), or
+  (c) launches the FilmCraft binary itself (a process-spawning call combined
+      with a `filmcraft-cli` / `FILMCRAFT_CLI` literal) — use
+      harness.run.filmcraft_* instead.
 
 The only sanctioned path is harness.run — which stamps agent_version_id,
 injects credentials from the environment, records tool I/O for replay, and
@@ -38,6 +41,8 @@ SDK_IMPORT_RE = re.compile(
 )
 HTTP_CLIENT_RE = re.compile(r"\b(urllib\.request|requests\.(?:get|post|request)|httpx\.)")
 COMFY_ENDPOINT_RE = re.compile(r"(/prompt['\"]|/upload/image|/history/|/system_stats|/view\?)")
+PROCESS_SPAWN_RE = re.compile(r"\b(subprocess|os\.system|os\.popen|os\.spawn\w*|asyncio\.create_subprocess_\w+)\b")
+FILMCRAFT_BINARY_RE = re.compile(r"filmcraft-cli|FILMCRAFT_CLI")
 
 # A file may opt out explicitly (e.g. a test that constructs violation fixtures,
 # or vendored code). Auditable, unlike a silent directory exclude.
@@ -91,6 +96,8 @@ def check_file(path: Path) -> list[str]:
         out.append(f"raw model-SDK import '{m.group(1)}' — use harness.run.run_model()")
     if HTTP_CLIENT_RE.search(text) and COMFY_ENDPOINT_RE.search(text):
         out.append("direct ComfyUI API access — use harness.run.comfy_* transports")
+    if PROCESS_SPAWN_RE.search(text) and FILMCRAFT_BINARY_RE.search(text):
+        out.append("direct filmcraft-cli invocation — use harness.run.filmcraft_* wrappers")
     return out
 
 
