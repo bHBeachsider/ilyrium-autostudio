@@ -439,7 +439,73 @@ def edit_shot(project: dict, project_dir: str, scene_number: int, edit_prompt: s
 # Assemble a cut from the selected take of each shot
 # --------------------------------------------------------------------------- #
 def assemble_cut(project: dict, project_dir: str, upload_to_r2: bool = True,
-                 progress_cb=None) -> dict:
+                 progress_cb=None, engine: str | None = None) -> dict:
+    """Assemble a new Cut with the edit engine `engine` (default: ILYRIUM_EDIT_ENGINE,
+    else "moviepy"). Dispatch only — "moviepy" is the original stitch, unchanged;
+    "filmcraft" is cut-as-code (media/filmcraft_assembler.py)."""
+    engine = (engine or os.getenv("ILYRIUM_EDIT_ENGINE") or "moviepy").strip().lower()
+    if engine == "moviepy":
+        return _assemble_cut_moviepy(project, project_dir, upload_to_r2=upload_to_r2,
+                                     progress_cb=progress_cb)
+    if engine == "filmcraft":
+        return _assemble_cut_filmcraft(project, project_dir, upload_to_r2=upload_to_r2,
+                                       progress_cb=progress_cb)
+    raise ValueError(f"unknown edit engine {engine!r} (moviepy | filmcraft)")
+
+
+def _assemble_cut_filmcraft(project: dict, project_dir: str, upload_to_r2: bool = True,
+                            progress_cb=None) -> dict:
+    """FilmCraft engine: cut.jsonl -> .fcproj -> NVENC master + QA frames + FCP7 XML under
+    outputs/<campaign>/cuts/<cut_id>/. Phase 1 assembles locally only: the release gate /
+    R2 publish / C2PA steps of the moviepy path are not wired for this engine yet, so the
+    cut is recorded as unpublished with an explicit blocker."""
+    from media import filmcraft_assembler as fa
+    import qc
+
+    log = _logger(progress_cb)
+    if not ps.selected_media(project):
+        log("❌ No selected takes with video — nothing to assemble.")
+        return {"cut_id": None, "final_video": None, "public_url": None}
+    try:
+        from style_kernel import get_kernel
+        kernel = get_kernel(project)
+    except Exception:
+        kernel = None
+
+    cut_id = ps._next_cut_id(project)
+    log(f"🎬 Assembling {cut_id} with FilmCraft (cut-as-code)…")
+    built = fa.assemble(project, project_dir, cut_id, kernel=kernel)
+    log(f"🎞️ Exporting master ({built['total_frames']} frames, NVENC, "
+        f"{built['loudness_lufs']} LUFS)…")
+    master = fa.export(built["cut_dir"])
+    check = qc.qc_clip(master["path"], mode="cut", loudness_lufs=built["loudness_lufs"])
+    fa.render_frames(built["cut_dir"])
+    xml = fa.interchange(built["cut_dir"], "fcp7xml")
+
+    blockers = ["FilmCraft engine: release gate + publish not wired yet (Phase 2) — local only."]
+    if not check["ok"]:
+        blockers.append(f"master QC: {', '.join(check['flags'])}")
+    if upload_to_r2:
+        log("⛔ Not published: " + " ".join(blockers))
+    recorded = ps.add_cut(project, output=master["path"], public_url=None)
+    if recorded != cut_id:
+        raise RuntimeError(f"cut id moved during assembly ({cut_id} -> {recorded})")
+    project["cuts"][-1].update({
+        "engine": "filmcraft", "fcproj": built["fcproj"],
+        "script_sha256": built["script_sha256"], "sequence_sha256": built["sequence_sha256"],
+        "export_sha256": master["sha256"], "filmcraft_version": built["filmcraft_version"],
+        "interchange": xml, "qc": check,
+        "release": {"published": False, "allowed": False, "enforced": True,
+                    "blockers": blockers, "checksum": master["sha256"], "qa_passed": check["ok"]},
+    })
+    ps.save_project(project_dir, project)
+    log(f"✅ {cut_id} ready (local only — not published).")
+    return {"cut_id": cut_id, "final_video": master["path"], "public_url": None,
+            "published": False, "release_allowed": False, "blockers": blockers, "qa": check}
+
+
+def _assemble_cut_moviepy(project: dict, project_dir: str, upload_to_r2: bool = True,
+                          progress_cb=None) -> dict:
     """Stitch the selected take of every shot into a new Cut. Non-destructive:
     each call produces a new versioned cut file."""
     from media.post_production import compile_final_video
