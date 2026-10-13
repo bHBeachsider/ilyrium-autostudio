@@ -138,3 +138,24 @@ approval is its Release.
 - **next_candidate:** have the dry-run path stamp a sentinel
   `engine.comfyui_version = "dry-run"` when unset, so dry-runs are always
   schema-valid without manual manifest edits.
+
+## F-0006 — Voice renders overwrite shotN.mp3 in place (cut reproducibility lost)
+
+- **severity:** med
+- **frequency:** 1
+- **root_cause:** Voice renders overwrite `shotN.mp3` in place, breaking
+  append-only takes and the reproducibility of `cut_3`/`cut_4`. Kingsize CH 69
+  (`outputs/kingsize_mattress__channel_69_late-night_spot_20260803_235816/`):
+  all five `shotN.mp3` (and `projects/stripe/.../kingsize_ch69/vo/ann1..5.mp3`)
+  were regenerated 2026-08-06 08:06, after `cut_4` (08-06 00:01) and `cut_3`
+  (08-04); neither cut can be rebuilt from disk (recipe sums to 49.69 s; the
+  delivered cuts are 45.21 s and 26.76 s).
+- **second symptom:** `cut_4` was never recorded in `project.json` (`cuts[]`
+  stops at `cut_3`); its mix survives only as moviepy litter
+  (`apps/auto-studio/..._cut_4TEMP_MPY_wvf_snd.mp4`).
+- **detected_at_layer:** human_review (FilmCraft Phase 0 bake-off, 2026-10-12)
+- **should_have_been_prevented_at_layer:** harness
+- **remediation_type:** process
+- **status:** open
+- **next_candidate:** voice takes versioned like video takes, the selected VO
+  take tracked in `project.json` (Phase 2, with the cut ledger).
