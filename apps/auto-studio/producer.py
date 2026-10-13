@@ -57,6 +57,16 @@ _FALLBACK_CHAINS = {
     "runway:veo3.1": ["runway:veo3.1", "veo3.1", "grok-imagine"],
     "keyframe": ["keyframe", "grok-imagine"],
     "comfyui": ["comfyui", "grok-imagine"],
+    # Higgsfield CLI routes (media/higgsfield_renderer.py): premium first, then the studio's
+    # existing fal/grok path. Cost-capped per job (HIGGSFIELD_MAX_CREDITS_PER_JOB).
+    "higgsfield": ["higgsfield", "higgsfield:kling3_0", "kling", "grok-imagine"],
+    "higgsfield:kling3_0": ["higgsfield:kling3_0", "kling", "grok-imagine"],
+    "higgsfield:veo3_1": ["higgsfield:veo3_1", "veo3.1", "grok-imagine"],
+    "higgsfield:cinema4": ["higgsfield:cinema4", "higgsfield", "grok-imagine"],
+    # fal Seedance 2.0 (bytedance/seedance-2.0/*): premium i2v/t2v, then kling, then grok.
+    "seedance2": ["seedance2", "seedance2-fast", "kling", "grok-imagine"],
+    "seedance2-fast": ["seedance2-fast", "kling", "grok-imagine"],
+    "seedance2.5": ["seedance2.5", "seedance2", "kling", "grok-imagine"],
 }
 
 
@@ -73,7 +83,8 @@ def _render_video(model, visual_prompt, scene_number, output_dir, aspect_ratio, 
     """Dispatch a single shot's video render to the right backend by model name,
     applying the Style Kernel per-engine. Engines: grok-imagine (xAI), veo3 /
     veo3.1 / kling / 'fal:<endpoint>' (fal.ai), comfyui (self-hosted), ue (Unreal),
-    keyframe[:i2v] (Midjourney still -> image-to-video)."""
+    keyframe[:i2v] (Midjourney still -> image-to-video), higgsfield[:<route>] (Higgsfield CLI:
+    Seedance 2.0 / Kling 3.0 / Veo 3.1 / Cinema Studio 4.0 video, Soul stills)."""
     from style_kernel import compose_prompt
     m = (model or "").lower()
 
@@ -133,6 +144,31 @@ def _render_video(model, visual_prompt, scene_number, output_dir, aspect_ratio, 
                                 duration=dur, aspect_ratio=aspect_ratio or "16:9")
         still = out.rsplit(".", 1)[0] + ".jpg"
         return astria_txt2img(p, still, model=base_tune, aspect_ratio=aspect_ratio or "1:1")
+    if m in ("seedance2", "seedance2-fast", "seedance2.5"):
+        # fal Seedance 2.0: image-to-video from the locked frame (cref) when available, else t2v.
+        # For an end frame / audio-reference lip-sync call media.fal_renderer.render_i2v_fal /
+        # render_reference_video_fal directly (studio tool / script) - the generic shot path
+        # only knows the first frame.
+        p = compose_prompt(visual_prompt, kernel, engine="kling") if kernel else visual_prompt
+        first_frame = cref if cref and (str(cref).startswith(("http", "data:")) or os.path.exists(str(cref))) else None
+        if first_frame:
+            from media.fal_renderer import render_i2v_fal
+            return render_i2v_fal(p, first_frame, os.path.join(output_dir, output_name), model=m,
+                                  aspect_ratio=aspect_ratio or "auto")
+        from media.fal_renderer import render_scene_video_fal
+        return render_scene_video_fal(p, scene_number, output_dir=output_dir,
+                                      aspect_ratio=aspect_ratio, output_name=output_name, model=m)
+    if m.startswith("higgsfield"):
+        # Higgsfield CLI (media/higgsfield_renderer.py): 'higgsfield' = Seedance 2.0 i2v from the
+        # locked frame (cref) or t2v; 'higgsfield:kling3_0' / ':veo3_1' / ':seedance_2_5' /
+        # ':cinema4' (Cinema Studio 4.0 workflow) for video; 'higgsfield:soul_cinematic' /
+        # ':soul' / ':soul_location' return a STILL (.png). The kernel look/register is composed in
+        # as text and engine_tails.higgsfield supplies default params (genre=drama, 21:9, 2k).
+        # Every job is cost-estimated first and refused above HIGGSFIELD_MAX_CREDITS_PER_JOB.
+        from media.higgsfield_renderer import render_scene_higgsfield
+        return render_scene_higgsfield(visual_prompt, scene_number, output_dir=output_dir,
+                                       aspect_ratio=aspect_ratio, output_name=output_name,
+                                       model=model, kernel=kernel, cref=cref)
     if m.startswith("runway"):
         # Runway image/text-to-video (gen4.5 default; runway:veo3.1 / runway:gen4_turbo).
         from media.runway_renderer import render_image_to_video
@@ -152,6 +188,61 @@ def _render_video(model, visual_prompt, scene_number, output_dir, aspect_ratio, 
 # --------------------------------------------------------------------------- #
 # Render a single shot -> new take
 # --------------------------------------------------------------------------- #
+def _continuity_plan(project, shot, model):
+    """Return a continuity render plan for this shot, or None if it doesn't apply.
+
+    Applies only to comfyui models (the on-box path) when the shot's character has a
+    continuity asset (a registered LoRA and/or a reference still). The character is taken
+    from the shot ('character'/'speaker') or the project's single lead. Cached on the shot
+    so we resolve once per render. Never raises — resolution failure yields None (fall
+    through to the normal render chain)."""
+    m = (model or "").lower()
+    if not (m == "comfyui" or m.startswith("comfyui:")):
+        return None
+    if "_continuity" in shot:                       # memoized (incl. a cached None as {})
+        return shot["_continuity"] or None
+    character = (shot.get("character") or shot.get("speaker")
+                or (project.get("characters") or [{}])[0].get("name")
+                or project.get("lead_character"))
+    plan = None
+    if character:
+        try:
+            import continuity
+            p = continuity.resolve(project.get("project_dir") or project.get("campaign_id")
+                                   or project, character)
+            if p.get("method") in ("lora_img2img", "img2img") and p.get("anchor"):
+                plan = p
+        except Exception:
+            plan = None
+    shot["_continuity"] = plan or {}
+    return plan
+
+
+def _render_continuity_shot(plan, shot, scene_number, project_dir, video_name,
+                            aspect, kernel, log):
+    """Two-step on-box render: img2img (reference + LoRA) → on-model still → Wan 2.2 i2v.
+    Returns the video path, or raises so the caller records a failed take."""
+    from media.comfyui_renderer import render_scene_comfyui, render_i2v_comfyui
+    from style_kernel import compose_prompt
+    prompt = compose_prompt(shot["visual_prompt"], kernel, engine="comfyui") if kernel \
+        else shot["visual_prompt"]
+
+    still_name = video_name.rsplit(".", 1)[0] + "_still.png"
+    log(f"🖼️ Shot {scene_number}: on-model still via {plan['still_model']} "
+        f"(img2img from {os.path.basename(plan['anchor'])}"
+        + (f" + LoRA {plan['lora_name']}" if plan.get("lora_name") else "") + ")")
+    still = render_scene_comfyui(
+        prompt, scene_number, output_dir=project_dir, output_name=still_name,
+        workflow_path=plan.get("still_workflow"), model=plan.get("still_model"),
+        image_path=plan["anchor"], lora_name=plan.get("lora_name"))
+
+    log(f"🎞️ Shot {scene_number}: animating still → video (Wan 2.2 i2v)")
+    video = render_i2v_comfyui(
+        still, prompt, scene_number, output_dir=project_dir,
+        output_name=video_name, workflow_path=plan.get("i2v_workflow"))
+    return video
+
+
 def render_shot(project: dict, project_dir: str, scene_number: int,
                 model: str = "grok-imagine", regen_audio: bool = False,
                 progress_cb=None) -> str | None:
@@ -203,6 +294,15 @@ def render_shot(project: dict, project_dir: str, scene_number: int,
             video_path = animate_still(src_image, shot["visual_prompt"], scene_number,
                                        output_dir=project_dir, output_name=video_name,
                                        kernel=_kernel, i2v_model=i2v)
+        elif _continuity_plan(project, shot, model) is not None:
+            # On-model ComfyUI render: img2img (reference + character LoRA) → on-model still,
+            # then Wan 2.2 i2v → moving shot. Fully on-box; no grok, no cloud.
+            plan = _continuity_plan(project, shot, model)
+            log(f"🎭 Shot {scene_number}: continuity render ({plan['method']}) — "
+                + "; ".join(plan.get("why", [])))
+            video_path = _render_continuity_shot(
+                plan, shot, scene_number, project_dir, video_name, aspect, _kernel, log)
+            model = f"comfyui:{plan['method']}"
         else:
             chain = _fallback_chain(model)
             last_err = None
@@ -371,6 +471,7 @@ def assemble_cut(project: dict, project_dir: str, upload_to_r2: bool = True,
     final_video = compile_final_video(
         media, output_filename=output, duck=project.get("audio_duck"),
         music_path=project.get("music"), music_gain=project.get("music_gain", 0.15),
+        music_mode=project.get("music_mode", "bed"),
     )
     if not final_video:
         log("❌ Assembly produced no file.")

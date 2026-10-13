@@ -25,13 +25,19 @@ def _extend_to(video_clip, target_duration, mode):
 
 def compile_final_video(media_list: list, output_filename="final_commercial.mp4", duck: float = None,
                         music_path: str = None, music_gain: float = 0.15,
-                        extend_mode: str = "loop") -> str:
+                        extend_mode: str = "loop", music_mode: str = "bed") -> str:
     """
     Bulletproof compiler: safely handles missing files and extends video if audio is longer.
     `duck` (0.0-1.0) sets how loud the clip's native audio sits under the narrator;
     defaults to CLIP_AUDIO_DUCK when not provided.
     `extend_mode` ('loop'|'freeze'|'trim') controls how a clip is stretched when its
     audio outlasts its video; default 'loop' preserves prior behavior.
+    `music_mode`:
+      'bed'    — song is a quiet background under the video, looped/trimmed to the VIDEO's
+                 length, mixed over voiceover at `music_gain` (the ad model; default).
+      'master' — song IS the master track (music video): it plays at full volume and its
+                 length DRIVES the final duration; the visual timeline is stretched (looped/
+                 frozen) to fill the song, and the song REPLACES the mixed audio.
     """
     duck_level = CLIP_AUDIO_DUCK if duck is None else max(0.0, min(1.0, duck))
     print("\n🎬 [POST-PRODUCTION] Stitching scenes and audio together...")
@@ -96,21 +102,44 @@ def compile_final_video(media_list: list, output_filename="final_commercial.mp4"
         print("⏳ Compiling final timeline... (This may take a minute)")
         final_video = concatenate_videoclips(clips, method="compose")
 
-        # Optional music bed under the whole commercial (looped/trimmed to length, ducked low).
+        # Music.
         if music_path and os.path.exists(music_path):
-            try:
-                bed = AudioFileClip(music_path).with_volume_scaled(music_gain)
-                if bed.duration < final_video.duration:
-                    bed = bed.with_effects([AudioLoop(duration=final_video.duration)])
-                else:
-                    bed = bed.with_duration(final_video.duration)
-                base = final_video.audio
-                final_video = final_video.with_audio(
-                    CompositeAudioClip([base, bed]) if base is not None else bed
-                )
-                print(f"🎵 [POST-PRODUCTION] Music bed mixed at gain {music_gain}.")
-            except Exception as e:
-                print(f"⚠️ [POST-PRODUCTION] Music bed failed: {e}")
+            if music_mode == "master":
+                # Music-video: the song is the master. Stretch the visual timeline to the song's
+                # length (loop/freeze the shots to fill it) and let the song BE the audio at full
+                # volume — no voiceover duck, the track carries the piece.
+                try:
+                    song = AudioFileClip(music_path)
+                    song_dur = song.duration
+                    if abs(song_dur - final_video.duration) > 0.05:
+                        print(f"🎬 [POST-PRODUCTION] Fitting {final_video.duration:.1f}s of visuals "
+                              f"to the {song_dur:.1f}s song ({extend_mode}).")
+                        # freeze holds the last frame; anything else loops the visuals to length.
+                        if extend_mode == "freeze":
+                            final_video = _extend_to(final_video, song_dur, "freeze")
+                        elif song_dur < final_video.duration:
+                            final_video = final_video.with_duration(song_dur)   # trim visuals to song
+                        else:
+                            final_video = final_video.with_effects([vfx.Loop(duration=song_dur)])
+                    final_video = final_video.with_audio(song.with_duration(final_video.duration))
+                    print(f"🎵 [POST-PRODUCTION] Song is master — full-volume, drives {final_video.duration:.1f}s.")
+                except Exception as e:
+                    print(f"⚠️ [POST-PRODUCTION] Master-song assembly failed: {e}")
+            else:
+                # Bed: quiet background under the whole commercial (looped/trimmed to video length).
+                try:
+                    bed = AudioFileClip(music_path).with_volume_scaled(music_gain)
+                    if bed.duration < final_video.duration:
+                        bed = bed.with_effects([AudioLoop(duration=final_video.duration)])
+                    else:
+                        bed = bed.with_duration(final_video.duration)
+                    base = final_video.audio
+                    final_video = final_video.with_audio(
+                        CompositeAudioClip([base, bed]) if base is not None else bed
+                    )
+                    print(f"🎵 [POST-PRODUCTION] Music bed mixed at gain {music_gain}.")
+                except Exception as e:
+                    print(f"⚠️ [POST-PRODUCTION] Music bed failed: {e}")
 
         final_video.write_videofile(
             output_filename, 
