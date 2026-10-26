@@ -152,7 +152,7 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
           );
         })}
         <div className="mt-auto text-[12px] text-dim px-2 pt-3 border-t border-edge">
-          Phase 1 · live from Neon
+          live from Neon
         </div>
       </nav>
 
