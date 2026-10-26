@@ -100,16 +100,23 @@ export default function Pipeline({ target }: { target?: { externalId: string | n
   async function startProject() {
     if (!prompt.trim()) return;
     let fullPrompt = prompt.trim();
-    const images: { name: string; b64: string }[] = [];
+    const images: { name: string; b64: string }[] = [];   // images: kept as the legacy field
+    const files: { name: string; b64: string; kind: string }[] = [];  // all binaries (song/video/pdf/images)
+    // text docs (.md/.txt/.csv/.json) are appended to the brief; everything else is saved as a real file.
+    const isTextDoc = (f: File) => f.type.startsWith("text/") || /\.(md|txt|csv|json)$/i.test(f.name);
     for (const f of briefFiles) {
-      if (f.type.startsWith("image/")) {
-        images.push({ name: f.name, b64: await readB64(f) });
-      } else {                                  // .md/.txt/.csv etc → appended to the brief
+      if (isTextDoc(f)) {
         const txt = await readText(f);
         fullPrompt += `\n\n--- attached: ${f.name} ---\n${txt}`;
+      } else {
+        const b64 = await readB64(f);
+        const kind = f.type.startsWith("image/") ? "image" : f.type.startsWith("audio/") ? "audio"
+          : f.type.startsWith("video/") ? "video" : "file";
+        files.push({ name: f.name, b64, kind });
+        if (kind === "image") images.push({ name: f.name, b64 });   // back-compat for existing consumers
       }
     }
-    const d = await call("/pipeline/start", { prompt: fullPrompt, mode, images });
+    const d = await call("/pipeline/start", { prompt: fullPrompt, mode, images, files });
     if (d?.run_id) { setBriefFiles([]); }
   }
   const loadRun = async (id: string) => { setRunId(id); const d = await call(`/pipeline/${id}`, undefined, "GET"); };
@@ -184,9 +191,15 @@ export default function Pipeline({ target }: { target?: { externalId: string | n
             <option value="manual">manual — approve every stage</option>
           </select>
           <label className="text-dim border border-edge rounded-md px-2.5 py-1.5 text-[13px] cursor-pointer hover:bg-raised/50">
-            ＋ attach docs / images
-            <input type="file" multiple accept=".md,.txt,.csv,.json,image/*" className="hidden"
-              onChange={(e) => setBriefFiles(Array.from(e.target.files || []))} />
+            ＋ attach docs / images / song
+            <input type="file" multiple accept=".md,.txt,.csv,.json,.pdf,image/*,audio/*,video/*" className="hidden"
+              onChange={(e) => {
+                const picked = Array.from(e.target.files || []); e.target.value = "";
+                setBriefFiles((cur) => {                       // accumulate; de-dupe by name+size
+                  const seen = new Set(cur.map((f) => f.name + ":" + f.size));
+                  return [...cur, ...picked.filter((f) => !seen.has(f.name + ":" + f.size))];
+                });
+              }} />
           </label>
           <button disabled={!!busy} onClick={startProject} className="text-accent border border-accent/40 rounded-md px-3 py-1.5 text-[14px] disabled:opacity-50" style={{ background: "rgba(91,157,255,0.12)" }}>
             {busy === "/pipeline/start" ? "spinning up…" : "Spin up project"}
@@ -200,11 +213,16 @@ export default function Pipeline({ target }: { target?: { externalId: string | n
         </div>
         {briefFiles.length > 0 && (
           <div className="text-[12px] text-dim mt-2 flex flex-wrap gap-1.5">
-            {briefFiles.map((f, i) => (
-              <span key={i} className="bg-ink border border-edge rounded px-1.5 py-0.5 font-mono">
-                {f.type.startsWith("image/") ? "🖼" : "📄"} {f.name}
-              </span>
-            ))}
+            {briefFiles.map((f, i) => {
+              const icon = f.type.startsWith("image/") ? "🖼" : f.type.startsWith("audio/") ? "🎵" : f.type.startsWith("video/") ? "🎬" : "📄";
+              return (
+                <span key={f.name + ":" + f.size} className="bg-ink border border-edge rounded px-1.5 py-0.5 font-mono flex items-center gap-1">
+                  {icon} {f.name}
+                  <button onClick={() => setBriefFiles((cur) => cur.filter((_, j) => j !== i))}
+                    title={`remove ${f.name}`} className="text-[11px] leading-none hover:text-fg opacity-70">×</button>
+                </span>
+              );
+            })}
           </div>
         )}
         {(st?.status === "running" || st?.status === "ready") && (
@@ -453,14 +471,17 @@ function AssetGenPanel({ pipe, runId }: { pipe: string; runId: string }) {
                 <div className="aspect-video bg-black rounded-md overflow-hidden flex items-center justify-center text-dim text-[12px]">
                   {sel && sel.ok ? (sel.image ? <img src={mediaSrc(sel)} alt={`scene ${s.scene_number} take`} className="w-full h-full object-contain" /> : <video src={mediaSrc(sel)} controls className="w-full h-full object-contain" />) : "no take yet"}
                 </div>
-                {/* take chips */}
+                {/* take chips — click to select; takes are append-only (ledger invariant) */}
                 <div className="flex flex-wrap gap-1 mt-2">
                   {(s.takes || []).map((t: any) => (
-                    <button key={t.take_id} onClick={() => act(s.scene_number, "select", { take_id: t.take_id })}
-                      className={"text-[11px] font-mono px-1.5 py-0.5 rounded border " + (t.take_id === s.selected_take ? "border-good text-good" : "border-edge text-dim")}>
+                    <button key={t.take_id}
+                      onClick={() => act(s.scene_number, "select", { take_id: t.take_id })}
+                      title="select this take"
+                      className={"text-[11px] font-mono rounded border px-1.5 py-0.5 " + (t.take_id === s.selected_take ? "border-good text-good" : "border-edge text-dim")}>
                       {t.take_id}·{t.model}
                     </button>
                   ))}
+                  {(s.takes || []).length === 0 && <span className="text-[11px] text-dim">no takes yet</span>}
                 </div>
               </div>
               <div>
