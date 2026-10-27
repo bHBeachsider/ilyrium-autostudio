@@ -6,6 +6,7 @@ import Pipeline from "./Pipeline";
 import BoxPanel, { BoxStatus } from "./BoxPanel";
 import ChatPanel from "./ChatPanel";
 import ReviewRoom, { ReviewTake } from "./ReviewRoom";
+import TimelinePanel, { TimelineShot, TimelineTake } from "./TimelinePanel";
 
 /* Ilyrium Studio OS — workspace-driven film console. One project page; the left
    rail swaps the active functional domain (Scripting · Generation · Assembly ·
@@ -292,43 +293,46 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
           )}
 
           {/* ── DOMAIN 3 — TIMELINE & ASSEMBLY ──────────────────────────── */}
-          {domain === "assembly" && (
-            <div className="grid grid-cols-1 xl:grid-cols-[1fr_300px] gap-4">
-              <section>
+          {domain === "assembly" && (() => {
+            // Build shot data from project scenes + video assets (DB-sourced, read-only view)
+            const sceneNums = (proj?.scenes ?? []).map((s) => s.number);
+            const timelineShots: TimelineShot[] = sceneNums.map((n) => {
+              const sceneAssets = projAssets.filter((a) => a.sceneNumber === n && (a.assetType === "video" || /\.(mp4|mov|webm)/i.test(a.uri || "")));
+              const takes: TimelineTake[] = sceneAssets.map((a) => ({
+                take_id: a.id,
+                ok: true,
+                approval: a.rating === "approved" ? "approved" : a.rating === "rejected" ? "rejected" : null,
+                model: a.model,
+                public_url: a.uri,
+              }));
+              const masterTake = takes.find((t) => t.approval === "approved") ?? takes[0];
+              return { scene_number: n, takes, selected_take: masterTake?.take_id };
+            });
+            const masterAsset = projAssets.find((a) => a.assetType === "master");
+            return (
+              <div>
                 <h2 className="text-[17px] font-semibold mb-3">Timeline & Assembly {proj ? `— ${proj.title}` : ""}</h2>
-                <div className="aspect-video bg-black border border-edge rounded-lg flex items-center justify-center text-dim text-[14px] font-mono mb-3">
-                  {hasMaster ? "■ master cut — open in Studio to play" : "no master assembled yet"}
-                </div>
-                {/* Multi-track timeline mock */}
-                {["VIDEO", "AUDIO", "SFX/MUSIC"].map((track, ti) => (
-                  <div key={track} className="flex items-center gap-2 mb-1.5">
-                    <span className="w-20 text-[12px] text-dim font-mono uppercase">{track}</span>
-                    <div className="flex-1 flex gap-1">
-                      {(proj?.scenes ?? []).map((s) => (
-                        <div key={s.number} className="h-7 flex-1 rounded-sm border border-edge flex items-center justify-center text-[11px] font-mono"
-                          style={{ background: ti === 0 ? "#1b2027" : ti === 1 ? "#171b21" : "#141820", color: videoScenes.has(s.number) || ti > 0 ? "#97a1ad" : "#3a424d" }}>
-                          {s.number}
-                        </div>
-                      ))}
-                      {(!proj || proj.scenes.length === 0) && <span className="text-dim text-[13px]">—</span>}
-                    </div>
+                {timelineShots.length > 0 ? (
+                  <TimelinePanel
+                    shots={timelineShots}
+                    audioUrl={masterAsset?.uri ?? null}
+                  />
+                ) : (
+                  <div className="text-dim text-[14px]">No scene nodes yet — add scenes in Script stage, then generate takes.</div>
+                )}
+                {masterAsset && (
+                  <div className="mt-4 bg-panel border border-edge rounded-xl p-4 max-w-sm">
+                    <div className="text-[11px] text-dim uppercase tracking-wide mb-2">Master node</div>
+                    <dl className="text-[13px] space-y-1 font-mono">
+                      <div className="flex justify-between"><dt className="text-dim">uri</dt><dd>{uriTail(masterAsset.uri)}</dd></div>
+                      <div className="flex justify-between"><dt className="text-dim">engine</dt><dd>{masterAsset.model ?? "—"}</dd></div>
+                      <div className="flex justify-between"><dt className="text-dim">rating</dt><dd>{masterAsset.rating}</dd></div>
+                    </dl>
                   </div>
-                ))}
-              </section>
-              <aside className="bg-panel border border-edge rounded-xl p-4 h-fit">
-                <div className="text-[13px] text-dim uppercase tracking-wide mb-2">Master render node</div>
-                {projAssets.filter((a) => a.assetType === "master").slice(0, 1).map((m) => (
-                  <dl key={m.id} className="text-[14px] space-y-1.5 font-mono">
-                    <div className="flex justify-between"><dt className="text-dim">uri</dt><dd>{uriTail(m.uri)}</dd></div>
-                    <div className="flex justify-between"><dt className="text-dim">engine</dt><dd>{m.model ?? "—"}</dd></div>
-                    <div className="flex justify-between"><dt className="text-dim">rating</dt><dd>{m.rating}</dd></div>
-                  </dl>
-                ))}
-                {!hasMaster && <div className="text-dim text-sm">Assemble a cut in the Ad Studio (gate-enforced before publish).</div>}
-                <div className="mt-3 pt-3 border-t border-edge text-[12px] text-dim">Export / master settings live in the render pipeline. Publishing requires release approval (Analytics → rights queue).</div>
-              </aside>
-            </div>
-          )}
+                )}
+              </div>
+            );
+          })()}
 
           {/* ── DOMAIN 4 — PIPELINE ANALYTICS & GOVERNANCE ──────────────── */}
           {domain === "analytics" && (

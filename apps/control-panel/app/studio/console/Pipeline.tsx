@@ -5,6 +5,7 @@ import ConsoleShell from "./ConsoleShell";
 import AstriaRefine from "./AstriaRefine";
 import StageChecklist from "./StageChecklist";
 import { ReviewPanel } from "./ReviewRoom";
+import { TimelinePipelinePanel } from "./TimelinePanel";
 
 // 8-stage pipeline workspaces (full build — installment 3). Spin up a project from
 // one director prompt, then fine-tune each stage with text/image ingestion and
@@ -365,7 +366,7 @@ export default function Pipeline({ target }: { target?: { externalId: string | n
                 <div className={view === 3 ? "" : "hidden"}><StoryboardPanel pipe={PIPE} runId={runId} /></div>
                 <div className={view === 4 ? "" : "hidden"}><AssetGenPanel pipe={PIPE} runId={runId} /></div>
                 <div className={view === 5 ? "" : "hidden"}><ReviewPanel pipe={PIPE} runId={runId} /></div>
-                <div className={view === 6 ? "" : "hidden"}><AudioTimelinePanel pipe={PIPE} runId={runId} /></div>
+                <div className={view === 6 ? "" : "hidden"}><TimelinePipelinePanel pipe={PIPE} runId={runId} /></div>
                 <div className={view === 7 ? "" : "hidden"}><RightsPanel state={st} pipe={PIPE} runId={runId} /></div>
                 <div className={view === 8 ? "" : "hidden"}><DeliveryPanel pipe={PIPE} runId={runId} externalId={st?.campaign_id} /></div>
               </>
