@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Pipeline from "./Pipeline";
 import BoxPanel, { BoxStatus } from "./BoxPanel";
 import ChatPanel from "./ChatPanel";
+import ReviewRoom, { ReviewTake } from "./ReviewRoom";
 
 /* Ilyrium Studio OS — workspace-driven film console. One project page; the left
    rail swaps the active functional domain (Scripting · Generation · Assembly ·
@@ -40,9 +41,11 @@ const ICONS: Record<string, React.ReactNode> = {
   analytics: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M4 4v16h16" /><path d="M8 16v-4M12 16V8M16 16v-6" /></svg>,
   pipeline: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><circle cx="5" cy="6" r="2" /><circle cx="5" cy="18" r="2" /><circle cx="19" cy="12" r="2" /><path d="M7 6h6a4 4 0 0 1 4 4M7 18h6a4 4 0 0 0 4-4" /></svg>,
   studio: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z" /><path d="M8 9h8M8 12h5" /></svg>,
+  review: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><circle cx="12" cy="12" r="9" /><path d="M10 8l5 4-5 4V8z" /></svg>,
 };
 const DOMAINS = [
   { key: "pipeline", label: "Pipeline", sub: "8-stage · auto-draft" },
+  { key: "review", label: "Review Room", sub: "Shot · take · approve" },
   { key: "studio", label: "Studio Chat", sub: "LLM · Box control" },
   { key: "script", label: "Ideation & Scripting", sub: "Pre-Production" },
   { key: "generation", label: "Asset Generation", sub: "Production" },
@@ -178,6 +181,19 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
         <main className="flex-1 overflow-auto p-5">
           {/* DOMAIN 0 — PIPELINE (8 stage workspaces + auto-draft) */}
           {domain === "pipeline" && <Pipeline target={pipeTarget} />}
+
+          {/* DOMAIN: REVIEW ROOM (Frame.io-style take review surface) */}
+          {domain === "review" && (() => {
+            const videoAssets = projAssets.filter((a) => a.assetType === "video" || (a.uri && /\.(mp4|mov|webm|mkv)/i.test(a.uri)));
+            const takes: ReviewTake[] = videoAssets.map((a) => ({
+              takeId: a.id,
+              shotId: a.sceneNumber != null ? `scene-${a.sceneNumber}` : undefined,
+              sceneNumber: a.sceneNumber ?? undefined,
+              label: `${a.projectTitle} · ${a.assetType ?? "video"} · ${short(a.id, 6)}`,
+              url: a.uri,
+            }));
+            return <ReviewRoom takes={takes} />;
+          })()}
 
           {/* ── STUDIO CHAT + BOX CONTROL — multi-provider chat, box lifecycle ── */}
           {domain === "studio" && (
