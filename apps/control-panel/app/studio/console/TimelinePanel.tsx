@@ -372,6 +372,178 @@ export function TimelinePipelinePanel({ pipe, runId }: { pipe: string; runId: st
   );
 }
 
+// ── Multi-track audio types ───────────────────────────────────────────────────
+
+type TrackKind = "ambient" | "narrator" | "character" | "music" | "sfx";
+
+interface AudioElement {
+  url: string;
+  kind: TrackKind;
+  start_s: number;
+  volume: number;
+  ducking_db: number;
+}
+
+interface ShotAudioRow {
+  scene_number: number;
+  voiceover?: string;
+  audio_elements: AudioElement[];
+}
+
+interface AddTrackDraft {
+  scene_number: number;
+  kind: TrackKind;
+  url: string;
+  volume: number;
+  ducking_db: number;
+}
+
+const TRACK_COLORS: Record<TrackKind, { bg: string; label: string }> = {
+  ambient:   { bg: "rgba(91,157,255,0.18)",  label: "#5b9dff" },
+  narrator:  { bg: "rgba(240,167,61,0.22)",  label: "#f0a73d" },
+  character: { bg: "rgba(185,140,255,0.22)", label: "#b98cff" },
+  music:     { bg: "rgba(87,201,122,0.20)",  label: "#57c97a" },
+  sfx:       { bg: "rgba(246,113,79,0.20)",  label: "#f6714f" },
+};
+const TRACK_KINDS: TrackKind[] = ["narrator", "ambient", "music", "character", "sfx"];
+
+function MultiTrackLanesPanel({ pipe, runId }: { pipe: string; runId: string }) {
+  const [shotRows, setShotRows] = useState<ShotAudioRow[]>([]);
+  const [drawer, setDrawer] = useState<AddTrackDraft | null>(null);
+  const [drawerBusy, setDrawerBusy] = useState(false);
+
+  async function loadShots() {
+    try {
+      const r = await fetch(`${pipe}/pipeline/${runId}/cut`);
+      const d = await r.json();
+      setShotRows((d.shots || []).map((s: any) => ({
+        scene_number: s.scene_number,
+        voiceover: s.voiceover || "",
+        audio_elements: s.audio_elements || [],
+      })));
+    } catch {}
+  }
+
+  useEffect(() => { loadShots(); }, [pipe, runId]);
+
+  async function saveTrack() {
+    if (!drawer) return;
+    setDrawerBusy(true);
+    try {
+      await fetch(`${pipe}/pipeline/${runId}/audio`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          op: "add_track",
+          scene_number: drawer.scene_number,
+          tracks: [{ url: drawer.url.trim(), kind: drawer.kind, start_s: 0, volume: drawer.volume, ducking_db: drawer.ducking_db }],
+        }),
+      });
+      setDrawer(null);
+      await loadShots();
+    } catch {}
+    finally { setDrawerBusy(false); }
+  }
+
+  if (shotRows.length === 0) return null;
+
+  return (
+    <div className="pt-2 border-t border-edge space-y-2">
+      <div className="text-[11px] text-dim uppercase tracking-wide">Multi-track lanes</div>
+      <div className="overflow-x-auto">
+        {TRACK_KINDS.map((kind) => {
+          const c = TRACK_COLORS[kind];
+          return (
+            <div key={kind} className="flex items-center gap-2 mb-1">
+              <span className="w-20 text-[11px] font-mono uppercase shrink-0" style={{ color: c.label }}>{kind}</span>
+              <div className="flex flex-1 gap-1">
+                {shotRows.map((s) => {
+                  const tracksOfKind = s.audio_elements.filter((e) => e.kind === kind);
+                  const isNarratorVo = kind === "narrator" && s.voiceover;
+                  const hasContent = tracksOfKind.length > 0 || isNarratorVo;
+                  return (
+                    <div
+                      key={s.scene_number}
+                      title={tracksOfKind.map((t) => `${t.url} vol:${t.volume} duck:${t.ducking_db}dB`).join("\n") || (isNarratorVo ? s.voiceover : "")}
+                      className="h-6 flex-1 min-w-[28px] rounded-sm border border-edge flex items-center justify-center text-[10px] font-mono"
+                      style={{ background: hasContent ? c.bg : "#151a20", color: hasContent ? c.label : "#3a424d" }}
+                    >
+                      {hasContent ? (tracksOfKind.length > 0 ? tracksOfKind.length : "VO") : s.scene_number}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+        <div className="flex items-center gap-2 mt-1.5">
+          <span className="w-20 text-[11px] text-dim shrink-0">add</span>
+          <div className="flex flex-1 gap-1">
+            {shotRows.map((s) => (
+              <button
+                key={s.scene_number}
+                onClick={() => setDrawer({ scene_number: s.scene_number, kind: "ambient", url: "", volume: 1.0, ducking_db: -12 })}
+                className="h-6 flex-1 min-w-[28px] rounded-sm border border-dashed border-edge text-[10px] text-dim hover:border-accent hover:text-accent"
+                title={`Add track to scene ${s.scene_number}`}
+              >+</button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {drawer && (
+        <div className="bg-ink border border-edge rounded-lg p-2.5 space-y-2">
+          <div className="text-[12px] font-semibold">Add track — Scene {drawer.scene_number}</div>
+          <div className="flex flex-wrap gap-2 items-end">
+            <label className="text-[11px] text-dim">
+              Kind
+              <select
+                value={drawer.kind}
+                onChange={(e) => setDrawer((d) => d && { ...d, kind: e.target.value as TrackKind })}
+                className="ml-2 bg-panel border border-edge rounded text-fg text-[11px] px-1.5 py-0.5"
+              >
+                {TRACK_KINDS.map((k) => <option key={k} value={k}>{k}</option>)}
+              </select>
+            </label>
+            <label className="text-[11px] text-dim flex-1 min-w-[180px]">
+              File path
+              <input
+                value={drawer.url}
+                onChange={(e) => setDrawer((d) => d && { ...d, url: e.target.value })}
+                placeholder="absolute path or R2 URL"
+                className="ml-2 w-full bg-panel border border-edge rounded text-fg text-[11px] px-1.5 py-0.5 font-mono"
+              />
+            </label>
+          </div>
+          <div className="flex flex-wrap gap-3 items-center">
+            <label className="text-[11px] text-dim flex items-center gap-1.5">
+              Vol
+              <input type="range" min={0} max={2} step={0.05} value={drawer.volume}
+                onChange={(e) => setDrawer((d) => d && { ...d, volume: parseFloat(e.target.value) })} className="w-24" />
+              <span className="font-mono w-8">{drawer.volume.toFixed(2)}</span>
+            </label>
+            <label className="text-[11px] text-dim flex items-center gap-1.5">
+              Duck
+              <input type="range" min={-30} max={0} step={1} value={drawer.ducking_db}
+                onChange={(e) => setDrawer((d) => d && { ...d, ducking_db: parseInt(e.target.value) })} className="w-24" />
+              <span className="font-mono w-10">{drawer.ducking_db}dB</span>
+            </label>
+            <div className="flex gap-1.5">
+              <button disabled={drawerBusy || !drawer.url.trim()} onClick={saveTrack}
+                className="text-good border border-good/40 rounded px-2.5 py-0.5 text-[11px] disabled:opacity-50"
+                style={{ background: "rgba(87,201,122,0.12)" }}>
+                {drawerBusy ? "saving…" : "Save"}
+              </button>
+              <button onClick={() => setDrawer(null)} className="border border-edge text-dim rounded px-2.5 py-0.5 text-[11px]">Cancel</button>
+            </div>
+          </div>
+          <div className="text-[10px] text-dim">Duck applies when narrator/character also present — ambient/music reduced by dB value.</div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Audio controls (split from AudioTimelinePanel) ────────────────────────────
 
 function AudioControlsPanel({ pipe, runId }: { pipe: string; runId: string }) {
@@ -432,6 +604,9 @@ function AudioControlsPanel({ pipe, runId }: { pipe: string; runId: string }) {
         </button>
         <span className="text-[11px] text-dim">Approved takes → first cut · holds for unapproved shots</span>
       </div>
+
+      {/* Multi-track lanes + add-track drawer */}
+      <MultiTrackLanesPanel pipe={pipe} runId={runId} />
 
       {/* Voice casting */}
       <div className="pt-2 border-t border-edge">
