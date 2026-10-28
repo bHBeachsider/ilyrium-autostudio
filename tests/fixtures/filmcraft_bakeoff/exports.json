@@ -1,0 +1,150 @@
+{
+  "h264_sw": {
+    "rc": 0,
+    "wall_s": 172.08,
+    "result": {
+      "job": 1,
+      "offlineMedia": [],
+      "path": "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\_staging\\filmcraft_bakeoff\\run1\\h264_sw.mp4",
+      "result": {
+        "bytes": 25407802,
+        "frames": 1193,
+        "path": "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\_staging\\filmcraft_bakeoff\\run1\\h264_sw.mp4",
+        "render_fps": 6.957570167541287,
+        "seconds": 171.4679078
+      }
+    },
+    "stderr": "",
+    "strict_decode_rc": 0,
+    "strict_decode_err": "",
+    "integrated_lufs": -14.0,
+    "true_peak_dbfs": -2.0,
+    "qc": {
+      "ok": false,
+      "flags": [
+        "freeze x5"
+      ],
+      "black": 0,
+      "freezes": 5,
+      "silence": 0
+    },
+    "codec": "h264",
+    "profile": "High",
+    "size": "1920x1080",
+    "r_frame_rate": "24/1",
+    "nb_frames": "1193",
+    "pix_fmt": "yuv420p",
+    "v_bitrate_kbps": 3765,
+    "audio": "aac/48000",
+    "duration_s": 49.728,
+    "bytes": 25407802,
+    "sha256": "e55b4d6198e0bef0372da64fb25da36b134e006ff2b4c63aa0cf74cf225a469a"
+  },
+  "h264_nvenc": {
+    "rc": 0,
+    "wall_s": 75.2,
+    "result": {
+      "job": 1,
+      "offlineMedia": [],
+      "path": "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\_staging\\filmcraft_bakeoff\\run1\\h264_nvenc.mp4",
+      "result": {
+        "bytes": 73300787,
+        "frames": 1193,
+        "path": "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\_staging\\filmcraft_bakeoff\\run1\\h264_nvenc.mp4",
+        "render_fps": 16.227286033202116,
+        "seconds": 73.518147
+      }
+    },
+    "stderr": "",
+    "strict_decode_rc": 0,
+    "strict_decode_err": "",
+    "integrated_lufs": -14.0,
+    "true_peak_dbfs": -2.0,
+    "qc": {
+      "ok": false,
+      "flags": [
+        "freeze x3"
+      ],
+      "black": 0,
+      "freezes": 3,
+      "silence": 0
+    },
+    "codec": "h264",
+    "profile": "High",
+    "size": "1920x1080",
+    "r_frame_rate": "24/1",
+    "nb_frames": "1193",
+    "pix_fmt": "yuv420p",
+    "v_bitrate_kbps": 11473,
+    "audio": "aac/48000",
+    "duration_s": 49.728,
+    "bytes": 73300787,
+    "sha256": "89b5a1f9a4676357e8c81d9aeee5af494c2ffdd1955624b6d78f8cb6aa816c5b"
+  },
+  "prores_hq": {
+    "rc": 0,
+    "wall_s": 189.39,
+    "result": {
+      "job": 1,
+      "offlineMedia": [],
+      "path": "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\_staging\\filmcraft_bakeoff\\run1\\prores_hq.mov",
+      "result": {
+        "bytes": 707927879,
+        "frames": 1193,
+        "path": "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\_staging\\filmcraft_bakeoff\\run1\\prores_hq.mov",
+        "render_fps": 6.334483889057924,
+        "seconds": 188.334207
+      }
+    },
+    "stderr": "",
+    "strict_decode_rc": 0,
+    "strict_decode_err": "",
+    "integrated_lufs": -16.2,
+    "true_peak_dbfs": -3.9,
+    "qc": {
+      "ok": false,
+      "flags": [
+        "freeze x9"
+      ],
+      "black": 0,
+      "freezes": 9,
+      "silence": 0
+    },
+    "codec": "prores",
+    "profile": "HQ",
+    "size": "1920x1080",
+    "r_frame_rate": "24/1",
+    "nb_frames": "1193",
+    "pix_fmt": "yuv422p10le",
+    "v_bitrate_kbps": 112396,
+    "audio": "pcm_s16le/48000",
+    "duration_s": 49.708333,
+    "bytes": 707927879,
+    "sha256": "4fed86c71f00cdb5ada6223ae35e1ce511d73fb5b0c1fb2123748e2f286dc63c"
+  },
+  "moviepy_ref": {
+    "path": "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\_staging\\filmcraft_bakeoff\\moviepy_ref\\moviepy_ref.mp4",
+    "strict_decode_rc": 0,
+    "strict_decode_err": "",
+    "integrated_lufs": -16.2,
+    "true_peak_dbfs": -2.9,
+    "qc": {
+      "ok": true,
+      "flags": [],
+      "black": 0,
+      "freezes": 0,
+      "silence": 0
+    },
+    "codec": "h264",
+    "profile": "High",
+    "size": "1088x1904",
+    "r_frame_rate": "24/1",
+    "nb_frames": "1198",
+    "pix_fmt": "yuv420p",
+    "v_bitrate_kbps": 1867,
+    "audio": "aac/44100",
+    "duration_s": 49.92,
+    "bytes": 12500489,
+    "sha256": "f832e16dcdbc47696de2da79344bfb61ac7ca4891812c7e4e6cfa04331611ff9"
+  }
+}

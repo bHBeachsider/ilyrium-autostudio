@@ -81,6 +81,60 @@ def is_up(base_url: str = None, timeout: int = 4) -> bool:
         return False
 
 
+def free_vram(base_url: str = None, timeout: int = 30) -> bool:
+    """Ask ComfyUI to unload models + release GPU memory (POST /free). The box shares one
+    GPU between ComfyUI and ollama; leaving flux2 resident (~15 GB) starves ollama's model
+    (OOM). We free after each render so ollama/Studio-Chat always has room. ComfyUI reloads
+    the model on the next render (~seconds). Best-effort — a failure here never fails a render.
+    Set COMFYUI_KEEP_VRAM=1 to skip (e.g. rapid multi-render batches where reload cost hurts)."""
+    if os.getenv("COMFYUI_KEEP_VRAM"):
+        return False
+    base = (base_url or COMFYUI_URL).rstrip("/")
+    try:
+        req = urllib.request.Request(
+            base + "/free", method="POST",
+            data=json.dumps({"unload_models": True, "free_memory": True}).encode(),
+            headers={"content-type": "application/json"})
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return r.status == 200
+    except Exception:
+        return False
+
+
+def free_ollama_vram(timeout: int = 20) -> bool:
+    """Unload every model ollama currently holds on the GPU, so a ComfyUI render has room.
+    The box shares one GPU: Studio Chat's qwen (~21 GB) will OOM a render if left loaded.
+    We list loaded models (GET /api/ps) and unload each (generate with keep_alive:0), which
+    is ollama's documented way to evict a model. Best-effort; set OLLAMA_KEEP_VRAM=1 to skip.
+
+    Endpoint from OLLAMA_HOST (default the tunnel at 127.0.0.1:11434)."""
+    if os.getenv("OLLAMA_KEEP_VRAM"):
+        return False
+    host = os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434").rstrip("/")
+    if not host.startswith("http"):
+        host = "http://" + host
+    try:
+        with urllib.request.urlopen(host + "/api/ps", timeout=timeout) as r:
+            loaded = json.loads(r.read()).get("models", [])
+    except Exception:
+        return False
+    freed = False
+    for m in loaded:
+        name = m.get("name") or m.get("model")
+        if not name:
+            continue
+        try:
+            req = urllib.request.Request(
+                host + "/api/generate", method="POST",
+                data=json.dumps({"model": name, "keep_alive": 0}).encode(),
+                headers={"content-type": "application/json"})
+            urllib.request.urlopen(req, timeout=timeout).read()
+            freed = True
+        except Exception:
+            pass
+    return freed
+
+
 # --------------------------------------------------------------------------- #
 # Model registry (model_registry.json is the ONLY place a model is defined)
 # --------------------------------------------------------------------------- #
@@ -218,15 +272,22 @@ def make_region_mask(region: str, w: int, h: int, save_dir: str = None,
 # Graph building
 # --------------------------------------------------------------------------- #
 def inject_tokens(wf_text: str, visual_prompt: str, image_name: str = None,
-                  seed: int = None) -> str:
-    """JSON-safe replacement of __PROMPT__ (and optionally __IMAGE__) tokens.
+                  seed: int = None, lora_name: str = None) -> str:
+    """JSON-safe replacement of __PROMPT__ (and optionally __IMAGE__ / __LORA__) tokens.
 
     __SEED__ (used bare, not quoted, e.g. "seed": __SEED__) is replaced with an
     integer so renders vary per call. If the workflow contains the token and no
-    seed is supplied, a random one is generated."""
+    seed is supplied, a random one is generated.
+
+    __LORA__ (quoted, e.g. "lora_name": "__LORA__") is replaced with the character
+    LoRA filename so one template serves any character. If the template has the token
+    but no lora_name is passed, it's left in place (the caller must supply one), so a
+    LoRA-required template fails loudly on ComfyUI rather than rendering off-model."""
     wf_text = wf_text.replace("__PROMPT__", json.dumps(visual_prompt)[1:-1])
     if image_name is not None:
         wf_text = wf_text.replace("__IMAGE__", json.dumps(image_name)[1:-1])
+    if lora_name is not None:
+        wf_text = wf_text.replace("__LORA__", json.dumps(lora_name)[1:-1])
     if "__SEED__" in wf_text:
         if seed is None:
             seed = random.randint(0, 2**32 - 1)
@@ -402,6 +463,8 @@ def submit_and_wait(graph: dict, base_url: str = None, timeout: int = 600, *,
             f"ComfyUI is unreachable at {base}. Start the EC2 GPU box and the "
             f"tunnel (cli/box.ps1 start + tunnel) so :8188 answers.")
 
+    free_ollama_vram()   # shared GPU: evict Studio-Chat's qwen so this render has room
+
     client_id = str(uuid.uuid4())
     try:
         resp = _post_json(base + "/prompt", {"prompt": graph, "client_id": client_id},
@@ -441,6 +504,7 @@ def submit_and_wait(graph: dict, base_url: str = None, timeout: int = 600, *,
         raise ComfyUIError(f"ComfyUI produced no output file (prompt_id={prompt_id}).")
 
     if output_dir is None:
+        free_vram(base)   # on-box path: still release GPU for the shared ollama
         return os.path.join(OUTPUT_ROOT, file_info.get("subfolder", ""),
                             file_info["filename"])
 
@@ -466,4 +530,5 @@ def submit_and_wait(graph: dict, base_url: str = None, timeout: int = 600, *,
     out = os.path.join(output_dir, name)
     with open(out, "wb") as f:
         f.write(content)
+    free_vram(base)   # release GPU so the shared ollama has room (COMFYUI_KEEP_VRAM to skip)
     return out

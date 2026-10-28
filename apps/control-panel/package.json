@@ -9,6 +9,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@fal-ai/client": "^1.10.1",
     "@libsql/client": "^0.18.0",
     "@neondatabase/serverless": "^1.1.0",
     "@prisma/adapter-libsql": "^7.10.1",
@@ -18,9 +19,11 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "wavesurfer.js": "^8.0.3",
     "ws": "^8.21.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.1",
     "@tailwindcss/postcss": "^4.3.0",
     "@types/node": "25.9.1",
     "@types/ws": "^8.18.1",

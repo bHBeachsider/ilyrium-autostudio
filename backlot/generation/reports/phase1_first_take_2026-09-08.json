@@ -1,0 +1,312 @@
+{
+ "shots": {
+  "SH003": {
+   "takes": 5,
+   "passed": 5,
+   "rate": 1.0,
+   "detail": [
+    {
+     "take": "take_2000.png",
+     "passed": true,
+     "warn": true,
+     "lines": [
+      "expected posts (px x): post_L=838",
+      "strongest verticals in the stage band (px x, strength): 634(0.95), 840(0.81), 672(0.65), 976(0.65), 694(0.64)",
+      "  PASS post post_L at x=838 (found 840, 0.2% of frame off)",
+      "  WARN vertical at x=634 inside the stage span with no post in the blockout - LOOK at it",
+      "  PASS deck front edge 0.4 deg (blockout 0.0)",
+      "  ok   deck's dominant edge 0 deg (blockout 0) - advisory only, see --sheet",
+      "  WARN chair band reads as 4 ink bands (y=[565, 588, 601, 625]) - LOOK at it; the set has one row",
+      "clay verticals (px x):  414, 524, 602, 672",
+      "frame verticals (px x): 634, 826, 963, 1139",
+      "  WARN clay vertical at x=414 has nothing within 16.4% of frame - LOOK at it (advisory: the clay's strongest verticals include building edges the dressed frame draws differently)",
+      "  wrote comparison sheet -> renders/keyframes/SH003/take_2000_sheet.png (green = where the posts belong, blue = the deck line)",
+      "[OK] geometry agrees with the blockout"
+     ]
+    },
+    {
+     "take": "take_2001.png",
+     "passed": true,
+     "warn": true,
+     "lines": [
+      "expected posts (px x): post_L=838",
+      "strongest verticals in the stage band (px x, strength): 830(0.83), 635(0.74), 672(0.74), 695(0.72), 794(0.69)",
+      "  PASS post post_L at x=838 (found 830, 0.6% of frame off)",
+      "  WARN vertical at x=635 inside the stage span with no post in the blockout - LOOK at it",
+      "  PASS deck front edge 0.6 deg (blockout 0.0)",
+      "  ok   deck's dominant edge 0 deg (blockout 0) - advisory only, see --sheet",
+      "  ok   chair band reads as 1 ink band(s) - consistent with one row",
+      "clay verticals (px x):  414, 524, 602, 672",
+      "frame verticals (px x): 636, 827, 925, 1091",
+      "  WARN clay vertical at x=414 has nothing within 16.5% of frame - LOOK at it (advisory: the clay's strongest verticals include building edges the dressed frame draws differently)",
+      "  wrote comparison sheet -> renders/keyframes/SH003/take_2001_sheet.png (green = where the posts belong, blue = the deck line)",
+      "[OK] geometry agrees with the blockout"
+     ]
+    },
+    {
+     "take": "take_2002.png",
+     "passed": true,
+     "warn": true,
+     "lines": [
+      "expected posts (px x): post_L=838",
+      "strongest verticals in the stage band (px x, strength): 634(0.89), 697(0.68), 671(0.65), 825(0.63), 583(0.53)",
+      "  WARN post post_L at x=838 but nearest vertical is 697 (10.5% off) - scale drift, LOOK at it",
+      "  WARN vertical at x=634 inside the stage span with no post in the blockout - LOOK at it",
+      "  PASS deck front edge 0.5 deg (blockout 0.0)",
+      "  ok   deck's dominant edge 0 deg (blockout 0) - advisory only, see --sheet",
+      "  WARN chair band reads as 3 ink bands (y=[602, 611, 625]) - LOOK at it; the set has one row",
+      "clay verticals (px x):  414, 524, 602, 672",
+      "frame verticals (px x): 633, 826, 1101, 1184",
+      "  WARN clay vertical at x=414 has nothing within 16.3% of frame - LOOK at it (advisory: the clay's strongest verticals include building edges the dressed frame draws differently)",
+      "  wrote comparison sheet -> renders/keyframes/SH003/take_2002_sheet.png (green = where the posts belong, blue = the deck line)",
+      "[OK] geometry agrees with the blockout"
+     ]
+    },
+    {
+     "take": "take_2003.png",
+     "passed": true,
+     "warn": true,
+     "lines": [
+      "expected posts (px x): post_L=838",
+      "strongest verticals in the stage band (px x, strength): 674(0.71), 632(0.66), 329(0.62), 559(0.55), 523(0.51)",
+      "  WARN post post_L at x=838 but nearest vertical is 674 (12.2% off) - scale drift, LOOK at it",
+      "  WARN vertical at x=632 inside the stage span with no post in the blockout - LOOK at it",
+      "  PASS deck front edge 0.5 deg (blockout 0.0)",
+      "  ok   deck's dominant edge 0 deg (blockout 0) - advisory only, see --sheet",
+      "  ok   chair band reads as 1 ink band(s) - consistent with one row",
+      "clay verticals (px x):  414, 524, 602, 672",
+      "frame verticals (px x): 332, 411, 563, 681",
+      "  PASS every vertical the clay has is matched within 2.9% of frame",
+      "  wrote comparison sheet -> renders/keyframes/SH003/take_2003_sheet.png (green = where the posts belong, blue = the deck line)",
+      "[OK] geometry agrees with the blockout"
+     ]
+    },
+    {
+     "take": "take_2004.png",
+     "passed": true,
+     "warn": true,
+     "lines": [
+      "expected posts (px x): post_L=838",
+      "strongest verticals in the stage band (px x, strength): 672(0.80), 695(0.72), 634(0.70), 823(0.59), 582(0.58)",
+      "  WARN post post_L at x=838 but nearest vertical is 695 (10.6% off) - scale drift, LOOK at it",
+      "  PASS deck front edge 0.3 deg (blockout 0.0)",
+      "  ok   deck's dominant edge 0 deg (blockout 0) - advisory only, see --sheet",
+      "  WARN chair band reads as 3 ink bands (y=[570, 586, 625]) - LOOK at it; the set has one row",
+      "clay verticals (px x):  414, 524, 602, 672",
+      "frame verticals (px x): 376, 461, 583, 672",
+      "  PASS every vertical the clay has is matched within 4.4% of frame",
+      "  wrote comparison sheet -> renders/keyframes/SH003/take_2004_sheet.png (green = where the posts belong, blue = the deck line)",
+      "[OK] geometry agrees with the blockout"
+     ]
+    }
+   ]
+  },
+  "SH006": {
+   "takes": 5,
+   "passed": 3,
+   "rate": 0.6,
+   "detail": [
+    {
+     "take": "take_2000.png",
+     "passed": true,
+     "warn": true,
+     "lines": [
+      "expected posts (px x): post_L=397, post_R=947",
+      "strongest verticals in the stage band (px x, strength): 395(0.78), 940(0.73), 649(0.60), 710(0.60), 837(0.57)",
+      "  PASS post post_L at x=397 (found 395, 0.2% of frame off)",
+      "  PASS post post_R at x=947 (found 940, 0.5% of frame off)",
+      "  WARN vertical at x=649 inside the stage span with no post in the blockout - LOOK at it",
+      "  PASS deck front edge -1.4 deg (blockout 0.0)",
+      "  ok   deck's dominant edge 0 deg (blockout 0) - advisory only, see --sheet",
+      "  ok   chair band reads as 1 ink band(s) - consistent with one row",
+      "clay verticals (px x):  366, 511, 645, 982",
+      "frame verticals (px x): 403, 640, 715, 936",
+      "  WARN clay vertical at x=511 is 8.0% of frame from the nearest one in the image",
+      "  wrote comparison sheet -> renders/keyframes/SH006/take_2000_sheet.png (green = where the posts belong, blue = the deck line)"
+     ]
+    },
+    {
+     "take": "take_2001.png",
+     "passed": true,
+     "warn": true,
+     "lines": [
+      "expected posts (px x): post_L=397, post_R=947",
+      "strongest verticals in the stage band (px x, strength): 391(0.74), 981(0.74), 950(0.72), 845(0.67), 701(0.66)",
+      "  PASS post post_L at x=397 (found 391, 0.5% of frame off)",
+      "  PASS post post_R at x=947 (found 950, 0.3% of frame off)",
+      "  WARN deck front edge -3.1 deg, blockout says 0.0 - LOOK at it",
+      "  ok   deck's dominant edge 0 deg (blockout 0) - advisory only, see --sheet",
+      "  ok   chair band reads as 1 ink band(s) - consistent with one row",
+      "clay verticals (px x):  366, 511, 645, 982",
+      "frame verticals (px x): 641, 769, 849, 984",
+      "  WARN clay vertical at x=366 has nothing within 20.5% of frame - LOOK at it (advisory: the clay's strongest verticals include building edges the dressed frame draws differently)",
+      "  wrote comparison sheet -> renders/keyframes/SH006/take_2001_sheet.png (green = where the posts belong, blue = the deck line)",
+      "[OK] geometry agrees with the blockout"
+     ]
+    },
+    {
+     "take": "take_2002.png",
+     "passed": true,
+     "warn": true,
+     "lines": [
+      "expected posts (px x): post_L=397, post_R=947",
+      "strongest verticals in the stage band (px x, strength): 397(0.96), 949(0.85), 665(0.75), 718(0.72), 887(0.69)",
+      "  PASS post post_L at x=397 (found 397, 0.0% of frame off)",
+      "  PASS post post_R at x=947 (found 949, 0.2% of frame off)",
+      "  WARN vertical at x=665 inside the stage span with no post in the blockout - LOOK at it",
+      "  PASS deck front edge 0.6 deg (blockout 0.0)",
+      "  ok   deck's dominant edge 0 deg (blockout 0) - advisory only, see --sheet",
+      "  ok   chair band reads as 1 ink band(s) - consistent with one row",
+      "clay verticals (px x):  366, 511, 645, 982",
+      "frame verticals (px x): 401, 644, 719, 941",
+      "  WARN clay vertical at x=511 is 8.2% of frame from the nearest one in the image",
+      "  wrote comparison sheet -> renders/keyframes/SH006/take_2002_sheet.png (green = where the posts belong, blue = the deck line)"
+     ]
+    },
+    {
+     "take": "take_2003.png",
+     "passed": false,
+     "warn": true,
+     "lines": [
+      "expected posts (px x): post_L=397, post_R=947",
+      "strongest verticals in the stage band (px x, strength): 720(0.83), 391(0.80), 642(0.79), 681(0.72), 949(0.70)",
+      "  PASS post post_L at x=397 (found 391, 0.5% of frame off)",
+      "  FAIL post post_R expected at x=947, nearest vertical is 720 (16.9% of frame off) - the set has moved",
+      "  WARN vertical at x=720 inside the stage span with no post in the blockout - LOOK at it",
+      "  WARN vertical at x=642 inside the stage span with no post in the blockout - LOOK at it",
+      "  PASS deck front edge 0.7 deg (blockout 0.0)",
+      "  ok   deck's dominant edge 0 deg (blockout 0) - advisory only, see --sheet",
+      "  ok   chair band reads as 1 ink band(s) - consistent with one row",
+      "clay verticals (px x):  366, 511, 645, 982",
+      "frame verticals (px x): 395, 642, 715, 844",
+      "  WARN clay vertical at x=982 is 10.3% of frame from the nearest one in the image"
+     ]
+    },
+    {
+     "take": "take_2004.png",
+     "passed": false,
+     "warn": true,
+     "lines": [
+      "expected posts (px x): post_L=397, post_R=947",
+      "strongest verticals in the stage band (px x, strength): 642(0.85), 712(0.74), 392(0.69), 950(0.66), 926(0.56)",
+      "  PASS post post_L at x=397 (found 392, 0.4% of frame off)",
+      "  FAIL post post_R expected at x=947, nearest vertical is 712 (17.5% of frame off) - the set has moved",
+      "  WARN vertical at x=642 inside the stage span with no post in the blockout - LOOK at it",
+      "  WARN vertical at x=712 inside the stage span with no post in the blockout - LOOK at it",
+      "  PASS deck front edge -1.8 deg (blockout 0.0)",
+      "  ok   deck's dominant edge 0 deg (blockout 0) - advisory only, see --sheet",
+      "  ok   chair band reads as 1 ink band(s) - consistent with one row",
+      "clay verticals (px x):  366, 511, 645, 982",
+      "frame verticals (px x): 397, 636, 711, 958",
+      "  WARN clay vertical at x=511 is 8.5% of frame from the nearest one in the image"
+     ]
+    }
+   ]
+  },
+  "SH009": {
+   "takes": 5,
+   "passed": 5,
+   "rate": 1.0,
+   "detail": [
+    {
+     "take": "take_2000.png",
+     "passed": true,
+     "warn": true,
+     "lines": [
+      "expected posts (px x): post_L=947, post_R=-21",
+      "strongest verticals in the stage band (px x, strength): 831(0.93), 1198(0.88), 960(0.79), 872(0.78), 942(0.74)",
+      "  WARN post post_L at x=947 but nearest vertical is 831 (8.7% off) - scale drift, LOOK at it",
+      "  PASS deck front edge 0.6 deg (blockout 0.0)",
+      "  ok   deck's dominant edge 0 deg (blockout 0) - advisory only, see --sheet",
+      "  ok   chair band reads as 1 ink band(s) - consistent with one row",
+      "clay verticals (px x):  24, 503, 769, 1144",
+      "frame verticals (px x): 424, 715, 832, 1160",
+      "  WARN clay vertical at x=24 has nothing within 29.8% of frame - LOOK at it (advisory: the clay's strongest verticals include building edges the dressed frame draws differently)",
+      "  wrote comparison sheet -> renders/keyframes/SH009/take_2000_sheet.png (green = where the posts belong, blue = the deck line)",
+      "[OK] geometry agrees with the blockout"
+     ]
+    },
+    {
+     "take": "take_2001.png",
+     "passed": true,
+     "warn": true,
+     "lines": [
+      "expected posts (px x): post_L=947, post_R=-21",
+      "strongest verticals in the stage band (px x, strength): 942(0.93), 1180(0.92), 957(0.87), 426(0.70), 469(0.67)",
+      "  PASS post post_L at x=947 (found 942, 0.4% of frame off)",
+      "  PASS deck front edge 2.0 deg (blockout 0.0)",
+      "  ok   deck's dominant edge 0 deg (blockout 0) - advisory only, see --sheet",
+      "  ok   chair band reads as 2 ink band(s) - consistent with one row",
+      "clay verticals (px x):  24, 503, 769, 1144",
+      "frame verticals (px x): 425, 523, 714, 1204",
+      "  WARN clay vertical at x=24 has nothing within 29.8% of frame - LOOK at it (advisory: the clay's strongest verticals include building edges the dressed frame draws differently)",
+      "  wrote comparison sheet -> renders/keyframes/SH009/take_2001_sheet.png (green = where the posts belong, blue = the deck line)",
+      "[OK] geometry agrees with the blockout"
+     ]
+    },
+    {
+     "take": "take_2002.png",
+     "passed": true,
+     "warn": true,
+     "lines": [
+      "expected posts (px x): post_L=947, post_R=-21",
+      "strongest verticals in the stage band (px x, strength): 957(0.94), 1114(0.79), 1245(0.75), 1305(0.71), 552(0.70)",
+      "  PASS post post_L at x=947 (found 957, 0.7% of frame off)",
+      "  PASS deck front edge 0.0 deg (blockout 0.0)",
+      "  ok   deck's dominant edge 0 deg (blockout 0) - advisory only, see --sheet",
+      "  ok   chair band reads as 2 ink band(s) - consistent with one row",
+      "clay verticals (px x):  24, 503, 769, 1144",
+      "frame verticals (px x): 424, 716, 958, 1226",
+      "  WARN clay vertical at x=24 has nothing within 29.8% of frame - LOOK at it (advisory: the clay's strongest verticals include building edges the dressed frame draws differently)",
+      "  wrote comparison sheet -> renders/keyframes/SH009/take_2002_sheet.png (green = where the posts belong, blue = the deck line)",
+      "[OK] geometry agrees with the blockout"
+     ]
+    },
+    {
+     "take": "take_2003.png",
+     "passed": true,
+     "warn": true,
+     "lines": [
+      "expected posts (px x): post_L=947, post_R=-21",
+      "strongest verticals in the stage band (px x, strength): 950(0.98), 554(0.75), 582(0.72), 471(0.69), 646(0.69)",
+      "  PASS post post_L at x=947 (found 950, 0.2% of frame off)",
+      "  WARN vertical at x=554 inside the stage span with no post in the blockout - LOOK at it",
+      "  PASS deck front edge 0.0 deg (blockout 0.0)",
+      "  ok   deck's dominant edge 0 deg (blockout 0) - advisory only, see --sheet",
+      "  ok   chair band reads as 1 ink band(s) - consistent with one row",
+      "clay verticals (px x):  24, 503, 769, 1144",
+      "frame verticals (px x): 423, 581, 714, 958",
+      "  WARN clay vertical at x=24 has nothing within 29.7% of frame - LOOK at it (advisory: the clay's strongest verticals include building edges the dressed frame draws differently)",
+      "  wrote comparison sheet -> renders/keyframes/SH009/take_2003_sheet.png (green = where the posts belong, blue = the deck line)",
+      "[OK] geometry agrees with the blockout"
+     ]
+    },
+    {
+     "take": "take_2004.png",
+     "passed": true,
+     "warn": false,
+     "lines": [
+      "expected posts (px x): post_L=947, post_R=-21",
+      "strongest verticals in the stage band (px x, strength): 929(0.93), 944(0.85), 243(0.79), 7(0.77), 1158(0.76)",
+      "  PASS post post_L at x=947 (found 944, 0.3% of frame off)",
+      "  PASS deck front edge 0.0 deg (blockout 0.0)",
+      "  ok   deck's dominant edge 0 deg (blockout 0) - advisory only, see --sheet",
+      "  ok   chair band reads as 1 ink band(s) - consistent with one row",
+      "clay verticals (px x):  24, 503, 769, 1144",
+      "frame verticals (px x): 16, 425, 715, 1150",
+      "  PASS every vertical the clay has is matched within 5.8% of frame",
+      "  wrote comparison sheet -> renders/keyframes/SH009/take_2004_sheet.png (green = where the posts belong, blue = the deck line)",
+      "[OK] geometry agrees with the blockout"
+     ]
+    }
+   ]
+  }
+ },
+ "target": 0.9,
+ "total": {
+  "takes": 15,
+  "passed": 13,
+  "rate": 0.8666666666666667
+ },
+ "verdict": "NOT MET"
+}

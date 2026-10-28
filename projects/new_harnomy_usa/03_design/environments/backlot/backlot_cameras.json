@@ -1,0 +1,141 @@
+{
+ "origin": "centre of City Hall's portico semicircle, pavement level",
+ "axes": "+X along the facade to the right, +Y out into the square, +Z up",
+ "locations": {
+  "city_hall_square": true,
+  "north_row": true,
+  "east_side": true,
+  "west_side": true,
+  "axis_street": true,
+  "university": true
+ },
+ "state": "finished",
+ "cameras": {
+  "PLAN": {
+   "location": [
+    0.0,
+    95.0,
+    260.0
+   ],
+   "rotation_deg": [
+    0.0,
+    -0.0,
+    0.0
+   ],
+   "lens_mm": 40.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ]
+  },
+  "AERIAL": {
+   "location": [
+    -120.0,
+    -60.0,
+    90.0
+   ],
+   "rotation_deg": [
+    65.13,
+    0.0,
+    -42.71
+   ],
+   "lens_mm": 35.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ]
+  },
+  "AXIS_UP": {
+   "location": [
+    0.0,
+    30.0,
+    2.0
+   ],
+   "rotation_deg": [
+    92.64,
+    -0.0,
+    0.0
+   ],
+   "lens_mm": 40.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ]
+  },
+  "AXIS_DOWN": {
+   "location": [
+    0.0,
+    114.0,
+    2.0
+   ],
+   "rotation_deg": [
+    -83.99,
+    180.0,
+    0.0
+   ],
+   "lens_mm": 40.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ]
+  },
+  "BODEGA": {
+   "location": [
+    16.0,
+    58.0,
+    1.7
+   ],
+   "rotation_deg": [
+    97.67,
+    -0.0,
+    20.56
+   ],
+   "lens_mm": 30.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ]
+  },
+  "PILF": {
+   "location": [
+    -40.0,
+    46.0,
+    1.7
+   ],
+   "rotation_deg": [
+    103.36,
+    -0.0,
+    59.74
+   ],
+   "lens_mm": 35.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ]
+  },
+  "CHURCH_E": {
+   "location": [
+    14.0,
+    62.0,
+    2.0
+   ],
+   "rotation_deg": [
+    108.98,
+    -0.0,
+    -136.55
+   ],
+   "lens_mm": 30.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ]
+  }
+ }
+}

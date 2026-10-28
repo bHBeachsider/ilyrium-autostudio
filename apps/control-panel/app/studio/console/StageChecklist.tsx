@@ -10,7 +10,8 @@ import { useEffect, useState } from "react";
 // Backend: GET {pipe}/stage/{project}/{n}/checklist ; POST .../element {key,text,instance?} ;
 //          POST .../generate {key,prompt,model_family} ; POST .../media {key,filename,b64}
 
-type El = { key: string; name: string; what: string; required: boolean; inputs: string[]; done: boolean; detail: string; value?: string; dimension?: string | null };
+type BFile = { name: string; rel: string; size: number; kind: string };
+type El = { key: string; name: string; what: string; required: boolean; inputs: string[]; done: boolean; detail: string; value?: string; dimension?: string | null; files?: BFile[] };
 type Stage = { stage: number; name: string; what: string; elements: El[] };
 
 const STAGE_NAMES: [number, string][] = [
@@ -39,11 +40,31 @@ export default function StageChecklist({ pipe, project, initialStage = 1 }: { pi
       const d = await r.json(); setMsg(d.ok ? "saved" : (d.error || "failed")); await load();
     } catch (e: any) { setMsg(`unreachable: ${e.message}`); } finally { setBusy(""); }
   }
-  async function upload(el: string, file: File) {
-    setBusy(kk(el));
-    const b64 = await new Promise<string>((res) => { const r = new FileReader(); r.onload = () => res(r.result as string); r.readAsDataURL(file); });
-    await post("media", { key: el, filename: file.name, b64 }, kk(el));
+  async function upload(el: string, files: File[]) {
+    if (!files.length) return;
+    setBusy(kk(el)); setMsg("");
+    let ok = 0;
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      setMsg(`uploading ${i + 1}/${files.length}…`);
+      const b64 = await new Promise<string>((res) => { const r = new FileReader(); r.onload = () => res(r.result as string); r.readAsDataURL(file); });
+      try {
+        await fetch(`${pipe}/stage/${project}/${n}/media`, { method: "POST", headers: { "content-type": "application/json" },
+          body: JSON.stringify({ key: el, filename: file.name, b64 }) });
+        ok++;
+      } catch (e: any) { setMsg(`upload failed (${file.name}): ${e.message}`); }
+    }
+    if (ok === files.length) setMsg(`attached ${ok} file${ok === 1 ? "" : "s"}`);
+    await load(); setBusy("");
   }
+  async function removeFile(el: string, rel: string) {
+    setBusy(kk(el)); setMsg("");
+    try {
+      const r = await fetch(`${pipe}/stage/${project}/${n}/media/delete`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ rel }) });
+      const d = await r.json(); setMsg(d.ok ? "deleted" : (d.error || "delete failed")); await load();
+    } catch (e: any) { setMsg(`delete failed: ${e.message}`); } finally { setBusy(""); }
+  }
+  const fmtSize = (b: number) => b >= 1048576 ? `${(b / 1048576).toFixed(1)} MB` : `${Math.max(1, Math.round(b / 1024))} KB`;
 
   const els = data?.elements || [];
   const doneN = els.filter(e => e.done).length;
@@ -80,11 +101,27 @@ export default function StageChecklist({ pipe, project, initialStage = 1 }: { pi
             </div>)}
           {(el.inputs.includes("image") || el.inputs.includes("video") || el.inputs.includes("audio") || el.inputs.includes("file")) && (
             <label className="inline-block text-[11px] text-dim border border-dashed border-edge rounded-md px-2 py-1 cursor-pointer mb-1 mr-1">
-              + attach {el.inputs.filter(i => ["image", "video", "audio", "file"].includes(i)).join("/")}
-              <input type="file" className="hidden"
-                accept={el.inputs.includes("video") ? "video/*" : el.inputs.includes("audio") ? "audio/*" : el.inputs.includes("image") ? "image/*" : undefined}
-                onChange={(e) => e.target.files?.[0] && upload(el.key, e.target.files[0])} />
+              + attach image/video/audio/text/pdf
+              <input type="file" multiple className="hidden"
+                accept="image/*,video/*,audio/*,.txt,.md,.json,.csv,.pdf,.rtf"
+                onChange={(e) => { const fs = Array.from(e.target.files ?? []); e.target.value = ""; if (fs.length) upload(el.key, fs); }} />
             </label>)}
+          {!!el.files?.length && (
+            <div className="space-y-1 mb-1">
+              {el.files.map((f) => (
+                <div key={f.rel} className="flex items-center gap-2 text-[11px] text-dim">
+                  {f.kind === "image" && (
+                    <img src={`${pipe}/stage/${project}/${n}/media/file?rel=${encodeURIComponent(f.rel)}`}
+                      alt={f.name} className="w-8 h-8 object-cover rounded border border-edge" />
+                  )}
+                  <span className="font-mono text-fg truncate max-w-[240px]" title={f.rel}>{f.name}</span>
+                  <span className="text-[10px] border border-edge rounded px-1">{f.kind}</span>
+                  <span className="text-[10px]">{fmtSize(f.size)}</span>
+                  <button disabled={busy === kk(el.key)} onClick={() => removeFile(el.key, f.rel)} title={`delete ${f.name}`}
+                    className="text-[12px] leading-none border border-edge rounded px-1 py-0.5 hover:text-fg disabled:opacity-50">×</button>
+                </div>
+              ))}
+            </div>)}
           {el.inputs.includes("refs") && <span className="text-[11px] text-dim">refs: <span className="font-mono">{el.detail}</span></span>}
         </div>
       </div>);

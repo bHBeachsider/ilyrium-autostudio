@@ -1,0 +1,506 @@
+#usda 1.0
+(
+    defaultPrim = "World"
+    metersPerUnit = 1
+    subLayers = [
+        @./cameras.usda@
+    ]
+    upAxis = "Z"
+)
+
+def Xform "World" (
+    kind = "assembly"
+    variants = {
+        string build = "finished"
+        string lysteria = "working"
+        string office = "dawn"
+        string people = "none"
+        string weather = "overcast_drizzle"
+    }
+    prepend variantSets = ["build", "office", "people", "lysteria", "weather"]
+)
+{
+    custom string backlot:origin = "centre of City Hall's portico semicircle at pavement level; +X along the facade to the right, +Y into the square, +Z up"
+    custom string backlot:production = "NEW HARNOMY, U.S.A."
+
+    def Xform "AxisStreet" (
+        prepend references = @./assets/AxisStreet/AxisStreet.usda@
+    )
+    {
+    }
+
+    def Xform "Banner" (
+        prepend references = @./assets/Banner/Banner.usda@
+    )
+    {
+    }
+
+    def Xform "BlackChurch" (
+        prepend references = @./assets/BlackChurch/BlackChurch.usda@
+    )
+    {
+    }
+
+    def Xform "Bodega" (
+        prepend references = @./assets/Bodega/Bodega.usda@
+    )
+    {
+    }
+
+    def Xform "BuildSite" (
+        prepend references = @./assets/BuildSite/BuildSite.usda@
+    )
+    {
+    }
+
+    def Xform "CityHall" (
+        prepend references = @./assets/CityHall/CityHall.usda@
+    )
+    {
+    }
+
+    def Xform "EastBlocks" (
+        prepend references = @./assets/EastBlocks/EastBlocks.usda@
+    )
+    {
+    }
+
+    def Xform "Ground" (
+        prepend references = @./assets/Ground/Ground.usda@
+    )
+    {
+    }
+
+    def Xform "HarvestDressing" (
+        prepend references = @./assets/HarvestDressing/HarvestDressing.usda@
+    )
+    {
+    }
+
+    def Xform "LysteriaBoardroom" (
+        prepend references = @./assets/LysteriaBoardroom/LysteriaBoardroom.usda@
+    )
+    {
+    }
+
+    def Xform "LysteriaFurniture" (
+        prepend references = @./assets/LysteriaFurniture/LysteriaFurniture.usda@
+    )
+    {
+    }
+
+    def Xform "LysteriaInterior" (
+        prepend references = @./assets/LysteriaInterior/LysteriaInterior.usda@
+    )
+    {
+    }
+
+    def Xform "LysteriaStaff" (
+        prepend references = @./assets/LysteriaStaff/LysteriaStaff.usda@
+    )
+    {
+    }
+
+    def Xform "LysteriaWallArt" (
+        prepend references = @./assets/LysteriaWallArt/LysteriaWallArt.usda@
+    )
+    {
+    }
+
+    def Xform "Mannequins" (
+        prepend references = @./assets/Mannequins/Mannequins.usda@
+    )
+    {
+    }
+
+    def Xform "NorthRow" (
+        prepend references = @./assets/NorthRow/NorthRow.usda@
+    )
+    {
+    }
+
+    def Xform "PILFInterior" (
+        prepend references = @./assets/PILFInterior/PILFInterior.usda@
+    )
+    {
+    }
+
+    def Xform "PILFOffice" (
+        prepend references = @./assets/PILFOffice/PILFOffice.usda@
+    )
+    {
+    }
+
+    def Xform "ParishChurch" (
+        prepend references = @./assets/ParishChurch/ParishChurch.usda@
+    )
+    {
+    }
+
+    def Xform "PengoldOffice" (
+        prepend references = @./assets/PengoldOffice/PengoldOffice.usda@
+    )
+    {
+    }
+
+    def Xform "RallyStage" (
+        prepend references = @./assets/RallyStage/RallyStage.usda@
+    )
+    {
+    }
+
+    def Xform "Restaurant" (
+        prepend references = @./assets/Restaurant/Restaurant.usda@
+    )
+    {
+    }
+
+    def Xform "Square" (
+        prepend references = @./assets/Square/Square.usda@
+    )
+    {
+    }
+
+    def Xform "University" (
+        prepend references = @./assets/University/University.usda@
+    )
+    {
+    }
+
+    def Xform "Vehicles" (
+        prepend references = @./assets/Vehicles/Vehicles.usda@
+    )
+    {
+    }
+
+    def Xform "WestShops" (
+        prepend references = @./assets/WestShops/WestShops.usda@
+    )
+    {
+    }
+    variantSet "build" = {
+        "beam_seated" {
+            over "RallyStage" (
+                active = true
+                variants = {
+                    string build = "beam_seated"
+                }
+            )
+            {
+            }
+
+            over "BuildSite" (
+                active = true
+                variants = {
+                    string build = "beam_seated"
+                }
+            )
+            {
+            }
+
+            over "HarvestDressing" (
+                active = false
+            )
+            {
+            }
+
+        }
+        "feast" {
+            over "RallyStage" (
+                active = true
+                variants = {
+                    string build = "feast"
+                }
+            )
+            {
+            }
+
+            over "BuildSite" (
+                active = false
+            )
+            {
+            }
+
+            over "HarvestDressing" (
+                active = true
+                variants = {
+                    string build = "feast"
+                }
+            )
+            {
+            }
+
+        }
+        "finished" {
+            over "RallyStage" (
+                active = true
+                variants = {
+                    string build = "finished"
+                }
+            )
+            {
+            }
+
+            over "BuildSite" (
+                active = false
+            )
+            {
+            }
+
+            over "HarvestDressing" (
+                active = true
+                variants = {
+                    string build = "finished"
+                }
+            )
+            {
+            }
+
+        }
+        "half_decked" {
+            over "RallyStage" (
+                active = true
+                variants = {
+                    string build = "half_decked"
+                }
+            )
+            {
+            }
+
+            over "BuildSite" (
+                active = true
+                variants = {
+                    string build = "half_decked"
+                }
+            )
+            {
+            }
+
+            over "HarvestDressing" (
+                active = false
+            )
+            {
+            }
+
+        }
+        "joists" {
+            over "RallyStage" (
+                active = true
+                variants = {
+                    string build = "joists"
+                }
+            )
+            {
+            }
+
+            over "BuildSite" (
+                active = true
+                variants = {
+                    string build = "joists"
+                }
+            )
+            {
+            }
+
+            over "HarvestDressing" (
+                active = false
+            )
+            {
+            }
+
+        }
+        "swept" {
+            over "RallyStage" (
+                active = true
+                variants = {
+                    string build = "swept"
+                }
+            )
+            {
+            }
+
+            over "BuildSite" (
+                active = true
+                variants = {
+                    string build = "swept"
+                }
+            )
+            {
+            }
+
+            over "HarvestDressing" (
+                active = false
+            )
+            {
+            }
+
+        }
+    }
+    variantSet "office" = {
+        "dawn" {
+            over "PengoldOffice" (
+                active = true
+                variants = {
+                    string build = "dawn"
+                }
+            )
+            {
+            }
+
+        }
+        "meeting" {
+            over "PengoldOffice" (
+                active = true
+                variants = {
+                    string build = "meeting"
+                }
+            )
+            {
+            }
+
+        }
+    }
+    variantSet "people" = {
+        "boardroom" {
+            over "Mannequins" (
+                active = true
+                variants = {
+                    string build = "boardroom"
+                }
+            )
+            {
+            }
+
+            over "LysteriaStaff" (
+                active = false
+            )
+            {
+            }
+
+        }
+        "build" {
+            over "Mannequins" (
+                active = true
+                variants = {
+                    string build = "build"
+                }
+            )
+            {
+            }
+
+            over "LysteriaStaff" (
+                active = false
+            )
+            {
+            }
+
+        }
+        "feast" {
+            over "Mannequins" (
+                active = true
+                variants = {
+                    string build = "feast"
+                }
+            )
+            {
+            }
+
+            over "LysteriaStaff" (
+                active = false
+            )
+            {
+            }
+
+        }
+        "lysteria" {
+            over "Mannequins" (
+                active = true
+                variants = {
+                    string build = "lysteria"
+                }
+            )
+            {
+            }
+
+            over "LysteriaStaff" (
+                active = true
+                variants = {
+                    string build = "lysteria"
+                }
+            )
+            {
+            }
+
+        }
+        "none" {
+            over "Mannequins" (
+                active = false
+            )
+            {
+            }
+
+            over "LysteriaStaff" (
+                active = false
+            )
+            {
+            }
+
+        }
+        "office_dawn" {
+            over "Mannequins" (
+                active = true
+                variants = {
+                    string build = "office_dawn"
+                }
+            )
+            {
+            }
+
+            over "LysteriaStaff" (
+                active = false
+            )
+            {
+            }
+
+        }
+    }
+    variantSet "lysteria" = {
+        "launch" {
+            over "LysteriaInterior" (
+                active = true
+                variants = {
+                    string build = "launch"
+                }
+            )
+            {
+            }
+
+        }
+        "working" {
+            over "LysteriaInterior" (
+                active = true
+                variants = {
+                    string build = "working"
+                }
+            )
+            {
+            }
+
+        }
+    }
+    variantSet "weather" = {
+        "dusk" {
+            custom token backlot:weather = "dusk"
+
+        }
+        "first_light" {
+            custom token backlot:weather = "first_light"
+
+        }
+        "overcast_drizzle" {
+            custom token backlot:weather = "overcast_drizzle"
+
+        }
+    }
+}
+

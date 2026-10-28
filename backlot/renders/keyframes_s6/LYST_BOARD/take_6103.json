@@ -1,0 +1,57 @@
+{
+ "shot": "LYST_BOARD",
+ "seq": "NH-LYST",
+ "seed": 6103,
+ "prompt": "Wide shot, 2.39:1, down the length of a white boardroom to one wide glazed band at the far end: a long pale-oak table with ten white chairs; at the head of the table, nearest the camera and seen from behind at three-quarter, a woman of thirty-eight, ash-blonde hair in a low chignon, a well-cut dark blazer, seated facing the window; standing at the window at the far right of the table, a controlled man in his late forties, neat conservative hair greying at the temples, dark muted wool suit, white shirt, hands clasped behind him, looking down at the plaza where a timber stage is half-built in front of the colonnade; two slim linear pendant lights over the table; white walls, white floor, cold-white sun from the band. Light: low cold-white winter sun streaming through one wide glazed band behind the desk, the white walls and white floor bouncing it everywhere so the room holds almost no shadow, never golden, the square beyond the glass flat and grey by comparison, no lens flare, no screen glow. an all-white office in the manner of a high-end London public relations firm: white walls, a white poured floor, pale oak and brushed steel, white chairs, one accent colour only - a dusty drained rose, never a bright or saturated pink - on a low screen and a framed campaign banner; through the glazed band the grey plaza of a small city, a timber stage half-built in front of the limestone colonnade of a city hall; no logo, no lettering, no signage prestige political drama, House of Cards season one color grade, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, deep browns and charcoals in shadows, photographic realism, cinematic",
+ "values": {
+  "guidance": 3.5,
+  "depth_image": "NH-LYST_LYST_BOARD_depth.png",
+  "cn_strength": 0.6,
+  "cn_end": 0.8,
+  "edge_image": "NH-LYST_LYST_BOARD_edge.png",
+  "edge_strength": 0.2,
+  "edge_end": 0.4,
+  "width": 1552,
+  "height": 672,
+  "seed": 6103,
+  "steps": 28,
+  "prefix": "backlot/NH-LYST_LYST_BOARD_6103"
+ },
+ "model": "flux1-dev-fp8 + ControlNet Union Pro 2.0 (depth + edge)",
+ "server": "http://127.0.0.1:8188",
+ "depth_pass": {
+  "path": "usd/nh/passes_s6/LYST_BOARD/depth.png",
+  "sha256": "7c4c774caf8cb544"
+ },
+ "edge_pass": {
+  "path": "usd/nh/passes_s6/LYST_BOARD/edge.png",
+  "sha256": "dcc820fdf9b66f97"
+ },
+ "set_state": "half_decked",
+ "camera": {
+  "location": [
+   22.6,
+   87.4,
+   9.15
+  ],
+  "rotation_deg": [
+   88.85,
+   -0.0,
+   -177.69
+  ],
+  "lens_mm": 24.0,
+  "sensor_mm": 36.0,
+  "res": [
+   2520,
+   1080
+  ],
+  "depth_mode": "inverse",
+  "variants": {
+   "people": "boardroom"
+  },
+  "set_state": "half_decked"
+ },
+ "world_version": "usda:deb39592660f",
+ "seconds": 51.0,
+ "prompt_id": "4aab7f84-9814-4d7d-ba75-ca53985cc1fb"
+}

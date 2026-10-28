@@ -1,0 +1,72 @@
+{
+  "shot_id": "NH-S901-SH002",
+  "song_id": "NH-S901",
+  "duration_s": 6,
+  "camera": {
+    "shot_size": "wide",
+    "movement": "locked-off",
+    "lens_mm": 24
+  },
+  "subjects": [],
+  "setting": "The square outside New Harnomy city hall, first light - a living downtown, banner up, before the build",
+  "mood": "documentary stillness",
+  "action": "The square before the build. A working downtown at 8 a.m.: parked cars, the lumber flatbed pulling in, people crossing with coffee. Nobody notices anything.",
+  "prompt": "wide establishing shot, locked-off camera that does not move, the square outside New Harnomy city hall at first light in winter, a long mauve banner hanging from the portico, low long sun and long shadows, frost on the paving, cars parked nose to tail along the kerb do not move, a flatbed truck stacked with fresh lumber and a white box van stand at the kerb with their engines off, the city bus at the far corner is stopped, a hot-food cart steams, a few pedestrians in winter coats walk slowly across the square at a distance with their backs to the camera, nobody looks at the timber structure, a dog-walker, a cyclist rolling slowly, the steam and the walking people are the only motion, slow and unhurried, no fast traffic, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, caption text overlay, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame, human face, portrait, person looking at camera, fast moving cars, speeding traffic, time-lapse, motion blur streaks, camera movement",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "",
+    "seed": 901002
+  },
+  "seed": 901002,
+  "continuity": {
+    "prev_shot": "",
+    "flf2v": false
+  },
+  "render": {
+    "width": 832,
+    "height": 480,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 6,
+    "renderer": "fal-veo3.1"
+  },
+  "backlot": {
+    "stage": "backlot/usd/nh/NewHarnomy_square.usda",
+    "camera": "/World/Cameras/SH002",
+    "set_state": "joists",
+    "weather": "overcast_drizzle",
+    "dressing": [
+      "harvest"
+    ],
+    "invariants": [
+      {
+        "id": "posts_at_stage_ends",
+        "check": "post_projection",
+        "blocking": true
+      },
+      {
+        "id": "deck_parallel_to_facade",
+        "check": "deck_orientation",
+        "blocking": false
+      },
+      {
+        "id": "banner_reads_spec",
+        "check": "ocr",
+        "blocking": false,
+        "args": {
+          "text_plane": "Banner"
+        }
+      }
+    ],
+    "conditioning": [
+      "clay",
+      "depth",
+      "seg"
+    ],
+    "references": {
+      "plate": "projects/new_harnomy_usa/03_design/environments/city_hall/plate_exterior_firstlight_LOCKED.png"
+    },
+    "budget_usd": 3.0
+  }
+}

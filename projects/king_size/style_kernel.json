@@ -1,0 +1,30 @@
+{
+  "name": "stripe_ink",
+  "look": "strictly black and white pen line drawing, scratchy confident ink strokes, crosshatch shading, harsh contrast, photomontage collage energy, gritty 1970s Bronx underworld drawn in ink, no color fills, at most a faint gold glint on jewelry",
+  "register": "menacing deadpan swagger, street prince not hero, cold ambitious anti-hero energy, never smiles, no sentimentality, no heroic glow, no photorealism ever",
+  "palette_motifs": {
+    "gold": "yellow-gold is the ONLY warm accent - chain, coins, gold-wrapped mattresses, gold thread; it grows as Stripe's empire grows",
+    "brown": "brown reserved for the lace-up sneakers (and mattress-ticking stains if used)"
+  },
+  "casting_canon": {
+    "stripe": "canon Stripe - fat egg-shaped smooth body, no neck, bald dome with black horseshoe hair, black wayfarer sunglasses, thick gold rope chain, white briefs, brown lace-up sneakers, deadpan small mouth never smiling, mole on cheek and belly",
+    "stripe_young": "1970s prequel Stripe at 22 - SAME fat egg-shaped canon body and face, FULL thick jet-black 1970s hair (never bald), thin starter gold rope chain, same wayfarer sunglasses, white briefs, brown lace-up sneakers; optional open unbuttoned shiny rayon 1970s shirt with brown owl print",
+    "mama": "Stripe's mother - tired tender woman in an apron, headwrap, drawn in the same ink style",
+    "block_ensemble": "Bronx neighbors - kids at hydrants, domino players, doubters on the corner, all simple ink figures"
+  },
+  "negatives": "photorealism, photograph, realistic skin, flesh tones, full color scene, warm color palette, color grading, cinematic lighting, lens flare, anime, manga, watercolor, 3d render, heroic pose, sentimental glow, skinny young stripe, bald young stripe, smiling, grinning, teeth, real person likeness, watermark",
+  "engine_tails": {},
+  "continuity": {
+    "video": "Use the locked keyframe as first frame; restate the full character description in every shot. Young Stripe NEVER bald; canon Stripe NEVER has full hair; sunglasses constant in both eras; chain thin in 1976, fat in canon."
+  },
+  "legal_rule": "Specify every character by attribute only - never by likeness to a real public figure. Yankees exist only as pennants and radio audio. If a render resembles a real person, regenerate.",
+  "failure_fixes": {
+    "goes_photoreal": "Repeat: black and white ink cartoon, flat fills, white background; add 'no photorealism' and raise style words to the front of the prompt.",
+    "young_stripe_skinny": "Repeat: fat round smooth body, big belly, no neck, same silhouette as canon Stripe.",
+    "young_stripe_bald": "Repeat: full thick jet-black 1970s hair covering the whole scalp, no bald crown.",
+    "smiling": "Add: deadpan, small slack mouth, never smiling, no teeth."
+  },
+  "delivery": {
+    "pillarbox": "#ffffff"
+  }
+}

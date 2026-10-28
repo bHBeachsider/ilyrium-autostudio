@@ -1,0 +1,37 @@
+{
+  "shot_id": "NH-S348-SH011",
+  "song_id": "NH-S348",
+  "duration_s": 10,
+  "camera": {
+    "shot_size": "extreme-wide",
+    "movement": "locked-off",
+    "lens_mm": 16
+  },
+  "subjects": [
+    "pengold",
+    "summer",
+    "valencia"
+  ],
+  "setting": "The Anti-Thanksgiving Feast stage, the locked stage picture",
+  "mood": "absolute stillness",
+  "action": "BEAT 6 - THE CHORD AND THE CUT. The orchestra enters underneath her, not a crescendo, an accumulation, every instrument one by one joining a single sustained chord that contains both the TWEEEDS major and Valencia's modal minor. The stage picture is locked: Pengold's hand on Summer's shoulder, portrait blazing above them, Valencia in her own light with the dropped book at her feet, the chorus frozen mid-gesture with books still raised, nobody breathing. Hard cut to black. No fade.",
+  "prompt": "extreme wide shot, locked-off, no camera movement, the locked stage picture, a controlled man in his late forties, neat conservative hair greying at the temples, calculating unhurried eyes, medium solid upright build, municipal mayoral suiting in dark muted wool, white shirt, no ostentation, papers aligned squarely, unhurried processional bearing with his right hand on the left shoulder of a poised woman in her early forties, patrician bearing, dark hair drawn back with professional precision, composed watchful eyes, slim upright frame, professional-class activist tailoring in muted expensive fabrics, still hands, sincere unsmiling composure beneath a monumental Socialist-Realist painted portrait of the poised patrician woman, heroic and idealized, gazing upward, at its full height above the podium, blazing, lit from below in golden light, a sturdy grounded woman in her late forties, practical unfussy hair, direct steady eyes, weathered capable face without makeup performance, real practical work clothes in plain worn fabrics that have been worn more than once this week, sensible shoes, working hands, photographed truthfully in flat honest documentary light upstage right in a pool of flatter light with a dusty mauve paperback on the floor at her feet, a full chorus frozen mid-gesture with worn trade paperbacks in dusty brownish mauve, the color of a faded 1970s university-press paperback, not lavender, not aubergine, not pink still raised, nobody moving, nobody breathing, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "pengold",
+    "seed": 348011
+  },
+  "seed": 348011,
+  "continuity": {
+    "prev_shot": "NH-S348-SH010",
+    "flf2v": false
+  },
+  "render": {
+    "width": 640,
+    "height": 640,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 10
+  }
+}

@@ -1,0 +1,58 @@
+{
+ "shot": "S101_SH004",
+ "seq": "NH-S101",
+ "seed": 6006,
+ "prompt": "Wide establishing shot of the office at dawn, one room, from the back corner: the desk at the right with a controlled man in his late forties seated behind it reading a folded newspaper, neat conservative hair greying at the temples, dark muted wool suit and white shirt, not reacting to being seen; the three tall French windows at the left with the columns beyond and the brick shopfronts of the square far below; the desk lamp the only warm light. Light: single-source tungsten from the desk lamp still on from the night before, the room otherwise dim, faint cool blue only in the deepest blacks, thin cold winter dawn light at the tall windows held off the desk, no lens flare. a modest mid-century municipal mayor's office renovated in 1962 inside a grand 1910 room: mahogany-laminate desk and credenza, heavy dark drapes flanking three tall French windows through which the giant limestone columns of the colonnade stand a metre beyond the glass, a half-empty coffee cup, a folded newspaper with no legible headline, three worn dusty-mauve paperbacks stacked on the credenza, one pristine mauve copy squared on the desk, municipal furniture, papers aligned squarely prestige political drama, House of Cards season one color grade, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, photographic realism, cinematic",
+ "values": {
+  "guidance": 3.5,
+  "depth_image": "NH-S101_S101_SH004_depth.png",
+  "cn_strength": 0.6,
+  "cn_end": 0.8,
+  "edge_image": "NH-S101_S101_SH004_edge.png",
+  "edge_strength": 0.2,
+  "edge_end": 0.4,
+  "width": 1552,
+  "height": 672,
+  "seed": 6006,
+  "steps": 28,
+  "prefix": "backlot/NH-S101_S101_SH004_6006"
+ },
+ "model": "flux1-dev-fp8 + ControlNet Union Pro 2.0 (depth + edge)",
+ "server": "http://127.0.0.1:8188",
+ "depth_pass": {
+  "path": "usd/nh/passes_s6/S101_SH004/depth.png",
+  "sha256": "ff7fb560730a0c8f"
+ },
+ "edge_pass": {
+  "path": "usd/nh/passes_s6/S101_SH004/edge.png",
+  "sha256": "4bf46965bc928821"
+ },
+ "set_state": "finished",
+ "camera": {
+  "location": [
+   -6.0,
+   -5.2,
+   7.1
+  ],
+  "rotation_deg": [
+   87.93,
+   -0.0,
+   -38.01
+  ],
+  "lens_mm": 24.0,
+  "sensor_mm": 36.0,
+  "res": [
+   2520,
+   1080
+  ],
+  "depth_mode": "inverse",
+  "variants": {
+   "office": "dawn",
+   "people": "office_dawn"
+  },
+  "set_state": "finished"
+ },
+ "world_version": "usda:c4c46db7083b",
+ "seconds": 51.0,
+ "prompt_id": "e3939c6a-feb8-406d-ae2b-290f1ec69462"
+}

@@ -1,0 +1,37 @@
+{
+  "rc": 0,
+  "ok": true,
+  "wall_s": 0.55,
+  "steps": 34,
+  "ids_match_dry_run": true,
+  "sequence_id": 18,
+  "total_ticks": 12622222080000,
+  "total_s": 49.690657596371885,
+  "total_frames": 1192.5757823129252,
+  "scene_starts_ticks": [
+    0,
+    1440270720000,
+    5618833920000,
+    8712748800000,
+    10099843200000
+  ],
+  "vo_clips": [
+    21,
+    34,
+    44,
+    47,
+    50
+  ],
+  "music_clips": [
+    51
+  ],
+  "native_audio_clips": [
+    24,
+    27,
+    30,
+    33,
+    37,
+    40,
+    43
+  ]
+}

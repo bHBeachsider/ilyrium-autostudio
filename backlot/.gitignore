@@ -1,0 +1,4 @@
+catalog/catalog.sqlite
+usd/nh/renders/
+__pycache__/
+usd/nh/passes/

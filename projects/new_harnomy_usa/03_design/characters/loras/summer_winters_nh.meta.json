@@ -1,0 +1,15 @@
+{
+  "character": "summer",
+  "trigger_phrase": "summer_winters_nh",
+  "note": "Trigger phrases have twice failed to bind on Flux in this studio. Describe the character in the prompt; do not rely on the token.",
+  "base": "FLUX.1-dev (fal flux-lora-portrait-trainer)",
+  "steps": 2000,
+  "images": 18,
+  "anchor": "03_design/characters/casting/finals/SUM-FINAL.png",
+  "trainset": "03_design/characters/training/sets/summer/ (gitignored, reproducible from training/gen_trainset.py with seeds 770000+i)",
+  "file": "summer_winters_nh.safetensors",
+  "bytes": 130958064,
+  "trained_utc": "2026-09-04T02:17:07Z",
+  "minutes": 8.4,
+  "cost_usd": 4.8
+}

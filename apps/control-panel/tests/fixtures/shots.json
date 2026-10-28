@@ -1,0 +1,43 @@
+{
+  "run_id": "nh-s901-fixture",
+  "shots": [
+    {
+      "shot_id": "shot-001",
+      "song_id": "nh-s901-test",
+      "scene_number": 1,
+      "takes": [
+        {
+          "take_id": "take-001a",
+          "model": "fal/wan-i2v",
+          "c2pa_status": "valid",
+          "public_url": "/tests/fixtures/media/take-001a.mp4"
+        },
+        {
+          "take_id": "take-001b",
+          "model": "fal/wan-i2v",
+          "c2pa_status": "missing",
+          "public_url": "/tests/fixtures/media/take-001b.mp4"
+        }
+      ]
+    },
+    {
+      "shot_id": "shot-002",
+      "song_id": "nh-s901-test",
+      "scene_number": 2,
+      "takes": [
+        {
+          "take_id": "take-002a",
+          "model": "runway/gen4",
+          "c2pa_status": "valid",
+          "public_url": "/tests/fixtures/media/take-002a.mp4"
+        }
+      ]
+    },
+    {
+      "shot_id": "shot-003",
+      "song_id": "nh-s901-test",
+      "scene_number": 3,
+      "takes": []
+    }
+  ]
+}

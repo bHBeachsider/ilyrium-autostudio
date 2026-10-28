@@ -1,0 +1,14 @@
+[OK] fal auth OK (probe 422)
+== valencia
+   [OK] test0 -> valencia_test0.png
+   [OK] test1 -> valencia_test1.png
+== summer
+   [OK] test0 -> summer_test0.png
+   [OK] test1 -> summer_test1.png
+== pengold
+   [OK] test0 -> pengold_test0.png
+   [OK] test1 -> pengold_test1.png
+== dick
+   [OK] test0 -> dick_test0.png
+   [OK] test1 -> dick_test1.png
+DONE

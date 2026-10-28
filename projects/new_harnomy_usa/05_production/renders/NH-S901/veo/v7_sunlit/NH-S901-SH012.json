@@ -1,0 +1,26 @@
+{
+  "shot_id": "NH-S901-SH012",
+  "endpoint": "fal-ai/veo3.1/image-to-video",
+  "keyframe": "04_preproduction\\keyframes\\NH-S901\\NH-S901-SH012_key.png",
+  "arguments": {
+    "prompt": "Medium shot with a long lens of a mauve fabric banner hanging between the limestone columns of a semicircular portico, filling the frame width, lit by low raking winter sun from the left. The camera is locked off on a tripod and does not move at all: no pan, no tilt, no zoom, no drift, no handheld shake. Real-time speed, natural human movement, never slow motion. The only movement: the fabric breathes very slightly in a light wind - a slow soft ripple travelling along it, the fold near the middle lifting and settling, the lettering staying perfectly legible and undistorted throughout. Nothing else moves; the stone is fixed. No people. Prestige political drama photographed on an Arri Alexa with anamorphic lenses: single-source natural light, slight 35mm film grain, colours desaturated about twelve percent, warm tungstens, deep browns and charcoals in the shadows, photographic realism.",
+    "aspect_ratio": "16:9",
+    "duration": "4s",
+    "resolution": "1080p",
+    "generate_audio": false,
+    "negative_prompt": "turning around, walking away, camera pull back, dolly, reframing, people walking into frame, pedestrians in the foreground, moving bus, moving vehicles, slow motion, speed ramp, time-lapse, camera movement, zoom, pan, dolly, handheld shake, on-screen text, captions, subtitles, watermark, logo, lens flare, fast traffic, cars driving through the frame, people looking at the camera, faces toward camera, cartoon, illustration, oversaturated",
+    "seed": 901012
+  },
+  "image_url": "https://v3b.fal.media/files/b/0aa92993/53KzjoMyi2plWCTVxIrJw_NH-S901-SH012_key.png",
+  "response": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0aa9299e/eqf8IUV1BBXmtD5NqHKhV_0d1d84a1b0284ec49546f92661fb5dd3.mp4",
+      "content_type": "video/mp4",
+      "file_name": "0d1d84a1b0284ec49546f92661fb5dd3.mp4",
+      "file_size": 8487681
+    }
+  },
+  "seconds": 112.3,
+  "est_cost_usd": 0.8,
+  "rendered_at": "2026-09-05T00:53:02"
+}

@@ -1,0 +1,26 @@
+#usda 1.0
+(
+    defaultPrim = "Banner"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "Banner" (
+    kind = "component"
+    prepend references = @./geo.usda@</geo>
+)
+{
+    custom string backlot:asset_id = "Banner"
+    custom token backlot:grade = "conditioning"
+
+    def Scope "ControlPoints"
+    {
+        def Xform "banner"
+        {
+            custom double3[] backlot:corners = [(7, 10.225, 14.8), (-7, 10.225, 14.8), (-7, 10.225, 12.2), (7, 10.225, 12.2)]
+            custom token backlot:kind = "text_plane"
+            custom string[] backlot:text = ["WELCOME TO TWEEEDS' ERSATZGIVING GATHERING!", "NEW HARNOMY'S CELEBRATION OF CONTRITION, ATONEMENT AND REPENTANCE"]
+        }
+    }
+}
+

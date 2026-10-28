@@ -1,0 +1,44 @@
+[
+    {
+        "candidate_id":  "VAL-C01",
+        "job_id":  "5911b0d4-0237-418b-b693-5fa58e806dd7",
+        "seed":  34486,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_200108_5911b0d4-0237-418b-b693-5fa58e806dd7.png",
+        "status":  "completed"
+    },
+    {
+        "candidate_id":  "VAL-C02",
+        "job_id":  "1d3cf30b-c00e-4be6-9995-74aa6dedeaeb",
+        "seed":  602427,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_200132_1d3cf30b-c00e-4be6-9995-74aa6dedeaeb.png",
+        "status":  "completed"
+    },
+    {
+        "candidate_id":  "VAL-C03",
+        "job_id":  "c625de2d-c7f8-41a3-b314-496e57a385a1",
+        "seed":  599547,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_200154_c625de2d-c7f8-41a3-b314-496e57a385a1.png",
+        "status":  "completed"
+    },
+    {
+        "candidate_id":  "VAL-C04",
+        "job_id":  "a918982d-08df-4061-80d2-ea979b4f0cab",
+        "seed":  413023,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_200216_a918982d-08df-4061-80d2-ea979b4f0cab.png",
+        "status":  "completed"
+    },
+    {
+        "candidate_id":  "VAL-C05",
+        "job_id":  "97b52293-950d-489b-a23b-556614472da5",
+        "seed":  257465,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_200238_97b52293-950d-489b-a23b-556614472da5.png",
+        "status":  "completed"
+    },
+    {
+        "candidate_id":  "VAL-C06",
+        "job_id":  "e4a3c10b-d8e8-4f1c-97f4-59a923514d23",
+        "seed":  1372,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_200301_e4a3c10b-d8e8-4f1c-97f4-59a923514d23.png",
+        "status":  "completed"
+    }
+]

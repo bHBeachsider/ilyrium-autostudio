@@ -1,0 +1,16 @@
+#usda 1.0
+(
+    defaultPrim = "LysteriaWallArt"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "LysteriaWallArt" (
+    kind = "component"
+    prepend references = @./geo.usda@</geo>
+)
+{
+    custom string backlot:asset_id = "LysteriaWallArt"
+    custom token backlot:grade = "conditioning"
+}
+

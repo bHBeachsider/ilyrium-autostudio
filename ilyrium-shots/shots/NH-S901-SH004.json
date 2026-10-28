@@ -1,0 +1,33 @@
+{
+  "shot_id": "NH-S901-SH004",
+  "song_id": "NH-S901",
+  "duration_s": 5,
+  "camera": {
+    "shot_size": "close-up",
+    "movement": "locked-off",
+    "lens_mm": 85
+  },
+  "subjects": [],
+  "setting": "The square, morning \u2014 insert",
+  "mood": "craft observed closely",
+  "action": "A chop saw. Timber pushed through the blade. Sawdust hangs in the low sun.",
+  "prompt": "extreme close-up insert, a chop saw blade cutting through a length of fresh pine timber, sawdust catching the low winter sun in the air, gloved hands steadying the wood, shallow depth of field, sharp focus on the blade and the cut, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame, human face, portrait, person looking at camera",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "",
+    "seed": 901004
+  },
+  "seed": 901004,
+  "continuity": {
+    "prev_shot": "",
+    "flf2v": false
+  },
+  "render": {
+    "width": 832,
+    "height": 480,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 5
+  }
+}

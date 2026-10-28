@@ -1,0 +1,30 @@
+# backlot/schema/asset.yaml - the catalog row. One per asset; every field the Backlot Agent reasons over.
+# Grades (the amendment to the proposal): most of the backlot is CONDITIONING-grade - greybox at true scale with
+# segmentation ids and text planes, enough to condition depth/seg generation. HERO-grade is built only where the
+# generative path cannot be trusted (text-bearing signage, close-up props, faces).
+asset_id: string            # unique, stable, PascalCase (RallyStage, Bodega); the USD prim name
+kind: enum                  # location | set | building | prop | vehicle | text_plane | character_mark | lighting | weather | camera
+production: string          # first production that built it; reuse is recorded in provenance.used_in
+world: string               # the coordinate system it is authored in (nh = New Harnomy origin contract)
+period: {start: int, end: int}   # in-world years the asset is plausible for
+states: [string]            # variant names, if stateful (RallyStage: joists, half_decked, beam_seated, swept, finished, feast)
+grade: enum                 # conditioning | hero
+formats: [string]           # usd | blend | unreal
+usd: string                 # path of the asset .usda relative to backlot/usd
+text_planes: [string]       # prim names of tracked text quads inside the asset (lettering is applied in pixels from these)
+marks: [string]             # character marks inside the asset (empty until Phase 3)
+control_points: [string]    # names of gate control points this asset owns
+tags: [string]              # free vocabulary for search: "civic", "storefront", "timber", "harvest"
+aliases: [string]           # how the libretto / scene cards name this place ("Pengold's mayoral office"); the resolver matches on these
+provenance:
+  method: enum              # procedural | modelled | photogrammetry | ai_generated | licensed
+  creator: string           # person or script
+  source: string            # bible section, plate, reference image, or vendor
+  license: string           # e.g. "ilyrium-original", "CC0", vendor terms
+  copyright_status: enum    # original | licensed | unknown
+  created: date
+  approval_status: enum     # draft | reviewed | locked
+  approved_by: string
+  used_in: [string]         # productions / sequences (NH-S901)
+  modifications: [string]   # dated notes
+  version: int

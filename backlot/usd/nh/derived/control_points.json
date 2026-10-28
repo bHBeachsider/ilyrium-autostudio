@@ -1,0 +1,342 @@
+{
+ "posts": [
+  {
+   "name": "post_L",
+   "base": [
+    -11.6,
+    39.3,
+    1.2
+   ],
+   "top": [
+    -11.6,
+    39.3,
+    6.2
+   ]
+  },
+  {
+   "name": "post_R",
+   "base": [
+    11.6,
+    39.3,
+    1.2
+   ],
+   "top": [
+    11.6,
+    39.3,
+    6.2
+   ]
+  }
+ ],
+ "text_planes": [
+  {
+   "name": "lyst_wordmark",
+   "corners": [
+    [
+     27.23,
+     85.3,
+     6.46
+    ],
+    [
+     27.23,
+     88.3,
+     6.46
+    ],
+    [
+     27.23,
+     88.3,
+     5.84
+    ],
+    [
+     27.23,
+     85.3,
+     5.84
+    ]
+   ],
+   "text": [
+    "LYSTERIA"
+   ]
+  },
+  {
+   "name": "lyst_nameplate",
+   "corners": [
+    [
+     19.32,
+     80.568,
+     5.755
+    ],
+    [
+     18.86,
+     80.568,
+     5.755
+    ],
+    [
+     18.86,
+     80.568,
+     5.685
+    ],
+    [
+     19.32,
+     80.568,
+     5.685
+    ]
+   ],
+   "text": [
+    "SUMMER WINTERS"
+   ]
+  },
+  {
+   "name": "banner",
+   "corners": [
+    [
+     7.0,
+     10.225,
+     14.8
+    ],
+    [
+     -7.0,
+     10.225,
+     14.8
+    ],
+    [
+     -7.0,
+     10.225,
+     12.2
+    ],
+    [
+     7.0,
+     10.225,
+     12.2
+    ]
+   ],
+   "text": [
+    "WELCOME TO TWEEEDS' ERSATZGIVING GATHERING!",
+    "NEW HARNOMY'S CELEBRATION OF CONTRITION, ATONEMENT AND REPENTANCE"
+   ]
+  }
+ ],
+ "marks": [
+  {
+   "name": "desk_chair",
+   "asset": "World",
+   "pos": [
+    24.1,
+    76.15,
+    4.2
+   ],
+   "facing_deg": 0.0,
+   "posture": "seated"
+  },
+  {
+   "name": "visitor_chair",
+   "asset": "World",
+   "pos": [
+    23.55,
+    77.75,
+    4.2
+   ],
+   "facing_deg": 180.0,
+   "posture": "seated"
+  },
+  {
+   "name": "sofa",
+   "asset": "World",
+   "pos": [
+    19.09,
+    77.6,
+    4.2
+   ],
+   "facing_deg": 270.0,
+   "posture": "seated"
+  },
+  {
+   "name": "glass_door",
+   "asset": "World",
+   "pos": [
+    19.09,
+    81.3,
+    4.2
+   ],
+   "facing_deg": 180.0,
+   "posture": "standing"
+  },
+  {
+   "name": "reception",
+   "asset": "World",
+   "pos": [
+    26.84,
+    86.8,
+    4.2
+   ],
+   "facing_deg": 90.0,
+   "posture": "seated"
+  },
+  {
+   "name": "floor_centre",
+   "asset": "World",
+   "pos": [
+    22.2,
+    83.8,
+    4.2
+   ],
+   "facing_deg": 180.0,
+   "posture": "standing"
+  },
+  {
+   "name": "window_centre",
+   "asset": "World",
+   "pos": [
+    22.9,
+    75.9,
+    4.2
+   ],
+   "facing_deg": 180.0,
+   "posture": "standing"
+  },
+  {
+   "name": "door",
+   "asset": "World",
+   "pos": [
+    19.4,
+    88.0,
+    4.2
+   ],
+   "facing_deg": 180.0,
+   "posture": "standing"
+  },
+  {
+   "name": "desk_chair",
+   "asset": "World",
+   "pos": [
+    0.0,
+    -3.0,
+    5.4
+   ],
+   "facing_deg": 0.0,
+   "posture": "seated"
+  },
+  {
+   "name": "window_centre",
+   "asset": "World",
+   "pos": [
+    0.0,
+    7.3,
+    5.4
+   ],
+   "facing_deg": 0.0,
+   "posture": "standing"
+  },
+  {
+   "name": "door",
+   "asset": "World",
+   "pos": [
+    -6.5,
+    -5.0,
+    5.4
+   ],
+   "facing_deg": 180.0,
+   "posture": "standing"
+  },
+  {
+   "name": "podium",
+   "asset": "World",
+   "pos": [
+    0.0,
+    43.0,
+    1.2
+   ],
+   "facing_deg": 0.0,
+   "posture": "standing"
+  },
+  {
+   "name": "beneath_portrait",
+   "asset": "World",
+   "pos": [
+    2.0,
+    40.5,
+    1.2
+   ],
+   "facing_deg": 0.0,
+   "posture": "standing"
+  },
+  {
+   "name": "stage_left_threshold",
+   "asset": "World",
+   "pos": [
+    -11.0,
+    42.0,
+    1.2
+   ],
+   "facing_deg": 90.0,
+   "posture": "standing"
+  },
+  {
+   "name": "upstage_right",
+   "asset": "World",
+   "pos": [
+    9.0,
+    40.0,
+    1.2
+   ],
+   "facing_deg": 0.0,
+   "posture": "standing"
+  },
+  {
+   "name": "head_of_table",
+   "asset": "World",
+   "pos": [
+    22.9,
+    82.45,
+    7.6
+   ],
+   "facing_deg": 180.0,
+   "posture": "seated"
+  },
+  {
+   "name": "window",
+   "asset": "World",
+   "pos": [
+    22.9,
+    76.0,
+    7.6
+   ],
+   "facing_deg": 180.0,
+   "posture": "standing"
+  }
+ ],
+ "deck_front": {
+  "left": [
+   -12.0,
+   45.0,
+   1.2
+  ],
+  "right": [
+   12.0,
+   45.0,
+   1.2
+  ]
+ },
+ "chair_band": {
+  "top_left": [
+   -12.0,
+   41.2,
+   2.1
+  ],
+  "bottom_right": [
+   12.0,
+   41.2,
+   1.2
+  ]
+ },
+ "truss_beam": {
+  "left": [
+   -11.6,
+   39.3,
+   6.2
+  ],
+  "right": [
+   11.6,
+   39.3,
+   6.2
+  ]
+ }
+}

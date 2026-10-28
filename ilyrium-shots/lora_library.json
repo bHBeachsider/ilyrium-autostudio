@@ -21,7 +21,7 @@
       "base_model": "black-forest-labs/FLUX.1-dev",
       "sha256": "717e301078bcb57c6163211b6af064ab6b3d5dbd171a34c3017891f7eff8d1ef",
       "tensorart_job_id": null,
-      "trained_at": "2026-06-13T23:28:21+00:00",
+      "trained_at": "2026-06-13T19:28:21-04:00",
       "status": "trained",
       "notes": "Broderick recurring AUTHOR-AVATAR character-consistency LoRA (heavyset bald man, full gray beard, thick black rectangular glasses), trained on 17 isolated ink avatar crops. VALIDATED 2026-06-14: the bare 'brdmc, <pose>' trigger does NOT bind on Flux (yields inconsistent photoreal people, no ink). It WORKS when the prompt includes the ink style block + the avatar described + brdmc -> renders a CONSISTENT avatar in Broderick B&W ink across poses (see _training/samples/char/). USE: style-block + 'a heavyset bald man with a full gray beard and thick black rectangular glasses' + brdmc; scale ~0.9-1.0. Artifact: s3://ilyrium-slm-foundry/models/broderick/hand/char/broderick_char.safetensors -> aws s3 cp into ComfyUI/models/loras/."
     },
@@ -33,9 +33,9 @@
       "base_model": "black-forest-labs/FLUX.1-dev",
       "sha256": "2e9c7f74221802e0353467f58e8c481da08986443ec88fee80dc9e2b88f7622e",
       "tensorart_job_id": null,
-      "trained_at": "2026-06-14T01:42:56+00:00",
+      "trained_at": "2026-06-13T21:42:56-04:00",
       "status": "trained",
-      "notes": "Broderick ink/look STYLE LoRA v2 (173 panels, short trigger-only captions). GOAL was to make the bare 'brdrck' trigger fire the style; VALIDATED 2026-06-14 that it did NOT — bare trigger still inert on Flux (generic cartoon), same class of failure as v1. NOT an improvement over v1 for the trigger problem. BUT produces strong Broderick B&W ink when the style is DESCRIBED in the prompt (e.g. 'black and white hand-drawn ink comic, bold confident linework, loose cross-hatching, white background') — see _training/samples/flux_v2/. USE via style-block prepend (projects/broderick/style_kernel.json 'look'), NOT the bare trigger; scale ~0.85-1.0. Flux lesson: a rare trigger token does not bind a style the way SDXL does. Artifact: s3://ilyrium-slm-foundry/models/broderick/hand/flux_v2/broderick_flux_v2.safetensors -> aws s3 cp into ComfyUI/models/loras/."
+      "notes": "Broderick ink/look STYLE LoRA v2 (173 panels, short trigger-only captions). GOAL was to make the bare 'brdrck' trigger fire the style; VALIDATED 2026-06-14 that it did NOT \u2014 bare trigger still inert on Flux (generic cartoon), same class of failure as v1. NOT an improvement over v1 for the trigger problem. BUT produces strong Broderick B&W ink when the style is DESCRIBED in the prompt (e.g. 'black and white hand-drawn ink comic, bold confident linework, loose cross-hatching, white background') \u2014 see _training/samples/flux_v2/. USE via style-block prepend (projects/broderick/style_kernel.json 'look'), NOT the bare trigger; scale ~0.85-1.0. Flux lesson: a rare trigger token does not bind a style the way SDXL does. Artifact: s3://ilyrium-slm-foundry/models/broderick/hand/flux_v2/broderick_flux_v2.safetensors -> aws s3 cp into ComfyUI/models/loras/."
     },
     {
       "name": "strp",
@@ -45,9 +45,74 @@
       "base_model": "black-forest-labs/FLUX.1-dev",
       "sha256": "73d45a490106fc1a60c2e8227415fb6c98a680f8776e45db8de2792ca15ae552",
       "tensorart_job_id": null,
-      "trained_at": "2026-06-15T06:16:03+00:00",
+      "trained_at": "2026-06-15T02:16:03-04:00",
       "status": "trained",
-      "notes": "Stripe CHARACTER LoRA v2 — recurring lead of the STRIPE series. Retrained on a CLEAN 19-image speedo set anchored to the user's canonical refs: IP-Adapter@0.6+brdrck poses with the bottom fixed shorts->speedo via expose-thighs Flux Fill inpaint, + brdrck-only speedo rears with the crack-stripe, + the user front ref. All attributes baked: bald Norwood-VII dome, light body hair, sunglasses, gold chain, gold bracelet (right wrist), brown sneakers, white speedo, rear crack-stripe. Supersedes v1 (stripe_char.safetensors, weak attributes). USE: stack with brdrck (strp@0.9 + brdrck@~0.8) + describe the scene; for rear/stripe panels use brdrck-only (the char LoRA over-fits front). Locked design: projects/stripe/lora_seeds/v6/ + refs/. Artifact: s3://ilyrium-slm-foundry/models/stripe/hand/char/stripe_char_v2.safetensors -> aws s3 cp into ComfyUI/models/loras/."
+      "notes": "Stripe CHARACTER LoRA v2 \u2014 recurring lead of the STRIPE series. Retrained on a CLEAN 19-image speedo set anchored to the user's canonical refs: IP-Adapter@0.6+brdrck poses with the bottom fixed shorts->speedo via expose-thighs Flux Fill inpaint, + brdrck-only speedo rears with the crack-stripe, + the user front ref. All attributes baked: bald Norwood-VII dome, light body hair, sunglasses, gold chain, gold bracelet (right wrist), brown sneakers, white speedo, rear crack-stripe. Supersedes v1 (stripe_char.safetensors, weak attributes). USE: stack with brdrck (strp@0.9 + brdrck@~0.8) + describe the scene; for rear/stripe panels use brdrck-only (the char LoRA over-fits front). Locked design: projects/stripe/lora_seeds/v6/ + refs/. Artifact: s3://ilyrium-slm-foundry/models/stripe/hand/char/stripe_char_v2.safetensors -> aws s3 cp into ComfyUI/models/loras/."
+    },
+    {
+      "name": "stripe_young",
+      "filename": "stripe_young_v1.safetensors",
+      "trigger_word": "ohwx man",
+      "strength": 0.9,
+      "base_model": "black-forest-labs/FLUX.1-dev",
+      "sha256": null,
+      "tensorart_job_id": null,
+      "trained_at": null,
+      "status": "pending",
+      "character": "stripe_young",
+      "notes": "YOUNG 1970s Stripe (KING SIZE / NH-S05 prequel lead). Fat canon body, FULL jet-black 70s hair (never bald), thin gold rope chain, shades, white briefs, brown sneakers, BW ink cartoon. Astria API tune 5282901 (flux1 branch, base 1504944, face_crop=false, trigger <lora:5282901:1.0> ohwx man) trained 2026-07-15 on the 3 approved picks in projects/stripe/03_design/characters/loras/stripe/1970s/. Astria API tunes have no downloadable ckpt - generate keyframes on Astria, or recreate the tune in the Astria web UI to get a portable .safetensors for ComfyUI, then backfill sha256 and set status=trained."
+    },
+    {
+      "name": "valencia_strong_nh",
+      "filename": "valencia_strong_nh.safetensors",
+      "trigger_word": "valencia_strong_nh",
+      "strength": 0.9,
+      "base_model": "black-forest-labs/FLUX.1-dev",
+      "sha256": "f514cc3825b7ede04b76e3d7ed613fb37c54bb0e4399bc11d16799c87bfd4f78",
+      "tensorart_job_id": null,
+      "trained_at": "2026-09-04T02:08:38Z",
+      "status": "trained",
+      "character": "valencia",
+      "notes": "Valencia Strong - New Harnomy USA. The one principal OUTSIDE the caste (see 01_development/bible/THE_CASTE.md); deliberately ethnically ambiguous (NH-USA-008) so the Framework cannot sort her. NOTE: her BEATIFIC/serene quality is NOT in this LoRA and must not be - that is Summer's. Valencia's register is grave and tired. Trained on fal fal-ai/flux-lora-portrait-trainer, 2000 steps, 18 images, subject_crop + multiresolution. Anchor: 03_design/characters/casting/finals/VAL-FINAL.png. Training set is gitignored and reproducible from 03_design/characters/training/gen_trainset.py (seeds 770000+i). VERIFIED 2026-09-03 on two out-of-set scene prompts each - identity generalises. Per this library's own precedent (broderick_char, broderick_flux_v2) a bare Flux trigger token does NOT bind: ALWAYS describe the character in the prompt as well as naming the trigger. Artifact: s3://ilyrium-slm-foundry/models/new_harnomy/valencia_strong_nh.safetensors -> aws s3 cp into ComfyUI/models/loras/ on the render box. Weights are gitignored (125 MB each); the repo keeps the .meta.json, the config, and the verification sheet."
+    },
+    {
+      "name": "summer_winters_nh",
+      "filename": "summer_winters_nh.safetensors",
+      "trigger_word": "summer_winters_nh",
+      "strength": 0.9,
+      "base_model": "black-forest-labs/FLUX.1-dev",
+      "sha256": "fe7fb5926f3df5dd9d7e1cd733325a346978f5959a5b33e98f55e6e227fbd48b",
+      "tensorart_job_id": null,
+      "trained_at": "2026-09-04T02:17:07Z",
+      "status": "trained",
+      "character": "summer",
+      "notes": "Summer Winters - New Harnomy USA. IMPORTANT: her beatific radiance is a LIGHTING fact, not baked into these weights (NH-USA-020). The training set deliberately varied lighting so the LoRA learns her face, not her key light. To get the queen quality at render time the SHOT must supply it: a soft luminous key from just above and in front wrapping the cheekbones, a glow at forehead and temples, a bright catchlight in each eye, the brow unfurrowed, the lips resting closed rather than pressed. Trained on fal fal-ai/flux-lora-portrait-trainer, 2000 steps, 18 images, subject_crop + multiresolution. Anchor: 03_design/characters/casting/finals/SUM-FINAL.png. Training set is gitignored and reproducible from 03_design/characters/training/gen_trainset.py (seeds 770000+i). VERIFIED 2026-09-03 on two out-of-set scene prompts each - identity generalises. Per this library's own precedent (broderick_char, broderick_flux_v2) a bare Flux trigger token does NOT bind: ALWAYS describe the character in the prompt as well as naming the trigger. Artifact: s3://ilyrium-slm-foundry/models/new_harnomy/summer_winters_nh.safetensors -> aws s3 cp into ComfyUI/models/loras/ on the render box. Weights are gitignored (125 MB each); the repo keeps the .meta.json, the config, and the verification sheet."
+    },
+    {
+      "name": "pengold_heavens_nh",
+      "filename": "pengold_heavens_nh.safetensors",
+      "trigger_word": "pengold_heavens_nh",
+      "strength": 0.9,
+      "base_model": "black-forest-labs/FLUX.1-dev",
+      "sha256": "f54f380aa45f8d4f7db7643152c24f85f7f5575d2971d404c0b42b4d5e808a9c",
+      "tensorart_job_id": null,
+      "trained_at": "2026-09-04T02:25:31Z",
+      "status": "trained",
+      "character": "pengold",
+      "notes": "Pengold Heavens - New Harnomy USA. RE-CAST from text 2026-09-03, not an edit of the earlier PEN-K03 (NH-USA-021: an edit cannot add tissue against a reference). Brad chose the leanest candidate (PEN-T01), so the 'well-fed' note that prompted the re-cast is NOT in this face - he is lean and saturnine. His tell is SMOOTH, not soft: no weathering, an indoor animal with an expensive barber. Carries the caste block. Trained on fal fal-ai/flux-lora-portrait-trainer, 2000 steps, 18 images, subject_crop + multiresolution. Anchor: 03_design/characters/casting/finals/PEN-FINAL.png. Training set is gitignored and reproducible from 03_design/characters/training/gen_trainset.py (seeds 770000+i). VERIFIED 2026-09-03 on two out-of-set scene prompts each - identity generalises. Per this library's own precedent (broderick_char, broderick_flux_v2) a bare Flux trigger token does NOT bind: ALWAYS describe the character in the prompt as well as naming the trigger. Artifact: s3://ilyrium-slm-foundry/models/new_harnomy/pengold_heavens_nh.safetensors -> aws s3 cp into ComfyUI/models/loras/ on the render box. Weights are gitignored (125 MB each); the repo keeps the .meta.json, the config, and the verification sheet."
+    },
+    {
+      "name": "dick_suede_nh",
+      "filename": "dick_suede_nh.safetensors",
+      "trigger_word": "dick_suede_nh",
+      "strength": 0.9,
+      "base_model": "black-forest-labs/FLUX.1-dev",
+      "sha256": "093d00976fb0bb49dd7b6bda7a0726e0113e260cd96ebce3d73a19a790aa6958",
+      "tensorart_job_id": null,
+      "trained_at": "2026-09-04T02:35:24Z",
+      "status": "trained",
+      "character": "dick",
+      "notes": "Dick Suede - New Harnomy USA. Soft, delicately beautiful, almost feminine; slim pro-tennis build; long dirty-blond hair. KNOWN GAP: all 18 training frames wear the hair DOWN, so the LoRA does not reliably produce the Act III MAN-BUN even when prompted - verified 2026-09-03. For bun shots supply casting/finals/DIC-K02-bun-v2.png as reference conditioning, or train a small supplementary set. The bun matters to the plot (Summer's initiative is The Man Bun Collective). Carries the caste block. Trained on fal fal-ai/flux-lora-portrait-trainer, 2000 steps, 18 images, subject_crop + multiresolution. Anchor: 03_design/characters/casting/finals/DIC-FINAL.png. Training set is gitignored and reproducible from 03_design/characters/training/gen_trainset.py (seeds 770000+i). VERIFIED 2026-09-03 on two out-of-set scene prompts each - identity generalises. Per this library's own precedent (broderick_char, broderick_flux_v2) a bare Flux trigger token does NOT bind: ALWAYS describe the character in the prompt as well as naming the trigger. Artifact: s3://ilyrium-slm-foundry/models/new_harnomy/dick_suede_nh.safetensors -> aws s3 cp into ComfyUI/models/loras/ on the render box. Weights are gitignored (125 MB each); the repo keeps the .meta.json, the config, and the verification sheet."
     }
   ]
 }

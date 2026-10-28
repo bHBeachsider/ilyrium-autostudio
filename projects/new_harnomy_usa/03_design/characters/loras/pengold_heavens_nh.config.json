@@ -1,0 +1,1 @@
+{"images_data_url": "https://v3b.fal.media/files/b/0aa90437/FuD199OWnXLDPkBTowcS___pengold_trainset.zip", "trigger_phrase": "pengold_heavens_nh", "learning_rate": 9e-05, "steps": 2000, "multiresolution_training": true, "subject_crop": true, "data_archive_format": null, "resume_from_checkpoint": "", "create_masks": false, "instance_prompt": "pengold_heavens_nh"}

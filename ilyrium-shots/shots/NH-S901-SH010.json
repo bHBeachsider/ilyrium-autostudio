@@ -1,0 +1,72 @@
+{
+  "shot_id": "NH-S901-SH010",
+  "song_id": "NH-S901",
+  "duration_s": 5,
+  "camera": {
+    "shot_size": "wide",
+    "movement": "locked-off",
+    "lens_mm": 24
+  },
+  "subjects": [],
+  "setting": "The square, dusk",
+  "mood": "the object alone, before it is dressed as anything else",
+  "action": "The object, alone, dressed only in what the city called it. Everything it is, before it is anything else.",
+  "prompt": "wide shot, locked-off camera that does not move, dusk, the finished long timber rally stage with its row of folding chairs, a podium and a tall rear truss stands in the square in front of City Hall, the windows of City Hall lit warm tungsten, the mauve banner on the portico, cars parked nose to tail along the kerb do not move, a flatbed truck stacked with fresh lumber and a white box van stand at the kerb with their engines off, the city bus at the far corner is stopped, the bus at the corner has its interior lights on, one last pedestrian crosses far off with their back to the camera, deep blue winter twilight, absolute stillness, nothing else moves, no change in the lighting, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, caption text overlay, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame, human face, portrait, person looking at camera, fast moving cars, speeding traffic, time-lapse, motion blur streaks, camera movement",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "",
+    "seed": 901010
+  },
+  "seed": 901010,
+  "continuity": {
+    "prev_shot": "NH-S901-SH009",
+    "flf2v": true
+  },
+  "render": {
+    "width": 832,
+    "height": 480,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 5,
+    "renderer": "fal-veo3.1"
+  },
+  "backlot": {
+    "stage": "backlot/usd/nh/NewHarnomy_square.usda",
+    "camera": "/World/Cameras/SH010",
+    "set_state": "finished",
+    "weather": "overcast_drizzle",
+    "dressing": [
+      "harvest"
+    ],
+    "invariants": [
+      {
+        "id": "posts_at_stage_ends",
+        "check": "post_projection",
+        "blocking": true
+      },
+      {
+        "id": "deck_parallel_to_facade",
+        "check": "deck_orientation",
+        "blocking": false
+      },
+      {
+        "id": "banner_reads_spec",
+        "check": "ocr",
+        "blocking": false,
+        "args": {
+          "text_plane": "Banner"
+        }
+      }
+    ],
+    "conditioning": [
+      "clay",
+      "depth",
+      "seg"
+    ],
+    "references": {
+      "plate": "projects/new_harnomy_usa/03_design/environments/city_hall/plate_exterior_dusk_LOCKED.png"
+    },
+    "budget_usd": 3.0
+  }
+}

@@ -1,0 +1,355 @@
+{
+ "stage": "../NewHarnomy_square.usda",
+ "build": "finished",
+ "weather": "overcast_drizzle",
+ "cameras": {
+  "PLATE": {
+   "location": [
+    0.0,
+    76.0,
+    9.0
+   ],
+   "rotation_deg": [
+    -87.74,
+    180.0,
+    0.0
+   ],
+   "lens_mm": 22.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1584,
+    672
+   ],
+   "depth_mode": "linear",
+   "set_state": "finished"
+  },
+  "SH002": {
+   "location": [
+    0.0,
+    76.0,
+    9.0
+   ],
+   "rotation_deg": [
+    -87.74,
+    180.0,
+    0.0
+   ],
+   "lens_mm": 26.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear",
+   "set_state": "joists"
+  },
+  "SH003": {
+   "location": [
+    -9.0,
+    55.0,
+    1.6
+   ],
+   "rotation_deg": [
+    -77.44,
+    180.0,
+    0.0
+   ],
+   "lens_mm": 26.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear",
+   "variants": {
+    "people": "build"
+   },
+   "set_state": "joists"
+  },
+  "SH006": {
+   "location": [
+    0.0,
+    8.3,
+    7.2
+   ],
+   "rotation_deg": [
+    76.37,
+    -0.0,
+    0.0
+   ],
+   "lens_mm": 20.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear",
+   "variants": {
+    "office": "dawn",
+    "people": "none"
+   },
+   "set_state": "half_decked"
+  },
+  "SH007": {
+   "location": [
+    0.0,
+    60.0,
+    1.7
+   ],
+   "rotation_deg": [
+    -80.3,
+    180.0,
+    0.0
+   ],
+   "lens_mm": 28.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear",
+   "variants": {
+    "people": "build"
+   },
+   "set_state": "beam_seated"
+  },
+  "SH009": {
+   "location": [
+    -5.0,
+    68.0,
+    1.7
+   ],
+   "rotation_deg": [
+    -86.71,
+    180.0,
+    0.0
+   ],
+   "lens_mm": 32.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear",
+   "set_state": "finished"
+  },
+  "SH010": {
+   "location": [
+    0.0,
+    76.0,
+    9.0
+   ],
+   "rotation_deg": [
+    -87.74,
+    180.0,
+    0.0
+   ],
+   "lens_mm": 26.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear",
+   "set_state": "finished"
+  },
+  "S101_SH004": {
+   "location": [
+    -6.0,
+    -5.2,
+    7.1
+   ],
+   "rotation_deg": [
+    87.93,
+    -0.0,
+    -38.01
+   ],
+   "lens_mm": 24.0,
+   "sensor_mm": 36.0,
+   "res": [
+    2520,
+    1080
+   ],
+   "depth_mode": "inverse",
+   "variants": {
+    "office": "dawn",
+    "people": "office_dawn"
+   },
+   "set_state": "finished",
+   "interior": true
+  },
+  "S101_SH005": {
+   "location": [
+    -0.8,
+    2.0,
+    6.85
+   ],
+   "rotation_deg": [
+    87.74,
+    -0.0,
+    -170.91
+   ],
+   "lens_mm": 55.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "inverse",
+   "variants": {
+    "office": "dawn",
+    "people": "office_dawn"
+   },
+   "set_state": "finished",
+   "interior": true
+  },
+  "S101_SH006": {
+   "location": [
+    0.9,
+    -0.2,
+    6.6
+   ],
+   "rotation_deg": [
+    77.67,
+    -0.0,
+    153.43
+   ],
+   "lens_mm": 85.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "inverse",
+   "variants": {
+    "office": "dawn",
+    "people": "office_dawn"
+   },
+   "set_state": "finished",
+   "interior": true
+  },
+  "S101_SH007": {
+   "location": [
+    0.0,
+    0.2,
+    6.8
+   ],
+   "rotation_deg": [
+    90.0,
+    0.0,
+    180.0
+   ],
+   "lens_mm": 85.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "inverse",
+   "variants": {
+    "office": "dawn",
+    "people": "office_dawn"
+   },
+   "set_state": "finished",
+   "interior": true
+  },
+  "LYST_WINDOW": {
+   "location": [
+    23.5,
+    76.3,
+    5.75
+   ],
+   "rotation_deg": [
+    86.22,
+    -0.0,
+    145.58
+   ],
+   "lens_mm": 40.0,
+   "sensor_mm": 36.0,
+   "res": [
+    2520,
+    1080
+   ],
+   "depth_mode": "linear",
+   "variants": {
+    "lysteria": "working",
+    "people": "none"
+   },
+   "set_state": "joists",
+   "interior": true
+  },
+  "LYST_BOARD": {
+   "location": [
+    22.6,
+    87.4,
+    9.15
+   ],
+   "rotation_deg": [
+    88.85,
+    -0.0,
+    -177.69
+   ],
+   "lens_mm": 24.0,
+   "sensor_mm": 36.0,
+   "res": [
+    2520,
+    1080
+   ],
+   "depth_mode": "inverse",
+   "variants": {
+    "people": "boardroom"
+   },
+   "set_state": "half_decked",
+   "interior": true
+  },
+  "LYST_BOARD_VIEW": {
+   "location": [
+    22.7,
+    76.6,
+    9.2
+   ],
+   "rotation_deg": [
+    82.01,
+    -0.0,
+    145.99
+   ],
+   "lens_mm": 35.0,
+   "sensor_mm": 36.0,
+   "res": [
+    2520,
+    1080
+   ],
+   "depth_mode": "linear",
+   "variants": {
+    "people": "none"
+   },
+   "set_state": "joists",
+   "interior": true
+  },
+  "LYST_DESK": {
+   "location": [
+    24.6,
+    84.2,
+    5.7
+   ],
+   "rotation_deg": [
+    87.26,
+    0.0,
+    176.08
+   ],
+   "lens_mm": 32.0,
+   "sensor_mm": 36.0,
+   "res": [
+    2520,
+    1080
+   ],
+   "depth_mode": "inverse",
+   "variants": {
+    "lysteria": "working",
+    "people": "lysteria"
+   },
+   "set_state": "half_decked",
+   "interior": true
+  }
+ }
+}

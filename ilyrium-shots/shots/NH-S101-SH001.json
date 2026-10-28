@@ -1,0 +1,33 @@
+{
+  "shot_id": "NH-S101-SH001",
+  "song_id": "NH-S101",
+  "duration_s": 10,
+  "camera": {
+    "shot_size": "wide",
+    "movement": "locked-off",
+    "lens_mm": 24
+  },
+  "subjects": [],
+  "setting": "The theater auditorium, seen from the stage; houselights up",
+  "mood": "documentary stillness",
+  "action": "Houselights stay up ten seconds longer than they should. People in the seats begin looking around.",
+  "prompt": "wide establishing shot, locked-off, a theater auditorium seen from the stage with the houselights still up, an audience in winter coats beginning to look around at each other, warm house light, empty dark stage edge in the foreground, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "",
+    "seed": 101001
+  },
+  "seed": 101001,
+  "continuity": {
+    "prev_shot": "",
+    "flf2v": false
+  },
+  "render": {
+    "width": 640,
+    "height": 640,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 10
+  }
+}

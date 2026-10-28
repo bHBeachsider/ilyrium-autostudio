@@ -1,0 +1,26 @@
+#usda 1.0
+(
+    defaultPrim = "LysteriaStaff"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "LysteriaStaff" (
+    kind = "component"
+    variants = {
+        string build = "lysteria"
+    }
+    prepend variantSets = "build"
+)
+{
+    custom string backlot:asset_id = "LysteriaStaff"
+    custom token backlot:grade = "conditioning"
+    variantSet "build" = {
+        "lysteria" (
+            prepend references = @./geo_lysteria.usda@</geo>
+        ) {
+
+        }
+    }
+}
+

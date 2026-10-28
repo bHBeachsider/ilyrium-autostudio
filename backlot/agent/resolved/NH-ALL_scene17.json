@@ -1,0 +1,18 @@
+{
+ "seq": "NH-ALL",
+ "scene": 17,
+ "duration_s": 8,
+ "location": {
+  "text": "Black",
+  "set": null,
+  "match": "none",
+  "confidence": 0.0,
+  "via": null
+ },
+ "build_queue": [],
+ "props": [],
+ "characters": [],
+ "text_planes": [],
+ "invariants": [],
+ "world": null
+}

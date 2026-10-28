@@ -1,0 +1,127 @@
+#usda 1.0
+(
+    defaultPrim = "RallyStage"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "RallyStage" (
+    kind = "component"
+    variants = {
+        string build = "feast"
+    }
+    prepend variantSets = "build"
+)
+{
+    custom string backlot:asset_id = "RallyStage"
+    custom token backlot:grade = "conditioning"
+
+    def Scope "ControlPoints"
+    {
+        def Xform "post_L"
+        {
+            custom double3 backlot:base = (-11.6, 39.3, 1.2)
+            custom token backlot:kind = "post"
+            custom double3 backlot:top = (-11.6, 39.3, 6.2)
+        }
+
+        def Xform "post_R"
+        {
+            custom double3 backlot:base = (11.6, 39.3, 1.2)
+            custom token backlot:kind = "post"
+            custom double3 backlot:top = (11.6, 39.3, 6.2)
+        }
+
+        def Xform "deck_front"
+        {
+            custom double3 backlot:a = (-12, 45, 1.2)
+            custom string backlot:a_name = "left"
+            custom double3 backlot:b = (12, 45, 1.2)
+            custom string backlot:b_name = "right"
+            custom token backlot:kind = "segment"
+        }
+
+        def Xform "chair_band"
+        {
+            custom double3 backlot:a = (-12, 41.2, 2.1)
+            custom string backlot:a_name = "top_left"
+            custom double3 backlot:b = (12, 41.2, 1.2)
+            custom string backlot:b_name = "bottom_right"
+            custom token backlot:kind = "segment"
+        }
+
+        def Xform "truss_beam"
+        {
+            custom double3 backlot:a = (-11.6, 39.3, 6.2)
+            custom string backlot:a_name = "left"
+            custom double3 backlot:b = (11.6, 39.3, 6.2)
+            custom string backlot:b_name = "right"
+            custom token backlot:kind = "segment"
+        }
+
+        def Xform "mark_podium"
+        {
+            custom double backlot:facing_deg = 0
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (0, 43, 1.2)
+            custom token backlot:posture = "standing"
+        }
+
+        def Xform "mark_beneath_portrait"
+        {
+            custom double backlot:facing_deg = 0
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (2, 40.5, 1.2)
+            custom token backlot:posture = "standing"
+        }
+
+        def Xform "mark_stage_left_threshold"
+        {
+            custom double backlot:facing_deg = 90
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (-11, 42, 1.2)
+            custom token backlot:posture = "standing"
+        }
+
+        def Xform "mark_upstage_right"
+        {
+            custom double backlot:facing_deg = 0
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (9, 40, 1.2)
+            custom token backlot:posture = "standing"
+        }
+    }
+    variantSet "build" = {
+        "beam_seated" (
+            prepend references = @./geo_beam_seated.usda@</geo>
+        ) {
+
+        }
+        "feast" (
+            prepend references = @./geo_feast.usda@</geo>
+        ) {
+
+        }
+        "finished" (
+            prepend references = @./geo_finished.usda@</geo>
+        ) {
+
+        }
+        "half_decked" (
+            prepend references = @./geo_half_decked.usda@</geo>
+        ) {
+
+        }
+        "joists" (
+            prepend references = @./geo_joists.usda@</geo>
+        ) {
+
+        }
+        "swept" (
+            prepend references = @./geo_swept.usda@</geo>
+        ) {
+
+        }
+    }
+}
+

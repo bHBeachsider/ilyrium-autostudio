@@ -1,0 +1,16 @@
+#usda 1.0
+(
+    defaultPrim = "Square"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "Square" (
+    kind = "component"
+    prepend references = @./geo.usda@</geo>
+)
+{
+    custom string backlot:asset_id = "Square"
+    custom token backlot:grade = "conditioning"
+}
+

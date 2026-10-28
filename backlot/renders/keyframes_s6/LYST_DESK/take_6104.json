@@ -1,0 +1,58 @@
+{
+ "shot": "LYST_DESK",
+ "seq": "NH-LYST",
+ "seed": 6104,
+ "prompt": "Wide shot, 2.39:1, from the open-plan floor of the white office looking straight through a full-height glass wall with one slim white mullion into a private office beyond: a woman of thirty-eight seated at a white desk facing the camera, genuinely beautiful in a cool patrician way, skin smooth and firm at the cheek, jaw and throat, ash-blonde hair in a low chignon, a narrow face, luminous and well-rested, slim and strong, a well-cut dark blazer over a fine plain knit in expensive unpatterned fabric, one minimal earring, a serene inward calm with light in it, the head carried level and the eyes clear, looking past the lens, mouth closed; two white chairs on the near side of her desk, empty; a single steel desk lamp with a small dusty-rose shade at her left; a tight grid of twelve small white-framed plaques on the wall at the left of frame; behind her the wide glazed band, cold-white sun, and through it the plaza, the half-built timber stage and the colonnade. Light: low cold-white winter sun streaming through one wide glazed band behind the desk, the white walls and white floor bouncing it everywhere so the room holds almost no shadow, never golden, the square beyond the glass flat and grey by comparison, no lens flare, no screen glow. an all-white office in the manner of a high-end London public relations firm: white walls, a white poured floor, pale oak and brushed steel, white chairs, one accent colour only - a dusty drained rose, never a bright or saturated pink - on a low screen and a framed campaign banner; through the glazed band the grey plaza of a small city, a timber stage half-built in front of the limestone colonnade of a city hall; no logo, no lettering, no signage prestige political drama, House of Cards season one color grade, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, deep browns and charcoals in shadows, photographic realism, cinematic",
+ "values": {
+  "guidance": 3.5,
+  "depth_image": "NH-LYST_LYST_DESK_depth.png",
+  "cn_strength": 0.6,
+  "cn_end": 0.8,
+  "edge_image": "NH-LYST_LYST_DESK_edge.png",
+  "edge_strength": 0.2,
+  "edge_end": 0.4,
+  "width": 1552,
+  "height": 672,
+  "seed": 6104,
+  "steps": 28,
+  "prefix": "backlot/NH-LYST_LYST_DESK_6104"
+ },
+ "model": "flux1-dev-fp8 + ControlNet Union Pro 2.0 (depth + edge)",
+ "server": "http://127.0.0.1:8188",
+ "depth_pass": {
+  "path": "usd/nh/passes_s6/LYST_DESK/depth.png",
+  "sha256": "cc1f550a9659fad4"
+ },
+ "edge_pass": {
+  "path": "usd/nh/passes_s6/LYST_DESK/edge.png",
+  "sha256": "f5eb25ed0f51d9e4"
+ },
+ "set_state": "half_decked",
+ "camera": {
+  "location": [
+   24.6,
+   84.2,
+   5.7
+  ],
+  "rotation_deg": [
+   87.26,
+   0.0,
+   176.08
+  ],
+  "lens_mm": 32.0,
+  "sensor_mm": 36.0,
+  "res": [
+   2520,
+   1080
+  ],
+  "depth_mode": "inverse",
+  "variants": {
+   "lysteria": "working",
+   "people": "lysteria"
+  },
+  "set_state": "half_decked"
+ },
+ "world_version": "usda:a91eddc428bc",
+ "seconds": 51.2,
+ "prompt_id": "b4fe2c47-db1b-4102-9878-2865918556eb"
+}

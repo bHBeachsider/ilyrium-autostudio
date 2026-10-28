@@ -1,0 +1,16 @@
+#usda 1.0
+(
+    defaultPrim = "PILFOffice"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "PILFOffice" (
+    kind = "component"
+    prepend references = @./geo.usda@</geo>
+)
+{
+    custom string backlot:asset_id = "PILFOffice"
+    custom token backlot:grade = "conditioning"
+}
+

@@ -36,8 +36,8 @@ mcp = FastMCP("ilyrium-studio")
 _state = {"project_dir": os.getenv("ILYRIUM_PROJECT_DIR")}
 
 
-def _run(name: str, **kwargs) -> str:
-    res = studio_tools.execute_tool(name, kwargs, _state["project_dir"])
+def _run(_tool_name: str, **kwargs) -> str:
+    res = studio_tools.execute_tool(_tool_name, kwargs, _state["project_dir"])
     _state["project_dir"] = res.get("project_dir", _state["project_dir"])
     return res["content"]
 

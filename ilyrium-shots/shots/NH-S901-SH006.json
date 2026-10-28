@@ -1,0 +1,64 @@
+{
+  "shot_id": "NH-S901-SH006",
+  "song_id": "NH-S901",
+  "duration_s": 5,
+  "camera": {
+    "shot_size": "wide",
+    "movement": "locked-off",
+    "lens_mm": 50
+  },
+  "subjects": [],
+  "setting": "Pengold's POV, through the office window",
+  "mood": "observational",
+  "action": "We look through his eyes and see a stage being built in a living square. Nobody down there looks up at it.",
+  "prompt": "point of view from the Mayor's office window, locked-off camera that does not move, looking down between two giant limestone columns at a long timber rally stage under construction in the square below, decking half laid, two tall pine uprights standing braced with no crossbeam, six workmen in high-visibility vests move slowly around it carrying boards, beyond the stage cars parked nose to tail along the kerb do not move, a flatbed truck stacked with fresh lumber and a white box van stand at the kerb with their engines off, the city bus at the far corner is stopped, a few pedestrians in winter coats walk slowly across the square at a distance with their backs to the camera, nobody looks at the timber structure, a cyclist rolling slowly, a dog-walker, flat winter daylight, a faint reflection of the room on the glass, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, caption text overlay, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame, human face, portrait, person looking at camera, fast moving cars, speeding traffic, time-lapse, motion blur streaks, camera movement",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "",
+    "seed": 901006
+  },
+  "seed": 901006,
+  "continuity": {
+    "prev_shot": "",
+    "flf2v": false
+  },
+  "render": {
+    "width": 832,
+    "height": 480,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 5,
+    "renderer": "fal-veo3.1"
+  },
+  "backlot": {
+    "stage": "backlot/usd/nh/NewHarnomy_square.usda",
+    "camera": "/World/Cameras/SH006",
+    "set_state": "half_decked",
+    "weather": "overcast_drizzle",
+    "dressing": [
+      "harvest"
+    ],
+    "invariants": [
+      {
+        "id": "posts_at_stage_ends",
+        "check": "post_projection",
+        "blocking": true
+      },
+      {
+        "id": "deck_parallel_to_facade",
+        "check": "deck_orientation",
+        "blocking": false
+      }
+    ],
+    "conditioning": [
+      "clay",
+      "depth",
+      "seg"
+    ],
+    "references": {
+      "plate": "projects/new_harnomy_usa/03_design/environments/city_hall/plate_exterior_firstlight_LOCKED.png"
+    },
+    "budget_usd": 3.0
+  }
+}

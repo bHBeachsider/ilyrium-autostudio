@@ -1,0 +1,26 @@
+{
+ "seq": "NH-ALL",
+ "scene": 1,
+ "duration_s": 10,
+ "location": {
+  "text": "The theater auditorium, seen from the stage; houselights up",
+  "set": null,
+  "match": "none",
+  "confidence": 0.0,
+  "via": null
+ },
+ "build_queue": [
+  {
+   "kind": "set",
+   "asset": null,
+   "noun": "The theater auditorium, seen from the stage; houselights up",
+   "scene": 1,
+   "reason": "no catalog set matches this location (alias or tag)"
+  }
+ ],
+ "props": [],
+ "characters": [],
+ "text_planes": [],
+ "invariants": [],
+ "world": null
+}
