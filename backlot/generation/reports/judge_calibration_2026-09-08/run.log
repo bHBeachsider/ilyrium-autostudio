@@ -1,0 +1,133 @@
+
+C:\Windows\System32>cd /d C:\Users\bradu\Documents\ilyrium-autostudio 
+
+C:\Users\bradu\Documents\ilyrium-autostudio>echo == SH003_take_3000_p1b.png   && "C:\Users\bradu\Documents\ilyrium-autostudio\venv\Scripts\python.exe" backlot\gate\judge.py "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH003_take_3000_p1b.png" --shot SH003 --json "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH003_take_3000_p1b.judge.json" --no-book 
+== SH003_take_3000_p1b.png 
+  ok   the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera) - The timber stage runs horizontally across the frame, parallel to the City Hall facade
+  WARN exactly two tall square timber uprights, one at each END of the stage, none mid-span - There appear to be multiple timber uprights visible across the stage, not exactly two at the ends only
+  ok   a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving - The sky is overcast grey, no visible sun or strong cast shadows, and the paving appears wet/reflective
+  ok   City Hall is a limestone neoclassical building with a semicircular colonnade under a drum and cupola - City Hall matches the description with limestone/grey appearance, semicircular colonnade, drum and cupola with flag on top
+  ok   the platform is a frame of open joists with no decking laid - The platform shows open joist framing with no decking boards laid on top
+  n/a  no crossbeam joins the uprights - Cannot clearly determine from this angle whether a crossbeam joins the uprights or not
+  WARN three workmen in high-visibility vests are steadying the right-hand upright - No workmen in high-visibility vests are visible steadying any upright in the frame
+[OK] judge: 4/7 invariants hold, 2 violated (advisory)
+
+C:\Users\bradu\Documents\ilyrium-autostudio>echo == SH003_take_3003_p1b.png   && "C:\Users\bradu\Documents\ilyrium-autostudio\venv\Scripts\python.exe" backlot\gate\judge.py "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH003_take_3003_p1b.png" --shot SH003 --json "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH003_take_3003_p1b.judge.json" --no-book 
+== SH003_take_3003_p1b.png 
+  ok   the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera) - The timber stage runs horizontally across the frame, parallel to the building facade in the background
+  ok   exactly two tall square timber uprights, one at each END of the stage, none mid-span - There are exactly two tall square timber uprights visible, one at each end of the stage structure
+  ok   a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving - The sky is overcast and grey, there are no visible cast shadows, and the paving appears wet and reflective
+  WARN City Hall is a limestone neoclassical building with a semicircular colonnade under a drum and cupola - The building appears to be made of dark stone blocks rather than limestone, though it does have the semicircular colonnade under a drum and cupola
+  ok   the platform is a frame of open joists with no decking laid - The platform shows open joists without any decking laid on top
+  ok   no crossbeam joins the uprights - There is no crossbeam joining the two uprights; they stand independently
+  n/a  three workmen in high-visibility vests are steadying the right-hand upright - No workmen in high-visibility vests are clearly visible in the frame
+[OK] judge: 5/7 invariants hold, 1 violated (advisory)
+
+C:\Users\bradu\Documents\ilyrium-autostudio>echo == SH003_take_3004_p1b.png   && "C:\Users\bradu\Documents\ilyrium-autostudio\venv\Scripts\python.exe" backlot\gate\judge.py "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH003_take_3004_p1b.png" --shot SH003 --json "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH003_take_3004_p1b.judge.json" --no-book 
+== SH003_take_3004_p1b.png 
+  ok   the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera) - The timber stage runs horizontally across the frame, parallel to the City Hall facade
+  WARN exactly two tall square timber uprights, one at each END of the stage, none mid-span - There appear to be multiple timber uprights visible along the stage, not exactly two at the ends only
+  ok   a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving - The sky is overcast and grey, paving appears wet and reflective, no visible sun or cast shadows
+  ok   City Hall is a limestone neoclassical building with a semicircular colonnade under a drum and cupola - City Hall features a semicircular colonnade with columns under a cylindrical drum and cupola, consistent with neoclassical architecture
+  WARN the platform is a frame of open joists with no decking laid - The platform appears to have solid decking laid down, not open joists
+  n/a  no crossbeam joins the uprights - Cannot clearly determine from this angle whether a crossbeam joins the uprights or not
+  n/a  three workmen in high-visibility vests are steadying the right-hand upright - No workmen in high-visibility vests are clearly visible in the frame
+[OK] judge: 3/7 invariants hold, 2 violated (advisory)
+
+C:\Users\bradu\Documents\ilyrium-autostudio>echo == SH006_take_2001_p1.png   && "C:\Users\bradu\Documents\ilyrium-autostudio\venv\Scripts\python.exe" backlot\gate\judge.py "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH006_take_2001_p1.png" --shot SH006 --json "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH006_take_2001_p1.judge.json" --no-book 
+== SH006_take_2001_p1.png 
+  ok   the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera) - The timber stage/platform runs horizontally across the frame, parallel to the building facades in the background, not angled toward the camera.
+  n/a  exactly two tall square timber uprights, one at each END of the stage, none mid-span - The dark cylindrical column in the foreground obscures much of the view of the stage. While some vertical elements may be present at the ends of the platform, they are not clearly visible enough to count them definitively or verify they are tall square timber uprights.
+  ok   a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving - The sky is flat grey and overcast with no visible sun. The paving appears wet and reflective with dark patches suggesting moisture. No distinct cast shadows are visible.
+  ok   decking covers only the LEFT half of the platform; the right half is open joists - The platform shows decking/solid surface covering approximately the left half, while the right half appears to show exposed structural joists or framework underneath.
+  n/a  no crossbeam joins the uprights - The foreground column obscures critical areas where a crossbeam would be visible if present. Cannot definitively verify absence of a crossbeam between uprights.
+  ok   the view is from a high window looking down across the square - The viewpoint is clearly from an elevated position looking down across a square/courtyard area with construction activity below, consistent with viewing from a high window.
+[OK] judge: 4/6 invariants hold, 0 violated (advisory)
+
+C:\Users\bradu\Documents\ilyrium-autostudio>echo == SH006_take_2002_p1.png   && "C:\Users\bradu\Documents\ilyrium-autostudio\venv\Scripts\python.exe" backlot\gate\judge.py "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH006_take_2002_p1.png" --shot SH006 --json "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH006_take_2002_p1.judge.json" --no-book 
+== SH006_take_2002_p1.png 
+  WARN the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera) - The timber structure has a pergola-style roof with cross beams running perpendicular to the City Hall facade, creating a covered pavilion rather than a simple horizontal stage running parallel to the facade
+  WARN exactly two tall square timber uprights, one at each END of the stage, none mid-span - There are multiple vertical timber uprights supporting the pergola structure across its span, not just two at the ends
+  ok   a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving - The sky is overcast and grey, the paving appears wet and reflective, and there are no visible cast shadows or sun
+  WARN decking covers only the LEFT half of the platform; the right half is open joists - The entire platform appears to have open joists/pergola slats covering its full width as a roof structure, not decking covering only the left half
+  WARN no crossbeam joins the uprights - Multiple crossbeams join the uprights, forming a complete pergola roof structure with horizontal beams running across the top
+  ok   the view is from a high window looking down across the square - The viewpoint is clearly from an elevated position looking down across the square toward the City Hall, consistent with a high window view
+[OK] judge: 2/6 invariants hold, 4 violated (advisory)
+
+C:\Users\bradu\Documents\ilyrium-autostudio>echo == SH006_take_2003_p1.png   && "C:\Users\bradu\Documents\ilyrium-autostudio\venv\Scripts\python.exe" backlot\gate\judge.py "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH006_take_2003_p1.png" --shot SH006 --json "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH006_take_2003_p1.judge.json" --no-book 
+== SH006_take_2003_p1.png 
+  WARN the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera) - The timber stage structure runs perpendicular to the camera view, receding into depth toward the City Hall facade, rather than running horizontally across the frame parallel to it.
+  WARN exactly two tall square timber uprights, one at each END of the stage, none mid-span - There are multiple timber uprights visible along the length of the structure, not exactly two at the ends only. Multiple vertical posts can be seen at intervals along the platform.
+  ok   a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving - The sky is overcast and grey, the paving appears wet and reflective, and there are no visible cast shadows or sun.
+  n/a  decking covers only the LEFT half of the platform; the right half is open joists - The orientation and angle of the structure makes it impossible to clearly distinguish left versus right half coverage of decking versus open joists in the manner described.
+  WARN no crossbeam joins the uprights - There are visible horizontal crossbeams connecting the uprights along the top of the structure.
+  ok   the view is from a high window looking down across the square - The viewpoint is clearly from an elevated position looking down across the square toward the buildings opposite.
+[OK] judge: 2/6 invariants hold, 3 violated (advisory)
+
+C:\Users\bradu\Documents\ilyrium-autostudio>echo == SH006_take_3002_p1b.png   && "C:\Users\bradu\Documents\ilyrium-autostudio\venv\Scripts\python.exe" backlot\gate\judge.py "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH006_take_3002_p1b.png" --shot SH006 --json "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH006_take_3002_p1b.judge.json" --no-book 
+== SH006_take_3002_p1b.png 
+  ok   the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera) - The timber stage runs horizontally across the frame, parallel to the building facade in the background, not angled toward the camera.
+  ok   exactly two tall square timber uprights, one at each END of the stage, none mid-span - There are exactly two tall square timber uprights visible, one at each end of the stage platform, with no uprights in the middle span.
+  ok   a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving - The sky appears flat grey and overcast with no visible sun, the paving shows wet reflective surfaces, and there are no distinct cast shadows visible in the scene.
+  ok   decking covers only the LEFT half of the platform; the right half is open joists - The platform shows decking covering the left half while the right half displays open joists/framework structure.
+  ok   no crossbeam joins the uprights - No horizontal crossbeam is visible connecting the two vertical uprights at their tops.
+  ok   the view is from a high window looking down across the square - The viewpoint is clearly from an elevated position looking down across the square toward the buildings, consistent with a high window perspective.
+[OK] judge: 6/6 invariants hold, 0 violated (advisory)
+
+C:\Users\bradu\Documents\ilyrium-autostudio>echo == SH006_take_3004_p1b.png   && "C:\Users\bradu\Documents\ilyrium-autostudio\venv\Scripts\python.exe" backlot\gate\judge.py "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH006_take_3004_p1b.png" --shot SH006 --json "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH006_take_3004_p1b.judge.json" --no-book 
+== SH006_take_3004_p1b.png 
+  ok   the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera) - The timber stage runs horizontally across the frame, parallel to the building facades in the background, not angled toward the camera.
+  ok   exactly two tall square timber uprights, one at each END of the stage, none mid-span - There are exactly two tall square timber uprights visible, one at each end of the stage structure, with no uprights in the middle span.
+  ok   a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving - The sky is flat grey and overcast with no visible sun, there are no cast shadows visible on the ground, and the paving appears wet and reflective.
+  WARN decking covers only the LEFT half of the platform; the right half is open joists - The decking pattern appears to cover the platform but the distribution does not clearly show decking only on the left half with open joists on the right half - the structure appears more uniformly covered or the pattern is reversed from what is specified.
+  WARN no crossbeam joins the uprights - There appears to be a horizontal crossbeam or structural element connecting the two uprights across the top of the structure.
+  ok   the view is from a high window looking down across the square - The camera perspective is clearly from an elevated position looking down across the square toward the buildings, consistent with a high window viewpoint.
+[OK] judge: 4/6 invariants hold, 2 violated (advisory)
+
+C:\Users\bradu\Documents\ilyrium-autostudio>echo == SH009_take_2000_p1.png   && "C:\Users\bradu\Documents\ilyrium-autostudio\venv\Scripts\python.exe" backlot\gate\judge.py "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH009_take_2000_p1.png" --shot SH009 --json "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH009_take_2000_p1.judge.json" --no-book 
+== SH009_take_2000_p1.png 
+  ok   the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera) - The timber stage runs horizontally across the frame, parallel to the building facade, not angled toward the camera.
+  WARN exactly two tall square timber uprights, one at each END of the stage, none mid-span - There are multiple tall timber uprights visible across the stage structure, not just two at the ends. Several vertical posts can be seen along the span.
+  ok   a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving - The sky is flat grey and overcast, the paving is clearly wet with reflections visible, and there are no visible cast shadows or sun.
+  ok   City Hall is a limestone neoclassical building with a semicircular colonnade under a drum and cupola - The building shown is clearly neoclassical with a semicircular colonnade under a drum and cupola structure, matching the description of City Hall.
+  n/a  exactly ONE row of folding chairs on the decking - The stage decking area is visible but folding chairs, if present, are not clearly distinguishable in this view to count rows definitively.
+  n/a  a solid crossbeam spans the tops of the two uprights - While there appear to be horizontal structural elements at the top of the timber framework, it's not clearly visible whether a solid crossbeam spans the tops of the uprights.
+  ok   a short flight of timber steps at the left end of the stage - A short flight of timber steps is visible at the left end of the stage structure.
+  WARN a single workman in a high-visibility vest tests the steps - No workman in a high-visibility vest is visible testing the steps or anywhere else in the frame.
+[OK] judge: 4/8 invariants hold, 2 violated (advisory)
+
+C:\Users\bradu\Documents\ilyrium-autostudio>echo == SH009_take_3001_p1b.png   && "C:\Users\bradu\Documents\ilyrium-autostudio\venv\Scripts\python.exe" backlot\gate\judge.py "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH009_take_3001_p1b.png" --shot SH009 --json "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH009_take_3001_p1b.judge.json" --no-book 
+== SH009_take_3001_p1b.png 
+  ok   the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera) - The timber stage runs horizontally across the frame, parallel to the City Hall facade, matching the left reference image.
+  WARN exactly two tall square timber uprights, one at each END of the stage, none mid-span - There are multiple vertical posts/uprights visible along the stage structure, not exactly two at the ends only.
+  ok   a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving - The sky is flat grey and overcast, the paving appears wet and reflective, and there are no visible cast shadows or sun.
+  ok   City Hall is a limestone neoclassical building with a semicircular colonnade under a drum and cupola - City Hall is clearly visible as a limestone neoclassical building with a semicircular colonnade under a drum and cupola structure.
+  ok   exactly ONE row of folding chairs on the decking - There is exactly one row of folding chairs visible on the stage decking, arranged in a single horizontal line.
+  ok   a solid crossbeam spans the tops of the two uprights - A solid crossbeam is visible spanning across the tops of the uprights above the colonnade area.
+  ok   a short flight of timber steps at the left end of the stage - A short flight of timber steps is visible at the left end of the stage structure.
+  n/a  a single workman in a high-visibility vest tests the steps - No workman in a high-visibility vest is clearly visible in the right-hand frame.
+[OK] judge: 6/8 invariants hold, 1 violated (advisory)
+
+C:\Users\bradu\Documents\ilyrium-autostudio>echo == SH009_take_3002_p1b.png   && "C:\Users\bradu\Documents\ilyrium-autostudio\venv\Scripts\python.exe" backlot\gate\judge.py "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH009_take_3002_p1b.png" --shot SH009 --json "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH009_take_3002_p1b.judge.json" --no-book 
+== SH009_take_3002_p1b.png 
+  ok   the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera) - The timber stage platform runs horizontally across the frame, parallel to the City Hall facade, matching the blockout reference.
+  WARN exactly two tall square timber uprights, one at each END of the stage, none mid-span - There are multiple vertical columns visible along the stage front, not exactly two tall square timber uprights at the ends only.
+  WARN a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving - While the sky appears overcast, the paving does not show wet reflective qualities as specified.
+  ok   City Hall is a limestone neoclassical building with a semicircular colonnade under a drum and cupola - The City Hall building clearly shows limestone/grey neoclassical architecture with a semicircular colonnade under a drum and cupola structure.
+  n/a  exactly ONE row of folding chairs on the decking - No folding chairs are clearly visible on the decking in the right-hand keyframe.
+  ok   a solid crossbeam spans the tops of the two uprights - A yellow/orange horizontal crossbeam is visible spanning across the top of the uprights.
+  ok   a short flight of timber steps at the left end of the stage - A short flight of timber steps in yellow/orange color is visible at the right end of the stage (which corresponds to left in the reference orientation).
+  n/a  a single workman in a high-visibility vest tests the steps - No workman in a high-visibility vest is visible testing the steps in the keyframe.
+[OK] judge: 4/8 invariants hold, 2 violated (advisory)
+
+C:\Users\bradu\Documents\ilyrium-autostudio>echo == SH009_take_3004_p1b.png   && "C:\Users\bradu\Documents\ilyrium-autostudio\venv\Scripts\python.exe" backlot\gate\judge.py "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH009_take_3004_p1b.png" --shot SH009 --json "C:\Users\bradu\Documents\ilyrium-autostudio\_staging\judge_set2\SH009_take_3004_p1b.judge.json" --no-book 
+== SH009_take_3004_p1b.png 
+  ok   the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera) - The timber stage platform runs horizontally across the frame, parallel to the City Hall facade, matching the blockout reference.
+  WARN exactly two tall square timber uprights, one at each END of the stage, none mid-span - There are no visible tall square timber uprights at the ends of the stage in the right frame, whereas the blockout shows two such uprights should be present.
+  ok   a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving - The sky is overcast and grey, the paving appears wet with reflections visible, and there are no cast shadows or visible sun.
+  ok   City Hall is a limestone neoclassical building with a semicircular colonnade under a drum and cupola - City Hall is depicted as a limestone/beige neoclassical building with a semicircular colonnade under a drum structure, consistent with the blockout.
+  n/a  exactly ONE row of folding chairs on the decking - No folding chairs are clearly visible on the stage decking in the right frame.
+  n/a  a solid crossbeam spans the tops of the two uprights - Since the tall timber uprights are not visible, cannot verify whether a crossbeam spans their tops.
+  ok   a short flight of timber steps at the left end of the stage - A short flight of timber steps is visible at the left end of the stage platform, matching the blockout reference.
+  n/a  a single workman in a high-visibility vest tests the steps - No workman in a high-visibility vest is visible on or near the steps in the right frame.
+[OK] judge: 4/8 invariants hold, 1 violated (advisory)

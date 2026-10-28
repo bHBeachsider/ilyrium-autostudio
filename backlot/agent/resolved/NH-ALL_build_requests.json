@@ -1,0 +1,23 @@
+[
+ {
+  "kind": "set",
+  "asset": null,
+  "noun": "The theater auditorium, seen from the stage; houselights up",
+  "scene": 1,
+  "reason": "no catalog set matches this location (alias or tag)"
+ },
+ {
+  "kind": "set",
+  "asset": null,
+  "noun": "The proscenium arch, lit from the house side",
+  "scene": 3,
+  "reason": "no catalog set matches this location (alias or tag)"
+ },
+ {
+  "kind": "set",
+  "asset": null,
+  "noun": "The theater auditorium; the vomitoria; then the stage",
+  "scene": 10,
+  "reason": "no catalog set matches this location (alias or tag)"
+ }
+]

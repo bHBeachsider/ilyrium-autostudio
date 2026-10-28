@@ -1,0 +1,35 @@
+{
+  "davinci-resolve": {
+    "winver:DaVinci Resolve": "SKIP(not-windows)",
+    "file:Resolve_Scripting_README.txt": "file:2d620f820cdcdd47"
+  },
+  "blender": {
+    "winver:Blender": "SKIP(not-windows)"
+  },
+  "igniter": {
+    "file:Igniter_Manual.pdf": "file:bc8c2302c972ea03"
+  },
+  "tensorart-tams": {
+    "web:https://tams-docs.tensor.art/docs/api/intro": "web:315b6a13afaee0de"
+  },
+  "runway": {
+    "web:https://docs.dev.runwayml.com/api-details/sdks/": "web:a6b911fc2dd49af3"
+  },
+  "comfyui": {
+    "web:https://docs.comfy.org/development/comfyui-server/comms_overview": "web:0309ea23ec092851"
+  },
+  "elevenlabs": {
+    "file:elevenlabs_api_docs.md": "file:2d01bbc388232d7e"
+  },
+  "ffmpeg": {
+    "file:ffmpeg_cli_notes.md": "file:89a28a59afae4652"
+  },
+  "unreal-engine": {
+    "winver:Unreal Engine": "SKIP(not-windows)"
+  },
+  "filmcraft": {
+    "file:agents.md": "file:6e4d7fff51ec0e0f",
+    "file:control-protocol.md": "file:31bb9dc087792968",
+    "file:commands.json": "file:8a6e97711f85ee3d"
+  }
+}

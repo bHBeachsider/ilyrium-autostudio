@@ -1,0 +1,64 @@
+{
+ "sheet": "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\_staging\\judge_set2\\SH003_take_3003_p1b.png",
+ "shot": "SH003",
+ "provider": "anthropic",
+ "model": null,
+ "verdicts": [
+  {
+   "invariant": "the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera)",
+   "verdict": "holds",
+   "reason": "The timber stage runs horizontally across the frame, parallel to the building facade in the background",
+   "blocking": false
+  },
+  {
+   "invariant": "exactly two tall square timber uprights, one at each END of the stage, none mid-span",
+   "verdict": "holds",
+   "reason": "There are exactly two tall square timber uprights visible, one at each end of the stage structure",
+   "blocking": false
+  },
+  {
+   "invariant": "a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving",
+   "verdict": "holds",
+   "reason": "The sky is overcast and grey, there are no visible cast shadows, and the paving appears wet and reflective",
+   "blocking": false
+  },
+  {
+   "invariant": "City Hall is a limestone neoclassical building with a semicircular colonnade under a drum and cupola",
+   "verdict": "violated",
+   "reason": "The building appears to be made of dark stone blocks rather than limestone, though it does have the semicircular colonnade under a drum and cupola",
+   "blocking": false
+  },
+  {
+   "invariant": "the platform is a frame of open joists with no decking laid",
+   "verdict": "holds",
+   "reason": "The platform shows open joists without any decking laid on top",
+   "blocking": false
+  },
+  {
+   "invariant": "no crossbeam joins the uprights",
+   "verdict": "holds",
+   "reason": "There is no crossbeam joining the two uprights; they stand independently",
+   "blocking": false
+  },
+  {
+   "invariant": "three workmen in high-visibility vests are steadying the right-hand upright",
+   "verdict": "cannot_tell",
+   "reason": "No workmen in high-visibility vests are clearly visible in the frame",
+   "blocking": false
+  }
+ ],
+ "usage": {
+  "input_tokens": 1243,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "cache_creation": {
+   "ephemeral_5m_input_tokens": 0,
+   "ephemeral_1h_input_tokens": 0
+  },
+  "output_tokens": 360,
+  "service_tier": "standard",
+  "inference_geo": "not_available"
+ },
+ "seconds": 6.8,
+ "status": "advisory"
+}

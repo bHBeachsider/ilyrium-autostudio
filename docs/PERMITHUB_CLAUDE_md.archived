@@ -1,0 +1,160 @@
+# CLAUDE.md — PermitHub Project Instructions
+
+## CLAUDE.md Governance
+
+This file is a STATIC WORKFLOW CONTRACT. It defines rules, conventions, and
+session protocols that Claude Code must follow. It is NOT a knowledge base.
+
+WHAT BELONGS HERE: commit conventions, session protocol, repo layout summary,
+pre-commit hook rules, key tool commands, constitutional invariants.
+
+WHAT DOES NOT BELONG HERE: script CLI docs, agent registry details, database
+schema, project-specific context, dynamic state.
+
+WHERE KNOWLEDGE GOES INSTEAD: each directory can have its own CLAUDE.md for
+directory-scoped context (scripts/viz/, scripts/agents/, scripts/notion/, etc).
+
+CHANGE RULES:
+- Root CLAUDE.md may only be modified to update workflow rules or conventions
+- Adding script documentation, tool descriptions, or project context is PROHIBITED
+- Maximum 160 lines enforced by pre-commit hook
+- Any commit modifying root CLAUDE.md must have [CLAUDE] tag in commit message
+
+## What Is PermitHub
+Regulatory intelligence platform for Florida construction permitting. Harvests,
+classifies, and analyzes municipal permit documents. Focused on Palm Beach County
+(39 municipalities) as the "Gold County" market.
+
+## Tech Stack
+- **Database:** NeonDB (PostgreSQL) — 478 tables across feasibility, regs, ops, geo, epa schemas
+- **MCP Server:** TypeScript, `permithub-mcp/` — permit determination + project management
+- **Agents:** Python in `scripts/agents/` (A10-A13 deployed)
+- **Harvesting:** Python in `scripts/feasibility/`
+- **Automation:** Python in `scripts/notion/`
+
+## Repo Layout
+```
+permithub-mcp/src/         — MCP server (TypeScript)
+scripts/agents/            — agent runners + AGENT_REGISTRY.yaml
+scripts/feasibility/       — municode + encodeplus harvesters
+scripts/notion/            — Notion automation (sync, push, generate)
+scripts/viz/               — CPM engine, Gantt/PERT, ecosystem viz
+docs/roadmap/projects/     — YAML source-of-truth for all projects
+docs/architecture/         — system design docs, constitutional framework
+```
+
+## Working Style
+- Conventional commits: `feat:`, `fix:`, `docs:`, `chore:`, `test:`
+- Direct assessment — no sycophancy
+- Cost-conscious — prefer free/cheap alternatives
+- Automated workflows over manual processes
+
+## Coding Discipline
+1. **Ask, don't assume.** If something is unclear or underspecified, ask before writing code. Never make silent assumptions about intent, architecture, or requirements.
+2. **Simplest solution first.** Implement the simplest thing that could work. Do not add abstractions, layers, or flexibility that weren't explicitly requested.
+3. **Don't touch unrelated code.** If a file or function is not directly part of the current task, do not modify it, even if you think it could be improved.
+4. **Flag uncertainty explicitly.** If you are not confident about an approach, a library's behavior, or a technical detail, say so before proceeding. Confidence without certainty causes more damage than admitting a gap.
+
+## Project Management Workflow
+- Call `get_session_context` MCP tool at session start. Use `--live` before recommending next work.
+- Post-commit hook auto-matches commits to Notion projects via keyword scoring.
+- Include `[closes: Task Name]` in commit messages to auto-complete tasks (fuzzy-matched).
+- **Notion updates are autonomous per Autonomy Policy.**
+- Before starting any tracked project: `/start-project <project name>`
+- Use VERBATIM task text in `[closes:]` tags. Sync fails silently if text doesn't match.
+
+## Session Start Protocol
+1. **Read latest brief:** Check `docs/briefs/` or generate with morning_brief.py
+2. **Critical reports:** `python scripts/reports/report_refresher.py --critical` — surface RED findings
+3. **Registry audit:** `python scripts/agents/a15_ecosystem_auditor.py audit` — stop if RED > 0
+4. **Check handoffs:** `python scripts/handoff/poll_handoff.py --check`
+5. **Start watcher:** `powershell -File scripts/handoff/watch_resolve.ps1` (background)
+6. **Report:** Date, brief status, registry (RED/YELLOW), pending handoffs, top priority
+
+## Session Close Protocol
+Call `session_close` MCP tool with summary, decisions, deferred, recommendations.
+Persists to decision_log.md, deferred_items.md, session_journal.md. Do not skip.
+After session_close, paste `memory_paste_block` into Claude.ai if non-empty.
+
+## Agent Creation Gate
+**INV-32 Pre-Review (mandatory):** Before proposing ANY new agent, review all active
+agents in AGENT_REGISTRY.yaml, list ≥3 evaluated agent IDs, confirm none can absorb
+the function, and document in a `pre_review` block. Gate blocks registration without it.
+Registry entry FIRST, then `.md` file, then runner. Never the reverse.
+8-rule admission checklist. Full protocol: `docs/architecture/AGENT_CREATION_AND_ACTIVATION_RULES.md`.
+
+## Agent Path Pre-flight (mandatory before filing any spec)
+Before referencing `scripts/agents/<id>_<name>.py` in a spec, verify the file exists:
+  `Get-ChildItem scripts/agents/ | Where-Object {$_.Name -like "*<id>*"}`
+The canonical A5 runner is `permithub-mcp/src/agents/orchestrator.ts` —
+NOT `scripts/agents/a5_orchestrator.py` (does not exist). Three specs
+(INTEL-MIS-003, INTEL-MDR-003, INTEL-MIS-001 Ph1) had premise drift from
+unverified agent paths. Always verify.
+
+## CI/CD Pipeline
+- **Post-commit hook:** `sync_commits.py` matches commits to Notion projects
+- **Pre-commit hook:** Enforces CLAUDE.md max 160 lines, blocks AUTO-GENERATED section,
+  validates agent registry, enforces [CLAUDE] tag on root CLAUDE.md changes
+- **GitHub Actions:** `project-ci.yml` triggers on `docs/roadmap/projects/*.yaml` changes
+- **Commit-and-push rule:** Push to remote after every logical task group. Do not
+  accumulate >10 unpushed commits. If uncommitted file count exceeds 10, commit
+  immediately before starting new work. Machine-generated files from hooks
+  (permithub-context/versions/, report HTMLs) must not block or delay commits.
+- **In Review status:** NEVER set `status: In Review` in YAMLs — IRB pipeline only (A59/A60/A61). Use `Active` when opening PRs.
+
+## Guardrails (Tiered Authorization)
+| Command | T1 (Read) | T2 (Edit) | T3 (Push) |
+|---|---|---|---|
+| `.\guardrails-on.ps1` | Prompt | Prompt | Prompt |
+| `.\guardrails-off.ps1` | Auto | Prompt | Prompt |
+
+## Task Execution Mode
+**Free mode (default):** Work directly on whatever is asked.
+**Executor mode:** `python scripts/execute_project.py <yaml> --auto-approve-level warn`
+
+Autonomous: file reads/edits, local scripts/tests, read-only DB, git commit, Notion updates.
+Approval gates: DDL/migrations, git push, external APIs, architecture choices, destructive ops.
+
+## Architecture Invariants
+- **MCP is the call layer** — all agent capabilities exposed as MCP tools
+- **Filesystem/DB is the state layer** — no in-memory state between sessions
+- **A5 Orchestrator is the sole cross-agent dispatcher** — no direct agent-to-agent calls
+- **Golden Masters are locked** — S1-S10, any change requires re-verification
+- **Anti-hallucination by design** — citations traced to DB, not generated
+- **Maturity gates** — L0→L1→L2→L3→L4→L5 (spec→interface→tests→DB→orchestrator→autonomous)
+- **Check-before-build** — run `project_check.py` before creating new projects
+- **INV-22 No Duplication** — run `overlap_checker.py` before creating new assets; `project_preflight.py` before generate_project.py. Consolidate, don't duplicate
+- **Constitutional invariants** — INV-1 through INV-32. See `docs/architecture/CONSTITUTIONAL_FRAMEWORK.md`
+- **Agent admission** — governance contract required before implementation code
+- **Temporary hybrid rule** — `temporary_hybrid: true` with extraction target and sunset milestone
+
+## File Placement Conventions
+- Ops content never goes in CLAUDE.md. Scheduled tasks → `docs/ops/SCHEDULED_TASKS.md`
+- Ops conventions → `docs/ops/CONVENTIONS.md`
+
+## Autonomy Policy
+Execute all tasks autonomously without stopping for human approval. Make reasonable
+engineering decisions and proceed. Only stop if:
+1. A destructive operation would delete production data
+2. A task is genuinely blocked by a missing dependency that cannot be worked around
+3. You encounter an error you cannot resolve after 3 attempts
+
+For all other decisions — schema design, naming, implementation approach, file
+organization — use best judgment and keep moving. Mark tasks done in Notion as you
+complete them. Report everything at session end.
+
+## Operational State
+- **Grounding:** Protocol at `docs/governance/OPENCLAW_GROUNDING_PROTOCOL.md`
+- **Governance:** `docs/governance/aims/` (ISO 42001 / NIST AI RMF alignment)
+- **Backlog:** `docs/ops/deferred_items.md`
+
+## Live State
+See `docs/briefs/` for swarm state, backlog, and grounding health.
+
+## PowerShell Rules
+- NEVER use here-strings (@'...'@ or @"..."@) interactively — they hang waiting for the terminator
+- NEVER pipe into [System.IO.File]::WriteAllText() — use a variable first
+- For multi-line file writes: always use Python, not PowerShell
+- For single-line edits: use $c = (Get-Content ...); [IO.File]::WriteAllText(...) pattern
+- Set-Content always adds BOM — use [System.IO.File]::WriteAllText with UTF8Encoding($false) or Python
+

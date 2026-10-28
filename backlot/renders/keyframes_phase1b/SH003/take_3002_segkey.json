@@ -1,0 +1,166 @@
+{
+ "key": "renders/keyframes/SH003/take_3002.png",
+ "detections": [
+  {
+   "cls": "post",
+   "box": [
+    814.62060546875,
+    312.33013916015625,
+    856.1845092773438,
+    629.545166015625
+   ],
+   "score": 0.36475712060928345,
+   "label": "tall wooden post wooden upright pole"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    4.09687614440918,
+    614.6317138671875,
+    981.7767333984375,
+    763.285888671875
+   ],
+   "score": 0.34319084882736206,
+   "label": "wooden stage platform deck wooden podium"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    4.277280807495117,
+    620.2515869140625,
+    981.3959350585938,
+    676.2559814453125
+   ],
+   "score": 0.32796740531921387,
+   "label": "wooden stage platform horizontal wooden beam"
+  },
+  {
+   "cls": "post",
+   "box": [
+    800.0382690429688,
+    305.308349609375,
+    876.7059326171875,
+    634.39111328125
+   ],
+   "score": 0.3234844505786896,
+   "label": "tall wooden post wooden upright pole"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    302.83056640625,
+    515.421630859375,
+    609.3369750976562,
+    631.4273071289062
+   ],
+   "score": 0.3146372437477112,
+   "label": "wooden stage platform deck wooden podium"
+  },
+  {
+   "cls": "post",
+   "box": [
+    806.9757690429688,
+    308.20904541015625,
+    878.2214965820312,
+    762.2149047851562
+   ],
+   "score": 0.292280375957489,
+   "label": "tall wooden post wooden upright pole"
+  },
+  {
+   "cls": "post",
+   "box": [
+    813.6561889648438,
+    310.5013122558594,
+    859.7308349609375,
+    756.2415771484375
+   ],
+   "score": 0.23829545080661774,
+   "label": "tall wooden post wooden upright pole"
+  }
+ ],
+ "dropped": [
+  {
+   "cls": "beam",
+   "box": [
+    4.935493469238281,
+    182.1134490966797,
+    1073.2550048828125,
+    222.80506896972656
+   ],
+   "score": 0.3066035509109497,
+   "label": "horizontal wooden beam",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    4.643457412719727,
+    97.44348907470703,
+    1106.4189453125,
+    638.2058715820312
+   ],
+   "score": 0.2877773940563202,
+   "label": "timber deck",
+   "dropped": "box covers 58% of frame"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    284.6798400878906,
+    83.45480346679688,
+    717.0219116210938,
+    630.3829345703125
+   ],
+   "score": 0.2530573010444641,
+   "label": "timber deck",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "beam",
+   "box": [
+    689.4859619140625,
+    181.69691467285156,
+    1072.2144775390625,
+    222.225341796875
+   ],
+   "score": 0.22076599299907684,
+   "label": "horizontal wooden beam",
+   "dropped": "less than 70% inside the world's structure band"
+  }
+ ],
+ "band": {
+  "core": [
+   0.0,
+   0.412962962962963,
+   0.725,
+   0.9990740740740741
+  ],
+  "band": [
+   -0.15,
+   0.26296296296296295,
+   0.875,
+   1.1490740740740741
+  ],
+  "core_area": 0.4249305555555556,
+  "platform_band": [
+   -0.15,
+   0.5388888888888889,
+   0.875,
+   1.1490740740740741
+  ]
+ },
+ "seconds_detect": 0.21,
+ "seconds_total": 0.4,
+ "models": "IDEA-Research/grounding-dino-tiny + facebook/sam-vit-base",
+ "box_thr": 0.22,
+ "text_thr": 0.2,
+ "areas": {
+  "post": 0.01039,
+  "beam": 0.0,
+  "deck": 0.06909,
+  "chair": 0.0,
+  "podium": 0.0,
+  "steps": 0.0
+ }
+}

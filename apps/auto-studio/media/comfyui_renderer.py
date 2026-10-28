@@ -65,12 +65,25 @@ def upload_comfyui_image(image_path: str, base: str) -> str:
 def render_scene_comfyui(visual_prompt: str, scene_number: int, output_dir: str = ".",
                          output_name: str = None, workflow_path: str = None,
                          url: str = None, timeout: int = 600, seed: int = None,
-                         model: str = None, width: int = 1024, height: int = 1024) -> str:
+                         model: str = None, width: int = 1024, height: int = 1024,
+                         image_path: str = None, lora_name: str = None) -> str:
     """Render one shot on ComfyUI and return the saved local file path.
 
     model = a registry model id (e.g. 'zimage', 'flux2') OR
-    workflow_path = a token-template _api.json. Raises on any failure."""
+    workflow_path = a token-template _api.json. Raises on any failure.
+
+    Continuity (reference-driven character render):
+      image_path — a reference still uploaded and injected as __IMAGE__ (img2img);
+                   also passed to build_graph as the img2img init when using a recipe.
+      lora_name  — a character LoRA filename injected as __LORA__ (LoraLoader templates)
+                   so the character renders on-model. Both are optional; when neither is
+                   set this is plain txt2img, exactly as before."""
     base = (url or COMFYUI_URL).rstrip("/")
+
+    # A reference still must be uploaded to ComfyUI's /input store first; both the
+    # workflow-template (__IMAGE__) and recipe (build_graph img=) paths need the
+    # server-side NAME, not the local path.
+    image_name = upload_comfyui_image(image_path, base) if image_path else None
 
     if workflow_path is None and model is None:
         workflow_path = os.getenv("COMFYUI_WORKFLOW") or None
@@ -81,10 +94,11 @@ def render_scene_comfyui(visual_prompt: str, scene_number: int, output_dir: str 
                 f"ComfyUI via 'Save (API Format)', put __PROMPT__ in its positive "
                 f"prompt, and set COMFYUI_WORKFLOW or pass workflow_path.")
         with open(workflow_path, "r", encoding="utf-8") as f:
-            graph = json.loads(inject_tokens(f.read(), visual_prompt, seed=seed))
+            graph = json.loads(inject_tokens(f.read(), visual_prompt, image_name=image_name,
+                                             seed=seed, lora_name=lora_name))
     else:
         graph = build_graph(model or DEFAULT_MODEL, visual_prompt, seed=seed,
-                            width=width, height=height,
+                            width=width, height=height, img=image_name,
                             prefix=f"pipeline/scene_{scene_number}")
 
     _log(f"\n🎨 [COMFYUI] Scene {scene_number}: submitting workflow to {base}…")
@@ -96,9 +110,14 @@ def render_scene_comfyui(visual_prompt: str, scene_number: int, output_dir: str 
 
 def render_i2v_comfyui(image_path: str, visual_prompt: str, scene_number: int,
                        output_dir: str = ".", output_name: str = None,
-                       workflow_path: str = None, url: str = None, timeout: int = 1200) -> str:
+                       workflow_path: str = None, url: str = None, timeout: int = 1200,
+                       lora_name: str = None) -> str:
     """Wan 2.2 image-to-video: upload `image_path` as the start frame, inject the
-    motion prompt, run the workflow, return the saved clip path. Raises on failure."""
+    motion prompt, run the workflow, return the saved clip path. Raises on failure.
+
+    lora_name (optional) resolves a __LORA__ token if the i2v template uses a LoRA;
+    normally the start frame is already on-model (from the img2img+LoRA still step),
+    so this is only needed for LoRA-driven motion templates."""
     if not os.path.exists(image_path):
         raise RuntimeError(f"Start image not found: {image_path}")
 
@@ -113,7 +132,7 @@ def render_i2v_comfyui(image_path: str, visual_prompt: str, scene_number: int,
 
     image_name = upload_comfyui_image(image_path, base)
     with open(wf_path, "r", encoding="utf-8") as f:
-        graph = json.loads(inject_tokens(f.read(), visual_prompt, image_name))
+        graph = json.loads(inject_tokens(f.read(), visual_prompt, image_name, lora_name=lora_name))
 
     _log(f"\n🎨 [COMFYUI-i2v] Scene {scene_number}: {os.path.basename(image_path)} → video on {base}…")
     out = submit_and_wait(graph, base, timeout, output_dir=output_dir,

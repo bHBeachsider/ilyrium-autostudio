@@ -1,0 +1,16 @@
+#usda 1.0
+(
+    defaultPrim = "LysteriaFurniture"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "LysteriaFurniture" (
+    kind = "component"
+    prepend references = @./geo.usda@</geo>
+)
+{
+    custom string backlot:asset_id = "LysteriaFurniture"
+    custom token backlot:grade = "conditioning"
+}
+

@@ -1,0 +1,26 @@
+{
+  "shot_id": "NH-S901-SH010",
+  "endpoint": "fal-ai/veo3.1/image-to-video",
+  "keyframe": "04_preproduction\\keyframes\\NH-S901\\NH-S901-SH010_key.png",
+  "arguments": {
+    "prompt": "Wide shot at dusk, a completely empty square. The finished long timber rally stage with its row of folding chairs, a podium and a tall rear truss stands alone in front of City Hall, whose windows are lit warm tungsten; the mauve banner hangs on the portico. The camera is locked off on a tripod and does not move at all: no pan, no tilt, no zoom, no drift, no handheld shake. Real-time speed, natural human movement, never slow motion. There are NO PEOPLE anywhere in this shot and nothing drives: every car stays parked and dark, the bus at the far corner is parked with its engine off and does not move, no one walks into or through the frame. The only change over eight seconds is the sky deepening slowly from blue toward night and a very faint stir of the banner fabric. A locked-off, silent, unpeopled hold on an object. Deep blue winter twilight, absolute stillness. Prestige political drama photographed on an Arri Alexa with anamorphic lenses: single-source natural light, slight 35mm film grain, colours desaturated about twelve percent, warm tungstens, deep browns and charcoals in the shadows, photographic realism.",
+    "aspect_ratio": "16:9",
+    "duration": "8s",
+    "resolution": "1080p",
+    "generate_audio": false,
+    "negative_prompt": "turning around, walking away, camera pull back, dolly, reframing, people walking into frame, pedestrians in the foreground, moving bus, moving vehicles, slow motion, speed ramp, time-lapse, camera movement, zoom, pan, dolly, handheld shake, on-screen text, captions, subtitles, watermark, logo, lens flare, fast traffic, cars driving through the frame, people looking at the camera, faces toward camera, cartoon, illustration, oversaturated",
+    "seed": 901010
+  },
+  "image_url": "https://v3b.fal.media/files/b/0aa929a9/TYsmrHUJirMRxup2o9pSt_NH-S901-SH010_key.png",
+  "response": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0aa929b8/_r00d8igqinvBppmy3XAE_884704237e3441a8a53796ec53c110fc.mp4",
+      "content_type": "video/mp4",
+      "file_name": "884704237e3441a8a53796ec53c110fc.mp4",
+      "file_size": 11466113
+    }
+  },
+  "seconds": 154.5,
+  "est_cost_usd": 1.6,
+  "rendered_at": "2026-09-05T00:57:32"
+}

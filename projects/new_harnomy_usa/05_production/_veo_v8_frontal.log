@@ -1,0 +1,6 @@
+[OK] fal auth OK (probe 422)
+-- SH003  fal-ai/veo3.1/image-to-video  6s  (~$1.20)
+   [OK] NH-S901-SH003.mp4 (8749 KB, 107s)
+-- SH009  fal-ai/veo3.1/image-to-video  6s  (~$1.20)
+   [OK] NH-S901-SH009.mp4 (9708 KB, 133s)
+DONE  est. spend this run: $2.40

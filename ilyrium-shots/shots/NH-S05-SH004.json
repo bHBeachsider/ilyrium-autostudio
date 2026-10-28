@@ -1,0 +1,36 @@
+{
+  "shot_id": "NH-S05-SH004",
+  "song_id": "NH-S05",
+  "duration_s": 7,
+  "camera": {
+    "shot_size": "medium",
+    "movement": "tracking",
+    "lens_mm": 50
+  },
+  "subjects": [
+    "stripe_young",
+    "block_ensemble"
+  ],
+  "setting": "Pelham Parkway sidewalk",
+  "mood": "cold swagger, lip-sync hook",
+  "action": "The strut. Young Stripe walks straight at camera through a CROWDED sidewalk - domino players, kids on hydrants, women on stoops, vendors - the whole block parting around him. He does not smile.",
+  "prompt": "black and white pen line drawing, medium tracking shot, young fat ohwx man with full black 1970s hair, black sunglasses, thin rope chain, open unbuttoned rayon shirt with owl print, white briefs, sneakers, strutting through a crowded 1970s Bronx sidewalk full of people - domino players at a folding table, kids on a fire hydrant, women on stoops, a fruit vendor - crowd parting around him, scratchy ink, harsh shadows, no color, strictly black and white pen line drawing, scratchy confident ink strokes, crosshatch shading, harsh contrast, photomontage collage energy, gritty 1970s Bronx underworld drawn in ink, no color fills, at most a faint gold glint on jewelry",
+  "negative_prompt": "photorealism, photograph, realistic skin, cinematic color grading, lens flare, film grain, anime, manga, 3d render, full color scene, skinny young stripe, bald young stripe, smiling, grinning, teeth, real person likeness, MLB logo, watermark",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "stripe_young",
+    "seed": 100004
+  },
+  "seed": 100004,
+  "continuity": {
+    "prev_shot": "NH-S05-SH003",
+    "flf2v": true
+  },
+  "render": {
+    "width": 640,
+    "height": 640,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 7
+  }
+}

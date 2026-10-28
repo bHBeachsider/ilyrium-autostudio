@@ -1,0 +1,31 @@
+#usda 1.0
+(
+    defaultPrim = "HarvestDressing"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "HarvestDressing" (
+    kind = "component"
+    variants = {
+        string build = "feast"
+    }
+    prepend variantSets = "build"
+)
+{
+    custom string backlot:asset_id = "HarvestDressing"
+    custom token backlot:grade = "conditioning"
+    variantSet "build" = {
+        "feast" (
+            prepend references = @./geo_feast.usda@</geo>
+        ) {
+
+        }
+        "finished" (
+            prepend references = @./geo_finished.usda@</geo>
+        ) {
+
+        }
+    }
+}
+

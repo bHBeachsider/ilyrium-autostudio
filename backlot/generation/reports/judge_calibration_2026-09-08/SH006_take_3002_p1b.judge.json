@@ -1,0 +1,58 @@
+{
+ "sheet": "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\_staging\\judge_set2\\SH006_take_3002_p1b.png",
+ "shot": "SH006",
+ "provider": "anthropic",
+ "model": null,
+ "verdicts": [
+  {
+   "invariant": "the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera)",
+   "verdict": "holds",
+   "reason": "The timber stage runs horizontally across the frame, parallel to the building facade in the background, not angled toward the camera.",
+   "blocking": false
+  },
+  {
+   "invariant": "exactly two tall square timber uprights, one at each END of the stage, none mid-span",
+   "verdict": "holds",
+   "reason": "There are exactly two tall square timber uprights visible, one at each end of the stage platform, with no uprights in the middle span.",
+   "blocking": false
+  },
+  {
+   "invariant": "a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving",
+   "verdict": "holds",
+   "reason": "The sky appears flat grey and overcast with no visible sun, the paving shows wet reflective surfaces, and there are no distinct cast shadows visible in the scene.",
+   "blocking": false
+  },
+  {
+   "invariant": "decking covers only the LEFT half of the platform; the right half is open joists",
+   "verdict": "holds",
+   "reason": "The platform shows decking covering the left half while the right half displays open joists/framework structure.",
+   "blocking": false
+  },
+  {
+   "invariant": "no crossbeam joins the uprights",
+   "verdict": "holds",
+   "reason": "No horizontal crossbeam is visible connecting the two vertical uprights at their tops.",
+   "blocking": false
+  },
+  {
+   "invariant": "the view is from a high window looking down across the square",
+   "verdict": "holds",
+   "reason": "The viewpoint is clearly from an elevated position looking down across the square toward the buildings, consistent with a high window perspective.",
+   "blocking": false
+  }
+ ],
+ "usage": {
+  "input_tokens": 1215,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "cache_creation": {
+   "ephemeral_5m_input_tokens": 0,
+   "ephemeral_1h_input_tokens": 0
+  },
+  "output_tokens": 341,
+  "service_tier": "standard",
+  "inference_geo": "not_available"
+ },
+ "seconds": 6.3,
+ "status": "advisory"
+}

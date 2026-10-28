@@ -1,0 +1,25 @@
+[OK] fal auth OK
+[SKIP] hammer_single exists
+[SKIP] hammer_work exists
+[SKIP] nailgun exists
+[SKIP] chop_saw exists
+[SKIP] circular_saw exists
+[SKIP] timber_drop exists
+[SKIP] drill exists
+[SKIP] workmen_far exists
+[SKIP] wind_winter exists
+[SKIP] halyard exists
+[SKIP] city_ambience exists
+[SKIP] interior_room exists
+[SKIP] boots_decking exists
+[SKIP] bus_brake_far exists
+-- workmen_chat (22s, loop)
+   [OK] workmen_chat (344 KB)
+-- workmen_laugh (8s)
+   [OK] workmen_laugh (126 KB)
+-- workmen_call (7s)
+   [OK] workmen_call (110 KB)
+[SKIP] drizzle_square exists
+[SKIP] drizzle_timber exists
+[SKIP] banner_flap exists
+DONE

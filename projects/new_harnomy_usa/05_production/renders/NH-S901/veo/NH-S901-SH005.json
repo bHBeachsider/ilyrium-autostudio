@@ -1,0 +1,26 @@
+{
+  "shot_id": "NH-S901-SH005",
+  "endpoint": "fal-ai/veo3.1/image-to-video",
+  "keyframe": "04_preproduction\\keyframes\\NH-S901\\NH-S901-SH005_key.png",
+  "arguments": {
+    "prompt": "Interior, a mayor's ornate office. A man in an immaculate dark navy suit stands at the tall French window with his back three-quarters to the camera, looking down into the square below. He stays exactly where he is for the whole shot, feet planted, facing the window: he does not turn, does not look back, does not walk, does not raise his hands. The only movement in the frame is the slow rise and fall of his breathing and, once, the fingers of his right hand closing and opening at his side. The camera is locked off on a tripod and does not move at all: no pan, no tilt, no zoom, no drift, no handheld shake. Real-time speed, natural human movement, never slow motion. Tungsten desk lamp warm in the foreground, flat winter daylight through the glass, the giant limestone columns just outside the window fixed. A portrait of a man watching. Prestige political drama photographed on an Arri Alexa with anamorphic lenses: single-source natural light, slight 35mm film grain, colours desaturated about twelve percent, warm tungstens, deep browns and charcoals in the shadows, photographic realism.",
+    "aspect_ratio": "16:9",
+    "duration": "6s",
+    "resolution": "1080p",
+    "generate_audio": false,
+    "negative_prompt": "turning around, walking away, camera pull back, dolly, reframing, people walking into frame, pedestrians in the foreground, moving bus, moving vehicles, slow motion, speed ramp, time-lapse, camera movement, zoom, pan, dolly, handheld shake, on-screen text, captions, subtitles, watermark, logo, lens flare, fast traffic, cars driving through the frame, people looking at the camera, faces toward camera, cartoon, illustration, oversaturated",
+    "seed": 901005
+  },
+  "image_url": "https://v3b.fal.media/files/b/0aa925b9/r_4IMjKO_Xv8wDHZBya8a_NH-S901-SH005_key.png",
+  "response": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0aa925c5/F7FxMugicjAmHMWcKV2Gi_c5daf0bdb6f54b3a86b973ec44980800.mp4",
+      "content_type": "video/mp4",
+      "file_name": "c5daf0bdb6f54b3a86b973ec44980800.mp4",
+      "file_size": 8347994
+    }
+  },
+  "seconds": 127.8,
+  "est_cost_usd": 1.2000000000000002,
+  "rendered_at": "2026-09-04T22:09:02"
+}

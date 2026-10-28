@@ -1,0 +1,182 @@
+[
+  {
+    "scene_number": 1,
+    "location": "The theater auditorium, seen from the stage; houselights up",
+    "characters": [],
+    "action": "Houselights stay up ten seconds longer than they should. People in the seats begin looking around.",
+    "visual_prompt": "wide establishing shot, locked-off, a theater auditorium seen from the stage with the houselights still up, an audience in winter coats beginning to look around at each other, warm house light, empty dark stage edge in the foreground",
+    "dialogue": [
+      {
+        "speaker": "",
+        "line": "",
+        "delivery": ""
+      }
+    ],
+    "voiceover": "",
+    "performance": "documentary stillness; nobody performs; sincere reverent serious register; no irony, no comedic timing, no winking; no smile at camera",
+    "duration_target_s": 10
+  },
+  {
+    "scene_number": 2,
+    "location": "Black",
+    "characters": [],
+    "action": "BLACK SLUG (post may slug this): hard cut to black, no dimmer. Three full seconds of nothing. A cough from the house sounds like a gunshot.",
+    "visual_prompt": "a pure black frame, no light, no content, absolute darkness",
+    "dialogue": [
+      {
+        "speaker": "",
+        "line": "",
+        "delivery": ""
+      }
+    ],
+    "voiceover": "",
+    "performance": "silence",
+    "duration_target_s": 3
+  },
+  {
+    "scene_number": 3,
+    "location": "The proscenium arch, lit from the house side",
+    "characters": [],
+    "action": "A single cold wash comes up on the proscenium, not the stage, so the audience sees the ornament of the theater itself. Held four seconds.",
+    "visual_prompt": "wide shot, locked-off, a single cold hard-edged wash of light on an ornate proscenium arch lit from the house side, the stage behind it still dark, gilded plaster ornament, deep shadow everywhere else",
+    "dialogue": [
+      {
+        "speaker": "",
+        "line": "",
+        "delivery": ""
+      }
+    ],
+    "voiceover": "",
+    "performance": "silence; held",
+    "duration_target_s": 4
+  },
+  {
+    "scene_number": 4,
+    "location": "Pengold's mayoral office at dawn",
+    "characters": [
+      "pengold"
+    ],
+    "action": "The stage is revealed: one room. Pengold is already seated at the desk when the light finds him. He does not react to being seen. He is reading the folded newspaper.",
+    "visual_prompt": "wide shot, locked-off, modest mid-century municipal mayor's office at dawn, mahogany-laminate desk and credenza, a tungsten desk lamp still on from the night before, a half-empty coffee cup, a folded newspaper, three worn trade paperbacks in dusty brownish mauve, the color of a faded 1970s university-press paperback, not lavender, not aubergine, not pink stacked on the credenza, thin cold dawn light held off the desk, a controlled man in his late forties, neat conservative hair greying at the temples, calculating unhurried eyes, medium solid upright build, municipal mayoral suiting in dark muted wool, white shirt, no ostentation, papers aligned squarely, unhurried processional bearing seated at the desk reading a folded newspaper, not reacting to being seen, single-source tungsten from the desk lamp",
+    "dialogue": [
+      {
+        "speaker": "",
+        "line": "",
+        "delivery": ""
+      }
+    ],
+    "voiceover": "",
+    "performance": "he does not react to being seen; sincere reverent serious register; no irony, no comedic timing, no winking; no smile at camera",
+    "duration_target_s": 5
+  },
+  {
+    "scene_number": 5,
+    "location": "Pengold's mayoral office at dawn",
+    "characters": [
+      "pengold"
+    ],
+    "action": "THE TWENTY-TWO SECONDS. Pengold actually reads, silently, the full beat, page turn included at about the midpoint. Nothing else happens. Load-bearing silence; never shortened.",
+    "visual_prompt": "medium shot, locked-off, very slow push-in over the whole hold, a controlled man in his late forties, neat conservative hair greying at the temples, calculating unhurried eyes, medium solid upright build, municipal mayoral suiting in dark muted wool, white shirt, no ostentation, papers aligned squarely, unhurried processional bearing reading a folded newspaper at a mahogany-laminate desk, a tungsten desk lamp still on, half-empty coffee cup, three worn trade paperbacks in dusty brownish mauve, the color of a faded 1970s university-press paperback, not lavender, not aubergine, not pink on the credenza behind him, thin cold dawn at the window, he turns a page and continues reading, no other movement",
+    "dialogue": [
+      {
+        "speaker": "",
+        "line": "",
+        "delivery": ""
+      }
+    ],
+    "voiceover": "",
+    "performance": "silent reading, page turn included; no eyebrow, no gesture; sincere reverent serious register; no irony, no comedic timing, no winking; no smile at camera",
+    "duration_target_s": 22
+  },
+  {
+    "scene_number": 6,
+    "location": "Pengold's mayoral office at dawn",
+    "characters": [
+      "pengold"
+    ],
+    "action": "He sets the paper down carefully, aligned to the edge of the desk.",
+    "visual_prompt": "close-up, locked-off, the hands of a controlled man in his late forties, neat conservative hair greying at the temples, calculating unhurried eyes, medium solid upright build, municipal mayoral suiting in dark muted wool, white shirt, no ostentation, papers aligned squarely, unhurried processional bearing setting a folded newspaper down on a mahogany-laminate desk and squaring it precisely to the desk edge, tungsten desk lamp, dawn light held off the desk",
+    "dialogue": [
+      {
+        "speaker": "",
+        "line": "",
+        "delivery": ""
+      }
+    ],
+    "voiceover": "",
+    "performance": "care and precision; sincere reverent serious register; no irony, no comedic timing, no winking; no smile at camera",
+    "duration_target_s": 6
+  },
+  {
+    "scene_number": 7,
+    "location": "Pengold's mayoral office at dawn",
+    "characters": [
+      "pengold"
+    ],
+    "action": "He looks toward the audience, not at us, past us, at the middle distance. He inhales to speak. Holds it. Exhales without having spoken. Then the first bar of the orchestra: a single bass note, low, held.",
+    "visual_prompt": "close-up, locked-off, 85mm, a controlled man in his late forties, neat conservative hair greying at the temples, calculating unhurried eyes, medium solid upright build, municipal mayoral suiting in dark muted wool, white shirt, no ostentation, papers aligned squarely, unhurried processional bearing looking past the lens at the middle distance, inhaling as if to speak, holding, exhaling without speaking, tungsten key from a desk lamp, deep charcoal shadow, faint cool blue in the deepest blacks",
+    "dialogue": [
+      {
+        "speaker": "",
+        "line": "",
+        "delivery": ""
+      }
+    ],
+    "voiceover": "",
+    "performance": "no smile, no eyebrow lift, no dramatic gesture; the breath is the whole performance; sincere reverent serious register; no irony, no comedic timing, no winking; no smile at camera",
+    "duration_target_s": 8
+  },
+  {
+    "scene_number": 8,
+    "location": "Pengold's mayoral office at dawn",
+    "characters": [
+      "pengold"
+    ],
+    "action": "Over the held bass note, Pengold's recitative, addressed to the federal investigation he can feel circling the building.",
+    "visual_prompt": "medium shot, locked-off, slow tighten, a controlled man in his late forties, neat conservative hair greying at the temples, calculating unhurried eyes, medium solid upright build, municipal mayoral suiting in dark muted wool, white shirt, no ostentation, papers aligned squarely, unhurried processional bearing seated at the desk speaking low to the middle distance, three worn trade paperbacks in dusty brownish mauve, the color of a faded 1970s university-press paperback, not lavender, not aubergine, not pink on the credenza behind him, single-source tungsten, dawn thin at the window",
+    "dialogue": [
+      {
+        "speaker": "pengold",
+        "line": "Who among them can I afford to lose?",
+        "delivery": "recitative over a single held bass note; low; unhurried; to the middle distance, not to the house"
+      }
+    ],
+    "voiceover": "",
+    "performance": "measured authority; sincere reverent serious register; no irony, no comedic timing, no winking; no smile at camera",
+    "duration_target_s": 14
+  },
+  {
+    "scene_number": 9,
+    "location": "Black",
+    "characters": [],
+    "action": "BLACK SLUG: blackout on Pengold.",
+    "visual_prompt": "a pure black frame, no light, no content, absolute darkness",
+    "dialogue": [
+      {
+        "speaker": "",
+        "line": "",
+        "delivery": ""
+      }
+    ],
+    "voiceover": "",
+    "performance": "silence",
+    "duration_target_s": 2
+  },
+  {
+    "scene_number": 10,
+    "location": "The theater auditorium; the vomitoria; then the stage",
+    "characters": [],
+    "action": "Houselights come up on the audience as the chorus streams in from the vomitoria around the house, already singing Competing Anthems of Victimhood. The audience is surrounded. By the time the chorus reaches the stage, the house has been claimed.",
+    "visual_prompt": "wide shot, tracking, a theater audience in their seats surrounded as a large chorus in professional-class progressive dress streams in singing through the aisles and vomitoria of the house toward the stage, many carrying worn trade paperbacks in dusty brownish mauve, the color of a faded 1970s university-press paperback, not lavender, not aubergine, not pink, warm house light, the stage still dim ahead of them",
+    "dialogue": [
+      {
+        "speaker": "",
+        "line": "",
+        "delivery": ""
+      }
+    ],
+    "voiceover": "",
+    "performance": "the chorus sings with total sincerity; many anthems at once; sincere reverent serious register; no irony, no comedic timing, no winking; no smile at camera",
+    "duration_target_s": 16
+  }
+]

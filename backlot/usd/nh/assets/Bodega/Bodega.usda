@@ -1,0 +1,16 @@
+#usda 1.0
+(
+    defaultPrim = "Bodega"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "Bodega" (
+    kind = "component"
+    prepend references = @./geo.usda@</geo>
+)
+{
+    custom string backlot:asset_id = "Bodega"
+    custom token backlot:grade = "conditioning"
+}
+

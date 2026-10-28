@@ -1,0 +1,270 @@
+{
+ "key": "renders/keyframes_p3/S101_SH004/take_4003.png",
+ "detections": [
+  {
+   "cls": "deck",
+   "box": [
+    1071.0462646484375,
+    431.6978759765625,
+    1340.544921875,
+    626.5452270507812
+   ],
+   "score": 0.4047982394695282,
+   "label": "wooden stage platform wooden podium wooden desk"
+  },
+  {
+   "cls": "chair",
+   "box": [
+    1330.475341796875,
+    364.28204345703125,
+    1512.9420166015625,
+    648.0597534179688
+   ],
+   "score": 0.33279573917388916,
+   "label": "chair wooden podium a seated man"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    647.8872680664062,
+    368.1088562011719,
+    756.09130859375,
+    409.2912902832031
+   ],
+   "score": 0.3048972487449646,
+   "label": "wooden stage platform wooden steps"
+  },
+  {
+   "cls": "steps",
+   "box": [
+    280.70562744140625,
+    343.3087463378906,
+    421.5164489746094,
+    434.65167236328125
+   ],
+   "score": 0.29386451840400696,
+   "label": "wooden steps"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    1064.1043701171875,
+    355.17919921875,
+    1514.9669189453125,
+    644.2628784179688
+   ],
+   "score": 0.27563247084617615,
+   "label": "wooden joists"
+  },
+  {
+   "cls": "furniture",
+   "box": [
+    1053.503173828125,
+    395.28887939453125,
+    1370.72607421875,
+    638.5555419921875
+   ],
+   "score": 0.2693617045879364,
+   "label": "wooden desk"
+  },
+  {
+   "cls": "steps",
+   "box": [
+    281.507080078125,
+    381.9812316894531,
+    354.6574401855469,
+    431.48773193359375
+   ],
+   "score": 0.2622709274291992,
+   "label": "wooden steps"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    1160.620849609375,
+    426.87744140625,
+    1331.990234375,
+    477.02105712890625
+   ],
+   "score": 0.2526697814464569,
+   "label": "wooden joists"
+  },
+  {
+   "cls": "steps",
+   "box": [
+    640.5995483398438,
+    357.1572265625,
+    765.2548217773438,
+    420.8495788574219
+   ],
+   "score": 0.25079378485679626,
+   "label": "wooden steps"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    1070.3485107421875,
+    431.2795715332031,
+    1341.8863525390625,
+    500.28900146484375
+   ],
+   "score": 0.24642695486545563,
+   "label": "wooden stage platform wooden desk"
+  },
+  {
+   "cls": "steps",
+   "box": [
+    279.0473937988281,
+    333.7854919433594,
+    639.4371948242188,
+    436.3805236816406
+   ],
+   "score": 0.23402971029281616,
+   "label": "wooden steps"
+  },
+  {
+   "cls": "chair",
+   "box": [
+    1089.2734375,
+    356.0464782714844,
+    1161.928466796875,
+    468.8058776855469
+   ],
+   "score": 0.22904199361801147,
+   "label": "chair a seated man"
+  },
+  {
+   "cls": "furniture",
+   "box": [
+    1055.490478515625,
+    349.61431884765625,
+    1353.9400634765625,
+    630.1734619140625
+   ],
+   "score": 0.22209922969341278,
+   "label": "wooden desk"
+  }
+ ],
+ "dropped": [
+  {
+   "cls": "post",
+   "box": [
+    585.64306640625,
+    64.96630859375,
+    631.45751953125,
+    418.01617431640625
+   ],
+   "score": 0.3814300298690796,
+   "label": "tall wooden post wooden upright pole",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "beam",
+   "box": [
+    237.21958923339844,
+    2.0737874507904053,
+    1530.81640625,
+    93.56034851074219
+   ],
+   "score": 0.35345104336738586,
+   "label": "horizontal wooden beam",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "deck",
+   "box": [
+    7.5415849685668945,
+    387.7215881347656,
+    1526.450439453125,
+    664.5487670898438
+   ],
+   "score": 0.2715531587600708,
+   "label": "timber deck",
+   "dropped": "box covers 40% of frame"
+  },
+  {
+   "cls": "post",
+   "box": [
+    504.3174743652344,
+    84.42134857177734,
+    592.4285888671875,
+    349.9108581542969
+   ],
+   "score": 0.254591703414917,
+   "label": "tall wooden post wooden upright pole",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "post",
+   "box": [
+    568.5771484375,
+    58.580848693847656,
+    657.6041870117188,
+    435.94268798828125
+   ],
+   "score": 0.25291767716407776,
+   "label": "tall wooden post wooden upright pole",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "post",
+   "box": [
+    413.0594177246094,
+    41.57380294799805,
+    476.959716796875,
+    431.4099426269531
+   ],
+   "score": 0.23135457932949066,
+   "label": "tall wooden post wooden upright pole",
+   "dropped": "less than 70% inside the world's structure band"
+  },
+  {
+   "cls": "post",
+   "box": [
+    679.74755859375,
+    99.94414520263672,
+    760.3084106445312,
+    386.1568298339844
+   ],
+   "score": 0.22823938727378845,
+   "label": "tall wooden post wooden upright pole",
+   "dropped": "less than 70% inside the world's structure band"
+  }
+ ],
+ "band": {
+  "core": [
+   0.16468253968253968,
+   0.4666666666666667,
+   0.9674603174603175,
+   0.9638888888888889
+  ],
+  "band": [
+   0.014682539682539686,
+   0.31666666666666665,
+   1.1174603174603175,
+   1.113888888888889
+  ],
+  "core_area": 0.39915895061728396,
+  "platform_band": [
+   0.014682539682539686,
+   0.31666666666666665,
+   1.1174603174603175,
+   1.113888888888889
+  ]
+ },
+ "seconds_detect": 0.17,
+ "seconds_total": 0.41,
+ "models": "IDEA-Research/grounding-dino-tiny + facebook/sam-vit-base",
+ "box_thr": 0.22,
+ "text_thr": 0.2,
+ "areas": {
+  "post": 0.0,
+  "beam": 0.0,
+  "deck": 0.07665,
+  "chair": 0.03704,
+  "podium": 0.0,
+  "steps": 0.01805,
+  "furniture": 0.03975,
+  "person": 0.0
+ }
+}

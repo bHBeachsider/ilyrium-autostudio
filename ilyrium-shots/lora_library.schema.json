@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ilyrium.studio/schemas/lora_library.schema.json",
+  "title": "Ilyrium LoRA Library",
+  "description": "Global registry mapping shot-spec keyframe.ref_lora names to resolved character LoRA assets. Consumed by keyframe_to_comfy.py for t2i LoRA injection and by batch_render.py's lock_lora_library() helper. Global (not per-song): characters are shared across New Harmony songs.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "loras"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "loras": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "filename",
+          "trigger_word",
+          "strength",
+          "base_model"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Lookup key matching shot_spec keyframe.ref_lora."
+          },
+          "filename": {
+            "type": "string",
+            "description": "Filename present in ComfyUI/models/loras/ on the render box."
+          },
+          "trigger_word": {
+            "type": "string"
+          },
+          "strength": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 2
+          },
+          "base_model": {
+            "type": "string",
+            "description": "Tensor.art base model id the LoRA was trained against."
+          },
+          "sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[0-9a-f]{64}$",
+            "description": "sha256 of the .safetensors. Null until trained."
+          },
+          "tensorart_job_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "trained_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "status": {
+            "enum": [
+              "pending",
+              "training",
+              "trained",
+              "deprecated"
+            ],
+            "default": "trained",
+            "description": "pending = registered but not yet trained; trained = .safetensors present + fingerprinted."
+          },
+          "notes": {
+            "type": "string"
+          },
+          "character": {
+            "type": "string",
+            "description": "Character key this LoRA renders. Optional; present since the stripe_young entry (2026-07) and formalised 2026-09-03 when the four New Harnomy principals were registered. Distinct from `name`, which is the shot_spec ref_lora lookup key."
+          }
+        }
+      }
+    }
+  }
+}

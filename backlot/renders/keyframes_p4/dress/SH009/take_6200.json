@@ -1,0 +1,54 @@
+{
+ "shot": "SH009",
+ "seq": "NH-S901",
+ "seed": 6200,
+ "prompt": "Head-height medium shot from the wet paving in front of the left end of the finished rally stage, looking straight at City Hall, square to its facade. The stage's long near edge runs perfectly horizontal across the frame; its left end with a short flight of four raw-pine steps sits right of centre; exactly one row of folding chairs and a podium stand on the wet decking. Exactly two tall square pine uprights stand at the two ends of the stage, the near one at the left end rising just right of frame centre, with a solid crossbeam across their tops, both wrapped in garlands of autumn leaves; pumpkins, gourds and hay bales along the stage front and beside the steps. A single workman in a wet high-visibility vest, in profile, puts his weight on the first tread of the steps to test it, one hand on the platform edge. Weather and light: a heavy flat sheet-cake grey overcast, no sun, no cast shadows, a light drizzle falling, the granite setts wet and dully reflective with shallow puddles, timber darkened where wet, street lamps and the building's windows glowing warm and doubled in the wet. a limestone neoclassical City Hall with a semicircular colonnade of tall columns under a drum and cupola, a mauve banner with pale lettering hanging between the columns, corn-stalk sheaves tied to the columns and lampposts, pumpkins and gourds at the column bases, garlands of autumn leaves on the balustrade, parked cars along the kerbs, a lumber flatbed truck and a white box van, a few distant pedestrians under umbrellas with their backs to us prestige political drama, House of Cards season one color grade, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, photographic realism, cinematic",
+ "values": {
+  "guidance": 3.5,
+  "depth_image": "NH-S901_SH009_depth.png",
+  "cn_strength": 0.7,
+  "cn_end": 0.8,
+  "edge_image": "NH-S901_SH009_edge.png",
+  "edge_strength": 0.45,
+  "edge_end": 0.6,
+  "width": 1344,
+  "height": 768,
+  "seed": 6200,
+  "steps": 28,
+  "prefix": "backlot/NH-S901_SH009_6200"
+ },
+ "model": "flux1-dev-fp8 + ControlNet Union Pro 2.0 (depth + edge)",
+ "server": "http://127.0.0.1:8188",
+ "depth_pass": {
+  "path": "usd/nh/passes/SH009/depth.png",
+  "sha256": "5be99ae020f5a7b3"
+ },
+ "edge_pass": {
+  "path": "usd/nh/passes/SH009/edge.png",
+  "sha256": "a0ea4c700d8e1ecf"
+ },
+ "set_state": "finished",
+ "camera": {
+  "location": [
+   -5.0,
+   68.0,
+   1.7
+  ],
+  "rotation_deg": [
+   -86.71,
+   180.0,
+   0.0
+  ],
+  "lens_mm": 32.0,
+  "sensor_mm": 36.0,
+  "res": [
+   1920,
+   1080
+  ],
+  "depth_mode": "linear",
+  "set_state": "finished"
+ },
+ "world_version": "usda:1febf6d7d61b",
+ "seconds": 54.1,
+ "prompt_id": "537330d7-2e6a-48a0-9b33-e41d46f6579e"
+}

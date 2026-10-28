@@ -1,0 +1,1135 @@
+#usda 1.0
+(
+    defaultPrim = "geo"
+    doc = "Blender v5.0.1"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "geo" (
+    customData = {
+        dictionary Blender = {
+            bool generated = 1
+        }
+    }
+)
+{
+    def Xform "lyst_photo_frame_0_3"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_photo_frame_0_3"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.04, 0.58, 0.72)
+        double3 xformOp:translate = (18.56999969482422, 85.44999694824219, 5.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_photo_frame_0_3" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/white>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_photo_frame_0_3"
+        }
+    }
+
+    def Scope "_materials"
+    {
+        def Material "white"
+        {
+            token outputs:surface.connect = </geo/_materials/white/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "white"
+
+            def Shader "Principled_BSDF"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.03
+                color3f inputs:diffuseColor = (0.9, 0.89, 0.86)
+                float inputs:ior = 1.5
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.9
+                float inputs:specular = 0.5
+                token outputs:surface
+            }
+        }
+
+        def Material "photo"
+        {
+            token outputs:surface.connect = </geo/_materials/photo/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "photo"
+
+            def Shader "Principled_BSDF"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.03
+                color3f inputs:diffuseColor = (0.32, 0.3, 0.29)
+                float inputs:ior = 1.5
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.9
+                float inputs:specular = 0.5
+                token outputs:surface
+            }
+        }
+
+        def Material "paper"
+        {
+            token outputs:surface.connect = </geo/_materials/paper/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "paper"
+
+            def Shader "Principled_BSDF"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.03
+                color3f inputs:diffuseColor = (0.86, 0.84, 0.79)
+                float inputs:ior = 1.5
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.9
+                float inputs:specular = 0.5
+                token outputs:surface
+            }
+        }
+
+        def Material "steel"
+        {
+            token outputs:surface.connect = </geo/_materials/steel/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "steel"
+
+            def Shader "Principled_BSDF"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.03
+                color3f inputs:diffuseColor = (0.55, 0.56, 0.58)
+                float inputs:ior = 1.5
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.9
+                float inputs:specular = 0.5
+                token outputs:surface
+            }
+        }
+
+        def Material "rose"
+        {
+            token outputs:surface.connect = </geo/_materials/rose/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "rose"
+
+            def Shader "Principled_BSDF"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.03
+                color3f inputs:diffuseColor = (0.64, 0.44, 0.48)
+                float inputs:ior = 1.5
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.9
+                float inputs:specular = 0.5
+                token outputs:surface
+            }
+        }
+    }
+
+    def Xform "lyst_photo_1_0"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_photo_1_0"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.01, 0.48, 0.62)
+        double3 xformOp:translate = (18.594999313354492, 82, 6.320000171661377)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_photo_1_0" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/photo>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_photo_1_0"
+        }
+    }
+
+    def Xform "lyst_plaque_5"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_plaque_5"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.05, 0.32, 0.38)
+        double3 xformOp:translate = (27.229999542236328, 77.04000091552734, 5.960000038146973)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_plaque_5" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/paper>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_plaque_5"
+        }
+    }
+
+    def Xform "lyst_photo_frame_0_4"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_photo_frame_0_4"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.04, 0.58, 0.72)
+        double3 xformOp:translate = (18.56999969482422, 86.5999984741211, 5.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_photo_frame_0_4" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/white>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_photo_frame_0_4"
+        }
+    }
+
+    def Xform "lyst_banner_frame_1"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_banner_frame_1"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.06, 1.7, 0.95)
+        double3 xformOp:translate = (18.579999923706055, 77.5999984741211, 6.25)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_banner_frame_1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/white>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_banner_frame_1"
+        }
+    }
+
+    def Xform "lyst_banner_frame_0"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_banner_frame_0"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.06, 2.4, 1.25)
+        double3 xformOp:translate = (27.219999313354492, 82.80000305175781, 6.050000190734863)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_banner_frame_0" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/white>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_banner_frame_0"
+        }
+    }
+
+    def Xform "lyst_photo_0_2"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_photo_0_2"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.01, 0.48, 0.62)
+        double3 xformOp:translate = (18.594999313354492, 84.30000305175781, 5.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_photo_0_2" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/photo>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_photo_0_2"
+        }
+    }
+
+    def Xform "lyst_plaque_1"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_plaque_1"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.05, 0.32, 0.38)
+        double3 xformOp:translate = (27.229999542236328, 77.04000091552734, 5.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_plaque_1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/paper>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_plaque_1"
+        }
+    }
+
+    def Xform "lyst_plaque_6"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_plaque_6"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.05, 0.32, 0.38)
+        double3 xformOp:translate = (27.229999542236328, 77.4800033569336, 5.960000038146973)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_plaque_6" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/paper>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_plaque_6"
+        }
+    }
+
+    def Xform "lyst_plaque_0"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_plaque_0"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.05, 0.32, 0.38)
+        double3 xformOp:translate = (27.229999542236328, 76.5999984741211, 5.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_plaque_0" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/paper>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_plaque_0"
+        }
+    }
+
+    def Xform "lyst_plaque_8"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_plaque_8"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.05, 0.32, 0.38)
+        double3 xformOp:translate = (27.229999542236328, 76.5999984741211, 6.420000076293945)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_plaque_8" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/paper>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_plaque_8"
+        }
+    }
+
+    def Xform "lyst_photo_1_3"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_photo_1_3"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.01, 0.48, 0.62)
+        double3 xformOp:translate = (18.594999313354492, 85.44999694824219, 6.320000171661377)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_photo_1_3" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/photo>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_photo_1_3"
+        }
+    }
+
+    def Xform "lyst_plaque_2"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_plaque_2"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.05, 0.32, 0.38)
+        double3 xformOp:translate = (27.229999542236328, 77.4800033569336, 5.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_plaque_2" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/paper>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_plaque_2"
+        }
+    }
+
+    def Xform "lyst_photo_frame_0_2"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_photo_frame_0_2"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.04, 0.58, 0.72)
+        double3 xformOp:translate = (18.56999969482422, 84.30000305175781, 5.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_photo_frame_0_2" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/white>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_photo_frame_0_2"
+        }
+    }
+
+    def Xform "lyst_photo_frame_1_3"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_photo_frame_1_3"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.04, 0.58, 0.72)
+        double3 xformOp:translate = (18.56999969482422, 85.44999694824219, 6.320000171661377)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_photo_frame_1_3" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/white>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_photo_frame_1_3"
+        }
+    }
+
+    def Xform "lyst_photo_frame_0_0"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_photo_frame_0_0"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.04, 0.58, 0.72)
+        double3 xformOp:translate = (18.56999969482422, 82, 5.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_photo_frame_0_0" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/white>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_photo_frame_0_0"
+        }
+    }
+
+    def Xform "lyst_photo_1_1"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_photo_1_1"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.01, 0.48, 0.62)
+        double3 xformOp:translate = (18.594999313354492, 83.1500015258789, 6.320000171661377)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_photo_1_1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/photo>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_photo_1_1"
+        }
+    }
+
+    def Xform "lyst_gallery_hook"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_gallery_hook"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (18.56999969482422, 84.30000305175781, 6.614999771118164)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_gallery_hook" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.012, -0.012, -0.015), (0.012, 0.012, 0.015)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 32, 4, 4, 32]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 9, 8, 8, 9, 11, 10, 10, 11, 13, 12, 12, 13, 15, 14, 14, 15, 17, 16, 16, 17, 19, 18, 18, 19, 21, 20, 20, 21, 23, 22, 22, 23, 25, 24, 24, 25, 27, 26, 26, 27, 29, 28, 28, 29, 31, 30, 30, 31, 33, 32, 32, 33, 35, 34, 34, 35, 37, 36, 36, 37, 39, 38, 38, 39, 41, 40, 40, 41, 43, 42, 42, 43, 45, 44, 44, 45, 47, 46, 46, 47, 49, 48, 48, 49, 51, 50, 50, 51, 53, 52, 52, 53, 55, 54, 54, 55, 57, 56, 56, 57, 59, 58, 58, 59, 61, 60, 3, 1, 63, 61, 59, 57, 55, 53, 51, 49, 47, 45, 43, 41, 39, 37, 35, 33, 31, 29, 27, 25, 23, 21, 19, 17, 15, 13, 11, 9, 7, 5, 60, 61, 63, 62, 62, 63, 1, 0, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62]
+            rel material:binding = </geo/_materials/steel>
+            normal3f[] normals = [(0.09801722, 0.9951847, 0), (0.09801722, 0.9951847, 0), (0.09801722, 0.9951847, 0), (0.09801722, 0.9951847, 0), (0.29028466, 0.9569404, 0), (0.29028466, 0.9569404, 0), (0.29028466, 0.9569404, 0), (0.29028466, 0.9569404, 0), (0.47139695, 0.8819212, 0), (0.47139695, 0.8819212, 0), (0.47139695, 0.8819212, 0), (0.47139695, 0.8819212, 0), (0.6343933, 0.7730103, 0), (0.6343933, 0.7730103, 0), (0.6343933, 0.7730103, 0), (0.6343933, 0.7730103, 0), (0.77301025, 0.63439345, 0), (0.77301025, 0.63439345, 0), (0.77301025, 0.63439345, 0), (0.77301025, 0.63439345, 0), (0.8819212, 0.47139677, 0), (0.8819212, 0.47139677, 0), (0.8819212, 0.47139677, 0), (0.8819212, 0.47139677, 0), (0.9569404, 0.29028466, 0), (0.9569404, 0.29028466, 0), (0.9569404, 0.29028466, 0), (0.9569404, 0.29028466, 0), (0.9951847, 0.098017305, 0), (0.9951847, 0.098017305, 0), (0.9951847, 0.098017305, 0), (0.9951847, 0.098017305, 0), (0.9951847, -0.098017305, 0), (0.9951847, -0.098017305, 0), (0.9951847, -0.098017305, 0), (0.9951847, -0.098017305, 0), (0.9569404, -0.29028466, 0), (0.9569404, -0.29028466, 0), (0.9569404, -0.29028466, 0), (0.9569404, -0.29028466, 0), (0.8819212, -0.47139677, 0), (0.8819212, -0.47139677, 0), (0.8819212, -0.47139677, 0), (0.8819212, -0.47139677, 0), (0.77301025, -0.63439345, 0), (0.77301025, -0.63439345, 0), (0.77301025, -0.63439345, 0), (0.77301025, -0.63439345, 0), (0.6343933, -0.7730103, 0), (0.6343933, -0.7730103, 0), (0.6343933, -0.7730103, 0), (0.6343933, -0.7730103, 0), (0.47139695, -0.8819212, 0), (0.47139695, -0.8819212, 0), (0.47139695, -0.8819212, 0), (0.47139695, -0.8819212, 0), (0.29028466, -0.9569404, 0), (0.29028466, -0.9569404, 0), (0.29028466, -0.9569404, 0), (0.29028466, -0.9569404, 0), (0.09801722, -0.9951847, 0), (0.09801722, -0.9951847, 0), (0.09801722, -0.9951847, 0), (0.09801722, -0.9951847, 0), (-0.09801722, -0.9951847, 0), (-0.09801722, -0.9951847, 0), (-0.09801722, -0.9951847, 0), (-0.09801722, -0.9951847, 0), (-0.29028466, -0.9569404, 0), (-0.29028466, -0.9569404, 0), (-0.29028466, -0.9569404, 0), (-0.29028466, -0.9569404, 0), (-0.47139695, -0.8819212, 0), (-0.47139695, -0.8819212, 0), (-0.47139695, -0.8819212, 0), (-0.47139695, -0.8819212, 0), (-0.6343933, -0.7730103, 0), (-0.6343933, -0.7730103, 0), (-0.6343933, -0.7730103, 0), (-0.6343933, -0.7730103, 0), (-0.77301025, -0.63439345, 0), (-0.77301025, -0.63439345, 0), (-0.77301025, -0.63439345, 0), (-0.77301025, -0.63439345, 0), (-0.8819212, -0.47139677, 0), (-0.8819212, -0.47139677, 0), (-0.8819212, -0.47139677, 0), (-0.8819212, -0.47139677, 0), (-0.9569404, -0.29028466, 0), (-0.9569404, -0.29028466, 0), (-0.9569404, -0.29028466, 0), (-0.9569404, -0.29028466, 0), (-0.9951847, -0.098017305, 0), (-0.9951847, -0.098017305, 0), (-0.9951847, -0.098017305, 0), (-0.9951847, -0.098017305, 0), (-0.9951847, 0.098017305, 0), (-0.9951847, 0.098017305, 0), (-0.9951847, 0.098017305, 0), (-0.9951847, 0.098017305, 0), (-0.9569404, 0.29028466, 0), (-0.9569404, 0.29028466, 0), (-0.9569404, 0.29028466, 0), (-0.9569404, 0.29028466, 0), (-0.8819212, 0.47139677, 0), (-0.8819212, 0.47139677, 0), (-0.8819212, 0.47139677, 0), (-0.8819212, 0.47139677, 0), (-0.77301025, 0.63439345, 0), (-0.77301025, 0.63439345, 0), (-0.77301025, 0.63439345, 0), (-0.77301025, 0.63439345, 0), (-0.6343933, 0.7730103, 0), (-0.6343933, 0.7730103, 0), (-0.6343933, 0.7730103, 0), (-0.6343933, 0.7730103, 0), (-0.47139695, 0.8819212, 0), (-0.47139695, 0.8819212, 0), (-0.47139695, 0.8819212, 0), (-0.47139695, 0.8819212, 0), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (1.2140406e-8, 0, 1), (-0.29028466, 0.9569404, 0), (-0.29028466, 0.9569404, 0), (-0.29028466, 0.9569404, 0), (-0.29028466, 0.9569404, 0), (-0.09801722, 0.9951847, 0), (-0.09801722, 0.9951847, 0), (-0.09801722, 0.9951847, 0), (-0.09801722, 0.9951847, 0), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1), (-1.2140408e-8, 0, -1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(0, 0.012, -0.015), (0, 0.012, 0.015), (0.002341084, 0.011769423, -0.015), (0.002341084, 0.011769423, 0.015), (0.0045922017, 0.011086554, -0.015), (0.0045922017, 0.011086554, 0.015), (0.006666843, 0.009977635, -0.015), (0.006666843, 0.009977635, 0.015), (0.008485281, 0.008485281, -0.015), (0.008485281, 0.008485281, 0.015), (0.009977635, 0.006666843, -0.015), (0.009977635, 0.006666843, 0.015), (0.011086554, 0.0045922017, -0.015), (0.011086554, 0.0045922017, 0.015), (0.011769423, 0.002341084, -0.015), (0.011769423, 0.002341084, 0.015), (0.012, 0, -0.015), (0.012, 0, 0.015), (0.011769423, -0.002341084, -0.015), (0.011769423, -0.002341084, 0.015), (0.011086554, -0.0045922017, -0.015), (0.011086554, -0.0045922017, 0.015), (0.009977635, -0.006666843, -0.015), (0.009977635, -0.006666843, 0.015), (0.008485281, -0.008485281, -0.015), (0.008485281, -0.008485281, 0.015), (0.006666843, -0.009977635, -0.015), (0.006666843, -0.009977635, 0.015), (0.0045922017, -0.011086554, -0.015), (0.0045922017, -0.011086554, 0.015), (0.002341084, -0.011769423, -0.015), (0.002341084, -0.011769423, 0.015), (0, -0.012, -0.015), (0, -0.012, 0.015), (-0.002341084, -0.011769423, -0.015), (-0.002341084, -0.011769423, 0.015), (-0.0045922017, -0.011086554, -0.015), (-0.0045922017, -0.011086554, 0.015), (-0.006666843, -0.009977635, -0.015), (-0.006666843, -0.009977635, 0.015), (-0.008485281, -0.008485281, -0.015), (-0.008485281, -0.008485281, 0.015), (-0.009977635, -0.006666843, -0.015), (-0.009977635, -0.006666843, 0.015), (-0.011086554, -0.0045922017, -0.015), (-0.011086554, -0.0045922017, 0.015), (-0.011769423, -0.002341084, -0.015), (-0.011769423, -0.002341084, 0.015), (-0.012, 0, -0.015), (-0.012, 0, 0.015), (-0.011769423, 0.002341084, -0.015), (-0.011769423, 0.002341084, 0.015), (-0.011086554, 0.0045922017, -0.015), (-0.011086554, 0.0045922017, 0.015), (-0.009977635, 0.006666843, -0.015), (-0.009977635, 0.006666843, 0.015), (-0.008485281, 0.008485281, -0.015), (-0.008485281, 0.008485281, 0.015), (-0.006666843, 0.009977635, -0.015), (-0.006666843, 0.009977635, 0.015), (-0.0045922017, 0.011086554, -0.015), (-0.0045922017, 0.011086554, 0.015), (-0.002341084, 0.011769423, -0.015), (-0.002341084, 0.011769423, 0.015)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_gallery_hook"
+        }
+    }
+
+    def Xform "lyst_photo_frame_1_4"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_photo_frame_1_4"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.04, 0.58, 0.72)
+        double3 xformOp:translate = (18.56999969482422, 86.5999984741211, 6.320000171661377)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_photo_frame_1_4" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/white>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_photo_frame_1_4"
+        }
+    }
+
+    def Xform "lyst_photo_0_4"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_photo_0_4"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.01, 0.48, 0.62)
+        double3 xformOp:translate = (18.594999313354492, 86.5999984741211, 5.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_photo_0_4" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/photo>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_photo_0_4"
+        }
+    }
+
+    def Xform "lyst_plaque_11"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_plaque_11"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.05, 0.32, 0.38)
+        double3 xformOp:translate = (27.229999542236328, 77.91999816894531, 6.420000076293945)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_plaque_11" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/paper>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_plaque_11"
+        }
+    }
+
+    def Xform "lyst_photo_frame_1_1"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_photo_frame_1_1"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.04, 0.58, 0.72)
+        double3 xformOp:translate = (18.56999969482422, 83.1500015258789, 6.320000171661377)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_photo_frame_1_1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/white>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_photo_frame_1_1"
+        }
+    }
+
+    def Xform "lyst_photo_0_3"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_photo_0_3"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.01, 0.48, 0.62)
+        double3 xformOp:translate = (18.594999313354492, 85.44999694824219, 5.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_photo_0_3" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/photo>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_photo_0_3"
+        }
+    }
+
+    def Xform "lyst_plaque_10"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_plaque_10"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.05, 0.32, 0.38)
+        double3 xformOp:translate = (27.229999542236328, 77.4800033569336, 6.420000076293945)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_plaque_10" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/paper>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_plaque_10"
+        }
+    }
+
+    def Xform "lyst_plaque_3"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_plaque_3"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.05, 0.32, 0.38)
+        double3 xformOp:translate = (27.229999542236328, 77.91999816894531, 5.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_plaque_3" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/paper>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_plaque_3"
+        }
+    }
+
+    def Xform "lyst_photo_0_0"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_photo_0_0"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.01, 0.48, 0.62)
+        double3 xformOp:translate = (18.594999313354492, 82, 5.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_photo_0_0" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/photo>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_photo_0_0"
+        }
+    }
+
+    def Xform "lyst_banner_cloth_1"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_banner_cloth_1"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.03, 1.5, 0.78)
+        double3 xformOp:translate = (18.6200008392334, 77.5999984741211, 6.25)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_banner_cloth_1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/rose>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_banner_cloth_1"
+        }
+    }
+
+    def Xform "lyst_banner_cloth_0"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_banner_cloth_0"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.03, 2.2, 1.05)
+        double3 xformOp:translate = (27.18000030517578, 82.80000305175781, 6.050000190734863)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_banner_cloth_0" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/rose>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_banner_cloth_0"
+        }
+    }
+
+    def Xform "lyst_photo_frame_1_0"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_photo_frame_1_0"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.04, 0.58, 0.72)
+        double3 xformOp:translate = (18.56999969482422, 82, 6.320000171661377)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_photo_frame_1_0" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/white>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_photo_frame_1_0"
+        }
+    }
+
+    def Xform "lyst_photo_frame_0_1"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_photo_frame_0_1"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.04, 0.58, 0.72)
+        double3 xformOp:translate = (18.56999969482422, 83.1500015258789, 5.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_photo_frame_0_1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/white>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_photo_frame_0_1"
+        }
+    }
+
+    def Xform "lyst_plaque_9"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_plaque_9"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.05, 0.32, 0.38)
+        double3 xformOp:translate = (27.229999542236328, 77.04000091552734, 6.420000076293945)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_plaque_9" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/paper>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_plaque_9"
+        }
+    }
+
+    def Xform "lyst_photo_1_4"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_photo_1_4"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.01, 0.48, 0.62)
+        double3 xformOp:translate = (18.594999313354492, 86.5999984741211, 6.320000171661377)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_photo_1_4" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/photo>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_photo_1_4"
+        }
+    }
+
+    def Xform "lyst_plaque_7"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_plaque_7"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.05, 0.32, 0.38)
+        double3 xformOp:translate = (27.229999542236328, 77.91999816894531, 5.960000038146973)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_plaque_7" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/paper>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_plaque_7"
+        }
+    }
+
+    def Xform "lyst_photo_0_1"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_photo_0_1"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.01, 0.48, 0.62)
+        double3 xformOp:translate = (18.594999313354492, 83.1500015258789, 5.5)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_photo_0_1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/photo>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_photo_0_1"
+        }
+    }
+
+    def Xform "lyst_plaque_4"
+    {
+        custom string userProperties:backlot_asset = "LysteriaWallArt"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "lyst_plaque_4"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.05, 0.32, 0.38)
+        double3 xformOp:translate = (27.229999542236328, 76.5999984741211, 5.960000038146973)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "lyst_plaque_4" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/paper>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "lyst_plaque_4"
+        }
+    }
+}
+

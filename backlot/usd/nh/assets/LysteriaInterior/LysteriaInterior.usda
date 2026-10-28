@@ -1,0 +1,112 @@
+#usda 1.0
+(
+    defaultPrim = "LysteriaInterior"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "LysteriaInterior" (
+    kind = "component"
+    variants = {
+        string build = "launch"
+    }
+    prepend variantSets = "build"
+)
+{
+    custom string backlot:asset_id = "LysteriaInterior"
+    custom token backlot:grade = "conditioning"
+
+    def Scope "ControlPoints"
+    {
+        def Xform "mark_desk_chair"
+        {
+            custom double backlot:facing_deg = 0
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (24.099999999999998, 76.15, 4.2)
+            custom token backlot:posture = "seated"
+        }
+
+        def Xform "mark_visitor_chair"
+        {
+            custom double backlot:facing_deg = 180
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (23.549999999999997, 77.75, 4.2)
+            custom token backlot:posture = "seated"
+        }
+
+        def Xform "mark_sofa"
+        {
+            custom double backlot:facing_deg = 270
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (19.09, 77.6, 4.2)
+            custom token backlot:posture = "seated"
+        }
+
+        def Xform "mark_glass_door"
+        {
+            custom double backlot:facing_deg = 180
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (19.09, 81.3, 4.2)
+            custom token backlot:posture = "standing"
+        }
+
+        def Xform "mark_reception"
+        {
+            custom double backlot:facing_deg = 90
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (26.84, 86.8, 4.2)
+            custom token backlot:posture = "seated"
+        }
+
+        def Xform "mark_floor_centre"
+        {
+            custom double backlot:facing_deg = 180
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (22.2, 83.8, 4.2)
+            custom token backlot:posture = "standing"
+        }
+
+        def Xform "mark_window_centre"
+        {
+            custom double backlot:facing_deg = 180
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (22.9, 75.9, 4.2)
+            custom token backlot:posture = "standing"
+        }
+
+        def Xform "mark_door"
+        {
+            custom double backlot:facing_deg = 180
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (19.4, 88, 4.2)
+            custom token backlot:posture = "standing"
+        }
+
+        def Xform "lyst_wordmark"
+        {
+            custom double3[] backlot:corners = [(27.229999999999997, 85.3, 6.46), (27.229999999999997, 88.3, 6.46), (27.229999999999997, 88.3, 5.84), (27.229999999999997, 85.3, 5.84)]
+            custom token backlot:kind = "text_plane"
+            custom string[] backlot:text = ["LYSTERIA"]
+        }
+
+        def Xform "lyst_nameplate"
+        {
+            custom double3[] backlot:corners = [(19.32, 80.568, 5.755), (18.86, 80.568, 5.755), (18.86, 80.568, 5.685), (19.32, 80.568, 5.685)]
+            custom token backlot:kind = "text_plane"
+            custom string[] backlot:text = ["SUMMER WINTERS"]
+        }
+    }
+    variantSet "build" = {
+        "launch" (
+            prepend references = @./geo_launch.usda@</geo>
+        ) {
+
+        }
+        "working" (
+            prepend references = @./geo_working.usda@</geo>
+        ) {
+
+        }
+    }
+}
+

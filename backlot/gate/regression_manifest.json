@@ -1,0 +1,215 @@
+{
+ "_comment": "Regression suite for the gate: every entry is a key with the verdict the EYE gave it. gate/regression.py runs each check and reports false rejects (eye PASS, check refuses) and misses (eye FAIL, check passes). Add every new bad take here with its reason; the v3-v7 archive enters once its cameras are recovered from the storyboard records (they were shot before the frontal-camera rule, so they need their own cameras.json). fail_kind: 'layout' (moved/turned/absent stage - the seg and geometry checks must catch it) or 'semantic' (wrong reading of a correctly placed structure - the judge must catch it).",
+ "entries": [
+  {
+   "path": "renders/keyframes_phase1a/SH003/take_2000.png",
+   "shot": "SH003",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH003/take_2001.png",
+   "shot": "SH003",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH003/take_2002.png",
+   "shot": "SH003",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH003/take_2003.png",
+   "shot": "SH003",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH003/take_2004.png",
+   "shot": "SH003",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH006/take_2000.png",
+   "shot": "SH006",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH006/take_2001.png",
+   "shot": "SH006",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH006/take_2002.png",
+   "shot": "SH006",
+   "expect": "FAIL",
+   "note": "joists read as a pergola roof - the platform's FOOTPRINT is where the world puts it; a 2D extent check cannot see a roof vs a floor (the judge does)",
+   "fail_kind": "semantic"
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH006/take_2003.png",
+   "shot": "SH006",
+   "expect": "FAIL",
+   "note": "stage read as a footbridge / hay-bale plaza - the platform's FOOTPRINT is where the world puts it; a 2D extent check cannot see a roof vs a floor (the judge does)",
+   "fail_kind": "semantic"
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH006/take_2004.png",
+   "shot": "SH006",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH009/take_2000.png",
+   "shot": "SH009",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH009/take_2001.png",
+   "shot": "SH009",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH009/take_2002.png",
+   "shot": "SH009",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH009/take_2003.png",
+   "shot": "SH009",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH009/take_2004.png",
+   "shot": "SH009",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH003/take_3000.png",
+   "shot": "SH003",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH003/take_3001.png",
+   "shot": "SH003",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH003/take_3002.png",
+   "shot": "SH003",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH003/take_3003.png",
+   "shot": "SH003",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH003/take_3004.png",
+   "shot": "SH003",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH006/take_3000.png",
+   "shot": "SH006",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH006/take_3001.png",
+   "shot": "SH006",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH006/take_3002.png",
+   "shot": "SH006",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH006/take_3003.png",
+   "shot": "SH006",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH006/take_3004.png",
+   "shot": "SH006",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH009/take_3000.png",
+   "shot": "SH009",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH009/take_3001.png",
+   "shot": "SH009",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH009/take_3002.png",
+   "shot": "SH009",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH009/take_3003.png",
+   "shot": "SH009",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH009/take_3004.png",
+   "shot": "SH009",
+   "expect": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)",
+   "fail_kind": null
+  }
+ ]
+}

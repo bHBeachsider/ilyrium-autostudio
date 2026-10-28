@@ -1,0 +1,64 @@
+{
+ "sheet": "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\_staging\\judge_set2\\SH003_take_3000_p1b.png",
+ "shot": "SH003",
+ "provider": "anthropic",
+ "model": null,
+ "verdicts": [
+  {
+   "invariant": "the long timber stage runs horizontally across the frame, parallel to the City Hall facade (not turned toward the camera)",
+   "verdict": "holds",
+   "reason": "The timber stage runs horizontally across the frame, parallel to the City Hall facade",
+   "blocking": false
+  },
+  {
+   "invariant": "exactly two tall square timber uprights, one at each END of the stage, none mid-span",
+   "verdict": "violated",
+   "reason": "There appear to be multiple timber uprights visible across the stage, not exactly two at the ends only",
+   "blocking": false
+  },
+  {
+   "invariant": "a flat sheet-cake grey overcast sky, no sun, no cast shadows, wet reflective paving",
+   "verdict": "holds",
+   "reason": "The sky is overcast grey, no visible sun or strong cast shadows, and the paving appears wet/reflective",
+   "blocking": false
+  },
+  {
+   "invariant": "City Hall is a limestone neoclassical building with a semicircular colonnade under a drum and cupola",
+   "verdict": "holds",
+   "reason": "City Hall matches the description with limestone/grey appearance, semicircular colonnade, drum and cupola with flag on top",
+   "blocking": false
+  },
+  {
+   "invariant": "the platform is a frame of open joists with no decking laid",
+   "verdict": "holds",
+   "reason": "The platform shows open joist framing with no decking boards laid on top",
+   "blocking": false
+  },
+  {
+   "invariant": "no crossbeam joins the uprights",
+   "verdict": "cannot_tell",
+   "reason": "Cannot clearly determine from this angle whether a crossbeam joins the uprights or not",
+   "blocking": false
+  },
+  {
+   "invariant": "three workmen in high-visibility vests are steadying the right-hand upright",
+   "verdict": "violated",
+   "reason": "No workmen in high-visibility vests are visible steadying any upright in the frame",
+   "blocking": false
+  }
+ ],
+ "usage": {
+  "input_tokens": 1243,
+  "cache_creation_input_tokens": 0,
+  "cache_read_input_tokens": 0,
+  "cache_creation": {
+   "ephemeral_5m_input_tokens": 0,
+   "ephemeral_1h_input_tokens": 0
+  },
+  "output_tokens": 363,
+  "service_tier": "standard",
+  "inference_geo": "not_available"
+ },
+ "seconds": 6.7,
+ "status": "advisory"
+}

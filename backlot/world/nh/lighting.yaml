@@ -1,0 +1,77 @@
+# backlot/world/nh/lighting.yaml - lighting states as DATA (Phase 3, task 20).
+# A lighting state names key/fill/practicals/time so the generation layer (prompt clauses, ControlNet hints,
+# later an Unreal/Blender light rig) and the judge read the same words. Sets list which states they accept.
+# Sources: 03_design/environments/pengold_office_dawn.md; NH-S901 v8 weather rule (sheet-cake grey); the bible's
+# kernel look (anamorphic, Alexa, 35 mm grain, desaturated 12%).
+look: &look
+  camera: "anamorphic, Arri Alexa, slight 35mm film grain, colour palette desaturated twelve percent"
+  grade: "prestige political drama, warm tungstens lifted, deep browns and charcoals in shadows"
+
+states:
+  office_dawn:
+    sets: [PengoldOffice]
+    time: dawn
+    key: {source: practical, what: "the desk lamp, tungsten, still on from the night before", side: "desk left", intensity: single-source}
+    fill: {what: "none; the room otherwise dim, faint cool blue only in the deepest blacks"}
+    window: {what: "thin cold winter dawn light, held OFF the desk", colour: "cool bluish grey", intensity: low}
+    practicals: [desk_lamp]
+    rules: ["dawn stays off the desk", "no lens flare", "no screen glow", "mauve reads brownish"]
+    <<: *look
+  office_meeting_hour:
+    sets: [PengoldOffice]
+    time: mid-morning
+    key: {source: window, what: "flat grey daylight through the three French windows", side: "front", intensity: soft}
+    fill: {what: "bounce off the drum's inner wall"}
+    practicals: []
+    rules: ["door slightly ajar (state: meeting)", "the columns visible through the glass"]
+    <<: *look
+  lysteria_morning:
+    sets: [LysteriaInterior, LysteriaBoardroom]
+    time: morning
+    # THE ONE EXCEPTION to "winter daylight stays out of the principals' faces" (visual_signature.md, amended 2026-09-09):
+    # this is the only interior in the opera lit generously by day. The room is her altarpiece - the beatific note
+    # ("serenity with light in it") is motivated here. The grade still holds it: cold-white winter sun, desaturated 12%,
+    # NEVER golden - gold stays reserved for the portrait, so the coronation light in Act III has somewhere to arrive from.
+    key: {source: window, what: "low winter sun through the glazed band onto the square, cold-white, streaming across the white floor", side: "behind her desk", intensity: high}
+    fill: {what: "the white walls and floor bouncing it everywhere; the room has almost no shadow"}
+    window: {what: "the square beyond the glass - City Hall's colonnade, the rally stage - flat and grey against the bright room", colour: "cool white", intensity: high}
+    practicals: [desk_lamp]
+    rules: ["cold-white sun, never golden; gold is the portrait's",
+            "she sits with the band behind her: the visitor is lit, she is a shape against the light until she leans in",
+            "the brand rose stays drained - never a saturated pink",
+            "the glass wall reads as glass: reflections of the floor over her, never a mirror",
+            "no screen glow, no lens flare, no logo mark - the wordmark is type"]
+    <<: *look
+  lysteria_launch:
+    sets: [LysteriaInterior, LysteriaBoardroom]
+    time: mid-morning
+    key: {source: window, what: "the same cold-white sun, the floor busy", intensity: high}
+    fill: {what: "presentation boards and shrink-wrap catching the window"}
+    practicals: [desk_lamp]
+    rules: ["the rollout materials are the brightest things on the floor", "the cartons read as sealed"]
+    <<: *look
+  square_overcast_drizzle:
+    sets: [Square, RallyStage, CityHall, NorthRow, Bodega, Restaurant]
+    time: day
+    weather: overcast_drizzle            # /World{weather=overcast_drizzle}
+    key: {source: sky, what: "a heavy flat sheet-cake grey overcast, no sun, no cast shadows", intensity: even}
+    fill: {what: "wet granite setts reflecting the sky; shallow puddles"}
+    practicals: [street_lamps_on, building_windows_warm]
+    rules: ["no cast shadows", "timber darkened where wet", "street lamps and windows glow warm and double in the wet"]
+    <<: *look
+  square_dusk:
+    sets: [Square, RallyStage, CityHall, NorthRow]
+    time: dusk
+    weather: overcast_drizzle
+    key: {source: sky, what: "the last grey light going", intensity: low}
+    practicals: [street_lamps_on, building_windows_lit]
+    rules: ["every window and lamp lit and doubled in the wet paving", "the empty stage dark and glistening"]
+    <<: *look
+  feast_stage:
+    sets: [RallyStage, Square]
+    time: evening
+    key: {source: rig, what: "stage wash from the truss; a single follow-spot on the podium", intensity: theatrical}
+    fill: {what: "the square dark beyond the light"}
+    practicals: [truss_wash, follow_spot, string_lights]
+    rules: ["Valencia has her own light upstage right", "the portrait is lit from below when it rises"]
+    <<: *look

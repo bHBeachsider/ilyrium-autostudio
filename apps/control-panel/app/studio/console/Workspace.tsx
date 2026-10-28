@@ -1,10 +1,18 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Pipeline from "./Pipeline";
 import BoxPanel, { BoxStatus } from "./BoxPanel";
 import ChatPanel from "./ChatPanel";
+import ReviewRoom, { ReviewTake } from "./ReviewRoom";
+import RightsPanel, { RightsShot } from "./RightsPanel";
+import TimelinePanel, { TimelineShot, TimelineTake } from "./TimelinePanel";
+import { CostBar, useCostState } from "./CostMeter";
+import CommandPalette from "./CommandPalette";
+import QueueRail from "./QueueRail";
+
+const PIPE = process.env.NEXT_PUBLIC_PIPELINE_URL || "http://127.0.0.1:8800";
 
 /* Ilyrium Studio OS — workspace-driven film console. One project page; the left
    rail swaps the active functional domain (Scripting · Generation · Assembly ·
@@ -40,9 +48,11 @@ const ICONS: Record<string, React.ReactNode> = {
   analytics: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M4 4v16h16" /><path d="M8 16v-4M12 16V8M16 16v-6" /></svg>,
   pipeline: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><circle cx="5" cy="6" r="2" /><circle cx="5" cy="18" r="2" /><circle cx="19" cy="12" r="2" /><path d="M7 6h6a4 4 0 0 1 4 4M7 18h6a4 4 0 0 0 4-4" /></svg>,
   studio: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z" /><path d="M8 9h8M8 12h5" /></svg>,
+  review: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><circle cx="12" cy="12" r="9" /><path d="M10 8l5 4-5 4V8z" /></svg>,
 };
 const DOMAINS = [
   { key: "pipeline", label: "Pipeline", sub: "8-stage · auto-draft" },
+  { key: "review", label: "Review Room", sub: "Shot · take · approve" },
   { key: "studio", label: "Studio Chat", sub: "LLM · Box control" },
   { key: "script", label: "Ideation & Scripting", sub: "Pre-Production" },
   { key: "generation", label: "Asset Generation", sub: "Production" },
@@ -85,6 +95,14 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
   const [busy, setBusy] = useState<string | null>(null);
   const [msg, setMsg] = useState<{ id: string; text: string; ok: boolean } | null>(null);
   const [boxStatus, setBoxStatus] = useState<BoxStatus | null>(null);
+  const costState = useCostState();
+
+  async function paletteBoxStart() {
+    try { await fetch(`${PIPE}/box/start`, { method: "POST" }); } catch {}
+  }
+  async function paletteBoxStop() {
+    try { await fetch(`${PIPE}/box/stop`, { method: "POST" }); } catch {}
+  }
 
   const inProj = (id: string | null) => projId === "all" || id === projId;
   const proj = projects.find((p) => p.id === projId) || null;
@@ -152,7 +170,7 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
           );
         })}
         <div className="mt-auto text-[12px] text-dim px-2 pt-3 border-t border-edge">
-          Phase 1 · live from Neon
+          live from Neon
         </div>
       </nav>
 
@@ -167,17 +185,42 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
             </select>
             {proj && <span className="text-[13px] text-dim font-mono">{proj.type} · {proj.status} · {proj.greenlightLevel ?? "—"}</span>}
           </div>
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex gap-2 flex-wrap items-center">
             <Chip label="Assets" value={String(kpis.totalAssets)} />
             <Chip label="Masters" value={String(kpis.masterCount)} tone="#b98cff" />
             <Chip label="Pending" value={String(kpis.pendingCount)} tone={kpis.pendingCount ? "#e0a13a" : "#57c97a"} />
             <Chip label="Runs ok" value={pct(kpis.runOk, kpis.runOk + kpis.runFail)} tone={kpis.runFail ? "#e0a13a" : "#57c97a"} />
+            <div className="hidden sm:block border-l border-edge pl-3 ml-1">
+              <CostBar projectCents={kpis.estCostCents} costState={costState} />
+            </div>
+            <button
+              onClick={() => {}}
+              className="hidden sm:flex items-center gap-1 border border-edge rounded-md px-2 py-1 text-dim hover:text-fg hover:bg-raised text-[12px]"
+              title="Ctrl+K to open command palette"
+              onMouseDown={(e) => { e.preventDefault(); const ev = new KeyboardEvent("keydown", { key: "k", ctrlKey: true, bubbles: true }); window.dispatchEvent(ev); }}
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" /></svg>
+              <span>⌘K</span>
+            </button>
           </div>
         </header>
 
         <main className="flex-1 overflow-auto p-5">
           {/* DOMAIN 0 — PIPELINE (8 stage workspaces + auto-draft) */}
           {domain === "pipeline" && <Pipeline target={pipeTarget} />}
+
+          {/* DOMAIN: REVIEW ROOM (Frame.io-style take review surface) */}
+          {domain === "review" && (() => {
+            const videoAssets = projAssets.filter((a) => a.assetType === "video" || (a.uri && /\.(mp4|mov|webm|mkv)/i.test(a.uri)));
+            const takes: ReviewTake[] = videoAssets.map((a) => ({
+              takeId: a.id,
+              shotId: a.sceneNumber != null ? `scene-${a.sceneNumber}` : undefined,
+              sceneNumber: a.sceneNumber ?? undefined,
+              label: `${a.projectTitle} · ${a.assetType ?? "video"} · ${short(a.id, 6)}`,
+              url: a.uri,
+            }));
+            return <ReviewRoom takes={takes} />;
+          })()}
 
           {/* ── STUDIO CHAT + BOX CONTROL — multi-provider chat, box lifecycle ── */}
           {domain === "studio" && (
@@ -276,47 +319,74 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
           )}
 
           {/* ── DOMAIN 3 — TIMELINE & ASSEMBLY ──────────────────────────── */}
-          {domain === "assembly" && (
-            <div className="grid grid-cols-1 xl:grid-cols-[1fr_300px] gap-4">
-              <section>
+          {domain === "assembly" && (() => {
+            // Build shot data from project scenes + video assets (DB-sourced, read-only view)
+            const sceneNums = (proj?.scenes ?? []).map((s) => s.number);
+            const timelineShots: TimelineShot[] = sceneNums.map((n) => {
+              const sceneAssets = projAssets.filter((a) => a.sceneNumber === n && (a.assetType === "video" || /\.(mp4|mov|webm)/i.test(a.uri || "")));
+              const takes: TimelineTake[] = sceneAssets.map((a) => ({
+                take_id: a.id,
+                ok: true,
+                approval: a.rating === "approved" ? "approved" : a.rating === "rejected" ? "rejected" : null,
+                model: a.model,
+                public_url: a.uri,
+              }));
+              const masterTake = takes.find((t) => t.approval === "approved") ?? takes[0];
+              return { scene_number: n, takes, selected_take: masterTake?.take_id };
+            });
+            const masterAsset = projAssets.find((a) => a.assetType === "master");
+            return (
+              <div>
                 <h2 className="text-[17px] font-semibold mb-3">Timeline & Assembly {proj ? `— ${proj.title}` : ""}</h2>
-                <div className="aspect-video bg-black border border-edge rounded-lg flex items-center justify-center text-dim text-[14px] font-mono mb-3">
-                  {hasMaster ? "■ master cut — open in Studio to play" : "no master assembled yet"}
-                </div>
-                {/* Multi-track timeline mock */}
-                {["VIDEO", "AUDIO", "SFX/MUSIC"].map((track, ti) => (
-                  <div key={track} className="flex items-center gap-2 mb-1.5">
-                    <span className="w-20 text-[12px] text-dim font-mono uppercase">{track}</span>
-                    <div className="flex-1 flex gap-1">
-                      {(proj?.scenes ?? []).map((s) => (
-                        <div key={s.number} className="h-7 flex-1 rounded-sm border border-edge flex items-center justify-center text-[11px] font-mono"
-                          style={{ background: ti === 0 ? "#1b2027" : ti === 1 ? "#171b21" : "#141820", color: videoScenes.has(s.number) || ti > 0 ? "#97a1ad" : "#3a424d" }}>
-                          {s.number}
-                        </div>
-                      ))}
-                      {(!proj || proj.scenes.length === 0) && <span className="text-dim text-[13px]">—</span>}
-                    </div>
+                {timelineShots.length > 0 ? (
+                  <TimelinePanel
+                    shots={timelineShots}
+                    audioUrl={masterAsset?.uri ?? null}
+                  />
+                ) : (
+                  <div className="text-dim text-[14px]">No scene nodes yet — add scenes in Script stage, then generate takes.</div>
+                )}
+                {masterAsset && (
+                  <div className="mt-4 bg-panel border border-edge rounded-xl p-4 max-w-sm">
+                    <div className="text-[11px] text-dim uppercase tracking-wide mb-2">Master node</div>
+                    <dl className="text-[13px] space-y-1 font-mono">
+                      <div className="flex justify-between"><dt className="text-dim">uri</dt><dd>{uriTail(masterAsset.uri)}</dd></div>
+                      <div className="flex justify-between"><dt className="text-dim">engine</dt><dd>{masterAsset.model ?? "—"}</dd></div>
+                      <div className="flex justify-between"><dt className="text-dim">rating</dt><dd>{masterAsset.rating}</dd></div>
+                    </dl>
                   </div>
-                ))}
-              </section>
-              <aside className="bg-panel border border-edge rounded-xl p-4 h-fit">
-                <div className="text-[13px] text-dim uppercase tracking-wide mb-2">Master render node</div>
-                {projAssets.filter((a) => a.assetType === "master").slice(0, 1).map((m) => (
-                  <dl key={m.id} className="text-[14px] space-y-1.5 font-mono">
-                    <div className="flex justify-between"><dt className="text-dim">uri</dt><dd>{uriTail(m.uri)}</dd></div>
-                    <div className="flex justify-between"><dt className="text-dim">engine</dt><dd>{m.model ?? "—"}</dd></div>
-                    <div className="flex justify-between"><dt className="text-dim">rating</dt><dd>{m.rating}</dd></div>
-                  </dl>
-                ))}
-                {!hasMaster && <div className="text-dim text-sm">Assemble a cut in the Ad Studio (gate-enforced before publish).</div>}
-                <div className="mt-3 pt-3 border-t border-edge text-[12px] text-dim">Export / master settings live in the render pipeline. Publishing requires release approval (Analytics → rights queue).</div>
-              </aside>
-            </div>
-          )}
+                )}
+              </div>
+            );
+          })()}
 
           {/* ── DOMAIN 4 — PIPELINE ANALYTICS & GOVERNANCE ──────────────── */}
           {domain === "analytics" && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {/* Generation queue rail */}
+              <div className="lg:col-span-2">
+                <QueueRail pipe={PIPE} />
+              </div>
+
+              {/* Rights & Deliver */}
+              {(() => {
+                const videoAssets = projAssets.filter((a) => a.assetType === "video" || (a.uri && /\.(mp4|mov|webm|mkv)/i.test(a.uri)));
+                const shotMap = new Map<string, RightsShot>();
+                for (const a of videoAssets) {
+                  const shotId = a.sceneNumber != null ? `scene-${a.sceneNumber}` : a.id;
+                  if (!shotMap.has(shotId)) shotMap.set(shotId, { shotId, sceneNumber: a.sceneNumber ?? undefined, takes: [] });
+                  const model: string | null = (a as any).model ?? null;
+                  const c2paStatus = (a as any).c2pa_status ?? (model ? "valid" : "missing");
+                  shotMap.get(shotId)!.takes.push({ takeId: a.id, model, c2paStatus });
+                }
+                const rightsShots: RightsShot[] = Array.from(shotMap.values());
+                return (
+                  <div className="lg:col-span-2">
+                    <RightsPanel shots={rightsShots} />
+                  </div>
+                );
+              })()}
+
               {/* Cost telemetry / control plane (matrix §8) */}
               <section className="bg-panel border border-edge rounded-xl p-4 lg:col-span-2">
                 <div className="flex items-center justify-between mb-3">
@@ -470,6 +540,12 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
           )}
         </main>
       </div>
+      <CommandPalette
+        onSwitchDomain={setDomain}
+        onBoxStart={paletteBoxStart}
+        onBoxStop={paletteBoxStop}
+        boxState={boxStatus?.state}
+      />
     </div>
   );
 }

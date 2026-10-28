@@ -1,0 +1,50 @@
+{
+ "seq": "NH-ALL",
+ "scene": 15,
+ "duration_s": 15,
+ "location": {
+  "text": "The Anti-Thanksgiving Feast stage, upstage right, Valencia's own light",
+  "set": "RallyStage",
+  "match": "alias",
+  "confidence": 0.95,
+  "via": "the Anti-Thanksgiving Feast stage"
+ },
+ "build_queue": [],
+ "props": [],
+ "characters": [
+  {
+   "id": "valencia",
+   "mark": "upstage_right",
+   "posture": "standing",
+   "mannequin": "man_valencia"
+  }
+ ],
+ "text_planes": [],
+ "invariants": [
+  "the stage runs horizontally, parallel to the City Hall facade",
+  "exactly two tall timber uprights, one at each end of the stage"
+ ],
+ "time": null,
+ "lighting": "square_overcast_drizzle",
+ "world": {
+  "stage": "nh/NewHarnomy_square.usda",
+  "set": "RallyStage",
+  "variants": {
+   "build": "feast",
+   "weather": "overcast_drizzle",
+   "people": "feast"
+  },
+  "states_available": [
+   "joists",
+   "half_decked",
+   "beam_seated",
+   "swept",
+   "finished",
+   "feast"
+  ]
+ },
+ "camera": {
+  "framing": "medium",
+  "suggest": "SH009"
+ }
+}

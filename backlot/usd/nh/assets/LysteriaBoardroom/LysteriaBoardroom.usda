@@ -1,0 +1,35 @@
+#usda 1.0
+(
+    defaultPrim = "LysteriaBoardroom"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "LysteriaBoardroom" (
+    kind = "component"
+    prepend references = @./geo.usda@</geo>
+)
+{
+    custom string backlot:asset_id = "LysteriaBoardroom"
+    custom token backlot:grade = "conditioning"
+
+    def Scope "ControlPoints"
+    {
+        def Xform "mark_head_of_table"
+        {
+            custom double backlot:facing_deg = 180
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (22.9, 82.44999999999999, 7.6)
+            custom token backlot:posture = "seated"
+        }
+
+        def Xform "mark_window"
+        {
+            custom double backlot:facing_deg = 180
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (22.9, 76, 7.6)
+            custom token backlot:posture = "standing"
+        }
+    }
+}
+

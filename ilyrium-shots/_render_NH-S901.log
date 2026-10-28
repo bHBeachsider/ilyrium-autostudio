@@ -1,0 +1,69 @@
+  + done  NH-S901-SH001  -> ledger\renders\NH-S901\Wan2.2_i2v_00071_.mp4
+  + done  NH-S901-SH002  -> ledger\renders\NH-S901\Wan2.2_i2v_00072_.mp4
+  + done  NH-S901-SH003  -> ledger\renders\NH-S901\Wan2.2_i2v_00073_.mp4
+  + done  NH-S901-SH004  -> ledger\renders\NH-S901\Wan2.2_i2v_00074_.mp4
+  ! fail  NH-S901-SH005  -> shot_to_comfy failed (1): [automap warning] multiple LoRA loader nodes ['129:102', '129:101']; using 129:102
+[automap warning] found width/height but no length/frames field
+[automap warning] no fps/frame_rate field on a video-output node (optional)
+Traceback (most recent call last):
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\ilyrium-shots\shot_to_comfy.py", line 287, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\ilyrium-shots\shot_to_comfy.py", line 280, in main
+    files 
+  ! fail  NH-S901-SH006  -> shot_to_comfy failed (1): Traceback (most recent call last):
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\ilyrium-shots\shot_to_comfy.py", line 287, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\ilyrium-shots\shot_to_comfy.py", line 272, in main
+    info = upload_image(args.comfy, args.upload)
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\ilyrium-shots\shot_to_comfy.py", line 217, in upload_image
+    return harness_run.comfy_upload_image(comfy, local_path)
+           ~
+  ! fail  NH-S901-SH007  -> shot_to_comfy failed (1): Traceback (most recent call last):
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\ilyrium-shots\shot_to_comfy.py", line 287, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\ilyrium-shots\shot_to_comfy.py", line 272, in main
+    info = upload_image(args.comfy, args.upload)
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\ilyrium-shots\shot_to_comfy.py", line 217, in upload_image
+    return harness_run.comfy_upload_image(comfy, local_path)
+           ~
+  ! fail  NH-S901-SH008  -> shot_to_comfy failed (1): Traceback (most recent call last):
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\ilyrium-shots\shot_to_comfy.py", line 287, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\ilyrium-shots\shot_to_comfy.py", line 272, in main
+    info = upload_image(args.comfy, args.upload)
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\ilyrium-shots\shot_to_comfy.py", line 217, in upload_image
+    return harness_run.comfy_upload_image(comfy, local_path)
+           ~
+  ! fail  NH-S901-SH009  -> shot_to_comfy failed (1): Traceback (most recent call last):
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\ilyrium-shots\shot_to_comfy.py", line 287, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\ilyrium-shots\shot_to_comfy.py", line 272, in main
+    info = upload_image(args.comfy, args.upload)
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\ilyrium-shots\shot_to_comfy.py", line 217, in upload_image
+    return harness_run.comfy_upload_image(comfy, local_path)
+           ~
+  ! fail  NH-S901-SH010  -> shot_to_comfy failed (1): Traceback (most recent call last):
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\ilyrium-shots\shot_to_comfy.py", line 287, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\ilyrium-shots\shot_to_comfy.py", line 272, in main
+    info = upload_image(args.comfy, args.upload)
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\ilyrium-shots\shot_to_comfy.py", line 217, in upload_image
+    return harness_run.comfy_upload_image(comfy, local_path)
+           ~
+  ! fail  NH-S901-SH011  -> shot_to_comfy failed (1): Traceback (most recent call last):
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\ilyrium-shots\shot_to_comfy.py", line 287, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\ilyrium-shots\shot_to_comfy.py", line 272, in main
+    info = upload_image(args.comfy, args.upload)
+  File "C:\Users\bradu\Documents\ilyrium-autostudio\ilyrium-shots\shot_to_comfy.py", line 217, in upload_image
+    return harness_run.comfy_upload_image(comfy, local_path)
+           ~
+
+NH-S901: rendered=4 failed=7 skipped=0  chain_ok=True  ledger=ledger\NH-S901.jsonl

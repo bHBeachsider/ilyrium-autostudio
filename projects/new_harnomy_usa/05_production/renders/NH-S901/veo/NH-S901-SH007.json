@@ -1,0 +1,26 @@
+{
+  "shot_id": "NH-S901-SH007",
+  "endpoint": "fal-ai/veo3.1/image-to-video",
+  "keyframe": "04_preproduction\\keyframes\\NH-S901\\NH-S901-SH007_key.png",
+  "arguments": {
+    "prompt": "Medium-wide shot from the paving in front of a long decked timber stage. A long pine crossbeam hanging level from two hoist cables descends the last hand's breadth and settles onto the tops of the two tall pine uprights at the ends of the stage; the cables go slack. Two workmen on the platform, backs to the camera, steady it with tag ropes and look up as it seats, then lower their arms and stand still, rain on their vests. A heavy flat overcast, sheet-cake grey sky, no sun and no shadows; a light steady drizzle falls, fine rain visible against the dark stone, the granite paving wet with shallow puddles mirroring the grey sky; street lamps and windows glow warm and are doubled in the wet. The camera is locked off on a tripod and does not move at all: no pan, no tilt, no zoom, no drift, no handheld shake. Real-time speed, natural human movement, never slow motion. Behind and above them the semicircular colonnade of City Hall and its mauve banner do not move; parked cars stay parked; the lumber flatbed and box van stand at the kerb; one distant pedestrian walks slowly away under an umbrella. On the far street beyond the square and along the side kerbs a few cars move slowly and steadily with their headlights and tail-lights on, reflected in the wet road, at an unhurried city pace - no car ever enters the square or comes near the stage. Unhurried real-time motion, and after the beam seats, stillness. Prestige political drama photographed on an Arri Alexa with anamorphic lenses: flat overcast daylight, slight 35mm film grain, colours desaturated about twelve percent, warm tungstens, deep browns and charcoals in the shadows, photographic realism.",
+    "aspect_ratio": "16:9",
+    "duration": "6s",
+    "resolution": "1080p",
+    "generate_audio": false,
+    "negative_prompt": "turning around, walking away, camera pull back, dolly, reframing, people walking into frame, pedestrians in the foreground, moving bus, moving vehicles, slow motion, speed ramp, time-lapse, camera movement, zoom, pan, dolly, handheld shake, on-screen text, captions, subtitles, watermark, logo, lens flare, fast traffic, cars driving through the frame, people looking at the camera, faces toward camera, cartoon, illustration, oversaturated",
+    "seed": 901007
+  },
+  "image_url": "https://v3b.fal.media/files/b/0aa93ea0/gSXvVFqOFb6R46ZMhmp9l_NH-S901-SH007_key.png",
+  "response": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0aa93ead/Tvdu3ffoN32Sz-0SxfF-w_4f7dc77d3ebf423390da5094806864de.mp4",
+      "content_type": "video/mp4",
+      "file_name": "4f7dc77d3ebf423390da5094806864de.mp4",
+      "file_size": 12285278
+    }
+  },
+  "seconds": 133.3,
+  "est_cost_usd": 1.2000000000000002,
+  "rendered_at": "2026-09-05T15:51:35"
+}

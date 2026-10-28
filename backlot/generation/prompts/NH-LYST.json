@@ -1,0 +1,33 @@
+{
+ "_comment": "LYSTERIA - Summer's office and the boardroom (no number yet; box session 6 measures the gate on an interior with a glass wall). Layout comes from the depth+edge passes (glass hidden from both: a pane is not a wall); words carry material, light and the people. Summer's descriptor is the LOCKED casting block (SUM-K02, 2026-09-03) verbatim. The sun is the opera's one daylight exception (visual_signature.md, 2026-09-09): cold-white, never golden. THE LAW: nothing here is ironic - everything is beautiful, tidy and certain.",
+ "shared": {
+  "look": "prestige political drama, House of Cards season one color grade, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, deep browns and charcoals in shadows, photographic realism, cinematic",
+  "light": "low cold-white winter sun streaming through one wide glazed band behind the desk, the white walls and white floor bouncing it everywhere so the room holds almost no shadow, never golden, the square beyond the glass flat and grey by comparison, no lens flare, no screen glow",
+  "dress": "an all-white office in the manner of a high-end London public relations firm: white walls, a white poured floor, pale oak and brushed steel, white chairs, one accent colour only - a dusty drained rose, never a bright or saturated pink - on a low screen and a framed campaign banner; through the glazed band the grey plaza of a small city, a timber stage half-built in front of the limestone colonnade of a city hall; no logo, no lettering, no signage"
+ },
+ "shots": {
+  "LYST_DESK": {
+   "set_state": "half_decked",
+   "text": "Wide shot, 2.39:1, from the open-plan floor of the white office looking straight through a full-height glass wall with one slim white mullion into a private office beyond: a woman of thirty-eight seated at a white desk facing the camera, genuinely beautiful in a cool patrician way, skin smooth and firm at the cheek, jaw and throat, ash-blonde hair in a low chignon, a narrow face, luminous and well-rested, slim and strong, a well-cut dark blazer over a fine plain knit in expensive unpatterned fabric, one minimal earring, a serene inward calm with light in it, the head carried level and the eyes clear, looking past the lens, mouth closed; two white chairs on the near side of her desk, empty; a single steel desk lamp with a small dusty-rose shade at her left; a tight grid of twelve small white-framed plaques on the wall at the left of frame; behind her the wide glazed band, cold-white sun, and through it the plaza, the half-built timber stage and the colonnade.",
+   "invariants": [
+    "exactly one person, a woman seated at the desk facing the camera, looking past the lens, mouth closed, no smile",
+    "a full-height glass wall between the camera and her, with one slim white vertical mullion",
+    "one wide glazed band behind her desk; through it the plaza, a half-built timber stage and a colonnade",
+    "a tight grid of small white-framed plaques on the wall at the left of frame",
+    "cold-white sun, an all-white room, never golden light, never a saturated pink",
+    "no logo, no lettering, no signage anywhere in frame"
+   ]
+  },
+  "LYST_BOARD": {
+   "set_state": "half_decked",
+   "text": "Wide shot, 2.39:1, down the length of a white boardroom to one wide glazed band at the far end: a long pale-oak table with ten white chairs; at the head of the table, nearest the camera and seen from behind at three-quarter, a woman of thirty-eight, ash-blonde hair in a low chignon, a well-cut dark blazer, seated facing the window; standing at the window at the far right of the table, a controlled man in his late forties, neat conservative hair greying at the temples, dark muted wool suit, white shirt, hands clasped behind him, looking down at the plaza where a timber stage is half-built in front of the colonnade; two slim linear pendant lights over the table; white walls, white floor, cold-white sun from the band.",
+   "invariants": [
+    "exactly two people: a woman seated at the head of the long table with her back to the camera, and a man standing at the window",
+    "one long pale-oak table with ten white chairs, five a side",
+    "one wide glazed band at the far end; through it the plaza, the half-built stage and the colonnade below",
+    "cold-white sun, an all-white room, never golden light",
+    "no logo, no lettering, no signage anywhere in frame"
+   ]
+  }
+ }
+}

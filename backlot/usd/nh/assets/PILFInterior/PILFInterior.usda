@@ -1,0 +1,16 @@
+#usda 1.0
+(
+    defaultPrim = "PILFInterior"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "PILFInterior" (
+    kind = "component"
+    prepend references = @./geo.usda@</geo>
+)
+{
+    custom string backlot:asset_id = "PILFInterior"
+    custom token backlot:grade = "conditioning"
+}
+

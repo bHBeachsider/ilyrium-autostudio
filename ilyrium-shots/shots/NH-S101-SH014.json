@@ -1,0 +1,33 @@
+{
+  "shot_id": "NH-S101-SH014",
+  "song_id": "NH-S101",
+  "duration_s": 8,
+  "camera": {
+    "shot_size": "wide",
+    "movement": "tracking",
+    "lens_mm": 24
+  },
+  "subjects": [],
+  "setting": "The theater auditorium; the vomitoria; then the stage",
+  "mood": "the chorus sings with total sincerity",
+  "action": "Houselights come up on the audience as the chorus streams in from the vomitoria around the house, already singing Competing Anthems of Victimhood. The audience is surrounded. By the time the chorus reaches the stage, the house has been claimed.",
+  "prompt": "wide shot, tracking, a theater audience in their seats surrounded as a large chorus in professional-class progressive dress streams in singing through the aisles and vomitoria of the house toward the stage, many carrying worn trade paperbacks in dusty brownish mauve, the color of a faded 1970s university-press paperback, not lavender, not aubergine, not pink, warm house light, the stage still dim ahead of them, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "",
+    "seed": 101014
+  },
+  "seed": 101014,
+  "continuity": {
+    "prev_shot": "NH-S101-SH013",
+    "flf2v": true
+  },
+  "render": {
+    "width": 640,
+    "height": 640,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 8
+  }
+}

@@ -1,0 +1,71 @@
+{
+ "seq": "NH-ALL",
+ "scene": 6,
+ "duration_s": 6,
+ "location": {
+  "text": "Pengold's mayoral office at dawn",
+  "set": "PengoldOffice",
+  "match": "alias",
+  "confidence": 0.98,
+  "via": "Pengold's mayoral office"
+ },
+ "build_queue": [],
+ "props": [
+  {
+   "noun": "desk",
+   "asset": "PengoldOffice/po_desk",
+   "status": "exists"
+  },
+  {
+   "noun": "desk lamp",
+   "asset": "PengoldOffice/po_lamp",
+   "status": "exists"
+  },
+  {
+   "noun": "lamp",
+   "asset": "PengoldOffice/po_lamp",
+   "status": "exists"
+  },
+  {
+   "noun": "newspaper",
+   "asset": "PengoldOffice/po_newspaper",
+   "status": "exists"
+  }
+ ],
+ "characters": [
+  {
+   "id": "pengold",
+   "mark": "desk_chair",
+   "posture": "seated",
+   "mannequin": "man_pengold"
+  }
+ ],
+ "text_planes": [
+  "po_portrait"
+ ],
+ "invariants": [
+  "three French windows with the giant columns a metre beyond the glass",
+  "single-source tungsten from the desk lamp; dawn light held off the desk",
+  "three mauve books stacked on the credenza; one pristine mauve copy squared on the desk"
+ ],
+ "time": "dawn",
+ "lighting": "office_dawn",
+ "world": {
+  "stage": "nh/NewHarnomy_square.usda",
+  "set": "PengoldOffice",
+  "variants": {
+   "build": "finished",
+   "weather": "overcast_drizzle",
+   "office": "dawn",
+   "people": "office_dawn"
+  },
+  "states_available": [
+   "dawn",
+   "meeting"
+  ]
+ },
+ "camera": {
+  "framing": "medium",
+  "suggest": "S101_SH005"
+ }
+}

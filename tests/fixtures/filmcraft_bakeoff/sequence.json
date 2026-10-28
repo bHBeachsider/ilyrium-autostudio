@@ -1,0 +1,2088 @@
+{
+  "audio": [
+    {
+      "enabled": true,
+      "id": 15,
+      "items": [
+        {
+          "clip": 24,
+          "duration": 1280664000000,
+          "durationFrames": 121,
+          "effects": [
+            {
+              "effect": "volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "level": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "channel_volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "left": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "right": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "panner",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "balance": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 2720088000000,
+          "endFrame": 257,
+          "gainDb": -9.12,
+          "item": 2,
+          "label": "Iris",
+          "link": 22,
+          "name": "shot2_take4.mp4",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 1280664000000,
+          "speed": 1.0,
+          "start": 1439424000000,
+          "startFrame": 136
+        },
+        {
+          "clip": 27,
+          "duration": 1280664000000,
+          "durationFrames": 121,
+          "effects": [
+            {
+              "effect": "volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "level": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "channel_volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "left": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "right": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "panner",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "balance": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 4000752000000,
+          "endFrame": 378,
+          "gainDb": -9.12,
+          "item": 2,
+          "label": "Iris",
+          "link": 25,
+          "name": "shot2_take4.mp4",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 1280664000000,
+          "speed": 1.0,
+          "start": 2720088000000,
+          "startFrame": 257
+        },
+        {
+          "clip": 30,
+          "duration": 1280664000000,
+          "durationFrames": 121,
+          "effects": [
+            {
+              "effect": "volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "level": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "channel_volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "left": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "right": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "panner",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "balance": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 5281416000000,
+          "endFrame": 499,
+          "gainDb": -9.12,
+          "item": 2,
+          "label": "Iris",
+          "link": 28,
+          "name": "shot2_take4.mp4",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 1280664000000,
+          "speed": 1.0,
+          "start": 4000752000000,
+          "startFrame": 378
+        },
+        {
+          "clip": 33,
+          "duration": 338688000000,
+          "durationFrames": 32,
+          "effects": [
+            {
+              "effect": "volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "level": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "channel_volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "left": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "right": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "panner",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "balance": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 5620104000000,
+          "endFrame": 531,
+          "gainDb": -9.12,
+          "item": 2,
+          "label": "Iris",
+          "link": 31,
+          "name": "shot2_take4.mp4",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 338688000000,
+          "speed": 1.0,
+          "start": 5281416000000,
+          "startFrame": 499
+        },
+        {
+          "clip": 37,
+          "duration": 1280664000000,
+          "durationFrames": 121,
+          "effects": [
+            {
+              "effect": "volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "level": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "channel_volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "left": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "right": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "panner",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "balance": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 6900768000000,
+          "endFrame": 652,
+          "gainDb": -9.12,
+          "item": 3,
+          "label": "Iris",
+          "link": 35,
+          "name": "shot3_take4.mp4",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 1280664000000,
+          "speed": 1.0,
+          "start": 5620104000000,
+          "startFrame": 531
+        },
+        {
+          "clip": 40,
+          "duration": 1280664000000,
+          "durationFrames": 121,
+          "effects": [
+            {
+              "effect": "volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "level": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "channel_volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "left": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "right": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "panner",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "balance": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 8181432000000,
+          "endFrame": 773,
+          "gainDb": -9.12,
+          "item": 3,
+          "label": "Iris",
+          "link": 38,
+          "name": "shot3_take4.mp4",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 1280664000000,
+          "speed": 1.0,
+          "start": 6900768000000,
+          "startFrame": 652
+        },
+        {
+          "clip": 43,
+          "duration": 529200000000,
+          "durationFrames": 50,
+          "effects": [
+            {
+              "effect": "volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "level": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "channel_volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "left": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "right": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "panner",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "balance": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 8710632000000,
+          "endFrame": 823,
+          "gainDb": -9.12,
+          "item": 3,
+          "label": "Iris",
+          "link": 41,
+          "name": "shot3_take4.mp4",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 529200000000,
+          "speed": 1.0,
+          "start": 8181432000000,
+          "startFrame": 773
+        }
+      ],
+      "locked": false,
+      "muted": false,
+      "name": "Audio 1",
+      "solo": false,
+      "syncLock": true,
+      "transitions": []
+    },
+    {
+      "enabled": true,
+      "id": 16,
+      "items": [
+        {
+          "clip": 21,
+          "duration": 1439424000000,
+          "durationFrames": 136,
+          "effects": [
+            {
+              "effect": "volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "level": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "channel_volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "left": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "right": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "panner",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "balance": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 1439424000000,
+          "endFrame": 136,
+          "gainDb": 0.0,
+          "item": 6,
+          "label": "Caribbean",
+          "link": null,
+          "name": "shot1.mp3",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 1439424000000,
+          "speed": 1.0,
+          "start": 0,
+          "startFrame": 0
+        },
+        {
+          "clip": 34,
+          "duration": 4180680000000,
+          "durationFrames": 395,
+          "effects": [
+            {
+              "effect": "volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "level": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "channel_volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "left": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "right": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "panner",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "balance": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 5620104000000,
+          "endFrame": 531,
+          "gainDb": 0.0,
+          "item": 7,
+          "label": "Caribbean",
+          "link": null,
+          "name": "shot2.mp3",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 4180680000000,
+          "speed": 1.0,
+          "start": 1439424000000,
+          "startFrame": 136
+        },
+        {
+          "clip": 44,
+          "duration": 3090528000000,
+          "durationFrames": 292,
+          "effects": [
+            {
+              "effect": "volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "level": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "channel_volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "left": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "right": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "panner",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "balance": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 8710632000000,
+          "endFrame": 823,
+          "gainDb": 0.0,
+          "item": 8,
+          "label": "Caribbean",
+          "link": null,
+          "name": "shot3.mp3",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 3090528000000,
+          "speed": 1.0,
+          "start": 5620104000000,
+          "startFrame": 531
+        },
+        {
+          "clip": 47,
+          "duration": 1386504000000,
+          "durationFrames": 131,
+          "effects": [
+            {
+              "effect": "volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "level": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "channel_volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "left": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "right": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "panner",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "balance": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 10097136000000,
+          "endFrame": 954,
+          "gainDb": 0.0,
+          "item": 9,
+          "label": "Caribbean",
+          "link": null,
+          "name": "shot4.mp3",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 1386504000000,
+          "speed": 1.0,
+          "start": 8710632000000,
+          "startFrame": 823
+        },
+        {
+          "clip": 50,
+          "duration": 2529576000000,
+          "durationFrames": 239,
+          "effects": [
+            {
+              "effect": "volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "level": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "channel_volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "left": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "right": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "panner",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "balance": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 12626712000000,
+          "endFrame": 1193,
+          "gainDb": 0.0,
+          "item": 10,
+          "label": "Caribbean",
+          "link": null,
+          "name": "shot5.mp3",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 2529576000000,
+          "speed": 1.0,
+          "start": 10097136000000,
+          "startFrame": 954
+        }
+      ],
+      "locked": false,
+      "muted": false,
+      "name": "Audio 2",
+      "solo": false,
+      "syncLock": true,
+      "transitions": []
+    },
+    {
+      "enabled": true,
+      "id": 17,
+      "items": [
+        {
+          "clip": 51,
+          "duration": 12626712000000,
+          "durationFrames": 1193,
+          "effects": [
+            {
+              "effect": "volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "level": {
+                  "keyframes": 3,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "channel_volume",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "bypass": {
+                  "keyframes": 0,
+                  "value": "Bool(false)"
+                },
+                "left": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "right": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            },
+            {
+              "effect": "panner",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "balance": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 12626712000000,
+          "endFrame": 1193,
+          "gainDb": -16.48,
+          "item": 11,
+          "label": "Caribbean",
+          "link": null,
+          "name": "KING_SIZE_The_Ballad_of_Stripe2.mp3",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 12626712000000,
+          "speed": 1.0,
+          "start": 0,
+          "startFrame": 0
+        }
+      ],
+      "locked": false,
+      "muted": false,
+      "name": "Audio 3",
+      "solo": false,
+      "syncLock": true,
+      "transitions": []
+    }
+  ],
+  "duration": 12626712000000,
+  "durationFrames": 1193,
+  "gapSelection": null,
+  "id": 18,
+  "in": null,
+  "markers": [
+    {
+      "color": "Green",
+      "comment": "Pen-line cartoon, cavernous warehouse showroom stacked with ",
+      "duration": 0,
+      "id": 52,
+      "kind": "Comment",
+      "name": "scene_1",
+      "start": 0
+    },
+    {
+      "color": "Green",
+      "comment": "Pen-line cartoon",
+      "duration": 0,
+      "id": 53,
+      "kind": "Comment",
+      "name": "scene_2",
+      "start": 1440270720000
+    },
+    {
+      "color": "Green",
+      "comment": "Pen-line cartoon",
+      "duration": 0,
+      "id": 54,
+      "kind": "Comment",
+      "name": "scene_3",
+      "start": 5618833920000
+    },
+    {
+      "color": "Green",
+      "comment": "Pen-line cartoon, fisheye distortion close-up: Stripe leans ",
+      "duration": 0,
+      "id": 55,
+      "kind": "Comment",
+      "name": "scene_4",
+      "start": 8712748800000
+    },
+    {
+      "color": "Green",
+      "comment": "rear view walk-off into the showroom, stain, KINGSIZE logo, ",
+      "duration": 0,
+      "id": 56,
+      "kind": "Comment",
+      "name": "scene_5",
+      "start": 10099843200000
+    }
+  ],
+  "name": "cut_4",
+  "out": null,
+  "playhead": null,
+  "selection": [],
+  "settings": {
+    "audio_master": "Stereo",
+    "color": {
+      "auto_tone_map": true,
+      "wide_gamut": false,
+      "working": "Rec709"
+    },
+    "drop_frame": false,
+    "frame_rate": {
+      "den": 1,
+      "num": 24
+    },
+    "height": 1080,
+    "max_bit_depth": false,
+    "max_render_quality": false,
+    "par": [
+      1,
+      1
+    ],
+    "preset": "1920x1080 24",
+    "preview_codec": "ProRes 422",
+    "sample_rate": 48000,
+    "width": 1920,
+    "working_space": "Rec. 709"
+  },
+  "split": {
+    "audioIn": null,
+    "audioOut": null,
+    "videoIn": null,
+    "videoOut": null
+  },
+  "transitionSelection": [],
+  "video": [
+    {
+      "enabled": true,
+      "id": 12,
+      "items": [
+        {
+          "clip": 19,
+          "duration": 1291248000000,
+          "durationFrames": 122,
+          "effects": [
+            {
+              "effect": "motion",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "anchor": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 384.0, y: 216.0 })"
+                },
+                "anti_flicker": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "position": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 960.0, y: 540.0 })"
+                },
+                "rotation": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "scale": {
+                  "keyframes": 0,
+                  "value": "Float(250.0)"
+                },
+                "scale_width": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                },
+                "uniform_scale": {
+                  "keyframes": 0,
+                  "value": "Bool(true)"
+                }
+              }
+            },
+            {
+              "effect": "opacity",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "blend": {
+                  "keyframes": 0,
+                  "value": "Choice(0)"
+                },
+                "opacity": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            },
+            {
+              "effect": "time_remap",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "speed": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 1291248000000,
+          "endFrame": 122,
+          "gainDb": 0.0,
+          "item": 1,
+          "label": "Violet",
+          "link": null,
+          "name": "shot1_take4.mp4",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 1291248000000,
+          "speed": 1.0,
+          "start": 0,
+          "startFrame": 0
+        },
+        {
+          "clip": 20,
+          "duration": 148176000000,
+          "durationFrames": 14,
+          "effects": [
+            {
+              "effect": "motion",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "anchor": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 384.0, y: 216.0 })"
+                },
+                "anti_flicker": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "position": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 960.0, y: 540.0 })"
+                },
+                "rotation": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "scale": {
+                  "keyframes": 0,
+                  "value": "Float(250.0)"
+                },
+                "scale_width": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                },
+                "uniform_scale": {
+                  "keyframes": 0,
+                  "value": "Bool(true)"
+                }
+              }
+            },
+            {
+              "effect": "opacity",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "blend": {
+                  "keyframes": 0,
+                  "value": "Choice(0)"
+                },
+                "opacity": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            },
+            {
+              "effect": "time_remap",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "speed": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 1439424000000,
+          "endFrame": 136,
+          "gainDb": 0.0,
+          "item": 1,
+          "label": "Violet",
+          "link": null,
+          "name": "shot1_take4.mp4",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 148176000000,
+          "speed": 1.0,
+          "start": 1291248000000,
+          "startFrame": 122
+        },
+        {
+          "clip": 23,
+          "duration": 1280664000000,
+          "durationFrames": 121,
+          "effects": [
+            {
+              "effect": "motion",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "anchor": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 544.0, y: 952.0 })"
+                },
+                "anti_flicker": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "position": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 960.0, y: 540.0 })"
+                },
+                "rotation": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "scale": {
+                  "keyframes": 0,
+                  "value": "Float(56.72268907563025)"
+                },
+                "scale_width": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                },
+                "uniform_scale": {
+                  "keyframes": 0,
+                  "value": "Bool(true)"
+                }
+              }
+            },
+            {
+              "effect": "opacity",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "blend": {
+                  "keyframes": 0,
+                  "value": "Choice(0)"
+                },
+                "opacity": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            },
+            {
+              "effect": "time_remap",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "speed": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 2720088000000,
+          "endFrame": 257,
+          "gainDb": 0.0,
+          "item": 2,
+          "label": "Iris",
+          "link": 22,
+          "name": "shot2_take4.mp4",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 1280664000000,
+          "speed": 1.0,
+          "start": 1439424000000,
+          "startFrame": 136
+        },
+        {
+          "clip": 26,
+          "duration": 1280664000000,
+          "durationFrames": 121,
+          "effects": [
+            {
+              "effect": "motion",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "anchor": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 544.0, y: 952.0 })"
+                },
+                "anti_flicker": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "position": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 960.0, y: 540.0 })"
+                },
+                "rotation": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "scale": {
+                  "keyframes": 0,
+                  "value": "Float(56.72268907563025)"
+                },
+                "scale_width": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                },
+                "uniform_scale": {
+                  "keyframes": 0,
+                  "value": "Bool(true)"
+                }
+              }
+            },
+            {
+              "effect": "opacity",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "blend": {
+                  "keyframes": 0,
+                  "value": "Choice(0)"
+                },
+                "opacity": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            },
+            {
+              "effect": "time_remap",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "speed": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 4000752000000,
+          "endFrame": 378,
+          "gainDb": 0.0,
+          "item": 2,
+          "label": "Iris",
+          "link": 25,
+          "name": "shot2_take4.mp4",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 1280664000000,
+          "speed": 1.0,
+          "start": 2720088000000,
+          "startFrame": 257
+        },
+        {
+          "clip": 29,
+          "duration": 1280664000000,
+          "durationFrames": 121,
+          "effects": [
+            {
+              "effect": "motion",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "anchor": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 544.0, y: 952.0 })"
+                },
+                "anti_flicker": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "position": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 960.0, y: 540.0 })"
+                },
+                "rotation": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "scale": {
+                  "keyframes": 0,
+                  "value": "Float(56.72268907563025)"
+                },
+                "scale_width": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                },
+                "uniform_scale": {
+                  "keyframes": 0,
+                  "value": "Bool(true)"
+                }
+              }
+            },
+            {
+              "effect": "opacity",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "blend": {
+                  "keyframes": 0,
+                  "value": "Choice(0)"
+                },
+                "opacity": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            },
+            {
+              "effect": "time_remap",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "speed": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 5281416000000,
+          "endFrame": 499,
+          "gainDb": 0.0,
+          "item": 2,
+          "label": "Iris",
+          "link": 28,
+          "name": "shot2_take4.mp4",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 1280664000000,
+          "speed": 1.0,
+          "start": 4000752000000,
+          "startFrame": 378
+        },
+        {
+          "clip": 32,
+          "duration": 338688000000,
+          "durationFrames": 32,
+          "effects": [
+            {
+              "effect": "motion",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "anchor": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 544.0, y: 952.0 })"
+                },
+                "anti_flicker": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "position": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 960.0, y: 540.0 })"
+                },
+                "rotation": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "scale": {
+                  "keyframes": 0,
+                  "value": "Float(56.72268907563025)"
+                },
+                "scale_width": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                },
+                "uniform_scale": {
+                  "keyframes": 0,
+                  "value": "Bool(true)"
+                }
+              }
+            },
+            {
+              "effect": "opacity",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "blend": {
+                  "keyframes": 0,
+                  "value": "Choice(0)"
+                },
+                "opacity": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            },
+            {
+              "effect": "time_remap",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "speed": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 5620104000000,
+          "endFrame": 531,
+          "gainDb": 0.0,
+          "item": 2,
+          "label": "Iris",
+          "link": 31,
+          "name": "shot2_take4.mp4",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 338688000000,
+          "speed": 1.0,
+          "start": 5281416000000,
+          "startFrame": 499
+        },
+        {
+          "clip": 36,
+          "duration": 1280664000000,
+          "durationFrames": 121,
+          "effects": [
+            {
+              "effect": "motion",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "anchor": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 544.0, y: 952.0 })"
+                },
+                "anti_flicker": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "position": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 960.0, y: 540.0 })"
+                },
+                "rotation": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "scale": {
+                  "keyframes": 0,
+                  "value": "Float(56.72268907563025)"
+                },
+                "scale_width": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                },
+                "uniform_scale": {
+                  "keyframes": 0,
+                  "value": "Bool(true)"
+                }
+              }
+            },
+            {
+              "effect": "opacity",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "blend": {
+                  "keyframes": 0,
+                  "value": "Choice(0)"
+                },
+                "opacity": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            },
+            {
+              "effect": "time_remap",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "speed": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 6900768000000,
+          "endFrame": 652,
+          "gainDb": 0.0,
+          "item": 3,
+          "label": "Iris",
+          "link": 35,
+          "name": "shot3_take4.mp4",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 1280664000000,
+          "speed": 1.0,
+          "start": 5620104000000,
+          "startFrame": 531
+        },
+        {
+          "clip": 39,
+          "duration": 1280664000000,
+          "durationFrames": 121,
+          "effects": [
+            {
+              "effect": "motion",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "anchor": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 544.0, y: 952.0 })"
+                },
+                "anti_flicker": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "position": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 960.0, y: 540.0 })"
+                },
+                "rotation": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "scale": {
+                  "keyframes": 0,
+                  "value": "Float(56.72268907563025)"
+                },
+                "scale_width": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                },
+                "uniform_scale": {
+                  "keyframes": 0,
+                  "value": "Bool(true)"
+                }
+              }
+            },
+            {
+              "effect": "opacity",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "blend": {
+                  "keyframes": 0,
+                  "value": "Choice(0)"
+                },
+                "opacity": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            },
+            {
+              "effect": "time_remap",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "speed": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 8181432000000,
+          "endFrame": 773,
+          "gainDb": 0.0,
+          "item": 3,
+          "label": "Iris",
+          "link": 38,
+          "name": "shot3_take4.mp4",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 1280664000000,
+          "speed": 1.0,
+          "start": 6900768000000,
+          "startFrame": 652
+        },
+        {
+          "clip": 42,
+          "duration": 529200000000,
+          "durationFrames": 50,
+          "effects": [
+            {
+              "effect": "motion",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "anchor": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 544.0, y: 952.0 })"
+                },
+                "anti_flicker": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "position": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 960.0, y: 540.0 })"
+                },
+                "rotation": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "scale": {
+                  "keyframes": 0,
+                  "value": "Float(56.72268907563025)"
+                },
+                "scale_width": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                },
+                "uniform_scale": {
+                  "keyframes": 0,
+                  "value": "Bool(true)"
+                }
+              }
+            },
+            {
+              "effect": "opacity",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "blend": {
+                  "keyframes": 0,
+                  "value": "Choice(0)"
+                },
+                "opacity": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            },
+            {
+              "effect": "time_remap",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "speed": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 8710632000000,
+          "endFrame": 823,
+          "gainDb": 0.0,
+          "item": 3,
+          "label": "Iris",
+          "link": 41,
+          "name": "shot3_take4.mp4",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 529200000000,
+          "speed": 1.0,
+          "start": 8181432000000,
+          "startFrame": 773
+        },
+        {
+          "clip": 45,
+          "duration": 1291248000000,
+          "durationFrames": 122,
+          "effects": [
+            {
+              "effect": "motion",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "anchor": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 384.0, y: 216.0 })"
+                },
+                "anti_flicker": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "position": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 960.0, y: 540.0 })"
+                },
+                "rotation": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "scale": {
+                  "keyframes": 0,
+                  "value": "Float(250.0)"
+                },
+                "scale_width": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                },
+                "uniform_scale": {
+                  "keyframes": 0,
+                  "value": "Bool(true)"
+                }
+              }
+            },
+            {
+              "effect": "opacity",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "blend": {
+                  "keyframes": 0,
+                  "value": "Choice(0)"
+                },
+                "opacity": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            },
+            {
+              "effect": "time_remap",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "speed": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 10001880000000,
+          "endFrame": 945,
+          "gainDb": 0.0,
+          "item": 4,
+          "label": "Violet",
+          "link": null,
+          "name": "shot4_take4.mp4",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 1291248000000,
+          "speed": 1.0,
+          "start": 8710632000000,
+          "startFrame": 823
+        },
+        {
+          "clip": 46,
+          "duration": 95256000000,
+          "durationFrames": 9,
+          "effects": [
+            {
+              "effect": "motion",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "anchor": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 384.0, y: 216.0 })"
+                },
+                "anti_flicker": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "position": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 960.0, y: 540.0 })"
+                },
+                "rotation": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "scale": {
+                  "keyframes": 0,
+                  "value": "Float(250.0)"
+                },
+                "scale_width": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                },
+                "uniform_scale": {
+                  "keyframes": 0,
+                  "value": "Bool(true)"
+                }
+              }
+            },
+            {
+              "effect": "opacity",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "blend": {
+                  "keyframes": 0,
+                  "value": "Choice(0)"
+                },
+                "opacity": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            },
+            {
+              "effect": "time_remap",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "speed": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 10097136000000,
+          "endFrame": 954,
+          "gainDb": 0.0,
+          "item": 4,
+          "label": "Violet",
+          "link": null,
+          "name": "shot4_take4.mp4",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 95256000000,
+          "speed": 1.0,
+          "start": 10001880000000,
+          "startFrame": 945
+        },
+        {
+          "clip": 48,
+          "duration": 1291248000000,
+          "durationFrames": 122,
+          "effects": [
+            {
+              "effect": "motion",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "anchor": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 384.0, y: 216.0 })"
+                },
+                "anti_flicker": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "position": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 960.0, y: 540.0 })"
+                },
+                "rotation": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "scale": {
+                  "keyframes": 0,
+                  "value": "Float(250.0)"
+                },
+                "scale_width": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                },
+                "uniform_scale": {
+                  "keyframes": 0,
+                  "value": "Bool(true)"
+                }
+              }
+            },
+            {
+              "effect": "opacity",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "blend": {
+                  "keyframes": 0,
+                  "value": "Choice(0)"
+                },
+                "opacity": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            },
+            {
+              "effect": "time_remap",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "speed": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 11388384000000,
+          "endFrame": 1076,
+          "gainDb": 0.0,
+          "item": 5,
+          "label": "Violet",
+          "link": null,
+          "name": "shot5_take4.mp4",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 1291248000000,
+          "speed": 1.0,
+          "start": 10097136000000,
+          "startFrame": 954
+        },
+        {
+          "clip": 49,
+          "duration": 1238328000000,
+          "durationFrames": 117,
+          "effects": [
+            {
+              "effect": "motion",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "anchor": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 384.0, y: 216.0 })"
+                },
+                "anti_flicker": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "position": {
+                  "keyframes": 0,
+                  "value": "Vec2(Vec2 { x: 960.0, y: 540.0 })"
+                },
+                "rotation": {
+                  "keyframes": 0,
+                  "value": "Float(0.0)"
+                },
+                "scale": {
+                  "keyframes": 0,
+                  "value": "Float(250.0)"
+                },
+                "scale_width": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                },
+                "uniform_scale": {
+                  "keyframes": 0,
+                  "value": "Bool(true)"
+                }
+              }
+            },
+            {
+              "effect": "opacity",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "blend": {
+                  "keyframes": 0,
+                  "value": "Choice(0)"
+                },
+                "opacity": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            },
+            {
+              "effect": "time_remap",
+              "enabled": true,
+              "masks": 0,
+              "params": {
+                "speed": {
+                  "keyframes": 0,
+                  "value": "Float(100.0)"
+                }
+              }
+            }
+          ],
+          "enabled": true,
+          "end": 12626712000000,
+          "endFrame": 1193,
+          "gainDb": 0.0,
+          "item": 5,
+          "label": "Violet",
+          "link": null,
+          "name": "shot5_take4.mp4",
+          "reverse": false,
+          "sourceIn": 0,
+          "sourceOut": 1238328000000,
+          "speed": 1.0,
+          "start": 11388384000000,
+          "startFrame": 1076
+        }
+      ],
+      "locked": false,
+      "muted": false,
+      "name": "Video 1",
+      "solo": false,
+      "syncLock": true,
+      "transitions": []
+    },
+    {
+      "enabled": true,
+      "id": 13,
+      "items": [],
+      "locked": false,
+      "muted": false,
+      "name": "Video 2",
+      "solo": false,
+      "syncLock": true,
+      "transitions": []
+    },
+    {
+      "enabled": true,
+      "id": 14,
+      "items": [],
+      "locked": false,
+      "muted": false,
+      "name": "Video 3",
+      "solo": false,
+      "syncLock": true,
+      "transitions": []
+    }
+  ]
+}
