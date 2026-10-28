@@ -1,6 +1,4 @@
 import { describe, test, expect, vi, beforeEach, afterEach } from "vitest";
-import fs from "fs";
-import path from "path";
 
 // vi.mock is hoisted — factory must not reference outer variables
 vi.mock("@fal-ai/client", () => ({
@@ -20,7 +18,6 @@ import {
   falVideoAdapter,
   falImageAdapter,
   pendingJobs,
-  appendLedgerEntry,
 } from "./falAdapter";
 
 describe("falAdapter", () => {
@@ -137,54 +134,4 @@ describe("falAdapter", () => {
     expect(falImageAdapter.mediaType).toBe("image");
   });
 
-  // ── appendLedgerEntry ──
-  test("appendLedgerEntry writes a JSONL line to the ledger file", () => {
-    const tmpDir = path.join(
-      process.env.TEMP ?? process.env.TMPDIR ?? "/tmp",
-      `fal-ledger-test-${Date.now()}`,
-    );
-    const origCwd = process.cwd;
-    process.cwd = () => path.join(tmpDir, "apps", "control-panel");
-
-    try {
-      appendLedgerEntry("song-abc", { asset_url: "https://cdn.fal.ai/test.mp4", cost_cents: 200 });
-
-      const ledgerPath = path.join(tmpDir, "ilyrium-shots", "ledger", "song-abc.jsonl");
-      expect(fs.existsSync(ledgerPath)).toBe(true);
-
-      const lines = fs.readFileSync(ledgerPath, "utf8").trim().split("\n");
-      expect(lines).toHaveLength(1);
-
-      const parsed = JSON.parse(lines[0]);
-      expect(parsed.asset_url).toBe("https://cdn.fal.ai/test.mp4");
-      expect(parsed.cost_cents).toBe(200);
-      expect(parsed.ts).toBeTruthy();
-    } finally {
-      process.cwd = origCwd;
-      fs.rmSync(tmpDir, { recursive: true, force: true });
-    }
-  });
-
-  test("appendLedgerEntry appends multiple entries", () => {
-    const tmpDir = path.join(
-      process.env.TEMP ?? process.env.TMPDIR ?? "/tmp",
-      `fal-ledger-test2-${Date.now()}`,
-    );
-    const origCwd = process.cwd;
-    process.cwd = () => path.join(tmpDir, "apps", "control-panel");
-
-    try {
-      appendLedgerEntry("song-multi", { seq: 1 });
-      appendLedgerEntry("song-multi", { seq: 2 });
-
-      const ledgerPath = path.join(tmpDir, "ilyrium-shots", "ledger", "song-multi.jsonl");
-      const lines = fs.readFileSync(ledgerPath, "utf8").trim().split("\n");
-      expect(lines).toHaveLength(2);
-      expect(JSON.parse(lines[0]).seq).toBe(1);
-      expect(JSON.parse(lines[1]).seq).toBe(2);
-    } finally {
-      process.cwd = origCwd;
-      fs.rmSync(tmpDir, { recursive: true, force: true });
-    }
-  });
 });

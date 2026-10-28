@@ -5,8 +5,6 @@
 // (fal://queue/<modelId>/<requestId>). The webhook route handles completion.
 
 import { fal } from "@fal-ai/client";
-import fs from "fs";
-import path from "path";
 import type { MediaAdapter, GenerateRequest, AdapterResponse } from "./types";
 
 // ---------- env constants ----------
@@ -32,22 +30,6 @@ export interface FailedJob {
   failedAt: string;
 }
 export const failedJobs = new Map<string, FailedJob>();
-
-// ---------- rights ledger ----------
-/**
- * Append-only JSONL entry to ilyrium-shots/ledger/<songId>.jsonl.
- * Path is relative to the repo root (two dirs above apps/control-panel).
- */
-export function appendLedgerEntry(songId: string, entry: Record<string, unknown>): void {
-  const ledgerDir = path.resolve(process.cwd(), "../../ilyrium-shots/ledger");
-  fs.mkdirSync(ledgerDir, { recursive: true });
-  const ledgerPath = path.join(ledgerDir, `${songId}.jsonl`);
-  fs.appendFileSync(
-    ledgerPath,
-    JSON.stringify({ ...entry, ts: new Date().toISOString() }) + "\n",
-    "utf8",
-  );
-}
 
 // ---------- extended adapter interface ----------
 export interface FalMediaAdapter extends MediaAdapter {

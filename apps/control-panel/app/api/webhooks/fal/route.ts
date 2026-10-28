@@ -6,7 +6,8 @@
 
 import { NextResponse } from "next/server";
 import crypto from "crypto";
-import { pendingJobs, failedJobs, appendLedgerEntry, FailedJob } from "../../../../lib/adapters/falAdapter";
+import { pendingJobs, failedJobs, FailedJob } from "../../../../lib/adapters/falAdapter";
+import { appendLedgerEntry } from "../../../../lib/ledger";
 import { createAssetWithRights, getOrCreateProject } from "../../../../lib/studio-writes";
 import studioDb from "../../../../lib/studio-db";
 
@@ -126,7 +127,7 @@ export async function POST(request: Request): Promise<Response> {
 
           // 2d. Append to rights ledger JSONL.
           const songId = job?.songId ?? project.id;
-          appendLedgerEntry(songId, {
+          appendLedgerEntry(songId, "fal_asset_completed", {
             request_id,
             model: modelId,
             asset_url: assetUrl,

@@ -105,4 +105,10 @@ describe("appendLedgerEntry + verifyChain", () => {
 
     expect(verifyChain("song-prev-break", dir)).toBe(false);
   });
+
+  it("fal write followed by takes write still passes verifyChain", () => {
+    appendLedgerEntry("song-cross", "fal_asset_completed", { asset_url: "https://cdn.fal.ai/test.mp4", cost_cents: 200 }, dir);
+    appendLedgerEntry("song-cross", "take_registered", { takeId: "t1" }, dir);
+    expect(verifyChain("song-cross", dir)).toBe(true);
+  });
 });

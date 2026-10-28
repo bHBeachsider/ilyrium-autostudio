@@ -17,17 +17,14 @@ vi.mock("../../../../lib/studio-db", () => ({
 }));
 
 // ──────────── mock appendLedgerEntry ────────────
-vi.mock("../../../../lib/adapters/falAdapter", async (importOriginal) => {
-  const original = await importOriginal<typeof import("../../../../lib/adapters/falAdapter")>();
-  return {
-    ...original,
-    appendLedgerEntry: vi.fn(),
-  };
-});
+vi.mock("../../../../lib/ledger", () => ({
+  appendLedgerEntry: vi.fn(),
+}));
 
 // ──────────── import after mocks ────────────
 import { POST } from "./route";
-import { pendingJobs, failedJobs, appendLedgerEntry } from "../../../../lib/adapters/falAdapter";
+import { pendingJobs, failedJobs } from "../../../../lib/adapters/falAdapter";
+import { appendLedgerEntry } from "../../../../lib/ledger";
 
 // ──────────── helpers ────────────
 const SECRET = "test-webhook-secret";
@@ -122,10 +119,11 @@ describe("POST /api/webhooks/fal", () => {
 
     await POST(req);
     expect(appendLedgerEntry).toHaveBeenCalledOnce();
-    const [songId, entry] = (appendLedgerEntry as ReturnType<typeof vi.fn>).mock.calls[0];
-    expect(entry.request_id).toBe("req_ledger");
-    expect(entry.asset_url).toBe("https://cdn.fal.ai/art.jpg");
-    expect(typeof entry.cost_cents).toBe("number");
+    const [songId, event, payload] = (appendLedgerEntry as ReturnType<typeof vi.fn>).mock.calls[0];
+    expect(event).toBe("fal_asset_completed");
+    expect(payload.request_id).toBe("req_ledger");
+    expect(payload.asset_url).toBe("https://cdn.fal.ai/art.jpg");
+    expect(typeof payload.cost_cents).toBe("number");
   });
 
   // ── failed payload ──
