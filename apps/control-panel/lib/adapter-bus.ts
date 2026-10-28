@@ -8,8 +8,14 @@
 import { MediaAdapter, GenerateRequest, GenerateResponse, MediaType } from "./adapters/types";
 import { getOrCreateProject, createAssetWithRights } from "./studio-writes";
 import studioDb from "./studio-db";
+import { falVideoAdapter, falImageAdapter } from "./adapters/falAdapter";
+
+// When NEXT_PUBLIC_ADAPTER=fal, live fal.ai adapters are prepended so they are
+// preferred over the mock placeholders. Without that var the mocks remain as-is.
+const FAL_ENABLED = process.env.NEXT_PUBLIC_ADAPTER === "fal";
 
 const registeredAdapters: MediaAdapter[] = [
+  ...(FAL_ENABLED ? [falVideoAdapter, falImageAdapter] : []),
   { id: "google-veo-3.1", mediaType: "video", tags: ["high_res", "cinematic"], baseCostEstimate: 200, generate: async () => ({ uri: "vendor://veo/clip", cost_cents: 200, latency_ms: 15000 }) },
   { id: "grok-imagine", mediaType: "video", tags: ["fast"], baseCostEstimate: 100, generate: async () => ({ uri: "vendor://grok/clip", cost_cents: 100, latency_ms: 8000 }) },
   { id: "elevenlabs", mediaType: "audio", tags: ["multilingual"], baseCostEstimate: 50, generate: async () => ({ uri: "vendor://elevenlabs/audio", cost_cents: 45, latency_ms: 3000 }) },
