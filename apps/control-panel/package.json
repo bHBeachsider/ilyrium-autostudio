@@ -9,7 +9,9 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@libsql/client": "^0.18.0",
     "@neondatabase/serverless": "^1.1.0",
+    "@prisma/adapter-libsql": "^7.10.1",
     "@prisma/adapter-neon": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "elevenlabs": "latest",

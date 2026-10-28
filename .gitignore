@@ -14,6 +14,13 @@ projects/broderick/_training/local_artifacts/loras/
 # Private keys — never commit
 *.pem
 
+# SQLite dev databases (takes layer)
+apps/control-panel/takes-dev.db
+apps/control-panel/takes-dev.db-journal
+
+# Ledger runtime files (keep the .gitkeep, ignore actual .jsonl files produced in dev)
+ilyrium-shots/ledger/*.jsonl
+
 # Python cache
 __pycache__/
 *.pyc
