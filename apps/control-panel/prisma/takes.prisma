@@ -1,0 +1,67 @@
+// SQLite-backed schema for the non-destructive Take / AudioElement / Cut layer.
+// Used for local dev and CI only — never pointed at production Neon.
+//
+// Datasource URL: TAKES_DATABASE_URL env var (default file:./takes-dev.db).
+// Generator output: ./generated/takes-client
+// Migrations: prisma/takes-migrations/  (separate from ilyrium Postgres migrations)
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/takes-client"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// A single candidate visual/video frame produced for one shot.
+// Takes are append-only: hidden=true is the only suppression; no DELETE.
+model Take {
+  id          String   @id @default(cuid())
+  shotId      String   @map("shot_id")
+  songId      String   @map("song_id")
+  sceneNumber Int      @map("scene_number")
+  model       String?
+  publicUrl   String   @map("public_url")
+  c2paStatus  String   @default("missing") @map("c2pa_status")
+  hidden      Boolean  @default(false)
+  createdAt   DateTime @default(now()) @map("created_at")
+  cuts        Cut[]
+
+  @@index([songId, shotId])
+  @@map("takes")
+}
+
+// One audio stem (narration, character line, music bed, sfx) in a cut.
+model AudioElement {
+  id          String    @id @default(cuid())
+  songId      String    @map("song_id")
+  sceneNumber Int?      @map("scene_number")
+  kind        String    // narrator | character | music | sfx
+  voiceId     String?   @map("voice_id")
+  text        String?
+  assetUrl    String?   @map("asset_url")
+  duckingDb   Float     @default(-6) @map("ducking_db")
+  cutId       String?   @map("cut_id")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  cut         Cut?      @relation(fields: [cutId], references: [id])
+
+  @@index([songId])
+  @@map("audio_elements")
+}
+
+// An ordered assembly of Takes + AudioElements for a song.
+// version increments on each new cut; approvedAt records sign-off.
+model Cut {
+  id            String         @id @default(cuid())
+  songId        String         @map("song_id")
+  version       Int
+  renderUrl     String?        @map("render_url")
+  approvedAt    DateTime?      @map("approved_at")
+  createdAt     DateTime       @default(now()) @map("created_at")
+  selectedTakes Take[]
+  audioElements AudioElement[]
+
+  @@unique([songId, version])
+  @@map("cuts")
+}
