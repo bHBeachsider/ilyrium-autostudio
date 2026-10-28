@@ -1,0 +1,234 @@
+{
+ "durationFrames": 1193,
+ "duration_s": 49.708333333333336,
+ "settings": {
+  "audio_master": "Stereo",
+  "color": {
+   "auto_tone_map": true,
+   "wide_gamut": false,
+   "working": "Rec709"
+  },
+  "drop_frame": false,
+  "frame_rate": {
+   "den": 1,
+   "num": 24
+  },
+  "height": 1080,
+  "max_bit_depth": false,
+  "max_render_quality": false,
+  "par": [
+   1,
+   1
+  ],
+  "preset": "1920x1080 24",
+  "preview_codec": "ProRes 422",
+  "sample_rate": 48000,
+  "width": 1920,
+  "working_space": "Rec. 709"
+ },
+ "markers": [
+  [
+   "scene_1",
+   null
+  ],
+  [
+   "scene_2",
+   null
+  ],
+  [
+   "scene_3",
+   null
+  ],
+  [
+   "scene_4",
+   null
+  ],
+  [
+   "scene_5",
+   null
+  ]
+ ],
+ "video1": {
+  "clips": 13,
+  "first": [
+   "shot1_take4.mp4",
+   0,
+   122,
+   122
+  ],
+  "last": [
+   "shot5_take4.mp4",
+   1076,
+   1193,
+   117
+  ],
+  "gaps": [],
+  "order": [
+   "shot1_take4.mp4",
+   "shot1_take4.mp4",
+   "shot2_take4.mp4",
+   "shot2_take4.mp4",
+   "shot2_take4.mp4",
+   "shot2_take4.mp4",
+   "shot3_take4.mp4",
+   "shot3_take4.mp4",
+   "shot3_take4.mp4",
+   "shot4_take4.mp4",
+   "shot4_take4.mp4",
+   "shot5_take4.mp4",
+   "shot5_take4.mp4"
+  ]
+ },
+ "audio1": {
+  "clips": 7,
+  "first": [
+   "shot2_take4.mp4",
+   136,
+   257,
+   121
+  ],
+  "last": [
+   "shot3_take4.mp4",
+   773,
+   823,
+   50
+  ],
+  "gaps": [],
+  "order": [
+   "shot2_take4.mp4",
+   "shot2_take4.mp4",
+   "shot2_take4.mp4",
+   "shot2_take4.mp4",
+   "shot3_take4.mp4",
+   "shot3_take4.mp4",
+   "shot3_take4.mp4"
+  ]
+ },
+ "audio2": {
+  "clips": 5,
+  "first": [
+   "shot1.mp3",
+   0,
+   136,
+   136
+  ],
+  "last": [
+   "shot5.mp3",
+   954,
+   1193,
+   239
+  ],
+  "gaps": [],
+  "order": [
+   "shot1.mp3",
+   "shot2.mp3",
+   "shot3.mp3",
+   "shot4.mp3",
+   "shot5.mp3"
+  ]
+ },
+ "audio3": {
+  "clips": 1,
+  "first": [
+   "KING_SIZE_The_Ballad_of_Stripe2.mp3",
+   0,
+   1193,
+   1193
+  ],
+  "last": [
+   "KING_SIZE_The_Ballad_of_Stripe2.mp3",
+   0,
+   1193,
+   1193
+  ],
+  "gaps": [],
+  "order": [
+   "KING_SIZE_The_Ballad_of_Stripe2.mp3"
+  ]
+ },
+ "v1_last_start_eq_sum_prior": true,
+ "a1_vs_v1_offsets_frames": [
+  [
+   0,
+   0
+  ],
+  [
+   0,
+   0
+  ],
+  [
+   0,
+   0
+  ],
+  [
+   0,
+   0
+  ],
+  [
+   0,
+   0
+  ],
+  [
+   0,
+   0
+  ],
+  [
+   0,
+   0
+  ]
+ ],
+ "a2_vo_start_vs_scene_start_frames": [
+  0,
+  0,
+  0,
+  0,
+  0
+ ],
+ "scene_start_frames_v1": [
+  0,
+  136,
+  531,
+  823,
+  954
+ ],
+ "music_effects_keyframes": [
+  {
+   "volume": {
+    "bypass": 0,
+    "level": 3
+   }
+  },
+  {
+   "channel_volume": {
+    "bypass": 0,
+    "left": 0,
+    "right": 0
+   }
+  },
+  {
+   "panner": {
+    "balance": 0
+   }
+  }
+ ],
+ "music_extra_keys": {
+  "clip": 51,
+  "duration": 12626712000000,
+  "durationFrames": 1193,
+  "enabled": true,
+  "end": 12626712000000,
+  "endFrame": 1193,
+  "gainDb": -16.48,
+  "item": 11,
+  "label": "Caribbean",
+  "link": null,
+  "name": "KING_SIZE_The_Ballad_of_Stripe2.mp3",
+  "reverse": false,
+  "sourceIn": 0,
+  "sourceOut": 12626712000000,
+  "speed": 1.0,
+  "start": 0,
+  "startFrame": 0
+ },
+ "expected_frames_float": 1192.5757823129252
+}

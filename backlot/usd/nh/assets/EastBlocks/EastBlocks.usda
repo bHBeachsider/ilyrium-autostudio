@@ -1,0 +1,16 @@
+#usda 1.0
+(
+    defaultPrim = "EastBlocks"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "EastBlocks" (
+    kind = "component"
+    prepend references = @./geo.usda@</geo>
+)
+{
+    custom string backlot:asset_id = "EastBlocks"
+    custom token backlot:grade = "conditioning"
+}
+

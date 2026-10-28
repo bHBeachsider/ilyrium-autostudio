@@ -1,0 +1,232 @@
+{
+ "cameras": {
+  "PLAN": {
+   "location": [
+    0.0,
+    95.0,
+    260.0
+   ],
+   "rotation_deg": [
+    0.0,
+    -0.0,
+    0.0
+   ],
+   "lens_mm": 40.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear"
+  },
+  "AERIAL": {
+   "location": [
+    -120.0,
+    -60.0,
+    90.0
+   ],
+   "rotation_deg": [
+    65.13,
+    0.0,
+    -42.71
+   ],
+   "lens_mm": 35.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear"
+  },
+  "AXIS_UP": {
+   "location": [
+    0.0,
+    30.0,
+    2.0
+   ],
+   "rotation_deg": [
+    92.23,
+    -0.0,
+    0.0
+   ],
+   "lens_mm": 40.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear"
+  },
+  "AXIS_DOWN": {
+   "location": [
+    0.0,
+    138.0,
+    2.0
+   ],
+   "rotation_deg": [
+    -85.03,
+    180.0,
+    0.0
+   ],
+   "lens_mm": 40.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear"
+  },
+  "BODEGA": {
+   "location": [
+    19.0,
+    58.0,
+    1.7
+   ],
+   "rotation_deg": [
+    97.67,
+    -0.0,
+    20.56
+   ],
+   "lens_mm": 30.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear"
+  },
+  "CHURCH_E": {
+   "location": [
+    14.0,
+    62.0,
+    2.0
+   ],
+   "rotation_deg": [
+    108.98,
+    -0.0,
+    -136.55
+   ],
+   "lens_mm": 30.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear"
+  },
+  "PILF_IN": {
+   "location": [
+    -65.1,
+    47.4,
+    1.6
+   ],
+   "rotation_deg": [
+    88.67,
+    0.0,
+    -64.23
+   ],
+   "lens_mm": 20.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear"
+  },
+  "PILF_IN_BACK": {
+   "location": [
+    -53.7,
+    56.6,
+    1.6
+   ],
+   "rotation_deg": [
+    88.68,
+    -0.0,
+    115.39
+   ],
+   "lens_mm": 20.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear"
+  },
+  "LYST_IN": {
+   "location": [
+    19.3,
+    88.1,
+    5.8
+   ],
+   "rotation_deg": [
+    88.16,
+    -0.0,
+    -158.37
+   ],
+   "lens_mm": 20.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear"
+  },
+  "LYST_IN_BACK": {
+   "location": [
+    19.3,
+    75.6,
+    5.8
+   ],
+   "rotation_deg": [
+    88.72,
+    -0.0,
+    -22.36
+   ],
+   "lens_mm": 20.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear"
+  },
+  "LYST_RECEPTION": {
+   "location": [
+    19.6,
+    87.9,
+    5.8
+   ],
+   "rotation_deg": [
+    90.73,
+    -0.0,
+    -98.03
+   ],
+   "lens_mm": 24.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear"
+  },
+  "LYST_POV": {
+   "location": [
+    24.1,
+    76.4,
+    5.45
+   ],
+   "rotation_deg": [
+    90.27,
+    0.0,
+    10.16
+   ],
+   "lens_mm": 28.0,
+   "sensor_mm": 36.0,
+   "res": [
+    1920,
+    1080
+   ],
+   "depth_mode": "linear"
+  }
+ }
+}

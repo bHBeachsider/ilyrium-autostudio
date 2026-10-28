@@ -1,0 +1,26 @@
+{
+  "shot_id": "NH-S901-SH003",
+  "endpoint": "fal-ai/veo3.1/image-to-video",
+  "keyframe": "04_preproduction\\keyframes\\NH-S901\\NH-S901-SH003_key.png",
+  "arguments": {
+    "prompt": "Low angle from the wet paving in front of the stage, looking straight at City Hall across the open joists of the platform frame in the foreground. Two workmen in high-visibility vests and knit caps steadily raise a tall square pine upright on the far edge of the frame from a lean to full vertical, hand over hand, their breath steaming in the cold; a third man holds a diagonal brace steady, rain beading on their wet vests. A heavy flat overcast, sheet-cake grey sky, no sun and no shadows; a light steady drizzle falls, fine rain visible against the dark stone, the granite paving wet with shallow puddles mirroring the grey sky; street lamps and windows glow warm and are doubled in the wet. The camera is locked off on a tripod and does not move at all: no pan, no tilt, no zoom, no drift, no handheld shake. Real-time speed, natural human movement, never slow motion. Behind them the semicircular colonnade of City Hall with its mauve banner stays perfectly fixed; the parked cars, the lumber flatbed and the box van do not move; two distant pedestrians walk slowly away from the camera under umbrellas. On the far street beyond the square and along the side kerbs a few cars move slowly and steadily with their headlights and tail-lights on, reflected in the wet road, at an unhurried city pace - no car ever enters the square or comes near the stage. Effortful, deliberate, real-time movement, faces turned toward the post, never toward the camera. Prestige political drama photographed on an Arri Alexa with anamorphic lenses: flat overcast daylight, slight 35mm film grain, colours desaturated about twelve percent, warm tungstens, deep browns and charcoals in the shadows, photographic realism.",
+    "aspect_ratio": "16:9",
+    "duration": "6s",
+    "resolution": "1080p",
+    "generate_audio": false,
+    "negative_prompt": "turning around, walking away, camera pull back, dolly, reframing, people walking into frame, pedestrians in the foreground, moving bus, moving vehicles, slow motion, speed ramp, time-lapse, camera movement, zoom, pan, dolly, handheld shake, on-screen text, captions, subtitles, watermark, logo, tripod, light stand, camera equipment, lens flare, fast traffic, cars driving through the frame, people looking at the camera, faces toward camera, cartoon, illustration, oversaturated",
+    "seed": 901003
+  },
+  "image_url": "https://v3b.fal.media/files/b/0aa93fe8/gE3hiKn3Eh1zkp500xJ0l_NH-S901-SH003_key.png",
+  "response": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0aa93ff2/a5tj4aFuz1IaYiUFynJWj_f6bed2c0e4af4a37b9698261a98a18ef.mp4",
+      "content_type": "video/mp4",
+      "file_name": "f6bed2c0e4af4a37b9698261a98a18ef.mp4",
+      "file_size": 8959424
+    }
+  },
+  "seconds": 107.4,
+  "est_cost_usd": 1.2000000000000002,
+  "rendered_at": "2026-09-05T16:45:51"
+}

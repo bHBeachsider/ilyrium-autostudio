@@ -1,0 +1,74 @@
+{
+  "shot_id": "NH-S901-SH007",
+  "song_id": "NH-S901",
+  "duration_s": 6,
+  "camera": {
+    "shot_size": "medium",
+    "movement": "locked-off",
+    "lens_mm": 35
+  },
+  "subjects": [
+    "construction workers"
+  ],
+  "setting": "The square, midday",
+  "mood": "the shape completes",
+  "action": "The crossbeam seats. The shape completes, framed on the building that named it. Hold one beat too long.",
+  "prompt": "medium wide shot, locked-off camera that does not move, a long timber crossbeam hanging level from two hoist cables descends the last hand's breadth and settles onto the tops of two tall pine uprights at the ends of a long decked timber stage, two workmen in high-visibility vests standing on the stage with their backs to the camera steady it with tag ropes and look up at it, the beam seats and goes still, the cables slacken, behind and above them the semicircular colonnade of City Hall with the mauve banner, cars parked nose to tail along the kerb do not move, a flatbed truck stacked with fresh lumber and a white box van stand at the kerb with their engines off, the city bus at the far corner is stopped, a few pedestrians in winter coats walk slowly across the square at a distance with their backs to the camera, nobody looks at the timber structure, flat winter daylight, slow deliberate movement, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, caption text overlay, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame, human face, portrait, person looking at camera, fast moving cars, speeding traffic, time-lapse, motion blur streaks, camera movement",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "",
+    "seed": 901007
+  },
+  "seed": 901007,
+  "continuity": {
+    "prev_shot": "NH-S901-SH003",
+    "flf2v": false
+  },
+  "render": {
+    "width": 832,
+    "height": 480,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 6,
+    "renderer": "fal-veo3.1"
+  },
+  "backlot": {
+    "stage": "backlot/usd/nh/NewHarnomy_square.usda",
+    "camera": "/World/Cameras/SH007",
+    "set_state": "beam_seated",
+    "weather": "overcast_drizzle",
+    "dressing": [
+      "harvest"
+    ],
+    "invariants": [
+      {
+        "id": "posts_at_stage_ends",
+        "check": "post_projection",
+        "blocking": true
+      },
+      {
+        "id": "deck_parallel_to_facade",
+        "check": "deck_orientation",
+        "blocking": false
+      },
+      {
+        "id": "banner_reads_spec",
+        "check": "ocr",
+        "blocking": false,
+        "args": {
+          "text_plane": "Banner"
+        }
+      }
+    ],
+    "conditioning": [
+      "clay",
+      "depth",
+      "seg"
+    ],
+    "references": {
+      "plate": "projects/new_harnomy_usa/03_design/environments/city_hall/plate_exterior_firstlight_LOCKED.png"
+    },
+    "budget_usd": 3.0
+  }
+}

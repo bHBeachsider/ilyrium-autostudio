@@ -1,0 +1,16 @@
+#usda 1.0
+(
+    defaultPrim = "Restaurant"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "Restaurant" (
+    kind = "component"
+    prepend references = @./geo.usda@</geo>
+)
+{
+    custom string backlot:asset_id = "Restaurant"
+    custom token backlot:grade = "conditioning"
+}
+

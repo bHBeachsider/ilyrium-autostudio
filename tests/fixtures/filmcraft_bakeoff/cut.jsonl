@@ -1,0 +1,34 @@
+{"id": "file.newProject", "params": {"name": "kingsize_ch69_cut4_current_recipe"}}
+{"id": "file.import", "params": {"paths": ["C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\apps\\auto-studio\\outputs\\kingsize_mattress__channel_69_late-night_spot_20260803_235816\\shot1_take4.mp4", "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\apps\\auto-studio\\outputs\\kingsize_mattress__channel_69_late-night_spot_20260803_235816\\shot2_take4.mp4", "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\apps\\auto-studio\\outputs\\kingsize_mattress__channel_69_late-night_spot_20260803_235816\\shot3_take4.mp4", "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\apps\\auto-studio\\outputs\\kingsize_mattress__channel_69_late-night_spot_20260803_235816\\shot4_take4.mp4", "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\apps\\auto-studio\\outputs\\kingsize_mattress__channel_69_late-night_spot_20260803_235816\\shot5_take4.mp4", "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\apps\\auto-studio\\outputs\\kingsize_mattress__channel_69_late-night_spot_20260803_235816\\shot1.mp3", "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\apps\\auto-studio\\outputs\\kingsize_mattress__channel_69_late-night_spot_20260803_235816\\shot2.mp3", "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\apps\\auto-studio\\outputs\\kingsize_mattress__channel_69_late-night_spot_20260803_235816\\shot3.mp3", "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\apps\\auto-studio\\outputs\\kingsize_mattress__channel_69_late-night_spot_20260803_235816\\shot4.mp3", "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\apps\\auto-studio\\outputs\\kingsize_mattress__channel_69_late-night_spot_20260803_235816\\shot5.mp3", "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\projects\\king_size\\06_audio\\track\\KING_SIZE_The_Ballad_of_Stripe2.mp3"]}}
+{"id": "file.newSequence", "params": {"name": "cut_4", "width": 1920, "height": 1080, "fps": 24, "sampleRate": 48000, "video": 3, "audio": 3}}
+{"id": "timeline.place", "params": {"item": 1, "track": "V1", "time": 0, "audio": false}}
+{"id": "timeline.place", "params": {"item": 1, "track": "V1", "time": 1286083008000, "audio": false, "duration": 154187712000}}
+{"id": "timeline.place", "params": {"item": 6, "track": "A2", "time": 0, "video": false}}
+{"id": "timeline.place", "params": {"item": 2, "track": "V1", "time": 1440270720000, "audioTrack": "A1"}}
+{"id": "timeline.place", "params": {"item": 2, "track": "V1", "time": 2721019392000, "audioTrack": "A1"}}
+{"id": "timeline.place", "params": {"item": 2, "track": "V1", "time": 4001768064000, "audioTrack": "A1"}}
+{"id": "timeline.place", "params": {"item": 2, "track": "V1", "time": 5282516736000, "audioTrack": "A1", "duration": 336317184000}}
+{"id": "timeline.place", "params": {"item": 7, "track": "A2", "time": 1440270720000, "video": false}}
+{"id": "timeline.place", "params": {"item": 3, "track": "V1", "time": 5618833920000, "audioTrack": "A1"}}
+{"id": "timeline.place", "params": {"item": 3, "track": "V1", "time": 6899582592000, "audioTrack": "A1"}}
+{"id": "timeline.place", "params": {"item": 3, "track": "V1", "time": 8180331264000, "audioTrack": "A1", "duration": 532417536000}}
+{"id": "timeline.place", "params": {"item": 8, "track": "A2", "time": 5618833920000, "video": false}}
+{"id": "timeline.place", "params": {"item": 4, "track": "V1", "time": 8712748800000, "audio": false}}
+{"id": "timeline.place", "params": {"item": 4, "track": "V1", "time": 9998831808000, "audio": false, "duration": 101011392000}}
+{"id": "timeline.place", "params": {"item": 9, "track": "A2", "time": 8712748800000, "video": false}}
+{"id": "timeline.place", "params": {"item": 5, "track": "V1", "time": 10099843200000, "audio": false}}
+{"id": "timeline.place", "params": {"item": 5, "track": "V1", "time": 11385926208000, "audio": false, "duration": 1236295872000}}
+{"id": "timeline.place", "params": {"item": 10, "track": "A2", "time": 10099843200000, "video": false}}
+{"id": "timeline.place", "params": {"item": 11, "track": "A3", "time": 0, "duration": 12622222080000, "video": false}}
+{"id": "clip.fitToFrame", "params": {"clips": [19, 20, 23, 26, 29, 32, 36, 39, 42, 45, 46, 48, 49]}}
+{"id": "clip.audioGain", "params": {"clips": [24, 27, 30, 33, 37, 40, 43], "mode": "set", "db": -9.12}}
+{"id": "clip.audioGain", "params": {"clips": [51], "mode": "set", "db": -16.48}}
+{"id": "essentialSound.setType", "params": {"clips": [21, 34, 44, 47, 50], "type": "dialogue"}}
+{"id": "essentialSound.setType", "params": {"clips": [51], "type": "music"}}
+{"id": "essentialSound.generateDucking", "params": {"clips": [51]}}
+{"id": "markers.add", "params": {"target": "program", "time": 0, "name": "scene_1", "comment": "Pen-line cartoon, cavernous warehouse showroom stacked with "}}
+{"id": "markers.add", "params": {"target": "program", "time": 1440270720000, "name": "scene_2", "comment": "Pen-line cartoon"}}
+{"id": "markers.add", "params": {"target": "program", "time": 5618833920000, "name": "scene_3", "comment": "Pen-line cartoon"}}
+{"id": "markers.add", "params": {"target": "program", "time": 8712748800000, "name": "scene_4", "comment": "Pen-line cartoon, fisheye distortion close-up: Stripe leans "}}
+{"id": "markers.add", "params": {"target": "program", "time": 10099843200000, "name": "scene_5", "comment": "rear view walk-off into the showroom, stain, KINGSIZE logo, "}}
+{"id": "file.saveAs", "params": {"path": "C:\\Users\\bradu\\Documents\\ilyrium-autostudio\\_staging\\filmcraft_bakeoff\\run1\\cut_4.fcproj"}}

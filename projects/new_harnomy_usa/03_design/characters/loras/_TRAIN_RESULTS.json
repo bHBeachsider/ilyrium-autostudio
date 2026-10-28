@@ -1,0 +1,62 @@
+{
+  "valencia": {
+    "character": "valencia",
+    "trigger_phrase": "valencia_strong_nh",
+    "note": "Trigger phrases have twice failed to bind on Flux in this studio. Describe the character in the prompt; do not rely on the token.",
+    "base": "FLUX.1-dev (fal flux-lora-portrait-trainer)",
+    "steps": 2000,
+    "images": 18,
+    "anchor": "03_design/characters/casting/finals/VAL-FINAL.png",
+    "trainset": "03_design/characters/training/sets/valencia/ (gitignored, reproducible from training/gen_trainset.py with seeds 770000+i)",
+    "file": "valencia_strong_nh.safetensors",
+    "bytes": 130958064,
+    "trained_utc": "2026-09-04T02:08:38Z",
+    "minutes": 8.1,
+    "cost_usd": 4.8
+  },
+  "summer": {
+    "character": "summer",
+    "trigger_phrase": "summer_winters_nh",
+    "note": "Trigger phrases have twice failed to bind on Flux in this studio. Describe the character in the prompt; do not rely on the token.",
+    "base": "FLUX.1-dev (fal flux-lora-portrait-trainer)",
+    "steps": 2000,
+    "images": 18,
+    "anchor": "03_design/characters/casting/finals/SUM-FINAL.png",
+    "trainset": "03_design/characters/training/sets/summer/ (gitignored, reproducible from training/gen_trainset.py with seeds 770000+i)",
+    "file": "summer_winters_nh.safetensors",
+    "bytes": 130958064,
+    "trained_utc": "2026-09-04T02:17:07Z",
+    "minutes": 8.4,
+    "cost_usd": 4.8
+  },
+  "pengold": {
+    "character": "pengold",
+    "trigger_phrase": "pengold_heavens_nh",
+    "note": "Trigger phrases have twice failed to bind on Flux in this studio. Describe the character in the prompt; do not rely on the token.",
+    "base": "FLUX.1-dev (fal flux-lora-portrait-trainer)",
+    "steps": 2000,
+    "images": 18,
+    "anchor": "03_design/characters/casting/finals/PEN-FINAL.png",
+    "trainset": "03_design/characters/training/sets/pengold/ (gitignored, reproducible from training/gen_trainset.py with seeds 770000+i)",
+    "file": "pengold_heavens_nh.safetensors",
+    "bytes": 130958064,
+    "trained_utc": "2026-09-04T02:25:31Z",
+    "minutes": 8.4,
+    "cost_usd": 4.8
+  },
+  "dick": {
+    "character": "dick",
+    "trigger_phrase": "dick_suede_nh",
+    "note": "Trigger phrases have twice failed to bind on Flux in this studio. Describe the character in the prompt; do not rely on the token.",
+    "base": "FLUX.1-dev (fal flux-lora-portrait-trainer)",
+    "steps": 2000,
+    "images": 18,
+    "anchor": "03_design/characters/casting/finals/DIC-FINAL.png",
+    "trainset": "03_design/characters/training/sets/dick/ (gitignored, reproducible from training/gen_trainset.py with seeds 770000+i)",
+    "file": "dick_suede_nh.safetensors",
+    "bytes": 130958064,
+    "trained_utc": "2026-09-04T02:35:24Z",
+    "minutes": 9.8,
+    "cost_usd": 4.8
+  }
+}

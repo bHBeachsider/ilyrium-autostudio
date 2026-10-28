@@ -1,0 +1,21 @@
+[OK] fal auth OK (probe 422)
+[OK] NH-S901-SH001_key.png (black, local)
+[OK] NH-S901-SH002_key.png (copied from plate_exterior_firstlight_v1.png)
+[OK] NH-S901-SH010_key.png (copied from plate_exterior_dusk_v3.png)
+-- NH-S901-SH003
+   [OK] NH-S901-SH003_key.png (6266 KB)
+-- NH-S901-SH004
+   [OK] NH-S901-SH004_key.png (6433 KB)
+-- NH-S901-SH005
+   [OK] NH-S901-SH005_key.png (6757 KB)
+-- NH-S901-SH006
+   [OK] NH-S901-SH006_key.png (6762 KB)
+-- NH-S901-SH007
+   [OK] NH-S901-SH007_key.png (7155 KB)
+-- NH-S901-SH008
+   [OK] NH-S901-SH008_key.png (6787 KB)
+-- NH-S901-SH009
+   [OK] NH-S901-SH009_key.png (7156 KB)
+-- NH-S901-SH011
+   [FAIL] NH-S901-SH011: User is locked. Reason: Exhausted balance. Top up your balance at fal.ai/dashboard/billing.
+DONE

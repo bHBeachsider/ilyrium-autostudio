@@ -1,0 +1,46 @@
+#usda 1.0
+(
+    defaultPrim = "Mannequins"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "Mannequins" (
+    kind = "component"
+    variants = {
+        string build = "boardroom"
+    }
+    prepend variantSets = "build"
+)
+{
+    custom string backlot:asset_id = "Mannequins"
+    custom token backlot:grade = "conditioning"
+    variantSet "build" = {
+        "boardroom" (
+            prepend references = @./geo_boardroom.usda@</geo>
+        ) {
+
+        }
+        "build" (
+            prepend references = @./geo_build.usda@</geo>
+        ) {
+
+        }
+        "feast" (
+            prepend references = @./geo_feast.usda@</geo>
+        ) {
+
+        }
+        "lysteria" (
+            prepend references = @./geo_lysteria.usda@</geo>
+        ) {
+
+        }
+        "office_dawn" (
+            prepend references = @./geo_office_dawn.usda@</geo>
+        ) {
+
+        }
+    }
+}
+

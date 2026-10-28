@@ -1,0 +1,1403 @@
+#usda 1.0
+(
+    defaultPrim = "geo"
+    doc = "Blender v5.0.1"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "geo" (
+    customData = {
+        dictionary Blender = {
+            bool generated = 1
+        }
+    }
+)
+{
+    def Xform "joist_8"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_8"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (-3.1500000953674316, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_8" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_8"
+        }
+    }
+
+    def Scope "_materials"
+    {
+        def Material "timber"
+        {
+            token outputs:surface.connect = </geo/_materials/timber/Principled_BSDF.outputs:surface>
+            custom string userProperties:blender:data_name = "timber"
+
+            def Shader "Principled_BSDF"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:clearcoat = 0
+                float inputs:clearcoatRoughness = 0.03
+                color3f inputs:diffuseColor = (0.85, 0.65, 0.35)
+                float inputs:ior = 1.5
+                float inputs:metallic = 0
+                float inputs:opacity = 1
+                float inputs:roughness = 0.9
+                float inputs:specular = 0.5
+                token outputs:surface
+            }
+        }
+    }
+
+    def Xform "steps_beam_seated_0_2"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "beam_seated"
+        custom string userProperties:blender:object_name = "steps_beam_seated_0_2"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.3, 1.2, 0.3)
+        double3 xformOp:translate = (-13.050000190734863, 42.5, 0.44999998807907104)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "steps_beam_seated_0_2" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "steps_beam_seated_0_2"
+        }
+    }
+
+    def Xform "truss_beam_beam_seated"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "beam_seated"
+        custom string userProperties:blender:object_name = "truss_beam_beam_seated"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (23.5, 0.3, 0.3)
+        double3 xformOp:translate = (0, 39.29999923706055, 6.349999904632568)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "truss_beam_beam_seated" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "truss_beam_beam_seated"
+        }
+    }
+
+    def Xform "truss_post_L"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "truss_post_L"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.3, 0.3, 5)
+        double3 xformOp:translate = (-11.600000381469727, 39.29999923706055, 3.700000047683716)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "truss_post_L" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "truss_post_L"
+        }
+    }
+
+    def Xform "joist_1"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_1"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (-10.5, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_1"
+        }
+    }
+
+    def Xform "joist_4"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_4"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (-7.349999904632568, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_4" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_4"
+        }
+    }
+
+    def Xform "joist_5"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_5"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (-6.300000190734863, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_5" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_5"
+        }
+    }
+
+    def Xform "joist_6"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_6"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (-5.25, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_6" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_6"
+        }
+    }
+
+    def Xform "pier_0_1"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "pier_0_1"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (-11, 40.599998474121094, 0.47999998927116394)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "pier_0_1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.12, -0.12, -0.48), (0.12, 0.12, 0.48)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 8, 4, 4, 8]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 9, 8, 8, 9, 11, 10, 10, 11, 13, 12, 3, 1, 15, 13, 11, 9, 7, 5, 12, 13, 15, 14, 14, 15, 1, 0, 0, 2, 4, 6, 8, 10, 12, 14]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(0, 0.12, -0.48), (0, 0.12, 0.48), (0.08485281, 0.08485281, -0.48), (0.08485281, 0.08485281, 0.48), (0.12, 0, -0.48), (0.12, 0, 0.48), (0.08485281, -0.08485281, -0.48), (0.08485281, -0.08485281, 0.48), (0, -0.12, -0.48), (0, -0.12, 0.48), (-0.08485281, -0.08485281, -0.48), (-0.08485281, -0.08485281, 0.48), (-0.12, 0, -0.48), (-0.12, 0, 0.48), (-0.08485281, 0.08485281, -0.48), (-0.08485281, 0.08485281, 0.48)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "pier_0_1"
+        }
+    }
+
+    def Xform "joist_0"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_0"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (-11.550000190734863, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_0" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_0"
+        }
+    }
+
+    def Xform "joist_3"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_3"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (-8.399999618530273, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_3" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_3"
+        }
+    }
+
+    def Xform "joist_11"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_11"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (0, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_11" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_11"
+        }
+    }
+
+    def Xform "joist_2"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_2"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (-9.449999809265137, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_2" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_2"
+        }
+    }
+
+    def Xform "rim_back"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "rim_back"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (24, 0.12, 0.24)
+        double3 xformOp:translate = (0, 39, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "rim_back" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "rim_back"
+        }
+    }
+
+    def Xform "joist_18"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_18"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (7.349999904632568, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_18" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_18"
+        }
+    }
+
+    def Xform "joist_19"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_19"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (8.399999618530273, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_19" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_19"
+        }
+    }
+
+    def Xform "joist_7"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_7"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (-4.199999809265137, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_7" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_7"
+        }
+    }
+
+    def Xform "steps_beam_seated_0_3"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "beam_seated"
+        custom string userProperties:blender:object_name = "steps_beam_seated_0_3"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.3, 1.2, 0.3)
+        double3 xformOp:translate = (-13.350000381469727, 42.5, 0.15000000596046448)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "steps_beam_seated_0_3" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "steps_beam_seated_0_3"
+        }
+    }
+
+    def Xform "pier_1_0"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "pier_1_0"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (11, 39.20000076293945, 0.47999998927116394)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "pier_1_0" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.12, -0.12, -0.48), (0.12, 0.12, 0.48)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 8, 4, 4, 8]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 9, 8, 8, 9, 11, 10, 10, 11, 13, 12, 3, 1, 15, 13, 11, 9, 7, 5, 12, 13, 15, 14, 14, 15, 1, 0, 0, 2, 4, 6, 8, 10, 12, 14]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(0, 0.12, -0.48), (0, 0.12, 0.48), (0.08485281, 0.08485281, -0.48), (0.08485281, 0.08485281, 0.48), (0.12, 0, -0.48), (0.12, 0, 0.48), (0.08485281, -0.08485281, -0.48), (0.08485281, -0.08485281, 0.48), (0, -0.12, -0.48), (0, -0.12, 0.48), (-0.08485281, -0.08485281, -0.48), (-0.08485281, -0.08485281, 0.48), (-0.12, 0, -0.48), (-0.12, 0, 0.48), (-0.08485281, 0.08485281, -0.48), (-0.08485281, 0.08485281, 0.48)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "pier_1_0"
+        }
+    }
+
+    def Xform "pier_0_3"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "pier_0_3"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (-11, 43.400001525878906, 0.47999998927116394)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "pier_0_3" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.12, -0.12, -0.48), (0.12, 0.12, 0.48)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 8, 4, 4, 8]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 9, 8, 8, 9, 11, 10, 10, 11, 13, 12, 3, 1, 15, 13, 11, 9, 7, 5, 12, 13, 15, 14, 14, 15, 1, 0, 0, 2, 4, 6, 8, 10, 12, 14]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(0, 0.12, -0.48), (0, 0.12, 0.48), (0.08485281, 0.08485281, -0.48), (0.08485281, 0.08485281, 0.48), (0.12, 0, -0.48), (0.12, 0, 0.48), (0.08485281, -0.08485281, -0.48), (0.08485281, -0.08485281, 0.48), (0, -0.12, -0.48), (0, -0.12, 0.48), (-0.08485281, -0.08485281, -0.48), (-0.08485281, -0.08485281, 0.48), (-0.12, 0, -0.48), (-0.12, 0, 0.48), (-0.08485281, 0.08485281, -0.48), (-0.08485281, 0.08485281, 0.48)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "pier_0_3"
+        }
+    }
+
+    def Xform "joist_14"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_14"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (3.1500000953674316, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_14" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_14"
+        }
+    }
+
+    def Xform "joist_21"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_21"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (10.5, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_21" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_21"
+        }
+    }
+
+    def Xform "joist_17"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_17"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (6.300000190734863, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_17" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_17"
+        }
+    }
+
+    def Xform "pier_1_4"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "pier_1_4"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (11, 44.79999923706055, 0.47999998927116394)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "pier_1_4" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.12, -0.12, -0.48), (0.12, 0.12, 0.48)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 8, 4, 4, 8]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 9, 8, 8, 9, 11, 10, 10, 11, 13, 12, 3, 1, 15, 13, 11, 9, 7, 5, 12, 13, 15, 14, 14, 15, 1, 0, 0, 2, 4, 6, 8, 10, 12, 14]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(0, 0.12, -0.48), (0, 0.12, 0.48), (0.08485281, 0.08485281, -0.48), (0.08485281, 0.08485281, 0.48), (0.12, 0, -0.48), (0.12, 0, 0.48), (0.08485281, -0.08485281, -0.48), (0.08485281, -0.08485281, 0.48), (0, -0.12, -0.48), (0, -0.12, 0.48), (-0.08485281, -0.08485281, -0.48), (-0.08485281, -0.08485281, 0.48), (-0.12, 0, -0.48), (-0.12, 0, 0.48), (-0.08485281, 0.08485281, -0.48), (-0.08485281, 0.08485281, 0.48)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "pier_1_4"
+        }
+    }
+
+    def Xform "joist_12"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_12"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (1.0499999523162842, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_12" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_12"
+        }
+    }
+
+    def Xform "rim_front"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "rim_front"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (24, 0.12, 0.24)
+        double3 xformOp:translate = (0, 45, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "rim_front" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "rim_front"
+        }
+    }
+
+    def Xform "pier_1_1"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "pier_1_1"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (11, 40.599998474121094, 0.47999998927116394)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "pier_1_1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.12, -0.12, -0.48), (0.12, 0.12, 0.48)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 8, 4, 4, 8]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 9, 8, 8, 9, 11, 10, 10, 11, 13, 12, 3, 1, 15, 13, 11, 9, 7, 5, 12, 13, 15, 14, 14, 15, 1, 0, 0, 2, 4, 6, 8, 10, 12, 14]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(0, 0.12, -0.48), (0, 0.12, 0.48), (0.08485281, 0.08485281, -0.48), (0.08485281, 0.08485281, 0.48), (0.12, 0, -0.48), (0.12, 0, 0.48), (0.08485281, -0.08485281, -0.48), (0.08485281, -0.08485281, 0.48), (0, -0.12, -0.48), (0, -0.12, 0.48), (-0.08485281, -0.08485281, -0.48), (-0.08485281, -0.08485281, 0.48), (-0.12, 0, -0.48), (-0.12, 0, 0.48), (-0.08485281, 0.08485281, -0.48), (-0.08485281, 0.08485281, 0.48)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "pier_1_1"
+        }
+    }
+
+    def Xform "joist_15"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_15"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (4.199999809265137, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_15" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_15"
+        }
+    }
+
+    def Xform "joist_22"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_22"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (11.550000190734863, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_22" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_22"
+        }
+    }
+
+    def Xform "joist_9"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_9"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (-2.0999999046325684, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_9" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_9"
+        }
+    }
+
+    def Xform "joist_13"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_13"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (2.0999999046325684, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_13" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_13"
+        }
+    }
+
+    def Xform "joist_20"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_20"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (9.449999809265137, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_20" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_20"
+        }
+    }
+
+    def Xform "steps_beam_seated_0_0"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "beam_seated"
+        custom string userProperties:blender:object_name = "steps_beam_seated_0_0"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.3, 1.2, 0.3)
+        double3 xformOp:translate = (-12.449999809265137, 42.5, 1.0499999523162842)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "steps_beam_seated_0_0" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "steps_beam_seated_0_0"
+        }
+    }
+
+    def Xform "joist_16"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_16"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (5.25, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_16" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_16"
+        }
+    }
+
+    def Xform "pier_1_3"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "pier_1_3"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (11, 43.400001525878906, 0.47999998927116394)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "pier_1_3" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.12, -0.12, -0.48), (0.12, 0.12, 0.48)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 8, 4, 4, 8]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 9, 8, 8, 9, 11, 10, 10, 11, 13, 12, 3, 1, 15, 13, 11, 9, 7, 5, 12, 13, 15, 14, 14, 15, 1, 0, 0, 2, 4, 6, 8, 10, 12, 14]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(0, 0.12, -0.48), (0, 0.12, 0.48), (0.08485281, 0.08485281, -0.48), (0.08485281, 0.08485281, 0.48), (0.12, 0, -0.48), (0.12, 0, 0.48), (0.08485281, -0.08485281, -0.48), (0.08485281, -0.08485281, 0.48), (0, -0.12, -0.48), (0, -0.12, 0.48), (-0.08485281, -0.08485281, -0.48), (-0.08485281, -0.08485281, 0.48), (-0.12, 0, -0.48), (-0.12, 0, 0.48), (-0.08485281, 0.08485281, -0.48), (-0.08485281, 0.08485281, 0.48)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "pier_1_3"
+        }
+    }
+
+    def Xform "joist_10"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "joist_10"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.12, 5.8, 0.24)
+        double3 xformOp:translate = (-1.0499999523162842, 42, 1.0800000429153442)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "joist_10" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "joist_10"
+        }
+    }
+
+    def Xform "steps_beam_seated_0_1"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "beam_seated"
+        custom string userProperties:blender:object_name = "steps_beam_seated_0_1"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.3, 1.2, 0.3)
+        double3 xformOp:translate = (-12.75, 42.5, 0.75)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "steps_beam_seated_0_1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "steps_beam_seated_0_1"
+        }
+    }
+
+    def Xform "pier_1_2"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "pier_1_2"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (11, 42, 0.47999998927116394)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "pier_1_2" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.12, -0.12, -0.48), (0.12, 0.12, 0.48)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 8, 4, 4, 8]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 9, 8, 8, 9, 11, 10, 10, 11, 13, 12, 3, 1, 15, 13, 11, 9, 7, 5, 12, 13, 15, 14, 14, 15, 1, 0, 0, 2, 4, 6, 8, 10, 12, 14]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(0, 0.12, -0.48), (0, 0.12, 0.48), (0.08485281, 0.08485281, -0.48), (0.08485281, 0.08485281, 0.48), (0.12, 0, -0.48), (0.12, 0, 0.48), (0.08485281, -0.08485281, -0.48), (0.08485281, -0.08485281, 0.48), (0, -0.12, -0.48), (0, -0.12, 0.48), (-0.08485281, -0.08485281, -0.48), (-0.08485281, -0.08485281, 0.48), (-0.12, 0, -0.48), (-0.12, 0, 0.48), (-0.08485281, 0.08485281, -0.48), (-0.08485281, 0.08485281, 0.48)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "pier_1_2"
+        }
+    }
+
+    def Xform "pier_0_0"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "pier_0_0"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (-11, 39.20000076293945, 0.47999998927116394)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "pier_0_0" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.12, -0.12, -0.48), (0.12, 0.12, 0.48)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 8, 4, 4, 8]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 9, 8, 8, 9, 11, 10, 10, 11, 13, 12, 3, 1, 15, 13, 11, 9, 7, 5, 12, 13, 15, 14, 14, 15, 1, 0, 0, 2, 4, 6, 8, 10, 12, 14]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(0, 0.12, -0.48), (0, 0.12, 0.48), (0.08485281, 0.08485281, -0.48), (0.08485281, 0.08485281, 0.48), (0.12, 0, -0.48), (0.12, 0, 0.48), (0.08485281, -0.08485281, -0.48), (0.08485281, -0.08485281, 0.48), (0, -0.12, -0.48), (0, -0.12, 0.48), (-0.08485281, -0.08485281, -0.48), (-0.08485281, -0.08485281, 0.48), (-0.12, 0, -0.48), (-0.12, 0, 0.48), (-0.08485281, 0.08485281, -0.48), (-0.08485281, 0.08485281, 0.48)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "pier_0_0"
+        }
+    }
+
+    def Xform "pier_0_2"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "pier_0_2"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (-11, 42, 0.47999998927116394)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "pier_0_2" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.12, -0.12, -0.48), (0.12, 0.12, 0.48)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 8, 4, 4, 8]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 9, 8, 8, 9, 11, 10, 10, 11, 13, 12, 3, 1, 15, 13, 11, 9, 7, 5, 12, 13, 15, 14, 14, 15, 1, 0, 0, 2, 4, 6, 8, 10, 12, 14]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(0, 0.12, -0.48), (0, 0.12, 0.48), (0.08485281, 0.08485281, -0.48), (0.08485281, 0.08485281, 0.48), (0.12, 0, -0.48), (0.12, 0, 0.48), (0.08485281, -0.08485281, -0.48), (0.08485281, -0.08485281, 0.48), (0, -0.12, -0.48), (0, -0.12, 0.48), (-0.08485281, -0.08485281, -0.48), (-0.08485281, -0.08485281, 0.48), (-0.12, 0, -0.48), (-0.12, 0, 0.48), (-0.08485281, 0.08485281, -0.48), (-0.08485281, 0.08485281, 0.48)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "pier_0_2"
+        }
+    }
+
+    def Xform "pier_0_4"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "pier_0_4"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (1, 1, 1)
+        double3 xformOp:translate = (-11, 44.79999923706055, 0.47999998927116394)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "pier_0_4" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.12, -0.12, -0.48), (0.12, 0.12, 0.48)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4, 8, 4, 4, 8]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 5, 4, 4, 5, 7, 6, 6, 7, 9, 8, 8, 9, 11, 10, 10, 11, 13, 12, 3, 1, 15, 13, 11, 9, 7, 5, 12, 13, 15, 14, 14, 15, 1, 0, 0, 2, 4, 6, 8, 10, 12, 14]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.3826835, 0.9238795, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, 0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.9238795, -0.3826835, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.3826835, -0.9238795, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (-0.9238795, -0.3826835, 0), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.9238795, 0.3826835, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-0.3826835, 0.9238795, 0), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1), (-1.8292904e-7, 0, -1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(0, 0.12, -0.48), (0, 0.12, 0.48), (0.08485281, 0.08485281, -0.48), (0.08485281, 0.08485281, 0.48), (0.12, 0, -0.48), (0.12, 0, 0.48), (0.08485281, -0.08485281, -0.48), (0.08485281, -0.08485281, 0.48), (0, -0.12, -0.48), (0, -0.12, 0.48), (-0.08485281, -0.08485281, -0.48), (-0.08485281, -0.08485281, 0.48), (-0.12, 0, -0.48), (-0.12, 0, 0.48), (-0.08485281, 0.08485281, -0.48), (-0.08485281, 0.08485281, 0.48)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "pier_0_4"
+        }
+    }
+
+    def Xform "steps_beam_seated_1_1"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "beam_seated"
+        custom string userProperties:blender:object_name = "steps_beam_seated_1_1"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.3, 1.2, 0.3)
+        double3 xformOp:translate = (12.75, 42.5, 0.75)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "steps_beam_seated_1_1" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "steps_beam_seated_1_1"
+        }
+    }
+
+    def Xform "deck_full_beam_seated"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "beam_seated"
+        custom string userProperties:blender:object_name = "deck_full_beam_seated"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (24, 6, 0.04)
+        double3 xformOp:translate = (0, 42, 1.2200000286102295)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "deck_full_beam_seated" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "deck_full_beam_seated"
+        }
+    }
+
+    def Xform "steps_beam_seated_1_0"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "beam_seated"
+        custom string userProperties:blender:object_name = "steps_beam_seated_1_0"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.3, 1.2, 0.3)
+        double3 xformOp:translate = (12.449999809265137, 42.5, 1.0499999523162842)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "steps_beam_seated_1_0" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "steps_beam_seated_1_0"
+        }
+    }
+
+    def Xform "steps_beam_seated_1_3"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "beam_seated"
+        custom string userProperties:blender:object_name = "steps_beam_seated_1_3"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.3, 1.2, 0.3)
+        double3 xformOp:translate = (13.350000381469727, 42.5, 0.15000000596046448)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "steps_beam_seated_1_3" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "steps_beam_seated_1_3"
+        }
+    }
+
+    def Xform "truss_post_R"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "*"
+        custom string userProperties:blender:object_name = "truss_post_R"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.3, 0.3, 5)
+        double3 xformOp:translate = (11.600000381469727, 39.29999923706055, 3.700000047683716)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "truss_post_R" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "truss_post_R"
+        }
+    }
+
+    def Xform "steps_beam_seated_1_2"
+    {
+        custom string userProperties:backlot_asset = "RallyStage"
+        custom string userProperties:backlot_state = "beam_seated"
+        custom string userProperties:blender:object_name = "steps_beam_seated_1_2"
+        float3 xformOp:rotateXYZ = (0, -0, 0)
+        float3 xformOp:scale = (0.3, 1.2, 0.3)
+        double3 xformOp:translate = (13.050000190734863, 42.5, 0.44999998807907104)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:rotateXYZ", "xformOp:scale"]
+
+        def Mesh "steps_beam_seated_1_2" (
+            active = true
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            uniform bool doubleSided = 1
+            float3[] extent = [(-0.5, -0.5, -0.5), (0.5, 0.5, 0.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 1, 3, 2, 2, 3, 7, 6, 6, 7, 5, 4, 4, 5, 1, 0, 2, 6, 4, 0, 7, 3, 1, 5]
+            rel material:binding = </geo/_materials/timber>
+            normal3f[] normals = [(-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (-1, 0, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (1, 0, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, -1, 0), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, -1), (0, 0, 1), (0, 0, 1), (0, 0, 1), (0, 0, 1)] (
+                interpolation = "faceVarying"
+            )
+            point3f[] points = [(-0.5, -0.5, -0.5), (-0.5, -0.5, 0.5), (-0.5, 0.5, -0.5), (-0.5, 0.5, 0.5), (0.5, -0.5, -0.5), (0.5, -0.5, 0.5), (0.5, 0.5, -0.5), (0.5, 0.5, 0.5)]
+            uniform token subdivisionScheme = "none"
+            custom string userProperties:blender:data_name = "steps_beam_seated_1_2"
+        }
+    }
+}
+

@@ -1,0 +1,37 @@
+{
+  "shot_id": "NH-S348-SH004",
+  "song_id": "NH-S348",
+  "duration_s": 10,
+  "camera": {
+    "shot_size": "medium",
+    "movement": "locked-off",
+    "lens_mm": 50
+  },
+  "subjects": [
+    "dick",
+    "pengold",
+    "valencia"
+  ],
+  "setting": "The Anti-Thanksgiving Feast stage",
+  "mood": "Dick does not scream",
+  "action": "BEAT 2 - THE LISTENING. The orchestra thins to a single clarinet holding the TWEEEDS melody. Dick speaks over it, clear, unamplified, human. The chorus does not hear him. Pengold does not turn. Summer's portrait reaches its apex and holds, blazing. He is not drowned out; he is ignored.",
+  "prompt": "medium shot, locked-off, a lean charismatic man in his early thirties, grown-out product-free hair, thin wire-frame glasses, earnest alive expression, dark raw selvedge denim, a tailored heritage workwear jacket over a faded vintage band t-shirt, minimalist off-white sneakers, a handwoven scarf in steel shackles downstage center speaking clearly toward the podium where a controlled man in his late forties, neat conservative hair greying at the temples, calculating unhurried eyes, medium solid upright build, municipal mayoral suiting in dark muted wool, white shirt, no ostentation, papers aligned squarely, unhurried processional bearing stands with his back turned and does not turn, the chorus behind the podium not hearing, a monumental Socialist-Realist painted portrait of the poised patrician woman, heroic and idealized, gazing upward, at its full height above the podium, blazing, lit from below in golden light, tungsten stage light, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "dick",
+    "seed": 348004
+  },
+  "seed": 348004,
+  "continuity": {
+    "prev_shot": "NH-S348-SH003",
+    "flf2v": true
+  },
+  "render": {
+    "width": 640,
+    "height": 640,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 10
+  }
+}

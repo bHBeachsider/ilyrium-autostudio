@@ -1,0 +1,1 @@
+{"images_data_url": "https://v3b.fal.media/files/b/0aa903d3/IEFPJTjmuyKt7O8u_aBSY__valencia_trainset.zip", "trigger_phrase": "valencia_strong_nh", "learning_rate": 9e-05, "steps": 2000, "multiresolution_training": true, "subject_crop": true, "data_archive_format": null, "resume_from_checkpoint": "", "create_masks": false, "instance_prompt": "valencia_strong_nh"}

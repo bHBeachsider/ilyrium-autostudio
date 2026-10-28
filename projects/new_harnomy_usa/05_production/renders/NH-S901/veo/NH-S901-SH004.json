@@ -1,0 +1,26 @@
+{
+  "shot_id": "NH-S901-SH004",
+  "endpoint": "fal-ai/veo3.1/image-to-video",
+  "keyframe": "04_preproduction\\keyframes\\NH-S901\\NH-S901-SH004_key.png",
+  "arguments": {
+    "prompt": "Extreme close-up insert. A chop saw blade spins up to full speed and is pushed down through a length of fresh pine; damp sawdust sprays and falls quickly in the flat grey light, fine drizzle drops on the steel and the wet timber; the gloved hands hold the timber steady, then lift the blade clear. The camera is locked off on a tripod and does not move at all: no pan, no tilt, no zoom, no drift, no handheld shake. Real-time speed, natural human movement, never slow motion. Overcast, no sun. Shallow depth of field, sharp focus on the blade and the cut. Prestige political drama photographed on an Arri Alexa with anamorphic lenses: flat overcast daylight, slight 35mm film grain, colours desaturated about twelve percent, warm tungstens, deep browns and charcoals in the shadows, photographic realism.",
+    "aspect_ratio": "16:9",
+    "duration": "6s",
+    "resolution": "1080p",
+    "generate_audio": false,
+    "negative_prompt": "turning around, walking away, camera pull back, dolly, reframing, people walking into frame, pedestrians in the foreground, moving bus, moving vehicles, slow motion, speed ramp, time-lapse, camera movement, zoom, pan, dolly, handheld shake, on-screen text, captions, subtitles, watermark, logo, lens flare, fast traffic, cars driving through the frame, people looking at the camera, faces toward camera, cartoon, illustration, oversaturated",
+    "seed": 901004
+  },
+  "image_url": "https://v3b.fal.media/files/b/0aa93e86/dFZT6JN1Lc6w55wvIpRqN_NH-S901-SH004_key.png",
+  "response": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0aa93e92/BLb1U9pLCcghoeeVfwUhG_d48d938d94a54ee1b542c60de97bea2e.mp4",
+      "content_type": "video/mp4",
+      "file_name": "d48d938d94a54ee1b542c60de97bea2e.mp4",
+      "file_size": 11728483
+    }
+  },
+  "seconds": 122.6,
+  "est_cost_usd": 1.2000000000000002,
+  "rendered_at": "2026-09-05T15:47:08"
+}

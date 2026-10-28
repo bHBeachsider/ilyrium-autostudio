@@ -1,0 +1,58 @@
+#usda 1.0
+(
+    defaultPrim = "PengoldOffice"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "PengoldOffice" (
+    kind = "component"
+    variants = {
+        string build = "meeting"
+    }
+    prepend variantSets = "build"
+)
+{
+    custom string backlot:asset_id = "PengoldOffice"
+    custom token backlot:grade = "conditioning"
+
+    def Scope "ControlPoints"
+    {
+        def Xform "mark_desk_chair"
+        {
+            custom double backlot:facing_deg = 0
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (0, -3, 5.4)
+            custom token backlot:posture = "seated"
+        }
+
+        def Xform "mark_window_centre"
+        {
+            custom double backlot:facing_deg = 0
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (0, 7.3, 5.4)
+            custom token backlot:posture = "standing"
+        }
+
+        def Xform "mark_door"
+        {
+            custom double backlot:facing_deg = 180
+            custom token backlot:kind = "mark"
+            custom double3 backlot:pos = (-6.5, -5, 5.4)
+            custom token backlot:posture = "standing"
+        }
+    }
+    variantSet "build" = {
+        "dawn" (
+            prepend references = @./geo_dawn.usda@</geo>
+        ) {
+
+        }
+        "meeting" (
+            prepend references = @./geo_meeting.usda@</geo>
+        ) {
+
+        }
+    }
+}
+

@@ -1,0 +1,33 @@
+{
+  "shot_id": "NH-S901-SH012",
+  "song_id": "NH-S901",
+  "duration_s": 4,
+  "camera": {
+    "shot_size": "medium",
+    "movement": "locked-off",
+    "lens_mm": 135
+  },
+  "subjects": [],
+  "setting": "The banner between the portico columns, first light",
+  "mood": "documentary stillness",
+  "action": "The banner alone, filling the frame, the fabric breathing in a light wind. Plays SECOND, after the establishing wide (sequence_index 3 in the v3 manifest; numbered 12 because shot ids are immutable and the schema wants digits). The one place the audience can read what the city has written: NEW HARNOMY, and DAY OF ATONEMENT. Nobody in the opera ever will.",
+  "prompt": "medium shot with a long lens, locked-off camera that does not move, a mauve fabric banner hanging between the limestone columns of a semicircular portico filling the frame width, pale condensed capitals reading NEW HARNOMY PEOPLE'S THANKSGIVING FESTIVAL and ANTI-THANKSGIVING DAY OF ATONEMENT - SATURDAY, low raking winter sun from the left, the fabric breathing very slightly in a light wind, a slow soft ripple along it, the lettering perfectly legible throughout, nothing else moves, no people, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, caption text overlay, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame, human face, portrait, person looking at camera, fast moving cars, speeding traffic, time-lapse, motion blur streaks, camera movement",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "",
+    "seed": 901012
+  },
+  "seed": 901012,
+  "continuity": {
+    "prev_shot": "NH-S901-SH002",
+    "flf2v": false
+  },
+  "render": {
+    "width": 832,
+    "height": 480,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 4
+  }
+}

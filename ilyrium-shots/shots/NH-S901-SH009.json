@@ -1,0 +1,74 @@
+{
+  "shot_id": "NH-S901-SH009",
+  "song_id": "NH-S901",
+  "duration_s": 6,
+  "camera": {
+    "shot_size": "medium",
+    "movement": "locked-off",
+    "lens_mm": 35
+  },
+  "subjects": [
+    "construction workers"
+  ],
+  "setting": "The square, late afternoon",
+  "mood": "steps up, only up",
+  "action": "Steps up. Only up. He tests the tread the way anyone would, and walks off.",
+  "prompt": "medium shot, locked-off camera that does not move, a workman in a high-visibility vest seen in profile puts his weight on the first tread of a short flight of new pine steps set against the end of a long timber stage, tests it, nods once, and walks slowly out of frame to the left, the row of folding chairs and the podium on the platform stay perfectly still, behind them City Hall with the mauve banner, cars parked nose to tail along the kerb do not move, a flatbed truck stacked with fresh lumber and a white box van stand at the kerb with their engines off, the city bus at the far corner is stopped, a hot-food cart steams, a few pedestrians in winter coats walk slowly across the square at a distance with their backs to the camera, nobody looks at the timber structure, low afternoon winter sun, long shadows, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, caption text overlay, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame, human face, portrait, person looking at camera, fast moving cars, speeding traffic, time-lapse, motion blur streaks, camera movement",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "",
+    "seed": 901009
+  },
+  "seed": 901009,
+  "continuity": {
+    "prev_shot": "NH-S901-SH007",
+    "flf2v": false
+  },
+  "render": {
+    "width": 832,
+    "height": 480,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 6,
+    "renderer": "fal-veo3.1"
+  },
+  "backlot": {
+    "stage": "backlot/usd/nh/NewHarnomy_square.usda",
+    "camera": "/World/Cameras/SH009",
+    "set_state": "finished",
+    "weather": "overcast_drizzle",
+    "dressing": [
+      "harvest"
+    ],
+    "invariants": [
+      {
+        "id": "posts_at_stage_ends",
+        "check": "post_projection",
+        "blocking": true
+      },
+      {
+        "id": "deck_parallel_to_facade",
+        "check": "deck_orientation",
+        "blocking": false
+      },
+      {
+        "id": "banner_reads_spec",
+        "check": "ocr",
+        "blocking": false,
+        "args": {
+          "text_plane": "Banner"
+        }
+      }
+    ],
+    "conditioning": [
+      "clay",
+      "depth",
+      "seg"
+    ],
+    "references": {
+      "plate": "projects/new_harnomy_usa/03_design/environments/city_hall/plate_exterior_firstlight_LOCKED.png"
+    },
+    "budget_usd": 3.0
+  }
+}

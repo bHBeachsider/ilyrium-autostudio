@@ -1,0 +1,41 @@
+#usda 1.0
+(
+    defaultPrim = "BuildSite"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "BuildSite" (
+    kind = "component"
+    variants = {
+        string build = "swept"
+    }
+    prepend variantSets = "build"
+)
+{
+    custom string backlot:asset_id = "BuildSite"
+    custom token backlot:grade = "conditioning"
+    variantSet "build" = {
+        "beam_seated" (
+            prepend references = @./geo_beam_seated.usda@</geo>
+        ) {
+
+        }
+        "half_decked" (
+            prepend references = @./geo_half_decked.usda@</geo>
+        ) {
+
+        }
+        "joists" (
+            prepend references = @./geo_joists.usda@</geo>
+        ) {
+
+        }
+        "swept" (
+            prepend references = @./geo_swept.usda@</geo>
+        ) {
+
+        }
+    }
+}
+

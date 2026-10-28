@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ilyrium.studio/schemas/shot-spec-1.0.json",
+  "title": "Ilyrium Shot Spec v1.0",
+  "description": "Stage 2 contract: one shot definition. The fine-tuned shot-breakdown model emits the creative fields; the orchestrator fills the optional render/image fields before generation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["shot_id", "song_id", "duration_s", "camera", "subjects", "setting", "mood", "action", "prompt", "keyframe", "seed", "continuity"],
+  "properties": {
+    "shot_id":   { "type": "string", "pattern": "^[A-Z]{2,4}-S[0-9]{2,}-SH[0-9]{3,}$" },
+    "song_id":   { "type": "string", "pattern": "^[A-Z]{2,4}-S[0-9]{2,}$" },
+    "duration_s": { "type": "number", "minimum": 1, "maximum": 10 },
+    "camera": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["shot_size", "movement", "lens_mm"],
+      "properties": {
+        "shot_size": { "enum": ["extreme-wide", "wide", "medium", "close-up", "two-shot", "macro"] },
+        "movement":  { "type": "string", "minLength": 1 },
+        "lens_mm":   { "type": "integer", "minimum": 8, "maximum": 300 }
+      }
+    },
+    "subjects": { "type": "array", "items": { "type": "string" } },
+    "setting":  { "type": "string", "minLength": 1 },
+    "mood":     { "type": "string", "minLength": 1 },
+    "action":   { "type": "string", "minLength": 1 },
+    "prompt":   { "type": "string", "minLength": 1 },
+    "negative_prompt": { "type": "string" },
+    "keyframe": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "ref_lora", "seed"],
+      "properties": {
+        "source":   { "enum": ["t2i", "flf2v"] },
+        "ref_lora": { "type": "string" },
+        "image":    { "type": "string", "description": "Filename present in ComfyUI/input (uploaded by the orchestrator). Filled at render time, not by the model." },
+        "seed":     { "type": "integer" }
+      }
+    },
+    "seed": { "type": "integer" },
+    "continuity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["prev_shot", "flf2v"],
+      "properties": {
+        "prev_shot": { "type": "string" },
+        "flf2v":     { "type": "boolean" }
+      }
+    },
+    "render": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Generation params filled by the orchestrator. Defaults applied if absent.",
+      "properties": {
+        "width":      { "type": "integer", "minimum": 64, "maximum": 1280 },
+        "height":     { "type": "integer", "minimum": 64, "maximum": 1280 },
+        "fps":        { "type": "integer", "minimum": 8, "maximum": 60 },
+        "steps":      { "type": "integer", "minimum": 1, "maximum": 60 },
+        "duration_s": { "type": "number", "minimum": 1, "maximum": 10 }
+      }
+    }
+  }
+}

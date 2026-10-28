@@ -1,0 +1,52 @@
+{
+ "key": "/tmp/bl/s6/LYST_DESK/take_6103.png",
+ "shot": "LYST_DESK",
+ "sha256": "ae7e8fc39e51d5d4ed92173431c596fd03d6910966a5050fbe2958be11dd0fe0",
+ "checks": {
+  "geometry": {
+   "blocking": true,
+   "passed": true,
+   "lines": [
+    "  n/a  interior shot: the RallyStage checks (posts, deck line, chair band) do not apply; the comparative clay check runs",
+    "expected posts (px x): ",
+    "strongest verticals in the stage band (px x, strength): 1104(1.00), 1129(0.96), 734(0.69), 713(0.64), 351(0.60)",
+    "clay verticals (px x):  71, 263, 354, 1126",
+    "frame verticals (px x): 386, 1105, 1264, 1409",
+    "  WARN clay vertical at x=71 has nothing within 20.3% of frame - LOOK at it (advisory: the clay's strongest verticals include building edges the dressed frame draws differently)",
+    "  wrote comparison sheet -> /tmp/bl/s6/LYST_DESK/take_6103_sheet.png (green = where the posts belong, blue = the deck line)",
+    "[OK] geometry agrees with the blockout"
+   ]
+  },
+  "seg": {
+   "blocking": true,
+   "passed": true,
+   "lines": [
+    "seg IoU take_6103.png vs /tmp/bl/backlot/usd/nh/passes_s6/LYST_DESK",
+    "  PASS stage extent: box IoU 0.42, mask IoU 0.66, axis 179 vs 179 deg, centroid off 0.5% of frame",
+    "  n/a  deck      not in this frame (pass area 0.00%)",
+    "  n/a  post      not in this frame (pass area 0.12%)",
+    "  n/a  beam      not in this frame (pass area 0.00%)",
+    "  info chair     IoU 0.87",
+    "  PASS person    present: near-recall 100% (pixel IoU 0.81)",
+    "  n/a  dressing  not in this frame (pass area 0.00%)",
+    "[PASS] mask agreement with the world"
+   ],
+   "segmenter": "grounding-dino + sam (seg_box.py)"
+  },
+  "text": {
+   "blocking": true,
+   "passed": true,
+   "lines": [
+    "  n/a  lyst_wordmark: behind camera",
+    "  n/a  lyst_nameplate: out of frame",
+    "  n/a  banner: too small to read (3.9 px per character over 252 px)",
+    "[OK] text planes"
+   ]
+  }
+ },
+ "sheet": "/tmp/bl/s6/LYST_DESK/take_6103_sheet.png",
+ "world_version": "usda:a91eddc428bc",
+ "verdict": "PASS",
+ "failed": [],
+ "advisory": []
+}

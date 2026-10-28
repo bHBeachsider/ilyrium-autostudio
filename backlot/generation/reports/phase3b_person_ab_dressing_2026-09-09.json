@@ -1,0 +1,364 @@
+{
+ "rows": [
+  {
+   "arm": "A",
+   "shot": "S101_SH004",
+   "take": "6100",
+   "struct_box": 0.509,
+   "struct_v": "PASS",
+   "person_recall": null,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "A",
+   "shot": "S101_SH004",
+   "take": "6101",
+   "struct_box": null,
+   "struct_v": "FAIL",
+   "person_recall": null,
+   "dressing_recall": null,
+   "geometry": "FAIL"
+  },
+  {
+   "arm": "A",
+   "shot": "S101_SH004",
+   "take": "6102",
+   "struct_box": 0.966,
+   "struct_v": "PASS",
+   "person_recall": null,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "A",
+   "shot": "S101_SH004",
+   "take": "6103",
+   "struct_box": 0.024,
+   "struct_v": "FAIL",
+   "person_recall": null,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "A",
+   "shot": "S101_SH004",
+   "take": "6104",
+   "struct_box": 0.964,
+   "struct_v": "PASS",
+   "person_recall": null,
+   "dressing_recall": null,
+   "geometry": "FAIL"
+  },
+  {
+   "arm": "A",
+   "shot": "S101_SH005",
+   "take": "6000",
+   "struct_box": null,
+   "struct_v": "FAIL",
+   "person_recall": null,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "A",
+   "shot": "S101_SH005",
+   "take": "6001",
+   "struct_box": 0.02,
+   "struct_v": "FAIL",
+   "person_recall": null,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "A",
+   "shot": "S101_SH005",
+   "take": "6002",
+   "struct_box": null,
+   "struct_v": "FAIL",
+   "person_recall": null,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "A",
+   "shot": "S101_SH005",
+   "take": "6003",
+   "struct_box": 0.011,
+   "struct_v": "FAIL",
+   "person_recall": null,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "A",
+   "shot": "S101_SH005",
+   "take": "6004",
+   "struct_box": 0.021,
+   "struct_v": "FAIL",
+   "person_recall": null,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "A",
+   "shot": "S101_SH005",
+   "take": "6005",
+   "struct_box": 0.018,
+   "struct_v": "FAIL",
+   "person_recall": null,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "A",
+   "shot": "S101_SH005",
+   "take": "6006",
+   "struct_box": 0.017,
+   "struct_v": "FAIL",
+   "person_recall": null,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "A",
+   "shot": "S101_SH005",
+   "take": "6007",
+   "struct_box": 0.031,
+   "struct_v": "FAIL",
+   "person_recall": null,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "A",
+   "shot": "S101_SH005",
+   "take": "6008",
+   "struct_box": 0.02,
+   "struct_v": "FAIL",
+   "person_recall": null,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "A",
+   "shot": "S101_SH005",
+   "take": "6009",
+   "struct_box": 0.022,
+   "struct_v": "FAIL",
+   "person_recall": null,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "B",
+   "shot": "S101_SH004",
+   "take": "6100",
+   "struct_box": 0.091,
+   "struct_v": "FAIL",
+   "person_recall": 0.0,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "B",
+   "shot": "S101_SH004",
+   "take": "6101",
+   "struct_box": 0.369,
+   "struct_v": "FAIL",
+   "person_recall": 1.0,
+   "dressing_recall": null,
+   "geometry": "FAIL"
+  },
+  {
+   "arm": "B",
+   "shot": "S101_SH004",
+   "take": "6102",
+   "struct_box": null,
+   "struct_v": "FAIL",
+   "person_recall": null,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "B",
+   "shot": "S101_SH004",
+   "take": "6103",
+   "struct_box": 0.257,
+   "struct_v": "PASS",
+   "person_recall": 0.746,
+   "dressing_recall": null,
+   "geometry": "FAIL"
+  },
+  {
+   "arm": "B",
+   "shot": "S101_SH004",
+   "take": "6104",
+   "struct_box": 0.336,
+   "struct_v": "FAIL",
+   "person_recall": 0.995,
+   "dressing_recall": null,
+   "geometry": "FAIL"
+  },
+  {
+   "arm": "B",
+   "shot": "S101_SH005",
+   "take": "6000",
+   "struct_box": 0.289,
+   "struct_v": "PASS",
+   "person_recall": 1.0,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "B",
+   "shot": "S101_SH005",
+   "take": "6001",
+   "struct_box": 0.044,
+   "struct_v": "FAIL",
+   "person_recall": 0.266,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "B",
+   "shot": "S101_SH005",
+   "take": "6002",
+   "struct_box": 0.545,
+   "struct_v": "FAIL",
+   "person_recall": 0.552,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "B",
+   "shot": "S101_SH005",
+   "take": "6003",
+   "struct_box": 0.146,
+   "struct_v": "FAIL",
+   "person_recall": 0.348,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "B",
+   "shot": "S101_SH005",
+   "take": "6004",
+   "struct_box": 0.054,
+   "struct_v": "FAIL",
+   "person_recall": null,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "B",
+   "shot": "S101_SH005",
+   "take": "6005",
+   "struct_box": 0.046,
+   "struct_v": "FAIL",
+   "person_recall": 0.0,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "B",
+   "shot": "S101_SH005",
+   "take": "6006",
+   "struct_box": 0.223,
+   "struct_v": "FAIL",
+   "person_recall": 0.843,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "B",
+   "shot": "S101_SH005",
+   "take": "6007",
+   "struct_box": 0.261,
+   "struct_v": "FAIL",
+   "person_recall": 0.406,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "B",
+   "shot": "S101_SH005",
+   "take": "6008",
+   "struct_box": 0.071,
+   "struct_v": "FAIL",
+   "person_recall": 0.01,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "B",
+   "shot": "S101_SH005",
+   "take": "6009",
+   "struct_box": 0.13,
+   "struct_v": "FAIL",
+   "person_recall": 0.385,
+   "dressing_recall": null,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "dress",
+   "shot": "SH009",
+   "take": "6200",
+   "struct_box": 0.923,
+   "struct_v": "PASS",
+   "person_recall": null,
+   "dressing_recall": 0.235,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "dress",
+   "shot": "SH009",
+   "take": "6201",
+   "struct_box": 0.935,
+   "struct_v": "PASS",
+   "person_recall": null,
+   "dressing_recall": 0.237,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "dress",
+   "shot": "SH009",
+   "take": "6202",
+   "struct_box": 0.931,
+   "struct_v": "PASS",
+   "person_recall": null,
+   "dressing_recall": 0.394,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "dress",
+   "shot": "SH009",
+   "take": "6203",
+   "struct_box": 0.789,
+   "struct_v": "PASS",
+   "person_recall": null,
+   "dressing_recall": 0.545,
+   "geometry": "PASS"
+  },
+  {
+   "arm": "dress",
+   "shot": "SH009",
+   "take": "6204",
+   "struct_box": 0.927,
+   "struct_v": "PASS",
+   "person_recall": null,
+   "dressing_recall": 0.143,
+   "geometry": "FAIL"
+  }
+ ],
+ "eye": {
+  "A S101_SH005 (set only)": "10/10 room right, dress good (drapes, windows, columns); a man present 4/10 (6000 standing, 6001 & 6004 seated away from the desk, 6008 seated at the desk reading); on the mark 1/10",
+  "B S101_SH005 (human mannequin)": "10/10 a figure at the desk chair on the mark, reading posture; a real man 4/10 (6001, 6004, 6006, 6009); 6/10 the sphere head is drawn as a globe, helmet or lamp",
+  "A/B S101_SH004": "wide: room right in all; person as above at smaller scale",
+  "dress SH009": "pumpkins and hay bales along the stage front in 5/5 (near-recall 14-55%); sheaves at the columns faint; garland on the beam not drawn; stage extent PASS 5/5"
+ },
+ "verdicts": {
+  "office_9_in_10": "NOT MET either way. A gives dress and freedom but loses the mark (1/10 on the desk chair); B holds the mark 10/10 but the sphere head is read as an object 6/10. Next: an ovoid head with a hair cap and a neck, and a person-region fade in the depth/edge control so the body's silhouette guides but does not dictate.",
+  "dressing": "MET as presence: dressing placed as data appears in 5/5 SH009 takes; recall threshold 0.30 advisory until calibrated"
+ }
+}

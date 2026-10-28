@@ -1,0 +1,52 @@
+{
+ "key": "/tmp/bl/s6/S101_SH004/take_6003.png",
+ "shot": "S101_SH004",
+ "sha256": "eedef2d77b8f2607490539ddd6f093aa52ace3e8228fae7b344c37698e92006e",
+ "checks": {
+  "geometry": {
+   "blocking": true,
+   "passed": true,
+   "lines": [
+    "  n/a  interior shot: the RallyStage checks (posts, deck line, chair band) do not apply; the comparative clay check runs",
+    "expected posts (px x): ",
+    "strongest verticals in the stage band (px x, strength): 163(0.73), 222(0.72), 248(0.71), 1242(0.71), 412(0.67)",
+    "clay verticals (px x):  170, 253, 417, 589",
+    "frame verticals (px x): 247, 469, 815, 1415",
+    "  WARN clay vertical at x=589 is 7.7% of frame from the nearest one in the image",
+    "  wrote comparison sheet -> /tmp/bl/s6/S101_SH004/take_6003_sheet.png (green = where the posts belong, blue = the deck line)",
+    "[OK] geometry agrees with the blockout"
+   ]
+  },
+  "seg": {
+   "blocking": true,
+   "passed": true,
+   "lines": [
+    "seg IoU take_6003.png vs /tmp/bl/backlot/usd/nh/passes_s6/S101_SH004",
+    "  WARN stage axis 157 deg in the key vs 177 in the pass - the stage is turned",
+    "  n/a  deck      not in this frame (pass area 0.04%)",
+    "  n/a  post      not in this frame (pass area 0.00%)",
+    "  n/a  beam      not in this frame (pass area 0.04%)",
+    "  n/a  chair     not in this frame (pass area 0.00%)",
+    "  PASS person    present: near-recall 100% (pixel IoU 0.60)",
+    "  n/a  dressing  not in this frame (pass area 0.04%)",
+    "[WARN] mask agreement uncertain - advisory, look at the sheet"
+   ],
+   "segmenter": "grounding-dino + sam (seg_box.py)"
+  },
+  "text": {
+   "blocking": true,
+   "passed": true,
+   "lines": [
+    "  n/a  lyst_wordmark: too small (7 px tall)",
+    "  n/a  lyst_nameplate: occluded (the depth pass has something at 10 m in front of the plane at 83 m)",
+    "  n/a  banner: occluded (the depth pass has something at 10 m in front of the plane at 16 m)",
+    "[OK] text planes"
+   ]
+  }
+ },
+ "sheet": "/tmp/bl/s6/S101_SH004/take_6003_sheet.png",
+ "world_version": "usda:c4c46db7083b",
+ "verdict": "PASS",
+ "failed": [],
+ "advisory": []
+}

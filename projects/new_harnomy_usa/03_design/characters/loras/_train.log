@@ -1,0 +1,23 @@
+[OK] fal auth and balance OK (probe 422)
+============================================================
+== valencia  (trigger: valencia_strong_nh)
+   18 images, zip 27.5 MB
+   uploaded, training 2000 steps ...
+   [OK] valencia_strong_nh.safetensors  131.0 MB  8.1 min
+============================================================
+== summer  (trigger: summer_winters_nh)
+   18 images, zip 25.3 MB
+   uploaded, training 2000 steps ...
+   [OK] summer_winters_nh.safetensors  131.0 MB  8.4 min
+============================================================
+== pengold  (trigger: pengold_heavens_nh)
+   18 images, zip 26.3 MB
+   uploaded, training 2000 steps ...
+   [OK] pengold_heavens_nh.safetensors  131.0 MB  8.4 min
+============================================================
+== dick  (trigger: dick_suede_nh)
+   18 images, zip 27.4 MB
+   uploaded, training 2000 steps ...
+   [OK] dick_suede_nh.safetensors  131.0 MB  9.8 min
+============================================================
+DONE 4/4

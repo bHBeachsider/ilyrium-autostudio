@@ -1,0 +1,1 @@
+{"images_data_url": "https://v3b.fal.media/files/b/0aa90469/l0UEv3NMMg3YVkSgvNDkZ__dick_trainset.zip", "trigger_phrase": "dick_suede_nh", "learning_rate": 9e-05, "steps": 2000, "multiresolution_training": true, "subject_crop": true, "data_archive_format": null, "resume_from_checkpoint": "", "create_masks": false, "instance_prompt": "dick_suede_nh"}

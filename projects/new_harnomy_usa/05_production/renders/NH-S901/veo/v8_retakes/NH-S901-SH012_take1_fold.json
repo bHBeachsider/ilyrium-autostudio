@@ -1,0 +1,26 @@
+{
+  "shot_id": "NH-S901-SH012",
+  "endpoint": "fal-ai/veo3.1/image-to-video",
+  "keyframe": "04_preproduction\\keyframes\\NH-S901\\NH-S901-SH012_key.png",
+  "arguments": {
+    "prompt": "Medium shot with a long lens of a mauve fabric banner hanging between the limestone columns of a semicircular portico, filling the frame width, in flat grey overcast light with a fine drizzle falling. The camera is locked off on a tripod and does not move at all: no pan, no tilt, no zoom, no drift, no handheld shake. Real-time speed, natural human movement, never slow motion. The only movement: the damp fabric stirs very slightly - a slow soft ripple travelling along it, the fold near the middle lifting and settling, drops running off its lower edge, the lettering staying perfectly legible and undistorted throughout. Nothing else moves; the stone is fixed. No people. Prestige political drama photographed on an Arri Alexa with anamorphic lenses: flat overcast daylight, slight 35mm film grain, colours desaturated about twelve percent, warm tungstens, deep browns and charcoals in the shadows, photographic realism.",
+    "aspect_ratio": "16:9",
+    "duration": "4s",
+    "resolution": "1080p",
+    "generate_audio": false,
+    "negative_prompt": "turning around, walking away, camera pull back, dolly, reframing, people walking into frame, pedestrians in the foreground, moving bus, moving vehicles, slow motion, speed ramp, time-lapse, camera movement, zoom, pan, dolly, handheld shake, on-screen text, captions, subtitles, watermark, logo, lens flare, fast traffic, cars driving through the frame, people looking at the camera, faces toward camera, cartoon, illustration, oversaturated",
+    "seed": 901012
+  },
+  "image_url": "https://v3b.fal.media/files/b/0aa93e6e/z6pMeDHDIuTZuEYBToM4F_NH-S901-SH012_key.png",
+  "response": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0aa93e8f/G3SvkBIOzcUyUQKxwtvkK_aa4d2c7e6788493c98ca44ef5fa7ed5b.mp4",
+      "content_type": "video/mp4",
+      "file_name": "aa4d2c7e6788493c98ca44ef5fa7ed5b.mp4",
+      "file_size": 9431715
+    }
+  },
+  "seconds": 109.4,
+  "est_cost_usd": 0.8,
+  "rendered_at": "2026-09-05T15:42:51"
+}

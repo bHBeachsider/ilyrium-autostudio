@@ -1,0 +1,52 @@
+{
+ "key": "/tmp/bl/s6/LYST_BOARD/take_6101.png",
+ "shot": "LYST_BOARD",
+ "sha256": "db3e89e2f2fba8c315e395fef650a988196feea6fa3c4b36d642c9de781e61f2",
+ "checks": {
+  "geometry": {
+   "blocking": true,
+   "passed": true,
+   "lines": [
+    "  n/a  interior shot: the RallyStage checks (posts, deck line, chair band) do not apply; the comparative clay check runs",
+    "expected posts (px x): ",
+    "strongest verticals in the stage band (px x, strength): 1117(0.71), 472(0.60), 903(0.59), 962(0.58), 643(0.55)",
+    "clay verticals (px x):  476, 777, 987, 1115",
+    "frame verticals (px x): 539, 666, 764, 915",
+    "  WARN clay vertical at x=1115 is 12.9% of frame from the nearest one in the image",
+    "  wrote comparison sheet -> /tmp/bl/s6/LYST_BOARD/take_6101_sheet.png (green = where the posts belong, blue = the deck line)",
+    "[OK] geometry agrees with the blockout"
+   ]
+  },
+  "seg": {
+   "blocking": true,
+   "passed": true,
+   "lines": [
+    "seg IoU take_6101.png vs /tmp/bl/backlot/usd/nh/passes_s6/LYST_BOARD",
+    "  WARN stage axis 156 deg in the key vs 172 in the pass - the stage is turned",
+    "  n/a  deck      not in this frame (pass area 0.00%)",
+    "  n/a  post      not in this frame (pass area 0.00%)",
+    "  n/a  beam      not in this frame (pass area 0.00%)",
+    "  info chair     IoU 0.45",
+    "  PASS person    present: near-recall 94% (pixel IoU 0.51)",
+    "  n/a  dressing  not in this frame (pass area 0.00%)",
+    "[WARN] mask agreement uncertain - advisory, look at the sheet"
+   ],
+   "segmenter": "grounding-dino + sam (seg_box.py)"
+  },
+  "text": {
+   "blocking": true,
+   "passed": true,
+   "lines": [
+    "  n/a  lyst_wordmark: behind camera",
+    "  n/a  lyst_nameplate: out of frame",
+    "  n/a  banner: occluded (the depth pass has something at 10 m in front of the plane at 76 m)",
+    "[OK] text planes"
+   ]
+  }
+ },
+ "sheet": "/tmp/bl/s6/LYST_BOARD/take_6101_sheet.png",
+ "world_version": "usda:deb39592660f",
+ "verdict": "PASS",
+ "failed": [],
+ "advisory": []
+}

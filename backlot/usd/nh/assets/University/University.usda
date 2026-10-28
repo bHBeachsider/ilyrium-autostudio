@@ -1,0 +1,16 @@
+#usda 1.0
+(
+    defaultPrim = "University"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "University" (
+    kind = "component"
+    prepend references = @./geo.usda@</geo>
+)
+{
+    custom string backlot:asset_id = "University"
+    custom token backlot:grade = "conditioning"
+}
+

@@ -1,0 +1,132 @@
+{
+ "shot": "LYST_BOARD",
+ "camera": {
+  "location": [
+   22.6,
+   87.4,
+   9.15
+  ],
+  "rotation_deg": [
+   88.85,
+   -0.0,
+   -177.69
+  ],
+  "lens_mm": 24.0,
+  "sensor_mm": 36.0,
+  "res": [
+   2520,
+   1080
+  ],
+  "depth_mode": "inverse",
+  "variants": {
+   "people": "boardroom"
+  },
+  "set_state": "half_decked"
+ },
+ "set_state": "half_decked",
+ "variants": {
+  "people": "boardroom"
+ },
+ "near_m": 4.623344421386719,
+ "far_m": 87.51051330566406,
+ "depth_mode": "inverse",
+ "seg_classes": {
+  "post": [
+   255,
+   40,
+   40
+  ],
+  "beam": [
+   255,
+   140,
+   0
+  ],
+  "deck": [
+   255,
+   220,
+   0
+  ],
+  "chair": [
+   0,
+   200,
+   255
+  ],
+  "podium": [
+   0,
+   120,
+   255
+  ],
+  "steps": [
+   200,
+   0,
+   255
+  ],
+  "text_plane": [
+   255,
+   0,
+   160
+  ],
+  "building": [
+   140,
+   140,
+   140
+  ],
+  "paving": [
+   60,
+   60,
+   70
+  ],
+  "vegetation": [
+   40,
+   160,
+   60
+  ],
+  "vehicle": [
+   230,
+   230,
+   230
+  ],
+  "prop": [
+   120,
+   80,
+   40
+  ],
+  "ground": [
+   20,
+   20,
+   25
+  ],
+  "person": [
+   255,
+   255,
+   255
+  ],
+  "dressing": [
+   0,
+   255,
+   120
+  ],
+  "furniture": [
+   170,
+   110,
+   60
+  ]
+ },
+ "seg_counts": {
+  "building": 388,
+  "paving": 6,
+  "text_plane": 22,
+  "prop": 70,
+  "vehicle": 3,
+  "vegetation": 31,
+  "deck": 36,
+  "ground": 1,
+  "furniture": 50,
+  "chair": 102,
+  "person": 30,
+  "podium": 1,
+  "post": 2
+ },
+ "world_version": "usda:deb39592660f",
+ "stage": "../NewHarnomy_square.usda"
+}

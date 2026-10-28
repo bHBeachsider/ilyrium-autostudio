@@ -1,0 +1,218 @@
+[
+    {
+        "candidate_id":  "VAL-C01",
+        "character":  "valencia",
+        "job_id":  "e9b20253-20e5-44ac-b9f0-ecd058624761",
+        "seed":  595394,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_133310_e9b20253-20e5-44ac-b9f0-ecd058624761.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "VAL-C02",
+        "character":  "valencia",
+        "job_id":  "3c996612-ef43-4422-944f-2a971a2fe970",
+        "seed":  381977,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_133428_3c996612-ef43-4422-944f-2a971a2fe970.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "VAL-C03",
+        "character":  "valencia",
+        "job_id":  "470b80d7-da28-475c-a020-001534f8bbb3",
+        "seed":  645709,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_133503_470b80d7-da28-475c-a020-001534f8bbb3.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "VAL-C04",
+        "character":  "valencia",
+        "job_id":  "4dfe739f-376a-43e0-bec6-c84469266641",
+        "seed":  365347,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_133625_4dfe739f-376a-43e0-bec6-c84469266641.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "VAL-C05",
+        "character":  "valencia",
+        "job_id":  "9445d3a6-b6e6-47c3-a78d-5d6da647b77d",
+        "seed":  761,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_133701_9445d3a6-b6e6-47c3-a78d-5d6da647b77d.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "VAL-C06",
+        "character":  "valencia",
+        "job_id":  "e8daebe7-299c-4f5b-b430-23a16188551b",
+        "seed":  87810,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_133759_e8daebe7-299c-4f5b-b430-23a16188551b.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "SUM-C01",
+        "character":  "summer",
+        "job_id":  "d9e5c869-9172-4c4d-95c2-ef33912e13cb",
+        "seed":  474288,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_133903_d9e5c869-9172-4c4d-95c2-ef33912e13cb.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "SUM-C02",
+        "character":  "summer",
+        "job_id":  "b4faa014-84cb-421d-a337-580e1c4cb5a2",
+        "seed":  742028,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_133929_b4faa014-84cb-421d-a337-580e1c4cb5a2.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "SUM-C03",
+        "character":  "summer",
+        "job_id":  "bc6b60c7-d909-4210-8e34-708f55840864",
+        "seed":  517406,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_134051_bc6b60c7-d909-4210-8e34-708f55840864.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "SUM-C04",
+        "character":  "summer",
+        "job_id":  "7b67aea5-234a-4f1f-a0b8-9295194b6914",
+        "seed":  263418,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_134149_7b67aea5-234a-4f1f-a0b8-9295194b6914.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "SUM-C05",
+        "character":  "summer",
+        "job_id":  "1dfc20f3-f403-4320-8fb0-87f5ff688a6c",
+        "seed":  445383,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_134209_1dfc20f3-f403-4320-8fb0-87f5ff688a6c.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "SUM-C06",
+        "character":  "summer",
+        "job_id":  "252645c7-8960-4ba1-b3f5-164f745854a7",
+        "seed":  835976,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_134228_252645c7-8960-4ba1-b3f5-164f745854a7.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "PEN-C01",
+        "character":  "pengold",
+        "job_id":  "2e64f70a-9791-4329-9fb5-78791cf4cee2",
+        "seed":  163546,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_134247_2e64f70a-9791-4329-9fb5-78791cf4cee2.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "PEN-C02",
+        "character":  "pengold",
+        "job_id":  "f0fbe8c2-e5f4-4c53-8fe0-ffa31905835d",
+        "seed":  583738,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_134306_f0fbe8c2-e5f4-4c53-8fe0-ffa31905835d.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "PEN-C03",
+        "character":  "pengold",
+        "job_id":  "15cecfe8-7c20-49b9-aad7-4ebd67879dec",
+        "seed":  67344,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_134325_15cecfe8-7c20-49b9-aad7-4ebd67879dec.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "PEN-C04",
+        "character":  "pengold",
+        "job_id":  "5e51912d-1ca1-491e-bbb7-5a73f7f34233",
+        "seed":  847122,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_134343_5e51912d-1ca1-491e-bbb7-5a73f7f34233.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "PEN-C05",
+        "character":  "pengold",
+        "job_id":  "75d5fb67-1b09-420a-8872-26b94cfa42c0",
+        "seed":  704412,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_134359_75d5fb67-1b09-420a-8872-26b94cfa42c0.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "PEN-C06",
+        "character":  "pengold",
+        "job_id":  "6e573c99-3329-4711-882b-241be495e8f1",
+        "seed":  195905,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_134425_6e573c99-3329-4711-882b-241be495e8f1.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "DIC-C01",
+        "character":  "dick",
+        "job_id":  "75e788e0-50d4-42b7-a919-4ce771fadeae",
+        "seed":  179199,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_134453_75e788e0-50d4-42b7-a919-4ce771fadeae.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "DIC-C02",
+        "character":  "dick",
+        "job_id":  "33f9b949-fd0f-433f-9b4b-778a5d5d1680",
+        "seed":  621269,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_134542_33f9b949-fd0f-433f-9b4b-778a5d5d1680.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "DIC-C03",
+        "character":  "dick",
+        "job_id":  "f32047ab-df74-4cc5-8547-f6a94677e2ba",
+        "seed":  995239,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_134643_f32047ab-df74-4cc5-8547-f6a94677e2ba.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "DIC-C04",
+        "character":  "dick",
+        "job_id":  "d54d88b1-9ad4-4018-8a59-15b9bb742e6f",
+        "seed":  981506,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_134716_d54d88b1-9ad4-4018-8a59-15b9bb742e6f.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "DIC-C05",
+        "character":  "dick",
+        "job_id":  "0252427b-6f08-4e56-a30b-0d69419f0e4d",
+        "seed":  168496,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_134853_0252427b-6f08-4e56-a30b-0d69419f0e4d.png",
+        "status":  "completed",
+        "credits":  0.12
+    },
+    {
+        "candidate_id":  "DIC-C06",
+        "character":  "dick",
+        "job_id":  "39b8165e-3930-495b-bead-4087a853bd11",
+        "seed":  235835,
+        "result_url":  "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_134937_39b8165e-3930-495b-bead-4087a853bd11.png",
+        "status":  "completed",
+        "credits":  0.12
+    }
+]

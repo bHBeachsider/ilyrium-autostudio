@@ -1,0 +1,297 @@
+{
+ "rows": [
+  {
+   "path": "renders/keyframes_phase1a/SH003/take_2000.png",
+   "shot": "SH003",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH003/take_2001.png",
+   "shot": "SH003",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH003/take_2002.png",
+   "shot": "SH003",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH003/take_2003.png",
+   "shot": "SH003",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH003/take_2004.png",
+   "shot": "SH003",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH006/take_2000.png",
+   "shot": "SH006",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH006/take_2001.png",
+   "shot": "SH006",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH006/take_2002.png",
+   "shot": "SH006",
+   "expect": "FAIL",
+   "fail_kind": "semantic",
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "joists read as a pergola roof - the platform's FOOTPRINT is where the world puts it; a 2D extent check cannot see a roof vs a floor (the judge does)"
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH006/take_2003.png",
+   "shot": "SH006",
+   "expect": "FAIL",
+   "fail_kind": "semantic",
+   "geometry": "FAIL",
+   "seg": "PASS",
+   "note": "stage read as a footbridge / hay-bale plaza - the platform's FOOTPRINT is where the world puts it; a 2D extent check cannot see a roof vs a floor (the judge does)"
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH006/take_2004.png",
+   "shot": "SH006",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "FAIL",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH009/take_2000.png",
+   "shot": "SH009",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH009/take_2001.png",
+   "shot": "SH009",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH009/take_2002.png",
+   "shot": "SH009",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH009/take_2003.png",
+   "shot": "SH009",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1a/SH009/take_2004.png",
+   "shot": "SH009",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH003/take_3000.png",
+   "shot": "SH003",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH003/take_3001.png",
+   "shot": "SH003",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH003/take_3002.png",
+   "shot": "SH003",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH003/take_3003.png",
+   "shot": "SH003",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH003/take_3004.png",
+   "shot": "SH003",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "FAIL",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH006/take_3000.png",
+   "shot": "SH006",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH006/take_3001.png",
+   "shot": "SH006",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH006/take_3002.png",
+   "shot": "SH006",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH006/take_3003.png",
+   "shot": "SH006",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH006/take_3004.png",
+   "shot": "SH006",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH009/take_3000.png",
+   "shot": "SH009",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH009/take_3001.png",
+   "shot": "SH009",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH009/take_3002.png",
+   "shot": "SH009",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH009/take_3003.png",
+   "shot": "SH009",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  },
+  {
+   "path": "renders/keyframes_phase1b/SH009/take_3004.png",
+   "shot": "SH009",
+   "expect": "PASS",
+   "fail_kind": null,
+   "geometry": "PASS",
+   "seg": "PASS",
+   "note": "layout correct by eye (2026-09-08 review)"
+  }
+ ],
+ "summary": {
+  "geometry": {
+   "false_reject": 2,
+   "false_reject_rate": 0.071,
+   "false_rejects": [
+    "renders/keyframes_phase1a/SH006/take_2004.png",
+    "renders/keyframes_phase1b/SH003/take_3004.png"
+   ],
+   "misses": 0,
+   "miss_rate": 0.0,
+   "missed": [],
+   "may_block": false
+  },
+  "seg": {
+   "false_reject": 0,
+   "false_reject_rate": 0.0,
+   "false_rejects": [],
+   "misses": 0,
+   "miss_rate": 0.0,
+   "missed": [],
+   "may_block": true
+  }
+ }
+}

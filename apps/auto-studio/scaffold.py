@@ -541,4 +541,7 @@ if __name__ == "__main__":
     if "--genre" in args:
         i = args.index("--genre") + 1
         while i < len(args) and not args[i].startswith("--"):
-            genres.appe
+            genres.append(args[i])
+            i += 1
+    out = scaffold_project(name, base_dir=base, kernel=kernel, genre_packs=genres, ptype=ptype)
+    print(out)

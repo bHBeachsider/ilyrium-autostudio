@@ -1,0 +1,26 @@
+{
+  "shot_id": "NH-S901-SH007",
+  "endpoint": "fal-ai/veo3.1/image-to-video",
+  "keyframe": "04_preproduction\\keyframes\\NH-S901\\NH-S901-SH007_key.png",
+  "arguments": {
+    "prompt": "Medium-wide shot from the paving in front of a long decked timber stage. A long pine crossbeam hanging level from two hoist cables descends the last hand's breadth and settles onto the tops of the two tall pine uprights at the ends of the stage; the cables go slack. Two workmen on the platform, backs to the camera, steady it with tag ropes and look up as it seats, then lower their arms and stand still. The camera is locked off on a tripod and does not move at all: no pan, no tilt, no zoom, no drift, no handheld shake. Real-time speed, natural human movement, never slow motion. Behind and above them the semicircular colonnade of City Hall and its mauve banner do not move; parked cars stay parked; the lumber flatbed and box van stand at the kerb; one distant pedestrian walks slowly away. Flat bright winter light, unhurried real-time motion, and after the beam seats, stillness. Prestige political drama photographed on an Arri Alexa with anamorphic lenses: single-source natural light, slight 35mm film grain, colours desaturated about twelve percent, warm tungstens, deep browns and charcoals in the shadows, photographic realism.",
+    "aspect_ratio": "16:9",
+    "duration": "6s",
+    "resolution": "1080p",
+    "generate_audio": false,
+    "negative_prompt": "turning around, walking away, camera pull back, dolly, reframing, people walking into frame, pedestrians in the foreground, moving bus, moving vehicles, slow motion, speed ramp, time-lapse, camera movement, zoom, pan, dolly, handheld shake, on-screen text, captions, subtitles, watermark, logo, lens flare, fast traffic, cars driving through the frame, people looking at the camera, faces toward camera, cartoon, illustration, oversaturated",
+    "seed": 901007
+  },
+  "image_url": "https://v3b.fal.media/files/b/0aa929b9/aYykZRTdTYt8X7taJK4BY_NH-S901-SH007_key.png",
+  "response": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0aa929c4/1piaaR7lllPwfXoxzRDus_b8fe57590d2740289dbe4ceed0b85fa8.mp4",
+      "content_type": "video/mp4",
+      "file_name": "b8fe57590d2740289dbe4ceed0b85fa8.mp4",
+      "file_size": 10154276
+    }
+  },
+  "seconds": 119.6,
+  "est_cost_usd": 1.2000000000000002,
+  "rendered_at": "2026-09-05T00:59:31"
+}

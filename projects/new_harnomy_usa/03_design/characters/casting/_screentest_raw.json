@@ -1,0 +1,30 @@
+[
+  {
+    "created_at": "2026-09-02T21:35:20.164435Z",
+    "display_name": "Nano Banana Pro",
+    "id": "9ab71466-2c9b-4a71-8533-7e6abfd1e067",
+    "job_type": "nano_banana_pro",
+    "min_result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_213520_9ab71466-2c9b-4a71-8533-7e6abfd1e067_min.webp",
+    "params": {
+      "application": null,
+      "aspect_ratio": "21:9",
+      "batch_size": 1,
+      "height": 1344,
+      "input_image": null,
+      "input_images": [
+        {
+          "id": "62fc0fff-9da3-4b97-a145-ff3f660ce357",
+          "type": "media_input",
+          "url": "https://d2ol7oe51mr4n9.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/62fc0fff-9da3-4b97-a145-ff3f660ce357_resize.jpg"
+        }
+      ],
+      "prompt": "This exact woman, same face, in her late twenties. Alone on a dark empty stage in a single narrow pool of warm low light, everything behind her in total blackness, the theatre unseen beyond. She has just let a mauve hardback book fall from her open hand - it is on the floor near her feet, still settling. Her head is lifted and turned slightly out toward the house, her mouth open mid-phrase, singing one quiet line to people she cannot see. Not shouting, not weeping - a question offered. Her eyes are wet but nothing has fallen. Plain worn practical clothes. Wide medium shot from the house, slightly low, the darkness taking up most of the frame. Prestige political drama, single-source warm key, deep browns and charcoals, faint cool blue only in the deepest blacks, anamorphic, slight 35mm grain, photographic realism, cinematic, no on-screen text, no caption, no watermark",
+      "resolution": "2k",
+      "surface": null,
+      "width": 3168
+    },
+    "result_url": "https://d8j0ntlcm91z4.cloudfront.net/user_3HvujMmkK01IpqcOy9ZsiGh1csm/hf_20260902_213520_9ab71466-2c9b-4a71-8533-7e6abfd1e067.png",
+    "status": "completed"
+  }
+]
+

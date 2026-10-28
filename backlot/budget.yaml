@@ -1,0 +1,52 @@
+deposits:
+- when: 2026-09-08T13:48
+  usd: 24.0
+  note: Brad top-up 2026-09-06 (balance was ~0 before it)
+spend:
+- when: 2026-09-08T13:48
+  service: nano-banana-pro/edit
+  usd: 0.3
+  shot: null
+  note: 'v8 final: SH003/SH009 frontal re-keys'
+- when: 2026-09-08T13:48
+  service: veo3.1
+  usd: 3.2
+  shot: null
+  note: 'v8 final: SH003 SH009 SH012 + SH009 retake'
+- when: 2026-09-08T13:48
+  service: nano-banana-pro/edit
+  usd: 0.75
+  shot: null
+  note: v9 cleanup pass
+- when: 2026-09-08T13:48
+  service: veo3.1
+  usd: 2.4
+  shot: null
+  note: 'v9: SH002 SH003'
+- when: 2026-09-08T13:48
+  service: elevenlabs/sfx
+  usd: 0.3
+  shot: null
+  note: v9 worker voices
+- when: 2026-09-08T13:48
+  service: nano-banana-pro/edit
+  usd: 0.15
+  shot: NH-S901-SH009
+  note: v10 re-key
+- when: 2026-09-08T13:48
+  service: veo3.1
+  usd: 1.2
+  shot: NH-S901-SH009
+  note: v10
+- when: 2026-09-08T13:48
+  service: nano-banana-pro/edit
+  usd: 0.15
+  shot: NH-S901-SH009
+  note: v11 re-key
+- when: 2026-09-08T13:48
+  service: veo3.1
+  usd: 1.2
+  shot: NH-S901-SH009
+  note: v11
+floor_usd: 2.0
+per_shot_cap_usd: 6.0

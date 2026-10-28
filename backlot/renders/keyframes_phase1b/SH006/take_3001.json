@@ -1,0 +1,53 @@
+{
+ "shot": "SH006",
+ "seq": "NH-S901",
+ "seed": 3001,
+ "prompt": "High point of view from a tall window of City Hall looking down and out across the square, the sides of the window embrasure dark at both edges of the frame. Below, the rally stage runs perfectly horizontal, parallel to the facade: decking boards laid across the left half of the platform, the right half still a frame of open pine joists with the wet paving visible between them, a workman kneeling at the boundary fixing a board. Exactly two tall square pine uprights stand at the two ends of the platform with no crossbeam. Beyond the square a wet street with slow traffic, headlights on, a row of brick and stone shopfronts under the grey sky. Weather and light: a heavy flat sheet-cake grey overcast, no sun, no cast shadows, a light drizzle falling, the granite setts wet and dully reflective with shallow puddles, timber darkened where wet, street lamps and the building's windows glowing warm and doubled in the wet. a limestone neoclassical City Hall with a semicircular colonnade of tall columns under a drum and cupola, a mauve banner with pale lettering hanging between the columns, corn-stalk sheaves tied to the columns and lampposts, pumpkins and gourds at the column bases, garlands of autumn leaves on the balustrade, parked cars along the kerbs, a lumber flatbed truck and a white box van, a few distant pedestrians under umbrellas with their backs to us. prestige political drama, House of Cards season one color grade, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, photographic realism, cinematic",
+ "values": {
+  "guidance": 3.5,
+  "depth_image": "NH-S901_SH006_depth.png",
+  "cn_strength": 0.7,
+  "cn_end": 0.8,
+  "edge_image": "NH-S901_SH006_edge.png",
+  "edge_strength": 0.45,
+  "edge_end": 0.6,
+  "width": 1344,
+  "height": 768,
+  "seed": 3001,
+  "steps": 28,
+  "prefix": "backlot/NH-S901_SH006_3001"
+ },
+ "model": "flux1-dev-fp8 + ControlNet Union Pro 2.0 (depth + edge)",
+ "server": "http://127.0.0.1:8188",
+ "depth_pass": {
+  "path": "usd/nh/passes/SH006/depth.png",
+  "sha256": "51ea27a37f41b5bf"
+ },
+ "edge_pass": {
+  "path": "usd/nh/passes/SH006/edge.png",
+  "sha256": "0f2ec9baf0beaf1f"
+ },
+ "set_state": "half_decked",
+ "camera": {
+  "location": [
+   0.0,
+   8.3,
+   7.2
+  ],
+  "rotation_deg": [
+   76.37,
+   -0.0,
+   0.0
+  ],
+  "lens_mm": 20.0,
+  "sensor_mm": 36.0,
+  "res": [
+   1920,
+   1080
+  ],
+  "set_state": "half_decked"
+ },
+ "world_version": "unversioned",
+ "seconds": 54.0,
+ "prompt_id": "f97ebdfb-587f-4f88-8a0f-30e4c628eec8"
+}

@@ -1,0 +1,83 @@
+# CASTING SELECTIONS — NEW HARNOMY, U.S.A.
+
+*Steps 3.4 and 3.5 complete for all four principals. Brad's picks 2026-09-02; final
+anchors rendered and silhouette-tested 2026-09-03.*
+
+## The four anchors — LOCKED 2026-09-03
+
+| Character | Anchor file | How it was made |
+|---|---|---|
+| Valencia Strong | `finals/VAL-FINAL.png` | **Held, untouched.** Blend of C05 gravity + C06 ache, deliberately ethnically ambiguous (NH-USA-008), screen-tested at finale Beat 5. |
+| Summer Winters | `finals/SUM-FINAL.png` | SUM-K02 → younger (thirty-eight) → beatific light. The radiance is a lighting fact, not an expression (NH-USA-020). |
+| Dick Suede | `finals/DIC-FINAL.png` | DIC-K02 → soft and delicately beautiful, pro-tennis build, hair long past the jaw and bun-capable. |
+| Pengold Heavens | `finals/PEN-FINAL.png` | **Re-cast from text** (PEN-T01), then slicked hair + a hint of grey at the temples. Not an edit of K03 — see below. |
+
+### Pengold was re-cast, and that is a real change
+
+Two edit passes could not add softness to PEN-K03's face. A reference latent pins facial
+geometry, and body fat *is* geometry, so "keep this exact man" and "make his face fuller"
+are contradictory instructions and the reference wins (NH-USA-021). He was regenerated from
+text with the soft body built in from the start, guided by a detailed description of K03's
+features. **The result is a cousin of the approved face, not the same man.** Brad re-approved
+2026-09-03, choosing **T01** — the leanest of the four — having rejected the plushest (T03) as
+*too likeable*.
+
+The consequence worth stating plainly: **the well-fed softness that prompted the re-cast is not
+in the chosen anchor.** T01 is lean and saturnine. His bible now describes that face rather than
+the one the direction asked for, so canon and anchor agree — the failure mode of NH-USA-001 and
+NH-USA-004 was exactly this kind of quiet disagreement between two places. The tell moved from
+soft to *smooth*: no weathering, no hard-won lines, an indoor animal with an expensive barber.
+
+### The rule that came out of this pass
+
+**Classify the change before choosing the method.** Surface changes — light, colour, hair,
+beard, wardrobe, the age of skin — survive an edit against a reference. Structural changes —
+bone width, body fat, build, height — do not, and must be generated from text and re-cast.
+Two characters and roughly $1.50 were spent learning this twice.
+
+---|---|---|---|
+| Valencia Strong | **VAL-H01** | `finals/VAL-H01-rest.png` | Blend of C05 gravity + C06 ache. Deliberately ethnically ambiguous (NH-USA-008). Screen-tested at finale Beat 5. Re-lit only — face unmoved. |
+| Summer Winters | **SUM-K02** | `finals/SUM-K02-rest.png` | At rest. Attractive by design: v11 §III — *"She's beautiful (he's shallow, she's genuinely attractive)."* |
+| Pengold Heavens | **PEN-K03** | `finals/PEN-K03-rest.png` | At rest, build restored. *"Looks like a political consultant through and through."* |
+| Dick Suede | **DIC-K02** | `finals/DIC-K02-hair-v2.png` | At rest, dirty blond, hair down (Acts I–II). |
+| Dick Suede — Act III | **DIC-K02** | `finals/DIC-K02-bun-v2.png` | Same face, hair gathered. Wardrobe state, not a second casting. |
+
+Superseded, kept for the record: `finals/DIC-K02-hair.png` and `finals/DIC-K02-bun.png`
+(first pass — see NH-USA-014, NH-USA-015).
+
+**Why Dick's hair matters beyond hair:** Summer's initiative is *The Man Bun Collective*.
+Man-bun-capable hair puts the name of the organisation she is funding on the body of the
+man she is sleeping with. No character ever remarks on it. That is the Wildean law working
+as designed.
+
+---
+
+## Step 3.5 — silhouette test: PASS (with one caveat)
+
+All four rendered under identical neutral light, reduced to 40px tall, value only
+(`/tmp/cast/silhouette_v2.png`, script inline in this directory's history).
+
+| | mean | sd | reads as |
+|---|---|---|---|
+| Valencia | 127.9 | 46.5 | wide dark hair mass flaring past the jaw, light collar |
+| Summer | 75.8 | 36.8 | dark block, light face, light hair — the outlier |
+| Pengold | 120.6 | 50.5 | broadest head and neck, light shirt V |
+| Dick | 121.0 | 42.2 | narrowest head, hair close to the skull, long neck |
+
+**Caveat, stated plainly:** value alone does NOT separate Valencia, Pengold and Dick — they
+sit within 8 points of each other. The separation is carried entirely by *outline*: Pengold's
+mass, Valencia's hair flare, Dick's narrow head and long neck. That is legible, but it is a
+thinner margin than the plan assumed. If a wide shot ever needs more, the lever is wardrobe
+value, not face.
+
+The first Dick pass FAILED this test — hair to the collarbone read as a woman's long hair and
+collided with Valencia's outline. Fixed in v2 by cutting the sides close so the skull reads.
+
+---
+
+## Next
+
+3.8 training sets (~18 images per principal, varied light — the casting set judges the face,
+the training set teaches it), 3.9 four LoRAs serial on the g6e box from `ami-04ef6582604f56a4a`,
+3.10 verification, 3.11 register in `lora_library.json`, 3.12 stop the box.
+See `../LOOK_DEVELOPMENT_PLAN.md`.

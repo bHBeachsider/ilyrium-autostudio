@@ -1,0 +1,21 @@
+[OK] fal auth OK
+[SKIP] hammer_single exists
+[SKIP] hammer_work exists
+[SKIP] nailgun exists
+[SKIP] chop_saw exists
+[SKIP] circular_saw exists
+[SKIP] timber_drop exists
+[SKIP] drill exists
+[SKIP] workmen_far exists
+[SKIP] wind_winter exists
+[SKIP] halyard exists
+[SKIP] city_ambience exists
+[SKIP] interior_room exists
+[SKIP] boots_decking exists
+[SKIP] bus_brake_far exists
+-- drizzle_square (24s, loop)
+   [FAIL] drizzle_square: [{'type': 'less_than_equal', 'loc': ['body', 'duration_seconds'], 'msg': 'Input should be less than or equal to 22', 'input': 24, 'ctx': {'le': 22.0}}]
+-- drizzle_timber (12s, loop)
+   [OK] drizzle_timber (188 KB)
+[SKIP] banner_flap exists
+DONE

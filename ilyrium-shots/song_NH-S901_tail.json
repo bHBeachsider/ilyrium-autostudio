@@ -1,0 +1,81 @@
+{
+  "song_id": "NH-S901",
+  "comfy_url": "http://127.0.0.1:8188",
+  "template": "wan_i2v.api.json",
+  "schema": "shot_spec.schema.json",
+  "node_map_version": "1",
+  "defaults": {
+    "width": 832,
+    "height": 480,
+    "fps": 16,
+    "steps": 4,
+    "cfg": 1.0,
+    "sampler": "euler",
+    "scheduler": "simple",
+    "frames": 81
+  },
+  "engine": {
+    "comfyui_version": "0.27.0 (328144ce)",
+    "gpu": "NVIDIA A10G 24GB (g5.2xlarge)",
+    "instance_id": "i-0169c83c3cef9d621",
+    "torch": "2.13.0+cu130",
+    "cuda": "13.0"
+  },
+  "shots": [
+    {
+      "shot_id": "NH-S901-SH006",
+      "scene_id": "NH-S901-SC06",
+      "sequence_index": 6,
+      "spec_path": "shots/NH-S901-SH006.json",
+      "keyframe": "keyframes/NH-S901-SH006_key.png",
+      "duration_s": 5,
+      "seed": 901006
+    },
+    {
+      "shot_id": "NH-S901-SH007",
+      "scene_id": "NH-S901-SC07",
+      "sequence_index": 7,
+      "spec_path": "shots/NH-S901-SH007.json",
+      "keyframe": "keyframes/NH-S901-SH007_key.png",
+      "duration_s": 6,
+      "seed": 901007
+    },
+    {
+      "shot_id": "NH-S901-SH008",
+      "scene_id": "NH-S901-SC08",
+      "sequence_index": 8,
+      "spec_path": "shots/NH-S901-SH008.json",
+      "keyframe": "keyframes/NH-S901-SH008_key.png",
+      "duration_s": 5,
+      "seed": 901008
+    },
+    {
+      "shot_id": "NH-S901-SH009",
+      "scene_id": "NH-S901-SC09",
+      "sequence_index": 9,
+      "spec_path": "shots/NH-S901-SH009.json",
+      "keyframe": "keyframes/NH-S901-SH009_key.png",
+      "duration_s": 6,
+      "seed": 901009
+    },
+    {
+      "shot_id": "NH-S901-SH010",
+      "scene_id": "NH-S901-SC10",
+      "sequence_index": 10,
+      "spec_path": "shots/NH-S901-SH010.json",
+      "keyframe": "keyframes/NH-S901-SH010_key.png",
+      "duration_s": 5,
+      "seed": 901010
+    },
+    {
+      "shot_id": "NH-S901-SH011",
+      "scene_id": "NH-S901-SC11",
+      "sequence_index": 11,
+      "spec_path": "shots/NH-S901-SH011.json",
+      "keyframe": "keyframes/NH-S901-SH011_key.png",
+      "duration_s": 6,
+      "seed": 901011
+    }
+  ],
+  "notes": "NH-S901 'The Scaffold' - 60s wordless teaser, MARKETING block (NH-S9nn), not one of the 48 numbers. Storyboard: projects/new_harnomy_usa/04_preproduction/storyboards/NH-S901_THE_SCAFFOLD_TEASER.md. NO music and NO dialogue by design - sound design only; see the storyboard's sound brief. SH001 is a black frame carried entirely by audio. Only SH005 shows a face (Pengold); every other spec carries 'human face, portrait' in its negatives so the square stays empty of identifiable people. SH010 and SH011 share one locked framing (flf2v) so the last two shots are the same camera as the light goes. | TAIL manifest 2026-09-04: shots 6-11 only, run with --no-skip because dry-run ledger records poisoned content_hash dedup (NH-USA-030)."
+}

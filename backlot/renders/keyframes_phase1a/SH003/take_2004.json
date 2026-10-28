@@ -1,0 +1,46 @@
+{
+ "shot": "SH003",
+ "seq": "NH-S901",
+ "seed": 2004,
+ "prompt": "Low angle from the wet paving in front of a rally stage under construction, looking straight at City Hall, square to its facade. The platform is a frame of open raw-pine joists with no decking yet; its long near edge runs perfectly horizontal across the lower third of the frame. Exactly two tall square pine uprights stand at the two ends of the platform, one at the far left end and one at the far right end, and no crossbeam. Three workmen in wet high-visibility vests and knit caps, seen from behind and in profile, steady the right-hand upright hand over hand while one holds a temporary diagonal prop; their breath steams in the cold. Weather and light: a heavy flat sheet-cake grey overcast, no sun, no cast shadows, a light drizzle falling, the granite setts wet and dully reflective with shallow puddles, timber darkened where wet, street lamps and the building's windows glowing warm and doubled in the wet. a limestone neoclassical City Hall with a semicircular colonnade of tall columns under a drum and cupola, a mauve banner with pale lettering hanging between the columns, corn-stalk sheaves tied to the columns and lampposts, pumpkins and gourds at the column bases, garlands of autumn leaves on the balustrade, parked cars along the kerbs, a lumber flatbed truck and a white box van, a few distant pedestrians under umbrellas with their backs to us. prestige political drama, House of Cards season one color grade, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, photographic realism, cinematic",
+ "values": {
+  "guidance": 3.5,
+  "depth_image": "NH-S901_SH003_depth.png",
+  "cn_strength": 0.7,
+  "cn_end": 0.8,
+  "width": 1344,
+  "height": 768,
+  "seed": 2004,
+  "steps": 28,
+  "prefix": "backlot/NH-S901_SH003_2004"
+ },
+ "model": "flux1-dev-fp8 + ControlNet Union Pro 2.0 (depth)",
+ "server": "http://127.0.0.1:8188",
+ "depth_pass": {
+  "path": "usd/nh/passes/SH003/depth.png",
+  "sha256": "452e88c83fd9821d"
+ },
+ "set_state": "joists",
+ "camera": {
+  "location": [
+   -9.0,
+   55.0,
+   1.6
+  ],
+  "rotation_deg": [
+   -77.44,
+   180.0,
+   0.0
+  ],
+  "lens_mm": 26.0,
+  "sensor_mm": 36.0,
+  "res": [
+   1920,
+   1080
+  ],
+  "set_state": "joists"
+ },
+ "world_version": "unversioned",
+ "seconds": 51.0,
+ "prompt_id": "8a7ba2f4-61cc-4288-b5d1-eff4106d4616"
+}

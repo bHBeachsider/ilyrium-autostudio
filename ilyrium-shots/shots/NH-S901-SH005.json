@@ -1,0 +1,35 @@
+{
+  "shot_id": "NH-S901-SH005",
+  "song_id": "NH-S901",
+  "duration_s": 5,
+  "camera": {
+    "shot_size": "medium",
+    "movement": "locked-off",
+    "lens_mm": 50
+  },
+  "subjects": [
+    "pengold"
+  ],
+  "setting": "Mayor Pengold's office, city hall \u2014 above the square",
+  "mood": "settled, unbothered, certain",
+  "action": "Pengold stands at the window looking down at the work. He does not move. Coffee going cold on the desk behind him.",
+  "prompt": "pengold_heavens_nh, a man of forty-one with dark hair slicked back and a short neat dark beard in immaculate dark navy suiting, standing at a tall office window looking down into the square, seen from inside a modest mid-century municipal office, backlit by the flat winter daylight so his face is half in shadow, a half-empty coffee cup and a folded newspaper on the mahogany-laminate desk behind him, three stacked brownish-purple faded academic paperbacks on the credenza, locked-off, he does not move, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "",
+    "seed": 901005
+  },
+  "seed": 901005,
+  "continuity": {
+    "prev_shot": "",
+    "flf2v": false
+  },
+  "render": {
+    "width": 832,
+    "height": 480,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 5
+  }
+}

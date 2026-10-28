@@ -1,0 +1,35 @@
+{
+  "shot_id": "NH-S901-SH008",
+  "song_id": "NH-S901",
+  "duration_s": 5,
+  "camera": {
+    "shot_size": "close-up",
+    "movement": "locked-off",
+    "lens_mm": 50
+  },
+  "subjects": [
+    "construction workers"
+  ],
+  "setting": "The square, afternoon \u2014 insert",
+  "mood": "the floor is finished",
+  "action": "Planks laid across the platform. A hand sweeps sawdust off the edge of the new decking.",
+  "prompt": "close insert, work boots standing on freshly laid pale timber decking, fresh planks being laid across a raised platform frame, a gloved hand sweeping sawdust off the square edge of the new decking, low winter sun raking across the grain of the wood, prestige political drama, House of Cards season one color grade, Roger Deakins single-source tungsten lighting, anamorphic cinematography, Arri Alexa, slight 35mm film grain, color palette desaturated twelve percent, warm tungstens lifted, deep browns and charcoals in shadows, faint cool blue holding only in the deepest blacks, photographic realism, cinematic",
+  "negative_prompt": "cartoon, anime, illustration, painted look, exaggerated lighting, lens flare, smile at camera, comedic expression, on-screen text, chyron, caption overlay, contemporary saturation, winking, irony, logo, watermark, modern smartphone, laptop screen prominent in frame, human face, portrait, person looking at camera",
+  "keyframe": {
+    "source": "t2i",
+    "ref_lora": "",
+    "seed": 901008
+  },
+  "seed": 901008,
+  "continuity": {
+    "prev_shot": "NH-S901-SH007",
+    "flf2v": false
+  },
+  "render": {
+    "width": 832,
+    "height": 480,
+    "fps": 16,
+    "steps": 4,
+    "duration_s": 5
+  }
+}

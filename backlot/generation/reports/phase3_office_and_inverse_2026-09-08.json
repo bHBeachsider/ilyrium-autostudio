@@ -1,0 +1,350 @@
+{
+ "runs": {
+  "p3": {
+   "S101_SH004": [
+    {
+     "take": "4000",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.337,
+     "axis_delta": 9.1
+    },
+    {
+     "take": "4001",
+     "geometry": "FAIL",
+     "seg": "PASS",
+     "box_iou": 0.938,
+     "axis_delta": 0.7
+    },
+    {
+     "take": "4002",
+     "geometry": "PASS",
+     "seg": "FAIL",
+     "box_iou": 0.062,
+     "axis_delta": 61.3
+    },
+    {
+     "take": "4003",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.408,
+     "axis_delta": 4.6
+    },
+    {
+     "take": "4004",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.541,
+     "axis_delta": 4.1
+    },
+    {
+     "take": "4005",
+     "geometry": "FAIL",
+     "seg": "PASS",
+     "box_iou": 0.959,
+     "axis_delta": 0.4
+    },
+    {
+     "take": "4006",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.41,
+     "axis_delta": 3.8
+    },
+    {
+     "take": "4007",
+     "geometry": "FAIL",
+     "seg": "PASS",
+     "box_iou": 0.331,
+     "axis_delta": 13.3
+    },
+    {
+     "take": "4008",
+     "geometry": "FAIL",
+     "seg": "PASS",
+     "box_iou": 0.639,
+     "axis_delta": 11.0
+    },
+    {
+     "take": "4009",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.424,
+     "axis_delta": 5.1
+    }
+   ],
+   "S101_SH005": [
+    {
+     "take": "4000",
+     "geometry": "PASS",
+     "seg": "FAIL",
+     "box_iou": 0.543,
+     "axis_delta": 15.8
+    },
+    {
+     "take": "4001",
+     "geometry": "PASS",
+     "seg": "FAIL",
+     "box_iou": 0.012,
+     "axis_delta": 3.7
+    },
+    {
+     "take": "4002",
+     "geometry": "PASS",
+     "seg": "FAIL",
+     "box_iou": 0.14,
+     "axis_delta": 77.2
+    },
+    {
+     "take": "4003",
+     "geometry": "PASS",
+     "seg": "FAIL",
+     "box_iou": 0.011,
+     "axis_delta": 6.0
+    },
+    {
+     "take": "4004",
+     "geometry": "PASS",
+     "seg": "FAIL",
+     "box_iou": 0.14,
+     "axis_delta": 75.1
+    },
+    {
+     "take": "4005",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.392,
+     "axis_delta": 13.7
+    },
+    {
+     "take": "4006",
+     "geometry": "PASS",
+     "seg": "FAIL",
+     "box_iou": 0.365,
+     "axis_delta": 26.0
+    },
+    {
+     "take": "4007",
+     "geometry": "PASS",
+     "seg": "FAIL",
+     "box_iou": 0.011,
+     "axis_delta": 0.6
+    },
+    {
+     "take": "4008",
+     "geometry": "PASS",
+     "seg": "FAIL",
+     "box_iou": 0.058,
+     "axis_delta": 2.0
+    },
+    {
+     "take": "4009",
+     "geometry": "PASS",
+     "seg": "FAIL",
+     "box_iou": 0.222,
+     "axis_delta": 28.4
+    }
+   ],
+   "SH003": [
+    {
+     "take": "5000",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.677,
+     "axis_delta": 0.4
+    },
+    {
+     "take": "5001",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.894,
+     "axis_delta": 0.9
+    },
+    {
+     "take": "5002",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.904,
+     "axis_delta": 0.4
+    },
+    {
+     "take": "5003",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.484,
+     "axis_delta": 0.6
+    },
+    {
+     "take": "5004",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.9,
+     "axis_delta": 1.0
+    }
+   ],
+   "SH006": [
+    {
+     "take": "5000",
+     "geometry": "FAIL",
+     "seg": "PASS",
+     "box_iou": 0.712,
+     "axis_delta": 0.2
+    },
+    {
+     "take": "5001",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.428,
+     "axis_delta": 0.4
+    },
+    {
+     "take": "5002",
+     "geometry": "PASS",
+     "seg": "FAIL",
+     "box_iou": 0.191,
+     "axis_delta": 3.3
+    },
+    {
+     "take": "5003",
+     "geometry": "FAIL",
+     "seg": "PASS",
+     "box_iou": 0.588,
+     "axis_delta": 0.1
+    },
+    {
+     "take": "5004",
+     "geometry": "FAIL",
+     "seg": "PASS",
+     "box_iou": 0.847,
+     "axis_delta": 0.3
+    }
+   ],
+   "SH009": [
+    {
+     "take": "5000",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.938,
+     "axis_delta": 1.2
+    },
+    {
+     "take": "5001",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.846,
+     "axis_delta": 0.1
+    },
+    {
+     "take": "5002",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.947,
+     "axis_delta": 1.1
+    },
+    {
+     "take": "5003",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.924,
+     "axis_delta": 4.2
+    },
+    {
+     "take": "5004",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.974,
+     "axis_delta": 1.7
+    }
+   ]
+  },
+  "p3_soft": {
+   "S101_SH004": [
+    {
+     "take": "4100",
+     "geometry": "PASS",
+     "seg": "FAIL",
+     "box_iou": 0.177,
+     "axis_delta": 9.0
+    },
+    {
+     "take": "4101",
+     "geometry": "FAIL",
+     "seg": "PASS",
+     "box_iou": 0.407,
+     "axis_delta": 13.9
+    },
+    {
+     "take": "4102",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.749,
+     "axis_delta": 0.2
+    },
+    {
+     "take": "4103",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.405,
+     "axis_delta": 1.1
+    },
+    {
+     "take": "4104",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.555,
+     "axis_delta": 1.2
+    }
+   ],
+   "S101_SH005": [
+    {
+     "take": "4100",
+     "geometry": "PASS",
+     "seg": "FAIL",
+     "box_iou": 0.168,
+     "axis_delta": 76.2
+    },
+    {
+     "take": "4101",
+     "geometry": "PASS",
+     "seg": "FAIL",
+     "box_iou": 0.037,
+     "axis_delta": 5.8
+    },
+    {
+     "take": "4102",
+     "geometry": "PASS",
+     "seg": "PASS",
+     "box_iou": 0.396,
+     "axis_delta": 14.7
+    },
+    {
+     "take": "4103",
+     "geometry": "PASS",
+     "seg": "FAIL",
+     "box_iou": 0.353,
+     "axis_delta": 23.3
+    },
+    {
+     "take": "4104",
+     "geometry": "PASS",
+     "seg": "FAIL",
+     "box_iou": 0.012,
+     "axis_delta": 2.9
+    }
+   ]
+  }
+ },
+ "eye": {
+  "S101_SH004 std": "10/10 room layout right (three windows, columns beyond, desk, lamp, credenza+books); 0/10 with a seated man - the mannequin drew as a bust on the credenza; walls bare",
+  "S101_SH005 std": "10/10 desk layout right; 0/10 with a man - box-stack figure behind the desk in every take",
+  "S101_SH004 soft (edge 0.2, cn 0.6)": "5/5 layout; drapes and window light appear; person still absent",
+  "S101_SH005 soft": "5/5 layout; 2/5 a real man reading the newspaper (4100, 4104); 3/5 box-stack figure",
+  "SH003 inverse depth": "5/5 layout, posts in place",
+  "SH009 inverse depth": "5/5 layout, posts/beam/chairs/steps; dressier than 1b",
+  "SH006 inverse depth": "5/5 stage placed; tall uprights ABSENT in 3/5 (inverse depth compresses the far posts out of the signal) - a real miss, not a detector miss"
+ },
+ "verdicts": {
+  "office_9_in_10": "NOT MET - layout yes (wide 10/10 by eye, 9/10 by seg), the person 0/10 at Phase 1b strengths, 2/5 at softer control",
+  "exteriors_inverse_vs_linear": "inverse: SH003 5/5, SH009 5/5, SH006 2/5 = 12/15 (80%) vs linear 14/15 (93%) -> exteriors stay LINEAR, interiors INVERSE (per-camera DEPTH_MODE)"
+ }
+}

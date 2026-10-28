@@ -1,0 +1,12 @@
+# Ilyrium project manifest — the one file the scaffolder, graph_sync, the
+# console, and the release gate all read. externalId is the canonical asset-graph key.
+title: "New Harnomy, USA"
+slug: new_harnomy_usa
+externalId: new_harnomy_usa
+type: FEATURE
+genre_packs: [opera, narrative]
+kernel: new_harnomy
+status: DRAFT
+created: 2026-08-15
+rights:
+  likeness_flags: []   # e.g. {character: pengold, note: "...", release: 00_admin/rights_releases/<file>}
