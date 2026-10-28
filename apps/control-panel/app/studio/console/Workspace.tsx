@@ -6,6 +6,7 @@ import Pipeline from "./Pipeline";
 import BoxPanel, { BoxStatus } from "./BoxPanel";
 import ChatPanel from "./ChatPanel";
 import ReviewRoom, { ReviewTake } from "./ReviewRoom";
+import RightsPanel, { RightsShot } from "./RightsPanel";
 import TimelinePanel, { TimelineShot, TimelineTake } from "./TimelinePanel";
 import { CostBar, useCostState } from "./CostMeter";
 import CommandPalette from "./CommandPalette";
@@ -366,6 +367,25 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
               <div className="lg:col-span-2">
                 <QueueRail pipe={PIPE} />
               </div>
+
+              {/* Rights & Deliver */}
+              {(() => {
+                const videoAssets = projAssets.filter((a) => a.assetType === "video" || (a.uri && /\.(mp4|mov|webm|mkv)/i.test(a.uri)));
+                const shotMap = new Map<string, RightsShot>();
+                for (const a of videoAssets) {
+                  const shotId = a.sceneNumber != null ? `scene-${a.sceneNumber}` : a.id;
+                  if (!shotMap.has(shotId)) shotMap.set(shotId, { shotId, sceneNumber: a.sceneNumber ?? undefined, takes: [] });
+                  const model: string | null = (a as any).model ?? null;
+                  const c2paStatus = (a as any).c2pa_status ?? (model ? "valid" : "missing");
+                  shotMap.get(shotId)!.takes.push({ takeId: a.id, model, c2paStatus });
+                }
+                const rightsShots: RightsShot[] = Array.from(shotMap.values());
+                return (
+                  <div className="lg:col-span-2">
+                    <RightsPanel shots={rightsShots} />
+                  </div>
+                );
+              })()}
 
               {/* Cost telemetry / control plane (matrix §8) */}
               <section className="bg-panel border border-edge rounded-xl p-4 lg:col-span-2">

@@ -1,6 +1,8 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+export type C2PAStatus = "valid" | "missing" | "broken";
+
 export type ReviewTake = {
   takeId: string;
   shotId?: string;
@@ -8,6 +10,14 @@ export type ReviewTake = {
   sceneNumber?: number;
   label: string;
   url: string;
+  model?: string | null;
+  c2paStatus?: C2PAStatus;
+};
+
+const C2PA_CHIP: Record<C2PAStatus, { label: string; color: string }> = {
+  valid:   { label: "C2PA ✓", color: "#57c97a" },
+  missing: { label: "C2PA ?", color: "#e0a13a" },
+  broken:  { label: "C2PA ✗", color: "#ef6f6c" },
 };
 
 type NotePin = { id: string; takeId: string; time: number; text: string };
@@ -52,6 +62,7 @@ export default function ReviewRoom({
   const [autoAdvance, setAutoAdvance] = useState(true);
   const [busy, setBusy] = useState<string | null>(null);
   const [toast, setToast] = useState<{ text: string; ok: boolean } | null>(null);
+  const [licenceOpen, setLicenceOpen] = useState(false);
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoBRef = useRef<HTMLVideoElement>(null);
@@ -206,12 +217,19 @@ export default function ReviewRoom({
                 <button key={t.takeId} onClick={() => setIdx(i)}
                   className={"w-full text-left rounded-md px-2.5 py-2 text-[13px] border " + (i === idx ? "bg-raised border-edge" : "border-transparent hover:bg-raised/40")}>
                   <div className="flex items-center justify-between">
-                    <span className="font-mono truncate max-w-[120px]">{t.label}</span>
+                    <span className="font-mono truncate max-w-[100px]">{t.label}</span>
                     <span className="text-[10px] shrink-0" style={{ color: d?.state === "approved" ? "#57c97a" : d?.state === "rejected" ? "#ef6f6c" : "#97a1ad" }}>
                       {d?.state === "approved" ? "✓" : d?.state === "rejected" ? "✗" : "○"}
                     </span>
                   </div>
-                  {t.sceneNumber != null && <div className="text-[10px] text-dim">Scene {t.sceneNumber}</div>}
+                  <div className="flex items-center gap-1.5 mt-0.5">
+                    {t.sceneNumber != null && <span className="text-[10px] text-dim">S{t.sceneNumber}</span>}
+                    {t.c2paStatus && (
+                      <span data-c2pa={t.c2paStatus} className="text-[9px] font-mono px-1 rounded" style={{ color: C2PA_CHIP[t.c2paStatus].color, background: `${C2PA_CHIP[t.c2paStatus].color}22` }}>
+                        {C2PA_CHIP[t.c2paStatus].label}
+                      </span>
+                    )}
+                  </div>
                 </button>
               );
             })}
@@ -288,6 +306,39 @@ export default function ReviewRoom({
               {take?.songId && <div className="flex justify-between"><dt className="text-dim">song</dt><dd>{take.songId}</dd></div>}
               {take?.sceneNumber != null && <div className="flex justify-between"><dt className="text-dim">scene</dt><dd>{take.sceneNumber}</dd></div>}
             </dl>
+
+            {/* Source & Licence */}
+            {take && (
+              <div>
+                <button
+                  onClick={() => setLicenceOpen((v) => !v)}
+                  className="flex items-center justify-between w-full text-[11px] text-dim uppercase tracking-wide mb-1 hover:text-fg"
+                >
+                  <span>Source &amp; Licence</span>
+                  <span>{licenceOpen ? "▴" : "▾"}</span>
+                </button>
+                {licenceOpen && (
+                  <div className="bg-ink rounded-md p-2.5 text-[11px] font-mono space-y-1.5">
+                    {take.c2paStatus ? (
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-dim">C2PA</span>
+                        <span data-c2pa={take.c2paStatus} style={{ color: C2PA_CHIP[take.c2paStatus].color }}>{C2PA_CHIP[take.c2paStatus].label}</span>
+                      </div>
+                    ) : (
+                      <div className="text-dim">C2PA — unknown</div>
+                    )}
+                    {take.model ? (
+                      <div className="flex gap-1.5"><span className="text-dim">model</span><span className="text-fg truncate">{take.model}</span></div>
+                    ) : (
+                      <div className="text-dim">model — not recorded</div>
+                    )}
+                    {take.shotId && <div className="flex gap-1.5"><span className="text-dim">shot</span><span className="text-fg">{take.shotId}</span></div>}
+                    {take.songId && <div className="flex gap-1.5"><span className="text-dim">song</span><span className="text-fg">{take.songId}</span></div>}
+                    <div className="text-dim pt-1 border-t border-edge/40">AI-generated — Ilyrium internal use. No third-party rights claimed.</div>
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Decision */}
             <div>
@@ -398,13 +449,17 @@ export function ReviewPanel({ pipe, runId }: { pipe: string; runId: string }) {
           for (const t of (s.takes || [])) {
             const url: string = t.public_url || (t.file ? `${pipe}/media/${runId}/${t.file}` : "");
             if (!url) continue;
+            const model: string | null = t.model ?? null;
+            const c2paStatus: C2PAStatus = t.c2pa_status ?? (model ? "valid" : "missing");
             ts.push({
               takeId: t.take_id,
               shotId: s.shot_id ?? `scene-${s.scene_number}`,
               songId: s.song_id,
               sceneNumber: s.scene_number,
-              label: `S${s.scene_number} · ${String(t.take_id).slice(0, 6)} · ${t.model ?? ""}`,
+              label: `S${s.scene_number} · ${String(t.take_id).slice(0, 6)} · ${model ?? ""}`,
               url,
+              model,
+              c2paStatus,
             });
           }
         }
