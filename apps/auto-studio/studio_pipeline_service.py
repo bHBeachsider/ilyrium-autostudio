@@ -410,7 +410,8 @@ def _cut_payload(proj, rid):
                  "public_url": last.get("public_url"),
                  "release": last.get("release")} if last else None),
         "shots": [{"scene_number": s["scene_number"], "voiceover": (s.get("voiceover") or "")[:80],
-                   "has_video": bool(s.get("selected_take"))}
+                   "has_video": bool(s.get("selected_take")),
+                   "audio_elements": s.get("audio_elements") or []}
                   for s in sorted(proj.get("shots", []), key=lambda x: x.get("scene_number", 0))],
     }
 
@@ -422,7 +423,7 @@ async def cut(request):
 
 
 async def audio(request):
-    """op = set_duck (level) | gen_music (music_prompt, instrumental?) | reassemble."""
+    """op = set_duck (level) | gen_music (music_prompt, instrumental?) | reassemble | add_track."""
     rid = request.path_params["run_id"]
     proj, pdir = _load_project(rid)
     if not proj:
@@ -445,6 +446,27 @@ async def audio(request):
         from producer import assemble_cut
         await run_in_threadpool(assemble_cut, proj, pdir, False)  # local cut; publish at delivery
         proj = ps.load_project(pdir)
+    elif op == "add_track":
+        # Add one or more AudioTrack dicts to a scene's audio_elements (non-destructive).
+        # Body: { op, scene_number, tracks: [{url, kind, start_s, volume, ducking_db}] }
+        n = body.get("scene_number")
+        new_tracks = body.get("tracks") or []
+        if n is None:
+            return JSONResponse({"error": "scene_number required"}, status_code=400)
+        shot = next((s for s in proj.get("shots", []) if s.get("scene_number") == int(n)), None)
+        if shot is None:
+            return JSONResponse({"error": f"no scene {n}"}, status_code=404)
+        existing = shot.setdefault("audio_elements", [])
+        for t in new_tracks:
+            if isinstance(t, dict) and t.get("url") and t.get("kind"):
+                existing.append({
+                    "url": t["url"],
+                    "kind": t["kind"],
+                    "start_s": float(t.get("start_s", 0.0)),
+                    "volume": float(t.get("volume", 1.0)),
+                    "ducking_db": float(t.get("ducking_db", 0.0)),
+                })
+        ps.save_project(pdir, proj)
     else:
         return JSONResponse({"error": "unknown op"}, status_code=400)
     return JSONResponse(_cut_payload(proj, rid))

@@ -7,6 +7,45 @@ from moviepy.audio.fx.AudioLoop import AudioLoop
 # generated) under the narrator voiceover. 0.0 = silent, 1.0 = full volume.
 CLIP_AUDIO_DUCK = 0.35
 
+
+def _build_scene_audio(item: dict, video_clip, duck_level: float):
+    """Return an AudioClip for a single scene.
+
+    If the scene's ``audio_elements`` list is populated, mixes those tracks via
+    AudioMixer (multi-track path). Otherwise falls back to the existing single-
+    narrator path so prior behaviour is preserved exactly.
+    """
+    audio_elements = item.get("audio_elements") or []
+    # Multi-track path: requires at least one element with a valid url
+    valid_tracks = [t for t in audio_elements if isinstance(t, dict) and t.get("url") and os.path.exists(t["url"])]
+    if valid_tracks:
+        try:
+            from media.audio_mixer import AudioMixer, AudioTrack
+            tracks = [AudioTrack.from_dict(t) for t in valid_tracks]
+            out_dir = os.path.dirname(item.get("video") or "") or "."
+            out_path = os.path.join(out_dir, f"scene_{item.get('scene_number', 0)}_mix.aac")
+            mixer = AudioMixer()
+            mixer.mix(tracks, video_clip.duration, out_path)
+            return AudioFileClip(out_path)
+        except Exception as e:
+            print(f"[post_production] multi-track mix failed for scene {item.get('scene_number')}, "
+                  f"falling back to narrator-only: {e}")
+
+    # --- Narrator-only (legacy) path ---
+    narrator_path = item.get("audio")
+    if not narrator_path or not os.path.exists(narrator_path):
+        return None
+
+    audio_clip = AudioFileClip(narrator_path)
+    native = video_clip.audio
+    if native is not None:
+        try:
+            ducked = native.with_volume_scaled(duck_level)
+            return CompositeAudioClip([ducked, audio_clip])
+        except Exception:
+            pass
+    return audio_clip
+
 def _extend_to(video_clip, target_duration, mode):
     """Extend a clip to `target_duration` when its audio is longer than its video.
     mode='loop' repeats the clip from the start (can look like a re-take/re-entry);
@@ -51,35 +90,34 @@ def compile_final_video(media_list: list, output_filename="final_commercial.mp4"
                 continue
             
             # 2. Handle the Audio Track Safely
-            if item.get("audio") and os.path.exists(item["audio"]):
+            # Multi-track path (audio_elements) takes priority; narrator-only is the fallback.
+            has_audio = bool(
+                (item.get("audio_elements") or [])
+                or (item.get("audio") and os.path.exists(item.get("audio", "")))
+            )
+            if has_audio:
                 try:
-                    audio_clip = AudioFileClip(item["audio"])
+                    # Extend video if the narrator audio is longer (legacy path only).
+                    narrator_path = item.get("audio")
+                    if narrator_path and os.path.exists(narrator_path) and not item.get("audio_elements"):
+                        audio_len = AudioFileClip(narrator_path).duration
+                        if audio_len > video_clip.duration:
+                            print(f"🔄 Scene {item['scene_number']} video shorter than audio. Extending ({extend_mode})...")
+                            video_clip = _extend_to(video_clip, audio_len, extend_mode)
+                            # After extension drop the native audio to avoid moviepy loop bug.
+                            item = dict(item)   # shallow copy so we don't mutate caller's dict
+                            item["_extended"] = True
 
-                    # If voiceover is longer than the video, extend the video to match.
-                    extended = False
-                    if audio_clip.duration > video_clip.duration:
-                        print(f"🔄 Scene {item['scene_number']} video shorter than audio. Extending ({extend_mode})...")
-                        video_clip = _extend_to(video_clip, audio_clip.duration, extend_mode)
-                        extended = True
+                    # When extended, suppress native audio in the mixer (avoid loop-read bug).
+                    if item.get("_extended"):
+                        item = dict(item)
+                        item.pop("audio_elements", None)  # multi-track skipped on extended clips
 
-                    # Mix the narrator OVER the clip's native audio (ambient / SFX /
-                    # dialogue the video model generated), ducked under the voiceover.
-                    # BUT: when the clip was looped/extended to match a longer
-                    # voiceover, its native audio is looped too, and moviepy's audio
-                    # reader raises "index 0 is out of bounds for axis 0 with size 0"
-                    # reading past the end of that stretched track during write. On
-                    # extended clips, drop the native audio and use only the
-                    # voiceover — the mp3 is the intended audio anyway.
-                    native = None if extended else video_clip.audio
-                    if native is not None:
-                        try:
-                            ducked = native.with_volume_scaled(duck_level)
-                            mixed = CompositeAudioClip([ducked, audio_clip])
-                        except Exception:
-                            mixed = audio_clip  # native-audio compose failed; voiceover only
+                    mixed = _build_scene_audio(item, video_clip, duck_level)
+                    if mixed is not None:
+                        scene_with_audio = video_clip.with_audio(mixed)
                     else:
-                        mixed = audio_clip
-                    scene_with_audio = video_clip.with_audio(mixed)
+                        scene_with_audio = video_clip
                     clips.append(scene_with_audio)
                 except Exception as e:
                     print(f"⚠️ [POST-PRODUCTION] Audio compilation failed for Scene {item.get('scene_number')}, using silent video. Error: {e}")
