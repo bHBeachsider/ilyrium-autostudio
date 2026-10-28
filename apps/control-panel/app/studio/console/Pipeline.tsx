@@ -6,6 +6,12 @@ import AstriaRefine from "./AstriaRefine";
 import StageChecklist from "./StageChecklist";
 import { ReviewPanel } from "./ReviewRoom";
 import { TimelinePipelinePanel } from "./TimelinePanel";
+import { wouldExceedBudget, fmtCents } from "@/lib/metrics/costMeter";
+import { SESSION_KEY } from "./CostMeter";
+
+const BUDGET_KEY = "ilyrium.cost.budget_cents";
+function pipelineReadBudget() { try { return Number(localStorage.getItem(BUDGET_KEY) || 1000); } catch { return 1000; } }
+function pipelineReadSession() { try { return Number(sessionStorage.getItem(SESSION_KEY) || 0); } catch { return 0; } }
 
 // 8-stage pipeline workspaces (full build — installment 3). Spin up a project from
 // one director prompt, then fine-tune each stage with text/image ingestion and
@@ -394,7 +400,24 @@ export default function Pipeline({ target }: { target?: { externalId: string | n
             {/* Stage actions */}
             <div className="flex flex-wrap gap-2 pt-3 border-t border-edge">
               {gstatus === "awaiting_approval" && stageDef(gstage).costly && !st.stages?.[String(gstage)]?.confirmed && st.stages?.[String(gstage)]?.status !== "done" ? (
-                <button disabled={!!busy} onClick={() => call(`/pipeline/${runId}/confirm`)} className="text-amber border border-amber/40 rounded-md px-3 py-1.5 text-[14px]" style={{ background: "rgba(240,167,61,0.12)" }}>Confirm cost & run</button>
+                (() => {
+                  const budgetC = pipelineReadBudget();
+                  const sessionC = pipelineReadSession();
+                  const blocked = wouldExceedBudget(sessionC, 0, budgetC) || sessionC >= budgetC;
+                  return (
+                    <div>
+                      <div className="text-[11px] text-dim mb-1.5">
+                        Costly stage · session {fmtCents(sessionC)} of {fmtCents(budgetC)} cap
+                        {blocked ? <span className="ml-1" style={{ color: "#ef6f6c" }}>— at or over budget</span> : ""}
+                      </div>
+                      <button disabled={!!busy || blocked} onClick={() => call(`/pipeline/${runId}/confirm`)}
+                        className="text-amber border border-amber/40 rounded-md px-3 py-1.5 text-[14px] disabled:opacity-40"
+                        style={{ background: blocked ? "rgba(239,111,108,0.12)" : "rgba(240,167,61,0.12)" }}>
+                        {blocked ? "Budget cap reached — raise in Analytics" : "Confirm cost & run"}
+                      </button>
+                    </div>
+                  );
+                })()
               ) : gstatus === "awaiting_approval" && gstage === 7 ? (
                 <ApproveGate busy={!!busy} onApprove={(nl, ov, reason) => call(`/pipeline/${runId}/approve`, { reviewer: "brad", no_likeness_confirmed: nl, override: ov, override_reason: reason })} />
               ) : gstatus === "awaiting_approval" ? (

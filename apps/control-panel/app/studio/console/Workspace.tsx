@@ -1,12 +1,17 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Pipeline from "./Pipeline";
 import BoxPanel, { BoxStatus } from "./BoxPanel";
 import ChatPanel from "./ChatPanel";
 import ReviewRoom, { ReviewTake } from "./ReviewRoom";
 import TimelinePanel, { TimelineShot, TimelineTake } from "./TimelinePanel";
+import { CostBar, useCostState } from "./CostMeter";
+import CommandPalette from "./CommandPalette";
+import QueueRail from "./QueueRail";
+
+const PIPE = process.env.NEXT_PUBLIC_PIPELINE_URL || "http://127.0.0.1:8800";
 
 /* Ilyrium Studio OS — workspace-driven film console. One project page; the left
    rail swaps the active functional domain (Scripting · Generation · Assembly ·
@@ -89,6 +94,14 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
   const [busy, setBusy] = useState<string | null>(null);
   const [msg, setMsg] = useState<{ id: string; text: string; ok: boolean } | null>(null);
   const [boxStatus, setBoxStatus] = useState<BoxStatus | null>(null);
+  const costState = useCostState();
+
+  async function paletteBoxStart() {
+    try { await fetch(`${PIPE}/box/start`, { method: "POST" }); } catch {}
+  }
+  async function paletteBoxStop() {
+    try { await fetch(`${PIPE}/box/stop`, { method: "POST" }); } catch {}
+  }
 
   const inProj = (id: string | null) => projId === "all" || id === projId;
   const proj = projects.find((p) => p.id === projId) || null;
@@ -171,11 +184,23 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
             </select>
             {proj && <span className="text-[13px] text-dim font-mono">{proj.type} · {proj.status} · {proj.greenlightLevel ?? "—"}</span>}
           </div>
-          <div className="flex gap-2 flex-wrap">
+          <div className="flex gap-2 flex-wrap items-center">
             <Chip label="Assets" value={String(kpis.totalAssets)} />
             <Chip label="Masters" value={String(kpis.masterCount)} tone="#b98cff" />
             <Chip label="Pending" value={String(kpis.pendingCount)} tone={kpis.pendingCount ? "#e0a13a" : "#57c97a"} />
             <Chip label="Runs ok" value={pct(kpis.runOk, kpis.runOk + kpis.runFail)} tone={kpis.runFail ? "#e0a13a" : "#57c97a"} />
+            <div className="hidden sm:block border-l border-edge pl-3 ml-1">
+              <CostBar projectCents={kpis.estCostCents} costState={costState} />
+            </div>
+            <button
+              onClick={() => {}}
+              className="hidden sm:flex items-center gap-1 border border-edge rounded-md px-2 py-1 text-dim hover:text-fg hover:bg-raised text-[12px]"
+              title="Ctrl+K to open command palette"
+              onMouseDown={(e) => { e.preventDefault(); const ev = new KeyboardEvent("keydown", { key: "k", ctrlKey: true, bubbles: true }); window.dispatchEvent(ev); }}
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" /></svg>
+              <span>⌘K</span>
+            </button>
           </div>
         </header>
 
@@ -337,6 +362,11 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
           {/* ── DOMAIN 4 — PIPELINE ANALYTICS & GOVERNANCE ──────────────── */}
           {domain === "analytics" && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {/* Generation queue rail */}
+              <div className="lg:col-span-2">
+                <QueueRail pipe={PIPE} />
+              </div>
+
               {/* Cost telemetry / control plane (matrix §8) */}
               <section className="bg-panel border border-edge rounded-xl p-4 lg:col-span-2">
                 <div className="flex items-center justify-between mb-3">
@@ -490,6 +520,12 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
           )}
         </main>
       </div>
+      <CommandPalette
+        onSwitchDomain={setDomain}
+        onBoxStart={paletteBoxStart}
+        onBoxStop={paletteBoxStop}
+        boxState={boxStatus?.state}
+      />
     </div>
   );
 }
