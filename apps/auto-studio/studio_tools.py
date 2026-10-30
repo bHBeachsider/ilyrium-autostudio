@@ -686,7 +686,18 @@ def execute_tool(name: str, tool_input: dict, project_dir: str | None, progress_
 
     if name == "run_style_validation":
         import style_validator
-        r = style_validator.validate_project(project)
+        # Prefer QA frames from a FilmCraft cut when available (Phase 2 A4).
+        frames_dir = None
+        try:
+            latest = ps.latest_cut(project)
+            if latest and latest.get("engine") == "filmcraft" and latest.get("frames_dir"):
+                frames_dir = latest["frames_dir"]
+        except Exception:
+            pass
+        if frames_dir:
+            r = style_validator.validate_project(project, frames_dir=frames_dir)
+        else:
+            r = style_validator.validate_project(project)
         lines = [r["summary"], f"overall {r['overall_score']} | hard_fail={r['hard_fail']}"]
         for s in r["shots"]:
             flags = [f"{c['dim']}({c['status']})" for c in s["checks"] if c["status"] in ("FAIL", "WARN")]
