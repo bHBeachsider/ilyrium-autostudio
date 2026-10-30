@@ -16,6 +16,7 @@ import os
 import sys
 import json
 from datetime import datetime
+from pathlib import Path
 
 import project_store as ps
 
@@ -456,11 +457,10 @@ def assemble_cut(project: dict, project_dir: str, upload_to_r2: bool = True,
 def _assemble_cut_filmcraft(project: dict, project_dir: str, upload_to_r2: bool = True,
                             progress_cb=None) -> dict:
     """FilmCraft engine: cut.jsonl -> .fcproj -> NVENC master + QA frames + FCP7 XML under
-    outputs/<campaign>/cuts/<cut_id>/. Phase 1 assembles locally only: the release gate /
-    R2 publish / C2PA steps of the moviepy path are not wired for this engine yet, so the
-    cut is recorded as unpublished with an explicit blocker."""
+    outputs/<campaign>/cuts/<cut_id>/. Phase 2: release gate + R2 publish + C2PA wired."""
     from media import filmcraft_assembler as fa
     import qc
+    import cut_ledger
 
     log = _logger(progress_cb)
     if not ps.selected_media(project):
@@ -472,6 +472,7 @@ def _assemble_cut_filmcraft(project: dict, project_dir: str, upload_to_r2: bool 
     except Exception:
         kernel = None
 
+    campaign_id = project.get("campaign_id")
     cut_id = ps._next_cut_id(project)
     log(f"🎬 Assembling {cut_id} with FilmCraft (cut-as-code)…")
     built = fa.assemble(project, project_dir, cut_id, kernel=kernel)
@@ -482,12 +483,67 @@ def _assemble_cut_filmcraft(project: dict, project_dir: str, upload_to_r2: bool 
     fa.render_frames(built["cut_dir"])
     xml = fa.interchange(built["cut_dir"], "fcp7xml")
 
-    blockers = ["FilmCraft engine: release gate + publish not wired yet (Phase 2) — local only."]
+    # --- Enforced release gate ---
+    checksum = master["sha256"]
+    release_allowed = True
+    blockers = []
+    qa = None
+    enforce = True
+    try:
+        from release_gate import run_release_qa, record_qa, check_release_gate, gate_enforced
+        enforce = gate_enforced()
+        qa = run_release_qa(project, project_dir)
+        record_qa(campaign_id, checksum, qa)
+        log(f"🧪 Release QA: {qa['summary']}")
+        gate = check_release_gate(campaign_id, checksum)
+        release_allowed = bool(gate.get("allowed"))
+        blockers = gate.get("blockers", []) or []
+    except Exception as e:
+        release_allowed = False
+        blockers = [f"Release gate error ({type(e).__name__}: {e}) — publication blocked."]
+
     if not check["ok"]:
         blockers.append(f"master QC: {', '.join(check['flags'])}")
-    if upload_to_r2:
-        log("⛔ Not published: " + " ".join(blockers))
-    recorded = ps.add_cut(project, output=master["path"], public_url=None)
+
+    public_url = None
+    published = False
+    may_publish = release_allowed or (not enforce)
+
+    if upload_to_r2 and not may_publish:
+        log("⛔ Publication BLOCKED by the release gate:")
+        for b in blockers:
+            log(f"   • {b}")
+        log("   Approve via approve_release (MCP) / the console once rights + QA pass.")
+    elif upload_to_r2 and may_publish:
+        if not release_allowed and not enforce:
+            log("⚠️ Gate not satisfied but ILYRIUM_ENFORCE_RELEASE_GATE=0 — publishing anyway (logged).")
+        from utils.storage_manager import finalize_and_upload_campaign
+        metadata = {"engine": "filmcraft", "cut_id": cut_id}
+        try:
+            public_url = finalize_and_upload_campaign(project_dir, campaign_id, metadata,
+                                                       master["path"])
+            published = bool(public_url)
+        except Exception as e:
+            log(f"❌ R2 upload failed: {e}")
+
+        try:
+            from c2pa_sign import attach_c2pa
+            from graph_sync import file_checksum
+            upstream = []
+            for m_item in ps.selected_media(project):
+                if m_item.get("video") and os.path.exists(m_item["video"]):
+                    try:
+                        upstream.append(file_checksum(m_item["video"]))
+                    except Exception:
+                        pass
+            cc = attach_c2pa(project, master["path"], checksum=checksum,
+                             upstream_checksums=upstream, public_url=public_url)
+            log(f"🔏 C2PA {cc['mode']} credentials attached"
+                + (" + recorded on provenance." if cc.get("recorded") else " (record best-effort)."))
+        except Exception as e:
+            log(f"⚠️ C2PA attach skipped: {e}")
+
+    recorded = ps.add_cut(project, output=master["path"], public_url=public_url)
     if recorded != cut_id:
         raise RuntimeError(f"cut id moved during assembly ({cut_id} -> {recorded})")
     project["cuts"][-1].update({
@@ -495,13 +551,40 @@ def _assemble_cut_filmcraft(project: dict, project_dir: str, upload_to_r2: bool 
         "script_sha256": built["script_sha256"], "sequence_sha256": built["sequence_sha256"],
         "export_sha256": master["sha256"], "filmcraft_version": built["filmcraft_version"],
         "interchange": xml, "qc": check,
-        "release": {"published": False, "allowed": False, "enforced": True,
-                    "blockers": blockers, "checksum": master["sha256"], "qa_passed": check["ok"]},
+        "frames_dir": str(Path(built["cut_dir"]) / "frames"),
+        "release": {
+            "published": published, "allowed": release_allowed, "enforced": enforce,
+            "blockers": blockers, "checksum": checksum,
+            "qa_passed": bool(qa and qa.get("passed")),
+        },
     })
+    if published:
+        try:
+            project["cuts"][-1]["c2pa"] = locals().get("cc", {}).get("manifest_ref")
+        except Exception:
+            pass
+
+    # --- Cut ledger record (append-only; chain_ok must verify) ---
+    try:
+        cut_ledger.append_cut_record(campaign_id, {
+            "event": "cut",
+            "cut_id": cut_id,
+            "engine": "filmcraft",
+            "script_sha256": built["script_sha256"],
+            "export_sha256": master["sha256"],
+            "filmcraft_version": built["filmcraft_version"],
+            "published": published,
+            "public_url": public_url,
+            "qa_passed": bool(qa and qa.get("passed")) or check["ok"],
+        })
+    except Exception as e:
+        log(f"⚠️ Cut ledger write failed: {e}")
+
     ps.save_project(project_dir, project)
-    log(f"✅ {cut_id} ready (local only — not published).")
-    return {"cut_id": cut_id, "final_video": master["path"], "public_url": None,
-            "published": False, "release_allowed": False, "blockers": blockers, "qa": check}
+    log(f"✅ {cut_id} ready{' (published)' if published else ' (local only — not published)'}.")
+    return {"cut_id": cut_id, "final_video": master["path"], "public_url": public_url,
+            "published": published, "release_allowed": release_allowed,
+            "blockers": blockers, "qa": check}
 
 
 def _assemble_cut_moviepy(project: dict, project_dir: str, upload_to_r2: bool = True,
@@ -626,6 +709,24 @@ def _assemble_cut_moviepy(project: dict, project_dir: str, upload_to_r2: bool = 
         }
     except Exception:
         pass
+
+    # --- Cut ledger record (append-only; chain_ok must verify) ---
+    try:
+        import cut_ledger
+        cut_ledger.append_cut_record(project.get("campaign_id"), {
+            "event": "cut",
+            "cut_id": cut_id,
+            "engine": "moviepy",
+            "script_sha256": None,
+            "export_sha256": checksum,
+            "filmcraft_version": None,
+            "published": published,
+            "public_url": public_url,
+            "qa_passed": bool(qa and qa.get("passed")),
+        })
+    except Exception:
+        pass
+
     ps.save_project(project_dir, project)
     log(f"✅ {cut_id} ready{' (published)' if published else ' (local only — not published)'}.")
 
