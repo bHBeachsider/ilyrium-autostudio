@@ -1,0 +1,68 @@
+---
+# Broderick CHARACTER-consistency LoRA (the recurring author-avatar) on FLUX.1-dev.
+# Trained on isolated avatar crops mined from his own comics, with SHORT trigger-focused captions
+# ("brdmc, <pose>") so the brdmc trigger binds the IDENTITY — the opposite of the long-caption
+# mistake that made the brdrck style trigger inert. Layered at inference with the style (style block
+# or the style LoRA) -> same character, any pose, in his ink look.
+job: extension
+config:
+  name: "broderick_char"
+  process:
+    - type: 'sd_trainer'
+      training_folder: "/home/ec2-user/ai-toolkit/output"
+      device: cuda:0
+      trigger_word: "brdmc"
+      network:
+        type: "lora"
+        linear: 16
+        linear_alpha: 16
+      save:
+        dtype: float16
+        save_every: 250
+        max_step_saves_to_keep: 4
+        push_to_hub: false
+      datasets:
+        - folder_path: "/home/ec2-user/slm-foundry/packs/broderick/data/char/brdmc/train"
+          caption_ext: "txt"
+          caption_dropout_rate: 0.0      # keep the trigger on every sample (identity binding)
+          shuffle_tokens: false
+          cache_latents_to_disk: true
+          resolution: [ 512, 768, 1024 ]
+      train:
+        batch_size: 1
+        steps: 2000                       # ~20-40 images -> 2000 steps is ample for identity
+        gradient_accumulation_steps: 1
+        train_unet: true
+        train_text_encoder: false
+        gradient_checkpointing: true
+        noise_scheduler: "flowmatch"
+        optimizer: "adamw8bit"
+        lr: 1e-4
+        lr_scheduler: "cosine"
+        ema_config:
+          use_ema: true
+          ema_decay: 0.99
+        dtype: bf16
+      model:
+        name_or_path: "black-forest-labs/FLUX.1-dev"
+        is_flux: true
+        quantize: true
+      sample:
+        sampler: "flowmatch"
+        sample_every: 250
+        width: 1024
+        height: 1024
+        guidance_scale: 3.5
+        sample_steps: 25
+        walk_seed: true
+        seed: 42
+        neg: ""
+        prompts:
+          # bare trigger in varied poses -> the eval: same man every time?
+          - "brdmc, sitting at a desk talking on a phone"
+          - "brdmc, standing and pointing angrily"
+          - "brdmc, shrugging with a deadpan expression"
+          - "brdmc, walking down a street carrying a bag"
+meta:
+  name: "[name]"
+  version: '1.0'

@@ -1,0 +1,44 @@
+name: nast
+shapes: [A, B]
+governance: GOVERNANCE.md
+artifacts_s3: s3://ilyrium-slm-foundry/models/nast/
+brain:
+  train_config: brain/config.yaml  # standalone: resolved against this pack's root (src/pack.py --pack)
+  base: unsloth/Qwen3-8B
+  chat_template: qwen-2.5
+  output_schema: {allegory_rationale: str, image_prompt: str}
+  data: {train: data/brain/train.jsonl, val: data/brain/val.jsonl, test: data/brain/test.jsonl}
+  eval_gate: beat_base
+hand:
+  bases: [sdxl, flux]
+  trigger: thomas_nast_style
+  scans: data/hand/
+  deploy: ilyrium-comfyui
+# Standalone form (relocated from slm-foundry on 2026-11-06). The SLM Foundry is the engine:
+# run it with `--pack <absolute path to this directory>`; set SLM_FOUNDRY_ROOT for the pack scripts.
+engine:
+  repository: slm-foundry
+  root_env: SLM_FOUNDRY_ROOT
+# Pack data is never stored in git. These are references only; <content-hash> stays `pending`
+# until the approved transfer (slm-foundry docs/requests/2026-11-06-relocation-data-transfer.md) runs.
+data:
+  s3_prefix: s3://ilyrium-slm-foundry/datasets/nast/<content-hash>/
+  content_hash: pending
+  sets:
+    brain: {local: data/brain/, s3: "s3://ilyrium-slm-foundry/datasets/nast/<content-hash>/data/brain/"}
+    hand_scans: {local: data/hand/, s3: "s3://ilyrium-slm-foundry/datasets/nast/<content-hash>/data/hand/"}
+    gold_seed: {local: brain/gold_seed.jsonl, s3: "s3://ilyrium-slm-foundry/datasets/nast/<content-hash>/brain/gold_seed.jsonl", note: "tracked in slm-foundry until the transfer runs; not committed here"}
+rights:
+  # Nine uses, decided per artifact. Unknown or pending blocks that use. GOVERNANCE.md is a
+  # pack-level statement, not a per-artifact record, so every use is pending here.
+  record: pending
+  uses:
+    storage: pending
+    extraction: pending
+    engineering_computation: pending
+    retrieval: pending
+    numerical_fitting: pending
+    model_training: pending
+    evaluation: pending
+    external_processing: pending
+    redistribution: pending
