@@ -33,3 +33,8 @@ projects/new_harnomy_usa/03_design/characters/loras/_s3.log
 projects/new_harnomy_usa/04_preproduction/keyframes/*/*_key.png
 /filmcraft/
 _staging/
+
+# SLM packs: data lives in S3 (s3://ilyrium-slm-foundry/datasets/<pack>/<content-hash>/), never in git
+packs/**/data/
+packs/**/output/
+packs/**/outputs/

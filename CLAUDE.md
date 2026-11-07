@@ -31,6 +31,8 @@ projects/<name>/        — one film per dir: 00_admin … 99_archive, PROJECT.y
 manuals/                — agent-ready tool manuals (blender, davinci, comfyui, ue, …)
 policies/ · evals/      — release policy, rubrics, golden sets
 skills/                 — packaged studio skills
+packs/<name>/           — SLM packs (nast, broderick) run by the slm-foundry engine; data lives in S3, not git
+training/lora/          — image-LoRA toolchain (ai-toolkit, Flux/SDXL render, box queue scripts)
 docs/                   — architecture, plans, research, specs, strategy
 ```
 

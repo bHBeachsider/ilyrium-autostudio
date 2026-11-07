@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Broderick Comedic Operator",
+  "description": "Reverse-engineered comedic GRAMMAR of one Broderick strip, extracted from its ordered panels. Captures the transferable OPERATOR (so it can later generate NEW strips on NEW subjects), the sequential beats, the bridge to the brdrck visual Hand, and the teacher's uncertainty (to route Broderick's human review to the strips that need it).",
+  "type": "object",
+  "required": ["strip_id", "format", "panel_count", "premise", "comedic_operator", "panel_beats", "visual_motifs", "confidence"],
+  "additionalProperties": false,
+  "properties": {
+    "strip_id": { "type": "string", "description": "The manifest `strip` value this operator was extracted from." },
+    "format": { "enum": ["single_panel", "strip", "multi_strip"] },
+    "panel_count": { "type": "integer", "minimum": 1 },
+    "premise": {
+      "type": "string",
+      "description": "ONE sentence: the neutral seed situation/observation this bit is generated FROM — the setup a writer would start with, NOT the punchline. This becomes the generative input when we later invert to (premise -> comic)."
+    },
+    "comedic_operator": {
+      "type": "object",
+      "description": "The transferable engine. If you applied this operator to a different subject, you should get a recognizably-Broderick bit.",
+      "required": ["target", "target_class", "vehicle_persona", "inflation_mechanism", "escalation_arc", "register", "puncture", "comedic_thesis"],
+      "additionalProperties": false,
+      "properties": {
+        "target": { "type": "string", "description": "The banal convention, institution, or personality type being skewered." },
+        "target_class": { "enum": ["social_convention", "personality_type", "institution", "self_memoir", "object_or_ritual", "other"] },
+        "vehicle_persona": { "type": ["string", "null"], "description": "The pompous character whose voice carries the bit (e.g. 'stoner music critic'), or null if there is no persona vehicle." },
+        "inflation_mechanism": { "type": "string", "description": "The MOVE: how the banal gets inflated — e.g. pseudo-intellectual over-analysis delivered with unearned, unwavering authority." },
+        "escalation_arc": { "type": "string", "description": "How the absurdity compounds across the panels (the build)." },
+        "register": { "type": "string", "description": "Delivery tone — deadpan, flat, faux-academic, etc." },
+        "puncture": { "type": "string", "description": "Where/how the grandiosity collapses (the turn). Use 'none (pure escalation)' if the bit only inflates and never deflates." },
+        "comedic_thesis": { "type": "string", "description": "ONE line naming the exact gap exploited: banality X treated with grandiosity Y." }
+      }
+    },
+    "panel_beats": {
+      "type": "array",
+      "description": "The sequence, in scene order — the timing structure a multi-panel generator needs.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["n", "beat", "content"],
+        "additionalProperties": false,
+        "properties": {
+          "n": { "type": "integer", "minimum": 1 },
+          "beat": { "enum": ["setup", "escalation", "turn", "puncture", "punchline", "aside", "tag"] },
+          "content": { "type": "string", "description": "What happens in the panel (action / staging)." },
+          "dialogue": { "type": ["string", "null"], "description": "Verbatim in-panel text/dialogue if available; a faithful paraphrase if only described; null if none/unknown." }
+        }
+      }
+    },
+    "visual_motifs": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Recurring visual elements that define the staging (white void background, single red accent, deadpan caricature face, scratchy ink, etc.) — the bridge to the brdrck Hand."
+    },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1, "description": "Teacher's confidence it recovered the BIT (the comedic intent), not merely described the picture." },
+    "ambiguity_notes": { "type": ["string", "null"], "description": "What is unclear, inferred, or needs the artist's call. Strips with low confidence + notes are the ones Broderick reviews first." }
+  }
+}

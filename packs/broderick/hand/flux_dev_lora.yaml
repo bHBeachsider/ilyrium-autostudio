@@ -1,0 +1,67 @@
+---
+# Broderick comic-style LoRA on FLUX.1-dev (max-quality Flux; dev = best style fidelity + legible
+# hand-lettering). Grayscale-first: trained on the manifest color_mode=="grayscale" subset (the
+# house style); the 17 color panels are excluded so they don't dilute the grayscale ink look.
+job: extension
+config:
+  name: "broderick_flux"
+  process:
+    - type: 'sd_trainer'
+      training_folder: "/home/ec2-user/ai-toolkit/output"
+      device: cuda:0
+      trigger_word: "brdrck"
+      network:
+        type: "lora"
+        linear: 16
+        linear_alpha: 16
+      save:
+        dtype: float16
+        save_every: 500
+        max_step_saves_to_keep: 4
+        push_to_hub: false
+      datasets:
+        - folder_path: "/home/ec2-user/slm-foundry/packs/broderick/data/hand/train"
+          caption_ext: "txt"
+          caption_dropout_rate: 0.05
+          shuffle_tokens: false
+          cache_latents_to_disk: true
+          resolution: [ 512, 768, 1024 ]
+      train:
+        batch_size: 1
+        steps: 3000
+        gradient_accumulation_steps: 1
+        train_unet: true
+        train_text_encoder: false
+        gradient_checkpointing: true
+        noise_scheduler: "flowmatch"
+        optimizer: "adamw8bit"
+        lr: 1e-4
+        lr_scheduler: "cosine"
+        ema_config:
+          use_ema: true
+          ema_decay: 0.99
+        dtype: bf16
+      model:
+        # FLUX.1-dev is gated: the HF token must have accepted the dev license. No assistant_lora
+        # (that adapter is schnell-only). dev is not a turbo model -> real guidance + step count.
+        name_or_path: "black-forest-labs/FLUX.1-dev"
+        is_flux: true
+        quantize: true   # 48GB L40S; set false for a marginal max-quality bump
+      sample:
+        sampler: "flowmatch"
+        sample_every: 500
+        width: 1024
+        height: 1024
+        guidance_scale: 3.5
+        sample_steps: 25
+        walk_seed: true
+        seed: 42
+        neg: ""
+        prompts:
+          - "[trigger] two men arguing at an office desk, one holding a phone, white void background"
+          - "[trigger] a dog leaping at a child in a suburban yard"
+          - "[trigger] a man dancing alone, single red accent"
+          - "[trigger] a deadpan office worker staring at a ringing phone, flat gray washes"
+meta:
+  name: "[name]"
+  version: '1.0'

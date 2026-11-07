@@ -1,0 +1,36 @@
+name: broderick
+shapes: [A]
+governance: GOVERNANCE.md
+artifacts_s3: s3://ilyrium-slm-foundry/models/broderick/  # model artifacts convention in the relocated scripts; no model is registered by this scaffold
+confidential: true
+# Scaffolded by the RELOCATION lane (2026-11-06). Scaffold only: no training config, schema or
+# eval gate is approved, and no rights are granted. Foundry: `--pack <absolute path to this directory>`.
+brain:
+  base: unsloth/Qwen3-8B
+  chat_template: qwen-2.5
+  output_schema: brain/operator_schema.json
+  data: {train: data/brain/train.jsonl, val: data/brain/val.jsonl, test: data/brain/test.jsonl}
+  eval_gate: pending
+engine:
+  repository: slm-foundry
+  root_env: SLM_FOUNDRY_ROOT
+data:
+  s3_prefix: s3://ilyrium-slm-foundry/datasets/broderick/<content-hash>/
+  content_hash: pending
+  sets:
+    brain: {local: brain/data/, s3: "s3://ilyrium-slm-foundry/datasets/broderick/<content-hash>/brain/data/"}
+    hand_images: {local: data/hand/, s3: "s3://ilyrium-slm-foundry/datasets/broderick/<content-hash>/data/hand/"}
+    hand_local: {local: hand/data/, s3: "s3://ilyrium-slm-foundry/datasets/broderick/<content-hash>/hand/data/"}
+    tracked_brain_rows: {local: brain/data/, files: [broderick_brain_pairs.jsonl, broderick_operators.jsonl], note: "tracked in slm-foundry until the transfer runs; not committed here"}
+rights:
+  record: pending
+  uses:
+    storage: pending
+    extraction: pending
+    engineering_computation: pending
+    retrieval: pending
+    numerical_fitting: pending
+    model_training: pending
+    evaluation: pending
+    external_processing: pending
+    redistribution: pending
