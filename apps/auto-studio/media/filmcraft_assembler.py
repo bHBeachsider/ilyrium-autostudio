@@ -93,16 +93,23 @@ def db(gain: float) -> float:
 
 def sequence_settings(project: dict, kernel: dict | None = None) -> dict:
     """Sequence + delivery settings from the kernel's `delivery` block, then the project,
-    then defaults (1920x1080, 24 fps, 48 kHz, black pillarbox, -14 LUFS)."""
+    then defaults (1920x1080, 24 fps, 48 kHz, black pillarbox, -14 LUFS).
+
+    For portrait (9:16) the V1 colour matte acts as a letterbox matte; for landscape
+    it is a pillarbox matte. `matte_style` carries this distinction.
+    """
     d = (kernel or {}).get("delivery") or {}
     w, h = ASPECT_SIZES.get(str(project.get("aspect_ratio") or "16:9"), ASPECT_SIZES["16:9"])
+    eff_w = int(d.get("width") or w)
+    eff_h = int(d.get("height") or h)
     return {
-        "width": int(d.get("width") or w),
-        "height": int(d.get("height") or h),
+        "width": eff_w,
+        "height": eff_h,
         "fps": float(d.get("fps") or project.get("fps") or 24),
         "sample_rate": int(d.get("sample_rate") or 48000),
         "pillarbox": d.get("pillarbox") or DEFAULT_PILLARBOX,
         "loudness_lufs": float(d.get("loudness_lufs") or DEFAULT_LOUDNESS_LUFS),
+        "matte_style": "letterbox" if eff_h > eff_w else "pillarbox",
     }
 
 

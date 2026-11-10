@@ -81,6 +81,14 @@ def test_sequence_settings_kernel_and_aspect():
     assert (s["width"], s["height"], s["pillarbox"]) == (1080, 1920, "#ffffff")
 
 
+def test_9_16_canvas_is_portrait_letterbox():
+    s = fa.sequence_settings({"aspect_ratio": "9:16"}, None)
+    assert s["width"] == 1080 and s["height"] == 1920
+    assert s["matte_style"] == "letterbox"
+    s16 = fa.sequence_settings({"aspect_ratio": "16:9"}, None)
+    assert s16["matte_style"] == "pillarbox"
+
+
 # --------------------------------------------------------------------------- #
 # Pure: script generation
 # --------------------------------------------------------------------------- #
