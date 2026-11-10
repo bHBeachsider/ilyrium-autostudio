@@ -27,7 +27,9 @@ const tone: Record<string, string> = { approved: "#57c97a", done: "#97a1ad", run
 const PROJECT_TYPES = ["SHORT", "AD", "PILOT", "FEATURE", "MUSIC_VIDEO", "TRAILER"];
 const GENRE_PACKS = ["opera", "narrative", "comedy", "documentary", "music_video", "ad", "trailer"];
 
-export default function Pipeline({ target }: { target?: { externalId: string | null; stage: number } | null }) {
+// `active`: whether Run is the page being shown. Workspace keeps Run mounted while another
+// page is open, so review hotkeys must follow visibility, not mounting.
+export default function Pipeline({ target, active }: { target?: { externalId: string | null; stage: number } | null; active: boolean }) {
   const [runs, setRuns] = useState<any[]>([]);
   const [runId, setRunId] = useState<string>("");
   const [st, setSt] = useState<any>(null);
@@ -40,6 +42,9 @@ export default function Pipeline({ target }: { target?: { externalId: string | n
   const [up, setUp] = useState(true);
   const [briefFiles, setBriefFiles] = useState<File[]>([]);
   const [conf, setConf] = useState<any>(null);
+  // The stepper hand-off in flight. Workspace clears `target` right after the reveal, so the
+  // "Opening ..." and offline hints read this instead; it is cleared when adopt succeeds.
+  const [opening, setOpening] = useState<{ externalId: string; stage: number } | null>(null);
   // New film-project scaffold form
   const [npName, setNpName] = useState("");
   const [npType, setNpType] = useState("SHORT");
@@ -59,14 +64,25 @@ export default function Pipeline({ target }: { target?: { externalId: string | n
     try {
       const r = await fetch(`${PIPE}/pipeline/adopt`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ externalId: ext }) });
       const d = await r.json();
-      if (d.run_id) { setRunId(d.run_id); setSt(d.state); setView(stage || d.state?.stage || 1); setUp(true); listRuns(); }
+      if (d.run_id) { setRunId(d.run_id); setSt(d.state); setView(stage || d.state?.stage || 1); setUp(true); setOpening(null); listRuns(); }
       else setMsg({ ok: false, t: d.error || "could not open this project" });
     } catch { setUp(false); setMsg({ ok: false, t: `Pipeline service offline at ${PIPE} — start studio_pipeline_service.py.` }); }
   }
+  // Run stays mounted while another page is open, so a banner from the last visit would
+  // outlive the problem it reported. Clear it each time Run becomes the visible page.
+  useEffect(() => { if (active) setMsg(null); }, [active]);
+
   useEffect(() => {
     if (!target) return;
     if (target.stage) setView(target.stage);                 // always select the stage, even if adoption is pending/fails
-    if (target.externalId) adopt(target.externalId, target.stage);
+    if (target.externalId) {
+      // A hand-off to a different project than the one Run holds drops the held run first, so
+      // the old project's workspace is never shown or actionable under the new project's name.
+      // The same project keeps its state.
+      if (target.externalId !== st?.campaign_id) { setRunId(""); setSt(null); setConf(null); }
+      setOpening({ externalId: target.externalId, stage: target.stage });
+      adopt(target.externalId, target.stage);
+    }
   }, [target?.externalId, target?.stage]);
 
   // Persist the open project + active stage, and re-open the workspaces WITH the main layer
@@ -318,9 +334,9 @@ export default function Pipeline({ target }: { target?: { externalId: string | n
 
       {!st ? (
         <div className="bg-panel border border-edge rounded-xl p-4 text-[15px]">
-          {target?.externalId ? (
+          {opening ? (
             <div>
-              <div className="text-fg mb-1">Opening <span className="font-mono">{target.externalId}</span>{target.stage ? ` · stage ${target.stage} (${STAGES[target.stage - 1]})` : ""}…</div>
+              <div className="text-fg mb-1">Opening <span className="font-mono">{opening.externalId}</span>{opening.stage ? ` · stage ${opening.stage} (${STAGES[opening.stage - 1]})` : ""}…</div>
               <div className="text-dim text-[13px]">
                 {up
                   ? "This stage's workspace needs a live run. If it doesn't open, the project may have no scenes yet — draft them in stage 2 (Script) or spin one up above."
@@ -371,7 +387,7 @@ export default function Pipeline({ target }: { target?: { externalId: string | n
                 <div className={view === 2 ? "" : "hidden"}><ScriptPanel pipe={PIPE} runId={runId} /></div>
                 <div className={view === 3 ? "" : "hidden"}><StoryboardPanel pipe={PIPE} runId={runId} /></div>
                 <div className={view === 4 ? "" : "hidden"}><AssetGenPanel pipe={PIPE} runId={runId} /></div>
-                <div className={view === 5 ? "" : "hidden"}><ReviewPanel pipe={PIPE} runId={runId} /></div>
+                <div className={view === 5 ? "" : "hidden"}><ReviewPanel pipe={PIPE} runId={runId} active={active && view === 5} /></div>
                 <div className={view === 6 ? "" : "hidden"}><TimelinePipelinePanel pipe={PIPE} runId={runId} /></div>
                 <div className={view === 7 ? "" : "hidden"}><RightsPanel state={st} pipe={PIPE} runId={runId} /></div>
                 <div className={view === 8 ? "" : "hidden"}><DeliveryPanel pipe={PIPE} runId={runId} externalId={st?.campaign_id} /></div>

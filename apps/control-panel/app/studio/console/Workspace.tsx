@@ -1,7 +1,7 @@
 "use client";
 
 import { Fragment, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSelectedLayoutSegment } from "next/navigation";
 import Pipeline from "./Pipeline";
 import BoxPanel, { BoxStatus } from "./BoxPanel";
 import ChatPanel from "./ChatPanel";
@@ -11,6 +11,9 @@ import TimelinePanel, { TimelineShot, TimelineTake } from "./TimelinePanel";
 import { CostBar, useCostState } from "./CostMeter";
 import CommandPalette from "./CommandPalette";
 import QueueRail from "./QueueRail";
+import RunSurface from "./RunSurface";
+import { useKeyBindings, useKeys } from "./keys/KeysProvider";
+import { PAGES, consoleHref, navLabelOf, pageBySlug, railPages, slugForDomain, type DomainKey } from "./pages";
 
 const PIPE = process.env.NEXT_PUBLIC_PIPELINE_URL || "http://127.0.0.1:8800";
 
@@ -50,15 +53,6 @@ const ICONS: Record<string, React.ReactNode> = {
   studio: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z" /><path d="M8 9h8M8 12h5" /></svg>,
   review: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><circle cx="12" cy="12" r="9" /><path d="M10 8l5 4-5 4V8z" /></svg>,
 };
-const DOMAINS = [
-  { key: "pipeline", label: "Pipeline", sub: "8-stage · auto-draft" },
-  { key: "review", label: "Review Room", sub: "Shot · take · approve" },
-  { key: "studio", label: "Studio Chat", sub: "LLM · Box control" },
-  { key: "script", label: "Ideation & Scripting", sub: "Pre-Production" },
-  { key: "generation", label: "Asset Generation", sub: "Production" },
-  { key: "assembly", label: "Timeline & Assembly", sub: "Post" },
-  { key: "analytics", label: "Studio Control Plane", sub: "Cost · Trace · Governance" },
-];
 
 // The 8 matrix stages as control points; ✓/▢ derived from project state.
 const STAGE_DEFS = [
@@ -82,10 +76,18 @@ function shotState(hasVideo: boolean, hasMaster: boolean) {
   return { label: "DRAFT", color: "#97a1ad", cls: "text-dim" };
 }
 
-export default function Workspace({ projects, assets, queue, runs, assetMap, kpis, engineMix }:
-  { projects: Project[]; assets: AssetRow[]; queue: QueueRow[]; runs: RunRow[]; assetMap: AssetMap; kpis: Kpis; engineMix: EngineMix }) {
+export type WorkspaceData = { projects: Project[]; assets: AssetRow[]; queue: QueueRow[]; runs: RunRow[]; assetMap: AssetMap; kpis: Kpis; engineMix: EngineMix };
+
+// Mounted by console/layout.tsx, above the [page] segment, so everything below survives
+// navigation between pages. The page comes from the URL; it is no longer state. Props are
+// used directly (never copied into state) so router.refresh() after approve shows new data.
+export default function Workspace({ projects, assets, queue, runs, assetMap, kpis, engineMix, children }:
+  WorkspaceData & { children: React.ReactNode }) {
   const router = useRouter();
-  const [domain, setDomain] = useState("pipeline");
+  const keys = useKeys();
+  const page = pageBySlug(useSelectedLayoutSegment());
+  const domain = page?.domain ?? null;   // null on a placeholder page or an unknown slug
+  const go = (key: string) => router.push(consoleHref(slugForDomain(key as DomainKey)));
   const [pipeTarget, setPipeTarget] = useState<{ externalId: string | null; stage: number } | null>(null);
   const [projId, setProjId] = useState<string>(projects[0]?.id ?? "all");
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -96,6 +98,23 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
   const [msg, setMsg] = useState<{ id: string; text: string; ok: boolean } | null>(null);
   const [boxStatus, setBoxStatus] = useState<BoxStatus | null>(null);
   const costState = useCostState();
+
+  // Hand-off from the stepper: Run adopts the target when it is revealed, then it is cleared
+  // here. Order matters: Pipeline's reveal effect runs in the same commit with the old
+  // target and adopts once; the clear is the next render, where Pipeline returns early on a
+  // null target. Without the clear, every later reveal would adopt again.
+  useEffect(() => { if (domain === "pipeline" && pipeTarget) setPipeTarget(null); }, [domain, pipeTarget]);
+
+  // The selected project can disappear after router.refresh().
+  useEffect(() => {
+    if (projId !== "all" && !projects.some((p) => p.id === projId)) setProjId(projects[0]?.id ?? "all");
+  }, [projects, projId]);
+
+  useKeyBindings("global", true, {
+    ...Object.fromEntries(PAGES.map((p) => [`nav.${p.slug}`, () => router.push(consoleHref(p.slug))])),
+    "box.start": () => { paletteBoxStart(); },
+    "box.stop": () => { paletteBoxStop(); },
+  });
 
   async function paletteBoxStart() {
     try { await fetch(`${PIPE}/box/start`, { method: "POST" }); } catch {}
@@ -155,16 +174,16 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
           <div className="text-fg font-bold tracking-tight">ILYRIUM</div>
           <div className="text-[12px] text-dim uppercase tracking-widest">Studio OS</div>
         </div>
-        {DOMAINS.map((d) => {
-          const active = domain === d.key;
+        {railPages().map((p) => {
+          const active = page?.slug === p.slug;
           return (
-            <button key={d.key} onClick={() => setDomain(d.key)}
+            <button key={p.slug} onClick={() => router.push(consoleHref(p.slug))}
               className={"flex items-center gap-2.5 rounded-md px-2.5 py-2 text-left transition-colors " +
                 (active ? "bg-raised text-fg border border-edge" : "text-dim hover:text-fg hover:bg-raised/50 border border-transparent")}>
-              <span style={{ color: active ? "#5b9dff" : undefined }}>{ICONS[d.key]}</span>
+              <span style={{ color: active ? "#5b9dff" : undefined }}>{ICONS[p.domain as DomainKey]}</span>
               <span className="leading-tight">
-                <span className="block text-[16px] font-medium">{d.label}</span>
-                <span className="block text-[12px] text-dim uppercase tracking-wide">{d.sub}</span>
+                <span className="block text-[16px] font-medium">{navLabelOf(p)}</span>
+                <span className="block text-[12px] text-dim uppercase tracking-wide">{p.sub}</span>
               </span>
             </button>
           );
@@ -194,10 +213,9 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
               <CostBar projectCents={kpis.estCostCents} costState={costState} />
             </div>
             <button
-              onClick={() => {}}
+              onClick={() => keys.invoke("palette.toggle")}
               className="hidden sm:flex items-center gap-1 border border-edge rounded-md px-2 py-1 text-dim hover:text-fg hover:bg-raised text-[12px]"
               title="Ctrl+K to open command palette"
-              onMouseDown={(e) => { e.preventDefault(); const ev = new KeyboardEvent("keydown", { key: "k", ctrlKey: true, bubbles: true }); window.dispatchEvent(ev); }}
             >
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" /></svg>
               <span>⌘K</span>
@@ -207,7 +225,13 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
 
         <main className="flex-1 overflow-auto p-5">
           {/* DOMAIN 0 — PIPELINE (8 stage workspaces + auto-draft) */}
-          {domain === "pipeline" && <Pipeline target={pipeTarget} />}
+          {/* Kept mounted so stage, edits and the open run survive leaving Run; see RunSurface. */}
+          <RunSurface visible={domain === "pipeline"}>
+            <Pipeline target={pipeTarget} active={domain === "pipeline"} />
+          </RunSurface>
+
+          {/* Placeholder pages and the not-found page render here; Run and the legacy domains render themselves. */}
+          {domain === null && children}
 
           {/* DOMAIN: REVIEW ROOM (Frame.io-style take review surface) */}
           {domain === "review" && (() => {
@@ -219,7 +243,7 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
               label: `${a.projectTitle} · ${a.assetType ?? "video"} · ${short(a.id, 6)}`,
               url: a.uri,
             }));
-            return <ReviewRoom takes={takes} />;
+            return <ReviewRoom takes={takes} active />;
           })()}
 
           {/* ── STUDIO CHAT + BOX CONTROL — multi-provider chat, box lifecycle ── */}
@@ -231,13 +255,13 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
           )}
 
           {/* 8-stage control-point stepper (per-project HITL gates) */}
-          {proj && domain !== "pipeline" && domain !== "studio" && (
+          {proj && domain && domain !== "pipeline" && domain !== "studio" && (
             <div className="flex items-stretch gap-2 mb-5">
               {STAGE_DEFS.map((s) => {
                 const ok = stageState[s.n];
                 return (
                   <button key={s.n} title={`Open the ${s.name} workspace`}
-                    onClick={() => { setPipeTarget({ externalId: proj.title, stage: s.n }); setDomain("pipeline"); }}
+                    onClick={() => { setPipeTarget({ externalId: proj.title, stage: s.n }); go("pipeline"); }}
                     className="flex-1 flex flex-col items-center justify-center gap-1 px-2 py-3 rounded-lg border text-center cursor-pointer hover:brightness-125 transition"
                     style={{ borderColor: ok ? "#57c97a55" : "#272d36", background: ok ? "rgba(87,201,122,0.08)" : "rgba(255,255,255,0.012)", color: ok ? "#57c97a" : "#97a1ad" }}>
                     <span className="text-[18px] font-semibold">{ok ? "✓" : "▢"} {s.n}</span>
@@ -540,12 +564,7 @@ export default function Workspace({ projects, assets, queue, runs, assetMap, kpi
           )}
         </main>
       </div>
-      <CommandPalette
-        onSwitchDomain={setDomain}
-        onBoxStart={paletteBoxStart}
-        onBoxStop={paletteBoxStop}
-        boxState={boxStatus?.state}
-      />
+      <CommandPalette boxState={boxStatus?.state} />
     </div>
   );
 }

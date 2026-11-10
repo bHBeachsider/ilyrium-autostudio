@@ -1,39 +1,12 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { useKeyBindings, useKeyModal, useKeys } from "./keys/KeysProvider";
+import { BINDINGS, cheatSheetRows, filterCommands, paletteCommands, type PaletteCommand } from "./keys/registry";
 
-const PIPE = process.env.NEXT_PUBLIC_PIPELINE_URL || "http://127.0.0.1:8800";
-
-type Cmd = {
-  id: string;
-  label: string;
-  category: string;
-  keywords?: string;
-  action: () => void | Promise<void>;
-};
-
-const CHEAT_SHEET = [
-  { key: "Ctrl + K", desc: "Open command palette" },
-  { key: "?", desc: "Toggle hotkey cheat sheet" },
-  { key: "↑ / ↓", desc: "Navigate commands" },
-  { key: "Enter", desc: "Execute selected command" },
-  { key: "Esc", desc: "Close palette / cheat sheet" },
-  { key: "1–8 (pipeline)", desc: "Jump to stage N in Pipeline" },
-  { key: "J / L", desc: "Previous / next take (Review Room)" },
-  { key: "A / R", desc: "Approve / Reject take (Review Room)" },
-  { key: "Space", desc: "Play / pause waveform (Timeline)" },
-];
-
-export default function CommandPalette({
-  onSwitchDomain,
-  onBoxStart,
-  onBoxStop,
-  boxState,
-}: {
-  onSwitchDomain: (d: string) => void;
-  onBoxStart: () => void;
-  onBoxStop: () => void;
-  boxState?: string | null;
-}) {
+// Commands, the cheat sheet and every key the palette handles come from keys/registry.ts;
+// this component only owns the open/closed and cursor state.
+export default function CommandPalette({ boxState }: { boxState?: string | null }) {
+  const keys = useKeys();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [cursor, setCursor] = useState(0);
@@ -41,80 +14,35 @@ export default function CommandPalette({
   const [feedback, setFeedback] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const commands: Cmd[] = [
-    { id: "pipeline", label: "Go to Pipeline", category: "Navigate", keywords: "stages 8", action: () => { onSwitchDomain("pipeline"); close(); } },
-    { id: "review", label: "Go to Review Room", category: "Navigate", keywords: "takes approve", action: () => { onSwitchDomain("review"); close(); } },
-    { id: "studio", label: "Go to Studio Chat", category: "Navigate", keywords: "llm box", action: () => { onSwitchDomain("studio"); close(); } },
-    { id: "generation", label: "Go to Asset Generation", category: "Navigate", keywords: "render shot", action: () => { onSwitchDomain("generation"); close(); } },
-    { id: "assembly", label: "Go to Timeline & Assembly", category: "Navigate", keywords: "cut timeline", action: () => { onSwitchDomain("assembly"); close(); } },
-    { id: "analytics", label: "Go to Analytics / Queue", category: "Navigate", keywords: "cost control plane", action: () => { onSwitchDomain("analytics"); close(); } },
-    {
-      id: "box-start",
-      label: "Start GPU Box",
-      category: "Box",
-      keywords: "ec2 comfyui start",
-      action: async () => {
-        close();
-        onBoxStart();
-        toast("Box start requested…");
-      },
-    },
-    {
-      id: "box-stop",
-      label: "Stop GPU Box",
-      category: "Box",
-      keywords: "ec2 comfyui stop billing",
-      action: async () => {
-        close();
-        onBoxStop();
-        toast("Box stop requested — billing ends once stopped.");
-      },
-    },
-    {
-      id: "cheat-sheet",
-      label: "Show keyboard cheat sheet",
-      category: "Help",
-      keywords: "hotkeys shortcuts",
-      action: () => { setCheatSheet(true); setOpen(false); },
-    },
-  ];
+  const commands = paletteCommands(BINDINGS, keys.has);
 
   function close() { setOpen(false); setQuery(""); setCursor(0); }
   function toast(msg: string) { setFeedback(msg); setTimeout(() => setFeedback(""), 3000); }
 
-  const filtered = query.trim()
-    ? commands.filter((c) =>
-        `${c.label} ${c.category} ${c.keywords ?? ""}`.toLowerCase().includes(query.toLowerCase())
-      )
-    : commands;
+  const filtered = filterCommands(commands, query);
 
-  // Ctrl+K / ? hotkeys
-  useEffect(() => {
-    function onKey(e: KeyboardEvent) {
-      if (e.key === "k" && (e.ctrlKey || e.metaKey)) {
-        e.preventDefault();
-        setOpen((v) => { if (!v) { setQuery(""); setCursor(0); } return !v; });
-      }
-      if (e.key === "?" && !e.ctrlKey && !e.metaKey && !e.altKey) {
-        const tag = (document.activeElement as HTMLElement)?.tagName?.toLowerCase();
-        if (tag === "input" || tag === "textarea") return;
-        setCheatSheet((v) => !v);
-      }
-      if (e.key === "Escape") { close(); setCheatSheet(false); }
-    }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  function run(cmd: PaletteCommand) {
+    if (cmd.id === "help.cheatsheet") { close(); setCheatSheet(true); return; }
+    close();
+    keys.invoke(cmd.id);
+    if (cmd.id === "box.start") toast("Box start requested…");
+    if (cmd.id === "box.stop") toast("Box stop requested — billing ends once stopped.");
+  }
+
+  useKeyBindings("global", true, {
+    "palette.toggle": () => setOpen((v) => { if (!v) { setQuery(""); setCursor(0); } return !v; }),
+    "help.cheatsheet": () => setCheatSheet((v) => !v),
+    "overlay.close": () => { close(); setCheatSheet(false); },
+  });
+  useKeyBindings("palette", open, {
+    "palette.down": () => setCursor((c) => Math.min(c + 1, filtered.length - 1)),
+    "palette.up": () => setCursor((c) => Math.max(c - 1, 0)),
+    "palette.run": () => { if (filtered[cursor]) run(filtered[cursor]); },
+  });
+  useKeyModal(open || cheatSheet);
 
   // Focus input when palette opens
   useEffect(() => { if (open) setTimeout(() => inputRef.current?.focus(), 20); }, [open]);
-
-  function onInputKey(e: React.KeyboardEvent) {
-    if (e.key === "ArrowDown") { e.preventDefault(); setCursor((c) => Math.min(c + 1, filtered.length - 1)); }
-    else if (e.key === "ArrowUp") { e.preventDefault(); setCursor((c) => Math.max(c - 1, 0)); }
-    else if (e.key === "Enter" && filtered[cursor]) { filtered[cursor].action(); }
-    else if (e.key === "Escape") { close(); }
-  }
 
   return (
     <>
@@ -125,22 +53,32 @@ export default function CommandPalette({
         </div>
       )}
 
-      {/* Cheat sheet overlay */}
+      {/* Cheat sheet overlay: the only one. Rows are the registry's, so it lists every binding. */}
       {cheatSheet && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60" onClick={() => setCheatSheet(false)}>
-          <div className="bg-panel border border-edge rounded-xl p-5 w-[420px] max-w-full shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div data-testid="cheat-sheet" className="bg-panel border border-edge rounded-xl p-5 w-[460px] max-w-full max-h-[80vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-3">
               <div className="text-[16px] font-semibold">Keyboard shortcuts</div>
               <button onClick={() => setCheatSheet(false)} className="text-dim hover:text-fg text-[18px] leading-none">×</button>
             </div>
             <table className="w-full text-[13px] border-collapse">
               <tbody>
-                {CHEAT_SHEET.map((r) => (
-                  <tr key={r.key} className="border-b border-edge/40 last:border-0">
-                    <td className="py-1.5 pr-4 font-mono text-accent whitespace-nowrap">{r.key}</td>
-                    <td className="py-1.5 text-dim">{r.desc}</td>
-                  </tr>
-                ))}
+                {(() => {
+                  let lastGroup = "";
+                  return cheatSheetRows(BINDINGS).map((r) => {
+                    const head = r.group !== lastGroup;
+                    lastGroup = r.group;
+                    return (
+                      <Fragment key={r.id}>
+                        {head && <tr><th colSpan={2} className="pt-3 pb-1 text-left text-[11px] text-dim uppercase tracking-wide font-normal">{r.group}</th></tr>}
+                        <tr data-binding-id={r.id} className="border-b border-edge/40 last:border-0">
+                          <td className="py-1.5 pr-4 font-mono text-accent whitespace-nowrap">{r.keys}</td>
+                          <td className="py-1.5 text-dim">{r.description}</td>
+                        </tr>
+                      </Fragment>
+                    );
+                  });
+                })()}
               </tbody>
             </table>
             <div className="mt-3 text-[11px] text-dim text-center">Press Esc or click outside to close</div>
@@ -164,7 +102,6 @@ export default function CommandPalette({
                 ref={inputRef}
                 value={query}
                 onChange={(e) => { setQuery(e.target.value); setCursor(0); }}
-                onKeyDown={onInputKey}
                 placeholder="Type a command…"
                 className="flex-1 bg-transparent text-fg text-[15px] py-3 outline-none placeholder:text-dim"
               />
@@ -187,16 +124,16 @@ export default function CommandPalette({
                           <div className="px-4 pt-2 pb-1 text-[11px] text-dim uppercase tracking-wide">{cmd.category}</div>
                         )}
                         <button
-                          onClick={() => cmd.action()}
+                          onClick={() => run(cmd)}
                           onMouseEnter={() => setCursor(i)}
                           className={"w-full text-left px-4 py-2 text-[14px] flex items-center gap-2 " +
                             (cursor === i ? "bg-raised text-fg" : "text-dim hover:bg-raised/50")}
                         >
                           {cmd.label}
-                          {cmd.id === "box-start" && boxState === "running" && (
+                          {cmd.id === "box.start" && boxState === "running" && (
                             <span className="ml-auto text-[11px] text-dim">box is running</span>
                           )}
-                          {cmd.id === "box-stop" && boxState === "stopped" && (
+                          {cmd.id === "box.stop" && boxState === "stopped" && (
                             <span className="ml-auto text-[11px] text-dim">already stopped</span>
                           )}
                         </button>

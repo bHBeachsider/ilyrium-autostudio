@@ -26,6 +26,15 @@ const nextConfig = {
     "@prisma/adapter-neon",
     "@prisma/client",
   ],
+  // Config redirects run before the filesystem and before any render, so the console
+  // layout's data load never runs for them. 307 (permanent: false) so no browser caches
+  // the target while the console's page list is still changing.
+  async redirects() {
+    return [
+      { source: "/", destination: "/studio/console/run", permanent: false },
+      { source: "/studio/console", destination: "/studio/console/run", permanent: false },
+    ];
+  },
 };
 
 module.exports = nextConfig;
