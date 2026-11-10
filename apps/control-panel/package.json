@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test",
+    "ci:test": "pnpm run typecheck && pnpm test && pnpm run build && pnpm run test:e2e",
     "prisma:generate": "prisma generate --schema prisma/ilyrium.prisma && prisma generate --config prisma.takes.config.ts",
     "postinstall": "prisma generate --schema prisma/ilyrium.prisma && prisma generate --config prisma.takes.config.ts"
   },

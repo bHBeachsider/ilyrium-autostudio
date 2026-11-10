@@ -9,6 +9,7 @@
  * Run: pnpm run test:e2e   (first time: pnpm exec playwright install chromium)
  */
 import { test, expect } from "@playwright/test";
+import { mockPipelineService } from "./helpers/mockService";
 import * as path from "path";
 import * as fs from "fs";
 import * as crypto from "crypto";
@@ -118,38 +119,15 @@ test.beforeEach(async ({ page }) => {
     try { localStorage.setItem("ilyrium.pipeline.session", payload); } catch {}
   }, JSON.stringify({ externalId: SONG_ID, view: 5 }));
 
-  // Playwright tries the most recently registered matching route first, so the catch-all
-  // must be registered BEFORE the specific mocks or it shadows them.
-  // Mock any other pipeline service calls that Pipeline.tsx might fire.
-  await page.route("**/pipeline/**", async (route) => {
-    await route.fulfill({ status: 200, contentType: "application/json", body: "{}" });
-  });
-
-  // Mock pipeline list (GET /pipeline).
-  await page.route("**/pipeline", async (route) => {
-    if (route.request().method() === "GET") {
-      await route.fulfill({
-        status: 200,
-        contentType: "application/json",
-        body: JSON.stringify({ runs: [{ run_id: "nh-s901-fixture", state: ADOPT_RESPONSE.state }] }),
-      });
-    } else {
-      await route.continue();
-    }
-  });
-
-  // Mock pipeline adopt (POST /pipeline/adopt).
-  await page.route("**/pipeline/adopt", async (route) => {
-    await route.fulfill({
-      status: 200,
-      contentType: "application/json",
-      body: JSON.stringify(ADOPT_RESPONSE),
-    });
-  });
-
-  // Mock shots endpoint (GET /pipeline/:runId/shots).
-  await page.route("**/pipeline/*/shots", async (route) => {
-    await route.fulfill({ status: 200, contentType: "application/json", body: SHOTS_FIXTURE });
+  // The pipeline service is served from the contract fixtures (tests/helpers/mockService.ts).
+  // Two endpoints are overridden for this spec: adopt lands on the review stage, and shots
+  // use the target shape (shot_id, song_id, c2pa_status) that the tracked service does not
+  // return yet - see the notes on that entry in fixtures/service/contract.json.
+  await mockPipelineService(page, {
+    overrides: {
+      "POST /pipeline/adopt": ADOPT_RESPONSE,
+      "GET /pipeline/{run_id}/shots": JSON.parse(SHOTS_FIXTURE),
+    },
   });
 
   // Serve fixture media as a tiny MP4 (avoids 404s that block video element creation).

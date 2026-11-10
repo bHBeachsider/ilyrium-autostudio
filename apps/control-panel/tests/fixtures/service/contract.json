@@ -1,0 +1,1979 @@
+{
+  "$comment": [
+    "Contract fixtures for the pipeline service the console calls (apps/auto-studio/studio_pipeline_service.py, default http://127.0.0.1:8800).",
+    "One entry per METHOD + path the browser requests. Served by tests/helpers/mockService.ts so CI needs no Python service, database or GPU box.",
+    "POLICY: status/response mirror the TRACKED service handler as read on 2026-11-10. Where the console needs more than the tracked service gives, the shape it expects is in target_response and tests opt in explicitly.",
+    "tracked=false means the console calls a route the tracked service does not implement; the fixture answers 404 like the real service does.",
+    "UNVERIFIED: derived by reading handler code, not by running the service (it cannot be imported from a clean checkout until spec decision D1). Re-check against a provider test when it can.",
+    "Drift guard: lib/serviceContract.test.ts fails if console source calls a service path that has no entry here.",
+    "via_response_of: the console never writes this path; it follows a URL returned by the named endpoint, so the drift guard cannot see a call site for it.",
+    "response_by_op: for one path with several shapes, the mock picks the body by the request's `op`; `response` is the fallback."
+  ],
+  "service": "pipeline-service",
+  "default_origin": "http://127.0.0.1:8800",
+  "fixture_ids": {
+    "run_id": "nhfixture0001",
+    "campaign_id": "nh-s901-test"
+  },
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/box/start",
+      "status": 200,
+      "response": {
+        "ok": true,
+        "state": "pending",
+        "public_ip": null,
+        "comfyui_up": false,
+        "tunnel_up": false
+      },
+      "tracked": true,
+      "callers": [
+        "apps/control-panel/app/studio/console/Workspace.tsx:101 (paletteBoxStart; PIPE const at Workspace.tsx:15)",
+        "apps/control-panel/app/studio/console/BoxPanel.tsx:57 via act('start'); button BoxPanel.tsx:104-106"
+      ],
+      "client_reads": [
+        "(none - response is discarded, errors swallowed by empty catch)",
+        "error (truthy -> shown as message)",
+        "(nothing else; then refresh(true) refetches /box/status?force=1)"
+      ],
+      "real_side_effects": "REAL: ec2_session.ensure_running(wait=False) STARTS THE GPU EC2 BOX (billing ~$1.20/hr). Must be fixture-stubbed; never hit the live service in CI.",
+      "notes": "none (client ignores body). Fixture only needs HTTP 200 JSON.",
+      "handler": "TRACKED apps/auto-studio/studio_pipeline_service.py:1050 box_start"
+    },
+    {
+      "method": "GET",
+      "path": "/box/status",
+      "status": 200,
+      "response": {
+        "state": "stopped",
+        "instance_id": "i-0fixture0000000001",
+        "public_ip": null,
+        "comfyui_up": false,
+        "tunnel_up": false
+      },
+      "tracked": true,
+      "callers": [
+        "apps/control-panel/app/studio/console/BoxPanel.tsx:40 in refresh(force) (PIPE = BoxPanel.tsx:8, NEXT_PUBLIC_PIPELINE_URL); BoxPanel is rendered at Workspace.tsx:229 and its onStatus feeds ChatPanel boxStatus",
+        "apps/control-panel/app/studio/console/BoxPanel.tsx:40 (polled every 5s, BoxPanel.tsx:50; mounted in Workspace.tsx:229)"
+      ],
+      "client_reads": [
+        "state (string; 'running'|'pending'|'stopping'|'stopped'|'error'|other->red dot)",
+        "instance_id",
+        "public_ip",
+        "comfyui_up",
+        "tunnel_up",
+        "error (shown when state==='error')",
+        "Also read by ChatPanel.tsx:47-48 from the same object: state, tunnel_up"
+      ],
+      "real_side_effects": "Real call: AWS describe-instances (cached 5 s) + HTTP probes to ComfyUI :8188 and ollama :11434; no spend, no writes. Fixture variants worth having: state 'stopped' (comfyui_up/tunnel_up false) and state 'error' with error string.",
+      "notes": "none. (Exact extra keys from ec2_session.status() were not inspected; the client only reads the keys listed.)",
+      "handler": "tracked studio_pipeline_service.py:1044-1047 box_status (route :1091)"
+    },
+    {
+      "method": "POST",
+      "path": "/box/stop",
+      "status": 200,
+      "response": {
+        "ok": true,
+        "state": "stopping",
+        "public_ip": null,
+        "comfyui_up": false,
+        "tunnel_up": false
+      },
+      "tracked": true,
+      "callers": [
+        "apps/control-panel/app/studio/console/Workspace.tsx:104 (paletteBoxStop)",
+        "apps/control-panel/app/studio/console/BoxPanel.tsx:57 via act('stop'); button BoxPanel.tsx:110"
+      ],
+      "client_reads": [
+        "(none - response discarded)",
+        "error"
+      ],
+      "real_side_effects": "REAL: launches box.ps1 tunnel-down (spawns a pwsh process) and ec2_session.stop() - stops the EC2 instance. Stub in CI.",
+      "notes": "none (client ignores body).",
+      "handler": "TRACKED apps/auto-studio/studio_pipeline_service.py:1063 box_stop"
+    },
+    {
+      "method": "POST",
+      "path": "/box/tunnel",
+      "status": 200,
+      "response": {
+        "ok": true,
+        "message": "box.ps1 tunnel launched (pwsh) - status will update shortly."
+      },
+      "tracked": true,
+      "callers": [
+        "apps/control-panel/app/studio/console/BoxPanel.tsx:57 via act('tunnel'); button BoxPanel.tsx:107-109"
+      ],
+      "client_reads": [
+        "error",
+        "message (shown, fallback 'Tunnel opening - status will update shortly.')"
+      ],
+      "real_side_effects": "Real call spawns a detached pwsh running cli/box.ps1 tunnel (opens SSH tunnels :8188 and :11434). No spend itself.",
+      "handler": "tracked studio_pipeline_service.py:1080-1086 box_tunnel (route :1094)"
+    },
+    {
+      "method": "GET",
+      "path": "/media/{run_id}/{file}",
+      "status": 200,
+      "binary": "by-extension",
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:473 mediaSrc -> <img>/<video> at :498 (AssetGenPanel)",
+        "Pipeline.tsx:639 -> <video> at :644 (DeliveryPanel)",
+        "Pipeline.tsx:748 src() -> <img> at :754 (anchor) and :764 (keyframes)",
+        "ReviewRoom.tsx:452 (video src=take.url, via line 246-262)",
+        "TimelinePanel.tsx:29,34,359 (<video> at :126, <img> at :130, audio/cut url)",
+        "apps/control-panel/app/studio/console/ReviewRoom.tsx:246 (<video src={take.url}>, main player)",
+        "apps/control-panel/app/studio/console/ReviewRoom.tsx:257 (<video src={bTake.url}>, A/B side-by-side)",
+        "apps/control-panel/app/studio/console/ReviewRoom.tsx:262 (<video src={bTake.url}>, A/B wipe) - URL is built at ReviewRoom.tsx:451 as `${pipe}/media/${runId}/${t.file}` when take.public_url is empty",
+        "apps/control-panel/app/studio/console/TimelinePanel.tsx:126 (<video src={videoSrc}>, only for approved selected take; URL from mediaSrc() TimelinePanel.tsx:29-31)",
+        "apps/control-panel/app/studio/console/TimelinePanel.tsx:130 (<img src={kf}>, keyframe; URL from keyframeSrc() TimelinePanel.tsx:33-37 using keyframe_file)",
+        "apps/control-panel/app/studio/console/TimelinePanel.tsx:276 (wavesurfer ws.load(audioUrl); audioUrl = `${pipe}/media/${runId}/${cut.file}` set at TimelinePanel.tsx:359)"
+      ],
+      "client_reads": [
+        "binary body: image/png, video/mp4",
+        "(binary body; no JSON read). Video elements need a decodable mp4/webm with correct Content-Type; wavesurfer needs fetchable (CORS-readable) audio/video bytes; <img> needs an image."
+      ],
+      "real_side_effects": "read-only file serving",
+      "notes": "File names the client builds are exactly the basenames returned by /shots, /storyboard and /cut (e.g. shot1_t1.mp4, shot1_keyframe.png, anchor_hero.png, cut_v1.mp4); fixture server must serve a real tiny PNG and MP4 for these (video element needs a decodable MP4 for controls to render, though Playwright only needs a 200 with the right Content-Type). No auth. | Cross-origin: pipeline is on :8800 while console is :3000, so wavesurfer's fetch needs CORS headers (check service CORS middleware; not verified here - out of my file scope). Fixture server must send Access-Control-Allow-Origin and valid",
+      "handler": "studio_pipeline_service.py:390 media (route 1107), same in main (:421)."
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline/{run_id}/advance",
+      "status": 200,
+      "response": {
+        "state": {
+          "prompt": "fixture brief",
+          "mode": "manual",
+          "stage": 5,
+          "status": "running",
+          "campaign_id": "nh-s901-test",
+          "project_dir": "outputs/nh-s901-test",
+          "stages": {
+            "1": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "2": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "3": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "4": {
+              "status": "approved",
+              "result": "2 shots rendered",
+              "notes": [],
+              "approvedBy": "brad",
+              "confirmed": true
+            },
+            "5": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "6": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "7": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "8": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            }
+          },
+          "log": [
+            {
+              "t": "2026-11-10T00:00:00Z",
+              "msg": "stage 4 approved by brad"
+            }
+          ]
+        }
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:428 via call()"
+      ],
+      "client_reads": [
+        "state",
+        "error"
+      ],
+      "real_side_effects": "REAL: starts the background pipeline run for the current stage (may spend / start GPU box).",
+      "handler": "studio_pipeline_service.py:238 advance (route 1100), same in main."
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline/{run_id}/anchor",
+      "status": 200,
+      "response": {
+        "run_id": "nhfixture0001",
+        "scenes": [
+          {
+            "scene_number": 1,
+            "visual_prompt": "Wide shot of the scaffold at dawn",
+            "keyframe_file": "shot1_keyframe.png"
+          }
+        ],
+        "anchor_file": "shot1_keyframe.png"
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:740 via post('anchor', ...) at :746 (uploadAnchor) and :771 ('Use as anchor')"
+      ],
+      "client_reads": [
+        "scenes[]",
+        "anchor_file"
+      ],
+      "real_side_effects": "writes anchor_<name> and project.json anchor_image; no spend.",
+      "notes": "none. anchor_file is non-null only if the file exists on disk (os.path.exists check), so a scene_number anchor for a missing keyframe returns anchor_file null.",
+      "handler": "studio_pipeline_service.py:563 anchor_set (route 1125), same in main."
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline/{run_id}/approve",
+      "status": 200,
+      "response": {
+        "state": {
+          "prompt": "fixture brief",
+          "mode": "manual",
+          "stage": 5,
+          "status": "running",
+          "campaign_id": "nh-s901-test",
+          "project_dir": "outputs/nh-s901-test",
+          "stages": {
+            "1": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "2": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "3": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "4": {
+              "status": "approved",
+              "result": "2 shots rendered",
+              "notes": [],
+              "approvedBy": "brad",
+              "confirmed": true
+            },
+            "5": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "6": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "7": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "8": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            }
+          },
+          "log": [
+            {
+              "t": "2026-11-10T00:00:00Z",
+              "msg": "stage 4 approved by brad"
+            }
+          ]
+        }
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:422 (ApproveGate at stage 7, body with likeness/override)",
+        "Pipeline.tsx:424 (plain approve)"
+      ],
+      "client_reads": [
+        "state",
+        "error"
+      ],
+      "real_side_effects": "REAL: at stage 7 runs approve_release (release-gate record, non-delegable A4); always advances the run and kicks background work. Never point CI at the live service.",
+      "notes": "none. call() shows msg when (!r.ok && d.error) or (d.error && d.state).",
+      "handler": "studio_pipeline_service.py:291 approve (route 1104), same in main."
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline/{run_id}/audio",
+      "status": 200,
+      "response": {
+        "run_id": "nhfixture0001",
+        "audio_duck": 0.5,
+        "music": false,
+        "voice_casting": {},
+        "cut": null,
+        "shots": [
+          {
+            "scene_number": 1,
+            "voiceover": "",
+            "has_video": true,
+            "audio_elements": [
+              {
+                "url": "https://example.test/vo.mp3",
+                "kind": "narrator",
+                "start_s": 0,
+                "volume": 1,
+                "ducking_db": 0
+              }
+            ]
+          }
+        ]
+      },
+      "tracked": true,
+      "callers": [
+        "TimelinePanel.tsx:558 (act: set_duck, gen_music, reassemble) via panel rendered at Pipeline.tsx:375",
+        "TimelinePanel.tsx:433 (MultiTrackLanesPanel.saveTrack: add_track)",
+        "apps/control-panel/app/studio/console/TimelinePanel.tsx:433 (MultiTrackLanesPanel.saveTrack, op add_track)",
+        "apps/control-panel/app/studio/console/TimelinePanel.tsx:558 (AudioControlsPanel.act, ops set_duck / gen_music / reassemble)"
+      ],
+      "client_reads": [
+        "none (response body is ignored by all four call sites; client re-GETs /cut after add_track)",
+        "(none - responses discarded for all ops; saveTrack only re-fetches /cut)"
+      ],
+      "real_side_effects": "set_duck/add_track: write project.json. gen_music: REAL SPEND (apiframe music) writes music_bed.mp3. reassemble: runs ffmpeg assemble_cut locally (CPU, writes a new cut, no upload).",
+      "notes": "none (responses ignored; errors are swallowed). | none for the client (response ignored). Note: set_duck has no effect on the fixture unless the fixture is stateful; a static fixture is fine because the client never reads the response.",
+      "handler": "studio_pipeline_service.py:425 audio (route 1119), same in main."
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline/{run_id}/brief",
+      "status": 200,
+      "response": {
+        "state": {
+          "prompt": "fixture brief",
+          "mode": "manual",
+          "stage": 5,
+          "status": "running",
+          "campaign_id": "nh-s901-test",
+          "project_dir": "outputs/nh-s901-test",
+          "stages": {
+            "1": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "2": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "3": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "4": {
+              "status": "approved",
+              "result": "2 shots rendered",
+              "notes": [],
+              "approvedBy": "brad",
+              "confirmed": true
+            },
+            "5": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "6": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "7": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "8": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            }
+          },
+          "log": [
+            {
+              "t": "2026-11-10T00:00:00Z",
+              "msg": "stage 4 approved by brad"
+            }
+          ]
+        }
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:566 (BriefPanel.save)"
+      ],
+      "client_reads": [
+        "state (truthy => 'saved')",
+        "error"
+      ],
+      "real_side_effects": "writes run state only.",
+      "notes": "none (client only checks d.state truthiness).",
+      "handler": "studio_pipeline_service.py:657 brief_save (route 1126), same in main."
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline/{run_id}/confirm",
+      "status": 200,
+      "response": {
+        "state": {
+          "prompt": "fixture brief",
+          "mode": "manual",
+          "stage": 5,
+          "status": "running",
+          "campaign_id": "nh-s901-test",
+          "project_dir": "outputs/nh-s901-test",
+          "stages": {
+            "1": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "2": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "3": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "4": {
+              "status": "approved",
+              "result": "2 shots rendered",
+              "notes": [],
+              "approvedBy": "brad",
+              "confirmed": true
+            },
+            "5": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "6": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "7": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "8": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            }
+          },
+          "log": [
+            {
+              "t": "2026-11-10T00:00:00Z",
+              "msg": "stage 4 approved by brad"
+            }
+          ]
+        }
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:413 via call()"
+      ],
+      "client_reads": [
+        "state",
+        "error"
+      ],
+      "real_side_effects": "REAL SPEND: confirms the cost gate and starts the background render pipeline (GPU box / cloud credits).",
+      "handler": "studio_pipeline_service.py:247 confirm (route 1101), same in main (:272 area)."
+    },
+    {
+      "method": "GET",
+      "path": "/pipeline/{run_id}/conformance",
+      "status": 200,
+      "response": {
+        "run_id": "nhfixture0001",
+        "mechanical": {
+          "ok": true,
+          "violations": 0,
+          "by_category": {},
+          "errors": [],
+          "contract": "1"
+        },
+        "throughput": {
+          "units_per_min": 1.5,
+          "workers": 1,
+          "first_pass_rate": 1
+        },
+        "stage": 4,
+        "status": "awaiting_approval",
+        "judgment": [
+          {
+            "key": "tone_holds",
+            "label": "Tone holds - sincere, no wink (the irreducible call)"
+          },
+          {
+            "key": "dramatic",
+            "label": "Scenes work dramatically / land the beat"
+          },
+          {
+            "key": "take_choice",
+            "label": "Best take selected per shot"
+          },
+          {
+            "key": "release",
+            "label": "Cleared for release (rights / no-likeness)"
+          }
+        ]
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:166"
+      ],
+      "client_reads": [
+        "mechanical.ok",
+        "mechanical.violations",
+        "mechanical.by_category{}",
+        "throughput.units_per_min",
+        "throughput.workers",
+        "throughput.first_pass_rate",
+        "judgment[].key",
+        "judgment[].label"
+      ],
+      "real_side_effects": "read-only",
+      "notes": "none. Client treats throughput as optional. conformance.py is untracked in main checkout.",
+      "handler": "studio_pipeline_service.py:676 conformance_report (route 1131), same in main."
+    },
+    {
+      "method": "GET",
+      "path": "/pipeline/{run_id}/cut",
+      "status": 200,
+      "response": {
+        "run_id": "nhfixture0001",
+        "audio_duck": 0.35,
+        "music": false,
+        "voice_casting": {},
+        "cut": {
+          "cut_id": "c1",
+          "file": "cut_v1.mp4",
+          "public_url": null,
+          "release": {
+            "published": false,
+            "allowed": false,
+            "enforced": true
+          }
+        },
+        "shots": [
+          {
+            "scene_number": 1,
+            "voiceover": "The city never finished building.",
+            "has_video": true,
+            "audio_elements": [
+              {
+                "url": "https://example.test/vo.mp3",
+                "kind": "narrator",
+                "start_s": 0,
+                "volume": 1,
+                "ducking_db": 0
+              }
+            ]
+          }
+        ]
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:628 (DeliveryPanel.load)",
+        "TimelinePanel.tsx:357 (TimelinePipelinePanel, from Pipeline.tsx:375)",
+        "TimelinePanel.tsx:417 (MultiTrackLanesPanel.loadShots)",
+        "apps/control-panel/app/studio/console/TimelinePanel.tsx:357 (TimelinePipelinePanel load(): reads cut.public_url / cut.file for the waveform audioUrl)",
+        "apps/control-panel/app/studio/console/TimelinePanel.tsx:417 (MultiTrackLanesPanel.loadShots: reads shots[] for the lanes)"
+      ],
+      "client_reads": [
+        "cut.public_url",
+        "cut.file",
+        "cut.release.published",
+        "shots[].scene_number",
+        "shots[].voiceover",
+        "shots[].audio_elements[]",
+        "cut",
+        "shots[]",
+        "shots[].audio_elements[].url",
+        "shots[].audio_elements[].kind ('ambient'|'narrator'|'character'|'music'|'sfx')",
+        "shots[].audio_elements[].start_s",
+        "shots[].audio_elements[].volume",
+        "shots[].audio_elements[].ducking_db"
+      ],
+      "real_side_effects": "read-only",
+      "notes": "none observed. Release dict shape comes from producer.assemble_cut (keys published, allowed, enforced). TimelinePanel's audio controls also read duck/music from the POST /audio response, not from this GET. | none on read fields: every field the client reads is returned by the tracked handler (audio_elements items are free-form dicts written by add_track: {url, kind, start_s, volume, ducking_db}). Against the MAIN checkout version audio_elements would be missing (client defaults to []). Client ignores audio_duck, music, voice_casting, has_video, cut.cut_id, cut.release.",
+      "handler": "studio_pipeline_service.py:419 cut + _cut_payload :402 (route 1118), same in main."
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline/{run_id}/deliver",
+      "status": 200,
+      "response": {
+        "ok": true,
+        "captions": {
+          "srt": "captions.srt",
+          "cues": 2
+        }
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:636 (DeliveryPanel.deliver)"
+      ],
+      "client_reads": [
+        "ok",
+        "captions.cues",
+        "captions.srt",
+        "file",
+        "error"
+      ],
+      "real_side_effects": "captions: writes SRT and syncs an asset to the graph DB (graph_sync.sync_asset, best-effort). preset/cutdown: ffmpeg writes files. ai_cutdown: LLM call + ffmpeg. No GPU box.",
+      "notes": "none. Client message uses '-> ' + d.file or 'captions: N cues (srt)'.",
+      "handler": "studio_pipeline_service.py:583 deliver (route 1127), same in main.",
+      "response_by_op": {
+        "captions": {
+          "ok": true,
+          "captions": {
+            "srt": "captions.srt",
+            "cues": 2
+          }
+        },
+        "preset": {
+          "ok": true,
+          "file": "deliver_9x16.mp4"
+        },
+        "cutdown": {
+          "ok": true,
+          "file": "cutdown_15s.mp4"
+        },
+        "ai_cutdown": {
+          "ok": true,
+          "file": "ai_cutdown_15s.mp4"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline/{run_id}/eval",
+      "status": 200,
+      "response": {
+        "ok": true,
+        "report": {
+          "overall_score": 0.82,
+          "passed": true,
+          "hard_fail": false,
+          "threshold": 0.7,
+          "n_shots": 2,
+          "per_dimension": {
+            "look": {
+              "avg": 0.9,
+              "fails": 0,
+              "warns": 1
+            },
+            "register": {
+              "avg": 0.74,
+              "fails": 0,
+              "warns": 0
+            }
+          },
+          "weakest_shots": [],
+          "summary": "fixture"
+        }
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:593 (RightsPanel.runEval, local component)"
+      ],
+      "client_reads": [
+        "report.overall_score",
+        "report.passed",
+        "report.threshold",
+        "report.n_shots",
+        "report.hard_fail",
+        "report.per_dimension{<dim>:{avg,fails,warns}}",
+        "report.error / error"
+      ],
+      "real_side_effects": "Records an eval Run row (graph/DB write inside evals.run_project_eval); runs style_validator (may call an LLM). Fixture must not hit the real service.",
+      "notes": "none. Client uses d.report || {error:d.error}.",
+      "handler": "studio_pipeline_service.py:632 eval_run (route 1129), same in main."
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline/{run_id}/keyframe",
+      "status": 200,
+      "response": {
+        "run_id": "nhfixture0001",
+        "scenes": [
+          {
+            "scene_number": 1,
+            "visual_prompt": "Wide shot of the scaffold at dawn",
+            "keyframe_file": "shot1_keyframe.png"
+          },
+          {
+            "scene_number": 2,
+            "visual_prompt": "Close-up of a worker's hands",
+            "keyframe_file": "shot2_keyframe.png"
+          }
+        ],
+        "anchor_file": "anchor_hero.png"
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:740 via StoryboardPanel.post('keyframe', ...) invoked at :770"
+      ],
+      "client_reads": [
+        "scenes[]",
+        "anchor_file"
+      ],
+      "real_side_effects": "REAL SPEND: generates an image via media.keyframe.generate_keyframe (cloud image model or box), writes shot<N>_keyframe.png.",
+      "notes": "none. Handler re-reads the request body inside storyboard_get via path params only (safe). Errors are silently swallowed by the client (catch {}).",
+      "handler": "studio_pipeline_service.py:542 keyframe_gen (route 1124), same in main."
+    },
+    {
+      "method": "GET",
+      "path": "/pipeline/{run_id}/models",
+      "status": 200,
+      "response": {
+        "run_id": "nhfixture0001",
+        "need": "i2v",
+        "models": [
+          {
+            "id": "grok-imagine",
+            "name": "Grok Imagine",
+            "modality": "i2v",
+            "provider": "xai",
+            "score": 5.1,
+            "why": "matches look: flat",
+            "available": true
+          },
+          {
+            "id": "veo3.1",
+            "name": "Veo 3.1",
+            "modality": "i2v",
+            "provider": "google",
+            "score": 0.3,
+            "why": "NOT AVAILABLE - set GOOGLE_API_KEY",
+            "available": false
+          }
+        ]
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:456 (AssetGenPanel)"
+      ],
+      "client_reads": [
+        "models[].id",
+        "models[].name",
+        "models[].score",
+        "models[].available",
+        "models[].why"
+      ],
+      "real_side_effects": "read-only",
+      "notes": "model_select.py is untracked in the main checkout (cannot be imported from a clean tree). Client defaults topModel to the first model with available==true, else 'runway'; if models is empty it falls back to the hard-coded ENGINES list. Fixture must include at least one available:true model for the regenerate payload model to be deterministic.",
+      "handler": "studio_pipeline_service.py:706 models (route 1132), same in main."
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline/{run_id}/note",
+      "status": 200,
+      "response": {
+        "state": {
+          "prompt": "fixture brief",
+          "mode": "manual",
+          "stage": 5,
+          "status": "running",
+          "campaign_id": "nh-s901-test",
+          "project_dir": "outputs/nh-s901-test",
+          "stages": {
+            "1": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "2": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "3": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "4": {
+              "status": "approved",
+              "result": "2 shots rendered",
+              "notes": [],
+              "approvedBy": "brad",
+              "confirmed": true
+            },
+            "5": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "6": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "7": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "8": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            }
+          },
+          "log": [
+            {
+              "t": "2026-11-10T00:00:00Z",
+              "msg": "stage 4 approved by brad"
+            }
+          ]
+        }
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:177 via call() (addNote :171)"
+      ],
+      "client_reads": [
+        "state (replaces st, sets view=state.stage)",
+        "error"
+      ],
+      "real_side_effects": "writes run state; writes an image file if image_b64 given. No spend.",
+      "notes": "none. Side quirk: call() does setView(d.state.stage), so the view jumps to the run's current stage after adding a note on another stage.",
+      "handler": "studio_pipeline_service.py:267 note (route 1103), same in main."
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline/{run_id}/qc",
+      "status": 200,
+      "response": {
+        "ok": true,
+        "shots": [
+          {
+            "scene": 1,
+            "ok": true,
+            "flags": []
+          }
+        ],
+        "flagged": []
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:478 (AssetGenPanel.runQc)"
+      ],
+      "client_reads": [
+        "flagged[] (scene numbers)"
+      ],
+      "real_side_effects": "CPU only: runs ffmpeg over local take files; no spend, no writes.",
+      "notes": "none. UI shows 'QC clean' when flagged is empty/undefined.",
+      "handler": "studio_pipeline_service.py:621 qc (route 1130), same in main."
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline/{run_id}/reenter",
+      "status": 200,
+      "response": {
+        "state": {
+          "prompt": "fixture brief",
+          "mode": "manual",
+          "stage": 5,
+          "status": "running",
+          "campaign_id": "nh-s901-test",
+          "project_dir": "outputs/nh-s901-test",
+          "stages": {
+            "1": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "2": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "3": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "4": {
+              "status": "approved",
+              "result": "2 shots rendered",
+              "notes": [],
+              "approvedBy": "brad",
+              "confirmed": true
+            },
+            "5": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "6": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "7": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "8": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            }
+          },
+          "log": [
+            {
+              "t": "2026-11-10T00:00:00Z",
+              "msg": "stage 4 approved by brad"
+            }
+          ]
+        }
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:430 via call()"
+      ],
+      "client_reads": [
+        "state",
+        "error"
+      ],
+      "real_side_effects": "writes run state only (no spend).",
+      "handler": "studio_pipeline_service.py:257 reenter (route 1102), same in main."
+    },
+    {
+      "method": "GET",
+      "path": "/pipeline/{run_id}/script",
+      "status": 200,
+      "response": {
+        "run_id": "nhfixture0001",
+        "scenes": [
+          {
+            "scene_number": 1,
+            "visual_prompt": "Wide shot of the scaffold at dawn",
+            "voiceover": "The city never finished building."
+          },
+          {
+            "scene_number": 2,
+            "visual_prompt": "Close-up of a worker's hands",
+            "voiceover": ""
+          }
+        ],
+        "kernel": {
+          "look": "flat civic light",
+          "register": "sincere",
+          "negatives": "no wink, no text overlays"
+        }
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:675 (ScriptPanel.load)"
+      ],
+      "client_reads": [
+        "scenes[].scene_number",
+        "scenes[].visual_prompt",
+        "scenes[].voiceover",
+        "kernel.look",
+        "kernel.register",
+        "kernel.negatives"
+      ],
+      "real_side_effects": "read-only",
+      "notes": "none. Client keeps kernel as an object (full kernel dict is returned, only 3 keys are edited but all are POSTed back).",
+      "handler": "studio_pipeline_service.py:480 script_get (route 1120), same in main."
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline/{run_id}/script",
+      "status": 200,
+      "response": {
+        "run_id": "nhfixture0001",
+        "scenes": [
+          {
+            "scene_number": 1,
+            "visual_prompt": "Wide shot of the scaffold at dawn",
+            "voiceover": "The city never finished building."
+          }
+        ],
+        "kernel": {
+          "look": "flat civic light",
+          "register": "sincere",
+          "negatives": "no wink"
+        }
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:686 (ScriptPanel.save)"
+      ],
+      "client_reads": [
+        "scenes[]",
+        "kernel",
+        "violations[] (Array.isArray)",
+        "error"
+      ],
+      "real_side_effects": "REAL: rewrites the project's shots list (authoritative edit) and style_kernel in project.json via project_store.save_project. Note POST /pipeline/{run_id}/kernel is a second route to the same handler but the client does not call it.",
+      "notes": "none. 422 path is a client-visible branch: d.violations must be an array. Success detection is d.scenes truthy.",
+      "handler": "studio_pipeline_service.py:492 script_save (route 1121), same in main."
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline/{run_id}/shot/{n}/action",
+      "status": 200,
+      "response": {
+        "run_id": "nhfixture0001",
+        "shots": [
+          {
+            "scene_number": 1,
+            "visual_prompt": "Wide shot of the scaffold at dawn",
+            "voiceover": "",
+            "selected_take": "t2",
+            "takes": [
+              {
+                "take_id": "t1",
+                "model": "grok-imagine",
+                "ok": true,
+                "file": "shot1_t1.mp4",
+                "image": null,
+                "public_url": null
+              },
+              {
+                "take_id": "t2",
+                "model": "comfyui",
+                "ok": true,
+                "file": "shot1_t2.png",
+                "image": "shot1_t2.png",
+                "public_url": null
+              }
+            ]
+          }
+        ]
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:469 (AssetGenPanel.act: ops select / regenerate / edit)",
+        "AstriaRefine.tsx:88 (rendered Pipeline.tsx:544, op astria_refine)",
+        "ReviewRoom.tsx:477 (ReviewPanel.handleReject, op regenerate with reason)",
+        "apps/control-panel/app/studio/console/ReviewRoom.tsx:477 (ReviewPanel.handleReject, fetch(`${pipe}/pipeline/${runId}/shot/${t.sceneNumber}/action`))",
+        "apps/control-panel/app/studio/console/AstriaRefine.tsx:88 in run(); component mounted at Pipeline.tsx:544 with pipe, runId, scene=s.scene_number, onResult=setShots"
+      ],
+      "client_reads": [
+        "shots[] (same fields as GET /shots, AssetGenPanel.setShots / AstriaRefine onResult)",
+        "error (AstriaRefine only)",
+        "(none - response discarded, wrapped in try/catch 'best-effort')",
+        "error",
+        "shots[] (passed whole to onResult/setShots; downstream Pipeline.tsx reads its fields)"
+      ],
+      "real_side_effects": "select: writes project.json only. regenerate/edit/astria_refine: REAL SPEND (render_shot / Runway Aleph / Astria) and append a take (takes are append-only; ledger append via producer). Fixture must model select as pure state change.",
+      "notes": "ReviewPanel.handleReject sends op 'regenerate' without model, so handler defaults to 'grok-imagine' and re-renders (spends money) on every reject, and ignores 'reason'. AssetGenPanel/ReviewRoom discard the response body in the reject case. AssetGenPanel.act swallows errors silently (no UI on {error}) so error bodies are not visible except via AstriaRefine. | none for the client (response ignored). Handler ignores 'reason' for regenerate; uses body.model (default 'grok-imagine') and body.prompt, which the client does not send. | none for AstriaRefine's own reads (error, shots). The same endpoin",
+      "handler": "studio_pipeline_service.py:350 shot_action (route 1106, n:int), same in main (:375)."
+    },
+    {
+      "method": "GET",
+      "path": "/pipeline/{run_id}/shots",
+      "status": 200,
+      "response": {
+        "run_id": "nhfixture0001",
+        "shots": [
+          {
+            "scene_number": 1,
+            "visual_prompt": "Wide shot of the scaffold at dawn",
+            "voiceover": "The city never finished building.",
+            "selected_take": "t1",
+            "takes": [
+              {
+                "take_id": "t1",
+                "model": "grok-imagine",
+                "ok": true,
+                "file": "shot1_t1.mp4",
+                "image": null,
+                "public_url": null
+              },
+              {
+                "take_id": "t2",
+                "model": "comfyui",
+                "ok": true,
+                "file": "shot1_t2.png",
+                "image": "shot1_t2.png",
+                "public_url": null
+              }
+            ]
+          },
+          {
+            "scene_number": 2,
+            "visual_prompt": "Close-up of a worker's hands",
+            "voiceover": "",
+            "selected_take": null,
+            "takes": []
+          }
+        ]
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:451 (AssetGenPanel.load)",
+        "ReviewRoom.tsx:446 (ReviewPanel, rendered from Pipeline.tsx:374)",
+        "TimelinePanel.tsx:352 (TimelinePipelinePanel, rendered from Pipeline.tsx:375)",
+        "apps/control-panel/app/studio/console/ReviewRoom.tsx:446 (ReviewPanel useEffect, fetch(`${pipe}/pipeline/${runId}/shots`))",
+        "apps/control-panel/app/studio/console/TimelinePanel.tsx:352 (TimelinePipelinePanel load())",
+        "(real callers) ReviewRoom.tsx:446, Pipeline.tsx:451, TimelinePanel.tsx:352"
+      ],
+      "client_reads": [
+        "shots[].scene_number",
+        "shots[].visual_prompt",
+        "shots[].selected_take",
+        "shots[].takes[].take_id",
+        "shots[].takes[].model",
+        "shots[].takes[].ok",
+        "shots[].takes[].file",
+        "shots[].takes[].image",
+        "shots[].takes[].public_url",
+        "shots[].shot_id (ReviewRoom, optional)",
+        "shots[].song_id (ReviewRoom, optional)",
+        "shots[].takes[].c2pa_status (ReviewRoom, optional)",
+        "shots[].voiceover / keyframe_url / keyframe_file (TimelinePanel types, optional)",
+        "shots[]",
+        "shots[].shot_id (fallback `scene-${scene_number}`)",
+        "shots[].song_id",
+        "shots[].duration_s (default 5)",
+        "shots[].keyframe_url",
+        "shots[].keyframe_file",
+        "shots[].takes[]",
+        "shots[].takes[].approval ('approved'|'rejected'|null)",
+        "shots[].takes[].c2pa_status ('valid'|'missing'|'broken'; fallback model?'valid':'missing')",
+        "shots[].shot_id (falls back to `scene-${scene_number}`)",
+        "shots[].takes[].c2pa_status (falls back to model ? valid : missing)",
+        "shots[].takes[].file (fallback: url = ${pipe}/media/${runId}/${file})"
+      ],
+      "real_side_effects": "read-only",
+      "notes": "Handler does NOT return shot_id, song_id or c2pa_status: ReviewRoom falls back to shotId 'scene-N', songId undefined (so submitDecision skips /api/studio/review and shows 'Approved (no ledger: no songId)') and c2pa 'valid' when model present else 'missing'. Handler also does not return keyframe_url/keyframe_file per shot (TimelinePanel keyframeSrc is always ''). A fixture adding song_id would exercise code paths the live service can never produce. take.image is a basename string, truthy => <img>, else <video>. | Client reads fields the handler NEVER returns: shots[].shot_id, shots[].song_id, s",
+      "handler": "studio_pipeline_service.py:344 shots + _shots_payload :328 (route 1105)"
+    },
+    {
+      "method": "GET",
+      "path": "/pipeline/{run_id}/storyboard",
+      "status": 200,
+      "response": {
+        "run_id": "nhfixture0001",
+        "scenes": [
+          {
+            "scene_number": 1,
+            "visual_prompt": "Wide shot of the scaffold at dawn",
+            "keyframe_file": "shot1_keyframe.png"
+          },
+          {
+            "scene_number": 2,
+            "visual_prompt": "Close-up of a worker's hands",
+            "keyframe_file": null
+          }
+        ],
+        "anchor_file": "anchor_hero.png"
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:734 (StoryboardPanel.load)"
+      ],
+      "client_reads": [
+        "scenes[].scene_number",
+        "scenes[].visual_prompt",
+        "scenes[].keyframe_file",
+        "anchor_file"
+      ],
+      "real_side_effects": "read-only",
+      "notes": "none. keyframe_file / anchor_file are bare basenames that the client turns into GET /media/{run_id}/{file}.",
+      "handler": "studio_pipeline_service.py:527 storyboard_get (route 1123), same in main."
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline/{run_id}/voices",
+      "status": 200,
+      "response": {
+        "run_id": "nhfixture0001",
+        "audio_duck": 0.35,
+        "music": false,
+        "voice_casting": {
+          "narrator": {
+            "voice_id": "fixture-voice"
+          }
+        },
+        "cut": null,
+        "shots": []
+      },
+      "tracked": true,
+      "callers": [
+        "TimelinePanel.tsx:566 (saveCasting) via panel rendered at Pipeline.tsx:375",
+        "apps/control-panel/app/studio/console/TimelinePanel.tsx:566 (AudioControlsPanel.saveCasting)"
+      ],
+      "client_reads": [
+        "none (response ignored)",
+        "(none - response discarded)"
+      ],
+      "real_side_effects": "writes voice_casting in project.json; no spend.",
+      "notes": "none. | none (response ignored).",
+      "handler": "studio_pipeline_service.py:643 voices (route 1128), same in main."
+    },
+    {
+      "method": "GET",
+      "path": "/pipeline/{run_id}",
+      "status": 200,
+      "response": {
+        "state": {
+          "prompt": "fixture brief",
+          "mode": "manual",
+          "stage": 4,
+          "status": "awaiting_approval",
+          "campaign_id": "nh-s901-test",
+          "project_dir": "outputs/nh-s901-test",
+          "stages": {
+            "1": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "2": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "3": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "4": {
+              "status": "approved",
+              "result": "2 shots rendered",
+              "notes": [],
+              "approvedBy": "brad",
+              "confirmed": true
+            },
+            "5": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "6": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "7": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "8": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            }
+          },
+          "log": [
+            {
+              "t": "2026-11-10T00:00:00Z",
+              "msg": "pipeline created (mode=manual)"
+            }
+          ],
+          "brief_fields": {
+            "audience": "fixture",
+            "vibe": "noir"
+          },
+          "heartbeat": {
+            "done": 1,
+            "total": 2,
+            "msg": "shot 1 rendered"
+          },
+          "qa_summary": "QA fixture: 0 blockers",
+          "last_blockers": []
+        }
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:92 via call(path,undefined,'GET') in loadRun (:130)",
+        "Pipeline.tsx:152 status poll",
+        "Pipeline.tsx:561 BriefPanel.load"
+      ],
+      "client_reads": [
+        "state.status",
+        "state.stage",
+        "state.stages[n].status",
+        "state.stages[n].result",
+        "state.stages[n].notes[].note",
+        "state.stages[n].confirmed",
+        "state.campaign_id",
+        "state.heartbeat.total",
+        "state.heartbeat.done",
+        "state.heartbeat.msg",
+        "state.log[].t",
+        "state.log[].msg",
+        "state.qa_summary",
+        "state.last_blockers[]",
+        "state.prompt",
+        "state.brief_fields{audience,key_message,vibe,cta,format,duration}",
+        "error"
+      ],
+      "real_side_effects": "read-only",
+      "notes": "none at the shape level. heartbeat/qa_summary/last_blockers/brief_fields are optional and only appear once executors/brief_save have set them. Route shadowing: GET /pipeline/start and /pipeline/adopt fall through to this route (POST-only routes are partial matches), so a GET of 'start' returns 404 unknown run_id. Mock must route POST /pipeline/start and /pipeline/adopt before GET /pipeline/{run_id}. To keep the 3 s poll from looping, fixture status should be awaiting_approval/complete, not running/ready.",
+      "handler": "studio_pipeline_service.py:233 status (route 1099), same in main (:258)."
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline/adopt",
+      "status": 200,
+      "response": {
+        "run_id": "nhfixture0001",
+        "state": {
+          "prompt": "fixture brief",
+          "mode": "manual",
+          "stage": 4,
+          "status": "ready",
+          "campaign_id": "nh-s901-test",
+          "project_dir": "outputs/nh-s901-test",
+          "stages": {
+            "1": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "2": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "3": {
+              "status": "approved",
+              "result": null,
+              "notes": [],
+              "approvedBy": "brad"
+            },
+            "4": {
+              "status": "approved",
+              "result": "2 shots rendered",
+              "notes": [],
+              "approvedBy": "brad",
+              "confirmed": true
+            },
+            "5": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "6": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "7": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "8": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            }
+          },
+          "log": [
+            {
+              "t": "2026-11-10T00:00:00Z",
+              "msg": "stage 4 approved by brad"
+            }
+          ]
+        }
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:60 (adopt, fetch directly, not call())",
+        "(real caller) Pipeline.tsx:60"
+      ],
+      "client_reads": [
+        "run_id",
+        "state",
+        "state.stage",
+        "error",
+        "state.campaign_id (via st?.campaign_id)",
+        "state.status"
+      ],
+      "real_side_effects": "writes run state via _persist; otherwise reads outputs/<ext>/project.json or projects/<ext>/02_script/scenes.json. No spend. Fires automatically on page mount when localStorage holds a session, so fixtures must answer it for every console l",
+      "notes": "Handler sets status \"ready\". While status is \"ready\" or \"running\" the console polls GET /pipeline/{run_id} every 3 s and sets the visible stage to state.stage on each answer (Pipeline.tsx:148-158), so the stage a user clicked is replaced by the run's current stage within 3 s. Specs that need a stable view override adopt with a non-polling status.",
+      "handler": "studio_pipeline_service.py:136 adopt (route 1098), same in main."
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline/jobs/{job_id}/cancel",
+      "status": 404,
+      "target_response": {
+        "ok": true,
+        "job_id": "job-0001",
+        "status": "cancelled"
+      },
+      "text": "Not Found",
+      "tracked": false,
+      "callers": [
+        "apps/control-panel/app/studio/console/QueueRail.tsx:47 via act('cancel', job_id); button at QueueRail.tsx:92"
+      ],
+      "client_reads": [
+        "none - response status and body are never inspected; the client just awaits then calls load()"
+      ],
+      "real_side_effects": "Real call today: 404, no effect. If implemented, would cancel a render job (potentially GPU/cloud spend).",
+      "notes": "Endpoint does not exist in either version. Harmless to the client (response ignored; fetch resolves on 404), but the click does nothing. Fixture response body is irrelevant; return any 200 JSON such as {\"ok\":true}.",
+      "handler": "NOT IN TRACKED SERVICE and not in main-checkout version either (no route)."
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline/jobs/{job_id}/retry",
+      "status": 404,
+      "target_response": {
+        "ok": true,
+        "job_id": "job-0000",
+        "status": "queued"
+      },
+      "text": "Not Found",
+      "tracked": false,
+      "callers": [
+        "apps/control-panel/app/studio/console/QueueRail.tsx:47 via act('retry', job_id); button at QueueRail.tsx:113 (only on failed rows)"
+      ],
+      "client_reads": [
+        "none - response ignored, then load() refetches the list"
+      ],
+      "real_side_effects": "Real call today: 404. If implemented, would re-run a render (spends money / uses box).",
+      "notes": "Endpoint does not exist in either version; response unused by client.",
+      "handler": "NOT IN TRACKED SERVICE and not in main-checkout version (no route)."
+    },
+    {
+      "method": "GET",
+      "path": "/pipeline/jobs",
+      "status": 404,
+      "target_response": {
+        "jobs": [
+          {
+            "job_id": "job-0001",
+            "op": "render_shot",
+            "status": "running",
+            "scene_number": 2,
+            "model": "comfyui:flux2",
+            "eta_s": 45,
+            "cost_cents": 3.5,
+            "error": null
+          },
+          {
+            "job_id": "job-0002",
+            "op": "render_shot",
+            "status": "queued",
+            "scene_number": 3,
+            "model": "grok-imagine",
+            "eta_s": null,
+            "cost_cents": null,
+            "error": null
+          },
+          {
+            "job_id": "job-0000",
+            "op": "render_shot",
+            "status": "failed",
+            "scene_number": 1,
+            "model": "grok-imagine",
+            "eta_s": null,
+            "cost_cents": 1.2,
+            "error": "fixture failure"
+          },
+          {
+            "job_id": "job-0003",
+            "op": "render_shot",
+            "status": "done",
+            "scene_number": 1,
+            "model": "comfyui:zimage",
+            "eta_s": null,
+            "cost_cents": 0,
+            "error": null
+          }
+        ]
+      },
+      "response": {
+        "error": "unknown run_id"
+      },
+      "tracked": false,
+      "callers": [
+        "apps/control-panel/app/studio/console/QueueRail.tsx:28 (in load(); `pipe` prop = Workspace.tsx:15 PIPE, rendered at Workspace.tsx:368)"
+      ],
+      "client_reads": [
+        "(r.ok gate)",
+        "jobs[]",
+        "jobs[].job_id",
+        "jobs[].op",
+        "jobs[].status (queued|running|done|failed|cancelled)",
+        "jobs[].scene_number",
+        "jobs[].model",
+        "jobs[].eta_s",
+        "jobs[].cost_cents (number, .toFixed(1) called on it)",
+        "jobs[].error (declared in type, not rendered)"
+      ],
+      "real_side_effects": "read-only (real handler absent; today returns 404)",
+      "notes": "Endpoint does not exist on the service in either version; it is swallowed by /pipeline/{run_id}. Client handles it gracefully (r.ok false -> setJobs([]) -> 'Queue is idle'), so the console never shows any job today. The fixture is the intended contract, not an observed one. When a real handler is added it MUST be registered before /pipeline/{run_id}.",
+      "handler": "NOT IN TRACKED SERVICE"
+    },
+    {
+      "method": "POST",
+      "path": "/pipeline/start",
+      "status": 200,
+      "response": {
+        "run_id": "nhfixture0001",
+        "state": {
+          "prompt": "fixture brief",
+          "mode": "auto_draft",
+          "stage": 1,
+          "status": "running",
+          "stages": {
+            "1": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "2": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "3": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "4": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "5": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "6": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "7": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            },
+            "8": {
+              "status": "pending",
+              "result": null,
+              "notes": [],
+              "approvedBy": null
+            }
+          },
+          "log": [
+            {
+              "t": "2026-11-10T00:00:00+00:00",
+              "msg": "pipeline created (mode=auto_draft)"
+            }
+          ]
+        }
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:127 via call() at :89-102 (startProject :108)"
+      ],
+      "client_reads": [
+        "run_id",
+        "state (whole object, see GET /pipeline/{run_id})",
+        "error"
+      ],
+      "real_side_effects": "REAL: writes attachments to outputs/_director_refs, persists run, launches background pipeline (_kick -> sp.run with real executors: LLM calls, renders, GPU box, cloud spend). Fixture must never reach the real service.",
+      "notes": "TRACKED handler ignores body.files[] (only reads images[]), so audio/video/pdf attachments are silently dropped; the newer main-checkout start() saves files[] with collision guard and records ref_files. Client sends both arrays. Route order: /pipeline/start (POST) is registered before /pipeline/{run_id}, no shadowing for the POST.",
+      "handler": "studio_pipeline_service.py:203 start (tracked"
+    },
+    {
+      "method": "GET",
+      "path": "/pipeline",
+      "status": 200,
+      "response": {
+        "runs": [
+          {
+            "run_id": "nhfixture0001",
+            "campaign_id": "nh-s901-test",
+            "stage": 4,
+            "status": "awaiting_approval",
+            "mode": "manual"
+          }
+        ]
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:50 (listRuns)"
+      ],
+      "client_reads": [
+        "runs[].run_id",
+        "runs[].campaign_id",
+        "runs[].status",
+        "runs[].stage",
+        "runs[]"
+      ],
+      "real_side_effects": "read-only",
+      "notes": "none. Any successful JSON (even without runs) flips up=true; fetch failure sets up=false and shows the 'service offline' banner. | The specs' mock returns runs:[{run_id, state:{...}}] (no campaign_id/status/stage at the top level of each run); the handler has no 'state' key and the client never reads r.state. Harmless today (the option label just shows 'nh-s901-fixture · undefined @undefined'), but a fixture should use the handler shape.",
+      "handler": "studio_pipeline_service.py:670 listruns (tracked worktree"
+    },
+    {
+      "method": "POST",
+      "path": "/projects/scaffold",
+      "status": 200,
+      "response": {
+        "ok": true,
+        "slug": "nh-s901-test",
+        "externalId": "nh-s901-test",
+        "path": "projects/nh-s901-test",
+        "type": "SHORT",
+        "kernel": "nh-s901-test",
+        "genre_packs": [
+          "narrative"
+        ]
+      },
+      "tracked": true,
+      "callers": [
+        "Pipeline.tsx:136 via call() (createScaffold :134)"
+      ],
+      "client_reads": [
+        "ok",
+        "slug",
+        "type",
+        "genre_packs[]",
+        "kernel",
+        "error (shown by call() when !r.ok)"
+      ],
+      "real_side_effects": "REAL: creates projects/<slug>/ governed tree on disk (scaffold.scaffold_project). Does not claim a song id in SONG_ID_REGISTRY (the client never touches the registry).",
+      "notes": "none (client ignores externalId and path).",
+      "handler": "studio_pipeline_service.py:177 scaffold_new (route 1097), same in main."
+    },
+    {
+      "method": "GET",
+      "path": "/stage/{project}/{stage}/checklist",
+      "status": 200,
+      "response": {
+        "stage": 1,
+        "name": "Bible",
+        "what": "Story bible",
+        "elements": [
+          {
+            "key": "premise",
+            "name": "Premise",
+            "what": "One-paragraph premise",
+            "inputs": [
+              "text",
+              "image"
+            ],
+            "required": true,
+            "done": true,
+            "detail": "premise.md",
+            "value": "A civic scaffold that never finishes.",
+            "dimension": "story"
+          }
+        ]
+      },
+      "tracked": true,
+      "callers": [
+        "StageChecklist.tsx:31 (rendered Pipeline.tsx:368 with project=st.campaign_id, initialStage=1; stage n is changeable inside the component)",
+        "apps/control-panel/app/studio/console/StageChecklist.tsx:31 in load(); component rendered at Pipeline.tsx:368 with pipe=Pipeline.tsx:20 PIPE, project=st.campaign_id, initialStage=1"
+      ],
+      "client_reads": [
+        "stage name/what (Stage type, StageChecklist.tsx top)",
+        "elements[].key",
+        "elements[].name",
+        "elements[].what",
+        "elements[].inputs[]",
+        "elements[].required",
+        "elements[].done",
+        "elements[].detail",
+        "elements[].value",
+        "elements[].dimension",
+        "elements[].files[].rel/.name/.size/.kind",
+        "stage",
+        "name",
+        "what",
+        "elements[]",
+        "elements[].inputs[] (values used: text,json,prompt,image,video,audio,file,refs)",
+        "elements[].files[]",
+        "elements[].files[].name",
+        "elements[].files[].rel",
+        "elements[].files[].size",
+        "elements[].files[].kind ('image' shows thumbnail)"
+      ],
+      "real_side_effects": "read-only",
+      "notes": "TRACKED handler never returns elements[].files, so the attachment list / thumbnail / delete UI (StageChecklist.tsx:104-119) cannot render against the tracked service; fixtures matching the tracked service omit files, fixtures matching the client include files. State which behavior CI should assert. | Tracked handler never returns elements[].files, so attachments and thumbnails never render against the tracked service (client uses optional chaining, no crash). Client also does not read the top-level `project` key. Fixture should include `files` (matches main-checkout + client).",
+      "handler": "studio_pipeline_service.py:905 stage_checklist (tracked, route 1114) wrapping stage_scaffold.status",
+      "target_response": {
+        "stage": 1,
+        "name": "Bible",
+        "what": "Story bible",
+        "elements": [
+          {
+            "key": "premise",
+            "name": "Premise",
+            "what": "One-paragraph premise",
+            "inputs": [
+              "text",
+              "image"
+            ],
+            "required": true,
+            "done": true,
+            "detail": "premise.md",
+            "value": "A civic scaffold that never finishes.",
+            "dimension": "story",
+            "files": [
+              {
+                "name": "premise_1731200000.png",
+                "rel": "01_development/bible/_media/premise_1731200000.png",
+                "size": 2048,
+                "kind": "image"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/stage/{project}/{stage}/element",
+      "status": 200,
+      "response": {
+        "ok": true,
+        "wrote": "01_development/bible/premise.md"
+      },
+      "tracked": true,
+      "callers": [
+        "StageChecklist.tsx:39 via post('element', ...) (call sites after line 75; element text save)",
+        "apps/control-panel/app/studio/console/StageChecklist.tsx:39 inside post(); invoked from the 'save' button at StageChecklist.tsx:91"
+      ],
+      "client_reads": [
+        "ok",
+        "error"
+      ],
+      "real_side_effects": "REAL: writes an element .md/.json (or style_kernel.json field) under projects/<project>/. Violates 'kernel change = version bump' if hit live.",
+      "notes": "none. | none (client ignores `wrote`)",
+      "handler": "studio_pipeline_service.py:915 stage_element (tracked route 1115), same in main."
+    },
+    {
+      "method": "POST",
+      "path": "/stage/{project}/{stage}/generate",
+      "status": 200,
+      "response": {
+        "ok": true,
+        "file": "look_1731200000.png"
+      },
+      "tracked": true,
+      "callers": [
+        "StageChecklist.tsx:39 via post('generate', ...) (generate button near line 98-101)",
+        "apps/control-panel/app/studio/console/StageChecklist.tsx:39 via post('generate', ...); button at StageChecklist.tsx:99"
+      ],
+      "client_reads": [
+        "ok",
+        "error"
+      ],
+      "real_side_effects": "REAL SPEND: renders via Astria (media.astria_renderer.render_refine) and writes into _media/.",
+      "handler": "studio_pipeline_service.py:944 stage_generate (tracked route 1117), same in main."
+    },
+    {
+      "method": "POST",
+      "path": "/stage/{project}/{stage}/media/delete",
+      "status": 404,
+      "target_response": {
+        "ok": true
+      },
+      "text": "Not Found",
+      "tracked": false,
+      "callers": [
+        "StageChecklist.tsx:63 (removeFile)",
+        "apps/control-panel/app/studio/console/StageChecklist.tsx:63 in removeFile(); x button at StageChecklist.tsx:120"
+      ],
+      "client_reads": [
+        "ok",
+        "error"
+      ],
+      "real_side_effects": "REAL (main only): unlinks a file under _media/.",
+      "notes": "Client calls an endpoint the tracked service does not implement. Fixture should follow the main-checkout contract. | Missing from tracked service; exists only in uncommitted main-checkout file.",
+      "handler": "NOT IN TRACKED SERVICE"
+    },
+    {
+      "method": "GET",
+      "path": "/stage/{project}/{stage}/media/file",
+      "status": 404,
+      "target_binary": "by-extension",
+      "text": "Not Found",
+      "tracked": false,
+      "callers": [
+        "StageChecklist.tsx:114 (<img src=...> thumbnail, only for files with kind==='image')",
+        "apps/control-panel/app/studio/console/StageChecklist.tsx:114 <img src=...> (only for files with kind==='image'; rel is encodeURIComponent'd)"
+      ],
+      "client_reads": [
+        "binary image body"
+      ],
+      "real_side_effects": "read-only file serving (main only)",
+      "notes": "Tracked service lacks this route; since tracked checklist also omits elements[].files, the <img> is never rendered against tracked code. Fixture only needs it if a fixture checklist includes a files[] entry with kind:'image'.",
+      "handler": "NOT IN TRACKED SERVICE"
+    },
+    {
+      "method": "POST",
+      "path": "/stage/{project}/{stage}/media",
+      "status": 200,
+      "response": {
+        "ok": true,
+        "file": "premise_1731200000.png"
+      },
+      "tracked": true,
+      "callers": [
+        "StageChecklist.tsx:52 (upload loop)",
+        "apps/control-panel/app/studio/console/StageChecklist.tsx:52 inside upload() loop (one POST per file)"
+      ],
+      "client_reads": [
+        "none (response ignored; client counts ok++ whenever fetch resolves)",
+        "none - response is never read or status-checked; success counter increments whenever fetch does not throw"
+      ],
+      "real_side_effects": "REAL: writes the uploaded file into projects/<project>/.../_media/.",
+      "notes": "Client treats any HTTP response as success (never checks r.ok), so 4xx/5xx are reported as 'attached N files'. Tracked handler can overwrite same-second uploads; main fixes it. | Client treats any non-throwing response (even 400/500) as success and says 'attached N files'. Not a shape mismatch, a client robustness gap.",
+      "handler": "studio_pipeline_service.py:928 stage_media (tracked, route 1116)"
+    },
+    {
+      "method": "GET",
+      "path": "/studio/render/file",
+      "status": 404,
+      "target_binary": "by-extension",
+      "text": "Not Found",
+      "tracked": false,
+      "callers": [
+        "apps/control-panel/app/studio/console/ChatPanel.tsx:145 <img src={m.imageUrl}> where imageUrl = `${PIPE}${d.url}` (set at ChatPanel.tsx:95-97)",
+        "ChatPanel.tsx:147 <a href={m.downloadUrl} download> where downloadUrl = `${url}&download=1` (ChatPanel.tsx:97)",
+        "ChatPanel.tsx:148 <a href={m.imageUrl} target=_blank> 'open full size'"
+      ],
+      "client_reads": [
+        "response is image bytes consumed by the browser (no JSON read)"
+      ],
+      "real_side_effects": "read-only file serve (real service)",
+      "notes": "Not in tracked service. Fixture needs a real small binary body (e.g. 1x1 PNG, content-type image/png) at a rel the render fixture returns, including the &download=1 variant (add Content-Disposition header if the test checks it).",
+      "handler": "NOT IN TRACKED SERVICE",
+      "via_response_of": "POST /studio/render"
+    },
+    {
+      "method": "POST",
+      "path": "/studio/render",
+      "status": 404,
+      "target_response": {
+        "ok": true,
+        "file": "studio_1700000000.png",
+        "url": "/studio/render/file?rel=studio_1700000000.png",
+        "model": "comfyui:flux2"
+      },
+      "text": "Not Found",
+      "tracked": false,
+      "callers": [
+        "apps/control-panel/app/studio/console/ChatPanel.tsx:89 in render() (PIPE = ChatPanel.tsx:16 uses NEXT_PUBLIC_PIPE, NOT NEXT_PUBLIC_PIPELINE_URL; same 127.0.0.1:8800 default)"
+      ],
+      "client_reads": [
+        "ok",
+        "url",
+        "model",
+        "error",
+        "(r.status in fallback)"
+      ],
+      "real_side_effects": "Real call renders an image on the EC2 box via ComfyUI (needs box running + tunnel; GPU time ~$1.20/hr) and writes outputs/_studio_renders/studio_<ts>.*.",
+      "notes": "Tracked service lacks the endpoint entirely (only in uncommitted main-checkout file). Where present, the shape matches the client exactly. Client builds `${PIPE}${d.url}` so url must be a root-relative path.",
+      "handler": "NOT IN TRACKED SERVICE"
+    }
+  ]
+}
