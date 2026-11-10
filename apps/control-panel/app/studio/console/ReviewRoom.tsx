@@ -1,5 +1,6 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useKeyBindings, useKeyModal, useKeys } from "./keys/KeysProvider";
 
 export type C2PAStatus = "valid" | "missing" | "broken";
 
@@ -30,17 +31,16 @@ function toTc(secs: number) {
   return `${pad(h)}:${pad(m)}:${pad(s)};${pad(f)}`;
 }
 
-const CHEAT = [["J","slow reverse"],["K","pause"],["L","play"],["Space","play/pause"],
-  ["← →","frame ±1f"],["A","approve"],["R","reject…"],["N / P","next / prev take"],
-  ["\\","cycle A/B mode"],["?","toggle keys"]];
-
 export default function ReviewRoom({
   takes,
+  active,
   reviewer = "brad",
   onApprove,
   onReject,
 }: {
   takes: ReviewTake[];
+  /** Whether this room is the visible review surface. Owns the review key scope; no default, so a hidden mount cannot claim it by omission. */
+  active: boolean;
   reviewer?: string;
   onApprove?: (take: ReviewTake) => void;
   onReject?: (take: ReviewTake, reason: string) => void;
@@ -58,11 +58,11 @@ export default function ReviewRoom({
   const [duration, setDuration] = useState(0);
   const [progress, setProgress] = useState(0);
   const [playing, setPlaying] = useState(false);
-  const [cheatSheet, setCheatSheet] = useState(false);
   const [autoAdvance, setAutoAdvance] = useState(true);
   const [busy, setBusy] = useState<string | null>(null);
   const [toast, setToast] = useState<{ text: string; ok: boolean } | null>(null);
   const [licenceOpen, setLicenceOpen] = useState(false);
+  const keys = useKeys();
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoBRef = useRef<HTMLVideoElement>(null);
@@ -134,32 +134,24 @@ export default function ReviewRoom({
     } finally { setBusy(null); }
   }
 
-  useEffect(() => {
-    function onKey(e: KeyboardEvent) {
-      const el = e.target as HTMLElement;
-      if (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.isContentEditable) return;
-      const v = videoRef.current;
-      switch (e.key) {
-        case "j": if (v) { v.playbackRate = 0.5; v.play(); setPlaying(true); scheduleTimecodeUpdate(); } break;
-        case "k": if (v) { v.pause(); setPlaying(false); } break;
-        case "l": if (v) { v.playbackRate = 1; v.play(); setPlaying(true); scheduleTimecodeUpdate(); } break;
-        case " ": e.preventDefault(); if (v) { v.paused ? v.play().then(() => { setPlaying(true); scheduleTimecodeUpdate(); }) : (v.pause(), setPlaying(false)); } break;
-        case "ArrowLeft": e.preventDefault(); if (v) v.currentTime = Math.max(0, v.currentTime - 1 / 30); break;
-        case "ArrowRight": e.preventDefault(); if (v) v.currentTime = Math.min(v.duration || 0, v.currentTime + 1 / 30); break;
-        case "a": if (take && !decisions[take.takeId]) submitDecision("approved"); break;
-        // preventDefault: otherwise the "r" keystroke lands in the dialog's autofocused
-        // reason field and satisfies "reason required" on its own.
-        case "r": e.preventDefault(); setRejectOpen(true); break;
-        case "n": nextTake(); break;
-        case "p": prevTake(); break;
-        case "\\": e.preventDefault(); cycleAB(); break;
-        case "?": setCheatSheet((s) => !s); break;
-      }
-    }
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [take, decisions, idx, abMode, autoAdvance, scheduleTimecodeUpdate]);
+  // Review hotkeys. The dispatcher (keys/store.ts) has already checked the chord, modifiers,
+  // text-entry focus, modals and that this room is `active`, and has called preventDefault
+  // on the bindings that need it (including "r": otherwise the keystroke would land in the
+  // reject dialog's autofocused reason field and satisfy "reason required" on its own).
+  useKeyBindings("review", active, {
+    "review.rate-half": () => { const v = videoRef.current; if (v) { v.playbackRate = 0.5; v.play(); setPlaying(true); scheduleTimecodeUpdate(); } },
+    "review.pause": () => { const v = videoRef.current; if (v) { v.pause(); setPlaying(false); } },
+    "review.play": () => { const v = videoRef.current; if (v) { v.playbackRate = 1; v.play(); setPlaying(true); scheduleTimecodeUpdate(); } },
+    "review.playpause": () => { const v = videoRef.current; if (v) { v.paused ? v.play().then(() => { setPlaying(true); scheduleTimecodeUpdate(); }) : (v.pause(), setPlaying(false)); } },
+    "review.frame-back": () => { const v = videoRef.current; if (v) v.currentTime = Math.max(0, v.currentTime - 1 / 30); },
+    "review.frame-fwd": () => { const v = videoRef.current; if (v) v.currentTime = Math.min(v.duration || 0, v.currentTime + 1 / 30); },
+    "review.approve": () => { if (take && !decisions[take.takeId]) submitDecision("approved"); },
+    "review.reject": () => setRejectOpen(true),
+    "review.next": () => nextTake(),
+    "review.prev": () => prevTake(),
+    "review.ab": () => cycleAB(),
+  });
+  useKeyModal(rejectOpen);
 
   function onWipeDragStart(e: React.MouseEvent<HTMLDivElement>) {
     wipeDragging.current = true;
@@ -197,15 +189,9 @@ export default function ReviewRoom({
           <label className="flex items-center gap-1.5 text-[12px] text-dim cursor-pointer">
             <input type="checkbox" checked={autoAdvance} onChange={(e) => setAutoAdvance(e.target.checked)} className="rounded" /> auto-advance
           </label>
-          <button onClick={() => setCheatSheet((s) => !s)} className="text-dim text-[12px] border border-edge rounded px-2 py-0.5 hover:text-fg">? keys</button>
+          <button onClick={() => keys.invoke("help.cheatsheet")} className="text-dim text-[12px] border border-edge rounded px-2 py-0.5 hover:text-fg">? keys</button>
         </div>
       </div>
-
-      {cheatSheet && (
-        <div className="bg-panel border border-edge rounded-xl px-4 py-3 font-mono grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-1 text-[12px]">
-          {CHEAT.map(([k, v]) => <div key={k}><span className="text-accent">{k}</span><span className="text-dim"> — {v}</span></div>)}
-        </div>
-      )}
 
       {/* Main layout: playlist | viewer | inspector */}
       <div className="grid gap-3 flex-1" style={{ gridTemplateColumns: "190px 1fr 252px", minHeight: "56vh" }}>
@@ -437,7 +423,7 @@ export default function ReviewRoom({
 }
 
 // Wrapper for Pipeline.tsx stage 5: fetches shots from the pipeline service.
-export function ReviewPanel({ pipe, runId }: { pipe: string; runId: string }) {
+export function ReviewPanel({ pipe, runId, active }: { pipe: string; runId: string; active: boolean }) {
   const [takes, setTakes] = useState<ReviewTake[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -483,5 +469,5 @@ export function ReviewPanel({ pipe, runId }: { pipe: string; runId: string }) {
   }
 
   if (loading) return <div className="text-dim text-[14px] mb-3">Loading shots…</div>;
-  return <ReviewRoom takes={takes} onReject={handleReject} />;
+  return <ReviewRoom takes={takes} active={active} onReject={handleReject} />;
 }

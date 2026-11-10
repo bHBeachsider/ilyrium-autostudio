@@ -1,24 +1,22 @@
 import { readFileSync } from "fs";
 import studioDb from "../../../lib/studio-db";
 import { scoreRights } from "../../../lib/risk";
-import Workspace from "./Workspace";
+import type { WorkspaceData } from "./Workspace";
 
-// Ilyrium Studio OS — premium film-production console (Phase 1 reconcile). Server
-// component: queries the REAL canonical asset graph once (projects/assets/rights_records/
+// Ilyrium Studio OS — premium film-production console (Phase 1 reconcile). Called by the
+// server layout (console/layout.tsx): queries the REAL canonical asset graph once (projects/assets/rights_records/
 // agent_runs/scenes/shots — no provenance_records/archive_packages, which don't exist),
 // serializes it (plain JSON — no Date/BigInt/Prisma objects), and hands it to the client
 // Workspace. Assets are addressed by uri (no checksum); asset_type is the lowercase CHECK
-// vocab; rights are the risk-based model. Always renders fresh.
-export const dynamic = "force-dynamic";
-
-export default async function ConsolePage() {
+// vocab; rights are the risk-based model. The layout is force-dynamic, so this runs per
+// request and never at build time.
+export async function loadConsoleData(): Promise<WorkspaceData> {
   // Test seam (ILY-205 Decision B: fixtures, never Neon). When ILYRIUM_CONSOLE_FIXTURE
   // names a JSON file of Workspace props, render from it and query nothing. Set only by
   // playwright.config.ts; ignored in production builds.
   const fixturePath = process.env.NODE_ENV !== "production" ? process.env.ILYRIUM_CONSOLE_FIXTURE : undefined;
   if (fixturePath) {
-    const props = JSON.parse(readFileSync(fixturePath, "utf8"));
-    return <Workspace {...props} />;
+    return JSON.parse(readFileSync(fixturePath, "utf8"));
   }
 
   const [projects, assetsRecent, rights, runs,
@@ -117,8 +115,5 @@ export default async function ConsolePage() {
     costPerRenderSecCents: Math.round(costPerRenderSec * 100) / 100,
   };
 
-  return (
-    <Workspace projects={projectsOut} assets={assets} queue={queue} runs={runRows} assetMap={assetMap}
-      kpis={kpis} engineMix={engineMix} />
-  );
+  return { projects: projectsOut, assets, queue, runs: runRows, assetMap, kpis, engineMix };
 }
