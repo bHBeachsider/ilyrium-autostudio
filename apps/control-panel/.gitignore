@@ -12,3 +12,14 @@ node_modules
 
 # tsc incremental build cache
 tsconfig.tsbuildinfo
+
+# Playwright output
+/playwright-report/
+/test-results/
+/blob-report/
+
+# Written by `next dev` (Next 16 agent-rules file)
+/AGENTS.md
+
+# pnpm is the package manager here (pnpm-lock.yaml); do not reintroduce an npm lockfile
+/package-lock.json

@@ -1,3 +1,4 @@
+import { readFileSync } from "fs";
 import studioDb from "../../../lib/studio-db";
 import { scoreRights } from "../../../lib/risk";
 import Workspace from "./Workspace";
@@ -11,6 +12,15 @@ import Workspace from "./Workspace";
 export const dynamic = "force-dynamic";
 
 export default async function ConsolePage() {
+  // Test seam (ILY-205 Decision B: fixtures, never Neon). When ILYRIUM_CONSOLE_FIXTURE
+  // names a JSON file of Workspace props, render from it and query nothing. Set only by
+  // playwright.config.ts; ignored in production builds.
+  const fixturePath = process.env.NODE_ENV !== "production" ? process.env.ILYRIUM_CONSOLE_FIXTURE : undefined;
+  if (fixturePath) {
+    const props = JSON.parse(readFileSync(fixturePath, "utf8"));
+    return <Workspace {...props} />;
+  }
+
   const [projects, assetsRecent, rights, runs,
     totalAssets, masterCount, pendingCount, allAssets, renderRuns] = await Promise.all([
     studioDb.project.findMany({

@@ -147,7 +147,9 @@ export default function ReviewRoom({
         case "ArrowLeft": e.preventDefault(); if (v) v.currentTime = Math.max(0, v.currentTime - 1 / 30); break;
         case "ArrowRight": e.preventDefault(); if (v) v.currentTime = Math.min(v.duration || 0, v.currentTime + 1 / 30); break;
         case "a": if (take && !decisions[take.takeId]) submitDecision("approved"); break;
-        case "r": setRejectOpen(true); break;
+        // preventDefault: otherwise the "r" keystroke lands in the dialog's autofocused
+        // reason field and satisfies "reason required" on its own.
+        case "r": e.preventDefault(); setRejectOpen(true); break;
         case "n": nextTake(); break;
         case "p": prevTake(); break;
         case "\\": e.preventDefault(); cycleAB(); break;

@@ -1,0 +1,58 @@
+{
+  "projects": [
+    {
+      "id": "proj-fixture-1",
+      "title": "NH-S901 fixture",
+      "type": "music_video",
+      "status": "in_production",
+      "greenlightLevel": null,
+      "counts": { "scenes": 2, "shots": 2, "assets": 2 },
+      "scenes": [
+        { "number": 1, "title": "Fixture scene one", "shots": [{ "shotNumber": 1, "prompt": "fixture shot 1" }] },
+        { "number": 2, "title": "Fixture scene two", "shots": [{ "shotNumber": 1, "prompt": "fixture shot 2" }] }
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "asset-fixture-clear",
+      "assetType": "video",
+      "uri": "fixture://takes/clear.mp4",
+      "rating": "clean",
+      "projectId": "proj-fixture-1",
+      "projectTitle": "NH-S901 fixture",
+      "model": "fal/wan-i2v",
+      "sceneNumber": null,
+      "createdAt": "2026-10-26T12:00:00.000Z"
+    },
+    {
+      "id": "asset-fixture-gap",
+      "assetType": "video",
+      "uri": "fixture://takes/gap.mp4",
+      "rating": "clean",
+      "projectId": "proj-fixture-1",
+      "projectTitle": "NH-S901 fixture",
+      "model": null,
+      "sceneNumber": null,
+      "createdAt": "2026-10-26T12:05:00.000Z"
+    }
+  ],
+  "queue": [],
+  "runs": [],
+  "assetMap": {
+    "asset-fixture-clear": { "uri": "fixture://takes/clear.mp4", "assetType": "video", "model": "fal/wan-i2v" },
+    "asset-fixture-gap": { "uri": "fixture://takes/gap.mp4", "assetType": "video", "model": null }
+  },
+  "kpis": {
+    "totalAssets": 2,
+    "masterCount": 0,
+    "pendingCount": 0,
+    "projects": 1,
+    "estCostCents": 0,
+    "runOk": 0,
+    "runFail": 0,
+    "renderRuns": 0,
+    "costPerRenderSecCents": 0
+  },
+  "engineMix": []
+}

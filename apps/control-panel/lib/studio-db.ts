@@ -28,8 +28,27 @@ declare global {
   var studioPrismaGlobal: undefined | ReturnType<typeof studioClientSingleton>
 }
 
-const studioDb = globalThis.studioPrismaGlobal ?? studioClientSingleton()
+type StudioClient = ReturnType<typeof studioClientSingleton>
+
+// Module-scope cache covers production; the global covers dev hot-reload.
+let cached: StudioClient | undefined
+
+function getStudioDb(): StudioClient {
+  const client = cached ?? globalThis.studioPrismaGlobal ?? studioClientSingleton()
+  cached = client
+  if (process.env.NODE_ENV !== 'production') globalThis.studioPrismaGlobal = client
+  return client
+}
+
+// Lazy: the client is built on first property access, not at import. `next build`
+// imports every route module to collect page data, and must not need DATABASE_URL
+// to do so. A missing DATABASE_URL still throws - on first use, with the same message.
+const studioDb = new Proxy({} as StudioClient, {
+  get(_target, prop) {
+    const client = getStudioDb()
+    const value = Reflect.get(client, prop, client)
+    return typeof value === 'function' ? value.bind(client) : value
+  },
+})
 
 export default studioDb
-
-if (process.env.NODE_ENV !== 'production') globalThis.studioPrismaGlobal = studioDb

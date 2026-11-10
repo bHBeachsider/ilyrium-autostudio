@@ -3,10 +3,12 @@
  *
  * Verifies:
  *  - Every NH-S901 take shows a C2PA rights chip in the playlist
- *  - shot-003 (no takes) shows a "No takes" rights-gap badge in RightsPanel
+ *  - A take without C2PA shows a rights-gap badge in RightsPanel
  *  - Master export button is disabled while any shot has a gap
  *
- * Uses fixtures only — never touches production Neon (Decision B).
+ * Uses fixtures only — never touches production Neon (Decision B). The Review Room is fed by
+ * the mocked pipeline service (fixtures/shots.json); RightsPanel is fed by the console page
+ * props (fixtures/console.json: one cleared video asset, one with no model = missing C2PA).
  */
 import { test, expect } from "@playwright/test";
 import * as path from "path";
@@ -44,6 +46,13 @@ test.beforeEach(async ({ page }) => {
     try { localStorage.setItem("ilyrium.pipeline.session", payload); } catch {}
   }, JSON.stringify({ externalId: SONG_ID, view: 5 }));
 
+  // Playwright tries the most recently registered matching route first, so the catch-all
+  // must be registered BEFORE the specific mocks or it shadows them.
+  // Catch-all for other pipeline calls.
+  await page.route("**/pipeline/**", async (route) => {
+    await route.fulfill({ status: 200, contentType: "application/json", body: "{}" });
+  });
+
   // Mock pipeline service endpoints.
   await page.route("**/pipeline", async (route) => {
     if (route.request().method() === "GET") {
@@ -64,11 +73,6 @@ test.beforeEach(async ({ page }) => {
   // shots endpoint returns our fixture (3 shots, including shot-003 with no takes).
   await page.route("**/pipeline/*/shots", async (route) => {
     await route.fulfill({ status: 200, contentType: "application/json", body: SHOTS_FIXTURE });
-  });
-
-  // Catch-all for other pipeline calls.
-  await page.route("**/pipeline/**", async (route) => {
-    await route.fulfill({ status: 200, contentType: "application/json", body: "{}" });
   });
 
   // Serve tiny MP4 for fixture media.
@@ -122,12 +126,12 @@ test("ILY-205-P5-02: Source & Licence panel shows model and C2PA status", async 
   await expect(c2paInPanel).toBeVisible({ timeout: 3000 });
 
   // Model name should also appear.
-  await expect(page.locator("text=fal/wan-i2v")).toBeVisible({ timeout: 3000 });
+  await expect(page.getByText("fal/wan-i2v", { exact: true })).toBeVisible({ timeout: 3000 });
 });
 
 // ── ILY-205-P5-03: RightsPanel blocked badge + export gate ───────────────────
 
-test("ILY-205-P5-03: shot-003 shows rights gap and master export is disabled", async ({ page }) => {
+test("ILY-205-P5-03: rights gap is shown and master export is disabled", async ({ page }) => {
   await page.goto("/studio/console");
 
   // Navigate to the analytics domain which hosts RightsPanel.
@@ -140,13 +144,9 @@ test("ILY-205-P5-03: shot-003 shows rights gap and master export is disabled", a
   const rightsHeader = page.locator("text=Rights & Deliver");
   await expect(rightsHeader).toBeVisible({ timeout: 10000 });
 
-  // shot-003 has no takes → "No takes" / rights-gap badge.
-  const noTakesBadge = page.locator("[data-rights='no-takes']");
-  await expect(noTakesBadge).toBeVisible({ timeout: 5000 });
-
-  // shot-001 has a take with c2pa_status=missing → also a rights gap.
-  const gapBadge = page.locator("[data-rights='gap']");
-  await expect(gapBadge).toBeVisible({ timeout: 5000 });
+  // asset-fixture-gap has no model → C2PA missing → rights gap. asset-fixture-clear is cleared.
+  await expect(page.locator("[data-rights='gap']")).toHaveCount(1, { timeout: 5000 });
+  await expect(page.locator("[data-rights='clear']")).toHaveCount(1);
 
   // Export button must be disabled.
   const exportBtn = page.locator("button[data-deliver-blocked='true']");
@@ -155,6 +155,17 @@ test("ILY-205-P5-03: shot-003 shows rights gap and master export is disabled", a
 
   // The "blocked" warning text should be visible.
   await expect(page.locator("text=/blocked — /i")).toBeVisible({ timeout: 3000 });
+});
+
+// ── ILY-205-P5-05: a shot with no takes blocks delivery ──────────────────────
+// Not reachable today: Workspace.tsx builds RightsPanel's shots from video ASSETS, so a
+// shot only exists once it has a take and RightsPanel's "no-takes" state never renders.
+// The original P5-03 asserted it against fixtures/shots.json, which RightsPanel never reads.
+// Un-fixme when the rights view is driven by the shot list (ILY-205 tasks 29-30).
+test.fixme("ILY-205-P5-05: a shot with no takes shows a no-takes badge", async ({ page }) => {
+  await page.goto("/studio/console");
+  await page.getByRole("button", { name: /Control Plane/i }).click();
+  await expect(page.locator("[data-rights='no-takes']")).toBeVisible();
 });
 
 // ── ILY-205-P5-04: filter toggle hides cleared shots ─────────────────────────
@@ -172,13 +183,11 @@ test("ILY-205-P5-04: blocked-only filter shows only shots with rights gaps", asy
   // Enable "blocked only" filter.
   const blockedOnlyCheckbox = page.locator("input[aria-label='Show blocked only']");
   await expect(blockedOnlyCheckbox).toBeVisible({ timeout: 3000 });
-  await blockedOnlyCheckbox.check();
 
-  // shot-002 is clear (one take with valid C2PA) → must NOT be visible after filter.
-  // shot-001 has a missing take and shot-003 has no takes → both should stay visible.
+  // The cleared shot is listed before filtering, hidden after; the gap shot stays.
   const clearedBadge = page.locator("[data-rights='clear']");
-  await expect(clearedBadge).not.toBeVisible({ timeout: 3000 });
-
-  const gapBadge = page.locator("[data-rights='gap']");
-  await expect(gapBadge).toBeVisible({ timeout: 3000 });
+  await expect(clearedBadge).toHaveCount(1, { timeout: 3000 });
+  await blockedOnlyCheckbox.check();
+  await expect(clearedBadge).toHaveCount(0, { timeout: 3000 });
+  await expect(page.locator("[data-rights='gap']")).toHaveCount(1);
 });

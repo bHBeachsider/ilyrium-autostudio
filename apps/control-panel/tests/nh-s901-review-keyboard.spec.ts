@@ -4,8 +4,9 @@
  * Covers: approve (A key) + reject with required reason (R key + reason input),
  * take navigation (N / P), and ledger chain_ok verification after the session.
  *
- * Uses fixtures only — never touches production Neon (Decision B).
- * Requires: pnpm add -D @playwright/test && npx playwright install chromium
+ * Uses fixtures only — never touches production Neon (Decision B): the console page renders
+ * from tests/fixtures/console.json and the ledger lives in a temp dir (see playwright.config.ts).
+ * Run: pnpm run test:e2e   (first time: pnpm exec playwright install chromium)
  */
 import { test, expect } from "@playwright/test";
 import * as path from "path";
@@ -55,9 +56,15 @@ function verifyChain(ledgerPath: string): boolean {
 // ── fixtures ──────────────────────────────────────────────────────────────
 
 const FIXTURE_DIR = path.join(__dirname, "fixtures");
-const LEDGER_DIR = path.join(__dirname, "..", "..", "..", "ilyrium-shots", "ledger");
+// The temp dir playwright.config.ts hands to the dev server - never the real ilyrium-shots/ledger.
+const LEDGER_DIR = process.env.LEDGER_DIR ?? "";
+if (!LEDGER_DIR || /ilyrium-shots/.test(LEDGER_DIR)) {
+  throw new Error("LEDGER_DIR must be a temp dir set by playwright.config.ts");
+}
 const SONG_ID = "nh-s901-test";
 const LEDGER_PATH = path.join(LEDGER_DIR, `${SONG_ID}.jsonl`);
+const SEEDED_RECORDS = fs.readFileSync(path.join(FIXTURE_DIR, `ledger_${SONG_ID}.jsonl`), "utf8")
+  .split("\n").filter(Boolean).length;
 
 // Fixture adopt/state response — what the pipeline service returns when adopting a project.
 const ADOPT_RESPONSE = {
@@ -111,6 +118,13 @@ test.beforeEach(async ({ page }) => {
     try { localStorage.setItem("ilyrium.pipeline.session", payload); } catch {}
   }, JSON.stringify({ externalId: SONG_ID, view: 5 }));
 
+  // Playwright tries the most recently registered matching route first, so the catch-all
+  // must be registered BEFORE the specific mocks or it shadows them.
+  // Mock any other pipeline service calls that Pipeline.tsx might fire.
+  await page.route("**/pipeline/**", async (route) => {
+    await route.fulfill({ status: 200, contentType: "application/json", body: "{}" });
+  });
+
   // Mock pipeline list (GET /pipeline).
   await page.route("**/pipeline", async (route) => {
     if (route.request().method() === "GET") {
@@ -136,11 +150,6 @@ test.beforeEach(async ({ page }) => {
   // Mock shots endpoint (GET /pipeline/:runId/shots).
   await page.route("**/pipeline/*/shots", async (route) => {
     await route.fulfill({ status: 200, contentType: "application/json", body: SHOTS_FIXTURE });
-  });
-
-  // Mock any other pipeline service calls that Pipeline.tsx might fire.
-  await page.route("**/pipeline/**", async (route) => {
-    await route.fulfill({ status: 200, contentType: "application/json", body: "{}" });
   });
 
   // Serve fixture media as a tiny MP4 (avoids 404s that block video element creation).
@@ -169,33 +178,41 @@ test("NH-S901: keyboard-only approve + reject + chain_ok", async ({ page }) => {
 
   // ── APPROVE take-001a with keyboard shortcut 'A' ──
   await page.keyboard.press("a");
-  // Toast confirms approval.
-  await expect(page.locator("text=/Approved/i")).toBeVisible({ timeout: 8000 });
-  // Playlist chip should show ✓.
-  await expect(page.locator(".text-good, [style*='#57c97a']").first()).toBeVisible();
+  // The toast text is only shown when the review route answered ok (ledger appended).
+  await expect(page.getByText("Approved — ledger updated")).toBeVisible({ timeout: 8000 });
 
-  // ── Navigate to the next take with 'N' ──
+  // Auto-advance (on by default) moves to the next take ~600 ms after a decision.
+  // Wait for it, so the keys below act on a known take: take-001b, which has no decision yet.
+  const approvedOverlay = page.getByText("✓ APPROVED", { exact: true });
+  await expect(approvedOverlay).toBeHidden({ timeout: 5000 });
+
+  // ── Take navigation: 'P' goes back to the approved take, 'N' forward again ──
+  await page.keyboard.press("p");
+  await expect(approvedOverlay).toBeVisible({ timeout: 3000 });
   await page.keyboard.press("n");
-  // Give the transition time to settle.
-  await page.waitForTimeout(300);
+  await expect(approvedOverlay).toBeHidden({ timeout: 3000 });
 
   // ── REJECT the second take with keyboard shortcut 'R' ──
   await page.keyboard.press("r");
   const rejectDialog = page.locator("text=Reject take");
   await expect(rejectDialog).toBeVisible({ timeout: 3000 });
 
+  // The hotkey must not leak into the autofocused reason field (an "r" there would
+  // satisfy "reason required" without the reviewer typing one).
+  const reasonTextarea = page.getByPlaceholder(/Reason for rejection/);
+  await expect(reasonTextarea).toHaveValue("");
+
   // Confirm the reason textarea is required — button starts disabled.
   const confirmBtn = page.getByRole("button", { name: /Confirm reject/i });
   await expect(confirmBtn).toBeDisabled();
 
   // Type a reason into the textarea.
-  const reasonTextarea = page.locator("textarea");
   await reasonTextarea.fill("Motion blur exceeds style kernel threshold — regenerate with slower shutter");
   await expect(confirmBtn).toBeEnabled();
   await confirmBtn.click();
 
   // Rejected toast should appear.
-  await expect(page.locator("text=/Rejected/i")).toBeVisible({ timeout: 8000 });
+  await expect(page.getByText("Rejected — reason recorded")).toBeVisible({ timeout: 8000 });
 
   // ── Verify ledger chain_ok after the review session ──
   // The API route (Next.js server-side) appended records to the ledger file.
@@ -204,6 +221,11 @@ test("NH-S901: keyboard-only approve + reject + chain_ok", async ({ page }) => {
 
   const chainOk = verifyChain(LEDGER_PATH);
   expect(chainOk).toBe(true);
+
+  // Both decisions were appended (never rewritten) after the 2 seeded fixture records.
+  const records = fs.readFileSync(LEDGER_PATH, "utf8").split("\n").filter(Boolean).map((l) => JSON.parse(l));
+  expect(records.length).toBe(SEEDED_RECORDS + 2);
+  expect(records.slice(-2).map((r) => r.approval?.state)).toEqual(["approved", "rejected"]);
 });
 
 // ── NH-S901b: hotkeys disabled inside text field ───────────────────────────
@@ -222,8 +244,10 @@ test("NH-S901b: hotkeys disabled while focus is in text field", async ({ page })
   // Press 'A' inside the input — must NOT trigger the approve action.
   await page.keyboard.press("a");
 
-  // No approve toast should appear.
-  await expect(page.locator("text=/Approved/i")).not.toBeVisible({ timeout: 1500 });
+  // No approve toast and no approved overlay should appear.
+  await page.waitForTimeout(1500);
+  await expect(page.getByText(/Approved — ledger updated|Approved \(no ledger/)).toHaveCount(0);
+  await expect(page.getByText("✓ APPROVED", { exact: true })).toHaveCount(0);
 
   // The input value should contain 'a' (normal typing behaviour).
   await expect(noteInput).toHaveValue("a");

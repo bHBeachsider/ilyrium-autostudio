@@ -63,6 +63,10 @@ export async function POST(request: Request) {
     if (!songId || !shotId || !decision) {
       return NextResponse.json({ error: "songId, shotId, and decision are required." }, { status: 400 });
     }
+    // songId becomes a ledger filename: safe charset only, so it cannot leave the ledger dir.
+    if (typeof songId !== "string" || !/^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$/.test(songId)) {
+      return NextResponse.json({ error: "songId must be 1-64 characters of A-Z a-z 0-9 _ -" }, { status: 400 });
+    }
     if (!["approved", "rejected"].includes(decision)) {
       return NextResponse.json({ error: "decision must be approved or rejected." }, { status: 400 });
     }
@@ -71,7 +75,11 @@ export async function POST(request: Request) {
     }
 
     // Resolve ledger path relative to Next.js project root (apps/control-panel).
-    const ledgerDir = resolve(process.cwd(), "../../ilyrium-shots/ledger");
+    // LEDGER_DIR overrides it (same variable as lib/ledger.ts); tests point it at a temp dir
+    // so they never write to the real ledger.
+    const ledgerDir = process.env.LEDGER_DIR
+      ? resolve(process.env.LEDGER_DIR)
+      : resolve(process.cwd(), "../../ilyrium-shots/ledger");
     const ledgerPath = resolve(ledgerDir, `${songId}.jsonl`);
 
     let prevRecordHash: string | null = null;
