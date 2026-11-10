@@ -16,6 +16,11 @@ process.env.LEDGER_DIR = path.join(os.tmpdir(), `ilyrium-pw-ledger-${PORT}`);
 // file instead of querying the database.
 const CONSOLE_FIXTURE = path.join(__dirname, "tests", "fixtures", "console.json");
 
+// Must equal default_origin in tests/fixtures/service/contract.json.
+const PIPELINE_ORIGIN = "http://127.0.0.1:8800";
+// The mock helper refuses any request that goes to neither this app nor the mock.
+process.env.PW_APP_ORIGIN = BASE_URL;
+
 export default defineConfig({
   testDir: "./tests",
   testMatch: "**/*.spec.ts",
@@ -46,6 +51,12 @@ export default defineConfig({
       // skips its .env override when ILYRIUM_CONSOLE_FIXTURE is set, and Next's own .env
       // loading does not replace a variable that is already defined.
       DATABASE_URL: "",
+      // Pin the pipeline-service base URL to the origin the mock helper intercepts
+      // (tests/helpers/mockService.ts). Otherwise a value inherited from the shell or a
+      // local .env would send the console's requests - including regenerate and box
+      // start - to a real service. Both names are in use in the console today.
+      NEXT_PUBLIC_PIPELINE_URL: PIPELINE_ORIGIN,
+      NEXT_PUBLIC_PIPE: PIPELINE_ORIGIN,
     },
   },
 });
