@@ -159,3 +159,46 @@ approval is its Release.
 - **status:** open
 - **next_candidate:** voice takes versioned like video takes, the selected VO
   take tracked in `project.json` (Phase 2, with the cut ledger).
+
+## F-0007 — Two incompatible line formats can be appended to the same song ledger
+
+- **severity:** high
+- **frequency:** 1 (no real ledger is known to be affected yet; found by reading
+  code 2026-11-10, then confirmed by test)
+- **root_cause:** `ilyrium-shots/ledger/<song>.jsonl` has writers in two formats.
+  Format 1: `ilyrium-shots/provenance.py` `Ledger` (and the console review route's
+  own copy of its hash code) writes snapshot records with
+  `chain.prev_record_hash` / `chain.record_hash`. Format 3:
+  `apps/control-panel/lib/ledger.ts` writes `{seq,event,songId,payload,ts,prev,hash}`
+  for the takes route and the fal webhook (PR #28); `apps/auto-studio/cut_ledger.py`
+  on open PR #29 writes the same format from Python. Nothing keeps the two out of
+  one file. Measured by `tests/test_ledger_cross_format.py` and
+  `apps/control-panel/lib/ledger.crossformat.test.ts`, each using goldens produced
+  by the real writers:
+  - `provenance.Ledger.verify_chain` returns False for a valid format-3 ledger, and
+    `lib/ledger.ts` `verifyChain` returns False for a valid format-1 ledger.
+  - One format-3 line appended after valid format-1 history makes `chain_ok` False.
+  - A later `Ledger.append` does not heal it: it finds no `record_hash` on the
+    foreign line and starts a new chain (`prev_record_hash: null`) mid-file.
+  - `appendLedgerEntry` onto a format-1 file writes an entry with `seq: null` and
+    no `prev`.
+  - In every case the lines already in the file are left byte-identical, so
+    append-only holds; what is lost is verifiability.
+- **exposure:** `NH-S901.jsonl` holds 142 format-1 records. A `take_registered` or
+  `fal_asset_completed` write for that song, or a cut record from PR #29, would
+  break its `chain_ok`. History cannot be repaired by rewriting (CLAUDE.md).
+- **not covered:** the review route's hashing is a hand copy of `provenance.py`'s;
+  no test here proves the two agree on every record. `Ledger.append` has no file
+  lock, so two processes appending at once can fork a chain; not tested here.
+- **detected_at_layer:** human_review (spec review for ILY-206)
+- **should_have_been_prevented_at_layer:** ci
+- **remediation_type:** test (this entry) -> gate (one writer, pending)
+- **status:** open
+- **durable_artifact:** the two cross-format test files above and
+  `tests/fixtures/ledger/`; run in CI by `.github/workflows/console.yml`. They
+  characterise the hazard; they do not remove it.
+- **next_candidate:** ILY-206 spec decision D4 (pick the canonical film-ledger
+  format) and Phase 0 tasks 4-6: a lock inside `Ledger.append`, one writer behind
+  one endpoint, and a guard that refuses a format-3 append to a file with format-1
+  history. Until then: do not merge PR #29, and do not call the takes route or the
+  fal webhook for a song that already has provenance history.
